@@ -1,0 +1,280 @@
+<!--
+Parameter description:
+
+value				... qualified name of enumeration
+description ... short humanreadable formfor value (used for comboboxes etc...)
+help				... Help text displayed in popup, short description of parameters etc...
+i,k,n,v,p,q ... Parameter description: <selector>:<type>(<default>)
+text				... text for intellisense textbox $<parameter>{0}$ defines placeholder for parameter <parameter> 
+
+Possible selectors:
+- QuestType
+- GameLiving
+- Area
+- Item
+- Whisper
+- Region
+- Zone
+- Text
+- Location
+- TextType
+- Emote
+- CharacterClass
+
+Possible types:
+- string
+- int
+- long
+- var
+	
+Possible parameters:
+- P	... first action parameter
+- Q ...	second action parameter
+- N ... first requirement parameter
+- V ... second requirement parameter
+- C ... comparator requirmeent parameter
+- K ... first trigger parameter
+- I ... second trigger parameter
+
+-->
+<QuestData>
+	<ActionType>
+		<value>eActionType.Animation</value>
+		<description>Animation</description>
+		<help>Emote P is performed by GameLiving:Q</help>
+		<p>Emote:var</p>
+		<q>GameLiving:string(the player)</q>
+		<text>animation $P{0}$ is performed by $Q{1}$</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.Attack</value>
+		<description>Attack</description>
+		<help>Player is attacked with aggroamount P by monster Q</help>
+		<p>int(Player.Level/2)</p>
+		<q>GameLiving:string</q>
+		<text>$Q{0}$ attacks the player (aggro:$P{1}$)</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.WalkTo</value>
+		<description>WalkTo</description>
+		<help>GameNPC Q walks to point P, or player if P is empty</help>
+		<p>Location:var(the player)</p>
+		<q>GameLiving:string</q>
+		<text>$Q{0}$ walks to $P{1}$</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.WalkToSpawn</value>
+		<description>WalkToSpawn</description>
+		<help>GameNPC Q walks to spawnpoint</help>
+		<q>GameLiving:string</q>
+		<text>$Q{0}$ walks to his spawn point</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.MoveTo</value>
+		<description>MoveTo</description>
+		<help>GameNPC Q jumps immediatly to point P, or player if P is empty</help>
+		<p>Location:var(the player)</p>
+		<q>GameLiving:string</q>
+		<text>$Q{0}$ is moved to $P{1}$</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.Message</value>
+		<description>Message</description>
+		<help>Displays a Message P with texttype Q</help>
+		<p>Text:string</p>
+		<q>TextType:var</q>
+		<text>$Q{0}$ "$P{1}$"</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.CustomDialog</value>
+		<description>CustomDialog</description>
+		<help>Displays a custom dialog with message P and CustomDialogresponse Q</help>
+		<p>Text:string</p>
+		<q>CustomDialogResponse:var(CustomDialogResponse)</q>
+		<text>a (yes/no) dialog with "$P{0}$" is displayed, handled by $Q{1}$</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.DestroyItem</value>
+		<description>DestroyItem</description>
+		<help>Destroys Q instances of item P in inventory</help>
+		<q>int(1)</q>
+		<p>Item:string</p>
+		<text>$P{0}$ is destroyed $Q{1}$ times</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.DropItem</value>
+		<description>DropItem</description>
+		<help>Item P is dropped on the ground</help>
+		<p>Item:string</p>
+		<text>$P{0}$ drops in front of player</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.FinishQuest</value>
+		<description>FinishQuest</description>
+		<help>Quest P is set as completed for player, if P is empty current quest is used</help>
+		<p>QuestType:string</p>
+		<text>$P{0}$ is finished</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.GiveGold</value>
+		<description>GiveGold</description>
+		<help>Gives P copper pieces to player</help>
+		<p>long</p>
+		<text>the player gets $P{0}$ copper</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.TakeGold</value>
+		<description>TakeGold</description>
+		<help>Takes P copper pieces from player</help>
+		<p>long</p>
+		<text>the player looses $P{0}$ copper</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.GiveXP</value>
+		<description>GiveXP</description>
+		<help>Gives P experience points to player</help>
+		<p>long</p>
+		<text>the player gets $P{0}$ experience points</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.GiveItem</value>
+		<description>GiveItem</description>
+		<help>NPC gives item P to player and places it in inventory.</help>
+		<p>Item:string</p>
+		<q>GameLiving:string</q>
+		<text>$P{0}$ is given to the player by $Q{1}$</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.TakeItem</value>
+		<description>TakeItem</description>
+		<help>NPC takes Q instances of item P from player.</help>
+		<q>int(1)</q>
+		<p>Item:string</p>
+		<text>$P{0}$ is taken from the player $Q{1}$ times</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.GiveQuest</value>
+		<description>GiveQuest</description>
+		<help>NPC assigns quest P to player, if P is empty current quest is used</help>
+		<p>QuestType:string</p>
+		<text>the player gets $P{0}$</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.OfferQuest</value>
+		<description>OfferQuest</description>
+		<help>Quest P is offered to player via customdialog with message Q, if P is empty current quest is used</help>
+		<p>QuestType:string</p>
+		<q>Text:string</q>
+		<text>$P{0}$ is offered:"$Q{1}$"</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.OfferQuestAbort</value>
+		<description>OfferQuestAbort</description>
+		<help>Quest P abort is offered to player via customdialog with message Q, if P is empty current quest is used</help>
+		<p>QuestType:string</p>
+		<q>Text:string</q>
+		<text>an abort for $P{0}$ is offered:"$Q{1}$"</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.SetGuildName</value>
+		<description>SetGuildName</description>
+		<help>Guild of Q is set to P (not player's guilds)</help>
+		<p>string</p>
+		<q>GameLiving:string</q>
+		<text>guildname is set to $P{0}$ for $Q{1}$</text>
+	</ActionType>
+
+	<ActionType>
+		<value>eActionType.SetMonsterPath</value>
+		<description>SetMonsterPath</description>
+		<help>Mob Q is assigned to path P</help>
+		<q>GameLiving:string</q>
+		<p>Pathpoint:string</p>
+		<text>the mob $Q{0}$ walks on path initiated by point $P{1}$</text>
+	</ActionType>
+
+	<ActionType>
+		<value>eActionType.SetQuestStep</value>
+		<description>SetQuestStep</description>
+		<help>Quest P is set to step Q, if P is empty current quest is used</help>
+		<q>int</q>
+		<p>QuestType:string</p>
+		<text>the queststep of $P{0}$ is set to $Q{1}$</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.AbortQuest</value>
+		<description>AbortQuest</description>
+		<help>Aborts quest P, if P is empty current quest is used</help>
+		<p>QuestType:string</p>
+		<text>$P{0}$ is aborted</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.MonsterSpawn</value>
+		<description>MonsterSpawn</description>
+		<help>Monster P will spawn considering all its requirements</help>
+		<p>GameLiving:string</p>
+		<text>$P{0}$ spawns</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.MonsterUnspawn</value>
+		<description>MonsterUnspawn</description>
+		<help>Monster P will unspawn considering all its requirements</help>
+		<p>GameLiving:string</p>
+		<text>$P{0}$ unspawns</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.ReplaceItem</value>
+		<description>ReplaceItem</description>
+		<help> Item P is replaced by item Q in inventory of player</help>
+		<p>Item:string(Old Item)</p>
+		<q>Item:string(New Item)</q>
+		<text>$P{0}$ is replaced by $Q{1}$</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.IncQuestStep</value>
+		<description>IncQuestStep</description>
+		<help>Increments queststep of quest P, if P is empty current quest is used</help>
+		<p>QuestType:string</p>
+		<text>the queststep of $P{0}$ is increased</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.Talk</value>
+		<description>Talk</description>
+		<help>NPC Q says message P</help>
+		<p>Text:string</p>
+		<q>GameLiving:string</q>
+		<text>$Q{0}$ says "$P{1}$"</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.Teleport</value>
+		<description>Teleport</description>
+		<help>Teleports player to destination P with a random distance of Q</help>
+		<p>Location:var</p>
+		<q>int(0)</q>
+		<text>the player is teleported to $P{0}$ with a random distance of $Q{1}$</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.CustomTimer</value>
+		<description>CustomTimer</description>
+		<help>Regiontimer P starts to count Q millisecond</help>
+		<p>var</p>
+		<q>int</q>
+		<text>customtimer $P{0}$ runs for $Q{1}$ ms</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.Timer</value>
+		<description>Timer</description>
+		<help>Timer P starts to count Q milliseconds</help>
+		<p>string</p>
+		<q>int</q>
+		<text>timer #$P{0}$	runs for $Q{1}$ ms</text>
+	</ActionType>
+	<ActionType>
+		<value>eActionType.Whisper</value>
+		<description>Whisper</description>
+		<help>NPC Q whispers Message P, words with brackets are keywords</help>
+		<p>Text:string</p>
+		<q>GameLiving:string</q>
+		<text>$Q{0}$ whispers "$P{1}$"</text>
+	</ActionType>
+</QuestData>

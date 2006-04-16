@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NETXP.Controls.TaskPane</name>
+    </assembly>
+    <members>
+        <member name="T:NETXP.Controls.TaskPane.XPLink">
+            <summary>
+            XPLink is a link which behaves XP-style and has an icon.
+            </summary>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPLink.#ctor">
+            <summary>
+            Creates a new XPLink.
+            </summary>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPLink.OnMouseEnter(System.EventArgs)">
+            <summary>
+            Internal
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPLink.OnMouseLeave(System.EventArgs)">
+            <summary>
+            Internal
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPLink.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Internal
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPLink.HotForeColor">
+            <summary>
+            Gets or sets the foreground color of the control when the mouse is over it.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPLink.ColorTable">
+            <summary>
+            Gets or sets the color table used by the control.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPLink.UseColorTable">
+            <summary>
+            Use the default XP-style colors for the link? (Set this to True for a task pane link, or False for a standalone link)
+            </summary>
+        </member>
+        <member name="T:NETXP.Controls.TaskPane.XPTaskPane">
+            <summary>
+            XPTaskPane holds XPTaskPaneGroups.
+            </summary>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPane.GroupMoved(System.String,System.Int32,System.Int32)">
+            <summary>
+            Called when a group has moved in the taskpane, or been resized.
+            </summary>
+            <param name="name">The name of the control.</param>
+            <param name="delta">The amount of pixels it moved vertically.</param>
+            <param name="top">The top position of the control.</param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPane.#ctor">
+            <summary>
+            Creates a new task pane.
+            </summary>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPane.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Internal. Draws the pane.
+            </summary>
+            <param name="pevent"></param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPane.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPane.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPane.OnControlAdded(System.Windows.Forms.ControlEventArgs)">
+            <summary>
+            Internal
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPTaskPane.BackColor">
+            <summary>
+            Hides this member.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPTaskPane.ColorTable">
+            <summary>
+            Gets or sets the color table used by the control.
+            </summary>
+        </member>
+        <member name="T:NETXP.Controls.TaskPane.XPTaskPaneGroup">
+            <summary>
+            An extended <see cref="T:System.Windows.Forms.Panel">Panel</see> that provides task pane groups like those provided in Windows XP.
+            </summary>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.#ctor">
+            <summary>
+            Initialises a new instance of XPTaskPaneGroup.
+            </summary>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.IsOverTitle(System.Int32,System.Int32)">
+            <summary>
+            Helper function to determine if the mouse is currently over the title bar.
+            </summary>
+            <param name="xPos">The x-coordinate of the mouse position.</param>
+            <param name="yPos">The y-coordinate of the mouse position.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.UpdateDisplayedState">
+            <summary>
+            Helper function to update the displayed state of the group.
+            </summary>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.OnGroupStateChanged(NETXP.Controls.TaskPane.GroupEventArgs)">
+            <summary>
+            Event handler for the GroupStateChanged event.
+            </summary>
+            <param name="e">A GroupEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.OnControlAdded(System.Windows.Forms.ControlEventArgs)">
+            <summary>
+            Internal
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.OnHandleCreated(System.EventArgs)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.OnMouseLeave(System.EventArgs)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.XPTaskPaneGroup.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="E:NETXP.Controls.TaskPane.XPTaskPaneGroup.GroupStateChanged">
+            <summary>
+            A <see cref="P:NETXP.Controls.TaskPane.XPTaskPaneGroup.GroupState">GroupState</see> changed event.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPTaskPaneGroup.GroupState">
+            <summary>
+            Gets or sets the GroupState.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPTaskPaneGroup.Text">
+            <summary>
+            Gets or sets the text displayed as the group title.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPTaskPaneGroup.AllowExpandCollapse">
+            <summary>
+            Gets or sets whether or not to allow the user to expand and collapse the group by clicking on the header.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPTaskPaneGroup.SpecialTasks">
+            <summary>
+            Indicates whether or not the task pane group is a special group.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPTaskPaneGroup.BackColor">
+            <summary>
+            Hides this member.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPTaskPaneGroup.ColorTable">
+            <summary>
+            Gets or sets the color table for this control.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.XPTaskPaneGroup.Image">
+            <summary>
+            Gets or sets the image displayed in the header of the title bar.
+            </summary>
+        </member>
+        <member name="T:NETXP.Controls.TaskPane.GroupState">
+            <summary>
+            Defines the state of a <see cref="T:NETXP.Controls.TaskPane.XPTaskPaneGroup">XPTaskPaneGroup</see>.
+            </summary>
+        </member>
+        <member name="F:NETXP.Controls.TaskPane.GroupState.Expanded">
+            <summary>
+            The <see cref="T:NETXP.Controls.TaskPane.XPTaskPaneGroup">XPTaskPaneGroup</see> is expanded.
+            </summary>
+        </member>
+        <member name="F:NETXP.Controls.TaskPane.GroupState.Collapsed">
+            <summary>
+            The <see cref="T:NETXP.Controls.TaskPane.XPTaskPaneGroup">XPTaskPaneGroup</see> is collapsed.
+            </summary>
+        </member>
+        <member name="T:NETXP.Controls.TaskPane.GroupStateChangedEventHandler">
+            <summary>
+            A delegate type for hooking up group state change notifications.
+            </summary>
+        </member>
+        <member name="T:NETXP.Controls.TaskPane.GroupEventArgs">
+            <summary>
+            Provides data for the GroupStateChanged event.
+            </summary>
+        </member>
+        <member name="M:NETXP.Controls.TaskPane.GroupEventArgs.#ctor(NETXP.Controls.TaskPane.XPTaskPaneGroup)">
+            <summary>
+            Initialises a new <see cref="T:NETXP.Controls.TaskPane.GroupEventArgs">GroupEventArgs</see>.
+            </summary>
+            <param name="sender">The originating <see cref="P:NETXP.Controls.TaskPane.GroupEventArgs.XPTaskPaneGroup">XPTaskPaneGroup</see>.</param>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.GroupEventArgs.XPTaskPaneGroup">
+            <summary>
+            Gets the <see cref="P:NETXP.Controls.TaskPane.GroupEventArgs.XPTaskPaneGroup">XPTaskPaneGroup</see> that triggered the event.
+            </summary>
+        </member>
+        <member name="P:NETXP.Controls.TaskPane.GroupEventArgs.GroupState">
+            <summary>
+            Gets the <see cref="P:NETXP.Controls.TaskPane.GroupEventArgs.GroupState">GroupState</see> of the <see cref="P:NETXP.Controls.TaskPane.GroupEventArgs.XPTaskPaneGroup">XPTaskPaneGroup</see> that triggered the event.
+            </summary>
+        </member>
+    </members>
+</doc>

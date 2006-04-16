@@ -1,0 +1,17 @@
+=============
+NETXP LICENSE
+=============
+
+NetXP is free for any use except for use in commercial applications.
+This means that you can use NetXP for free in freeware applications.
+To use NetXP legally in a commercial application you must purchase a license from Dacris Software.
+
+You may use NetXP in your applications, subject to the following terms:
+- You may not attempt to decompile or disassemble the NetXP binaries.
+- You may not modify the binaries in any way.
+- You may distribute NetXP freely, provided that you include everything
+  in this package, especially this license agreement.
+- You may not distribute modified versions of the NetXP package.
+- You may not resell, rent, or lease copies of NetXP to others.
+
+You must agree to these terms in order to use NetXP.

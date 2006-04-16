@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="QuestDesigner.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="XMLFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ItemSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">350</Value>
+    </Setting>
+    <Setting Name="npcSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">350</Value>
+    </Setting>
+    <Setting Name="MainformLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="MainframeSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">580, 324</Value>
+    </Setting>
+    <Setting Name="ShowTaskPane" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="locationSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">223</Value>
+    </Setting>
+    <Setting Name="questPartSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">133</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

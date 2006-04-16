@@ -1,0 +1,148 @@
+<!--
+Parameter description:
+
+value				... qualified name of enumeration
+description ... short humanreadable formfor value (used for comboboxes etc...)
+help				... Help text displayed in popup, short description of parameters etc...
+i,k,n,v,p,q ... Parameter description: <selector>:<type>(<default>)
+text				... text for intellisense textbox $<parameter>{0}$ defines placeholder for parameter <parameter> 
+
+Possible selectors:
+- QuestType
+- GameLiving
+- Area
+- Item
+- Whisper
+- Region
+- Zone
+- Text
+- Location
+- TextType
+- Emote
+- CharacterClass
+
+Possible types:
+- string
+- int
+- long
+- var
+	
+Possible parameters:
+- P	... first action parameter
+- Q ...	second action parameter
+- N ... first requirement parameter
+- V ... second requirement parameter
+- C ... comparator requirmeent parameter
+- K ... first trigger parameter
+- I ... second trigger parameter
+
+-->
+<QuestData>
+	<TriggerType>
+		<value>eTriggerType.None</value>
+		<description>None</description>
+		<help>Won't be triggered at all</help>
+		<text>never</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.AcceptQuest</value>
+		<description>AcceptQuest</description>
+		<help>Player accepts quest I, if I is empty current quest is used</help>
+		<i>QuestType:string</i>
+		<text>the player accepts $I{0}$</text>
+	</TriggerType>	
+	<TriggerType>
+		<value>eTriggerType.DeclineQuest</value>
+		<description>DeclineQuest</description>
+		<help>Player declines quest I, if I is empty current quest is used</help>
+		<i>QuestType:string</i>
+		<text>the player declines $I{0}$</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.ContinueQuest</value>
+		<description>ContinueQuest</description>
+		<help>Continue quest I after abort quest offer, if I is empty current quest is used</help>
+		<i>QuestType:string</i>
+		<text>the player continues $I{0}$</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.AbortQuest</value>
+		<description>AbortQuest</description>
+		<help>Abort quest I after abort quest offer, if I is empty current quest is used</help>
+		<i>QuestType:string</i>
+		<text>the player aborts $I{0}$</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.EnterArea</value>
+		<description>EnterArea</description>
+		<help>Player enters area I</help>
+		<i>Area</i>
+		<text>the player enters $I{0}$</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.LeaveArea</value>
+		<description>LeaveArea</description>
+		<help>Player leaves area I</help>
+		<i>Area</i>
+		<text>the player leaves $I{0}$</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.Interact</value>
+		<description>Interact</description>
+		<help>Player right-clicks GameLiving I</help>
+		<i>GameLiving:string</i>
+		<text>the player interacts with $I{0}$</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.EnemyDying</value>
+		<description>EnemyDying</description>
+		<help>Enemy I died, no matter who/what killed it</help>
+		<i>GameLiving:string</i>
+		<text>$I{0}$ dies</text>
+	</TriggerType>	
+	<TriggerType>
+		<value>eTriggerType.PlayerKilled</value>
+		<description>PlayerKilled</description>
+		<help>Monster I kills the quest player</help>
+		<i>GameLiving:string</i>
+		<text>the player is killed by $I{0}$</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.EnemyKilled</value>
+		<description>EnemyKilled</description>
+		<help>A player (and only a player) kills any monster with the name K or a specific monster I</help>
+		<k>string</k>
+		<i>GameLiving:string</i>
+		<text>the player kills $K{0}$ / $I{1}$</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.GiveItem</value>
+		<description>GiveItem</description>
+		<help>Player gives item I to GameLiving K</help>
+		<i>Item:string</i>
+		<k>GameLiving:string</k>
+		<text>the player gives $I{0}$ to $K{1}$</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.Whisper</value>
+		<description>Whisper</description>
+		<help>Player whispers the word K to GameLiving I</help>
+		<k>Whisper:string</k>
+		<i>GameLiving:string</i>
+		<text>the player wispers $K{0}$ to $I{1}$</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.Timer</value>
+		<description>Timer</description>
+		<help>Timer with id K has finished</help>
+		<k>string</k>
+		<text>timer $K{0}$ fires</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.ItemUsed</value>
+		<description>ItemUsed</description>
+		<help> Item I is used by player</help>
+		<i>Item:string</i>
+		<text>the player uses $I{0}$</text>
+	</TriggerType>
+</QuestData>

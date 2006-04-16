@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NETXP.Components.Extenders</name>
+    </assembly>
+    <members>
+        <member name="T:NETXP.Components.Extenders.MenuImageExtender">
+            <summary>
+            A custom extender class that adds an <c>Image</c>
+            attribute to <c>MenuItem</c> objects, and custom draws the menu.
+            </summary>
+            <remarks>
+            This extension was written to provide an simple way to link
+            icons with a menu, and owner draw the menu.
+            By using an extender, no custom coding is required.
+            </remarks>
+        </member>
+        <member name="F:NETXP.Components.Extenders.MenuImageExtender.IMAGE_BUFFER">
+            <summary>
+            Menu images should be 16 x 16
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.Extenders.MenuImageExtender.m_hashTable">
+            <summary>
+            Hashtable is used to relate added <c>MenuItem</c> components
+            with each custom status messsage attribute value.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Constructor for instance that supports Class Composition designer.
+            </summary>
+            <param name="container">Reference to container hosting this instance.</param>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.#ctor">
+            <summary>
+            Creates the extender.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.SetImage(System.ComponentModel.Component,System.Drawing.Image)">
+            <summary>
+            Used to set a Image property value for
+            a specific <c>MenuItem</c> component instance.
+            </summary>
+            <param name="component">The <c>MenuItem</c> object to store</param>
+            <param name="imageValue">The value to associate with the menu item</param>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.GetImage(System.ComponentModel.Component)">
+            <summary>
+            Used to retrieve the Image extender property value
+            for a given <c>MenuItem</c> component instance.
+            </summary>
+            <param name="component">The menu item instance associated with the value</param>
+            <returns>Returns the Image property value for the specified <c>MenuItem</c> component instance.</returns>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.CanExtend(System.Object)">
+            <summary>
+            Used to determine if the given component is supported by
+            the extender.
+            </summary>
+            <param name="component">component to evaluate for compatability</param>
+            <returns>Returns True/False if the component supports the extender.</returns>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.OnMeasureItem(System.Object,System.Windows.Forms.MeasureItemEventArgs)">
+            <summary>
+            Event triggered to measure the size of a owner drawn <c>MenuItem</c>.
+            <param name="sender">the menu item client object</param>
+            <param name="e">the event arguments</param>
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.OnDrawItem(System.Object,System.Windows.Forms.DrawItemEventArgs)">
+            <summary>
+            Event triggered to owner draw the provide <c>MenuItem</c>.
+            </summary>
+            <param name="sender">the menu item client object</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="T:NETXP.Components.Extenders.MenuImageExtender.MenuHelper">
+            <summary>
+            
+            </summary>
+            <remarks>
+            </remarks>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.CalcHeight">
+            <summary>
+            Based on the menu item text, and the image size,
+            performs a calculation to determine the correct <c>MenuItem</c> height.
+            </summary>
+            <returns>Returns an <c>int</c> value that contains the calculated height of the menu item.</returns>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.CalcWidth">
+            <summary>
+            Based on the menu item text, and the image size,
+            performs a calculation to determine the correct <c>MenuItem</c> width.
+            </summary>
+            <returns>Returns an <c>int</c> value that contains the calculated width of the menu item.</returns>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.HasShortcut">
+            <summary>
+            A method to evaluate if the <c>MenuItem</c> has a shortcut selected, and the shortcut
+            has been selected for show.
+            </summary>
+            <returns>Returns True/False whether the menu has a shortcut to be displayed.</returns>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.IsSeparator">
+            <summary>
+            Evaluates whether the <c>MenuItem</c> is a separator by evaluating the text.
+            </summary>
+            <returns>Returns True/False whether the menu is a separator.</returns>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.IsTopLevel">
+            <summary>
+            Evaluates whether the <c>MenuItem</c> is a top-level menu that is sited directly
+            on a <c>MainMenu</c> control.
+            </summary>
+            <returns>Returns True/False if the menu item is a top-level menu.</returns>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.DrawMenu(System.Drawing.Rectangle,System.Boolean,System.Drawing.Image)">
+            <summary>
+            Draws a normal menu item including any related icons, checkboxes,
+            menu text, shortcuts text, and parent/submenu arrows.
+            </summary>
+            <param name="bounds">a <c>Rectangle</c> that holds the drawing canvas boundaries</param>
+            <param name="selected">True/False if the menu item is currently selected</param>
+            <param name="image">the image of the menu icon to draw, defaults to null</param>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.DrawBackground(System.Drawing.Rectangle,System.Boolean)">
+            <summary>
+            Draws the <c>MenuItem</c> background.
+            </summary>
+            <param name="bounds">a <c>Rectangle</c> that holds the painting canvas boundaries</param>
+            <param name="selected">True/False if the menu item is currently selected</param>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.DrawSeparator(System.Drawing.Rectangle)">
+            <summary>
+            Draws a menu separator.
+            </summary>
+            <param name="bounds">a <c>Rectangle</c> that holds the drawing canvas boundaries</param>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.DrawMenuText(System.Drawing.Rectangle,System.Boolean)">
+            <summary>
+            Draws the text for an ownerdrawn <c>MenuItem</c>.
+            </summary>
+            <param name="bounds">a <c>Rectangle</c> that holds the drawing area boundaries</param>
+            <param name="selected">True/False whether the menu item is currently selected</param>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.DrawCheckBox(System.Drawing.Rectangle)">
+            <summary>
+            Draws a checked item next to a <c>MenuItem</c>.
+            </summary>
+            <param name="bounds">a <c>Rectangle</c> that identifies the drawing area boundaries</param>
+        </member>
+        <member name="M:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.DrawImage(System.Drawing.Image,System.Drawing.Rectangle)">
+            <summary>
+            Draws a provided image onto the <c>MenuItem</c>.
+            </summary>
+            <param name="menuImage">an <c>Image</c> to paint on the menu</param>
+            <param name="bounds">a <c>Rectangle</c> that holds the drawing space boundaries</param>
+        </member>
+        <member name="P:NETXP.Components.Extenders.MenuImageExtender.MenuHelper.ShortcutText">
+            <summary>
+            Formats the <c>MenuItem</c> and returns the shortcut selection
+            as a displayable text string.
+            </summary>
+            <value>a string, the menu item shortcut as text</value>
+        </member>
+        <member name="T:NETXP.Components.Extenders.StatusMessages">
+            <summary>
+            Implements an extender for menu item status messages (typically for CommandBar items)
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.Extenders.StatusMessages.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Creates a new StatusMessages extender for the specified container.
+            </summary>
+            <param name="container">The container</param>
+        </member>
+        <member name="M:NETXP.Components.Extenders.StatusMessages.#ctor">
+            <summary>
+            Creates a new StatusMessages extender.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.Extenders.StatusMessages.SetStatusMessage(System.ComponentModel.Component,System.String)">
+            <summary>
+            Sets the status message.
+            </summary>
+            <param name="component">The component to associate with the value.</param>
+            <param name="value">The string value pertaining to the status message.</param>
+        </member>
+        <member name="M:NETXP.Components.Extenders.StatusMessages.GetStatusMessage(System.ComponentModel.Component)">
+            <summary>
+            Retrieves the status message.
+            </summary>
+            <param name="component">The component to associate with the value.</param>
+            <returns>The string value pertaining to the status message.</returns>
+        </member>
+        <member name="M:NETXP.Components.Extenders.StatusMessages.GetStatusBar">
+            <summary>
+            Retrieves the status bar that displays the status messages.
+            </summary>
+            <returns>The status bar.</returns>
+        </member>
+        <member name="M:NETXP.Components.Extenders.StatusMessages.CanExtend(System.Object)">
+            <summary>
+            Can the component be extended?
+            </summary>
+            <param name="component">The component to check.</param>
+            <returns>True if it can be extended.</returns>
+        </member>
+        <member name="P:NETXP.Components.Extenders.StatusMessages.StatusBar">
+            <summary>
+            The status bar displaying the status messages.
+            </summary>
+        </member>
+    </members>
+</doc>

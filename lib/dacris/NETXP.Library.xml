@@ -1,0 +1,2446 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NETXP.Library</name>
+    </assembly>
+    <members>
+        <member name="T:NETXP.Library.CollectionClear">
+            <summary>
+            Collection cleared event.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.CollectionChange">
+            <summary>
+            Collection changed event.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.CollectionEx">
+            <summary>
+            Implements an overrideable collection with events.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.#ctor">
+            <summary>
+            Constructs a new CollectionEx.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.SuspendEvents">
+            <summary>
+            Suspend event generation.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.ResumeEvents">
+            <summary>
+            Resume event generation.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.RaiseChanged">
+            <summary>
+            Raises the Changed event.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.OnClear">
+            <summary>
+            Processes an event.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Processes an event.
+            </summary>
+            <param name="index"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.OnRemove(System.Int32,System.Object)">
+            <summary>
+            Processes an event.
+            </summary>
+            <param name="index"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.OnClearComplete">
+            <summary>
+            Generates event.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.OnInsertComplete(System.Int32,System.Object)">
+            <summary>
+            Generates event.
+            </summary>
+            <param name="index"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.OnRemoveComplete(System.Int32,System.Object)">
+            <summary>
+            Generates event.
+            </summary>
+            <param name="index"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:NETXP.Library.CollectionEx.OnSetComplete(System.Int32,System.Object,System.Object)">
+            <summary>
+            Generates event.
+            </summary>
+            <param name="index"></param>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="E:NETXP.Library.CollectionEx.Changed">
+            <summary>
+            Event raised when the collection has changed.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.CollectionEx.Clearing">
+            <summary>
+            Event raised when collection is being cleared.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.CollectionEx.Cleared">
+            <summary>
+            Event raised when collection has been cleared.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.CollectionEx.Inserting">
+            <summary>
+            Event raised when an item is being inserted.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.CollectionEx.Inserted">
+            <summary>
+            Event raised when an item has been inserted.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.CollectionEx.Removing">
+            <summary>
+            Event raised when an item is being removed.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.CollectionEx.Removed">
+            <summary>
+            Event raised when an item has been removed.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.CollectionEx.IsSuspended">
+            <summary>
+            Is event generation already suspended?
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.XPThemeColor">
+            <summary>
+            Enumerates the XP color schemes.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.XPThemeColor.Blue">
+            <summary>
+            The Luna Blue color scheme.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.XPThemeColor.Silver">
+            <summary>
+            The Luna Silver color scheme.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.XPThemeColor.Olive">
+            <summary>
+            The Luna Olive Green color scheme.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.XPThemeColor.Classic">
+            <summary>
+            The Windows classic color scheme.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.TableColor">
+            <summary>
+            Provides a collection of colors defined in each color table.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.TaskPaneStart">
+            <summary>
+            The first gradient color for the task pane background.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.TaskPaneEnd">
+            <summary>
+            The last gradient color for the task pane background.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.SystemTaskHeaderStart">
+            <summary>
+            The first gradient color for the special task pane group header background.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.SystemTaskHeaderEnd">
+            <summary>
+            The last gradient color for the special task pane group header background.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.SystemTaskHeaderTextNormal">
+            <summary>
+            The color for the special task pane group header text (normal state).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.SystemTaskHeaderTextHover">
+            <summary>
+            The color for the special task pane group header text (hover state).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.SystemTaskBoxFill">
+            <summary>
+            The background fill color for the special task pane group's body.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.SystemTaskBoxBorder">
+            <summary>
+            The color of the border of special task pane groups.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.SystemTaskButtonColor">
+            <summary>
+            A general-purpose color used for the chevron button of a special task pane group.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.NormalTaskHeaderStart">
+            <summary>
+            The first gradient color for the normal task pane group header background.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.NormalTaskHeaderEnd">
+            <summary>
+            The last gradient color for the normal task pane group header background.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.NormalTaskHeaderTextNormal">
+            <summary>
+            The color for the normal task pane group header text (normal state).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.NormalTaskHeaderTextHover">
+            <summary>
+            The color for the normal task pane group header text (hover state).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.NormalTaskBoxFill">
+            <summary>
+            The background fill color for the normal task pane group's body.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.NormalTaskBoxBorder">
+            <summary>
+            The color of the border of normal task pane groups.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.NormalTaskButtonColor">
+            <summary>
+            A general-purpose color used for the chevron button of a normal task pane group.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.LinkColorNormal">
+            <summary>
+            The color used for task pane links (normal state).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.LinkColorHover">
+            <summary>
+            The color used for task pane links (hover state).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.RebarGradientStart">
+            <summary>
+            The background color on the left side of a command bar dock.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.RebarGradientEnd">
+            <summary>
+            The background color on the right side of a command bar dock.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.ToolbarGradientStart">
+            <summary>
+            The toolbar gradient background color (top).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.ToolbarGradientEnd">
+            <summary>
+            The toolbar gradient background color (bottom).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.ToolbarBottom">
+            <summary>
+            The color of the bottom line of a toolbar.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.GripperDark">
+            <summary>
+            The dark color of 3D grippers.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.GripperLight">
+            <summary>
+            The light color of 3D grippers.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.ToolbarButtonBorder">
+            <summary>
+            The color of a toolbar button's border.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.ToolbarButtonToggledGradientStart">
+            <summary>
+            The background gradient for a checked toolbar button (top color).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.ToolbarButtonToggledGradientEnd">
+            <summary>
+            The background gradient for a checked toolbar button (bottom color).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.ToolbarButtonPressedGradientStart">
+            <summary>
+            The background gradient for a pressed toolbar button (top color).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.ToolbarButtonPressedGradientEnd">
+            <summary>
+            The background gradient for a pressed toolbar button (bottom color).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.ToolbarButtonHoverGradientStart">
+            <summary>
+            The background gradient for a hot toolbar button (top color).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.ToolbarButtonHoverGradientEnd">
+            <summary>
+            The background gradient for a hot toolbar button (bottom color).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.PopupMenuBackground">
+            <summary>
+            The background color of a context menu window.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.PopupMenuBorder">
+            <summary>
+            The border color of a context menu window.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.MenuBarItemGradientStart">
+            <summary>
+            The background gradient for a dropped-down toolbar button or top-level menu item (top color).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.MenuBarItemGradientEnd">
+            <summary>
+            The background gradient for a dropped-down toolbar button or top-level menu item (bottom color).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.PopupMenuItemUncommonGradientStart">
+            <summary>
+            The gradient background color shown to the left of an infrequent popup menu item (left).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.PopupMenuItemUncommonGradientEnd">
+            <summary>
+            The gradient background color shown to the left of an infrequent popup menu item (right).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.PopupMenuItemCommonGradientStart">
+            <summary>
+            The gradient background color shown to the left of a normal popup menu item (left).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.PopupMenuItemCommonGradientEnd">
+            <summary>
+            The gradient background color shown to the left of a normal popup menu item (right).
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.PopupMenuItemSelected">
+            <summary>
+            The background color of a selected popup menu item.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.PopupMenuItemChecked">
+            <summary>
+            The background color of a checked popup menu item.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.PopupMenuItemCheckedHover">
+            <summary>
+            The background color of a selected checked popup menu item.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.TableColor.Separator">
+            <summary>
+            General color for separators.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.IColorTable">
+            <summary>
+            Defines what it means to be a color table.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.IColorTable.Colors">
+            <summary>
+            A collection of colors.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.ColorTables">
+            <summary>
+            Contains colors for various GUI elements.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ColorTables.XPBlue">
+            <summary>
+            Retrieves the XP Blue color table.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ColorTables.XPOlive">
+            <summary>
+            Retrieves the XP Olive Green color table.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ColorTables.XPSilver">
+            <summary>
+            Retrieves the XP Silver color table.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ColorTables.Classic">
+            <summary>
+            Retrieves the Windows Classic color table.
+            This can also be used for unrecognized visual styles.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ColorTables.Dynamic">
+            <summary>
+            Retrieves a color table based on the current visual style.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ColorTables.UXThemeColor">
+            <summary>
+            Gets the theme color for UXTheme, if used.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.ColorUtil">
+            <summary>
+            Exposes methods to work with color.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ColorUtil.GetTabBackground(System.Drawing.Color)">
+            <summary>
+            Retrieves the background color for tab pages, from a given background color.
+            </summary>
+            <param name="backColor">A background color.</param>
+            <returns>The tab page background.</returns>
+        </member>
+        <member name="M:NETXP.Library.ColorUtil.BlendColors(System.Drawing.Color,System.Drawing.Color,System.Int32)">
+            <summary>
+            Calculates a new color by blending two colors.
+            </summary>
+            <param name="front">The foreground color.</param>
+            <param name="back">The background color.</param>
+            <param name="alpha">The simulated alpha value of the foreground color.</param>
+            <returns>A blend between the foreground and background colors.</returns>
+        </member>
+        <member name="T:NETXP.Library.XPBlueColorTable">
+            <summary>
+            Contains colors for the Luna Blue color scheme.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.XPBlueColorTable.Colors">
+            <summary>
+            Gets the collection of colors provided by this color table.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.XPOliveColorTable">
+            <summary>
+            Contains colors for the Luna Olive Green color scheme.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.XPOliveColorTable.Colors">
+            <summary>
+            Gets the collection of colors provided by this color table.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.XPSilverColorTable">
+            <summary>
+            Contains colors for the Luna Silver color scheme.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.XPSilverColorTable.Colors">
+            <summary>
+            Gets the collection of colors provided by this color table.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.ClassicColorTable">
+            <summary>
+            Contains colors for any other color scheme.
+            These colors are computed from system colors.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ClassicColorTable.Colors">
+            <summary>
+            Gets the collection of colors provided by this color table.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.DynamicColorTable">
+            <summary>
+            Provides colors based on the current visual style.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.DynamicColorTable.Colors">
+            <summary>
+            Gets the collection of colors provided by this color table.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.CustomColorTable">
+            <summary>
+            Implements a custom color table. You can instantiate this color table and
+            replace the colors in the Colors collection with your own colors.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.CustomColorTable.#ctor">
+            <summary>
+            Constructs a new custom color table.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.CustomColorTable.Colors">
+            <summary>
+            Gets the collection of colors provided by this color table.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.ColorCollection">
+            <summary>
+            A collection of Color objects.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.#ctor">
+            <summary>
+            Creates a new collection.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.CopyTo(System.Array,System.Int32)">
+            <summary>
+            Copies this collection's items into an array.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="index">The index at which to start copying.</param>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.OnClear">
+            <summary>
+            Responds to an event.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.OnClearComplete">
+            <summary>
+            Responds to an event.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.OnInsertComplete(System.Int32,System.Object)">
+            <summary>
+            Responds to an event.
+            </summary>
+            <param name="index">Internal</param>
+            <param name="value">Internal</param>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.OnRemoveComplete(System.Int32,System.Object)">
+            <summary>
+            Responds to an event.
+            </summary>
+            <param name="index">Internal</param>
+            <param name="value">Internal</param>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.OnSetComplete(System.Int32,System.Object,System.Object)">
+            <summary>
+            Responds to an event.
+            </summary>
+            <param name="index">Internal</param>
+            <param name="oldValue">Internal</param>
+            <param name="newValue">Internal</param>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Responds to an event.
+            </summary>
+            <param name="index">Internal</param>
+            <param name="value">Internal</param>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.Add(System.Drawing.Color)">
+            <summary>
+            Adds an item to the collection.
+            </summary>
+            <param name="item">The item to add.</param>
+            <returns>The index where the item was added.</returns>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.AddRange(System.Drawing.Color[])">
+            <summary>
+            Adds a set of items to the collection.
+            </summary>
+            <param name="items">The array of items to add.</param>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.Insert(System.Int32,System.Drawing.Color)">
+            <summary>
+            Inserts an item at a specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.RemoveAt(System.Int32)">
+            <summary>
+            Removes an item at a specified index.
+            </summary>
+            <param name="index">The index to remove at.</param>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.Remove(System.Drawing.Color)">
+            <summary>
+            Removes an item.
+            </summary>
+            <param name="item">The item to remove.</param>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.Contains(System.Drawing.Color)">
+            <summary>
+            Checks if the collection contains a certain item.
+            </summary>
+            <param name="item">The item</param>
+            <returns>True if the collection contains this item.</returns>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.IndexOf(System.Drawing.Color)">
+            <summary>
+            Gets the index of an item.
+            </summary>
+            <param name="item">The item.</param>
+            <returns>The index of the item.</returns>
+        </member>
+        <member name="M:NETXP.Library.ColorCollection.RaiseChanged">
+            <summary>
+            Raises a Changed event.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.ColorCollection.Changed">
+            <summary>
+            Called when the collection has changed.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ColorCollection.Item(System.Int32)">
+            <summary>
+            Retrieves an item at an index.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ColorCollection.Item(NETXP.Library.TableColor)">
+            <summary>
+            Retrieves an item at an index.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.ColorCollectionEditor">
+            <summary>
+            WORKAROUND FOR COLLECTION EDITOR BUG
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ColorCollectionEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            Internal
+            </summary>
+            <param name="context"></param>
+            <param name="provider"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.ColorCollectionEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Internal
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NETXP.Library.ControlUtil">
+            <summary>
+            Provides utility functions for dealing with controls.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ControlUtil.RemoveAll(System.Windows.Forms.Control)">
+            <summary>
+            Removes all instances of the given control from its parent form.
+            </summary>
+            <param name="control">The control to remove.</param>
+        </member>
+        <member name="M:NETXP.Library.ControlUtil.Remove(System.Windows.Forms.Control.ControlCollection,System.Windows.Forms.Control)">
+            <summary>
+            Removes the given control from the specified control collection.
+            </summary>
+            <param name="coll">The control collection from which to remove the control.</param>
+            <param name="item">The control to remove.</param>
+        </member>
+        <member name="M:NETXP.Library.ControlUtil.RemoveAt(System.Windows.Forms.Control.ControlCollection,System.Int32)">
+            <summary>
+            Removes a control at the specified index from the given control collection.
+            </summary>
+            <param name="coll">The control collection.</param>
+            <param name="index">The index at which to remove.</param>
+        </member>
+        <member name="M:NETXP.Library.ControlUtil.RemoveForm(System.Windows.Forms.Control,System.Windows.Forms.Form)">
+            <summary>
+            Removes a form from the given container.
+            </summary>
+            <param name="source">The container of the form.</param>
+            <param name="form">The form to remove.</param>
+        </member>
+        <member name="T:NETXP.Library.Convert">
+            <summary>
+            Provides conversion methods for some .NET types.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Convert.SizeToString(System.Drawing.Size)">
+            <summary>
+            Converts a given Size to a string.
+            </summary>
+            <param name="size">The size to convert.</param>
+            <returns>A string representation of the size.</returns>
+        </member>
+        <member name="M:NETXP.Library.Convert.StringToSize(System.String)">
+            <summary>
+            Converts a given string to a Size.
+            </summary>
+            <param name="str">The string representation of the size.</param>
+            <returns>The size, parsed from the string.</returns>
+        </member>
+        <member name="M:NETXP.Library.Convert.PointToString(System.Drawing.Point)">
+            <summary>
+            Converts a given Point to a string.
+            </summary>
+            <param name="point">The point to convert.</param>
+            <returns>A string representation of the point.</returns>
+        </member>
+        <member name="M:NETXP.Library.Convert.StringToPoint(System.String)">
+            <summary>
+            Converts a given string to a Point.
+            </summary>
+            <param name="str">The string representation of the point.</param>
+            <returns>The point, parsed from the string.</returns>
+        </member>
+        <member name="T:NETXP.Library.DoNotObfuscateAttribute">
+            <summary>
+            Internal
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.DoNotObfuscateAttribute.#ctor">
+            <summary>
+            Internal
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.DrawUtil">
+            <summary>
+            Provides some utility functions for drawing.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.DrawUtil.DrawReverseString(System.Drawing.Graphics,System.String,System.Drawing.Font,System.Drawing.Rectangle,System.Drawing.Brush,System.Drawing.StringFormat)">
+            <summary>
+            Draws a string upside down.
+            </summary>
+            <param name="g">The graphics object.</param>
+            <param name="drawText">The string to draw.</param>
+            <param name="drawFont">The font to draw with.</param>
+            <param name="drawRect">The rectangle to draw inside.</param>
+            <param name="drawBrush">The brush to draw with.</param>
+            <param name="drawFormat">The format of the string.</param>
+        </member>
+        <member name="M:NETXP.Library.DrawUtil.DrawDragRectangle(System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Draws a drag rectangle with the given indent.
+            </summary>
+            <param name="newRect">The rectangle.</param>
+            <param name="indent">The indent.</param>
+        </member>
+        <member name="M:NETXP.Library.DrawUtil.DrawGlyph(NETXP.Library.Glyph,System.Drawing.Color,System.Drawing.Graphics,System.Int32,System.Int32)">
+            <summary>
+            Draws a NetXP common glyph using the given color, at the specified location.
+            </summary>
+            <param name="glyph">The NetXP common glyph to draw.</param>
+            <param name="color">The color with which to draw it.</param>
+            <param name="g">The graphics object where this glyph is to be drawn.</param>
+            <param name="x">The location (x).</param>
+            <param name="y">The location (y).</param>
+        </member>
+        <member name="M:NETXP.Library.DrawUtil.DrawDragRectangles(System.Drawing.Rectangle[],System.Int32)">
+            <summary>
+            Draws drag rectangles with the specified indent.
+            </summary>
+            <param name="newRects">The rectangles.</param>
+            <param name="indent">The indent.</param>
+        </member>
+        <member name="T:NETXP.Library.DrawUtil.CommandState">
+            <summary>
+            Internal.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.DrawUtil.CommandState.Normal">
+            <summary>
+            Internal.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.DrawUtil.CommandState.HotTrack">
+            <summary>
+            Internal.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.DrawUtil.CommandState.Pushed">
+            <summary>
+            Internal.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.Direction">
+            <summary>
+            Direction of docking.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Direction.Vertical">
+            <summary>
+            Vertical
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Direction.Horizontal">
+            <summary>
+            Horizontal
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.Edge">
+            <summary>
+            Docked Edge
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Edge.Top">
+            <summary>
+            Top
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Edge.Left">
+            <summary>
+            Left
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Edge.Bottom">
+            <summary>
+            Bottom
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Edge.Right">
+            <summary>
+            Right
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Edge.None">
+            <summary>
+            No edge
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.ExDlg">
+            <summary>
+            A form which displays details about an exception.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.ExDlg.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ExDlg.#ctor">
+            <summary>
+            Creates an exception dialog.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ExDlg.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ExDlg.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ExDlg.FrmTitle">
+            <summary>
+            The title of this form (in the title bar)
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ExDlg.ExDesc">
+            <summary>
+            The exception message.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ExDlg.ExDetails">
+            <summary>
+            Details of the exception.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ExDlg.EndChoice">
+            <summary>
+            Which button was chosen when the dialog box quit.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ExDlg.EnableContinue">
+            <summary>
+            Enable continue button.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.EndChoices">
+            <summary>
+            Which button was chosen when the dialog box quit.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.EndChoices.Continue">
+            <summary>
+            Continue (ignore exception)
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.EndChoices.TechSupport">
+            <summary>
+            Request technical support
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.EndChoices.Exit">
+            <summary>
+            Exit application
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.FTP">
+            <summary>
+            The FTP class provides simple functionality of an FTP client.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.FTP.#ctor">
+            <summary>
+            Constructs a new FTP connection.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.FTP.GetFileList(System.String)">
+            <summary>
+            Returns a string array containing the remote directory's 
+            file list.
+            </summary>
+            <param name="mask">DOS-style file mask.</param>
+            <returns>String array of file names.</returns>
+            <exception cref="T:System.IO.IOException">IOException</exception>
+        </member>
+        <member name="M:NETXP.Library.FTP.GetFileSize(System.String)">
+            <summary>
+            Gets the size of a file.
+            </summary>
+            <param name="fileName">The file whose size to retrieve.</param>
+            <returns>The file's size.</returns>
+            <exception cref="T:System.IO.IOException">IOException</exception>
+        </member>
+        <member name="M:NETXP.Library.FTP.Login">
+            <summary>
+            Logs in to an FTP server.
+            </summary>
+            <exception cref="T:System.IO.IOException">IOException</exception>
+        </member>
+        <member name="M:NETXP.Library.FTP.SetBinaryMode(System.Boolean)">
+            <summary>
+            If the value of mode is true, set binary mode for downloads.
+            Else, set Ascii mode.
+            </summary>
+            <param name="mode">See summary.</param>
+            <exception cref="T:System.IO.IOException">IOException</exception>
+        </member>
+        <member name="M:NETXP.Library.FTP.Download(System.String)">
+            <summary>
+            Download a file to the Assembly's local directory,
+            keeping the same file name.
+            </summary>
+            <param name="remFileName">Remote file name.</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.Download(System.String,System.Boolean)">
+            <summary>
+            Download a remote file to the Assembly's local directory,
+            keeping the same file name, and set the resume flag.
+            </summary>
+            <param name="remFileName">Remote file name.</param>
+            <param name="resume">Resume?</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.Download(System.String,System.String)">
+            <summary>
+            Download a remote file to a local file name which can include
+            a path. The local file name will be created or overwritten,
+            but the path must exist.
+            </summary>
+            <param name="remFileName">Remote file name.</param>
+            <param name="locFileName">Local file name.</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.Download(System.String,System.String,System.Boolean)">
+            <summary>
+            Download a remote file to a local file name which can include
+            a path, and set the resume flag. The local file name will be
+            created or overwritten, but the path must exist.
+            </summary>
+            <param name="remFileName">Remote file name.</param>
+            <param name="locFileName">Local file name.</param>
+            <param name="resume">Resume?</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.Upload(System.String)">
+            <summary>
+            Upload a file.
+            </summary>
+            <param name="fileName">File name.</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.Upload(System.String,System.Boolean)">
+            <summary>
+            Upload a file and set the resume flag.
+            </summary>
+            <param name="fileName">File name.</param>
+            <param name="resume">Resume?</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.DeleteRemoteFile(System.String)">
+            <summary>
+            Delete a file from the remote FTP server.
+            </summary>
+            <param name="fileName">Remote file name.</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.RenameRemoteFile(System.String,System.String)">
+            <summary>
+            Rename a file on the remote FTP server.
+            KNOWN PROBLEM: RNTO will not take care of existing file.
+            i.e. It will overwrite if newFileName exist
+            </summary>
+            <param name="oldFileName">Original file name.</param>
+            <param name="newFileName">New file name.</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.CreateDirectory(System.String)">
+            <summary>
+            Create a directory on the remote FTP server.
+            </summary>
+            <param name="dirName">Directory path.</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.RemoveDirectory(System.String)">
+            <summary>
+            Delete a directory on the remote FTP server.
+            </summary>
+            <param name="dirName">Remote directory name.</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.ChangeDirectory(System.String)">
+            <summary>
+            Change the current working directory on the remote FTP server.
+            </summary>
+            <param name="dirName">New working directory.</param>
+        </member>
+        <member name="M:NETXP.Library.FTP.Close">
+            <summary>
+            Close the FTP connection.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.FTP.SetDebug(System.Boolean)">
+            <summary>
+            Set debug mode.
+            </summary>
+            <param name="debug"></param>
+        </member>
+        <member name="P:NETXP.Library.FTP.RemoteHost">
+            <summary>
+            Gets/sets the name of the FTP server to connect to.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.FTP.RemotePort">
+            <summary>
+            Gets/sets the port number to use for FTP.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.FTP.RemotePath">
+            <summary>
+            Gets/sets the remote directory path.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.FTP.RemoteUser">
+            <summary>
+            Gets/sets the user name to use for logging into the remote server.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.FTP.RemotePass">
+            <summary>
+            Gets/sets the password to use for logging into the remote server.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.IStatusMessageProvider">
+            <summary>
+            Provides an interface for a status message provider for the command bars.
+            This is typically implemented by a command bar item.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.IStatusMessageProvider.Enter">
+            <summary>
+            Called when the mouse has entered the item.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.IStatusMessageProvider.Leave">
+            <summary>
+            Called when the mouse has left the item.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.IStatusMessageAcceptor">
+            <summary>
+            Provides an interface for a status message acceptor for the command bars.
+            This is typically implemented by a status bar.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.IStatusMessageAcceptor.SetStatusText(System.String)">
+            <summary>
+            Sets the status text.
+            </summary>
+            <param name="text">The status text.</param>
+        </member>
+        <member name="M:NETXP.Library.IStatusMessageAcceptor.ClearStatusText">
+            <summary>
+            Clears the status text.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.QuickMail">
+            <summary>
+            Provides easy access to Simple MAPI functions.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.QuickMail.InitMapi(System.IntPtr)">
+            <summary>
+            Initializes MAPI.
+            </summary>
+            <param name="hWnd">The window to use as parent for login UI.</param>
+            <returns>A Mapi object.</returns>
+        </member>
+        <member name="M:NETXP.Library.QuickMail.SendMessage(System.String,System.String,System.String,System.String,System.Int32,System.String[])">
+            <summary>
+            Sends a mail message.
+            </summary>
+            <param name="from">From who?</param>
+            <param name="to">To whom?</param>
+            <param name="subj">Subject</param>
+            <param name="body">Body or note</param>
+            <param name="flags">Flags</param>
+            <param name="fileattach">File attachments (string array)</param>
+        </member>
+        <member name="T:NETXP.Library.Mapi">
+            <summary>
+            Provides a simple MAPI wrapper.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Mapi.Logon(System.IntPtr)">
+            <summary>
+            Logs in to MAPI.
+            </summary>
+            <param name="hwnd">Window to be parent of login dialog.</param>
+            <returns>True if succeeds.</returns>
+        </member>
+        <member name="M:NETXP.Library.Mapi.Reset">
+            <summary>
+            Resets MAPI handles.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Mapi.Logoff">
+            <summary>
+            Ends the MAPI session.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Mapi.Send(System.String,System.String,System.Int32)">
+            <summary>
+            Sends a MAPI mail message.
+            </summary>
+            <param name="sub"></param>
+            <param name="txt"></param>
+            <param name="flags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.Mapi.AddRecip(System.String,System.String,System.Boolean)">
+            <summary>
+            Adds a recipient to a message.
+            </summary>
+            <param name="name"></param>
+            <param name="addr"></param>
+            <param name="cc"></param>
+        </member>
+        <member name="M:NETXP.Library.Mapi.SetSender(System.String,System.String)">
+            <summary>
+            Sets the recipient.
+            </summary>
+            <param name="sname"></param>
+            <param name="saddr"></param>
+        </member>
+        <member name="M:NETXP.Library.Mapi.Attach(System.String)">
+            <summary>
+            Attaches a file.
+            </summary>
+            <param name="filepath"></param>
+        </member>
+        <member name="M:NETXP.Library.Mapi.Next(NETXP.Win32.API.MailEnvelop@)">
+            <summary>
+            Gets the next message in an envelope.
+            </summary>
+            <param name="env"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.Mapi.Read(System.String,NETXP.Win32.API.MailAttach[]@)">
+            <summary>
+            Reads a message with the specified ID.
+            </summary>
+            <param name="id"></param>
+            <param name="aat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.Mapi.Delete(System.String)">
+            <summary>
+            Deletes a message.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.Mapi.SaveAttachm(System.String,System.String,System.String)">
+            <summary>
+            Saves a message's attachments.
+            </summary>
+            <param name="id"></param>
+            <param name="name"></param>
+            <param name="savepath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.Mapi.GetAttachNames(NETXP.Win32.API.MailAttach[]@)">
+            <summary>
+            Get's a message's attachment names.
+            </summary>
+            <param name="aat"></param>
+        </member>
+        <member name="M:NETXP.Library.Mapi.SaveAttachByName(System.String,System.String)">
+            <summary>
+            Saves attachment by name.
+            </summary>
+            <param name="name">Name of attachment.</param>
+            <param name="savepath">Path to save.</param>
+            <returns>True if success, False if error.</returns>
+        </member>
+        <member name="M:NETXP.Library.Mapi.Error">
+            <summary>
+            Retruns the string representation of a MAPI error.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NETXP.Library.Margins">
+            <summary>
+            Provides a way to set up margins or padding.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Margins.#ctor">
+            <summary>
+            Creates a new Margins object with default values.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Margins.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a new Margins object with the given values.
+            </summary>
+            <param name="left">The left margin.</param>
+            <param name="top">The top margin.</param>
+            <param name="right">The right margin.</param>
+            <param name="bottom">The bottom margin.</param>
+        </member>
+        <member name="M:NETXP.Library.Margins.ToString">
+            <summary>
+            Gets a string representation of this Margins object.
+            </summary>
+            <returns>A string representation of this Margins object.</returns>
+        </member>
+        <member name="E:NETXP.Library.Margins.Changed">
+            <summary>
+            Called when the Margins object has changed.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.Margins.Left">
+            <summary>
+            Gets or sets the value of the left margin.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.Margins.Top">
+            <summary>
+            Gets or sets the value of the top margin.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.Margins.Right">
+            <summary>
+            Gets or sets the value of the right margin.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.Margins.Bottom">
+            <summary>
+            Gets or sets the value of the bottom margin.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.Msg">
+            <summary>
+            Contains utility functions for displaying different kinds of messages.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Msg.Except(System.Windows.Forms.IWin32Window,System.Exception,System.String)">
+            <summary>
+            Creates an exception dialog.
+            </summary>
+            <param name="parent">The parent window. Can be null.</param>
+            <param name="x">The exception to describe.</param>
+            <param name="appname">The application causing the exception.</param>
+            <returns>Which button was chosen when the dialog quit.</returns>
+        </member>
+        <member name="M:NETXP.Library.Msg.AskIsYes(System.Windows.Forms.IWin32Window,System.String,System.String)">
+            <summary>
+            Asks the user a question.
+            </summary>
+            <param name="parent">The parent window of the message box. Can be null.</param>
+            <param name="appname">The application asking the question.</param>
+            <param name="prompt">The question.</param>
+            <returns>The user's answer to the question (True = Yes, False = No).</returns>
+        </member>
+        <member name="M:NETXP.Library.Msg.Notify(System.Windows.Forms.IWin32Window,System.String,System.String)">
+            <summary>
+            Notifies the user using a message box.
+            </summary>
+            <param name="parent">The parent window. Can be null.</param>
+            <param name="appname">The name of the application displaying the notification.</param>
+            <param name="message">The notification.</param>
+        </member>
+        <member name="T:NETXP.Library.PopupForm">
+            <summary>
+            Provides an inheritable, reusable popup form that implements
+            all the functionality of a typical popup window.
+            </summary>
+            <example>
+            <code>
+            // using a PopupForm in a control
+            PopupForm frm = new PopupForm();
+            frm.ShowPopup(this.FindForm(), new Point(0, 0), false);
+            </code>
+            </example>
+            <remarks>
+            Call the ShowPopup function instead of the Show function to
+            display a popup form.
+            </remarks>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.#ctor">
+            <summary>
+            Constructs a new PopupForm.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.ReleaseMouse">
+            <summary>
+            Called when in order to avoid a nasty hover bug.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.ShowPopup(System.Windows.Forms.Form,System.Drawing.Point,System.Boolean)">
+            <summary>
+            Shows a popup form at the specified location.
+            </summary>
+            <param name="owner">The owner form for the popup form.</param>
+            <param name="location">The location, in screen coordinates, where the popup is shown.</param>
+            <param name="modal">Is this a modal popup?</param>
+            <remarks>
+            You <i>may</i> specify a null owner form, but it will mean that the popup
+            control will deactivate all other forms when it is shown.
+            </remarks>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.OnActivated(System.EventArgs)">
+            <summary>
+            Internal
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.OnDeactivate(System.EventArgs)">
+            <summary>
+            Internal
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.OnClosing(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Processes the Closing event.
+            </summary>
+            <param name="e">Internal</param>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.OnHandleCreated(System.EventArgs)">
+            <summary>
+            Internal
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.OnClosed(System.EventArgs)">
+            <summary>
+            Processes the Closed event.
+            </summary>
+            <param name="e">Internal</param>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.CreateShadowWindow">
+            <summary>
+            Creates the shadow windows.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.DestroyShadowWindow">
+            <summary>
+            Destroys the shadow windows.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:NETXP.Library.PopupForm.PreFilterMessage(System.Windows.Forms.Message@)">
+            <summary>
+            Internal
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
+        <member name="E:NETXP.Library.PopupForm.Showing">
+            <summary>
+            Raised when showing the form. Provides an opportunity to animate the form.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.PopupForm.ShadowCreated">
+            <summary>
+            Raised when the shadow of the form has been created.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.PopupForm.HasShadow">
+            <summary>
+            Does this form have a shadow?
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.PopupForm.ShadowSize">
+            <summary>
+            Gets or sets the shadow size.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.PopupForm.RightShadow">
+            <summary>
+            Gets the right-side shadow window.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.PopupForm.BottomShadow">
+            <summary>
+            Gets the bottom shadow window.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.PopupForm.Filter">
+            <summary>
+            Gets the message filter.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.PopupForm.CreateParams">
+            <summary>
+            Internal.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.PopupMessageFilter">
+            <summary>
+            Provides a reusable message filter for popup controls.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.PopupMessageFilter.#ctor(System.Windows.Forms.Form)">
+            <summary>
+            Constructs a new message filter for the given popup form.
+            </summary>
+            <param name="popup">The popup form.</param>
+        </member>
+        <member name="M:NETXP.Library.PopupMessageFilter.PreFilterMessage(System.Windows.Forms.Message@)">
+            <summary>
+            Filters messages.
+            </summary>
+            <param name="m">The message.</param>
+            <returns>True if message should be devoured.</returns>
+        </member>
+        <member name="E:NETXP.Library.PopupMessageFilter.FilterMessage">
+            <summary>
+            Raised when filtering a message.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.PopupMessageFilter.Popup">
+            <summary>
+            Gets/sets the popup form which is being displayed.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.PopupMessageFilter.Modal">
+            <summary>
+            Gets/sets whether or not the popup is running in modal mode.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.PopupMessageFilter.FilterMessageHandler">
+            <summary>
+            Handles the FilterMessage event.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.Resources">
+            <summary>
+            Provides a better way to work with .NET resources.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Resources.LoadGlyphs">
+            <summary>
+            Gets the .NET common glyphs as an image list.
+            </summary>
+            <returns>The glyphs.</returns>
+        </member>
+        <member name="M:NETXP.Library.Resources.LoadCursor(System.Type,System.String)">
+            <summary>
+            Loads a cursor from a given assembly and cursor file name.
+            </summary>
+            <param name="assemblyType">The assembly.</param>
+            <param name="cursorName">The cursor file name.</param>
+            <returns>The cursor.</returns>
+        </member>
+        <member name="M:NETXP.Library.Resources.LoadIcon(System.Type,System.String)">
+            <summary>
+            Loads an icon from a given assembly and icon file name.
+            </summary>
+            <param name="assemblyType">The assembly.</param>
+            <param name="iconName">The icon file name.</param>
+            <returns>The icon.</returns>
+        </member>
+        <member name="M:NETXP.Library.Resources.LoadIcon(System.Type,System.String,System.Drawing.Size)">
+            <summary>
+            Loads an icon from a given assembly and icon file name, with the specified size.
+            </summary>
+            <param name="assemblyType">The assembly.</param>
+            <param name="iconName">The icon file name.</param>
+            <param name="iconSize">The size of the icon image to load.</param>
+            <returns>The icon.</returns>
+        </member>
+        <member name="M:NETXP.Library.Resources.LoadBitmap(System.Type,System.String)">
+            <summary>
+            Loads a bitmap from the specified assembly and bitmap file name.
+            </summary>
+            <param name="assemblyType">The assembly.</param>
+            <param name="imageName">The file name.</param>
+            <returns>The bitmap.</returns>
+        </member>
+        <member name="M:NETXP.Library.Resources.LoadBitmap(System.Type,System.String,System.Drawing.Point)">
+            <summary>
+            Loads a bitmap from the specified assembly and bitmap file name, setting transparency.
+            </summary>
+            <param name="assemblyType">The assembly.</param>
+            <param name="imageName">The file name.</param>
+            <param name="transparentPixel">The pixel location at which the transparent color is found.</param>
+            <returns>The bitmap.</returns>
+        </member>
+        <member name="M:NETXP.Library.Resources.LoadBitmapStrip(System.Type,System.String,System.Drawing.Size)">
+            <summary>
+            Loads a strip of images as an image list.
+            </summary>
+            <param name="assemblyType">The assembly.</param>
+            <param name="imageName">The bitmap file name.</param>
+            <param name="imageSize">The image size.</param>
+            <returns>A bitmap strip as an image list.</returns>
+        </member>
+        <member name="M:NETXP.Library.Resources.LoadBitmapStrip(System.Type,System.String,System.Drawing.Size,System.Drawing.Point)">
+            <summary>
+            Loads a strip of images as an image list, with transparency.
+            </summary>
+            <param name="assemblyType">The assembly.</param>
+            <param name="imageName">The bitmap file name.</param>
+            <param name="imageSize">The image size.</param>
+            <param name="transparentPixel">The pixel location at which the transparent color is found.</param>
+            <returns>A bitmap strip as an image list.</returns>
+        </member>
+        <member name="T:NETXP.Library.Glyph">
+            <summary>
+            Specifies the NetXP common glyphs found in this assembly.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.ChevronDown">
+            <summary>
+            A chevron pointing down.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.DDArrow">
+            <summary>
+            A small arrow pointing down.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.Expansion2003Chevron">
+            <summary>
+            The expansion item glyph for Office 2003 style, with a chevron.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.Expansion2003NoChevron">
+            <summary>
+            The expansion item glyph for Office 2003 style, without a chevron.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.Close">
+            <summary>
+            The MDI close button glyph.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.Maximize">
+            <summary>
+            The MDI maximize button glyph.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.Restore">
+            <summary>
+            The MDI restore button glyph.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.AutoHide">
+            <summary>
+            Shows a pin pointing down.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.Pin">
+            <summary>
+            Shows a pin pointing to the side.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.LeftArrow">
+            <summary>
+            An arrow pointing left, such as the one used by the tab control.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.RightArrow">
+            <summary>
+            An arrow pointing right, such as the one used by the tab control.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.Minimize">
+            <summary>
+            The MDI minimize button glyph.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.DownArrow">
+            <summary>
+            An arrow pointing down.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.ExpansionXPChevron">
+            <summary>
+            The expansion item glyph for Office XP style, with a chevron.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.ExpansionXPNoChevron">
+            <summary>
+            The expansion item glyph for Office XP style, without a chevron.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.ChevronUp">
+            <summary>
+            A chevron pointing up.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.UpArrow">
+            <summary>
+            An arrow pointing up.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.TaskPaneChevronUp">
+            <summary>
+            The task pane group chevron, pointing up.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.TaskPaneChevronDown">
+            <summary>
+            The task pane group chevron, pointing down.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.TabbedGroupsHorizontal">
+            <summary>
+            Icon for "New Horizontal Tab Group".
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.Glyph.TabbedGroupsVertical">
+            <summary>
+            Icon for "New Vertical Tab Group".
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.Settings">
+            <summary>
+            A class that is used to save and restore data using the registry
+            or by binary serialization in a file. It works in conjuction with another class
+            (with the recommended name "Settings") that contains all the data to be
+            stored. 
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Settings.ToString(System.Object)">
+            <summary>
+            Returns a list of all the fields and field types for the specified class
+            Useful for debugging.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Settings.Save(System.Object,Microsoft.Win32.RegistryKey)">
+            <summary>
+            Save all the information in a class to the registry. This method iterates through
+            all members of the specified class and saves them to the registry.
+            </summary>
+            <param name="settings">An object that holds all the desired settings</param>
+            <param name="Key">The registry key in which to save data</param>
+        </member>
+        <member name="M:NETXP.Library.Settings.Save(System.Object,System.String)">
+            <summary>
+            Save to the registry using the specified key
+            </summary>
+            <param name="settings">Settings to save.</param>
+            <param name="key">A string giving the registry key path relative to HKCU</param>
+        </member>
+        <member name="M:NETXP.Library.Settings.Save(System.Object)">
+            <summary>
+            Save to the registry using the default key, the standard user application
+            data registry key. To use this effectively, be sure to specify the
+            appropriate information in the AssemblyInfo file. 
+            </summary>
+            <param name="settings">Settings to save.</param>
+        </member>
+        <member name="M:NETXP.Library.Settings.Read(System.Object,Microsoft.Win32.RegistryKey)">
+            <summary>
+            Read all the information in a class to the registry. This method iterates through
+            all members of the specified class and reads them to the registry.
+            </summary>
+            <param name="settings">An object that holds all the desired settings</param>
+            <param name="Key">The registry key in which to save data</param>
+        </member>
+        <member name="M:NETXP.Library.Settings.Read(System.Object,System.String)">
+            <summary>
+            Read from the registry using the specified key
+            </summary>
+            <param name="key">A string giving the registry key path relative to HKCU</param>
+            <param name="settings">Settings to read.</param>
+        </member>
+        <member name="M:NETXP.Library.Settings.Read(System.Object)">
+            <summary>
+            Read from the registry using the default key, the standard user application
+            data registry key. To use this effectively, be sure to specify the
+            appropriate information in the AssemblyInfo file. 
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Settings.SaveToFile(System.Object,System.String)">
+            <summary>
+            Save settings to a file using binary serialization
+            </summary>
+            <param name="settings">This is the object that we want to serialize</param>
+            <param name="FileName">The name of the file in which to store settings</param>
+        </member>
+        <member name="M:NETXP.Library.Settings.ReadFromFile(System.String)">
+            <summary>
+            Read from a file using binary serialization. Normally a call to this method would
+            cast the return value to the correct type as in this example:
+            
+            settings = (Settings)Savior.ReadFromFile(FileName);
+            
+            </summary>
+            <param name="FileName">The name of the file from which to read settings</param>
+            <returns>An object is returned containing the settings</returns>
+        </member>
+        <member name="M:NETXP.Library.Settings.IsHexadecimal(System.String)">
+            <summary>
+            This returns true if the input is a string of valid hexadecimal digits 0-9, A-F, or a-f
+            </summary>
+            <param name="input">The input string</param>
+            <returns>true if the input is a valid hex number</returns>
+        </member>
+        <member name="T:NETXP.Library.ShadowWindow">
+            <summary>
+            A special type of window that can be used to show a shadow for another window.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ShadowWindow.#ctor(System.IntPtr)">
+            <summary>
+            Creates a new shadow window from the given handle.
+            </summary>
+            <param name="handle">The handle to which to attach.</param>
+        </member>
+        <member name="M:NETXP.Library.ShadowWindow.RenderShadow(System.Drawing.Rectangle,System.Boolean)">
+            <summary>
+            Renders the shadow. Can also be called to force a redraw.
+            </summary>
+            <param name="rc">The shadow rectangle.</param>
+            <param name="change">Has the shadow actually changed?</param>
+        </member>
+        <member name="M:NETXP.Library.ShadowWindow.Show">
+            <summary>
+            Shows the shadow window.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ShadowWindow.Close">
+            <summary>
+            Closes the shadow window, destroying the handle.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.ShadowWindow.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="E:NETXP.Library.ShadowWindow.PaintShadow">
+            <summary>
+            Raised when the shadow must be redrawn.
+            You MUST handle this event.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ShadowWindow.ShadowSize">
+            <summary>
+            The size of the shadow.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ShadowWindow.HwndShadow">
+            <summary>
+            The actual handle to the shadow window.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.ShadowWindow.ShadowType">
+            <summary>
+            The shadow type.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.ShadowType">
+            <summary>
+            Specifies the shadow window type.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.ShadowType.Bottom">
+            <summary>
+            Represents a horizontal shadow.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.ShadowType.Right">
+            <summary>
+            Represents a vertical shadow.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.StringCollection">
+            <summary>
+            Implements a string collection with events.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.StringCollection.Add(System.String)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.StringCollection.AddRange(System.String[])">
+            <summary>
+            Internal.
+            </summary>
+            <param name="values"></param>
+        </member>
+        <member name="M:NETXP.Library.StringCollection.Remove(System.String)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:NETXP.Library.StringCollection.Insert(System.Int32,System.String)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="index"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:NETXP.Library.StringCollection.Contains(System.String)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.StringCollection.Contains(NETXP.Library.StringCollection)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.StringCollection.IndexOf(System.String)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.StringCollection.SaveToXml(System.String,System.Xml.XmlTextWriter)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="name"></param>
+            <param name="xmlOut"></param>
+        </member>
+        <member name="M:NETXP.Library.StringCollection.LoadFromXml(System.String,System.Xml.XmlTextReader)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="name"></param>
+            <param name="xmlIn"></param>
+        </member>
+        <member name="P:NETXP.Library.StringCollection.Item(System.Int32)">
+            <summary>
+            Internal.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.Utility">
+            <summary>
+            Utility functions.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.Utility.AddPNGToImageList(System.Windows.Forms.ImageList,System.Drawing.Bitmap)">
+            <summary>
+            Adds a transparent image to an image list, with alpha channel transparency.
+            </summary>
+            <param name="il"></param>
+            <param name="bmp"></param>
+        </member>
+        <member name="M:NETXP.Library.Utility.BrowseForFolder(System.Windows.Forms.IWin32Window,System.String@,System.String,NETXP.Library.BrowseFlags)">
+            <summary>
+            Opens a Browse-For-Folder dialog.
+            </summary>
+            <param name="owner">The owner of the dialog.</param>
+            <param name="folder">The folder selected.</param>
+            <param name="title">The title of the dialog.</param>
+            <param name="flags">BrowseFlags.</param>
+            <returns>True if OK, False if Cancel.</returns>
+        </member>
+        <member name="M:NETXP.Library.Utility.SerializeIsolated(System.Object,System.String,System.Boolean)">
+            <summary>
+            Serializes a generic XML-serializable object to an XML file in isolated storage.
+            </summary>
+            <param name="o">Object</param>
+            <param name="file">XML File</param>
+            <param name="append">Should append to XML file?</param>
+        </member>
+        <member name="M:NETXP.Library.Utility.DeserializeIsolated(System.String,System.Type)">
+            <summary>
+            Deserializes a generic XML-serializable object from an XML file in isolated storage.
+            </summary>
+            <param name="file">XML File</param>
+            <param name="type">Type of object</param>
+            <returns>The new deserialized object</returns>
+        </member>
+        <member name="M:NETXP.Library.Utility.Serialize(System.Object,System.String,System.Boolean)">
+            <summary>
+            Serializes a generic XML-serializable object to an XML file.
+            </summary>
+            <param name="o">Object</param>
+            <param name="file">XML File</param>
+            <param name="append">Should append to XML file?</param>
+        </member>
+        <member name="M:NETXP.Library.Utility.Deserialize(System.String,System.Type)">
+            <summary>
+            Deserializes a generic XML-serializable object from an XML file.
+            </summary>
+            <param name="file">XML File</param>
+            <param name="type">Type of object</param>
+            <returns>The new deserialized object</returns>
+        </member>
+        <member name="M:NETXP.Library.Utility.IsNull(System.String)">
+            <summary>
+            Verifies if a string is null or empty.
+            </summary>
+            <param name="s">String</param>
+            <returns>True if null, False if not.</returns>
+        </member>
+        <member name="M:NETXP.Library.Utility.IsNull(System.Collections.ICollection)">
+            <summary>
+            Verifies if a collection is null or empty.
+            </summary>
+            <param name="col">Collection</param>
+            <returns>True if null, False if not.</returns>
+        </member>
+        <member name="M:NETXP.Library.Utility.SetXPPasswordChar(System.Windows.Forms.TextBox)">
+            <summary>
+            Sets the XP-style password character for text boxes, used instead of
+            the standard asterisk character on Windows XP.
+            </summary>
+            <param name="textBox">Textbox for which to set the XP-style password char.</param>
+        </member>
+        <member name="M:NETXP.Library.Utility.FixPropertyGridsAndTreeViews(System.Windows.Forms.Control)">
+            <summary>
+            Fixes property grids to persist the visible properties, and
+            makes tree views' scrollbars skinable.
+            </summary>
+            <param name="baseCtl">
+            The control or form containing the controls
+            to be fixed.
+            </param>
+        </member>
+        <member name="P:NETXP.Library.Utility.CommonControlsVersion">
+            <summary>
+            Gets the version of COMCTL32.DLL.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.BrowseFlags">
+            <summary>
+            Flags that control display and behaviour of folder browse dialog
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.None">
+            <summary>
+            Default
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.ReturnOnlyFSDirs">
+            <summary>
+            Same as BIF_RETURNONLYFSDIRS 
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.DontGoBelowDomain">
+            <summary>
+            Same as BIF_DONTGOBELOWDOMAIN 
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.ShowStatusText">
+            <summary>
+            Same as BIF_STATUSTEXT 
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.ReturnFSancestors">
+            <summary>
+            Same as BIF_RETURNFSANCESTORS 
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.EditBox">
+            <summary>
+            Same as BIF_EDITBOX 
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.Validate">
+            <summary>
+            Same as BIF_VALIDATE 
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.NewDialogStyle">
+            <summary>
+            Same as BIF_NEWDIALOGSTYLE
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.BrowseIncludeURLs">
+            <summary>
+            Same as BIF_BROWSEINCLUDEURLS 
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.AddUsageHint">
+            <summary>
+            Same as BIF_UAHINT
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.NoNewFolderButton">
+            <summary>
+            Same as BIF_NONEWFOLDERBUTTON 
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.BrowseForComputer">
+            <summary>
+            Same as BIF_BROWSEFORCOMPUTER
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.BrowseForPrinter">
+            <summary>
+            Same as BIF_BROWSEFORPRINTER 
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.IncludeFiles">
+            <summary>
+            Same as BIF_BROWSEINCLUDEFILES 
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.BrowseFlags.ShowShareable">
+            <summary>
+            Same as BIF_SHAREABLE 
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.UXTheme">
+            <summary>
+            Provides some utility functions from the UXTheme API.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.UXTheme.IsAppThemed">
+            <summary>
+            Is the current application themed?
+            </summary>
+            <returns>True if the current application is themed.</returns>
+        </member>
+        <member name="M:NETXP.Library.UXTheme.DrawBackground(System.String,System.Int32,System.Int32,System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws the themed background for a themed part.
+            </summary>
+            <param name="name">The name of the class to open.</param>
+            <param name="part">The part.</param>
+            <param name="state">The state ID of the part.</param>
+            <param name="hdc">The device context.</param>
+            <param name="ox">The destination location (x).</param>
+            <param name="oy">The destination location (y).</param>
+            <param name="dx">The destination size (x).</param>
+            <param name="dy">The destination size (y).</param>
+            <param name="clip_ox">The clip rectangle location (x).</param>
+            <param name="clip_oy">The clip rectangle location (y).</param>
+            <param name="clip_dx">The clip rectangle size (x).</param>
+            <param name="clip_dy">The clip rectangle size (y).</param>
+            <returns>True if successful. False if failed.</returns>
+        </member>
+        <member name="M:NETXP.Library.UXTheme.GetTextColor(System.String,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Gets the text color for a specified themed part.
+            </summary>
+            <param name="name">The name of the class to open.</param>
+            <param name="part">The part.</param>
+            <param name="state">The state ID of the part.</param>
+            <param name="r">The red component.</param>
+            <param name="g">The green component.</param>
+            <param name="b">The blue component.</param>
+            <returns>True if successful. False if failed.</returns>
+        </member>
+        <member name="M:NETXP.Library.UXTheme.DrawThemeParentBackground(System.IntPtr,System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws the themed parent background for a window.
+            </summary>
+            <param name="hwnd">Window.</param>
+            <param name="hdc">Device Context.</param>
+            <param name="ox">The destination location (x).</param>
+            <param name="oy">The destination location (y).</param>
+            <param name="dx">The destination size (x).</param>
+            <param name="dy">The destination size (y).</param>
+            <returns>True if successful. False if failed.</returns>
+        </member>
+        <member name="P:NETXP.Library.UXTheme.LayeredSupport">
+            <summary>
+            Does the operating system support layered windows?
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.UXTheme.IsFlatMenu">
+            <summary>
+            Are flat menus enabled on the system?
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.UXTheme.MenuShadows">
+            <summary>
+            Are menu drop shadows enabled and supported?
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.UXTheme.IsThemed">
+            <summary>
+            Determines if visual styles are enabled on this system.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.WNet">
+            <summary>
+            Contains utility functions for enumerating network nodes.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.WNet.EnumerateNetwork">
+            <summary>
+            Enumerates all the nodes in a network.
+            </summary>
+            <returns>
+            A nested collection of network nodes.
+            </returns>
+        </member>
+        <member name="T:NETXP.Library.WNetNodeLevel">
+            <summary>
+            Identifies the tree depth of a network node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeLevel.None">
+            <summary>
+            No depth information available.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeLevel.Network">
+            <summary>
+            The networks level.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeLevel.Domain">
+            <summary>
+            The domains level.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeLevel.Server">
+            <summary>
+            The servers level.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeLevel.Share">
+            <summary>
+            The shares level.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeLevel.Directory">
+            <summary>
+            The directories level.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeLevel.File">
+            <summary>
+            The files level.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.WNetNodeType">
+            <summary>
+            Identifies the type of network node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeType.Generic">
+            <summary>
+            Node information is unavailable.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeType.Domain">
+            <summary>
+            Domain node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeType.Server">
+            <summary>
+            Server node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeType.Share">
+            <summary>
+            Share node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeType.File">
+            <summary>
+            File node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeType.Group">
+            <summary>
+            Group node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeType.Network">
+            <summary>
+            Network node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeType.Root">
+            <summary>
+            Root node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeType.AdminShare">
+            <summary>
+            Administrative share.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNodeType.Directory">
+            <summary>
+            Directory node.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.WNetUsage">
+            <summary>
+            Identifies the use of the node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetUsage.None">
+            <summary>
+            No special use.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetUsage.Connectable">
+            <summary>
+            Can connect to node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetUsage.Container">
+            <summary>
+            Node contains subnodes.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.WNetNode">
+            <summary>
+            Describes a network node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNode.Level">
+            <summary>
+            The level of the node in the hierarchy.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNode.Type">
+            <summary>
+            The type of node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNode.Usage">
+            <summary>
+            Any special uses or flags for the node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNode.LocalName">
+            <summary>
+            The name of the node as it is visible locally.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNode.RemoteName">
+            <summary>
+            The name of the node as it is visible remotely.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNode.Comment">
+            <summary>
+            A user-defined comment for the node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNode.Provider">
+            <summary>
+            The provider for the node.
+            </summary>
+        </member>
+        <member name="F:NETXP.Library.WNetNode.Nodes">
+            <summary>
+            A collection of subnodes.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.WNetNodeCollection">
+            <summary>
+            A collection of WNetNode objects.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.#ctor">
+            <summary>
+            Creates a new collection.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.CopyTo(System.Array,System.Int32)">
+            <summary>
+            Copies this collection's items into an array.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="index">The index at which to start copying.</param>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.OnClear">
+            <summary>
+            Responds to an event.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.OnClearComplete">
+            <summary>
+            Responds to an event.
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.OnInsertComplete(System.Int32,System.Object)">
+            <summary>
+            Responds to an event.
+            </summary>
+            <param name="index">Internal</param>
+            <param name="value">Internal</param>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.OnRemoveComplete(System.Int32,System.Object)">
+            <summary>
+            Responds to an event.
+            </summary>
+            <param name="index">Internal</param>
+            <param name="value">Internal</param>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.OnSetComplete(System.Int32,System.Object,System.Object)">
+            <summary>
+            Responds to an event.
+            </summary>
+            <param name="index">Internal</param>
+            <param name="oldValue">Internal</param>
+            <param name="newValue">Internal</param>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.OnInsert(System.Int32,System.Object)">
+            <summary>
+            Responds to an event.
+            </summary>
+            <param name="index">Internal</param>
+            <param name="value">Internal</param>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.Add(NETXP.Library.WNetNode)">
+            <summary>
+            Adds an item to the collection.
+            </summary>
+            <param name="item">The item to add.</param>
+            <returns>The index where the item was added.</returns>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.AddRange(NETXP.Library.WNetNode[])">
+            <summary>
+            Adds a set of items to the collection.
+            </summary>
+            <param name="items">The array of items to add.</param>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.Insert(System.Int32,NETXP.Library.WNetNode)">
+            <summary>
+            Inserts an item at a specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.RemoveAt(System.Int32)">
+            <summary>
+            Removes an item at a specified index.
+            </summary>
+            <param name="index">The index to remove at.</param>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.Remove(NETXP.Library.WNetNode)">
+            <summary>
+            Removes an item.
+            </summary>
+            <param name="item">The item to remove.</param>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.Contains(NETXP.Library.WNetNode)">
+            <summary>
+            Checks if the collection contains a certain item.
+            </summary>
+            <param name="item">The item</param>
+            <returns>True if the collection contains this item.</returns>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.IndexOf(NETXP.Library.WNetNode)">
+            <summary>
+            Gets the index of an item.
+            </summary>
+            <param name="item">The item.</param>
+            <returns>The index of the item.</returns>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollection.RaiseChanged">
+            <summary>
+            Raises a Changed event.
+            </summary>
+        </member>
+        <member name="E:NETXP.Library.WNetNodeCollection.Changed">
+            <summary>
+            Called when the collection has changed.
+            </summary>
+        </member>
+        <member name="P:NETXP.Library.WNetNodeCollection.Item(System.Int32)">
+            <summary>
+            Retrieves an item at an index.
+            </summary>
+        </member>
+        <member name="T:NETXP.Library.WNetNodeCollectionEditor">
+            <summary>
+            WORKAROUND FOR COLLECTION EDITOR BUG
+            </summary>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollectionEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="context"></param>
+            <param name="provider"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Library.WNetNodeCollectionEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,249 @@
+<!--
+Parameter description:
+
+value				... qualified name of enumeration
+description ... short humanreadable formfor value (used for comboboxes etc...)
+help				... Help text displayed in popup, short description of parameters etc...
+i,k,n,v,p,q ... Parameter description: <selector>:<type>(<default>)
+text				... text for intellisense textbox $<parameter>{0}$ defines placeholder for parameter <parameter> 
+
+Possible selectors:
+- QuestType
+- GameLiving
+- Area
+- Item
+- Whisper
+- Region
+- Zone
+- Text
+- Location
+- TextType
+- Emote
+- CharacterClass
+
+Possible types:
+- string
+- int
+- long
+- var
+	
+Possible parameters:
+- P	... first action parameter
+- Q ...	second action parameter
+- N ... first requirement parameter
+- V ... second requirement parameter
+- C ... comparator requirmeent parameter
+- K ... first trigger parameter
+- I ... second trigger parameter
+
+-->
+<QuestData>
+	<RequirementType>
+		<value>eRequirementType.None</value>
+		<description>None</description>
+		<text>nothing</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.InventoryItem</value>
+		<description>InventoryItem</description>
+		<help>Checks inventory for V instances of item N</help>
+		<v>int(1)</v>
+		<n>Item:string</n>
+		<text>player has $V{0}$ instances of $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Class</value>
+		<description>Class</description>
+		<help>Checks for player class N</help>
+		<n>CharacterClass:int(class)</n>
+		<text>player is $N{0}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Quest</value>
+		<description>Quest</description>
+		<help>Checks for quest N completed V times, if N is empty current quest is used</help>
+		<v>int</v>
+		<n>QuestType:string</n>
+		<text>the player has finished $N{0}$ less then $V{1}$ times</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Encumbrance</value>
+		<description>Encumbrance</description>
+		<help>Compares player's property with value defined by N using Comparator</help>
+		<n>int</n>
+		<text>the player's encumbrance is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.EncumbranceMax</value>
+		<description>EncumbranceMax</description>
+		<help>Compares player's property with value defined by N using Comparator</help>
+		<n>int</n>
+		<text>the player's maximal encumbrance is $C{0}$ $N{1}$</text>
+	</RequirementType>
+
+	<RequirementType>
+		<value>eRequirementType.Endurance</value>
+		<description>Endurance</description>
+		<help>Compares player's property with value defined by N using Comparator</help>
+		<n>int</n>
+		<text>the player's endurance percentage is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.EnduranceMax</value>
+		<description>EnduranceMax</description>
+		<help>Compares player's property with value defined by N using Comparator</help>
+		<n>int</n>
+		<text>the player's maximal endurance percentage is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Gender</value>
+		<description>Gender</description>
+		<help>Compares player gender with value defined by N (0:male, 1:female)</help>
+		<n>int</n>
+		<text>the player's gender is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.GroupNumber</value>
+		<description>GroupNumber</description>
+		<help>Checks if player is grouped. N is number of people in group</help>
+		<n>int</n>
+		<text>the player's groupnumber is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.GroupLevel</value>
+		<description>GroupLevel</description>
+		<help>Checks if player is grouped. N is sum of levels in group</help>
+		<n>int</n>
+		<text>the player's grouplevel is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Guild</value>
+		<description>Guild</description>
+		<help>Compares guildname of N with V.</help>
+		<n>GameLiving:string</n>
+		<v>string</v>
+		<text>$N{0}$ is in the $V{1}$ guild</text>
+	</RequirementType>
+		<RequirementType>
+		<value>eRequirementType.Gold</value>
+		<description>Gold</description>
+		<help>Compares players gold with N using eComparator</help>
+		<n>long</n>
+		<text>the player has $C{0}$ $N{1}$ gold</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Health</value>
+		<description>Health</description>
+		<help>Compares player's property with value defined by N using Comparator</help>
+		<n>int</n>
+		<text>the player's health is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.HealthMax</value>
+		<description>HealthMax</description>
+		<help>Compares player's property with value defined by N using Comparator</help>
+		<n>int</n>
+		<text>the player's maximal health is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Level</value>
+		<description>Level</description>
+		<help>Compares player's level with N using eComparator</help>
+		<n>int</n>
+		<text>the player's level is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Mana</value>
+		<description>Mana</description>
+		<help>Compares player's property with value defined by N using Comparator</help>
+		<n>int</n>
+		<text>the player's mana is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.ManaMax</value>
+		<description>ManaMax</description>
+		<help>Compares player's property with value defined by N using Comparator</help>
+		<n>int</n>
+		<text>the player's maximal mana is $C{0}$ $N{1}$</text>
+	</RequirementType>
+		<RequirementType>
+		<value>eRequirementType.QuestPending</value>
+		<description>QuestPending</description>
+		<help>Checks for player's pending quest N, if N is empty current quest is used</help>
+		<n>QuestType:string</n>
+		<text>the player $C{0}$ doing $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Race</value>
+		<description>Race</description>
+		<help>Compares player's race with N</help>
+		<n>int</n>
+		<text>the player's race is $N{0}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Random</value>
+		<description>Random</description>
+		<help>Percent random chance indicated by N. 50 = 50%:50%</help>
+		<n>int</n>
+		<text>a random chance of $N{0}$ percent</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Realm</value>
+		<description>Realm</description>
+		<help>Compares player's realm with N</help>
+		<n>int</n>
+		<text>the player's realm is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.RealmLevel</value>
+		<description>RealmLevel</description>
+		<help>Compares player's realm level with N using eComparator</help>
+		<n>int</n>
+		<text>the player's realmlevel is $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.RealmPoints</value>
+		<description>RealmPoints</description>
+		<help>Compares player's realm points with N using eComparator</help>
+		<n>long</n>
+		<text>the player's realmpoints is $C{0}$ $N{1}$</text>
+	</RequirementType>
+		<RequirementType>
+		<value>eRequirementType.Region</value>
+		<description>Region</description>
+		<help>compare player's zone with N and region with V</help>
+		<n>Zone:int</n>
+		<v>Region:int</v>
+		<text>the player is in the zone $N{0}$ in region $V{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.EquippedItem</value>
+		<description>EquippedItem</description>
+		<help>Checks readied/worn items of player for item N</help>
+		<n>Item:string</n>
+		<text>the player has $N{0}$ equipped</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.QuestStep</value>
+		<description>QuestStep</description>
+		<help>Checks for player's quest N at step V using eComparator, if N is empty current quest is used</help>
+		<v>int</v>
+		<n>QuestType:string</n>
+		<text>the queststep of $N{0}$ is $V{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.QuestGivable</value>
+		<description>QuestGivable</description>
+		<help>Checks for quest N to be givable by NPC to player, if N is empty current quest is used</help>
+		<n>QuestType:string</n>
+		<text>the player can $C{0}$ do $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Distance</value>
+		<description>Distance</description>
+		<help>Compares distance V between player and given GameLiving N using Comparator</help>
+		<v>int</v>
+		<n>GameLiving:string</n>
+		<text>the distance to $N{0}$ is $C{1}$ $V{2}$</text>
+	</RequirementType>
+</QuestData>

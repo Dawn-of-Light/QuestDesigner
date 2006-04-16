@@ -1,0 +1,606 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NETXP.Components</name>
+    </assembly>
+    <members>
+        <member name="T:NETXP.Components.CompBrowser">
+            <summary>
+            CompBrowser is a form that provides built-in capability to list the computers on a network.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.CompBrowser.PopulateTree">
+            <summary>
+            Populates the main tree view.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.CompBrowser.#ctor">
+            <summary>
+            Constructs a new CompBrowser form.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.CompBrowser.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.CompBrowser.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.CompBrowser.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="P:NETXP.Components.CompBrowser.SelectedComputer">
+            <summary>
+            The name of the selected computer.
+            </summary>
+        </member>
+        <member name="T:NETXP.Components.FlagsEditor">
+            <summary>
+            Implements a custom type editor.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.FlagsEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            Overrides the method used to provide basic behavior for selecting editor.
+            Shows our custom control for editing the value.
+            </summary>
+            <param name="context">The context of the editing control</param>
+            <param name="provider">A valid service provider</param>
+            <param name="value">The current value of the object to edit</param>
+            <returns>The new value of the object</returns>
+        </member>
+        <member name="M:NETXP.Components.FlagsEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Shows a dropdown icon in the property editor.
+            </summary>
+            <param name="context">The context of the editing control</param>
+            <returns>Returns <c>UITypeEditorEditStyle.DropDown</c></returns>
+        </member>
+        <member name="M:NETXP.Components.FlagsEditor.OnMouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            When got the focus, handle the lost focus event.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Components.FlagsEditor.OnMouseMoved(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Occurs when the mouse is moved over the checkedlistbox. 
+            Sets the tooltip of the item under the pointer.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:NETXP.Components.FlagsEditor.ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Close the dropdowncontrol when the user has selected a value.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:NETXP.Components.FlagsEditor.clbItem">
+            <summary>
+            Internal class used for storing custom data in ListViewItems.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.FlagsEditor.clbItem.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            Creates a new instance of the <c>clbItem</c>
+            </summary>
+            <param name="str">The string to display in the <c>ToString</c> method. 
+            It will contain the name of the flag</param>
+            <param name="value">The integer value of the flag</param>
+            <param name="tooltip">The tooltip to display in the <see cref="T:System.Windows.Forms.CheckedListBox"/></param>
+        </member>
+        <member name="M:NETXP.Components.FlagsEditor.clbItem.ToString">
+            <summary>
+            Gets the name of this item.
+            </summary>
+            <returns>The name passed in the constructor</returns>
+        </member>
+        <member name="P:NETXP.Components.FlagsEditor.clbItem.Value">
+            <summary>
+            Gets the int value for this item.
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.FlagsEditor.clbItem.Tooltip">
+            <summary>
+            Gets the tooltip for this item.
+            </summary>
+        </member>
+        <member name="T:NETXP.Components.ImageStore">
+            <summary>
+            This component stores an image into the resources for use at runtime,
+            such as adding it to an ImageList and preserving transparency.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.ImageStore.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.ImageStore.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Constructs a new ImageStore component and assigns it to a container.
+            </summary>
+            <param name="container">
+            The container to which to assign this component.
+            </param>
+        </member>
+        <member name="M:NETXP.Components.ImageStore.#ctor">
+            <summary>
+            Constructs a new ImageStore component.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.ImageStore.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.ImageStore.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.ImageStore.Image">
+            <summary>
+            The image to store in resources.
+            </summary>
+        </member>
+        <member name="T:NETXP.Components.NotifyIconEx">
+            <summary>
+            This component provides extended notify icon functionality.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.NotifyIconEx.#ctor">
+            <summary>
+            Constructs a new NotifyIconEx.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.NotifyIconEx.Dispose(System.Boolean)">
+            <summary>
+            Gets rid of the icon.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:NETXP.Components.NotifyIconEx.Remove">
+            <summary>
+            Removes the icon from the tray.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.NotifyIconEx.ShowBalloon(System.String,System.String,NETXP.Components.NotifyInfoFlags,System.Int32)">
+            <summary>
+            Shows a balloon for the icon.
+            </summary>
+            <param name="title">
+            The title of the balloon, up to 64 chars in length.
+            </param>
+            <param name="text">
+            The contents of the balloon, up to 256 chars in length.
+            </param>
+            <param name="type">
+            The type of the balloon.
+            </param>
+            <param name="timeoutInMilliSeconds">
+            The timeout of the balloon, in milliseconds.
+            </param>
+        </member>
+        <member name="E:NETXP.Components.NotifyIconEx.Click">
+            <summary>
+            Item was clicked.
+            </summary>
+        </member>
+        <member name="E:NETXP.Components.NotifyIconEx.DoubleClick">
+            <summary>
+            Item was double-clicked.
+            </summary>
+        </member>
+        <member name="E:NETXP.Components.NotifyIconEx.BalloonClick">
+            <summary>
+            Balloon was clicked.
+            </summary>
+        </member>
+        <member name="E:NETXP.Components.NotifyIconEx.RightClick">
+            <summary>
+            Item was right-clicked.
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.NotifyIconEx.Text">
+            <summary>
+            Text for this item.
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.NotifyIconEx.Icon">
+            <summary>
+            Icon for this item.
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.NotifyIconEx.ContextMenu">
+            <summary>
+            The context menu to be shown if item is right-clicked.
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.NotifyIconEx.Visible">
+            <summary>
+            Configures visibility.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.NotifyIconEx.NotifyIconTarget.#ctor">
+            <summary>
+            Hidden
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.NotifyIconEx.NotifyIconTarget.DefWndProc(System.Windows.Forms.Message@)">
+            <summary>
+            Hidden
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="E:NETXP.Components.NotifyIconEx.NotifyIconTarget.ClickNotify">
+            <summary>
+            Hidden
+            </summary>
+        </member>
+        <member name="E:NETXP.Components.NotifyIconEx.NotifyIconTarget.DoubleClickNotify">
+            <summary>
+            Hidden
+            </summary>
+        </member>
+        <member name="E:NETXP.Components.NotifyIconEx.NotifyIconTarget.RightClickNotify">
+            <summary>
+            Hidden
+            </summary>
+        </member>
+        <member name="E:NETXP.Components.NotifyIconEx.NotifyIconTarget.ClickBalloonNotify">
+            <summary>
+            Hidden
+            </summary>
+        </member>
+        <member name="E:NETXP.Components.NotifyIconEx.NotifyIconTarget.TaskbarCreated">
+            <summary>
+            Hidden
+            </summary>
+        </member>
+        <member name="T:NETXP.Components.NotifyIconEx.NotifyIconTarget.NotifyIconHandler">
+            <summary>
+            Hidden
+            </summary>
+        </member>
+        <member name="T:NETXP.Components.NotifyInfoFlags">
+            <summary>
+            Flags for balloon tip's icon.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.NotifyInfoFlags.Error">
+            <summary>
+            Shows an error icon.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.NotifyInfoFlags.Info">
+            <summary>
+            Shows an info icon.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.NotifyInfoFlags.None">
+            <summary>
+            Shows no icon.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.NotifyInfoFlags.Warning">
+            <summary>
+            Shows a warning icon.
+            </summary>
+        </member>
+        <member name="T:NETXP.Components.TaskbarNotifier">
+            <summary>
+            TaskbarNotifier allows you to display MSN style/Skinned instant messaging popups.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.TaskbarNotifier.TitleRectangle">
+            <summary>
+            Configures TaskbarNotifier.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.TaskbarNotifier.ContentRectangle">
+            <summary>
+            Configures TaskbarNotifier.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.TaskbarNotifier.TitleClickable">
+            <summary>
+            Configures TaskbarNotifier.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.TaskbarNotifier.ContentClickable">
+            <summary>
+            Configures TaskbarNotifier.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.TaskbarNotifier.CloseClickable">
+            <summary>
+            Configures TaskbarNotifier.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.TaskbarNotifier.EnableSelectionRectangle">
+            <summary>
+            Configures TaskbarNotifier.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.#ctor">
+            <summary>
+            The Constructor for TaskbarNotifier
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.Show(System.String,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Displays the popup for a certain amount of time
+            </summary>
+            <param name="strTitle">The string which will be shown as the title of the popup</param>
+            <param name="strContent">The string which will be shown as the content of the popup</param>
+            <param name="nTimeToShow">Duration of the showing animation (in milliseconds)</param>
+            <param name="nTimeToStay">Duration of the visible state before collapsing (in milliseconds)</param>
+            <param name="nTimeToHide">Duration of the hiding animation (in milliseconds)</param>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.Hide">
+            <summary>
+            Hides the popup
+            </summary>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.SetBackgroundBitmap(System.String,System.Drawing.Color)">
+            <summary>
+            Sets the background bitmap and its transparency color
+            </summary>
+            <param name="strFilename">Path of the Background Bitmap on the disk</param>
+            <param name="transparencyColor">Color of the Bitmap which won't be visible</param>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.SetBackgroundBitmap(System.Drawing.Image,System.Drawing.Color)">
+            <summary>
+            Sets the background bitmap and its transparency color
+            </summary>
+            <param name="image">Image/Bitmap object which represents the Background Bitmap</param>
+            <param name="transparencyColor">Color of the Bitmap which won't be visible</param>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.SetCloseBitmap(System.String,System.Drawing.Color,System.Drawing.Point)">
+            <summary>
+            Sets the 3-State Close Button bitmap, its transparency color and its coordinates
+            </summary>
+            <param name="strFilename">Path of the 3-state Close button Bitmap on the disk (width must a multiple of 3)</param>
+            <param name="transparencyColor">Color of the Bitmap which won't be visible</param>
+            <param name="position">Location of the close button on the popup</param>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.SetCloseBitmap(System.Drawing.Image,System.Drawing.Color,System.Drawing.Point)">
+            <summary>
+            Sets the 3-State Close Button bitmap, its transparency color and its coordinates
+            </summary>
+            <param name="image">Image/Bitmap object which represents the 3-state Close button Bitmap (width must be a multiple of 3)</param>
+            <param name="transparencyColor">Color of the Bitmap which won't be visible</param>
+            /// <param name="position">Location of the close button on the popup</param>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.DrawCloseButton(System.Drawing.Graphics)">
+            <summary>
+            Functio interna.
+            </summary>
+            <param name="grfx"></param>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.DrawText(System.Drawing.Graphics)">
+            <summary>
+            Functio interna.
+            </summary>
+            <param name="grfx"></param>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.CalculateMouseRectangles">
+            <summary>
+            Functio interna.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.BitmapToRegion(System.Drawing.Bitmap,System.Drawing.Color)">
+            <summary>
+            Functio interna.
+            </summary>
+            <param name="bitmap"></param>
+            <param name="transparencyColor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.OnTimer(System.Object,System.EventArgs)">
+            <summary>
+            Functio interna.
+            </summary>
+            <param name="obj"></param>
+            <param name="ea"></param>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.OnMouseEnter(System.EventArgs)">
+            <summary>
+            Functio interna.
+            </summary>
+            <param name="ea"></param>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.OnMouseLeave(System.EventArgs)">
+            <summary>
+            Functio interna.
+            </summary>
+            <param name="ea"></param>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Functio interna.
+            </summary>
+            <param name="mea"></param>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Functio interna.
+            </summary>
+            <param name="mea"></param>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Functio interna.
+            </summary>
+            <param name="mea"></param>
+        </member>
+        <member name="M:NETXP.Components.TaskbarNotifier.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Functio interna.
+            </summary>
+            <param name="pea"></param>
+        </member>
+        <member name="E:NETXP.Components.TaskbarNotifier.CloseClick">
+            <summary>
+            Handle CloseClick event.
+            </summary>
+        </member>
+        <member name="E:NETXP.Components.TaskbarNotifier.TitleClick">
+            <summary>
+            Handle TitleClick event.
+            </summary>
+        </member>
+        <member name="E:NETXP.Components.TaskbarNotifier.ContentClick">
+            <summary>
+            Handle ContentClick event.
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.TaskbarState">
+            <summary>
+            Get the current TaskbarState (hidden, showing, visible, hiding)
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.TitleText">
+            <summary>
+            Get/Set the popup Title Text
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.ContentText">
+            <summary>
+            Get/Set the popup Content Text
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.NormalTitleColor">
+            <summary>
+            Get/Set the Normal Title Color
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.HoverTitleColor">
+            <summary>
+            Get/Set the Hover Title Color
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.NormalContentColor">
+            <summary>
+            Get/Set the Normal Content Color
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.HoverContentColor">
+            <summary>
+            Get/Set the Hover Content Color
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.NormalTitleFont">
+            <summary>
+            Get/Set the Normal Title Font
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.HoverTitleFont">
+            <summary>
+            Get/Set the Hover Title Font
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.NormalContentFont">
+            <summary>
+            Get/Set the Normal Content Font
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.HoverContentFont">
+            <summary>
+            Get/Set the Hover Content Font
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.KeepVisibleOnMousOver">
+            <summary>
+            Indicates if the popup should remain visible when the mouse pointer is over it.
+            Added Rev 002
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.TaskbarNotifier.ReShowOnMouseOver">
+            <summary>
+            Indicates if the popup should appear again when mouse moves over it while it's disappearing.
+            Added Rev 002
+            </summary>
+        </member>
+        <member name="T:NETXP.Components.TaskbarNotifier.TaskbarStates">
+            <summary>
+            List of the different popup animation status
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.TaskbarNotifier.TaskbarStates.hidden">
+            <summary>
+            Taskbar notifier is hidden.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.TaskbarNotifier.TaskbarStates.appearing">
+            <summary>
+            Taskbar notification window is appearing.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.TaskbarNotifier.TaskbarStates.visible">
+            <summary>
+            Window is visible.
+            </summary>
+        </member>
+        <member name="F:NETXP.Components.TaskbarNotifier.TaskbarStates.disappearing">
+            <summary>
+            Window is disappearing.
+            </summary>
+        </member>
+        <member name="T:NETXP.Components.XTimer">
+            <summary>
+            XTimer is an enhanced high-precision timer using Win32 performance counters.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.XTimer.Init">
+            <summary>
+            Initializes the high-res timer, getting its frequency.
+            </summary>
+        </member>
+        <member name="M:NETXP.Components.XTimer.Begin">
+            <summary>
+            Begins timing.
+            </summary>
+            <returns>True if it succeeded.</returns>
+        </member>
+        <member name="M:NETXP.Components.XTimer.End">
+            <summary>
+            Ends timing operation and gets the elapsed time in microseconds.
+            </summary>
+            <returns>A double value indicating the elapsed time in microseconds, or 0.0 if failed.</returns>
+        </member>
+        <member name="P:NETXP.Components.XTimer.Frequency">
+            <summary>
+            Gets the maximum frequency of this high-res timer.
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.XTimer.BeginTime">
+            <summary>
+            Gets the time when the timing operation was started.
+            </summary>
+        </member>
+        <member name="P:NETXP.Components.XTimer.Initialized">
+            <summary>
+            Gets whether or not the timer was initialized.
+            </summary>
+        </member>
+    </members>
+</doc>

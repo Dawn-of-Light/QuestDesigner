@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NETXP.Forms</name>
+    </assembly>
+    <members>
+        <member name="T:NETXP.Forms.About">
+            <summary>
+            An inheritable about box.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.BigTitle">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.CloseButton">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.VerInfoGrp">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.ProdEdition">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.SerialNo">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.Company">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.CompanyLabel">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.LicTo">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.LicToLabel">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.OrderOnlineLink">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.LookForUpdatesLink">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.ProdInfoLink">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.CopyrightLabel">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.ProdVer">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.ProdVerLabel">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.AssembliesGrp">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.ListOfAssemblies">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.AppDesc">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.AppName">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.MainPanel">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.About.Logo">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.About.#ctor">
+            <summary>
+            Creates a new about box.
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.About.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.About.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:NETXP.Forms.Dialog">
+            <summary>
+            A form providing the functionality of a typical Win32 dialog.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Dialog.OKBtn">
+            <summary>
+            An inheritable member.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Dialog.CancelBtn">
+            <summary>
+            An inheritable member.
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.Dialog.#ctor">
+            <summary>
+            Creates a new dialog box (no sizing border)
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.Dialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.Dialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.Dialog.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="T:NETXP.Forms.PopupForm">
+            <summary>
+            See <see cref="T:NETXP.Library.PopupForm"/>
+            </summary>
+        </member>
+        <member name="T:NETXP.Forms.Wizard">
+            <summary>
+            An inheritable wizard from.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.TitlePanel">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.ProductLogo">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.PageTitle">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.Separator">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.WizardLogo">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.LowerPanel">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.CancelBtn">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.NextButton">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.BackButton">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.WizardPages">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.EtchedLine">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="F:NETXP.Forms.Wizard.OKBtn">
+            <summary>
+            An inheritable field.
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.Wizard.#ctor">
+            <summary>
+            Creates a new wizard.
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.Wizard.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.Wizard.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:NETXP.Forms.Wizard.SetWizardMode(System.Boolean)">
+            <summary>
+            Changes from wizard to property sheet and back.
+            </summary>
+            <param name="wizard">Use wizard mode?</param>
+        </member>
+        <member name="M:NETXP.Forms.Wizard.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            Internal.
+            </summary>
+            <param name="m"></param>
+        </member>
+    </members>
+</doc>
