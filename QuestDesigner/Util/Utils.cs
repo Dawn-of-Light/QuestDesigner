@@ -58,10 +58,10 @@ namespace QuestDesigner.Util
 
 		#region Coordinate Conversion
 
-		public static Point ConvertZonePointToRegion(int zoneID, Point local)
+		public static Point3D ConvertZonePointToRegion(int zoneID, Point3D local)
 		{
-			Point global = new Point();
-			DataRow[] row = DB.zoneTable.Select("zoneID=" + zoneID);
+			Point3D global = new Point3D();
+			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
 			if (row.Length>0) {
 				global.X = Convert.ToInt32(row[0]["offsetx"]) * 8192 + local.X;
 				global.Y = Convert.ToInt32(row[0]["offsety"]) * 8192 + local.Y;
@@ -71,10 +71,10 @@ namespace QuestDesigner.Util
 			return global;
 		}
 
-		public static Point ConvertRegionPointToZone(int zoneID, Point global)
+		public static Point3D ConvertRegionPointToZone(int zoneID, Point3D global)
 		{
-			Point local = new Point();
-			DataRow[] row = DB.zoneTable.Select("zoneID=" + zoneID);
+			Point3D local = new Point3D();
+			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
 			if (row.Length > 0)
 			{
 				local.X = global.X - Convert.ToInt32(row[0]["offsetx"]) * 8192;
@@ -88,7 +88,7 @@ namespace QuestDesigner.Util
 		public static int ConvertZoneXToRegion(int zoneID, int localX)
 		{
 			int globalX = 0;
-			DataRow[] row = DB.zoneTable.Select("zoneID=" + zoneID);
+			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
 			if (row.Length > 0)
 			{
 				globalX = Convert.ToInt32(row[0]["offsetx"]) * 8192 + localX;
@@ -99,7 +99,7 @@ namespace QuestDesigner.Util
 		public static int ConvertRegionXToZone(int zoneID, int globalX)
 		{
 			int localX = 0;
-			DataRow[] row = DB.zoneTable.Select("zoneID=" + zoneID);
+			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
 			if (row.Length > 0)
 			{
 				localX = globalX - Convert.ToInt32(row[0]["offsetx"]) * 8192;
@@ -110,7 +110,7 @@ namespace QuestDesigner.Util
 		public static int ConvertRegionYToZone(int zoneID, int globalY)
 		{
 			int localY = 0;
-			DataRow[] row = DB.zoneTable.Select("zoneID=" + zoneID);
+			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
 			if (row.Length > 0)
 			{
 				localY = globalY - Convert.ToInt32(row[0]["offsety"]) * 8192;
@@ -121,7 +121,7 @@ namespace QuestDesigner.Util
 		public static int ConvertZoneYToRegion(int zoneID, int localY)
 		{
 			int globalY = 0;
-			DataRow[] row = DB.zoneTable.Select("zoneID=" + zoneID);
+			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
 			if (row.Length > 0)
 			{
 				globalY = Convert.ToInt32(row[0]["offsety"]) * 8192 + localY;

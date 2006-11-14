@@ -5,8 +5,6 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 using QuestDesigner.Util;
-using DOL.GS.Scripts;
-using DOL.GS.Quests;
 using System.Reflection;
 using System.Data;
 
@@ -18,7 +16,7 @@ namespace QuestDesigner.Controls
 
 		public QuestSelector(int triggerID, char param): base(triggerID,param)
 		{
-			foreach (DataRow row in DB.questTable.Rows)
+			foreach (DataRow row in DB.QuestTable.Rows)
 			{
 				this.list.Items.Add(row["Namespace"] + "." + row["Name"]);
 			}

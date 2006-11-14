@@ -9,7 +9,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QuestDesigner</RootNamespace>
     <AssemblyName>QuestDesigner</AssemblyName>
-    <StartupObject>QuestDesigner.QuestDesignerMain</StartupObject>
+    <StartupObject>
+    </StartupObject>
     <ApplicationIcon>Resources\designer.ico</ApplicationIcon>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ManifestCertificateThumbprint>5201E7D2DA1EDABC8B5E02514C37819B24E9E3A7</ManifestCertificateThumbprint>
@@ -53,41 +54,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.DynamicProxy, Version=1.1.5.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\nhibernate\Castle.DynamicProxy.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections, Version=1.0.0.1, Culture=neutral, PublicKeyToken=154fdcb44c4484fc">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\nhibernate\Iesi.Collections.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=1.2.9.0, Culture=neutral, PublicKeyToken=b32731d11ce58905">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\log4net\log4net.dll</HintPath>
+      <HintPath>lib\log4net.dll</HintPath>
+      <Private>True</Private>
+      <Aliases>global</Aliases>
     </Reference>
-    <Reference Include="Microsoft.DirectX, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="Microsoft.DirectX.DirectDraw, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="NETXP.Controls, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892">
       <HintPath>lib\dacris\NETXP.Controls.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+      <Aliases>global</Aliases>
     </Reference>
     <Reference Include="NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\dacris\NETXP.Controls.Docking.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NETXP.Controls.TaskPane, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\dacris\NETXP.Controls.TaskPane.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NETXP.Forms, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892">
       <HintPath>lib\dacris\NETXP.Forms.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NETXP.Library, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\dacris\NETXP.Library.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate, Version=1.0.1.0, Culture=neutral, PublicKeyToken=154fdcb44c4484fc">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\nhibernate\NHibernate.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -103,8 +100,14 @@
     <Compile Include="QuestDesigner\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuestDesigner\Area.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuestDesigner\Area.Designer.cs">
+      <DependentUpon>Area.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuestDesigner\Controls\BaseSelector.cs">
-      <SubType>Component</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="QuestDesigner\Controls\AreaSelector.cs">
       <SubType>Form</SubType>
@@ -128,9 +131,6 @@
     <Compile Include="QuestDesigner\Controls\RegionSelector.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QuestDesigner\MapViewer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="QuestDesigner\Controls\ZoneSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +140,13 @@
     <Compile Include="QuestDesigner\Controls\ISelector.cs" />
     <Compile Include="QuestDesigner\Converter\BindingSourceConverter.cs" />
     <Compile Include="QuestDesigner\Converter\ZoneConverter.cs" />
+    <Compile Include="QuestDesigner\Exception\DOLConfigurationException.cs" />
+    <Compile Include="QuestDesigner\Location.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuestDesigner\Location.Designer.cs">
+      <DependentUpon>Location.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuestDesigner\PositionConverterPopup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +154,7 @@
       <DependentUpon>PositionConverterPopup.cs</DependentUpon>
     </Compile>
     <Compile Include="QuestDesigner\Util\Const.cs" />
+    <Compile Include="QuestDesigner\Util\DOLDatabaseAdapter.cs" />
     <Compile Include="QuestDesigner\Util\PopupWindowHelper.cs" />
     <Compile Include="QuestDesigner\Controls\WhisperSelector.cs">
       <SubType>Form</SubType>
@@ -274,28 +282,19 @@
       <DependentUpon>QuestInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="QuestDesigner\Util\Utils.cs" />
-    <Compile Include="QuestDesigner\Viewer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="QuestDesigner\Viewer.Designer.cs">
-      <DependentUpon>Viewer.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="config\databaseconfig.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="QuestDesigner\AboutBox.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuestDesigner\Area.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Area.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuestDesigner\Controls\BaseSelector.resx">
       <SubType>Designer</SubType>
       <DependentUpon>BaseSelector.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="QuestDesigner\MapViewer.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>MapViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuestDesigner\CustomCode.resx">
       <SubType>Designer</SubType>
@@ -309,6 +308,10 @@
       <DependentUpon>ItemLookup.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuestDesigner\Location.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Location.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuestDesigner\NPC.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NPC.cs</DependentUpon>
@@ -317,6 +320,15 @@
       <SubType>Designer</SubType>
       <DependentUpon>PositionConverter.cs</DependentUpon>
     </EmbeddedResource>
+    <Content Include="config\dol\regions.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\dol\serverconfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\dol\zones.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="config\schema\actionType.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -326,24 +338,12 @@
     <Content Include="config\questScript.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="config\schema\regions.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="config\schema\requirementType.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="config\schema\triggerType.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="config\schema\zones.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EmbeddedResource Include="mapping\GamePlayer.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\InvalidName.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Include="Resources\helpWatermark.png" />
     <None Include="Resources\quest.ico" />
     <None Include="Resources\tiles.png" />
@@ -373,156 +373,6 @@
     <None Include="Resources\item.ico" />
     <None Include="Resources\questpart.ico" />
     <None Include="Resources\mob.ico" />
-    <EmbeddedResource Include="mapping\DBSpawnArea.hbm.xml">
-      <SubType>
-      </SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBMobSpawner.hbm.xml">
-      <SubType>
-      </SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\CraftItemData.hbm.xml">
-      <SubType>
-      </SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\Account.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\Alliance.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\BindPoint.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBAbility.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBAlliance.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBArea.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBDoor.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBFaction.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBFactionAggroLevel.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBGuildRank.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBHouse.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBHouseIndoorItem.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBHouseOutdoorItem.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBKeep.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBKeepComponent.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBKeepHookPoint.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBKeepObject.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBLineXSpell.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBLinkedFaction.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBLootGenerator.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBLootOTD.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBLootTemplate.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBMobXLootTemplate.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBNpcTemplate.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBOTDXCharacter.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBPath.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBPathPoint.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBQuest.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBSalvage.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBSinglePermission.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBSpecialization.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBSpecXAbility.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBSpell.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBSpellLine.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBStyle.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\DBTask.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\Guild.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\Item.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\ItemTemplate.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\MerchantItem.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\Mob.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\NPCEquipment.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\OldItemTemplate.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\WorldObject.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="mapping\ZonePoint.hbm.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="QuestDesigner\PositionConverterPopup.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PositionConverterPopup.cs</DependentUpon>
@@ -535,20 +385,13 @@
       <SubType>Designer</SubType>
       <DependentUpon>QuestPartItems.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuestDesigner\Viewer.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>Viewer.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DOL GameServer Source\DOLBase\DOLBase.csproj">
-      <Project>{A4A0FB22-124C-45CA-A653-2887DE0CC3E0}</Project>
-      <Name>DOLBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DOL GameServer Source\GameServer\GameServer.csproj">
-      <Project>{ACB92917-3D42-4F40-97F9-EA904A41DE36}</Project>
-      <Name>GameServer</Name>
-    </ProjectReference>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="stdole">
@@ -556,7 +399,7 @@
       <VersionMajor>2</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
+      <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
     <COMReference Include="VXPLibrary">
@@ -566,14 +409,22 @@
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
+      <Private>True</Private>
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 2.0</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
+    <ProjectReference Include="..\DOLServer1\DOLBase\DOLBase.csproj">
+      <Project>{A4A0FB22-124C-45CA-A653-2887DE0CC3E0}</Project>
+      <Name>DOLBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DOLServer1\DOLDatabase\DOLDatabase.csproj">
+      <Project>{43BFC675-13B7-4AA8-97F6-6109948849CC}</Project>
+      <Name>DOLDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DOLServer1\GameServer\GameServer.csproj">
+      <Project>{ACB92917-3D42-4F40-97F9-EA904A41DE36}</Project>
+      <Name>GameServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

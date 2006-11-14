@@ -115,7 +115,7 @@ namespace QuestDesigner
 
 		private int GetIndexForRequirementType(int type)
 		{
-			DataRow[] rows = DB.requirementTypeTable.Select("id=" + type);
+			DataRow[] rows = DB.RequirementTypeTable.Select("id=" + type);
 			if (rows.Length > 0)
 				return requirementTypeList.Items.IndexOf(rows[0]["description"]);
 			else
@@ -124,7 +124,7 @@ namespace QuestDesigner
 
 		private int GetIndexForActionType(int type)
 		{
-			DataRow[] rows = DB.actionTypeTable.Select("id=" + type);
+			DataRow[] rows = DB.ActionTypeTable.Select("id=" + type);
 			if (rows.Length > 0)
 				return actionTypeList.Items.IndexOf(rows[0]["description"]);
 			else
@@ -133,7 +133,7 @@ namespace QuestDesigner
 
 		private int GetIndexForTriggerType(int type)
 		{
-			DataRow[] rows = DB.triggerTypeTable.Select("id=" + type );
+			DataRow[] rows = DB.TriggerTypeTable.Select("id=" + type );
 			if (rows.Length > 0)
 				return triggerTypeList.Items.IndexOf(rows[0]["description"]);
 			else
@@ -142,7 +142,7 @@ namespace QuestDesigner
 
 		private int GetRequirementTypeForDescription(string desc)
 		{
-			DataRow[] rows = DB.requirementTypeTable.Select("description='" + desc + "'");
+			DataRow[] rows = DB.RequirementTypeTable.Select("description='" + desc + "'");
 			if (rows.Length > 0)
 				return (int)rows[0]["id"];
 			else
@@ -151,7 +151,7 @@ namespace QuestDesigner
 
 		private int GetActionTypeForDescription(string desc)
 		{
-			DataRow[] rows = DB.actionTypeTable.Select("description='" + desc + "'");
+			DataRow[] rows = DB.ActionTypeTable.Select("description='" + desc + "'");
 			if (rows.Length > 0)
 				return (int)rows[0]["id"];
 			else
@@ -160,7 +160,7 @@ namespace QuestDesigner
 
 		private int GetTriggerTypeForDescription(string desc)
 		{
-			DataRow[] rows = DB.triggerTypeTable.Select("description='" + desc + "'");
+			DataRow[] rows = DB.TriggerTypeTable.Select("description='" + desc + "'");
 			if (rows.Length > 0)
 				return (int)rows[0]["id"];
 			else
@@ -169,7 +169,7 @@ namespace QuestDesigner
 
 		private DataRow[] GetTriggersForType(int type) {
 			if (QuestPartRow!=null && type>=0)
-				return DB.triggerTable.Select("QuestPartID=" + QuestPartRow["ID"] + " AND Type=" + type);
+				return DB.TriggerTable.Select("QuestPartID=" + QuestPartRow["ID"] + " AND Type=" + type);
 			else
 				return new DataRow[0];					
 		}
@@ -177,7 +177,7 @@ namespace QuestDesigner
 		private DataRow[] GetRequirementsForType(int type)
 		{
 			if (QuestPartRow != null && type >= 0)
-				return DB.requirementTable.Select("QuestPartID=" + QuestPartRow["ID"] + " AND Type=" + type);
+				return DB.RequirementTable.Select("QuestPartID=" + QuestPartRow["ID"] + " AND Type=" + type);
 			else
 				return new DataRow[0];
 		}
@@ -185,7 +185,7 @@ namespace QuestDesigner
 		private DataRow[] GetActionsForType(int type)
 		{
 			if (QuestPartRow != null && type >= 0)
-				return DB.actionTable.Select("QuestPartID=" + QuestPartRow["ID"] + " AND Type=" + type);
+				return DB.ActionTable.Select("QuestPartID=" + QuestPartRow["ID"] + " AND Type=" + type);
 			else
 				return new DataRow[0];
 		}
@@ -195,11 +195,11 @@ namespace QuestDesigner
 			DataRow[] triggerRows = new DataRow[0];
 			if (description != null && QuestPartRow !=null)
 			{
-				DataRow[] rows = DB.triggerTypeTable.Select("description='" + description + "'");
+				DataRow[] rows = DB.TriggerTypeTable.Select("description='" + description + "'");
 				if (rows.Length > 0)
 				{
 					int triggerType = (int) rows[0]["id"];
-					triggerRows = DB.triggerTable.Select("QuestPartID=" + QuestPartRow["ID"]+" AND Type="+triggerType);
+					triggerRows = DB.TriggerTable.Select("QuestPartID=" + QuestPartRow["ID"]+" AND Type="+triggerType);
 				}
 			}
 			return triggerRows;
@@ -261,7 +261,7 @@ namespace QuestDesigner
 				int colorBegin = questPartTextbox.SelectionStart;
 				// Trigger
 
-				DataRow[] triggerRows = DB.triggerTable.Select("QuestPartID=" + questPartRow["ID"]);
+				DataRow[] triggerRows = DB.TriggerTable.Select("QuestPartID=" + questPartRow["ID"]);
 				questPartTextbox.InsertText("If ");				
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ForeColorSelected : questPartTextbox.ForeColor);
 				colorBegin = questPartTextbox.SelectionEnd;
@@ -309,7 +309,7 @@ namespace QuestDesigner
 				// Requirements
 
 
-				DataRow[] requirementRows = DB.requirementTable.Select("QuestPartID=" + questPartRow["ID"]);
+				DataRow[] requirementRows = DB.RequirementTable.Select("QuestPartID=" + questPartRow["ID"]);
 
 				if (requirementRows.Length > 0)
 				{
@@ -362,7 +362,7 @@ namespace QuestDesigner
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd,selected ? ForeColorSelected : questPartTextbox.ForeColor );				
 				colorBegin = questPartTextbox.SelectionEnd;
 
-				DataRow[] actionRows = DB.actionTable.Select("QuestPartID=" + questPartRow["ID"]);
+				DataRow[] actionRows = DB.ActionTable.Select("QuestPartID=" + questPartRow["ID"]);
 
 				if (actionRows.Length > 0)
 				{					
@@ -446,21 +446,21 @@ namespace QuestDesigner
 
 			if (QuestPartRow != null)
 			{				
-				foreach (DataRow row in DB.triggerTable.Select("QuestPartID=" + QuestPartRow["ID"]))
+				foreach (DataRow row in DB.TriggerTable.Select("QuestPartID=" + QuestPartRow["ID"]))
 				{					
 					int index = GetIndexForTriggerType((int)row["Type"]);
 					if (index >= 0 && !triggerTypeList.GetItemChecked(index))
 						triggerTypeList.SetItemChecked(index, true);
 				}
 
-				foreach (DataRow row in DB.requirementTable.Select("QuestPartID=" + QuestPartRow["ID"]))
+				foreach (DataRow row in DB.RequirementTable.Select("QuestPartID=" + QuestPartRow["ID"]))
 				{
 					int index = GetIndexForRequirementType((int)row["Type"]);
 					if (index >= 0 && !requirementTypeList.GetItemChecked(index))
 						requirementTypeList.SetItemChecked(index, true);
 				}
 
-				foreach (DataRow row in DB.actionTable.Select("QuestPartID=" + QuestPartRow["ID"]))
+				foreach (DataRow row in DB.ActionTable.Select("QuestPartID=" + QuestPartRow["ID"]))
 				{
 					int index = GetIndexForActionType((int)row["Type"]);
 					if (index >= 0 && !actionTypeList.GetItemChecked(index))
@@ -481,11 +481,11 @@ namespace QuestDesigner
 				int triggerType = GetTriggerTypeForDescription(description);
 				if (triggerType >=0)
 				{					
-					DataRow triggerRow = DB.triggerTable.NewRow();
+					DataRow triggerRow = DB.TriggerTable.NewRow();
 					triggerRow["QuestPartID"] = QuestPartRow["ID"];
 					triggerRow["Type"] = triggerType;
 
-					DB.triggerTable.Rows.Add(triggerRow);
+					DB.TriggerTable.Rows.Add(triggerRow);
 				}
 			}
 			else
@@ -495,7 +495,7 @@ namespace QuestDesigner
 
 				foreach (DataRow row in GetTriggersForType(triggerType))
 				{
-					DB.triggerTable.Rows.Remove(row);
+					DB.TriggerTable.Rows.Remove(row);
 				}
 			}			
 		}
@@ -511,11 +511,11 @@ namespace QuestDesigner
 				int requType = GetRequirementTypeForDescription(description);
 				if (requType >= 0)
 				{
-					DataRow newRow = DB.requirementTable.NewRow();
+					DataRow newRow = DB.RequirementTable.NewRow();
 					newRow["QuestPartID"] = QuestPartRow["ID"];
 					newRow["Type"] = requType;
 
-					DB.requirementTable.Rows.Add(newRow);
+					DB.RequirementTable.Rows.Add(newRow);
 				}
 			}
 			else
@@ -525,7 +525,7 @@ namespace QuestDesigner
 
 				foreach (DataRow row in GetRequirementsForType(requType))
 				{
-					DB.requirementTable.Rows.Remove(row);
+					DB.RequirementTable.Rows.Remove(row);
 				}
 			}
 		}
@@ -541,11 +541,11 @@ namespace QuestDesigner
 				int actionType = GetActionTypeForDescription(description);
 				if (actionType >= 0)
 				{
-					DataRow newRow = DB.actionTable.NewRow();
+					DataRow newRow = DB.ActionTable.NewRow();
 					newRow["QuestPartID"] = QuestPartRow["ID"];
 					newRow["Type"] = actionType;
 
-					DB.actionTable.Rows.Add(newRow);
+					DB.ActionTable.Rows.Add(newRow);
 
 				}
 			}
@@ -556,7 +556,7 @@ namespace QuestDesigner
 
 				foreach (DataRow row in GetActionsForType(requType))
 				{
-					DB.actionTable.Rows.Remove(row);
+					DB.ActionTable.Rows.Remove(row);
 				}
 			}
 		}
@@ -573,7 +573,7 @@ namespace QuestDesigner
 				case Const.CODE_I:
 				case Const.CODE_K:
 				{
-					DataRow[] rows = DB.triggerTable.Select("ID=" + id);
+					DataRow[] rows = DB.TriggerTable.Select("ID=" + id);
 					if (rows.Length > 0)
 					{
 						DataRow triggerRow = rows[0];						
@@ -591,7 +591,7 @@ namespace QuestDesigner
 			case Const.CODE_V:
 			case Const.CODE_COMPARATOR:
 				{
-					DataRow[] rows = DB.requirementTable.Select("ID=" + id);
+					DataRow[] rows = DB.RequirementTable.Select("ID=" + id);
 					if (rows.Length > 0)
 					{
 						DataRow requirementRow = rows[0];						
@@ -615,7 +615,7 @@ namespace QuestDesigner
 			case Const.CODE_P:
 			case Const.CODE_Q:			
 				{
-					DataRow[] rows = DB.actionTable.Select("ID=" + id);
+					DataRow[] rows = DB.ActionTable.Select("ID=" + id);
 					if (rows.Length > 0)
 					{
 						DataRow actionRow = rows[0];
@@ -658,7 +658,7 @@ namespace QuestDesigner
 					case Const.CODE_I:
 					case Const.CODE_K:
 						{
-							DataRow[] rows = DB.triggerTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.TriggerTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								rows[0].Delete();								
@@ -669,7 +669,7 @@ namespace QuestDesigner
 					case Const.CODE_V:
 					case Const.CODE_COMPARATOR:
 						{
-							DataRow[] rows = DB.requirementTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.RequirementTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								rows[0].Delete();								
@@ -679,7 +679,7 @@ namespace QuestDesigner
 					case Const.CODE_P:
 					case Const.CODE_Q:
 						{
-							DataRow[] rows = DB.actionTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.ActionTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								rows[0].Delete();								
@@ -699,13 +699,13 @@ namespace QuestDesigner
 					case Const.CODE_I:
 					case Const.CODE_K:
 						{
-							DataRow[] rows = DB.triggerTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.TriggerTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								DataRow newRow = DB.triggerTable.NewRow();
+								DataRow newRow = DB.TriggerTable.NewRow();
 								newRow["QuestPartID"] = rows[0]["QuestPartID"];
 								newRow["Type"] = rows[0]["Type"];
-								DB.triggerTable.Rows.Add(newRow);								
+								DB.TriggerTable.Rows.Add(newRow);								
 							}
 							break;
 						}
@@ -713,26 +713,26 @@ namespace QuestDesigner
 					case Const.CODE_V:
 					case Const.CODE_COMPARATOR:
 						{
-							DataRow[] rows = DB.requirementTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.RequirementTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								DataRow newRow = DB.requirementTable.NewRow();
+								DataRow newRow = DB.RequirementTable.NewRow();
 								newRow["QuestPartID"] = rows[0]["QuestPartID"];
 								newRow["Type"] = rows[0]["Type"];
-								DB.requirementTable.Rows.Add(newRow);								
+								DB.RequirementTable.Rows.Add(newRow);								
 							}
 							break;
 						}					
 					case Const.CODE_P:
 					case Const.CODE_Q:
 						{
-							DataRow[] rows = DB.actionTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.ActionTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								DataRow newRow = DB.actionTable.NewRow();
+								DataRow newRow = DB.ActionTable.NewRow();
 								newRow["QuestPartID"] = rows[0]["QuestPartID"];
 								newRow["Type"] = rows[0]["Type"];
-								DB.actionTable.Rows.Add(newRow);								
+								DB.ActionTable.Rows.Add(newRow);								
 							}
 							break;
 						}
@@ -750,7 +750,7 @@ namespace QuestDesigner
 					case Const.CODE_I:
 					case Const.CODE_K:
 						{
-							DataRow[] rows = DB.triggerTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.TriggerTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);
@@ -763,7 +763,7 @@ namespace QuestDesigner
 					case Const.CODE_N:
 					case Const.CODE_V:
 						{
-							DataRow[] rows = DB.requirementTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.RequirementTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);
@@ -773,7 +773,7 @@ namespace QuestDesigner
 						}
 					case Const.CODE_COMPARATOR:
 						{
-							DataRow[] rows = DB.requirementTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.RequirementTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								rows[0][Const.CodeToColumn(e.Param)] = e.Object;
@@ -786,7 +786,7 @@ namespace QuestDesigner
 					case Const.CODE_P:
 					case Const.CODE_Q:
 						{
-							DataRow[] rows = DB.actionTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.ActionTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);
@@ -838,11 +838,11 @@ namespace QuestDesigner
 		private void offerAcceptQuestToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// Add Quest Offer Step
-			DataRow newRow = DB.questPartTable.NewRow();
-			if (DB.npcTable.Rows.Count > 0)
-				newRow["NPC"] = DB.npcTable.Rows[0]["ObjectName"];
+			DataRow newRow = DB.QuestPartTable.NewRow();
+			if (DB.MobTable.Rows.Count > 0)
+				newRow["NPC"] = DB.MobTable.Rows[0]["ObjectName"];
 
-			DB.questPartTable.Rows.Add(newRow);
+			DB.QuestPartTable.Rows.Add(newRow);
 			int questPartID = (int)newRow["ID"];
 
 			AddTrigger(eTriggerType.Interact, questPartID);
@@ -850,11 +850,11 @@ namespace QuestDesigner
 			AddRequirement(eRequirementType.QuestGivable, questPartID);
 
 			// Add Quest Accept Step
-			newRow = DB.questPartTable.NewRow();
-			if (DB.npcTable.Rows.Count > 0)
-				newRow["NPC"] = DB.npcTable.Rows[0]["ObjectName"];
+			newRow = DB.QuestPartTable.NewRow();
+			if (DB.MobTable.Rows.Count > 0)
+				newRow["NPC"] = DB.MobTable.Rows[0]["ObjectName"];
 
-			DB.questPartTable.Rows.Add(newRow);
+			DB.QuestPartTable.Rows.Add(newRow);
 			questPartID = (int)newRow["ID"];
 
 			AddTrigger(eTriggerType.AcceptQuest, questPartID);
@@ -864,11 +864,11 @@ namespace QuestDesigner
 
 
 			// Add Quest Decline Step
-			newRow = DB.questPartTable.NewRow();
-			if (DB.npcTable.Rows.Count > 0)
-				newRow["NPC"] = DB.npcTable.Rows[0]["ObjectName"];
+			newRow = DB.QuestPartTable.NewRow();
+			if (DB.MobTable.Rows.Count > 0)
+				newRow["NPC"] = DB.MobTable.Rows[0]["ObjectName"];
 
-			DB.questPartTable.Rows.Add(newRow);
+			DB.QuestPartTable.Rows.Add(newRow);
 			questPartID = (int)newRow["ID"];
 
 			AddTrigger(eTriggerType.DeclineQuest, questPartID);
@@ -887,10 +887,10 @@ namespace QuestDesigner
 
 		private void AddTrigger(eTriggerType triggerType, int questPartID)
 		{
-			DataRow row = DB.triggerTable.NewRow();
+			DataRow row = DB.TriggerTable.NewRow();
 			row["QuestPartID"] = questPartID;
 			row["Type"] = triggerType;
-			DB.triggerTable.Rows.Add(row);
+			DB.TriggerTable.Rows.Add(row);
 		}
 
 		private void AddRequirement(eRequirementType requirementType)
@@ -904,10 +904,10 @@ namespace QuestDesigner
 
 		private void AddRequirement(eRequirementType requirementType, int questPartID)
 		{
-			DataRow row = DB.requirementTable.NewRow();
+			DataRow row = DB.RequirementTable.NewRow();
 			row["QuestPartID"] = questPartID;
 			row["Type"] = requirementType;
-			DB.requirementTable.Rows.Add(row);
+			DB.RequirementTable.Rows.Add(row);
 		}
 
 		private void AddAction(eActionType actionType)
@@ -921,10 +921,10 @@ namespace QuestDesigner
 
 		private void AddAction(eActionType actionType, int questPartID)
 		{
-			DataRow row = DB.actionTable.NewRow();
+			DataRow row = DB.ActionTable.NewRow();
 			row["QuestPartID"] = questPartID;
 			row["Type"] = actionType;
-			DB.actionTable.Rows.Add(row);
+			DB.ActionTable.Rows.Add(row);
 		}
 
 		#endregion
@@ -933,27 +933,27 @@ namespace QuestDesigner
 		{
 			if (DB.isInitialized())
 			{
-				DB.actionTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-				DB.actionTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-				DB.triggerTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-				DB.triggerTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-				DB.requirementTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-				DB.requirementTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+				DB.ActionTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+				DB.ActionTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+				DB.TriggerTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+				DB.TriggerTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+				DB.RequirementTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+				DB.RequirementTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
 
 				triggerTypeList.Items.Clear();
-				foreach (DataRow row in DB.triggerTypeTable.Rows)
+				foreach (DataRow row in DB.TriggerTypeTable.Rows)
 				{
 					triggerTypeList.Items.Add(row["description"], false);
 				}
 
 				requirementTypeList.Items.Clear();
-				foreach (DataRow row in DB.requirementTypeTable.Rows)
+				foreach (DataRow row in DB.RequirementTypeTable.Rows)
 				{
 					requirementTypeList.Items.Add(row["description"], false);
 				}
 
 				actionTypeList.Items.Clear();
-				foreach (DataRow row in DB.actionTypeTable.Rows)
+				foreach (DataRow row in DB.ActionTypeTable.Rows)
 				{
 					actionTypeList.Items.Add(row["description"], false);
 				}
@@ -1028,7 +1028,7 @@ namespace QuestDesigner
 			{
 				int questPartID = (int)e.Row["QuestPartID"];
 
-				DataRow[] rows = DB.questPartTable.Select("ID=" + questPartID);
+				DataRow[] rows = DB.QuestPartTable.Select("ID=" + questPartID);
 				if (rows.Length > 0)
 					RefreshQuestPartText(rows[0]);
 				else if (QuestPartRow != null)
@@ -1082,7 +1082,7 @@ namespace QuestDesigner
 
 		private string GetActionHelp(int actionID)
 		{
-			DataRow[] rows = DB.actionTypeTable.Select("id=" + actionID + "");
+			DataRow[] rows = DB.ActionTypeTable.Select("id=" + actionID + "");
 			if (rows.Length > 0)
 			{
 				return String.Format("{0}<hr><b>P:</b>{1}<br><b>Q:</b>{2}", new object[] { rows[0]["help"], rows[0]["p"], rows[0]["q"] });
@@ -1095,7 +1095,7 @@ namespace QuestDesigner
 
 		private string GetTriggerHelp(int triggerID)
 		{
-			DataRow[] rows = DB.triggerTypeTable.Select("id=" + triggerID + "");
+			DataRow[] rows = DB.TriggerTypeTable.Select("id=" + triggerID + "");
 			
 			if (rows.Length > 0)
 			{
@@ -1109,7 +1109,7 @@ namespace QuestDesigner
 
 		private string GetRequirementHelp(int requirmentID)
 		{
-			DataRow[] rows = DB.requirementTypeTable.Select("id=" + requirmentID + "");
+			DataRow[] rows = DB.RequirementTypeTable.Select("id=" + requirmentID + "");
 			if (rows.Length > 0)
 			{
 				return String.Format("{0}<hr><b>N:</b>{1}<br><b>V:</b>{2}",new object[]{rows[0]["help"],rows[0]["n"],rows[0]["v"]});
@@ -1126,7 +1126,7 @@ namespace QuestDesigner
 		{
 			DB.questPartBinding.MoveLast();
 			DataRowView row =(DataRowView) DB.questPartBinding.Current;
-			if (DB.npcTable.Rows.Count > 0)
+			if (DB.MobTable.Rows.Count > 0)
 			{				
 				RefreshQuestPartText();
 			}

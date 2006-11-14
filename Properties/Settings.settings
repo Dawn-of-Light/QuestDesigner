@@ -8,23 +8,26 @@
     <Setting Name="ItemSplitterDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">350</Value>
     </Setting>
-    <Setting Name="npcSplitterDistance" Type="System.Int32" Scope="User">
+    <Setting Name="NPCSplitterDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">350</Value>
     </Setting>
     <Setting Name="MainformLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
-    <Setting Name="MainframeSize" Type="System.Drawing.Size" Scope="User">
+    <Setting Name="MainformSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">580, 324</Value>
     </Setting>
     <Setting Name="ShowTaskPane" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="locationSplitterDistance" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">223</Value>
+    <Setting Name="LocationSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">350</Value>
     </Setting>
-    <Setting Name="questPartSplitterDistance" Type="System.Int32" Scope="User">
+    <Setting Name="QuestPartSplitterDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">133</Value>
+    </Setting>
+    <Setting Name="AreaSplitterDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">350</Value>
     </Setting>
   </Settings>
 </SettingsFile>

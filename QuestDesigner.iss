@@ -5,16 +5,15 @@
 AppName=Quest Designer
 AppVerName=Quest Designer 0.4.0.0
 AppPublisher=DOL Tools
-AppPublisherURL=http://dol.psykonikcorp.net:8080/display/Tools/Quest+Designer
-AppSupportURL=http://dol.psykonikcorp.net:8080/display/Tools/Quest+Designer
-AppUpdatesURL=http://dol.psykonikcorp.net:8080/display/Tools/Quest+Designer
 DefaultDirName={pf}\Quest Designer
 DefaultGroupName=Quest Designer
 AllowNoIcons=yes
-OutputDir=D:\_WORK\DOLSharp-Tools\QuestDesigner\output
+OutputDir=G:\_WORK\QuestDesigner\output
 OutputBaseFilename=QuestDesignerSetup
 Compression=lzma
 SolidCompression=yes
+ChangesAssociations=yes
+InfoAfterFile=readme.txt
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -23,20 +22,27 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "associatefiletype"; Description: "{cm:AssocFileExtension,Quest Designer, .qst}"; GroupDescription: "{cm:AdditionalIcons}";
 
 [Files]
-Source: "D:\_WORK\DOLSharp-Tools\QuestDesigner\bin\Release\QuestDesigner.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\_WORK\DOLSharp-Tools\QuestDesigner\lib\vxplib\VXPLib.dll"; DestDir: "{app}"; Flags: regserver 32bit;
-Source: "D:\_WORK\DOLSharp-Tools\QuestDesigner\lib\vxplib\VXPLib.license.txt"; DestDir: "{app}";
-Source: "D:\_WORK\DOLSharp-Tools\QuestDesigner\lib\dacris\NETXP.License.txt"; DestDir: "{app}";
-Source: "D:\_WORK\DOLSharp-Tools\QuestDesigner\bin\Release\*"; DestDir: "{app}"; Excludes: "*.vshost.*,NETXP*.xml,*.pdb"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "G:\_WORK\QuestDesigner\bin\Release\QuestDesigner.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "G:\_WORK\QuestDesigner\lib\vxplib\VXPLib.dll"; DestDir: "{app}"; Flags: regserver 32bit;
+Source: "G:\_WORK\QuestDesigner\lib\vxplib\VXPLib.license.txt"; DestDir: "{app}";
+Source: "G:\_WORK\QuestDesigner\lib\dacris\NETXP.License.txt"; DestDir: "{app}";
+Source: "G:\_WORK\QuestDesigner\bin\Release\*"; DestDir: "{app}"; Excludes: "*.vshost.*,NETXP*.xml,*.pdb"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\Quest Designer"; Filename: "{app}\QuestDesigner.exe"
+Name: "{group}\Quest Designer"; Filename: "{app}\QuestDesigner.exe"; WorkingDir: "{app}";
 Name: "{group}\{cm:UninstallProgram,Quest Designer}"; Filename: "{uninstallexe}"
-Name: "{userdesktop}\Quest Designer"; Filename: "{app}\QuestDesigner.exe"; Tasks: desktopicon
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Quest Designer"; Filename: "{app}\QuestDesigner.exe"; Tasks: quicklaunchicon
+Name: "{userdesktop}\Quest Designer"; Filename: "{app}\QuestDesigner.exe"; WorkingDir: "{app}"; Tasks: desktopicon
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Quest Designer"; Filename: "{app}\QuestDesigner.exe"; WorkingDir: "{app}"; Tasks: quicklaunchicon
+
+[Registry]
+Root: HKCR; Subkey: ".qst"; ValueType: string; ValueName: ""; ValueData: "QuestDesignerFile"; Flags: uninsdeletevalue; Tasks: associatefiletype
+Root: HKCR; Subkey: "QuestDesignerFile"; ValueType: string; ValueName: ""; ValueData: "Quest Designer File"; Flags: uninsdeletekey; Tasks: associatefiletype
+Root: HKCR; Subkey: "QuestDesignerFile\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\QuestDesigner.exe,0"; Tasks: associatefiletype
+Root: HKCR; Subkey: "QuestDesignerFile\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\QuestDesigner.exe"" ""%1"""; Tasks: associatefiletype
 
 [Run]
-Filename: "{app}\QuestDesigner.exe"; Description: "{cm:LaunchProgram,Quest Designer}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\QuestDesigner.exe"; WorkingDir: "{app}"; Description: "{cm:LaunchProgram,Quest Designer}"; Flags: nowait postinstall skipifsilent

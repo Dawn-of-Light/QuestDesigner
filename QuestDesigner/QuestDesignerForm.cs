@@ -29,18 +29,20 @@ using System.Xml;
 using System.Xml.XPath;
 using System.IO;
 using System.Configuration;
-using DOL.GS.Database;
 using System.Collections;
 using QuestDesigner.Properties;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Flobbster.Windows.Forms;
 using QuestDesigner.Converter;
-using DOL.GS;
-using DOL.GS.PacketHandler;
-using DOL.GS.Quests;
+
 using NETXP.Controls.Docking;
 using QuestDesigner.Util;
+using DOL.GS.Quests;
+using DOL.GS;
+using DOL.GS.PacketHandler;
+using DOL.Database;
+using QuestDesigner.Exceptions;
 
 namespace QuestDesigner
 {
@@ -49,11 +51,7 @@ namespace QuestDesigner
 
         public static string TITLE = " ::  "+Application.ProductName+" "+Application.ProductVersion+" :: ";
 		
-        protected string openFilename = null;
-
-		private PropertyBag locationBag;
-
-		private PropertyBag areaCircleBag, areaSquareBag;
+        protected string openFilename = null;		
 
         public QuestDesignerForm()
         {			
@@ -65,42 +63,8 @@ namespace QuestDesigner
 		private void QuestDesignerForm_Load(object sender, EventArgs e)
 		{
 
-			SetDataSet();						
-
-			// config Location
-			locationBag = new PropertyBag();
-			locationBag.GetValue += new PropertySpecEventHandler(locationBag_GetValue);
-			locationBag.SetValue += new PropertySpecEventHandler(locationBag_SetValue);
-			
-			foreach (DataColumn col in DB.locationTable.Columns)
-			{
-				locationBag.Properties.Add(getLocationProperties(col));
-			}
-			locationBag.Properties.Add(new PropertySpec("Zone X",typeof(int),"Local","Zone related X Coordinate"));
-			locationBag.Properties.Add(new PropertySpec("Zone Y", typeof(int), "Local", "Zone related Y Coordinate"));
-			locationBag.Properties.Add(new PropertySpec("Zone Z", typeof(int), "Local", "Zone related Z Coordinate"));
-
-			propertyGridLocation.SelectedObject = locationBag;			
-			// config area
-
-			areaCircleBag = new PropertyBag();
-			areaCircleBag.GetValue += new PropertySpecEventHandler(areaBag_GetValue);
-			areaCircleBag.SetValue += new PropertySpecEventHandler(areaBag_SetValue);
-
-			foreach (DataColumn col in DB.areaTable.Columns)
-			{
-				areaCircleBag.Properties.Add(getAreaCircleProperties(col));
-			}
-			areaSquareBag = new PropertyBag();
-			areaSquareBag.GetValue += new PropertySpecEventHandler(areaBag_GetValue);
-			areaSquareBag.SetValue += new PropertySpecEventHandler(areaBag_SetValue);
-
-			foreach (DataColumn col in DB.areaTable.Columns)
-			{
-				areaSquareBag.Properties.Add(getAreaSquareProperties(col));
-			}
-			propertyGridArea.SelectedObject = areaCircleBag;			
-
+			SetDataSet();									
+            
 			// Configure L&F
 			NETXP.Controls.Docking.Renderers.Office2003 XPRenderers = new NETXP.Controls.Docking.Renderers.Office2003();
 			NETXP.Library.XPBlueColorTable xpColorTable = new NETXP.Library.XPBlueColorTable();
@@ -108,9 +72,12 @@ namespace QuestDesigner
 			customCode.tabControlCodeSection.Renderer = XPRenderers;
 			this.tabControlMain.Renderer = XPRenderers;
 			this.xpTaskPane.ColorTable = NETXP.Library.ColorTables.XPBlue;
-			
+            this.xpTGActions.ColorTable = NETXP.Library.ColorTables.XPBlue;
+
+            this.tabControlMain.Renderer = XPRenderers;
+
 			toolStripMenuItemTaskPane.CheckState = Settings.Default.ShowTaskPane ? CheckState.Checked: CheckState.Unchecked;
-			
+            
 			// Load last file
 			if (!String.IsNullOrEmpty(XMLFile))
 			{
@@ -122,251 +89,20 @@ namespace QuestDesigner
 				InitEmptyQuest();
 			}
 			this.Text = TITLE + openFilename;
-		}
 
-		void areaBag_SetValue(object sender, PropertySpecEventArgs e)
-		{
-			if (bindingSourceArea.Current != null)
-			{
-				DataRowView rowView = ((DataRowView)bindingSourceArea.Current);
-				switch (e.Property.Name)
-				{					
-					case "Name":						
-						if (string.IsNullOrEmpty(Convert.ToString(rowView["ObjectName"])))
-						{
-							rowView["ObjectName"] = Utils.ConvertToObjectName((string)e.Value);
-						}
-						rowView[e.Property.Name] = e.Value;
-						break;
-					case "Width":
-						rowView["Z"] = e.Value;
-						break;
-					case "Height":
-						rowView["R"] = e.Value;
-						break;
-					default:
-						rowView[e.Property.Name] = e.Value;
-						break;
-				}
-				propertyGridArea.Refresh();
-				dataGridArea.Refresh();
-			}
-		}
-
-		void areaBag_GetValue(object sender, PropertySpecEventArgs e)
-		{
-			if (bindingSourceArea.Current != null)
-			{
-				DataRowView rowView = ((DataRowView)bindingSourceArea.Current);
-				switch (e.Property.Name)
-				{			
-					case "Width":
-						e.Value = rowView["Z"];
-						break;
-					case "Height":
-						e.Value = rowView["R"];
-						break;
-					default:
-						e.Value = rowView[e.Property.Name];
-						break;
-				}
-			}
-		}
-
-		private PropertySpec getAreaCircleProperties(DataColumn col)
-		{
-			PropertySpec spec = new PropertySpec(col.ColumnName, col.DataType, null, null, col.DefaultValue);
-			switch (col.ColumnName)
-			{				
-				case "RegionID":
-					spec.ConverterTypeName = "QuestDesigner.Converter.RegionConverter";
-					break;
-				case "X":					
-				case "Y":
-				case "Z":										
-				case "R":
-					spec.Description = "Radius of Circle";
-					break;
-			}
-			return spec;
-		}
-
-		private PropertySpec getAreaSquareProperties(DataColumn col)
-		{
-			PropertySpec spec = new PropertySpec(col.ColumnName, col.DataType, null, null, col.DefaultValue);
-			switch (col.ColumnName)
-			{
-				case "RegionID":
-					spec.ConverterTypeName = "QuestDesigner.Converter.RegionConverter";
-					break;
-				case "X":
-					spec.Description = "X Coordinate of Square";
-					break;
-				case "Y":
-					spec.Description = "Y Coordinate of Square";
-					break;
-				case "Z":
-					spec.Name = "Width";
-					spec.Description = "Width of Square";
-					break;
-				case "R":
-					spec.Name = "Height";
-					spec.Description = "Height of Square";
-					break;
-			}
-			return spec;
-		}
-
-		private PropertySpec getLocationProperties(DataColumn col)
-		{
-			PropertySpec spec = new PropertySpec(col.ColumnName, col.DataType, null, null, col.DefaultValue);
-			switch (col.ColumnName)
-			{
-				case "ID":
-					spec.Attributes = new Attribute[] { BrowsableAttribute.No };
-					break;
-				case "RegionID":
-					spec.ConverterTypeName = "QuestDesigner.Converter.RegionConverter";
-					break;
-				case "ZoneID":
-					spec.ConverterTypeName = "QuestDesigner.Converter.ZoneConverter";
-					spec.Category = "Local";
-					break;
-				case "X":					
-				case "Y":
-				case "Z":
-					spec.Category = "Global";
-					break;				
-				case "Heading":
-					break;
-			}
-			return spec;
-		}
-
-		void locationBag_SetValue(object sender, PropertySpecEventArgs e)
-		{
-			if (bindingSourceLocation.Current != null)
-			{
-				DataRowView rowView;
-				switch (e.Property.Name)
-				{
-					case "Zone X":
-						rowView = ((DataRowView)bindingSourceLocation.Current);
-						if (rowView["ZoneID"] is int)
-						{
-							rowView["X"] = Utils.ConvertZoneXToRegion((int)rowView["ZoneID"], (int)e.Value);														
-						}
-						else
-						{
-							MessageBox.Show("Select a Zone first, or the global coordinate cannot be computed.");
-						}
-						break;
-					case "Zone Y":
-						rowView = ((DataRowView)bindingSourceLocation.Current);
-						if (rowView["ZoneID"] is int)
-						{
-							rowView["Y"] = Utils.ConvertZoneYToRegion((int)rowView["ZoneID"], (int)e.Value);							
-						}
-						else
-						{
-							MessageBox.Show("Select a Zone first, or the global coordinate cannot be computed.");
-						}
-						break;
-					case "Zone Z":
-						rowView = ((DataRowView)bindingSourceLocation.Current);
-						rowView["Z"] = e.Value;						
-						break;					
-
-					case "Name":
-						rowView = ((DataRowView)bindingSourceLocation.Current);
-						if (string.IsNullOrEmpty(Convert.ToString(rowView["ObjectName"])))
-						{
-							rowView["ObjectName"] = Utils.ConvertToObjectName((string)e.Value);							
-						}
-						((DataRowView)bindingSourceLocation.Current)[e.Property.Name] = e.Value;
-						break;
-					case "RegionID":
-						if (e.Value is int)
-							DB.zoneBinding.Filter = "regionID=" + e.Value;
-						else
-							DB.zoneBinding.Filter = null;
-
-						((DataRowView)bindingSourceLocation.Current)[e.Property.Name] = e.Value;
-						break;
-					default:
-						((DataRowView)bindingSourceLocation.Current)[e.Property.Name] = e.Value;
-						break;
-				}
-				propertyGridLocation.Refresh();
-				dataGridViewLocation.Refresh();
-			}
-		}
-
-		void locationBag_GetValue(object sender, PropertySpecEventArgs e)
-		{
-			if (bindingSourceLocation.Current!=null)
-			{
-				DataRowView rowView;
-				switch (e.Property.Name)
-				{
-					case "Zone X":
-						rowView = ((DataRowView)bindingSourceLocation.Current);
-						if (rowView["ZoneID"] is int && rowView["X"] is int)
-						{							
-							e.Value = Utils.ConvertRegionXToZone((int)rowView["ZoneID"],(int)rowView["X"]);
-						}
-						
-						break;
-					case "Zone Y":
-						rowView = ((DataRowView)bindingSourceLocation.Current);
-						if (rowView["ZoneID"] is int && rowView["Y"] is int)
-						{
-							e.Value = Utils.ConvertRegionYToZone((int)rowView["ZoneID"], (int)rowView["Y"]);
-						}
-						break;
-					case "Zone Z":
-						e.Value = ((DataRowView)bindingSourceLocation.Current)["Z"];
-						break;					
-					default:
-						e.Value = ((DataRowView)bindingSourceLocation.Current)[e.Property.Name];
-						break;
-				}
-			}
-		}
+            Log.register();
+		}		
 
 		private void SetDataSet()
-		{
-			DB.questTable = dataTableQuest;
-			DB.questPartTable = dataTableQuestPart;
-			DB.questPartBinding = bindingSourceQuestPart;
-			DB.npcTable = dataTableMob;
-			DB.itemTemplateTable = dataTableItemTemplate;
-			DB.areaTable = dataTableArea;
-			DB.locationTable = dataTableLocation;
+		{			            
+            DB.Init(dataSetQuest,dataSetData);
 
-			DB.triggerTable = dataTableTrigger;
-			DB.requirementTable = dataTableRequirement;
-			DB.actionTable = dataTableAction;
-
-			DB.triggerTypeTable = dataTableTriggerType;
-			DB.requirementTypeTable = dataTableRequirementType;
-			DB.actionTypeTable = dataTableActionType;
-
-			DB.textTypeBinding = bindingSourceTextType;
-			DB.comparatorBinding = bindingSourceComparator;
-
-			DB.zoneTable = dataTableZone;
-			DB.zoneBinding = bindingSourceZone;
-			DB.regionTable = dataTableRegion;
-
-			DB.emoteBinding = bindingSourceEmote;
-			DB.enumerationTable = dataTableeEnumeration;
-
-			questInfo.setDataSet(dataSetQuest, bindingSourceMob);
+			questInfo.setDataSet(dataSetQuest);
 			npcView.setDataSet(dataSetQuest);
 			itemView.setDataSet(dataSetQuest);
 			customCode.setDataSet(dataSetQuest);
-
+            areaView.setDataSet(dataSetQuest);
+            locationView.SetDataSet(dataSetQuest);
 			questPartItems.SetDataSet(dataSetQuest, dataSetData);
 		}
 
@@ -375,13 +111,18 @@ namespace QuestDesigner
 			//fill via Relfection			
 			FillTypeValues(new Type[] { typeof(eTextType), typeof(eDamageType), typeof(eComparator), typeof(eObjectType), typeof(eInventorySlot), typeof(eColor), typeof(eRealm), typeof(eProperty), typeof(eEmote), typeof(eCharacterClass) });
 			//
-			
-			string[] xmlFiles = Directory.GetFiles("config/schema/", "*.xml");			
+
+            string[] xmlFiles = Directory.GetFiles(QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["TypeConfigDirectory"], "*.xml");			
 
 			foreach (string filePath in xmlFiles)
 			{
 				dataSetData.ReadXml(filePath);
 			}
+            // read regions and zones from config/dol directory
+
+            dataSetData.ReadXml(QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["DOLConfigDirectory"] + "regions.xml");
+            dataSetData.ReadXml(QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["DOLConfigDirectory"] + "zones.xml");
+
 			// check Action,Trigger,RequirementTypes and fill table with respective Ids
 			foreach (DataRow row in dataTableTriggerType.Rows)
 			{
@@ -394,7 +135,7 @@ namespace QuestDesigner
 				}
 				else
 				{
-					MessageBox.Show("TriggerType with name: " + row["value"] + " couldn't be parsed to corresponding value:" + id);
+					Log.Warning("TriggerType with name: " + row["value"] + " couldn't be parsed to corresponding value:" + id);
 				}
 			}
 
@@ -409,7 +150,7 @@ namespace QuestDesigner
 				}
 				else
 				{
-					MessageBox.Show("Requirementype with name: " + row["value"] + " couldn't be parsed to corresponding value:" + id);
+					Log.Warning("Requirementype with name: " + row["value"] + " couldn't be parsed to corresponding value:" + id);
 				}
 			}
 
@@ -417,15 +158,22 @@ namespace QuestDesigner
 			{
 				string value = Convert.ToString(row["value"]);
 				value = value.Substring(value.IndexOf('.') + 1);
-				object id = Enum.Parse(typeof(eActionType), value);
-				if (id is eActionType)
-				{
-					row["id"] = id;
-				}
-				else
-				{
-					MessageBox.Show("Actiontype with name: " + row["value"] + " couldn't be parsed to corresponding value:" + id);
-				}
+                try
+                {
+                    object id = Enum.Parse(typeof(eActionType), value);
+                    if (id is eActionType)
+                    {
+                        row["id"] = id;
+                    }
+                    else
+                    {
+                        Log.Warning("Actiontype with name: " + row["value"] + " couldn't be parsed to corresponding value:" + id);
+                    }
+                }
+                catch (ArgumentException)
+                {
+                    Log.Warning("Actiontype with name: " + row["value"] + " not found.");                    
+                }
 			}			
 		}
 
@@ -522,8 +270,6 @@ namespace QuestDesigner
         }
 		
 		
-
-
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InitEmptyQuest();
@@ -602,84 +348,8 @@ namespace QuestDesigner
         {
             TextBox questName = (TextBox)sender;            
             questName.Text=Utils.ConvertToObjectName(questName.Text);            
-        }        
-
-		private void lookupNPCToolStripMenuItem_Click(object sender, EventArgs e)
-		{			
-			DialogResult result = QuestDesignerMain.NPCLookupForm.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                DataRow row = dataTableMob.NewRow();
-                Mob mob = QuestDesignerMain.NPCLookupForm.SelectedMob;
-                foreach (DataColumn column in dataTableMob.Columns)
-                {
-                    PropertyInfo field = mob.GetType().GetProperty(column.ColumnName);
-                    if (field != null)
-                        row[column.ColumnName] = field.GetValue(mob, null);
-                }                
-                dataTableMob.Rows.Add(row);
-            }
-		}
-
-        private void toolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult result = QuestDesignerMain.ItemLookupForm.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                DataRow row = dataTableItemTemplate.NewRow();
-                GenericItemTemplate item = QuestDesignerMain.ItemLookupForm.SelectedItem;
-                foreach (DataColumn column in dataTableItemTemplate.Columns)
-                {
-                    PropertyInfo field = item.GetType().GetProperty(column.ColumnName);
-                    if (field != null)
-                        row[column.ColumnName] = field.GetValue(item, null);
-                }                
-                dataTableItemTemplate.Rows.Add(row);
-            }
-        }        			
-
-		private void dataGridArea_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
-		{			
-			e.Row.Cells[AreaObjectName.Name].Value = "<AUTO>";
-		}
-
-		private void dataGridArea_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
-		{
-			DataGridViewRow row = dataGridArea.Rows[e.RowIndex];
-			row.ErrorText = null;
-			if (e.RowIndex == (dataGridArea.Rows.Count - 2) &&
-				dataGridArea.Rows[e.RowIndex + 1].IsNewRow &&
-				row.Cells[AreaObjectName.Name].Value != null &&
-				(row.Cells[AreaObjectName.Name].Value == DBNull.Value ||
-				 row.Cells[AreaObjectName.Name].Value.ToString() == "<AUTO>")
-				)
-			{
-				string coname = row.Cells[AreaName.Name].Value as string;
-				if (coname != null)
-				{
-					row.Cells[AreaObjectName.Name].Value = Utils.ConvertToObjectName(coname);
-					e.Cancel = false;
-				}
-			}
-			else if (row.Cells[AreaObjectName.Name].Value !=null &&
-				row.Cells[AreaObjectName.Name].Value != DBNull.Value &&
-				row.Cells[AreaObjectName.Name].Value.ToString() != "<AUTO>")
-			{
-				row.Cells[AreaObjectName.Name].Value = Utils.ConvertToObjectName(Convert.ToString(row.Cells[AreaObjectName.Name].Value));
-			}
-		}
-
-		private void dataGridArea_DataError(object sender, DataGridViewDataErrorEventArgs e)
-		{
-			if (e.Context == DataGridViewDataErrorContexts.Commit)
-			{
-				dataGridArea.Rows[e.RowIndex].ErrorText = e.Exception.ToString();
-				e.Cancel = true;
-			}  
-		}		
-
+        }        		           			
+		
 		private void linkLoadQuest_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			DialogResult result = openQuestDialog.ShowDialog();
@@ -699,73 +369,6 @@ namespace QuestDesigner
 			Settings.Default.ShowTaskPane = toolStripMenuItemTaskPane.CheckState == CheckState.Checked;
 		}		
 
-			
-
-		private void dataGridViewLocation_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
-		{
-			e.Row.Cells[LocationObjectName.Name].Value = "<AUTO>";
-		}
-
-		private void dataGridViewLocation_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
-		{
-			DataGridViewRow row = dataGridViewLocation.Rows[e.RowIndex];
-			row.ErrorText = null;
-			if (e.RowIndex == (dataGridViewLocation.Rows.Count - 2) &&
-				dataGridViewLocation.Rows[e.RowIndex + 1].IsNewRow &&
-				row.Cells[LocationObjectName.Name].Value != null &&
-				(row.Cells[LocationObjectName.Name].Value == DBNull.Value ||
-				 row.Cells[LocationObjectName.Name].Value.ToString() == "<AUTO>")
-				)
-			{
-				string coname = row.Cells[LocationName.Name].Value as string;
-				if (coname != null)
-				{
-					row.Cells[LocationObjectName.Name].Value = Utils.ConvertToObjectName(coname);
-					e.Cancel = false;
-				}
-			}
-			else if (row.Cells[LocationObjectName.Name].Value != null &&
-				row.Cells[LocationObjectName.Name].Value != DBNull.Value &&
-				row.Cells[LocationObjectName.Name].Value.ToString() != "<AUTO>")
-			{
-				row.Cells[LocationObjectName.Name].Value = Utils.ConvertToObjectName(Convert.ToString(row.Cells[LocationObjectName.Name].Value));
-			}
-		}
-
-		private void dataGridViewLocation_DataError(object sender, DataGridViewDataErrorEventArgs e)
-		{
-			if (e.Context == DataGridViewDataErrorContexts.Commit)
-			{
-				dataGridViewLocation.Rows[e.RowIndex].ErrorText = e.Exception.ToString();
-				e.Cancel = true;
-			} 
-		}					
-
-		private void dataGridArea_SelectionChanged(object sender, EventArgs e)
-		{
-			if (bindingSourceArea.Current != null && dataGridArea.CurrentRow != null && !dataGridArea.CurrentRow.IsNewRow)
-			{
-				propertyGridArea.Enabled = true;
-				if (Convert.ToString(((DataRowView)bindingSourceArea.Current)["AreaType"]) == "Square")
-					propertyGridArea.SelectedObject = areaSquareBag;
-				else
-					propertyGridArea.SelectedObject = areaCircleBag;
-			}
-			else
-				propertyGridArea.Enabled = false;
-		}
-
-		private void dataGridViewLocation_SelectionChanged(object sender, EventArgs e)
-		{
-			if (bindingSourceLocation.Current != null && dataGridViewLocation.CurrentRow != null && !dataGridViewLocation.CurrentRow.IsNewRow)
-			{
-				propertyGridLocation.Enabled = true;
-				propertyGridLocation.Refresh();
-			}
-			else
-				propertyGridLocation.Enabled = false;
-		}
-
 		private void positionConverterToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (!QuestDesignerMain.PositionConverter.Visible)
@@ -784,11 +387,42 @@ namespace QuestDesigner
 			about.ShowDialog();
 		}
 
-		private void mapViewerToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			Viewer viewer = new Viewer();
-			viewer.Show(this);
-		}
+        private void StatusLabel_Click(object sender, EventArgs e)
+        {
+            Log.pullMessageQueue();
+        }
+
+        // This delegate enables asynchronous calls for setting
+        // the text property on a TextBox control.
+        delegate void SetTextCallback(string text);
+
+        // This delegate enables asynchronous calls for setting
+        // the image property on a TextBox control.
+        delegate void ShowMessageCallback(String msg, Image image);
+
+        public void ShowMessage(String msg, Image image)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.StatusLabel.GetCurrentParent().Parent.InvokeRequired)
+            {
+                ShowMessageCallback d = new ShowMessageCallback(ShowMessage);
+                this.Invoke(d, new object[] { msg ,image});
+
+                //SetImageCallback d = new SetImageCallback(image);
+                //this.Invoke(d, new object[] { image });
+            }
+            else
+            {
+                this.StatusLabel.Text = msg;
+                this.StatusLabel.Image = image;
+            }
+        }
  
     }
 }

@@ -20,19 +20,18 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using DOL.GS.Database;
 using System.Collections;
 using System.Xml.Xsl;
 using System.Xml;
 using System.IO;
 using System.Data;
-using System.Configuration;
 using System.Threading;
 using System.ComponentModel;
 using System.Drawing;
-using NHibernate;
 using DOL.GS.Quests;
 using QuestDesigner.Util;
+using DOL.Database;
+using System.Reflection;
 
 namespace QuestDesigner
 {
@@ -46,9 +45,9 @@ namespace QuestDesigner
 		const string REQUIREMENT_N = "N";
 		const string REQUIREMENT_V = "V";
 
-		public static string XSL_PATH = Path.GetFullPath("config/questScript.xsl");        
-
-		private static ObjectDatabase m_database = null;        
+        public static string XSL_PATH = QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["XLSFilePath"];        
+		
+        private static DOLDatabaseAdapter databaseAdapter = null;
 
 		public static QuestDesignerForm qdForm;
 		public static NPCLookupForm npcForm;
@@ -56,6 +55,8 @@ namespace QuestDesigner
 		private static PositionConverterPopup posConvForm;
 
         private static BackgroundWorker databaseWorker = new BackgroundWorker();
+
+        public static String WorkingDirectory;
 
 		public static QuestDesignerForm DesignerForm
 		{
@@ -65,6 +66,14 @@ namespace QuestDesigner
 				return qdForm;
 			}
 		}
+
+        public static DOLDatabaseAdapter DatabaseAdapter
+        {
+            get
+            {                                
+                return databaseAdapter;
+            }
+        }
 
 		public static PositionConverterPopup PositionConverter
 		{
@@ -120,25 +129,37 @@ namespace QuestDesigner
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);            
-            Application.Run(DesignerForm);
-			//Application.Run(new QuestDesignerForm());
+            WorkingDirectory = Application.StartupPath+"\\";
+
+            try
+            {
+                /*
+                string[] dllFiles = Directory.GetFiles(QuestDesignerMain.WorkingDirectory + "lib", "*.dll",SearchOption.AllDirectories);			
+
+			    foreach (string filePath in dllFiles)
+			    {
+                    try
+                    {
+                        Assembly.LoadFile(filePath);
+                        Log.Info("Loading Assembly " + filePath);
+                    }
+                    catch (Exception) { }
+			    }
+                */
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(DesignerForm);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Unhandled Exception occurred:\n" + e.Message);
+            }
         }		
 
         public static bool DatabaseSupported
         {
-            get { return Database != null; }
-
-        }
-
-		public static ObjectDatabase Database
-		{
-			get
-			{                
-				return m_database;
-			}
-		}
+            get { return databaseAdapter.isConnected(); }
+        }		
 
         static void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
@@ -149,8 +170,7 @@ namespace QuestDesigner
             }            
             else
             {
-                DesignerForm.StatusLabel.Text = "Initialized Database";
-				DesignerForm.StatusIcon.Image = global::QuestDesigner.Properties.Resources.databaseOk;
+                Log.ShowMessage("Database successfully initialized", global::QuestDesigner.Properties.Resources.databaseOk);
                 DesignerForm.SetDatabaseSupport(true);
             }
             DesignerForm.StatusProgress.Value = DesignerForm.StatusProgress.Minimum;            
@@ -160,6 +180,16 @@ namespace QuestDesigner
 		{
 			Log.ShowMessage(errorMsg, errorImg);
 		}
+
+        public static void HandleException(Exception e, string errorMsg)
+        {
+            Log.ShowMessage(errorMsg, global::QuestDesigner.Properties.Resources.error);
+        }
+
+        public static void HandleException(Exception e)
+        {
+            Log.Error(e.Message);
+        }
 
         public static void InitDB()
         {
@@ -179,18 +209,29 @@ namespace QuestDesigner
         /// Initializes the database
         /// </summary>
         static void backgroundWorker_doWork(object sender, DoWorkEventArgs e)
-        {                        
-            //Try to find the databaseconfig file, if it doesn't exist we create it					                
-            m_database = new ObjectDatabase(ConfigurationManager.AppSettings["DatabaseConfigFile"]); // Open the connexion to the database				
+        {
+
+            databaseAdapter = new DOLDatabaseAdapter();
+            
+            //NHibernate.Cfg.Environment.UseReflectionOptimizer = Configuration.UseReflectionOptimizer;
+/*
+ * TODO: INIt Database
+            DOL.Database.Configuration cfg = new Configuration();
+            
+            cfg.AddXmlFile(System.Configuration.ConfigurationManager.AppSettings["DatabaseConfigFile"]);
+            IDatabaseMgr m_databaseMgr = cfg.BuildDatabaseMgr();
+
+            m_database = new ObjectDatabase(System.Configuration.ConfigurationManager.AppSettings["NHibernateConfigFile"]); // Open the connection to the database                                 
             
             //m_database.CreateDatabaseStructure(ConfigurationSettings.AppSettings["DatabaseConfigFile"]);                
             // Test the database structure
             ArrayList errors = new ArrayList();
-            if (!m_database.TestDatabaseStructure(ConfigurationManager.AppSettings["DatabaseConfigFile"], errors))
+            if (!m_database.TestDatabaseStructure(System.Configuration.ConfigurationManager.AppSettings["NHibernateConfigFile"], errors))
             {
 				throw new Exception("ObjectDatabase.TestDatabaseStructure() failed: Database stucture does not match describing nhibernate mapping files.");
             }
-			e.Result = true;                        
+ */
+            e.Result = databaseAdapter.isConnected();
         }
 
 		/// <summary>
@@ -204,22 +245,22 @@ namespace QuestDesigner
 			if (value is string)
 			{
 				string name = (string)value;
-				foreach (DataRow row in DB.npcTable.Rows)
+				foreach (DataRow row in DB.MobTable.Rows)
 				{
 					if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
 						return true;
 				}
-				foreach (DataRow row in DB.itemTemplateTable.Rows)
+				foreach (DataRow row in DB.ItemTemplateTable.Rows)
 				{
 					if (row["ItemTemplateID"] is string && (string)row["ItemTemplateID"] == name)
 						return true;
 				}
-				foreach (DataRow row in DB.areaTable.Rows)
+				foreach (DataRow row in DB.AreaTable.Rows)
 				{
 					if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
 						return true;
 				}
-				foreach (DataRow row in DB.locationTable.Rows)
+				foreach (DataRow row in DB.LocationTable.Rows)
 				{
 					if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
 						return true;
@@ -358,7 +399,7 @@ namespace QuestDesigner
 			XmlReader xmlreader = XmlReader.Create(tempquest, rsettings);
 			XmlWriter xmlwriter = XmlWriter.Create(scriptPath, wsettings);
 
-			xsltransform.Load(XSL_PATH);
+			xsltransform.Load(WorkingDirectory + XSL_PATH);
 			xsltransform.Transform(xmlreader, xmlwriter);
 
 			xmlreader.Close();

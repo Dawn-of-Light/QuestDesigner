@@ -8,51 +8,184 @@ namespace QuestDesigner.Util
 {
 	class DB
 	{
-		public static DataTable questTable;
-
-		public static DataTable itemTemplateTable;
-		public static DataTable npcTable;
-		public static DataTable areaTable;
-		public static DataTable questPartTable;
-		public static DataTable locationTable;
-
-		public static DataTable triggerTable;
-		public static DataTable requirementTable;
-		public static DataTable actionTable;
-
-		public static DataTable triggerTypeTable;
-		public static DataTable requirementTypeTable;
-		public static DataTable actionTypeTable;
-
-		public static DataTable enumerationTable;
-
-		public static DataTable zoneTable;
-		public static DataTable regionTable;
-
 		public static BindingSource emoteBinding;
-
+        public static BindingSource areaBinding;
+        public static BindingSource locationBinding;
 		public static BindingSource questPartBinding;
-		public static BindingSource zoneBinding;		
-
+		public static BindingSource zoneBinding;
+        public static BindingSource regionBinding;
+        public static BindingSource requirementTypeBinding;
+        public static BindingSource actionTypeBinding;
+        public static BindingSource triggerTypeBinding;		
 		public static BindingSource textTypeBinding;
 		public static BindingSource comparatorBinding;
+        public static BindingSource mobBinding;
+
+        #region Config Data Tables
+
+        private static DataSet configDataSet;
+
+        public static DataSet ConfigDataSet
+        {
+            get { return configDataSet; }
+            set { configDataSet = value; }
+        }
+
+        public static DataTable TriggerTypeTable
+        {
+            get { return ConfigDataSet.Tables["TriggerType"]; }
+        }
+
+        public static DataTable ActionTypeTable
+        {
+            get { return ConfigDataSet.Tables["ActionType"]; }
+        }
+
+        public static DataTable RequirementTypeTable
+        {
+            get { return ConfigDataSet.Tables["RequirementType"]; }
+        }
+
+        public static DataTable ZoneTable
+        {
+            get { return ConfigDataSet.Tables["Zone"]; }
+        }
+
+        public static DataTable RegionTable
+        {
+            get { return ConfigDataSet.Tables["Region"]; }
+        }
+
+        public static DataTable HandTable
+        {
+            get { return ConfigDataSet.Tables["Hand"]; }
+        }
+
+        public static DataTable EnumerationTable
+        {
+            get { return ConfigDataSet.Tables["eEnumeration"]; }
+        }
+
+        #endregion
+
+        #region Quest Data Tables
+
+        private static DataSet questDataSet;
+
+        public static DataSet QuestDataSet
+        {
+            get { return questDataSet; }
+            set { questDataSet = value; }
+        }
+
+        public static DataTable QuestTable
+        {
+            get { return QuestDataSet.Tables["Quest"]; }
+        }
+
+        public static DataTable QuestStepTable
+        {
+            get { return QuestDataSet.Tables["QuestStep"]; }
+        }
+
+        public static DataTable QuestPartTable
+        {
+            get { return QuestDataSet.Tables["QuestPart"]; }
+        }
+
+        public static DataTable ActionTable
+        {
+            get { return QuestDataSet.Tables["QuestPartAction"]; }
+        }
+
+        public static DataTable TriggerTable
+        {
+            get { return QuestDataSet.Tables["QuestPartTrigger"]; }
+        }
+
+        public static DataTable RequirementTable
+        {
+            get { return QuestDataSet.Tables["QuestPartRequirement"]; }
+        }
+
+        public static DataTable MobTable
+        {
+            get { return QuestDataSet.Tables["Mob"]; }
+        }
+
+        public static DataTable ItemTemplateTable
+        {
+            get { return QuestDataSet.Tables["ItemTemplate"]; }
+        }
+
+        public static DataTable AreaTable
+        {
+            get { return QuestDataSet.Tables["Area"]; }
+        }
+
+        public static DataTable LocationTable
+        {
+            get { return QuestDataSet.Tables["Location"]; }
+        }
+
+        #endregion
+
+        public static void Init(DataSet questDataSet, DataSet configDataSet)
+        {
+            QuestDataSet = questDataSet;
+            ConfigDataSet = configDataSet;
+
+            areaBinding = new BindingSource(QuestDataSet, "Area");
+            
+            mobBinding = new BindingSource(QuestDataSet, "Mob");
+
+            locationBinding = new BindingSource(QuestDataSet, "Location");
+            
+            questPartBinding = new BindingSource(QuestDataSet, "QuestPart");
+            
+            zoneBinding = new BindingSource(ConfigDataSet, "Zone");
+            zoneBinding.Sort = "description";
+
+            regionBinding = new BindingSource(ConfigDataSet, "Region");
+            regionBinding.Sort = "description";
+            
+            textTypeBinding = new BindingSource(ConfigDataSet, "eEnumeration");
+            textTypeBinding.AllowNew = false;                        
+            textTypeBinding.Filter = "Type=\'eTextType\'";
+            textTypeBinding.Sort = "Description";
+            
+            requirementTypeBinding = new BindingSource(ConfigDataSet, "RequirementType");
+                        
+            comparatorBinding = new BindingSource(ConfigDataSet,"eEnumeration");                       
+            comparatorBinding.Filter = "Type=\'eComparator\'";
+            comparatorBinding.Sort = "Value";
+            
+            actionTypeBinding = new BindingSource(ConfigDataSet, "ActionType");                        
+         
+            triggerTypeBinding = new BindingSource(ConfigDataSet, "TriggerType");
+            
+            emoteBinding = new BindingSource(ConfigDataSet, "eEnumeration");
+            emoteBinding.AllowNew = false;
+            emoteBinding.Filter = "Type=\'eEmote\'";
+            emoteBinding.Sort = "Description";
+        }
 
 		public static bool isInitialized()
 		{
-			return questTable != null;
+			return QuestDataSet != null && ConfigDataSet !=null;
 		}
 
 		public static BindingSource GetBindingSourceForEnumeration(string type)
 		{
 			BindingSource bs =  new BindingSource();
-			bs.DataSource = enumerationTable;
+			bs.DataSource = EnumerationTable;
 			bs.Filter = "type='" + type + "'";
 			return bs;
 		}
 
 		public static string GetItemNameForID(string id)
 		{
-			DataRow[] rows = itemTemplateTable.Select("ItemTemplateID='" + id + "'");
+			DataRow[] rows = ItemTemplateTable.Select("ItemTemplateID='" + id + "'");
 			if (rows.Length > 0)
 				return Convert.ToString(rows[0]["Name"]);
 			else
@@ -61,7 +194,7 @@ namespace QuestDesigner.Util
 
 		public static string getEnumerationNameForID(string type, string id)
 		{
-			DataRow[] rows = enumerationTable.Select("Type='" + type + "' and Value="+id);
+			DataRow[] rows = EnumerationTable.Select("Type='" + type + "' and Value="+id);
 			if (rows.Length > 0)
 				return Convert.ToString(rows[0]["Description"]);
 			else
@@ -70,7 +203,7 @@ namespace QuestDesigner.Util
 
 		public static string GetRegionNameForID(string id)
 		{
-			DataRow[] rows = regionTable.Select("id='" + id + "'");
+			DataRow[] rows = RegionTable.Select("id='" + id + "'");
 			if (rows.Length > 0)
 				return Convert.ToString(rows[0]["description"]);
 			else
@@ -79,7 +212,7 @@ namespace QuestDesigner.Util
 
 		public static string GetZoneNameForID(string id)
 		{
-			DataRow[] rows = zoneTable.Select("zoneID='" + id + "'");
+			DataRow[] rows = ZoneTable.Select("zoneID='" + id + "'");
 			if (rows.Length > 0)
 				return Convert.ToString(rows[0]["description"]);
 			else
@@ -88,7 +221,7 @@ namespace QuestDesigner.Util
 
 		public static string GetNPCNameForID(string id)
 		{
-			DataRow[] rows = npcTable.Select("ObjectName='" + id + "'");
+			DataRow[] rows = MobTable.Select("ObjectName='" + id + "'");
 			if (rows.Length > 0)
 				return Convert.ToString(rows[0]["Name"]);
 			else
@@ -97,7 +230,7 @@ namespace QuestDesigner.Util
 
 		public static string GetAreaNameForID(string id)
 		{
-			DataRow[] rows = areaTable.Select("ObjectName='" + id + "'");
+			DataRow[] rows = AreaTable.Select("ObjectName='" + id + "'");
 			if (rows.Length > 0)
 				return Convert.ToString(rows[0]["Name"]);
 			else
@@ -106,7 +239,7 @@ namespace QuestDesigner.Util
 
 		public static string GetLocationForID(string id)
 		{
-			DataRow[] rows = locationTable.Select("ObjectName='" + id + "'");
+			DataRow[] rows = LocationTable.Select("ObjectName='" + id + "'");
 			if (rows.Length > 0)
 				return Convert.ToString(rows[0]["Name"]);
 			else
@@ -115,7 +248,7 @@ namespace QuestDesigner.Util
 
 		public static DataRow GetTriggerTypeRowForID(int id)
 		{
-			DataRow[] triggerRows = triggerTypeTable.Select("ID=" + id);
+			DataRow[] triggerRows = TriggerTypeTable.Select("ID=" + id);
 			if (triggerRows.Length > 0)
 				return triggerRows[0];
 			else
@@ -124,7 +257,7 @@ namespace QuestDesigner.Util
 
 		public static DataRow GetRequirementTypeRowForID(int id)
 		{
-			DataRow[] requRows = requirementTypeTable.Select("ID=" + id);
+			DataRow[] requRows = RequirementTypeTable.Select("ID=" + id);
 			if (requRows.Length > 0)
 				return requRows[0];
 			else
@@ -133,7 +266,7 @@ namespace QuestDesigner.Util
 
 		public static DataRow GetActionTypeRowForID(int id)
 		{
-			DataRow[] actionRows = actionTypeTable.Select("ID=" + id);
+			DataRow[] actionRows = ActionTypeTable.Select("ID=" + id);
 			if (actionRows.Length > 0)
 				return actionRows[0];
 			else

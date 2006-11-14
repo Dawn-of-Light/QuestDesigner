@@ -15,7 +15,7 @@ namespace QuestDesigner.Controls
 
 		public NPCSelector(int questPartID, char param): base(questPartID,param)
 		{			
-			this.list.DataSource = DB.npcTable;
+			this.list.DataSource = DB.MobTable;
 			
 			this.list.ValueMember = "ObjectName";
 			this.list.DisplayMember = "Name";

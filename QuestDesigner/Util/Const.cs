@@ -6,6 +6,14 @@ namespace QuestDesigner.Util
 {
 	public class Const
 	{
+        /**
+         * Value used to display in grids if value will be filled automatically
+         * 
+         */
+        public const String GRID_AUTOFILL_VALUE = "<AUTO>";
+
+        public const String AREA_OBJECT_NAME = "ObjectName";
+        public const String AREA_NAME = "Name";
 		
 		public const char CODE_COMPARATOR = 'C';				
 		public const char CODE_K = 'K';

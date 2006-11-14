@@ -50,12 +50,12 @@ namespace QuestDesigner.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("350")]
-        public int npcSplitterDistance {
+        public int NPCSplitterDistance {
             get {
-                return ((int)(this["npcSplitterDistance"]));
+                return ((int)(this["NPCSplitterDistance"]));
             }
             set {
-                this["npcSplitterDistance"] = value;
+                this["NPCSplitterDistance"] = value;
             }
         }
         
@@ -74,12 +74,12 @@ namespace QuestDesigner.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("580, 324")]
-        public global::System.Drawing.Size MainframeSize {
+        public global::System.Drawing.Size MainformSize {
             get {
-                return ((global::System.Drawing.Size)(this["MainframeSize"]));
+                return ((global::System.Drawing.Size)(this["MainformSize"]));
             }
             set {
-                this["MainframeSize"] = value;
+                this["MainformSize"] = value;
             }
         }
         
@@ -97,25 +97,37 @@ namespace QuestDesigner.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("223")]
-        public int locationSplitterDistance {
+        [global::System.Configuration.DefaultSettingValueAttribute("350")]
+        public int LocationSplitterDistance {
             get {
-                return ((int)(this["locationSplitterDistance"]));
+                return ((int)(this["LocationSplitterDistance"]));
             }
             set {
-                this["locationSplitterDistance"] = value;
+                this["LocationSplitterDistance"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("133")]
-        public int questPartSplitterDistance {
+        public int QuestPartSplitterDistance {
             get {
-                return ((int)(this["questPartSplitterDistance"]));
+                return ((int)(this["QuestPartSplitterDistance"]));
             }
             set {
-                this["questPartSplitterDistance"] = value;
+                this["QuestPartSplitterDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("350")]
+        public int AreaSplitterDistance {
+            get {
+                return ((int)(this["AreaSplitterDistance"]));
+            }
+            set {
+                this["AreaSplitterDistance"] = value;
             }
         }
     }

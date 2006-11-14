@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Quest Designer")]
-[assembly: AssemblyDescription("Designer to build Quests for Dawn of Light")]
+[assembly: AssemblyDescription("Designer to build quests for Dawn of Light")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("DOL Tools")]
 [assembly: AssemblyProduct("QuestDesigner")]
-[assembly: AssemblyCopyright("Copyright © 2005")]
+[assembly: AssemblyCopyright("Copyright © 2006-2005")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,5 +30,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.4.0.0")]
-[assembly: AssemblyFileVersion("0.4.0.0")]
+[assembly: AssemblyVersion("0.4.1.0")]
+[assembly: AssemblyFileVersion("0.4.1.0")]

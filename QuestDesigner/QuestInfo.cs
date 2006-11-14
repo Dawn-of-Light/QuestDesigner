@@ -18,7 +18,7 @@ namespace QuestDesigner
 			InitializeComponent();
 		}
 
-		public void setDataSet(DataSet questData, BindingSource npcs)
+		public void setDataSet(DataSet questData)
 		{
 			this.QuestName.DataBindings.Add(new System.Windows.Forms.Binding("Text", questData, "Quest.Name", true));
 			this.Title.DataBindings.Add(new System.Windows.Forms.Binding("Text", questData, "Quest.Title", true));
@@ -41,7 +41,7 @@ namespace QuestDesigner
 			
 
 			this.InvitingNPC.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", questData, "Quest.InvitingNPC", true));
-			this.InvitingNPC.DataSource = npcs;
+			this.InvitingNPC.DataSource = DB.mobBinding;
 			this.InvitingNPC.DisplayMember = "Name";
 			this.InvitingNPC.ValueMember = "ObjectName";
 		}

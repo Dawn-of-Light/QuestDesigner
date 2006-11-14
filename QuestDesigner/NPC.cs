@@ -6,12 +6,13 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Flobbster.Windows.Forms;
-using DOL.GS.PacketHandler;
 using System.Collections;
 using QuestDesigner.Controls;
-using DOL.GS.Database;
 using System.Reflection;
 using QuestDesigner.Util;
+using DOL.GS.PacketHandler;
+using DOL.GS;
+using QuestDesigner.Exceptions;
 
 namespace QuestDesigner
 {
@@ -325,16 +326,30 @@ namespace QuestDesigner
 			DialogResult result = QuestDesignerMain.NPCLookupForm.ShowDialog();
 
 			if (result == DialogResult.OK)
-			{
-				DataRow row = npcTable.NewRow();
-				Mob mob = QuestDesignerMain.NPCLookupForm.SelectedMob;
-				foreach (DataColumn column in npcTable.Columns)
-				{
-					PropertyInfo field = mob.GetType().GetProperty(column.ColumnName);
-					if (field != null)
-						row[column.ColumnName] = field.GetValue(mob, null);
-				}
-				npcTable.Rows.Add(row);
+			{				
+				Object mob = QuestDesignerMain.NPCLookupForm.SelectedMob;
+                if (mob != null)
+                {
+                    DataRow row = npcTable.NewRow();
+                    foreach (DataColumn column in npcTable.Columns)
+                    {
+                        try
+                        {
+                            String dolColumn = QuestDesignerMain.DatabaseAdapter.ConvertXMLColumnToDOLColumn(column.ColumnName);
+                            PropertyInfo field = mob.GetType().GetProperty(dolColumn);                            
+                            if (field != null)
+                                row[column.ColumnName] = field.GetValue(mob, null);
+                            else
+                                throw new DOLConfigurationException("No Property found in DOL Mob object for column: " + column.ColumnName);
+
+                        }
+                        catch (DOLConfigurationException ex)
+                        {
+                            QuestDesignerMain.HandleException(ex);
+                        }
+                    }
+                    npcTable.Rows.Add(row);
+                }
 			}
 		}
 		

@@ -14,7 +14,7 @@ namespace QuestDesigner.Controls
 
 		public RegionSelector(int itemID, char param): base(itemID,param)
 		{			
-			this.list.DataSource = DB.regionTable;
+			this.list.DataSource = DB.RegionTable;
 			
 			this.list.ValueMember = "id";
 			this.list.DisplayMember = "description";

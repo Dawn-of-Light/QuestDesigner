@@ -14,7 +14,7 @@ namespace QuestDesigner.Controls
 
 		public ItemSelector(int triggerID, char param): base(triggerID,param)
 		{			
-			this.list.DataSource = DB.itemTemplateTable;
+			this.list.DataSource = DB.ItemTemplateTable;
 			
 			this.list.ValueMember = "ItemTemplateID";
 			this.list.DisplayMember = "Name";			

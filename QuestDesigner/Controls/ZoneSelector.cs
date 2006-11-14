@@ -18,14 +18,14 @@ namespace QuestDesigner.Controls
 			if (regionID >= 0)
 			{
 				this.bindingSourceZone = new BindingSource();
-				this.bindingSourceZone.DataSource = DB.zoneTable;
+				this.bindingSourceZone.DataSource = DB.ZoneTable;
 				this.bindingSourceZone.Sort = "description";
 				this.bindingSourceZone.Filter = "regionID=" + regionID;
 				this.list.DataSource = this.bindingSourceZone;
 			}
 			else
 			{
-				this.list.DataSource = DB.zoneTable;
+				this.list.DataSource = DB.ZoneTable;
 			}
 			this.list.ValueMember = "zoneID";
 			this.list.DisplayMember = "description";

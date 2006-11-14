@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using DOL.GS;
 using QuestDesigner.Util;
+using DOL.GS;
 
 namespace QuestDesigner
 {
@@ -18,7 +18,7 @@ namespace QuestDesigner
 
 		private void PositionConverter_Load(object sender, EventArgs e)
 		{
-			comboBoxRegion.DataSource = DB.regionTable;
+			comboBoxRegion.DataSource = DB.RegionTable;
 			comboBoxRegion.DisplayMember = "description";
 			comboBoxRegion.ValueMember = "id";
 
@@ -40,8 +40,8 @@ namespace QuestDesigner
 			{
 				DataRowView zoneRow = (DataRowView)comboBoxZone.SelectedItem;
 
-				Point local = new Point(Convert.ToInt32(zoneX.Value), Convert.ToInt32(zoneY.Value), Convert.ToInt32(zoneZ.Value));
-				Point global = Utils.ConvertZonePointToRegion((int)zoneRow["zoneID"],local);
+				Point3D local = new Point3D(Convert.ToInt32(zoneX.Value), Convert.ToInt32(zoneY.Value), Convert.ToInt32(zoneZ.Value));
+				Point3D global = Utils.ConvertZonePointToRegion((int)zoneRow["zoneID"],local);
 
 				regionX.Value = global.X;
 				regionY.Value = global.Y;

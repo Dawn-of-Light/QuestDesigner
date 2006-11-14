@@ -6,13 +6,14 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Flobbster.Windows.Forms;
-using DOL.GS.PacketHandler;
 using System.Collections;
 using QuestDesigner.Controls;
-using DOL.GS.Database;
 using System.Reflection;
-using DOL.GS;
 using QuestDesigner.Util;
+using DOL.GS;
+using DOL.Database;
+using QuestDesigner.Exceptions;
+
 
 namespace QuestDesigner
 {
@@ -358,16 +359,31 @@ namespace QuestDesigner
 			DialogResult result = QuestDesignerMain.ItemLookupForm.ShowDialog();
 
 			if (result == DialogResult.OK)
-			{
-				DataRow row = itemTable.NewRow();
-				GenericItemTemplate item = QuestDesignerMain.ItemLookupForm.SelectedItem;
-				foreach (DataColumn column in itemTable.Columns)
-				{
-					PropertyInfo field = item.GetType().GetProperty(column.ColumnName);
-					if (field != null)
-						row[column.ColumnName] = field.GetValue(item, null);
-				}
-				itemTable.Rows.Add(row);
+			{								
+                Object item = QuestDesignerMain.ItemLookupForm.SelectedItem;
+                if (item != null)
+                {
+                    DataRow row = itemTable.NewRow();
+                    foreach (DataColumn column in itemTable.Columns)
+                    {
+                        try
+                        {
+                            String dolColumn = QuestDesignerMain.DatabaseAdapter.ConvertXMLColumnToDOLColumn(column.ColumnName);
+                            PropertyInfo field = item.GetType().GetProperty(dolColumn);
+                            if (field != null)
+                                row[column.ColumnName] = field.GetValue(item, null);
+                            else
+                            {
+                                throw new DOLConfigurationException("No property found in DOL item object for column :" + column.ColumnName);
+                            }
+                        }
+                        catch (DOLConfigurationException ex)
+                        {
+                            QuestDesignerMain.HandleException(ex);
+                        }
+                    }
+                    itemTable.Rows.Add(row);
+                }
 			}
 		}				
 	}

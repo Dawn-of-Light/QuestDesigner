@@ -14,7 +14,7 @@ namespace QuestDesigner.Controls
 
 		public LocationSelector(int triggerID, char param): base(triggerID,param)
 		{			
-			this.list.DataSource = DB.locationTable;
+			this.list.DataSource = DB.LocationTable;
 			
 			this.list.ValueMember = "ObjectName";
 			this.list.DisplayMember = "Name";

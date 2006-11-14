@@ -129,7 +129,7 @@ namespace QuestDesigner
 			// 
 			this.splitContainerNPC.Panel2.Controls.Add(this.propertyGridNPC);
 			this.splitContainerNPC.Size = new System.Drawing.Size(595, 287);
-			this.splitContainerNPC.SplitterDistance = global::QuestDesigner.Properties.Settings.Default.npcSplitterDistance;
+			this.splitContainerNPC.SplitterDistance = global::QuestDesigner.Properties.Settings.Default.NPCSplitterDistance;
 			this.splitContainerNPC.TabIndex = 8;
 			// 
 			// listViewNPC

@@ -25,7 +25,7 @@ namespace QuestDesigner.Controls
 		public static string[] GetWhisperKeywords()
 		{
 			ArrayList keywords = new ArrayList();
-			foreach (DataRow row in DB.questPartTable.Rows)
+			foreach (DataRow row in DB.QuestPartTable.Rows)
 			{
 				if (row["Message"] is string && ((string)row["Message"]).Contains("["))
 				{

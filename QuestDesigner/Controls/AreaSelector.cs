@@ -15,7 +15,7 @@ namespace QuestDesigner.Controls
 
 		public AreaSelector(int itemID, char param): base(itemID,param)
 		{			
-			this.list.DataSource = DB.areaTable;
+			this.list.DataSource = DB.AreaTable;
 			
 			this.list.ValueMember = "ObjectName";
 			this.list.DisplayMember = "Name";			

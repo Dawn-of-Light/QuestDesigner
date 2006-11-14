@@ -25,36 +25,45 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
-using DOL.GS.Database;
-using DOL.GS;
 using System.Collections;
+using DOL.GS;
+using QuestDesigner.Util;
 
 namespace QuestDesigner
 {
 	public partial class NPCLookupForm : Form
 	{
-		public Mob SelectedMob;		
+		
+        private Object selectedMob;
+
+        public Object SelectedMob
+        {
+            get { return selectedMob; }
+            set { selectedMob = value; }
+        }
+
 
 		public NPCLookupForm()
 		{
 			InitializeComponent();
             if (QuestDesignerMain.DatabaseSupported)
-            {
-                IList mobs = QuestDesignerMain.Database.SelectAllObjects(typeof(Mob));
+            {                
+                IList mobs = QuestDesignerMain.DatabaseAdapter.GetNPCList();
                 if (mobs.Count > 0)
                 {
                     comboBoxNPC.DataSource = mobs;
-                    comboBoxNPC.DisplayMember = "Name";
-                    comboBoxNPC.ValueMember = "MobID";
+                    comboBoxNPC.DisplayMember = DOLDatabaseAdapter.MOB_NAME;
+                    comboBoxNPC.ValueMember = DOLDatabaseAdapter.MOB_ID;
                     propertyGridNPC.SelectedObject = comboBoxNPC.SelectedItem;
                     //propertyGridNPC.DataBindings.Add(new System.Windows.Forms.Binding("SelectedObject", this.comboBoxNPC, "SelectedItem", false));
                 }
+                
             }
 		}
 
 		private void buttonAccept_Click(object sender, EventArgs e)
 		{
-			SelectedMob = (Mob)comboBoxNPC.SelectedItem;
+			SelectedMob = comboBoxNPC.SelectedItem;
 			this.DialogResult = DialogResult.OK;
             this.Close();
 		}

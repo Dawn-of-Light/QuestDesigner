@@ -25,37 +25,39 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
-using DOL.GS.Database;
-using DOL.GS;
 using System.Collections;
+using QuestDesigner.Util;
+
 
 namespace QuestDesigner
 {
 	public partial class ItemLookupForm : Form
 	{
-		public GenericItemTemplate SelectedItem;		
+		public Object SelectedItem;		
 
 		public ItemLookupForm()
 		{
 			InitializeComponent();
             if (QuestDesignerMain.DatabaseSupported)
             {
-                IList items = QuestDesignerMain.Database.SelectAllObjects(typeof(GenericItemTemplate));
+
+                IList items = QuestDesignerMain.DatabaseAdapter.GetItemList();
                 if (items.Count > 0)
                 {
                     comboBoxItem.DataSource = items;
-                    comboBoxItem.DisplayMember = "Name";
-                    comboBoxItem.ValueMember = "ItemTemplateID";
+                    comboBoxItem.DisplayMember = DOLDatabaseAdapter.ITEM_NAME;
+                    comboBoxItem.ValueMember = DOLDatabaseAdapter.ITEM_ID;
 
                     propertyGridItem.SelectedObject = comboBoxItem.SelectedItem;
                     //propertyGridItem.DataBindings.Add(new System.Windows.Forms.Binding("SelectedObject", this.comboBoxItem, "SelectedItem", false));
                 }
+                 
             }
 		}
 
 		private void buttonAccept_Click(object sender, EventArgs e)
 		{
-			SelectedItem = (GenericItemTemplate)comboBoxItem.SelectedItem;
+			SelectedItem = (Object)comboBoxItem.SelectedItem;            
 			this.DialogResult = DialogResult.OK;
             this.Close();
 		}
