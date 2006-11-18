@@ -155,9 +155,10 @@ Possible parameters:
 	<ActionType>
 		<value>eActionType.GiveQuest</value>
 		<description>GiveQuest</description>
-		<help>NPC assigns quest P to player, if P is empty current quest is used</help>
+		<help>NPC Q assigns quest P to player, if P is empty current quest is used</help>
 		<p>QuestType:string</p>
-		<text>the player gets $P{0}$</text>
+		<q>GameLiving:string</q>
+		<text>the player gets $P{0}$ from $Q{1}$</text>
 	</ActionType>
 	<ActionType>
 		<value>eActionType.OfferQuest</value>

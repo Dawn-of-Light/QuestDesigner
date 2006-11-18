@@ -62,9 +62,6 @@ namespace QuestDesigner
 
 		private void QuestDesignerForm_Load(object sender, EventArgs e)
 		{
-
-			SetDataSet();									
-            
 			// Configure L&F
 			NETXP.Controls.Docking.Renderers.Office2003 XPRenderers = new NETXP.Controls.Docking.Renderers.Office2003();
 			NETXP.Library.XPBlueColorTable xpColorTable = new NETXP.Library.XPBlueColorTable();
@@ -90,13 +87,15 @@ namespace QuestDesigner
 			}
 			this.Text = TITLE + openFilename;
 
+            SetDataSet();									
+
             Log.register();
 		}		
 
 		private void SetDataSet()
-		{			            
-            DB.Init(dataSetQuest,dataSetData);
-
+		{
+            if (!DB.isInitialized())
+                Log.Error("DB not initialized yet");
 			questInfo.setDataSet(dataSetQuest);
 			npcView.setDataSet(dataSetQuest);
 			itemView.setDataSet(dataSetQuest);
@@ -174,7 +173,9 @@ namespace QuestDesigner
                 {
                     Log.Warning("Actiontype with name: " + row["value"] + " not found.");                    
                 }
-			}			
+			}
+
+            DB.ConfigDataSet = dataSetData;
 		}
 
 		private void FillTypeValues(Type[] types)
@@ -219,11 +220,18 @@ namespace QuestDesigner
             }
         }
 
-        private void InitEmptyQuest()
+        private void InitEmptyQuest()               
         {
+            DB.questPartBinding.SuspendBinding();
+            dataSetQuest.BeginInit();
+            
+            //DB.Init();
             dataSetQuest.Clear();
 			dataTableQuest.Rows.Add(dataTableQuest.NewRow());
-            dataTableQuest.AcceptChanges();			
+            dataTableQuestPart.Rows.Add(dataTableQuestPart.NewRow());
+            dataTableQuest.AcceptChanges();
+            dataSetQuest.EndInit();
+            DB.questPartBinding.ResumeBinding();
             openFilename = null;
         }
 
@@ -243,10 +251,15 @@ namespace QuestDesigner
             {
 				try
 				{
-					dataSetQuest.BeginInit();
+                    DB.questPartBinding.SuspendBinding();
+                    dataSetQuest.BeginInit();
+                    
+                    //DB.Init(); // reset bindings
 					dataSetQuest.Clear();
 					dataSetQuest.ReadXml(xmlfile);
-					dataSetQuest.EndInit();										
+					dataSetQuest.EndInit();
+                    DB.questPartBinding.ResumeBinding();
+
 					this.openFilename = xmlfile;
 
 					this.Text = TITLE + xmlfile;
@@ -326,7 +339,7 @@ namespace QuestDesigner
 			dataSetQuest.AcceptChanges();
 
 			string scriptPath = null;
-			if (String.IsNullOrEmpty(openFilename))
+			if (String.IsNullOrEmpty(openFilename) || true)
 			{
 				DialogResult result = saveScriptDialog.ShowDialog();
 				if (result == DialogResult.OK)
@@ -422,6 +435,24 @@ namespace QuestDesigner
                 this.StatusLabel.Text = msg;
                 this.StatusLabel.Image = image;
             }
+        }
+
+        private void dataSetQuest_Initialized(object sender, EventArgs e)
+        {
+            DB.QuestDataSet = dataSetQuest;
+        }
+
+        private void linkSaveQuest_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(openFilename))
+            {
+                saveAsToolStripMenuItem_Click(sender, e);
+                return;
+            }
+            else
+            {
+                SaveQuest(openFilename);
+            }  
         }
  
     }

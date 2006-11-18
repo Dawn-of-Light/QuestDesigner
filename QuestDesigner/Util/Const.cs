@@ -22,7 +22,10 @@ namespace QuestDesigner.Util
 		public const char CODE_V = 'V';
 		public const char CODE_P = 'P';
 		public const char CODE_Q = 'Q';
-		
+
+        public const string COMPARATOR_BINARY = "binary";
+        public const string COMPARATOR_QUANTITY = "quantity";
+
 		public const string COLUMN_COMPARATOR = "Comparator";
 
 		public static string CodeToColumn(char constant) {

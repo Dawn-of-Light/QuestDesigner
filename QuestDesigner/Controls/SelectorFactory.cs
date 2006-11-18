@@ -9,13 +9,17 @@ namespace QuestDesigner.Controls
 {
 	class SelectorFactory
 	{
+        public static ISelector GetSelector(string description, int id, char param)
+        {
+            return GetSelector(description, id, param,null);
+        }
 
-		public static ISelector GetSelector(string description, int id, char param)
+		public static ISelector GetSelector(string description, int id, char param,string comparatorType)
 		{
 			ISelector selector;
 
 			if (param == Const.CODE_COMPARATOR)
-				selector = new ComparatorSelector(id, param);
+				selector = new ComparatorSelector(id, param,comparatorType);
 			else if (description.StartsWith("QuestType"))
 				selector = new QuestSelector(id, param);
 			else if (description.StartsWith("GameLiving"))
@@ -37,7 +41,7 @@ namespace QuestDesigner.Controls
 			else if (description.StartsWith("Location"))
 				selector = new LocationSelector(id, param);			
 			else if (description.StartsWith("Comparator"))
-				selector = new ComparatorSelector(id, param);
+				selector = new ComparatorSelector(id, param,comparatorType);
 			else if (description.StartsWith("Emote"))
 				selector = new EnumerationSelector(id, param, typeof(DOL.GS.PacketHandler.eEmote).Name);
 			else if (description.StartsWith("CharacterClass"))

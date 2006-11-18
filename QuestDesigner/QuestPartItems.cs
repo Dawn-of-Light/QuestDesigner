@@ -20,6 +20,8 @@ namespace QuestDesigner
 
 		private bool _initializing = false;
 
+        private bool _suspendQuestPartTextUpdate = false;
+
 		#region UI Customization
 
 		private Color foreColorSelected = Color.Gray;
@@ -86,16 +88,29 @@ namespace QuestDesigner
 
 		private PopupWindowHelper popupHelper = null;
 
-		public DataRowView QuestPartRow
+        private DataRowView questPartRow;
+
+        private int questPartRowId;
+
+        public int QuestPartRowID
+        {
+            get { return questPartRowId; }
+            set { questPartRowId = value; }
+        }
+
+		public DataRowView QuestPartRow        
 		{
 			get
 			{
-				DataRowView row = (DataRowView)DB.questPartBinding.Current;
-				if (row != null && row.Row.RowState != DataRowState.Deleted)
-					return row;
-				else
-					return null;
+                if (questPartRow!=null && questPartRow.Row.RowState != DataRowState.Deleted)
+                    return questPartRow;
+                else
+                    return null;
 			}
+            set {
+                questPartRow = value;
+                QuestPartRowID = QuestPartRow != null ? Convert.ToInt32(QuestPartRow["ID"]) : -1;
+            }
 		}
 
 		public QuestPartItems()
@@ -108,8 +123,62 @@ namespace QuestDesigner
 		private IList<QuestPartTextInfo> questPartInfos = new List<QuestPartTextInfo>();
 		
 		public void SetDataSet(DataSet questSet, DataSet dataSet) {
-			// Fill triggertype checklist with triggertypes...									
+            
+            DB.ActionTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+            DB.ActionTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+            DB.TriggerTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+            DB.TriggerTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+            DB.RequirementTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+            DB.RequirementTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+
+            DB.QuestPartTable.RowChanged += new DataRowChangeEventHandler(QuestPartTable_RowChanged);
+
+            triggerTypeList.Items.Clear();
+            foreach (DataRow row in DB.TriggerTypeTable.Rows)
+            {
+                triggerTypeList.Items.Add(row["description"], false);
+            }
+
+            requirementTypeList.Items.Clear();
+            foreach (DataRow row in DB.RequirementTypeTable.Rows)
+            {
+                requirementTypeList.Items.Add(row["description"], false);
+            }
+
+            actionTypeList.Items.Clear();
+            foreach (DataRow row in DB.ActionTypeTable.Rows)
+            {
+                actionTypeList.Items.Add(row["description"], false);
+            }
+
+            this.bindingNavigator.BindingSource = DB.questPartBinding;
+            DB.questPartBinding.CurrentChanged += new EventHandler(questPartBinding_CurrentChanged);
+
+            // Fill triggertype checklist with triggertypes...            
+            QuestPartRow = (DataRowView) DB.questPartBinding.Current;
+            if (QuestPartRow!= null)
+                RefreshQuestPart(QuestPartRow.Row);
+            RefreshQuestPartText();
 		}
+
+        void QuestPartTable_RowChanged(object sender, DataRowChangeEventArgs e)
+        {
+            if ( e.Action == DataRowAction.Change )
+            {
+                RefreshQuestPart(e.Row);
+                RefreshQuestPartText();
+            } 
+            else if (e.Action == DataRowAction.Delete) {
+                RefreshQuestPart(null);
+                RefreshQuestPartText();
+            } 
+            else if (e.Action == DataRowAction.Add)                
+            {
+                RefreshQuestPart(e.Row);
+                RefreshQuestPartText();
+                DB.questPartBinding.MoveLast();
+            }
+        }
 
 		#region Helper Methods
 
@@ -208,40 +277,37 @@ namespace QuestDesigner
 		
 
 		protected void RefreshQuestPartText()
-		{
+		{            
 			questPartTextbox.BeginUpdate();
 			
 			questPartTextbox.Clear();
 			questPartTextbox.Select(0, 0);
 			questPartInfos.Clear();
 			bool first = true;
-			foreach (DataRowView row in DB.questPartBinding.List)
+			foreach (DataRow row in DB.QuestPartTable.Rows)
 			{
+                if (row.RowState == DataRowState.Deleted)
+                    continue;
+
 				if (!first)
 					questPartTextbox.InsertText("\n\n");
 				first = false;
-				UpdateQuestPartText(row.Row);
-				
+				UpdateQuestPartText(row);
 			}
 
 			questPartTextbox.EndUpdate();
-		}
-
-		protected void RefreshQuestPartText(DataRow questPartRow)
-		{
-			RefreshQuestPartText();
-		}
+		}		
 		
 		private void UpdateQuestPartText(DataRow questPartRow)
 		{
 			tooltipManager.tool.Hide(true);
-			
+            
 			bool first = true;
 			bool isLink;
-			if (questPartRow != null)
+            if (questPartRow != null && questPartRow.RowState != DataRowState.Detached && questPartRow.RowState != DataRowState.Deleted)
 			{
 				questPartTextbox.BeginUpdate();
-				bool selected = (QuestPartRow != null && Convert.ToInt16(questPartRow["ID"]) == Convert.ToInt16(QuestPartRow["ID"]));			
+				bool selected = (Convert.ToInt16(questPartRow["ID"]) == QuestPartRowID);
 				
 				// textinfo
 				QuestPartTextInfo textinfo = GetInfoForQuestPartRow(questPartRow);								
@@ -261,11 +327,11 @@ namespace QuestDesigner
 				int colorBegin = questPartTextbox.SelectionStart;
 				// Trigger
 
-				DataRow[] triggerRows = DB.TriggerTable.Select("QuestPartID=" + questPartRow["ID"]);
+                DataRow[] triggerRows = DB.TriggerTable.Select("QuestPartID=" + questPartRow["ID"]);                
 				questPartTextbox.InsertText("If ");				
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ForeColorSelected : questPartTextbox.ForeColor);
 				colorBegin = questPartTextbox.SelectionEnd;
-				if (triggerRows.Length > 0)
+                if (triggerRows!=null && triggerRows.Length > 0)
 				{					
 
 					foreach (DataRow row in triggerRows)
@@ -424,13 +490,13 @@ namespace QuestDesigner
 			}			
 		}
 
-		private void RefreshQuestPart()
+        private void RefreshQuestPart(DataRow questPartRow)
 		{
 			_initializing = true;
 
-			this.triggerTypeList.Enabled = (QuestPartRow != null);
-			this.requirementTypeList.Enabled = (QuestPartRow != null);
-			this.actionTypeList.Enabled = (QuestPartRow != null);
+			this.triggerTypeList.Enabled = (questPartRow != null);
+			this.requirementTypeList.Enabled = (questPartRow != null);
+			this.actionTypeList.Enabled = (questPartRow != null);
 
 			triggerTypeList.ClearSelected();
 			for (int i = 0; i < triggerTypeList.Items.Count; i++)
@@ -444,23 +510,23 @@ namespace QuestDesigner
 			for (int i = 0; i < actionTypeList.Items.Count; i++)
 				actionTypeList.SetItemCheckState(i, CheckState.Unchecked);
 
-			if (QuestPartRow != null)
+			if (questPartRow != null)
 			{				
-				foreach (DataRow row in DB.TriggerTable.Select("QuestPartID=" + QuestPartRow["ID"]))
+				foreach (DataRow row in DB.TriggerTable.Select("QuestPartID=" + questPartRow["ID"]))
 				{					
 					int index = GetIndexForTriggerType((int)row["Type"]);
 					if (index >= 0 && !triggerTypeList.GetItemChecked(index))
 						triggerTypeList.SetItemChecked(index, true);
 				}
 
-				foreach (DataRow row in DB.RequirementTable.Select("QuestPartID=" + QuestPartRow["ID"]))
+				foreach (DataRow row in DB.RequirementTable.Select("QuestPartID=" + questPartRow["ID"]))
 				{
 					int index = GetIndexForRequirementType((int)row["Type"]);
 					if (index >= 0 && !requirementTypeList.GetItemChecked(index))
 						requirementTypeList.SetItemChecked(index, true);
 				}
 
-				foreach (DataRow row in DB.ActionTable.Select("QuestPartID=" + QuestPartRow["ID"]))
+				foreach (DataRow row in DB.ActionTable.Select("QuestPartID=" + questPartRow["ID"]))
 				{
 					int index = GetIndexForActionType((int)row["Type"]);
 					if (index >= 0 && !actionTypeList.GetItemChecked(index))
@@ -605,7 +671,8 @@ namespace QuestDesigner
 						}
 						else
 						{
-							selector = SelectorFactory.GetSelector(Convert.ToString(requirementTypeRow[Const.CodeToColumn(param).ToLower()]), (int)requirementRow["ID"], param);							
+                            string comparatorType = Convert.ToString(requirementTypeRow["comparator"]);
+                            selector = SelectorFactory.GetSelector(Convert.ToString(requirementTypeRow[Const.CodeToColumn(param).ToLower()]), (int)requirementRow["ID"], param,comparatorType);							
 						}						
 						selector.SelectedValue = requirementRow[Const.CodeToColumn(param)];
 
@@ -930,39 +997,7 @@ namespace QuestDesigner
 		#endregion
 
 		private void QuestPartItems_Load(object sender, EventArgs e)
-		{
-			if (DB.isInitialized())
-			{
-				DB.ActionTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-				DB.ActionTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-				DB.TriggerTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-				DB.TriggerTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-				DB.RequirementTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-				DB.RequirementTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-
-				triggerTypeList.Items.Clear();
-				foreach (DataRow row in DB.TriggerTypeTable.Rows)
-				{
-					triggerTypeList.Items.Add(row["description"], false);
-				}
-
-				requirementTypeList.Items.Clear();
-				foreach (DataRow row in DB.RequirementTypeTable.Rows)
-				{
-					requirementTypeList.Items.Add(row["description"], false);
-				}
-
-				actionTypeList.Items.Clear();
-				foreach (DataRow row in DB.ActionTypeTable.Rows)
-				{
-					actionTypeList.Items.Add(row["description"], false);
-				}
-
-				bindingNavigator.BindingSource = DB.questPartBinding;
-			
-				DB.questPartBinding.CurrentChanged += new EventHandler(questPartBinding_CurrentChanged);							
-				DB.questPartBinding.ListChanged += new ListChangedEventHandler(questPartBinding_ListChanged);
-			}
+		{			
 
 			toolStripLabelAction.ForeColor = ActionSelectedColor;
 			toolStripLabelTrigger.ForeColor = TriggerSelectedColor;
@@ -984,56 +1019,63 @@ namespace QuestDesigner
 
 			tooltipManager.tool.Autohide = true; // Do not hide automatically
 			tooltipManager.tool.TraceMode = false;	// Follow the mouse cursor			
-		}
+
+            
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestPartItems));
+
+            // replace standard addNEw button with custom one th implement own addNew event handler.
+            ToolStripButton addNew = new ToolStripButton();
+            addNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            addNew.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            addNew.Name = "bindingNavigatorAddNewItem";
+            addNew.RightToLeftAutoMirrorImage = true;
+            addNew.Size = new System.Drawing.Size(23, 22);
+            addNew.Text = "Add new";
+            addNew.Click += new EventHandler(addNew_Click);
+
+            bindingNavigator.Items.Remove(bindingNavigator.AddNewItem);
+            bindingNavigator.Items.Add(addNew);
+            bindingNavigator.Refresh();
+        }
+
+        void addNew_Click(object sender, EventArgs e)
+        {
+            DB.QuestPartTable.Rows.Add(DB.QuestPartTable.NewRow());
+            DB.QuestPartTable.AcceptChanges();
+        }        
 
 		void questPartBinding_CurrentChanged(object sender, EventArgs e)
 		{
-			RefreshQuestPart();
-			
-			if (QuestPartRow != null)
-			{
-				RefreshQuestPartText(QuestPartRow.Row);
-				
-				QuestPartTextInfo info = GetInfoForQuestPartRow(QuestPartRow.Row);
-				questPartTextbox.Select(info.BeginIndex, 0);
-				questPartTextbox.ScrollToCaret();
-				questPartTextbox.Focus();
-			}
-			
-		}		
-
-		void questPartBinding_ListChanged(object sender, ListChangedEventArgs e)
-		{
-			if (e.ListChangedType == ListChangedType.ItemChanged)
-			{
-				DataRowView changedRow = (DataRowView) DB.questPartBinding[e.NewIndex];
-				RefreshQuestPartText(changedRow.Row);
-			}
-			else if (e.ListChangedType == ListChangedType.ItemDeleted)
-			{
-				RefreshQuestPartText();
-			}
-			else if (e.ListChangedType == ListChangedType.ItemAdded)
-			{
-				RefreshQuestPartText();
-			}
+            QuestPartRow = (DataRowView) ((BindingSource)sender).Current;
+            if (QuestPartRow != null)
+            {
+                RefreshQuestPart(QuestPartRow.Row);
+            }
+            else
+            {
+                RefreshQuestPart(null);
+            }
+            RefreshQuestPartText();
+            
+            if (QuestPartRow != null)
+            {
+                QuestPartTextInfo info = GetInfoForQuestPartRow(QuestPartRow.Row);
+                if (info != null)
+                {
+                    questPartTextbox.Select(info.BeginIndex, 0);
+                    questPartTextbox.ScrollToCaret();
+                    questPartTextbox.Focus();
+                }
+            }
 		}
-					
 
 		void questPartItemTable_RowChanged(object sender, DataRowChangeEventArgs e)
 		{
-			if (e.Action == DataRowAction.Delete || e.Action == DataRowAction.Add)
-				RefreshQuestPartText(QuestPartRow.Row);
-			else
-			{
-				int questPartID = (int)e.Row["QuestPartID"];
-
-				DataRow[] rows = DB.QuestPartTable.Select("ID=" + questPartID);
-				if (rows.Length > 0)
-					RefreshQuestPartText(rows[0]);
-				else if (QuestPartRow != null)
-					RefreshQuestPartText(QuestPartRow.Row);
-			}
+            RefreshQuestPartText();
+            if (e.Action == DataRowAction.Add)
+            {
+                DB.questPartBinding.MoveLast();
+            }
 		}
 
 		#region Tooltip
@@ -1121,18 +1163,7 @@ namespace QuestDesigner
 		}				
 				
 		#endregion
-
-		private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-		{
-			DB.questPartBinding.MoveLast();
-			DataRowView row =(DataRowView) DB.questPartBinding.Current;
-			if (DB.MobTable.Rows.Count > 0)
-			{				
-				RefreshQuestPartText();
-			}
-
-		}
-
+		
 		private QuestPartTextInfo GetInfoForQuestPartRow(DataRow questPartRw)
 		{
 			int index = 0;
@@ -1161,5 +1192,6 @@ namespace QuestDesigner
 			public int BeginIndex;
 			public int EndIndex;
 		}
+        
 	}
 }

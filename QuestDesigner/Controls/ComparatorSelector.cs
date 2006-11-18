@@ -12,10 +12,15 @@ namespace QuestDesigner.Controls
 	public class ComparatorSelector : BaseSelector
 	{
 
-		public ComparatorSelector(int itemID, char param)
+		public ComparatorSelector(int itemID, char param,string comparatorType)
 			: base(itemID, param)
 		{			
-			this.list.DataSource = DB.comparatorBinding;
+            if (Const.COMPARATOR_BINARY.Equals(comparatorType))
+			    this.list.DataSource = DB.comparatorBinaryBinding;
+            else if (Const.COMPARATOR_QUANTITY.Equals(comparatorType))
+                this.list.DataSource = DB.comparatorQuantityBinding;
+            else
+                this.list.DataSource = DB.comparatorBinding;
 			
 			this.list.ValueMember = "Value";
 			this.list.DisplayMember = "Description";

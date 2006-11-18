@@ -62,6 +62,7 @@ namespace QuestDesigner
             System.Data.DataColumn dataColumn21;
             System.Data.DataColumn dataColumn22;
             System.Data.DataColumn dataColumnText;
+            System.Data.DataColumn dataColumnDefaultNPC;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
             NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
             NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
@@ -309,6 +310,7 @@ namespace QuestDesigner
             dataColumn21 = new System.Data.DataColumn();
             dataColumn22 = new System.Data.DataColumn();
             dataColumnText = new System.Data.DataColumn();
+            dataColumnDefaultNPC = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetQuest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableQuestPart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableTrigger)).BeginInit();
@@ -513,6 +515,10 @@ namespace QuestDesigner
             dataColumnText.ColumnName = "text";
             dataColumnText.DefaultValue = "";
             // 
+            // dataColumnDefaultNPC
+            // 
+            dataColumnDefaultNPC.ColumnName = "defaultNPC";
+            // 
             // dataSetQuest
             // 
             this.dataSetQuest.DataSetName = "Quest";
@@ -538,11 +544,13 @@ namespace QuestDesigner
             this.dataTableQuestStep,
             this.dataTableArea,
             this.dataTableLocation});
+            this.dataSetQuest.Initialized += new System.EventHandler(this.dataSetQuest_Initialized);
             // 
             // dataTableQuestPart
             // 
             this.dataTableQuestPart.Columns.AddRange(new System.Data.DataColumn[] {
-            dataColumnQuestPartIF});
+            dataColumnQuestPartIF,
+            dataColumnDefaultNPC});
             this.dataTableQuestPart.TableName = "QuestPart";
             // 
             // dataTableTrigger
@@ -1566,7 +1574,7 @@ namespace QuestDesigner
             this.toolStripMenuItem1});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(458, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(418, 24);
             this.menuStripMain.TabIndex = 1;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -1738,11 +1746,11 @@ namespace QuestDesigner
             this.toolStripContainerForm.ContentPanel.AutoScroll = true;
             this.toolStripContainerForm.ContentPanel.Controls.Add(this.tabControlMain);
             this.toolStripContainerForm.ContentPanel.Controls.Add(this.xpTaskPane);
-            this.toolStripContainerForm.ContentPanel.Size = new System.Drawing.Size(458, 173);
+            this.toolStripContainerForm.ContentPanel.Size = new System.Drawing.Size(418, 153);
             this.toolStripContainerForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainerForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainerForm.Name = "toolStripContainerForm";
-            this.toolStripContainerForm.Size = new System.Drawing.Size(458, 219);
+            this.toolStripContainerForm.Size = new System.Drawing.Size(418, 199);
             this.toolStripContainerForm.TabIndex = 0;
             this.toolStripContainerForm.Text = "toolStripContainer2";
             // 
@@ -1759,7 +1767,7 @@ namespace QuestDesigner
             this.StatusProgress});
             this.statusStrip.Location = new System.Drawing.Point(0, 0);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(458, 22);
+            this.statusStrip.Size = new System.Drawing.Size(418, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -1773,7 +1781,7 @@ namespace QuestDesigner
             // 
             this.StatusLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(341, 17);
+            this.StatusLabel.Size = new System.Drawing.Size(301, 17);
             this.StatusLabel.Spring = true;
             this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.StatusLabel.Click += new System.EventHandler(this.StatusLabel_Click);
@@ -1798,7 +1806,7 @@ namespace QuestDesigner
             this.tabControlMain.ShowArrows = true;
             this.tabControlMain.ShowClose = false;
             this.tabControlMain.ShrinkPagesToFit = false;
-            this.tabControlMain.Size = new System.Drawing.Size(290, 173);
+            this.tabControlMain.Size = new System.Drawing.Size(250, 153);
             this.tabControlMain.TabIndex = 3;
             this.tabControlMain.TabPages.AddRange(new NETXP.Controls.Docking.TabPage[] {
             this.tabPageQuest,
@@ -1814,7 +1822,7 @@ namespace QuestDesigner
             this.tabPageQuest.Controls.Add(this.questInfo);
             this.tabPageQuest.Location = new System.Drawing.Point(2, 23);
             this.tabPageQuest.Name = "tabPageQuest";
-            this.tabPageQuest.Size = new System.Drawing.Size(286, 148);
+            this.tabPageQuest.Size = new System.Drawing.Size(246, 128);
             this.tabPageQuest.TabIndex = 3;
             this.tabPageQuest.Title = "QuestInfo";
             this.tabPageQuest.ToolTipText = "Detailed Information about Quest";
@@ -1824,7 +1832,7 @@ namespace QuestDesigner
             this.questInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.questInfo.Location = new System.Drawing.Point(0, 0);
             this.questInfo.Name = "questInfo";
-            this.questInfo.Size = new System.Drawing.Size(286, 148);
+            this.questInfo.Size = new System.Drawing.Size(246, 128);
             this.questInfo.TabIndex = 28;
             // 
             // tabPageNPC
@@ -1832,7 +1840,7 @@ namespace QuestDesigner
             this.tabPageNPC.Controls.Add(this.npcView);
             this.tabPageNPC.Location = new System.Drawing.Point(2, 23);
             this.tabPageNPC.Name = "tabPageNPC";
-            this.tabPageNPC.Size = new System.Drawing.Size(286, 148);
+            this.tabPageNPC.Size = new System.Drawing.Size(246, 128);
             this.tabPageNPC.TabIndex = 4;
             this.tabPageNPC.Title = "NPC";
             this.tabPageNPC.ToolTipText = "NPC\'s associated with the quest";
@@ -1842,7 +1850,7 @@ namespace QuestDesigner
             this.npcView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.npcView.Location = new System.Drawing.Point(0, 0);
             this.npcView.Name = "npcView";
-            this.npcView.Size = new System.Drawing.Size(286, 148);
+            this.npcView.Size = new System.Drawing.Size(246, 128);
             this.npcView.TabIndex = 0;
             // 
             // tabPageItem
@@ -1850,7 +1858,7 @@ namespace QuestDesigner
             this.tabPageItem.Controls.Add(this.itemView);
             this.tabPageItem.Location = new System.Drawing.Point(2, 23);
             this.tabPageItem.Name = "tabPageItem";
-            this.tabPageItem.Size = new System.Drawing.Size(286, 148);
+            this.tabPageItem.Size = new System.Drawing.Size(246, 128);
             this.tabPageItem.TabIndex = 5;
             this.tabPageItem.Title = "Item";
             this.tabPageItem.ToolTipText = "Item\'s associated with the quest";
@@ -1860,7 +1868,7 @@ namespace QuestDesigner
             this.itemView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.itemView.Location = new System.Drawing.Point(0, 0);
             this.itemView.Name = "itemView";
-            this.itemView.Size = new System.Drawing.Size(286, 148);
+            this.itemView.Size = new System.Drawing.Size(246, 128);
             this.itemView.TabIndex = 0;
             // 
             // tabPageQuestPart
@@ -1868,7 +1876,7 @@ namespace QuestDesigner
             this.tabPageQuestPart.Controls.Add(this.questPartItems);
             this.tabPageQuestPart.Location = new System.Drawing.Point(2, 23);
             this.tabPageQuestPart.Name = "tabPageQuestPart";
-            this.tabPageQuestPart.Size = new System.Drawing.Size(286, 148);
+            this.tabPageQuestPart.Size = new System.Drawing.Size(246, 128);
             this.tabPageQuestPart.TabIndex = 6;
             this.tabPageQuestPart.Title = "QuestPart";
             this.tabPageQuestPart.ToolTipText = "QuestPart\'s making up the whole logic of a quest";
@@ -1882,9 +1890,11 @@ namespace QuestDesigner
             this.questPartItems.ForeColorSelected = System.Drawing.Color.Black;
             this.questPartItems.Location = new System.Drawing.Point(0, 0);
             this.questPartItems.Name = "questPartItems";
+            this.questPartItems.QuestPartRow = null;
+            this.questPartItems.QuestPartRowID = 0;
             this.questPartItems.RequirementColor = System.Drawing.Color.Tan;
             this.questPartItems.RequirementSelectedColor = System.Drawing.Color.Orange;
-            this.questPartItems.Size = new System.Drawing.Size(286, 148);
+            this.questPartItems.Size = new System.Drawing.Size(246, 128);
             this.questPartItems.TabIndex = 0;
             this.questPartItems.TriggerColor = System.Drawing.Color.Olive;
             this.questPartItems.TriggerSelectedColor = System.Drawing.Color.Green;
@@ -1894,7 +1904,7 @@ namespace QuestDesigner
             this.tabPageArea.Controls.Add(this.areaView);
             this.tabPageArea.Location = new System.Drawing.Point(2, 23);
             this.tabPageArea.Name = "tabPageArea";
-            this.tabPageArea.Size = new System.Drawing.Size(286, 148);
+            this.tabPageArea.Size = new System.Drawing.Size(246, 128);
             this.tabPageArea.TabIndex = 7;
             this.tabPageArea.Title = "Area";
             this.tabPageArea.ToolTipText = "Area\'s used within a quest";
@@ -1904,7 +1914,7 @@ namespace QuestDesigner
             this.areaView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.areaView.Location = new System.Drawing.Point(0, 0);
             this.areaView.Name = "areaView";
-            this.areaView.Size = new System.Drawing.Size(286, 148);
+            this.areaView.Size = new System.Drawing.Size(246, 128);
             this.areaView.TabIndex = 2;
             // 
             // tabPageLocation
@@ -1912,7 +1922,7 @@ namespace QuestDesigner
             this.tabPageLocation.Controls.Add(this.locationView);
             this.tabPageLocation.Location = new System.Drawing.Point(2, 23);
             this.tabPageLocation.Name = "tabPageLocation";
-            this.tabPageLocation.Size = new System.Drawing.Size(286, 148);
+            this.tabPageLocation.Size = new System.Drawing.Size(246, 128);
             this.tabPageLocation.TabIndex = 9;
             this.tabPageLocation.Title = "Location";
             this.tabPageLocation.ToolTipText = "Define Locations used for QuestParts";
@@ -1922,7 +1932,7 @@ namespace QuestDesigner
             this.locationView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.locationView.Location = new System.Drawing.Point(0, 0);
             this.locationView.Name = "locationView";
-            this.locationView.Size = new System.Drawing.Size(286, 148);
+            this.locationView.Size = new System.Drawing.Size(246, 128);
             this.locationView.TabIndex = 0;
             // 
             // tabPageCode
@@ -1930,7 +1940,7 @@ namespace QuestDesigner
             this.tabPageCode.Controls.Add(this.customCode);
             this.tabPageCode.Location = new System.Drawing.Point(2, 23);
             this.tabPageCode.Name = "tabPageCode";
-            this.tabPageCode.Size = new System.Drawing.Size(286, 148);
+            this.tabPageCode.Size = new System.Drawing.Size(246, 128);
             this.tabPageCode.TabIndex = 8;
             this.tabPageCode.Title = "CustomCode";
             this.tabPageCode.ToolTipText = "CustomCode of the quest ";
@@ -1940,7 +1950,7 @@ namespace QuestDesigner
             this.customCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customCode.Location = new System.Drawing.Point(0, 0);
             this.customCode.Name = "customCode";
-            this.customCode.Size = new System.Drawing.Size(286, 148);
+            this.customCode.Size = new System.Drawing.Size(246, 128);
             this.customCode.TabIndex = 3;
             // 
             // xpTaskPane
@@ -1953,7 +1963,7 @@ namespace QuestDesigner
             this.xpTaskPane.Location = new System.Drawing.Point(0, 0);
             this.xpTaskPane.Name = "xpTaskPane";
             this.xpTaskPane.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.xpTaskPane.Size = new System.Drawing.Size(168, 173);
+            this.xpTaskPane.Size = new System.Drawing.Size(168, 153);
             this.xpTaskPane.TabIndex = 29;
             this.xpTaskPane.Text = "xpTaskPane1";
             this.xpTaskPane.Visible = global::QuestDesigner.Properties.Settings.Default.ShowTaskPane;
@@ -1985,6 +1995,7 @@ namespace QuestDesigner
             this.linkSaveQuest.TabIndex = 2;
             this.linkSaveQuest.TabStop = true;
             this.linkSaveQuest.Text = "Save Quest ...";
+            this.linkSaveQuest.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSaveQuest_LinkClicked);
             // 
             // linkCreateQuest
             // 
@@ -2040,7 +2051,7 @@ namespace QuestDesigner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 219);
+            this.ClientSize = new System.Drawing.Size(418, 199);
             this.Controls.Add(this.toolStripContainerForm);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::QuestDesigner.Properties.Settings.Default, "MainformLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.DataBindings.Add(new System.Windows.Forms.Binding("Size", global::QuestDesigner.Properties.Settings.Default, "MainformSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));

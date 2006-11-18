@@ -132,9 +132,9 @@ namespace QuestDesigner.Util
 		
 		#endregion
 
-		private static string GenerateParameter(char param, eComparator value)
+		private static string GenerateParameter(char param, eComparator value, string comparatorType)
 		{						
-			return ComparatorToText(value);
+			return ComparatorToText(value,comparatorType);
 		}
 
 		private static string GenerateParameter(char param, string typeDescr, string value)
@@ -310,6 +310,7 @@ namespace QuestDesigner.Util
 				text = Convert.ToString(requirementRow["text"]);
 				string typeN = Convert.ToString(requirementRow["n"]);
 				string typeV = Convert.ToString(requirementRow["v"]);
+                string comparatorType = Convert.ToString(requirementRow["comparator"]);
 
 				int startIndex = 0;
 				int index;
@@ -325,7 +326,7 @@ namespace QuestDesigner.Util
 					else if (param == Const.CODE_V)
 						formatParams[i++] = GenerateParameter(param, typeV, V);
 					else if (param == Const.CODE_COMPARATOR)
-						formatParams[i++] = GenerateParameter(param, comp);
+						formatParams[i++] = GenerateParameter(param, comp, comparatorType);
 
 					startIndex = index + 6; // skip ending $ of param clause 
 				}
@@ -397,26 +398,49 @@ namespace QuestDesigner.Util
 			}
 		}
 
-		private static string ComparatorToText(eComparator comp)
-		{
-			switch (comp)
-			{
-				case eComparator.Equal:
-					return "exactly";
-				case eComparator.Greater:
-					return "greater than";
-				case eComparator.Less:
-					return "less than";
-				case eComparator.Not:
-					return "not";
-				case eComparator.NotEqual:
-					return "not";
-				default:
-					return "none";
-
-			}
-
-		}
+        private static string ComparatorToText(eComparator comp, string comparatorType)
+        {
+            if (Const.COMPARATOR_QUANTITY.Equals(comparatorType))
+            {
+                switch (comp)
+                {
+                    case eComparator.Equal:
+                        return "exactly";
+                    case eComparator.Greater:
+                        return "greater than";
+                    case eComparator.Less:
+                        return "less than";
+                    case eComparator.NotEqual:
+                        return "not";
+                    case eComparator.Not:
+                        throw new ArgumentException("Comparator cannot be \"Not\" if type is quantity.");
+                    default:
+                        return "none";
+                }
+            }
+            else if (Const.COMPARATOR_BINARY.Equals(comparatorType))
+            {
+                switch (comp)
+                {
+                    case eComparator.Equal:
+                        throw new ArgumentException("Comparator cannot be \"Equal\" if type is quantity.");
+                    case eComparator.Greater:
+                        throw new ArgumentException("Comparator cannot be \"Greater\" if type is quantity.");
+                    case eComparator.Less:
+                        throw new ArgumentException("Comparator cannot be \"LEss\" if type is quantity.");
+                    case eComparator.NotEqual:
+                        throw new ArgumentException("Comparator cannot be \"NotEquals\" if type is quantity.");
+                    case eComparator.Not:
+                        return "is not";
+                    default:
+                        return "is";
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Unknown Comparatortype:\""+comparatorType+"\", check Requirements Config.", "comparatorType");
+            }
+        }
 		
 		public static IList FindAllQuests(Assembly asm)
 		{			

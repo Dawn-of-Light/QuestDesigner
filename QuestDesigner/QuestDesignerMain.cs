@@ -131,8 +131,7 @@ namespace QuestDesigner
         {
             WorkingDirectory = Application.StartupPath+"\\";
 
-            try
-            {
+            
                 /*
                 string[] dllFiles = Directory.GetFiles(QuestDesignerMain.WorkingDirectory + "lib", "*.dll",SearchOption.AllDirectories);			
 
@@ -149,11 +148,7 @@ namespace QuestDesigner
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(DesignerForm);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Unhandled Exception occurred:\n" + e.Message);
-            }
+            
         }		
 
         public static bool DatabaseSupported
@@ -269,11 +264,32 @@ namespace QuestDesigner
 			return false;
 		}
 
+        /// <summary>
+        /// Checks the given name against all defined objects in quest.
+        /// Needed to decide wether " should be added or not.
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <returns>true if objectname, else false</returns>
+        private static bool isMobName(object value)
+        {
+            if (value is string)
+            {
+                string name = (string)value;
+                foreach (DataRow row in DB.MobTable.Rows)
+                {
+                    if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
+                        return true;
+                }
+            }
+            return false;
+        }
+
 		public static bool GenerateScript(DataSet questDataSet, string scriptPath)
 		{
 			DataSet dataSet = questDataSet.Copy();
 
 			// Check for Inviting NPC
+            
 			if (dataSet.Tables["Quest"].Rows[0]["InvitingNPC"] is DBNull)
 			{
 				if (dataSet.Tables["Mob"].Rows.Count > 0)
@@ -287,6 +303,7 @@ namespace QuestDesigner
 					return false;
 				}
 			}
+            String invitingNPC =(string) dataSet.Tables["Quest"].Rows[0]["InvitingNPC"];
 
 			// check for string parameter in action, trigger, requirement and add needed ",'
 			foreach (DataRow row in dataSet.Tables["QuestPartTrigger"].Rows)
@@ -375,12 +392,50 @@ namespace QuestDesigner
 						row[ACTION_Q] = '"' + Convert.ToString(row[ACTION_Q]) + '"';
 				}
 			}
-			/*
+			
+            
 			foreach (DataRow row in dataSet.Tables["QuestPart"].Rows)
 			{
-				row["TextTypeName"] = typeof(eTextType).Name + "." + Enum.GetName(typeof(eTextType), row["TextType"]);
+                int questPartID =(int) row["ID"];
+                string defaultNPC = invitingNPC;
+
+                DataRow[] triggerRows = dataSet.Tables["QuestPartTrigger"].Select("QuestPartID="+questPartID);
+                foreach (DataRow triggerRow in triggerRows) {
+                    if (isMobName(triggerRow[TRIGGER_I])) {
+                        defaultNPC =(string) triggerRow[TRIGGER_I];
+                        break;
+                    } else if (isMobName(triggerRow[TRIGGER_K])) {
+                        defaultNPC =(string) triggerRow[TRIGGER_K];
+                        break;
+                    }
+                }
+
+                DataRow[] requRows = dataSet.Tables["QuestPartRequirement"].Select("QuestPartID="+questPartID);
+                foreach (DataRow requRow in requRows) {
+                    if (isMobName(requRow[REQUIREMENT_N])) {
+                        defaultNPC =(string) requRow[REQUIREMENT_N];
+                        break;
+                    } else if (isMobName(requRow[REQUIREMENT_V])) {
+                        defaultNPC =(string) requRow[REQUIREMENT_V];
+                        break;
+                    }
+                }
+
+                DataRow[] actionRows = dataSet.Tables["QuestPartAction"].Select("QuestPartID="+questPartID);
+                foreach (DataRow actionRow in actionRows) {
+                    if (isMobName(actionRow[ACTION_P])) {
+                        defaultNPC =(string) actionRow[ACTION_P];
+                        break;
+                    } else if (isMobName(actionRow[ACTION_Q])) {
+                        defaultNPC =(string) actionRow[ACTION_Q];
+                        break;
+                    }
+                }
+				
+                row["defaultNPC"] = defaultNPC;
 			}
-			*/
+            
+			
 			dataSet.AcceptChanges();
 
 			string tempquest = Path.GetTempFileName();			

@@ -56,6 +56,10 @@ namespace QuestDesigner
             if (DB.areaBinding.Current != null)
             {
                 DataRowView rowView = ((DataRowView)DB.areaBinding.Current);
+                if (rowView.Row.RowState == DataRowState.Detached)
+                {                    
+                    return;
+                }
                 switch (e.Property.Name)
                 {
                     case "Name":
@@ -85,6 +89,11 @@ namespace QuestDesigner
             if (DB.areaBinding.Current != null)
             {
                 DataRowView rowView = ((DataRowView)DB.areaBinding.Current);
+                if (rowView.Row.RowState == DataRowState.Detached)
+                {
+                    e.Value = null;
+                    return;
+                }
                 switch (e.Property.Name)
                 {
                     case "Width":

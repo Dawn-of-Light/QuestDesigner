@@ -35,6 +35,13 @@ namespace QuestDesigner
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.actionTypeList = new System.Windows.Forms.CheckedListBox();
             this.requirementTypeList = new System.Windows.Forms.CheckedListBox();
+            this.headerStrip1 = new QuestDesigner.Controls.HeaderStrip();
+            this.toolStripLabelTrigger = new System.Windows.Forms.ToolStripLabel();
+            this.headerStrip2 = new QuestDesigner.Controls.HeaderStrip();
+            this.toolStripLabelRequirement = new System.Windows.Forms.ToolStripLabel();
+            this.headerStrip3 = new QuestDesigner.Controls.HeaderStrip();
+            this.toolStripLabelAction = new System.Windows.Forms.ToolStripLabel();
+            this.questPartTextbox = new QuestDesigner.Controls.RichTextBoxEx();
             this.contextMenuStripQuestPart = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.triggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.interactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,23 +67,16 @@ namespace QuestDesigner
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.headerStrip1 = new QuestDesigner.Controls.HeaderStrip();
-            this.toolStripLabelTrigger = new System.Windows.Forms.ToolStripLabel();
-            this.headerStrip2 = new QuestDesigner.Controls.HeaderStrip();
-            this.toolStripLabelRequirement = new System.Windows.Forms.ToolStripLabel();
-            this.headerStrip3 = new QuestDesigner.Controls.HeaderStrip();
-            this.toolStripLabelAction = new System.Windows.Forms.ToolStripLabel();
-            this.questPartTextbox = new QuestDesigner.Controls.RichTextBoxEx();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.contextMenuStripQuestPart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).BeginInit();
-            this.bindingNavigator.SuspendLayout();
             this.headerStrip1.SuspendLayout();
             this.headerStrip2.SuspendLayout();
             this.headerStrip3.SuspendLayout();
+            this.contextMenuStripQuestPart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).BeginInit();
+            this.bindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
             // triggerTypeList
@@ -154,224 +154,6 @@ namespace QuestDesigner
             this.requirementTypeList.Size = new System.Drawing.Size(125, 199);
             this.requirementTypeList.TabIndex = 2;
             this.requirementTypeList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.requirementTypeList_ItemCheck);
-            // 
-            // contextMenuStripQuestPart
-            // 
-            this.contextMenuStripQuestPart.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.triggerToolStripMenuItem,
-            this.requirementToolStripMenuItem,
-            this.actionToolStripMenuItem,
-            this.defaultStepsToolStripMenuItem});
-            this.contextMenuStripQuestPart.Name = "contextMenuStripQuestPart";
-            this.contextMenuStripQuestPart.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.contextMenuStripQuestPart.Size = new System.Drawing.Size(153, 114);
-            // 
-            // triggerToolStripMenuItem
-            // 
-            this.triggerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.interactToolStripMenuItem,
-            this.whisperToolStripMenuItem});
-            this.triggerToolStripMenuItem.Name = "triggerToolStripMenuItem";
-            this.triggerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.triggerToolStripMenuItem.Text = "Trigger";
-            // 
-            // interactToolStripMenuItem
-            // 
-            this.interactToolStripMenuItem.Name = "interactToolStripMenuItem";
-            this.interactToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.interactToolStripMenuItem.Text = "Interact";
-            this.interactToolStripMenuItem.Click += new System.EventHandler(this.interactToolStripMenuItem_Click);
-            // 
-            // whisperToolStripMenuItem
-            // 
-            this.whisperToolStripMenuItem.Name = "whisperToolStripMenuItem";
-            this.whisperToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.whisperToolStripMenuItem.Text = "Whisper";
-            this.whisperToolStripMenuItem.Click += new System.EventHandler(this.whisperToolStripMenuItem_Click);
-            // 
-            // requirementToolStripMenuItem
-            // 
-            this.requirementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.questGivableToolStripMenuItem,
-            this.questPendingToolStripMenuItem,
-            this.queststepToolStripMenuItem});
-            this.requirementToolStripMenuItem.Name = "requirementToolStripMenuItem";
-            this.requirementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.requirementToolStripMenuItem.Text = "Requirement";
-            // 
-            // questGivableToolStripMenuItem
-            // 
-            this.questGivableToolStripMenuItem.Name = "questGivableToolStripMenuItem";
-            this.questGivableToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.questGivableToolStripMenuItem.Text = "Quest Givable";
-            this.questGivableToolStripMenuItem.Click += new System.EventHandler(this.questGivableToolStripMenuItem_Click);
-            // 
-            // questPendingToolStripMenuItem
-            // 
-            this.questPendingToolStripMenuItem.Name = "questPendingToolStripMenuItem";
-            this.questPendingToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.questPendingToolStripMenuItem.Text = "Quest Pending";
-            this.questPendingToolStripMenuItem.Click += new System.EventHandler(this.questPendingToolStripMenuItem_Click);
-            // 
-            // queststepToolStripMenuItem
-            // 
-            this.queststepToolStripMenuItem.Name = "queststepToolStripMenuItem";
-            this.queststepToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.queststepToolStripMenuItem.Text = "Queststep";
-            this.queststepToolStripMenuItem.Click += new System.EventHandler(this.queststepToolStripMenuItem_Click);
-            // 
-            // actionToolStripMenuItem
-            // 
-            this.actionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.giveItemToolStripMenuItem,
-            this.increaseQueststepToolStripMenuItem});
-            this.actionToolStripMenuItem.Name = "actionToolStripMenuItem";
-            this.actionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.actionToolStripMenuItem.Text = "Action";
-            // 
-            // giveItemToolStripMenuItem
-            // 
-            this.giveItemToolStripMenuItem.Name = "giveItemToolStripMenuItem";
-            this.giveItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.giveItemToolStripMenuItem.Text = "GiveItem";
-            this.giveItemToolStripMenuItem.Click += new System.EventHandler(this.giveItemToolStripMenuItem_Click);
-            // 
-            // increaseQueststepToolStripMenuItem
-            // 
-            this.increaseQueststepToolStripMenuItem.Name = "increaseQueststepToolStripMenuItem";
-            this.increaseQueststepToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.increaseQueststepToolStripMenuItem.Text = "Increase Queststep";
-            this.increaseQueststepToolStripMenuItem.Click += new System.EventHandler(this.increaseQueststepToolStripMenuItem_Click);
-            // 
-            // defaultStepsToolStripMenuItem
-            // 
-            this.defaultStepsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.offerAcceptQuestToolStripMenuItem});
-            this.defaultStepsToolStripMenuItem.Name = "defaultStepsToolStripMenuItem";
-            this.defaultStepsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.defaultStepsToolStripMenuItem.Text = "Default Steps";
-            // 
-            // offerAcceptQuestToolStripMenuItem
-            // 
-            this.offerAcceptQuestToolStripMenuItem.Name = "offerAcceptQuestToolStripMenuItem";
-            this.offerAcceptQuestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.offerAcceptQuestToolStripMenuItem.Text = "Offer/Accept Quest";
-            this.offerAcceptQuestToolStripMenuItem.Click += new System.EventHandler(this.offerAcceptQuestToolStripMenuItem_Click);
-            // 
-            // bindingNavigator
-            // 
-            this.bindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.bindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.bindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.bindingNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem});
-            this.bindingNavigator.Location = new System.Drawing.Point(0, 87);
-            this.bindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.bindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.bindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.bindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.bindingNavigator.Name = "bindingNavigator";
-            this.bindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator.Size = new System.Drawing.Size(394, 25);
-            this.bindingNavigator.TabIndex = 1;
-            this.bindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 20);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // headerStrip1
             // 
@@ -453,6 +235,223 @@ namespace QuestDesigner
             this.questPartTextbox.Text = "";
             this.questPartTextbox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.questPartTextbox_LinkClicked);
             // 
+            // contextMenuStripQuestPart
+            // 
+            this.contextMenuStripQuestPart.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.triggerToolStripMenuItem,
+            this.requirementToolStripMenuItem,
+            this.actionToolStripMenuItem,
+            this.defaultStepsToolStripMenuItem});
+            this.contextMenuStripQuestPart.Name = "contextMenuStripQuestPart";
+            this.contextMenuStripQuestPart.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.contextMenuStripQuestPart.Size = new System.Drawing.Size(151, 92);
+            // 
+            // triggerToolStripMenuItem
+            // 
+            this.triggerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.interactToolStripMenuItem,
+            this.whisperToolStripMenuItem});
+            this.triggerToolStripMenuItem.Name = "triggerToolStripMenuItem";
+            this.triggerToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.triggerToolStripMenuItem.Text = "Trigger";
+            // 
+            // interactToolStripMenuItem
+            // 
+            this.interactToolStripMenuItem.Name = "interactToolStripMenuItem";
+            this.interactToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.interactToolStripMenuItem.Text = "Interact";
+            this.interactToolStripMenuItem.Click += new System.EventHandler(this.interactToolStripMenuItem_Click);
+            // 
+            // whisperToolStripMenuItem
+            // 
+            this.whisperToolStripMenuItem.Name = "whisperToolStripMenuItem";
+            this.whisperToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.whisperToolStripMenuItem.Text = "Whisper";
+            this.whisperToolStripMenuItem.Click += new System.EventHandler(this.whisperToolStripMenuItem_Click);
+            // 
+            // requirementToolStripMenuItem
+            // 
+            this.requirementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.questGivableToolStripMenuItem,
+            this.questPendingToolStripMenuItem,
+            this.queststepToolStripMenuItem});
+            this.requirementToolStripMenuItem.Name = "requirementToolStripMenuItem";
+            this.requirementToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.requirementToolStripMenuItem.Text = "Requirement";
+            // 
+            // questGivableToolStripMenuItem
+            // 
+            this.questGivableToolStripMenuItem.Name = "questGivableToolStripMenuItem";
+            this.questGivableToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.questGivableToolStripMenuItem.Text = "Quest Givable";
+            this.questGivableToolStripMenuItem.Click += new System.EventHandler(this.questGivableToolStripMenuItem_Click);
+            // 
+            // questPendingToolStripMenuItem
+            // 
+            this.questPendingToolStripMenuItem.Name = "questPendingToolStripMenuItem";
+            this.questPendingToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.questPendingToolStripMenuItem.Text = "Quest Pending";
+            this.questPendingToolStripMenuItem.Click += new System.EventHandler(this.questPendingToolStripMenuItem_Click);
+            // 
+            // queststepToolStripMenuItem
+            // 
+            this.queststepToolStripMenuItem.Name = "queststepToolStripMenuItem";
+            this.queststepToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.queststepToolStripMenuItem.Text = "Queststep";
+            this.queststepToolStripMenuItem.Click += new System.EventHandler(this.queststepToolStripMenuItem_Click);
+            // 
+            // actionToolStripMenuItem
+            // 
+            this.actionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.giveItemToolStripMenuItem,
+            this.increaseQueststepToolStripMenuItem});
+            this.actionToolStripMenuItem.Name = "actionToolStripMenuItem";
+            this.actionToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.actionToolStripMenuItem.Text = "Action";
+            // 
+            // giveItemToolStripMenuItem
+            // 
+            this.giveItemToolStripMenuItem.Name = "giveItemToolStripMenuItem";
+            this.giveItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.giveItemToolStripMenuItem.Text = "GiveItem";
+            this.giveItemToolStripMenuItem.Click += new System.EventHandler(this.giveItemToolStripMenuItem_Click);
+            // 
+            // increaseQueststepToolStripMenuItem
+            // 
+            this.increaseQueststepToolStripMenuItem.Name = "increaseQueststepToolStripMenuItem";
+            this.increaseQueststepToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.increaseQueststepToolStripMenuItem.Text = "Increase Queststep";
+            this.increaseQueststepToolStripMenuItem.Click += new System.EventHandler(this.increaseQueststepToolStripMenuItem_Click);
+            // 
+            // defaultStepsToolStripMenuItem
+            // 
+            this.defaultStepsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.offerAcceptQuestToolStripMenuItem});
+            this.defaultStepsToolStripMenuItem.Name = "defaultStepsToolStripMenuItem";
+            this.defaultStepsToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.defaultStepsToolStripMenuItem.Text = "Default Steps";
+            // 
+            // offerAcceptQuestToolStripMenuItem
+            // 
+            this.offerAcceptQuestToolStripMenuItem.Name = "offerAcceptQuestToolStripMenuItem";
+            this.offerAcceptQuestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.offerAcceptQuestToolStripMenuItem.Text = "Offer/Accept Quest";
+            this.offerAcceptQuestToolStripMenuItem.Click += new System.EventHandler(this.offerAcceptQuestToolStripMenuItem_Click);
+            // 
+            // bindingNavigator
+            // 
+            this.bindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.bindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bindingNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorDeleteItem});
+            this.bindingNavigator.Location = new System.Drawing.Point(0, 87);
+            this.bindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bindingNavigator.Name = "bindingNavigator";
+            this.bindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.bindingNavigator.Size = new System.Drawing.Size(394, 25);
+            this.bindingNavigator.TabIndex = 1;
+            this.bindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 20);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // QuestPartItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,16 +465,16 @@ namespace QuestDesigner
             this.splitContainerMain.Panel2.PerformLayout();
             this.splitContainerMain.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.contextMenuStripQuestPart.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).EndInit();
-            this.bindingNavigator.ResumeLayout(false);
-            this.bindingNavigator.PerformLayout();
             this.headerStrip1.ResumeLayout(false);
             this.headerStrip1.PerformLayout();
             this.headerStrip2.ResumeLayout(false);
             this.headerStrip2.PerformLayout();
             this.headerStrip3.ResumeLayout(false);
             this.headerStrip3.PerformLayout();
+            this.contextMenuStripQuestPart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).EndInit();
+            this.bindingNavigator.ResumeLayout(false);
+            this.bindingNavigator.PerformLayout();
             this.ResumeLayout(false);
 
 		}

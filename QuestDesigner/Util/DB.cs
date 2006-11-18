@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Windows.Forms;
+using DOL.GS.Quests;
 
 namespace QuestDesigner.Util
 {
@@ -19,6 +20,8 @@ namespace QuestDesigner.Util
         public static BindingSource triggerTypeBinding;		
 		public static BindingSource textTypeBinding;
 		public static BindingSource comparatorBinding;
+        public static BindingSource comparatorBinaryBinding;
+        public static BindingSource comparatorQuantityBinding;
         public static BindingSource mobBinding;
 
         #region Config Data Tables
@@ -28,7 +31,11 @@ namespace QuestDesigner.Util
         public static DataSet ConfigDataSet
         {
             get { return configDataSet; }
-            set { configDataSet = value; }
+            set { 
+                configDataSet = value;
+                if (ConfigDataSet != null && QuestDataSet != null)
+                    Init();
+            }
         }
 
         public static DataTable TriggerTypeTable
@@ -75,7 +82,11 @@ namespace QuestDesigner.Util
         public static DataSet QuestDataSet
         {
             get { return questDataSet; }
-            set { questDataSet = value; }
+            set { 
+                questDataSet = value;
+                if (ConfigDataSet!=null && QuestDataSet!=null)
+                    Init();
+            }
         }
 
         public static DataTable QuestTable
@@ -130,18 +141,15 @@ namespace QuestDesigner.Util
 
         #endregion
 
-        public static void Init(DataSet questDataSet, DataSet configDataSet)
+        public static void Init()
         {
-            QuestDataSet = questDataSet;
-            ConfigDataSet = configDataSet;
-
             areaBinding = new BindingSource(QuestDataSet, "Area");
             
             mobBinding = new BindingSource(QuestDataSet, "Mob");
 
             locationBinding = new BindingSource(QuestDataSet, "Location");
             
-            questPartBinding = new BindingSource(QuestDataSet, "QuestPart");
+            questPartBinding = new BindingSource(QuestDataSet, "QuestPart"); 
             
             zoneBinding = new BindingSource(ConfigDataSet, "Zone");
             zoneBinding.Sort = "description";
@@ -159,6 +167,14 @@ namespace QuestDesigner.Util
             comparatorBinding = new BindingSource(ConfigDataSet,"eEnumeration");                       
             comparatorBinding.Filter = "Type=\'eComparator\'";
             comparatorBinding.Sort = "Value";
+
+            comparatorBinaryBinding = new BindingSource(ConfigDataSet, "eEnumeration");            
+            comparatorBinaryBinding.Filter = "Type=\'eComparator\' and (Value=" + (byte)eComparator.None + " OR Value=" + (byte)eComparator.Not + ")";
+            comparatorBinaryBinding.Sort = "Value";
+
+            comparatorQuantityBinding = new BindingSource(ConfigDataSet, "eEnumeration");
+            comparatorQuantityBinding.Filter = "Type=\'eComparator\' and Value<>" + (byte)eComparator.None + " and Value<>" + (byte)eComparator.Not + "";
+            comparatorQuantityBinding.Sort = "Value";
             
             actionTypeBinding = new BindingSource(ConfigDataSet, "ActionType");                        
          

@@ -47,9 +47,14 @@ namespace QuestDesigner
 				this.listViewItem.Groups.Add(group);
 			}
 
+            itemTable = DB.ItemTemplateTable;
 
-			itemTable = questData.Tables["ItemTemplate"];			
-
+            // Load initial data from table
+            foreach (DataRow itemRow in itemTable.Rows)
+            {
+                listViewItem.Items.Add(generateListItem(itemRow));
+            }
+            
 			itemTable.RowChanged += new DataRowChangeEventHandler(itemTable_RowChanged);
 			itemTable.RowDeleting += new DataRowChangeEventHandler(itemTable_RowDeleting);
 			itemTable.TableCleared += new DataTableClearEventHandler(itemTable_TableCleared);
@@ -63,8 +68,6 @@ namespace QuestDesigner
 				itemBag.Properties.Add(getItemProperties(col));
 			}
 			propertyGridItem.SelectedObject = itemBag;
-
-			
 		}
 
 		void itemTable_TableCleared(object sender, DataTableClearEventArgs e)

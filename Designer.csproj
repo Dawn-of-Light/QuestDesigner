@@ -107,7 +107,7 @@
       <DependentUpon>Area.cs</DependentUpon>
     </Compile>
     <Compile Include="QuestDesigner\Controls\BaseSelector.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="QuestDesigner\Controls\AreaSelector.cs">
       <SubType>Form</SubType>

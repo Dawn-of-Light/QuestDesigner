@@ -26,7 +26,11 @@ Possible types:
 - int
 - long
 - var
-	
+
+Possible comparators:
+- binary	// either true or false => is / is not
+- quantity	// {equals, greater, less not equals}
+
 Possible parameters:
 - P	... first action parameter
 - Q ...	second action parameter
@@ -71,6 +75,7 @@ Possible parameters:
 		<description>Encumbrance</description>
 		<help>Compares player's property with value defined by N using Comparator</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's encumbrance is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -78,6 +83,7 @@ Possible parameters:
 		<description>EncumbranceMax</description>
 		<help>Compares player's property with value defined by N using Comparator</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's maximal encumbrance is $C{0}$ $N{1}$</text>
 	</RequirementType>
 
@@ -86,6 +92,7 @@ Possible parameters:
 		<description>Endurance</description>
 		<help>Compares player's property with value defined by N using Comparator</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's endurance percentage is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -93,6 +100,7 @@ Possible parameters:
 		<description>EnduranceMax</description>
 		<help>Compares player's property with value defined by N using Comparator</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's maximal endurance percentage is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -100,6 +108,7 @@ Possible parameters:
 		<description>Gender</description>
 		<help>Compares player gender with value defined by N (0:male, 1:female)</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's gender is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -107,6 +116,7 @@ Possible parameters:
 		<description>GroupNumber</description>
 		<help>Checks if player is grouped. N is number of people in group</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's groupnumber is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -114,6 +124,7 @@ Possible parameters:
 		<description>GroupLevel</description>
 		<help>Checks if player is grouped. N is sum of levels in group</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's grouplevel is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -129,6 +140,7 @@ Possible parameters:
 		<description>Gold</description>
 		<help>Compares players gold with N using eComparator</help>
 		<n>long</n>
+		<comparator>quantity</comparator>
 		<text>the player has $C{0}$ $N{1}$ gold</text>
 	</RequirementType>
 	<RequirementType>
@@ -136,6 +148,7 @@ Possible parameters:
 		<description>Health</description>
 		<help>Compares player's property with value defined by N using Comparator</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's health is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -143,6 +156,7 @@ Possible parameters:
 		<description>HealthMax</description>
 		<help>Compares player's property with value defined by N using Comparator</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's maximal health is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -150,6 +164,7 @@ Possible parameters:
 		<description>Level</description>
 		<help>Compares player's level with N using eComparator</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's level is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -157,6 +172,7 @@ Possible parameters:
 		<description>Mana</description>
 		<help>Compares player's property with value defined by N using Comparator</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's mana is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -164,6 +180,7 @@ Possible parameters:
 		<description>ManaMax</description>
 		<help>Compares player's property with value defined by N using Comparator</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's maximal mana is $C{0}$ $N{1}$</text>
 	</RequirementType>
 		<RequirementType>
@@ -171,6 +188,7 @@ Possible parameters:
 		<description>QuestPending</description>
 		<help>Checks for player's pending quest N, if N is empty current quest is used</help>
 		<n>QuestType:string</n>
+		<comparator>binary</comparator>
 		<text>the player $C{0}$ doing $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -192,6 +210,7 @@ Possible parameters:
 		<description>Realm</description>
 		<help>Compares player's realm with N</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's realm is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -199,6 +218,7 @@ Possible parameters:
 		<description>RealmLevel</description>
 		<help>Compares player's realm level with N using eComparator</help>
 		<n>int</n>
+		<comparator>quantity</comparator>
 		<text>the player's realmlevel is $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
@@ -206,6 +226,7 @@ Possible parameters:
 		<description>RealmPoints</description>
 		<help>Compares player's realm points with N using eComparator</help>
 		<n>long</n>
+		<comparator>quantity</comparator>
 		<text>the player's realmpoints is $C{0}$ $N{1}$</text>
 	</RequirementType>
 		<RequirementType>
@@ -236,7 +257,8 @@ Possible parameters:
 		<description>QuestGivable</description>
 		<help>Checks for quest N to be givable by NPC to player, if N is empty current quest is used</help>
 		<n>QuestType:string</n>
-		<text>the player can $C{0}$ do $N{1}$</text>
+		<comparator>binary</comparator>
+		<text>the player $C{0}$ allowed to do $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
 		<value>eRequirementType.Distance</value>
@@ -244,6 +266,7 @@ Possible parameters:
 		<help>Compares distance V between player and given GameLiving N using Comparator</help>
 		<v>int</v>
 		<n>GameLiving:string</n>
+		<comparator>quantity</comparator>
 		<text>the distance to $N{0}$ is $C{1}$ $V{2}$</text>
 	</RequirementType>
 </QuestData>

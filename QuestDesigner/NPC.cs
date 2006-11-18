@@ -38,8 +38,13 @@ namespace QuestDesigner
 
 		public void setDataSet(DataSet questData)
 		{
-			npcTable = questData.Tables["Mob"];
-			
+            npcTable = DB.MobTable;
+
+            foreach (DataRow npcRow in npcTable.Rows)
+            {
+                listViewNPC.Items.Add(generateListItem(npcRow));				
+            }
+
 			npcTable.RowChanged += new DataRowChangeEventHandler(npcTable_RowChanged);
 			npcTable.RowDeleting += new DataRowChangeEventHandler(npcTable_RowDeleting);
 			npcTable.TableCleared += new DataTableClearEventHandler(npcTable_TableCleared);
@@ -69,9 +74,7 @@ namespace QuestDesigner
 					listViewNPC.Items.Remove(item);
 				}
 			}
-		}		
-
-			
+		}			
 
 		void npcTable_RowChanged(object sender, DataRowChangeEventArgs e)
 		{
@@ -217,6 +220,11 @@ namespace QuestDesigner
 			{
 				ListViewItem item = listViewNPC.SelectedItems[0];
 				((DataRow)item.Tag)[e.Property.Name] = e.Value;
+                // update objectname if name changed
+                if (e.Property.Name == "Name")
+                {
+                    ((DataRow)item.Tag)["ObjectName"] = Utils.ConvertToObjectName((String)e.Value);
+                }
 			}
 		}
 
