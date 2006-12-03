@@ -1,4 +1,4 @@
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
     partial class Location
     {
@@ -28,10 +28,14 @@ namespace QuestDesigner
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainerLocation = new System.Windows.Forms.SplitContainer();
             this.dataGridViewLocation = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pasteLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showOnMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyGridLocation = new System.Windows.Forms.PropertyGrid();
-            this.headerStrip3 = new QuestDesigner.Controls.HeaderStrip();
+            this.headerStrip3 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.colObjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLocationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,12 +44,13 @@ namespace QuestDesigner
             this.splitContainerLocation.Panel2.SuspendLayout();
             this.splitContainerLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLocation)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             this.headerStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerLocation
             // 
-            this.splitContainerLocation.DataBindings.Add(new System.Windows.Forms.Binding("SplitterDistance", global::QuestDesigner.Properties.Settings.Default, "locationSplitterDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.splitContainerLocation.DataBindings.Add(new System.Windows.Forms.Binding("SplitterDistance", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "locationSplitterDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.splitContainerLocation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerLocation.Location = new System.Drawing.Point(0, 25);
             this.splitContainerLocation.Name = "splitContainerLocation";
@@ -58,7 +63,7 @@ namespace QuestDesigner
             // 
             this.splitContainerLocation.Panel2.Controls.Add(this.propertyGridLocation);
             this.splitContainerLocation.Size = new System.Drawing.Size(501, 298);
-            this.splitContainerLocation.SplitterDistance = global::QuestDesigner.Properties.Settings.Default.LocationSplitterDistance;
+            this.splitContainerLocation.SplitterDistance = global::DOL.Tools.QuestDesigner.Properties.Settings.Default.LocationSplitterDistance;
             this.splitContainerLocation.TabIndex = 6;
             // 
             // dataGridViewLocation
@@ -68,23 +73,48 @@ namespace QuestDesigner
             this.colObjectName,
             this.colLocationName,
             this.colRegionID});
+            this.dataGridViewLocation.ContextMenuStrip = this.contextMenuStrip;
             this.dataGridViewLocation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewLocation.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewLocation.Name = "dataGridViewLocation";
             this.dataGridViewLocation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewLocation.Size = new System.Drawing.Size(396, 298);
+            this.dataGridViewLocation.Size = new System.Drawing.Size(350, 298);
             this.dataGridViewLocation.TabIndex = 2;
             this.dataGridViewLocation.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewLocation_RowValidating);
             this.dataGridViewLocation.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewLocation_DefaultValuesNeeded);
             this.dataGridViewLocation.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewLocation_DataError);
             this.dataGridViewLocation.SelectionChanged += new System.EventHandler(this.dataGridViewLocation_SelectionChanged);
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pasteLocationToolStripMenuItem,
+            this.showOnMapToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(156, 48);
+            // 
+            // pasteLocationToolStripMenuItem
+            // 
+            this.pasteLocationToolStripMenuItem.Name = "pasteLocationToolStripMenuItem";
+            this.pasteLocationToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.pasteLocationToolStripMenuItem.Text = "Paste Location";
+            this.pasteLocationToolStripMenuItem.Click += new System.EventHandler(this.pasteLocationToolStripMenuItem_Click);
+            // 
+            // showOnMapToolStripMenuItem
+            // 
+            this.showOnMapToolStripMenuItem.Enabled = global::DOL.Tools.QuestDesigner.Properties.Settings.Default.ShowTaskPane;
+            this.showOnMapToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.area;
+            this.showOnMapToolStripMenuItem.Name = "showOnMapToolStripMenuItem";
+            this.showOnMapToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.showOnMapToolStripMenuItem.Text = "Show on Map";
+            this.showOnMapToolStripMenuItem.Click += new System.EventHandler(this.showOnMapToolStripMenuItem_Click);
+            // 
             // propertyGridLocation
             // 
             this.propertyGridLocation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.propertyGridLocation.Location = new System.Drawing.Point(0, 0);
             this.propertyGridLocation.Name = "propertyGridLocation";
-            this.propertyGridLocation.Size = new System.Drawing.Size(101, 298);
+            this.propertyGridLocation.Size = new System.Drawing.Size(147, 298);
             this.propertyGridLocation.TabIndex = 3;
             // 
             // headerStrip3
@@ -114,6 +144,7 @@ namespace QuestDesigner
             this.colObjectName.FillWeight = 63.5826F;
             this.colObjectName.HeaderText = "ObjectName";
             this.colObjectName.Name = "colObjectName";
+            this.colObjectName.Visible = false;
             // 
             // colLocationName
             // 
@@ -142,6 +173,7 @@ namespace QuestDesigner
             this.splitContainerLocation.Panel2.ResumeLayout(false);
             this.splitContainerLocation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLocation)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             this.headerStrip3.ResumeLayout(false);
             this.headerStrip3.PerformLayout();
             this.ResumeLayout(false);
@@ -153,8 +185,11 @@ namespace QuestDesigner
         private System.Windows.Forms.SplitContainer splitContainerLocation;
         private System.Windows.Forms.DataGridView dataGridViewLocation;
         private System.Windows.Forms.PropertyGrid propertyGridLocation;
-        private QuestDesigner.Controls.HeaderStrip headerStrip3;
+        private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem pasteLocationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showOnMapToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn colObjectName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLocationName;
         private System.Windows.Forms.DataGridViewComboBoxColumn colRegionID;

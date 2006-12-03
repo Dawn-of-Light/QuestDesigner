@@ -25,7 +25,7 @@ using System.Globalization;
 using DOL.GS.PacketHandler;
 using DOL.Database;
 
-namespace QuestDesigner.Converter
+namespace DOL.Tools.QuestDesigner.Converter
 {
     class RealmConverter : EnumerationConverterDatabase
     {

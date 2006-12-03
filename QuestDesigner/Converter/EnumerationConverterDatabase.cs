@@ -25,7 +25,7 @@ using System.Collections;
 using System.Data;
 using System.Globalization;
 
-namespace QuestDesigner.Converter
+namespace DOL.Tools.QuestDesigner.Converter
 {
     class EnumerationConverterDatabase : StringConverter
     {
@@ -84,9 +84,25 @@ namespace QuestDesigner.Converter
             else if (value!=null && !(value is DBNull))
             {
 				DataRow[] rows = QuestDesignerMain.DesignerForm.dataTableeEnumeration.Select("Type='" + typename + "' AND " + descriptionColumn + "=" + value);
-                if (rows.Length == 1)
+                object obj = null;
+                if (rows.Length >= 1)
                 {
-                    return rows[0][valueColumn];
+                    DataRow row = rows[0];
+                    // skip xx_First, xx_Last entries
+                    foreach (DataRow tmpRow in rows)
+                    {
+                        string name = Convert.ToString(tmpRow["Name"]);
+
+                        // search for a entry without _first or _last and return it, if none is found use the first entry found.
+                        if (!(name.StartsWith("Max") && name.StartsWith("Min") && name.EndsWith("_Last") && name.EndsWith("_First")))
+                        {
+                            row = tmpRow;
+                            break;
+                        }
+                    }
+
+                    obj = row[valueColumn];                    
+                    return obj;
                 }
             }            
             return value;
@@ -105,17 +121,39 @@ namespace QuestDesigner.Converter
                         else
                             return Convert.ChangeType(row[valueColumn], destinationType, culture);
                     }
+                    else if (Convert.ToString(row[descriptionColumn]) == (string)value)
+                    {
+                        if (destinationType == typeof(string))
+                            return Convert.ChangeType(row[descriptionColumn], destinationType, culture);
+                        else
+                            return Convert.ChangeType(row[valueColumn], destinationType, culture);
+                    }
                 }
             } 
             else if (value!=null && !(value is DBNull))
             {
 				DataRow[] rows = QuestDesignerMain.DesignerForm.dataTableeEnumeration.Select("Type='"+typename+"' AND "+ valueColumn + "=" + value);
-                if (rows.Length==1)
-                {                    
+                if (rows.Length>=1)
+                {
+                    DataRow row = rows[0];
+                    
+                    // skip xx_First, xx_Last entries
+                    foreach (DataRow tmpRow in rows)
+                    {
+                        string name = Convert.ToString(tmpRow["Name"]);
+
+                        // search for a entry without _first or _last and return it, if none is found use the first entry found.
+                        if (!(name.StartsWith("Max") && name.StartsWith("Min") && name.EndsWith("_Last") && name.EndsWith("_First")))
+                        {
+                            row = tmpRow;
+                            break;
+                        }
+                    }
+
                     if (destinationType == typeof(string))
-                        return Convert.ChangeType(rows[0][descriptionColumn], destinationType, culture);
+                        return Convert.ChangeType(row[descriptionColumn], destinationType, culture);
                     else
-                        return Convert.ChangeType(rows[0][valueColumn], destinationType, culture);
+                        return Convert.ChangeType(row[valueColumn], destinationType, culture);
                 }
             }
 

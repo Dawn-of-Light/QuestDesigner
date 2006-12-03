@@ -5,11 +5,13 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Util;
 using Flobbster.Windows.Forms;
-using QuestDesigner.Converter;
+using DOL.Tools.QuestDesigner.Converter;
+using Microsoft.DirectX;
+using System.Reflection;
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
     public partial class Area : UserControl
     {
@@ -60,25 +62,39 @@ namespace QuestDesigner
                 {                    
                     return;
                 }
+
                 switch (e.Property.Name)
                 {
-                    case "Name":
-                        if (string.IsNullOrEmpty(Convert.ToString(rowView["ObjectName"])))
-                        {
-                            rowView["ObjectName"] = Utils.ConvertToObjectName((string)e.Value);
-                        }
+                    case "Name":                        
                         rowView[e.Property.Name] = e.Value;
+                        rowView["ObjectName"] = Utils.ConvertToObjectName((string)e.Value);
                         break;
                     case "Width":
                         rowView["Z"] = e.Value;
                         break;
                     case "Height":
                         rowView["R"] = e.Value;
-                        break;
+                        break;                    
                     default:
+
+                        // little hack since the typconverter seems to be skipped if the mousewheel is used to select a value from propertygrid
+                        if (!DB.AreaTable.Columns[e.Property.Name].DataType.IsAssignableFrom(e.Value.GetType()))
+                        {
+                            TypeConverter conv = (TypeConverter)Activator.CreateInstance(Assembly.GetCallingAssembly().GetType(e.Property.ConverterTypeName));
+                            e.Value = conv.ConvertTo(e.Value, DB.AreaTable.Columns[e.Property.Name].DataType);
+                        }
+
                         rowView[e.Property.Name] = e.Value;
                         break;
                 }
+                if ("AreaType".Equals(e.Property.Name))
+                {
+                    if ("Square".Equals(e.Value))
+                        propertyGridArea.SelectedObject = areaSquareBag;
+                    else
+                        propertyGridArea.SelectedObject = areaCircleBag;
+                }
+
                 propertyGridArea.Refresh();
                 dataGridArea.Refresh();
             }
@@ -116,12 +132,19 @@ namespace QuestDesigner
             {
                 case "RegionID":
                     spec.ConverterTypeName = typeof(RegionConverter).FullName;
+                    spec.Category = "Location";
+                    break;
+                case "R":
+                    spec.Description = "Radius of Circle";
+                    spec.Category = "Location";
                     break;
                 case "X":
                 case "Y":
-                case "Z":
-                case "R":
-                    spec.Description = "Radius of Circle";
+                case "Z":                
+                    spec.Category = "Location";
+                    break;
+                case "AreaType":
+                    spec.ConverterTypeName = typeof(AreaTypeConverter).FullName;
                     break;
             }
             return spec;
@@ -134,20 +157,28 @@ namespace QuestDesigner
             {
                 case "RegionID":
                     spec.ConverterTypeName = typeof(RegionConverter).FullName;
+                    spec.Category = "Location";
                     break;
                 case "X":
                     spec.Description = "X Coordinate of Square";
+                    spec.Category = "Location";
                     break;
                 case "Y":
                     spec.Description = "Y Coordinate of Square";
+                    spec.Category = "Location";
                     break;
                 case "Z":
                     spec.Name = "Width";
                     spec.Description = "Width of Square";
+                    spec.Category = "Location";
                     break;
                 case "R":
                     spec.Name = "Height";
                     spec.Description = "Height of Square";
+                    spec.Category = "Location";
+                    break;
+                case "AreaType":
+                    spec.ConverterTypeName = typeof(AreaTypeConverter).FullName;
                     break;
             }
             return spec;
@@ -211,6 +242,47 @@ namespace QuestDesigner
             }
             else
                 propertyGridArea.Enabled = false;
+        }
+
+        private void pasteLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IDataObject ido = Clipboard.GetDataObject();
+
+            if (ido.GetDataPresent(ClipboardLocation.Format.Name))
+            {
+                // Text data is present on the clipboard
+                ClipboardLocation loc = (ClipboardLocation)ido.GetData(ClipboardLocation.Format.Name);                
+
+                if (DB.areaBinding.Current != null)
+                {
+                    DataRowView rowView = (DataRowView)DB.areaBinding.Current;
+                    rowView["X"] = loc.X;
+                    rowView["Y"] = loc.Y;
+                    rowView["Z"] = loc.Z;
+                    rowView["regionID"] = loc.RegionID;
+                }
+            }
+        }
+
+        private void showOnMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DB.areaBinding.Current != null)
+            {
+
+                DataRowView rowView = (DataRowView)DB.areaBinding.Current;
+
+                if (rowView["X"] != DBNull.Value && rowView["Y"] != DBNull.Value && rowView["regionID"] != DBNull.Value)
+                {
+                    Vector3 location = new Vector3();
+
+                    location.X = (float)Convert.ToDouble(rowView["X"]);
+                    location.Y = (float)Convert.ToDouble(rowView["Y"]);
+
+                    int regionID = Convert.ToInt32(rowView["regionID"]);
+                    QuestDesignerMain.DesignerForm.DXControl.ShowLocation(location, regionID);
+                    QuestDesignerMain.DesignerForm.ShowTab("Map Editor");
+                }
+            }
         }
     }
 }

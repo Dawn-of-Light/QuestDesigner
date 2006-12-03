@@ -4,7 +4,7 @@ using System.Text;
 using System.Collections;
 using System.Windows.Forms;
 
-namespace QuestDesigner.Controls
+namespace DOL.Tools.QuestDesigner.Controls
 {
 	// Implements the manual sorting of items by columns.
 	class ListViewItemComparer : IComparer

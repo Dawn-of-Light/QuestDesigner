@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 using System.Drawing.Drawing2D;
 
-namespace QuestDesigner.Controls
+namespace DOL.Tools.QuestDesigner.Controls
 {
 	public class HeaderStrip : ToolStrip
 	{		

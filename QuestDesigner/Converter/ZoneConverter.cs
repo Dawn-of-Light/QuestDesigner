@@ -22,9 +22,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 using System.Globalization;
-using QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Util;
 
-namespace QuestDesigner.Converter
+namespace DOL.Tools.QuestDesigner.Converter
 {
     class ZoneConverter : BindingSourceConverter
     {

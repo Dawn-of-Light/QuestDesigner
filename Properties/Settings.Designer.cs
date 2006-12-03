@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QuestDesigner.Properties {
+namespace DOL.Tools.QuestDesigner.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -128,6 +128,66 @@ namespace QuestDesigner.Properties {
             }
             set {
                 this["AreaSplitterDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public double ZoomValuePow {
+            get {
+                return ((double)(this["ZoomValuePow"]));
+            }
+            set {
+                this["ZoomValuePow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double ViewFactor {
+            get {
+                return ((double)(this["ViewFactor"]));
+            }
+            set {
+                this["ViewFactor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double ZoomValueMul {
+            get {
+                return ((double)(this["ZoomValueMul"]));
+            }
+            set {
+                this["ZoomValueMul"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DownloadData {
+            get {
+                return ((bool)(this["DownloadData"]));
+            }
+            set {
+                this["DownloadData"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CacheTextures {
+            get {
+                return ((bool)(this["CacheTextures"]));
+            }
+            set {
+                this["CacheTextures"] = value;
             }
         }
     }

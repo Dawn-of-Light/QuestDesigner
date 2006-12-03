@@ -26,7 +26,7 @@ using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace QuestDesigner.Converter
+namespace DOL.Tools.QuestDesigner.Converter
 {
     class BindingSourceConverter : StringConverter
     {
@@ -94,6 +94,13 @@ namespace QuestDesigner.Converter
                 foreach (DataRowView row in bindingsource.List)
                 {
                     if (Convert.ToString(row[valueColumn]) == (string)value)
+                    {
+                        if (destinationType == typeof(string))
+                            return Convert.ChangeType(row[descriptionColumn], destinationType, culture);
+                        else
+                            return Convert.ChangeType(row[valueColumn], destinationType, culture);
+                    }
+                    else if (Convert.ToString(row[descriptionColumn]) == (string)value)
                     {
                         if (destinationType == typeof(string))
                             return Convert.ChangeType(row[descriptionColumn], destinationType, culture);

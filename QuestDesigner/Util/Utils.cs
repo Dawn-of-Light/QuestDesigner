@@ -28,7 +28,7 @@ using System.Data;
 using System.Reflection;
 using DOL.GS.PacketHandler;
 
-namespace QuestDesigner.Util
+namespace DOL.Tools.QuestDesigner.Util
 {
 	class Utils
 	{
@@ -57,6 +57,45 @@ namespace QuestDesigner.Util
 		}
 
 		#region Coordinate Conversion
+
+        public static int ConvertZoneXToRegionByRegionID(int regionID,int globalX) {
+            int localX = -1;            
+            foreach(DataRow row in DB.ZoneTable.Select("regionID="+regionID)) {
+                localX = globalX - Convert.ToInt32(row["offsetx"]) * 8192;
+
+                if (localX >= 0 && localX <= 8 * 8192)                
+                    return localX;
+            }
+            return -1;
+        }
+
+        public static int ConvertZoneYToRegionByRegionID(int regionID, int globalY)
+        {
+            int localY = -1;
+            foreach (DataRow row in DB.ZoneTable.Select("regionID="+regionID))
+            {
+                localY = globalY - Convert.ToInt32(row["offsety"]) * 8192;
+
+                if (localY >= 0 && localY <= 8 * 8192)
+                    return localY;
+            }
+            return -1;
+        }
+
+        public static int GetZoneIDForLocation(int regionID, int globalX, int globalY)
+        {
+            int localX = -1;
+            int localY = -1;
+            foreach (DataRow row in DB.ZoneTable.Select("regionID=" + regionID))
+            {
+                localX = globalX - Convert.ToInt32(row["offsetx"]) * 8192;
+                localY = globalY - Convert.ToInt32(row["offsety"]) * 8192;
+
+                if (localX >= 0 && localX <= (int)row["width"] * 8192 && localY >= 0 && localY <= (int)row["height"] * 8192)
+                    return (int)row["zoneID"];
+            }
+            return -1;
+        }
 
 		public static Point3D ConvertZonePointToRegion(int zoneID, Point3D local)
 		{

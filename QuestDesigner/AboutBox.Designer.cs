@@ -1,4 +1,4 @@
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	partial class AboutBox
 	{
@@ -28,48 +28,52 @@ namespace QuestDesigner
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.VerInfoGrp.SuspendLayout();
-			this.AssembliesGrp.SuspendLayout();
-			this.MainPanel.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// ProdEdition
-			// 
-			this.ProdEdition.Visible = false;
-			// 
-			// Company
-			// 
-			this.Company.Text = "DOL";
-			// 
-			// LicTo
-			// 
-			this.LicTo.Text = "Gandulf";
-			// 
-			// OrderOnlineLink
-			// 
-			this.OrderOnlineLink.Enabled = false;
-			// 
-			// LookForUpdatesLink
-			// 
-			this.LookForUpdatesLink.Click += new System.EventHandler(this.LookForUpdatesLink_Click);
-			// 
-			// ProdInfoLink
-			// 
-			this.ProdInfoLink.Click += new System.EventHandler(this.ProdInfoLink_Click);
-			// 
-			// CopyrightLabel
-			// 
-			this.CopyrightLabel.Text = "Copyright © 2005";
-			this.CopyrightLabel.Visible = false;
-			// 
-			// AboutBox
-			// 
-			this.ClientSize = new System.Drawing.Size(530, 464);
-			this.Name = "AboutBox";
-			this.VerInfoGrp.ResumeLayout(false);
-			this.AssembliesGrp.ResumeLayout(false);
-			this.MainPanel.ResumeLayout(false);
-			this.ResumeLayout(false);
+            this.VerInfoGrp.SuspendLayout();
+            this.AssembliesGrp.SuspendLayout();
+            this.MainPanel.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // ProdEdition
+            // 
+            this.ProdEdition.Visible = false;
+            // 
+            // Company
+            // 
+            this.Company.Text = "DOL";
+            // 
+            // LicTo
+            // 
+            this.LicTo.Text = "Gandulf";
+            // 
+            // OrderOnlineLink
+            // 
+            this.OrderOnlineLink.Enabled = false;
+            // 
+            // LookForUpdatesLink
+            // 
+            this.LookForUpdatesLink.Click += new System.EventHandler(this.LookForUpdatesLink_Click);
+            // 
+            // ProdInfoLink
+            // 
+            this.ProdInfoLink.Click += new System.EventHandler(this.ProdInfoLink_Click);
+            // 
+            // CopyrightLabel
+            // 
+            this.CopyrightLabel.Text = "Copyright © 2005";
+            this.CopyrightLabel.Visible = false;
+            // 
+            // Logo
+            // 
+            this.Logo.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.dol;
+            // 
+            // AboutBox
+            // 
+            this.ClientSize = new System.Drawing.Size(530, 464);
+            this.Name = "AboutBox";
+            this.VerInfoGrp.ResumeLayout(false);
+            this.AssembliesGrp.ResumeLayout(false);
+            this.MainPanel.ResumeLayout(false);
+            this.ResumeLayout(false);
 
 		}
 

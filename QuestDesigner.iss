@@ -3,12 +3,12 @@
 
 [Setup]
 AppName=Quest Designer
-AppVerName=Quest Designer 0.4.1.0
+AppVerName=Quest Designer 0.4.3.2
 AppPublisher=DOL Tools
 DefaultDirName={pf}\Quest Designer
 DefaultGroupName=Quest Designer
 AllowNoIcons=yes
-OutputDir=G:\_WORK\QuestDesigner\output
+OutputDir=G:\_WORK\DOLTools\
 OutputBaseFilename=QuestDesignerSetup
 Compression=lzma
 SolidCompression=yes
@@ -25,11 +25,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Name: "associatefiletype"; Description: "{cm:AssocFileExtension,Quest Designer, .qst}"; GroupDescription: "{cm:AdditionalIcons}";
 
 [Files]
-Source: "G:\_WORK\QuestDesigner\bin\Release\QuestDesigner.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "G:\_WORK\QuestDesigner\lib\vxplib\VXPLib.dll"; DestDir: "{app}"; Flags: regserver 32bit;
-Source: "G:\_WORK\QuestDesigner\lib\vxplib\VXPLib.license.txt"; DestDir: "{app}";
-Source: "G:\_WORK\QuestDesigner\lib\dacris\NETXP.License.txt"; DestDir: "{app}";
-Source: "G:\_WORK\QuestDesigner\bin\Release\*"; DestDir: "{app}"; Excludes: "*.vshost.*,NETXP*.xml,*.pdb"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "G:\_WORK\DOLTools\QuestDesigner\bin\Release\*"; DestDir: "{app}"; Excludes: "data,*.vshost.*,NETXP*.xml,*.pdb"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

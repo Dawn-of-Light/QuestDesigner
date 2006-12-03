@@ -9,7 +9,7 @@ using System.IO;
 using DOL.Database.Connection;
 using System.Collections;
 
-namespace QuestDesigner.Util
+namespace DOL.Tools.QuestDesigner.Util
 {
     public class DOLDatabaseAdapter
     {

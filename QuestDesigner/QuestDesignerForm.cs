@@ -30,38 +30,53 @@ using System.Xml.XPath;
 using System.IO;
 using System.Configuration;
 using System.Collections;
-using QuestDesigner.Properties;
+using DOL.Tools.QuestDesigner.Properties;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Flobbster.Windows.Forms;
-using QuestDesigner.Converter;
+using DOL.Tools.QuestDesigner.Converter;
 
 using NETXP.Controls.Docking;
-using QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Util;
 using DOL.GS.Quests;
 using DOL.GS;
 using DOL.GS.PacketHandler;
 using DOL.Database;
-using QuestDesigner.Exceptions;
+using DOL.Tools.QuestDesigner.Exceptions;
+using DOL.Tools.Mapping.Forms;
+using System.Net;
+using DOL.Tools.Mapping.Map;
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
     public partial class QuestDesignerForm : Form
     {		
 
-        public static string TITLE = " ::  "+Application.ProductName+" "+Application.ProductVersion+" :: ";
+        public static string TITLE = " ::  "+Application.ProductName+" "+QuestDesignerMain.Version+" :: ";
 		
-        protected string openFilename = null;		
+        protected string openFilename = null;
+
+        private Hashtable createScriptExtensionMapping = new Hashtable();
 
         public QuestDesignerForm()
-        {			
+        {            
 			InitializeComponent();			
 			
 			QuestDesignerMain.InitDB();           			
         }
 
+        public Boolean registerCreateScriptExtension(string description, string extension, FileInfo xsltFile)
+        {
+            saveScriptDialog.Filter = description+"|*."+extension+"|"+ saveScriptDialog.Filter;
+            createScriptExtensionMapping[extension] = xsltFile;
+            return true;
+        }
+
 		private void QuestDesignerForm_Load(object sender, EventArgs e)
 		{
+            registerCreateScriptExtension("DOL 1.8 Questscript", "cs", new FileInfo(Application.StartupPath + "/config/questScript.xsl"));
+            registerCreateScriptExtension("SQL Import File", "sql", new FileInfo(Application.StartupPath + "/config/sqlScript.xsl"));
+
 			// Configure L&F
 			NETXP.Controls.Docking.Renderers.Office2003 XPRenderers = new NETXP.Controls.Docking.Renderers.Office2003();
 			NETXP.Library.XPBlueColorTable xpColorTable = new NETXP.Library.XPBlueColorTable();
@@ -74,7 +89,9 @@ namespace QuestDesigner
             this.tabControlMain.Renderer = XPRenderers;
 
 			toolStripMenuItemTaskPane.CheckState = Settings.Default.ShowTaskPane ? CheckState.Checked: CheckState.Unchecked;
-            
+
+            tabControlMain.TabPages["Map Editor"].Enabled = QuestDesignerMain.DataSupported;
+
 			// Load last file
 			if (!String.IsNullOrEmpty(XMLFile))
 			{
@@ -90,7 +107,62 @@ namespace QuestDesigner
             SetDataSet();									
 
             Log.register();
-		}		
+
+            CheckData();            
+		}
+
+        public void ShowTab(int index)
+        {
+            tabControlMain.SelectedIndex = index;
+        }
+
+        public void ShowTab(string title)
+        {
+            tabControlMain.SelectedTab = tabControlMain.TabPages[title];
+        }
+
+        public bool CheckData()
+        {
+            if (!QuestDesignerMain.DataSupported && Properties.Settings.Default.DownloadData)
+            {
+                
+                string url = System.Configuration.ConfigurationManager.AppSettings["DataDownloadUrl"];
+
+                DialogResult result = MessageBox.Show(this, "Map Data not found. Do you want to download it from " + url + "?\n You can always download the needed data later via Tools menu.", "Data download request", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+                if (result == DialogResult.Yes)
+                {
+                    Uri uri = new Uri(url);
+                    Log.Info("Downloading data files from: " + url);
+
+                    WebClient webClient = new WebClient();
+                    webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
+                    webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
+                    webClient.DownloadFileAsync(uri, QuestDesignerMain.WorkingDirectory + "data.zip");
+                    StatusProgress.Value = StatusProgress.Minimum;
+                }
+                else
+                {
+                    Properties.Settings.Default.DownloadData = false;
+                }
+            }
+
+            return true;
+        }
+
+        void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            Zip.Unzip(QuestDesignerMain.WorkingDirectory + "data.zip", QuestDesignerMain.WorkingDirectory);
+            
+            StatusProgress.Value = StatusProgress.Minimum;
+
+            tabControlMain.TabPages["Map Editor"].Enabled = QuestDesignerMain.DataSupported;
+        }
+
+        void webClient_DownloadProgressChanged(object sender, System.Net.DownloadProgressChangedEventArgs e)
+        {           
+            StatusProgress.Value = e.ProgressPercentage;
+        }
 
 		private void SetDataSet()
 		{
@@ -220,7 +292,7 @@ namespace QuestDesigner
             }
         }
 
-        private void InitEmptyQuest()               
+        private void InitEmptyQuest()
         {
             DB.questPartBinding.SuspendBinding();
             dataSetQuest.BeginInit();
@@ -326,36 +398,7 @@ namespace QuestDesigner
         {
             Settings.Default.Save();
             this.Close();
-        }                                     
-
-        private void createToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			CreateQuest();
-		}
-
-		private void CreateQuest()
-		{
-			// make sure last edit is stored in dataset
-			dataSetQuest.AcceptChanges();
-
-			string scriptPath = null;
-			if (String.IsNullOrEmpty(openFilename) || true)
-			{
-				DialogResult result = saveScriptDialog.ShowDialog();
-				if (result == DialogResult.OK)
-					scriptPath = saveScriptDialog.FileName;
-				else
-				{
-					return;
-				}
-			}
-			else
-			{
-				scriptPath = Path.GetDirectoryName(openFilename) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(openFilename) + ".cs";
-			}
-			if (QuestDesignerMain.GenerateScript(dataSetQuest, scriptPath))
-				Log.Info("Script successfully build into " + scriptPath);
-		}		        
+        }                                            	        
 
 		private void textBoxQuestname_Validating(object sender, CancelEventArgs e)
         {
@@ -372,11 +415,6 @@ namespace QuestDesigner
 			}    
 		}
 
-		private void linkCreateQuest_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			CreateQuest();
-		}
-
 		private void toolStripMenuItemTaskPane_CheckStateChanged(object sender, EventArgs e)
 		{
 			Settings.Default.ShowTaskPane = toolStripMenuItemTaskPane.CheckState == CheckState.Checked;
@@ -386,7 +424,7 @@ namespace QuestDesigner
 		{
 			if (!QuestDesignerMain.PositionConverter.Visible)
 			{
-				QuestDesignerMain.PositionConverter.Show();
+				QuestDesignerMain.PositionConverter.Show(this);
 			}
 			else
 			{
@@ -422,7 +460,7 @@ namespace QuestDesigner
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
-            if (this.StatusLabel.GetCurrentParent().Parent.InvokeRequired)
+            if (Form.CheckForIllegalCrossThreadCalls && this.StatusLabel.GetCurrentParent()!=null && this.StatusLabel.GetCurrentParent().Parent.InvokeRequired)
             {
                 ShowMessageCallback d = new ShowMessageCallback(ShowMessage);
                 this.Invoke(d, new object[] { msg ,image});
@@ -453,6 +491,32 @@ namespace QuestDesigner
             {
                 SaveQuest(openFilename);
             }  
+        }
+
+        private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new InfoForm().ShowDialog();
+        }
+
+        private void dOL18QuestToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            Exporter.getExporter(Exporter.DOL_18).CreateQuest();
+        }
+
+        private void dOL20QuestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Exporter.getExporter(Exporter.DOL_20).CreateQuest();
+        }
+
+        private void sQLExportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Exporter.getExporter(Exporter.SQL).CreateQuest();
+        }
+
+        private void dataDownloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.DownloadData = true;
+            CheckData();
         }
  
     }

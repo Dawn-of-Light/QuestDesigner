@@ -1,4 +1,4 @@
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	partial class PositionConverter
 	{
@@ -29,8 +29,6 @@ namespace QuestDesigner
 		private void InitializeComponent()
 		{
             System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-            this.headerStrip1 = new QuestDesigner.Controls.HeaderStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,11 +48,13 @@ namespace QuestDesigner
             this.regionY = new System.Windows.Forms.NumericUpDown();
             this.regionZ = new System.Windows.Forms.NumericUpDown();
             this.comboBoxRegion = new System.Windows.Forms.ComboBox();
-            this.headerStrip2 = new QuestDesigner.Controls.HeaderStrip();
+            this.cbComputeZ = new System.Windows.Forms.CheckBox();
+            this.headerStrip1 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.headerStrip2 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             tableLayoutPanel1.SuspendLayout();
-            this.headerStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.zoneX)).BeginInit();
@@ -65,6 +65,7 @@ namespace QuestDesigner
             ((System.ComponentModel.ISupportInitialize)(this.regionX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.regionY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.regionZ)).BeginInit();
+            this.headerStrip1.SuspendLayout();
             this.headerStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,38 +79,17 @@ namespace QuestDesigner
             tableLayoutPanel1.Controls.Add(this.groupBox2, 1, 2);
             tableLayoutPanel1.Controls.Add(this.comboBoxRegion, 0, 0);
             tableLayoutPanel1.Controls.Add(this.headerStrip2, 1, 1);
+            tableLayoutPanel1.Controls.Add(this.cbComputeZ, 0, 3);
             tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowCount = 4;
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(262, 217);
+            tableLayoutPanel1.Size = new System.Drawing.Size(262, 249);
             tableLayoutPanel1.TabIndex = 0;
-            // 
-            // headerStrip1
-            // 
-            this.headerStrip1.AutoSize = false;
-            this.headerStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.headerStrip1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.headerStrip1.ForeColor = System.Drawing.Color.Gray;
-            this.headerStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.headerStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1});
-            this.headerStrip1.Location = new System.Drawing.Point(0, 27);
-            this.headerStrip1.Name = "headerStrip1";
-            this.headerStrip1.Size = new System.Drawing.Size(131, 25);
-            this.headerStrip1.TabIndex = 1;
-            this.headerStrip1.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical90;
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(43, 22);
-            this.toolStripLabel1.Text = "Zone";
-            this.toolStripLabel1.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             // 
             // groupBox1
             // 
@@ -117,7 +97,7 @@ namespace QuestDesigner
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 55);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(125, 159);
+            this.groupBox1.Size = new System.Drawing.Size(125, 124);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -142,7 +122,7 @@ namespace QuestDesigner
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(119, 140);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(119, 105);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label1
@@ -239,7 +219,7 @@ namespace QuestDesigner
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(134, 55);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(125, 159);
+            this.groupBox2.Size = new System.Drawing.Size(125, 124);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -262,7 +242,7 @@ namespace QuestDesigner
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(119, 140);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(119, 105);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // label5
@@ -304,6 +284,7 @@ namespace QuestDesigner
             this.regionX.Name = "regionX";
             this.regionX.Size = new System.Drawing.Size(93, 20);
             this.regionX.TabIndex = 5;
+            this.regionX.ValueChanged += new System.EventHandler(this.regionX_ValueChanged);
             // 
             // regionY
             // 
@@ -317,6 +298,7 @@ namespace QuestDesigner
             this.regionY.Name = "regionY";
             this.regionY.Size = new System.Drawing.Size(93, 20);
             this.regionY.TabIndex = 6;
+            this.regionY.ValueChanged += new System.EventHandler(this.regionY_ValueChanged);
             // 
             // regionZ
             // 
@@ -330,6 +312,7 @@ namespace QuestDesigner
             this.regionZ.Name = "regionZ";
             this.regionZ.Size = new System.Drawing.Size(93, 20);
             this.regionZ.TabIndex = 7;
+            this.regionZ.ValueChanged += new System.EventHandler(this.regionZ_ValueChanged);
             // 
             // comboBoxRegion
             // 
@@ -341,6 +324,42 @@ namespace QuestDesigner
             this.comboBoxRegion.Size = new System.Drawing.Size(256, 21);
             this.comboBoxRegion.TabIndex = 3;
             this.comboBoxRegion.SelectedIndexChanged += new System.EventHandler(this.comboBoxRegion_SelectedIndexChanged);
+            // 
+            // cbComputeZ
+            // 
+            this.cbComputeZ.AutoSize = true;
+            tableLayoutPanel1.SetColumnSpan(this.cbComputeZ, 2);
+            this.cbComputeZ.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbComputeZ.Location = new System.Drawing.Point(3, 185);
+            this.cbComputeZ.Name = "cbComputeZ";
+            this.cbComputeZ.Size = new System.Drawing.Size(256, 17);
+            this.cbComputeZ.TabIndex = 2;
+            this.cbComputeZ.Text = "Compute Z from Alphamap";
+            this.cbComputeZ.UseVisualStyleBackColor = true;
+            this.cbComputeZ.CheckedChanged += new System.EventHandler(this.cbComputeZ_CheckedChanged);
+            // 
+            // headerStrip1
+            // 
+            this.headerStrip1.AutoSize = false;
+            this.headerStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerStrip1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.headerStrip1.ForeColor = System.Drawing.Color.Gray;
+            this.headerStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.headerStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1});
+            this.headerStrip1.Location = new System.Drawing.Point(0, 27);
+            this.headerStrip1.Name = "headerStrip1";
+            this.headerStrip1.Size = new System.Drawing.Size(131, 25);
+            this.headerStrip1.TabIndex = 1;
+            this.headerStrip1.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical90;
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel1.Text = "Zone";
+            this.toolStripLabel1.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             // 
             // headerStrip2
             // 
@@ -368,11 +387,10 @@ namespace QuestDesigner
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(tableLayoutPanel1);
             this.Name = "PositionConverter";
-            this.Size = new System.Drawing.Size(262, 217);
+            this.Size = new System.Drawing.Size(262, 249);
             this.Load += new System.EventHandler(this.PositionConverter_Load);
             tableLayoutPanel1.ResumeLayout(false);
-            this.headerStrip1.ResumeLayout(false);
-            this.headerStrip1.PerformLayout();
+            tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -385,6 +403,8 @@ namespace QuestDesigner
             ((System.ComponentModel.ISupportInitialize)(this.regionX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.regionY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.regionZ)).EndInit();
+            this.headerStrip1.ResumeLayout(false);
+            this.headerStrip1.PerformLayout();
             this.headerStrip2.ResumeLayout(false);
             this.headerStrip2.PerformLayout();
             this.ResumeLayout(false);
@@ -412,10 +432,11 @@ namespace QuestDesigner
 		private System.Windows.Forms.NumericUpDown regionX;
 		private System.Windows.Forms.NumericUpDown regionY;
 		private System.Windows.Forms.NumericUpDown regionZ;
-		private QuestDesigner.Controls.HeaderStrip headerStrip1;
-		private QuestDesigner.Controls.HeaderStrip headerStrip2;
+		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip1;
+		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip2;
 		private System.Windows.Forms.ToolStripLabel toolStripLabel1;
 		private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.CheckBox cbComputeZ;
 
 
 	}

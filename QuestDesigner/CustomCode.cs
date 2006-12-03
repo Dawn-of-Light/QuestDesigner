@@ -6,7 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	public partial class CustomCode : UserControl
 	{

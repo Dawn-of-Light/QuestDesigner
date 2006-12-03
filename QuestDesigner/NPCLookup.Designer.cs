@@ -1,4 +1,4 @@
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	partial class NPCLookupForm
 	{

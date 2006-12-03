@@ -29,24 +29,20 @@ using System.Threading;
 using System.ComponentModel;
 using System.Drawing;
 using DOL.GS.Quests;
-using QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Util;
 using DOL.Database;
 using System.Reflection;
+using System.Deployment.Application;
+using System.Net;
+using ICSharpCode.SharpZipLib.Zip;
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
     public static class QuestDesignerMain
-    {
-		const string TRIGGER_I = "I";
-		const string TRIGGER_K = "K";
-
-		const string ACTION_P = "P";
-		const string ACTION_Q = "Q";
-		const string REQUIREMENT_N = "N";
-		const string REQUIREMENT_V = "V";
-
+    {		
         public static string XSL_PATH = QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["XLSFilePath"];        
 		
+
         private static DOLDatabaseAdapter databaseAdapter = null;
 
 		public static QuestDesignerForm qdForm;
@@ -55,7 +51,7 @@ namespace QuestDesigner
 		private static PositionConverterPopup posConvForm;
 
         private static BackgroundWorker databaseWorker = new BackgroundWorker();
-
+       
         public static String WorkingDirectory;
 
 		public static QuestDesignerForm DesignerForm
@@ -66,6 +62,21 @@ namespace QuestDesigner
 				return qdForm;
 			}
 		}
+
+        public static string Version
+        {
+            get
+            {
+                if (ApplicationDeployment.IsNetworkDeployed)
+                {
+                    return ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                }
+                else
+                {
+                    return Application.ProductVersion;
+                }
+            }
+        }
 
         public static DOLDatabaseAdapter DatabaseAdapter
         {
@@ -85,20 +96,26 @@ namespace QuestDesigner
 			}
 		}
 
+        public static bool WaitForDatabase()
+        {
+            if (databaseWorker.IsBusy)
+            {
+                DesignerForm.Cursor = Cursors.WaitCursor;
+                while (databaseWorker.IsBusy)
+                    Application.DoEvents();
+                DesignerForm.Cursor = Cursors.Default;
+            }
+            return true;
+        }
+
 		public static NPCLookupForm NPCLookupForm
 		{
 			get
 			{
 				if (npcForm == null)
 				{
-					if (databaseWorker.IsBusy)
-					{
-						DesignerForm.Cursor = Cursors.WaitCursor;
-						while (databaseWorker.IsBusy)
-							Application.DoEvents();
-						DesignerForm.Cursor = Cursors.Default;
-					}
-					npcForm = new NPCLookupForm();
+                    if (WaitForDatabase())
+					    npcForm = new NPCLookupForm();
 				}
 				return npcForm;				 
 			}
@@ -110,14 +127,8 @@ namespace QuestDesigner
             {
 				if (itemForm == null)
 				{
-					if (databaseWorker.IsBusy)
-					{
-						DesignerForm.Cursor = Cursors.WaitCursor;
-						while (databaseWorker.IsBusy)
-							Application.DoEvents();
-						DesignerForm.Cursor = Cursors.Default;
-					}
-					itemForm = new ItemLookupForm();
+					if (WaitForDatabase())					
+                        itemForm = new ItemLookupForm();
 				}
                 return itemForm;
             }
@@ -129,43 +140,47 @@ namespace QuestDesigner
         [STAThread]
         static void Main()
         {
-            WorkingDirectory = Application.StartupPath+"\\";
+            //RELEASE MODE; ERROR DIALOG
+            try
+            {
+                Form.CheckForIllegalCrossThreadCalls = false;            
 
-            
-                /*
-                string[] dllFiles = Directory.GetFiles(QuestDesignerMain.WorkingDirectory + "lib", "*.dll",SearchOption.AllDirectories);			
-
-			    foreach (string filePath in dllFiles)
-			    {
-                    try
-                    {
-                        Assembly.LoadFile(filePath);
-                        Log.Info("Loading Assembly " + filePath);
-                    }
-                    catch (Exception) { }
-			    }
-                */
+                WorkingDirectory = Application.StartupPath+"\\";
+                
                 Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(DesignerForm);
-            
-        }		
+                Application.SetCompatibleTextRenderingDefault(false);            
+
+                Application.Run(DesignerForm);                
+                Environment.Exit(0);
+            }            
+            catch (Exception e)
+            {
+                new ErrorForm(e);
+            }
+        }
+
+              
 
         public static bool DatabaseSupported
         {
             get { return databaseAdapter.isConnected(); }
+        }
+
+        public static bool DataSupported
+        {
+            get { return Directory.Exists(QuestDesignerMain.WorkingDirectory + "data"); }
         }		
 
         static void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             if (e.Error != null)
             {
-				HandleException(e.Error, "Database error: " + e.Error.Message, global::QuestDesigner.Properties.Resources.databaseError);                
+				HandleException(e.Error, "Database error: " + e.Error.Message, global::DOL.Tools.QuestDesigner.Properties.Resources.databaseError);                
                 DesignerForm.SetDatabaseSupport(false);
             }            
             else
             {
-                Log.ShowMessage("Database successfully initialized", global::QuestDesigner.Properties.Resources.databaseOk);
+                Log.ShowMessage("Database successfully initialized", global::DOL.Tools.QuestDesigner.Properties.Resources.databaseOk);
                 DesignerForm.SetDatabaseSupport(true);
             }
             DesignerForm.StatusProgress.Value = DesignerForm.StatusProgress.Minimum;            
@@ -178,7 +193,7 @@ namespace QuestDesigner
 
         public static void HandleException(Exception e, string errorMsg)
         {
-            Log.ShowMessage(errorMsg, global::QuestDesigner.Properties.Resources.error);
+            Log.ShowMessage(errorMsg, global::DOL.Tools.QuestDesigner.Properties.Resources.error);
         }
 
         public static void HandleException(Exception e)
@@ -196,7 +211,7 @@ namespace QuestDesigner
 			}
 			catch (Exception e)
 			{
-				HandleException(e, "Database error: " + e.Message, global::QuestDesigner.Properties.Resources.databaseError);
+				HandleException(e, "Database error: " + e.Message, global::DOL.Tools.QuestDesigner.Properties.Resources.databaseError);
 			}
         }
 
@@ -205,265 +220,10 @@ namespace QuestDesigner
         /// </summary>
         static void backgroundWorker_doWork(object sender, DoWorkEventArgs e)
         {
-
             databaseAdapter = new DOLDatabaseAdapter();
-            
-            //NHibernate.Cfg.Environment.UseReflectionOptimizer = Configuration.UseReflectionOptimizer;
-/*
- * TODO: INIt Database
-            DOL.Database.Configuration cfg = new Configuration();
-            
-            cfg.AddXmlFile(System.Configuration.ConfigurationManager.AppSettings["DatabaseConfigFile"]);
-            IDatabaseMgr m_databaseMgr = cfg.BuildDatabaseMgr();
-
-            m_database = new ObjectDatabase(System.Configuration.ConfigurationManager.AppSettings["NHibernateConfigFile"]); // Open the connection to the database                                 
-            
-            //m_database.CreateDatabaseStructure(ConfigurationSettings.AppSettings["DatabaseConfigFile"]);                
-            // Test the database structure
-            ArrayList errors = new ArrayList();
-            if (!m_database.TestDatabaseStructure(System.Configuration.ConfigurationManager.AppSettings["NHibernateConfigFile"], errors))
-            {
-				throw new Exception("ObjectDatabase.TestDatabaseStructure() failed: Database stucture does not match describing nhibernate mapping files.");
-            }
- */
+                        
             e.Result = databaseAdapter.isConnected();
         }
 
-		/// <summary>
-		/// Checks the given name against all defined objects in quest.
-		/// Needed to decide wether " should be added or not.
-		/// </summary>
-		/// <param name="name">Name</param>
-		/// <returns>true if objectname, else false</returns>
-		private static bool isObjectName(object value)
-		{
-			if (value is string)
-			{
-				string name = (string)value;
-				foreach (DataRow row in DB.MobTable.Rows)
-				{
-					if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
-						return true;
-				}
-				foreach (DataRow row in DB.ItemTemplateTable.Rows)
-				{
-					if (row["ItemTemplateID"] is string && (string)row["ItemTemplateID"] == name)
-						return true;
-				}
-				foreach (DataRow row in DB.AreaTable.Rows)
-				{
-					if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
-						return true;
-				}
-				foreach (DataRow row in DB.LocationTable.Rows)
-				{
-					if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
-						return true;
-				}
-			}
-			return false;
-		}
-
-        /// <summary>
-        /// Checks the given name against all defined objects in quest.
-        /// Needed to decide wether " should be added or not.
-        /// </summary>
-        /// <param name="name">Name</param>
-        /// <returns>true if objectname, else false</returns>
-        private static bool isMobName(object value)
-        {
-            if (value is string)
-            {
-                string name = (string)value;
-                foreach (DataRow row in DB.MobTable.Rows)
-                {
-                    if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
-                        return true;
-                }
-            }
-            return false;
-        }
-
-		public static bool GenerateScript(DataSet questDataSet, string scriptPath)
-		{
-			DataSet dataSet = questDataSet.Copy();
-
-			// Check for Inviting NPC
-            
-			if (dataSet.Tables["Quest"].Rows[0]["InvitingNPC"] is DBNull)
-			{
-				if (dataSet.Tables["Mob"].Rows.Count > 0)
-				{
-					dataSet.Tables["Quest"].Rows[0]["InvitingNPC"] = dataSet.Tables["Mob"].Rows[0]["ObjectName"];
-					dataSet.AcceptChanges();
-				}
-				else
-				{
-					MessageBox.Show("No InvitingNPC selected.");
-					return false;
-				}
-			}
-            String invitingNPC =(string) dataSet.Tables["Quest"].Rows[0]["InvitingNPC"];
-
-			// check for string parameter in action, trigger, requirement and add needed ",'
-			foreach (DataRow row in dataSet.Tables["QuestPartTrigger"].Rows)
-			{
-				row["TypeName"] = typeof(eTriggerType).Name + "." + Enum.GetName(typeof(eTriggerType), row["Type"]);
-
-				string triggerType = Convert.ToString(row["Type"]);
-				DataRow[] triggerRows = DesignerForm.dataTableTriggerType.Select("id=" + triggerType + "");				
-				if (triggerRows.Length != 1)
-					throw new Exception("No or multiple Triggertypes found for " + triggerType);
-
-				//string k = Convert.ToString(triggerRows[0].ItemArray[3]);
-				if (row[TRIGGER_K] is DBNull)
-				{
-					row[TRIGGER_K] = "null";
-				}
-				else
-				{
-					if (!isObjectName(row[TRIGGER_K]))
-						row[TRIGGER_K] = '"' + Convert.ToString(row[TRIGGER_K]) + '"';
-				}
-
-				string i = Convert.ToString(triggerRows[0]["i"]);
-
-				if (i.Contains("string") && !(row[TRIGGER_I] is DBNull))
-				{
-					if (!isObjectName(row[TRIGGER_I]))
-						row[TRIGGER_I] = '"' + Convert.ToString(row[TRIGGER_I]) + '"';
-				}
-			}
-
-			foreach (DataRow row in dataSet.Tables["QuestPartRequirement"].Rows)
-			{
-				row["TypeName"] =typeof(eRequirementType).Name+"."+Enum.GetName(typeof(eRequirementType), row["Type"]);
-
-				string requType = Convert.ToString(row["Type"]);
-				DataRow[] requRows = DesignerForm.dataTableRequirementType.Select("id=" + requType + "");
-				if (requRows.Length != 1)
-					throw new Exception("No or multiple Requirementtypes found for " + requType);
-
-				string n = Convert.ToString(requRows[0]["n"]);
-				string v = Convert.ToString(requRows[0]["v"]);
-
-				if (n.Contains("string") && !(row[REQUIREMENT_N] is DBNull))
-				{
-					if (!isObjectName(row[REQUIREMENT_N]))
-						row[REQUIREMENT_N] = '"' + Convert.ToString(row[REQUIREMENT_N]) + '"';
-				}
-				else if (row[REQUIREMENT_N] is DBNull)
-				{
-					row[REQUIREMENT_N] = "null";
-				}
-
-				if (v.Contains("string") && !(row[REQUIREMENT_V] is DBNull))
-				{
-					if (!isObjectName(row[REQUIREMENT_V]))
-						row[REQUIREMENT_V] = '"' + Convert.ToString(row[REQUIREMENT_V]) + '"';
-				}
-			}
-
-			foreach (DataRow row in dataSet.Tables["QuestPartAction"].Rows)
-			{
-				row["TypeName"] = typeof(eActionType).Name + "." + Enum.GetName(typeof(eActionType), row["Type"]);
-
-				string actionType = Convert.ToString(row["Type"]);
-				DataRow[] actionRows = DesignerForm.dataTableActionType.Select("id=" + actionType + "");
-				if (actionRows.Length != 1)
-					throw new Exception("No or multiple Actiontypes found for " + actionType);
-
-				string p = Convert.ToString(actionRows[0]["p"]);
-				string q = Convert.ToString(actionRows[0]["q"]);
-
-				if (p.Contains("string") && !(row[ACTION_P] is DBNull))
-				{
-					if (!isObjectName(row[ACTION_P]))
-						row[ACTION_P] = '"' + Convert.ToString(row[ACTION_P]) + '"';
-				}
-				else if (row[ACTION_P] is DBNull)
-				{
-					row[ACTION_P] = "null";
-				}
-
-				if (q.Contains("string") && !(row[ACTION_Q] is DBNull))
-				{
-					if (!isObjectName(row[ACTION_Q]))
-						row[ACTION_Q] = '"' + Convert.ToString(row[ACTION_Q]) + '"';
-				}
-			}
-			
-            
-			foreach (DataRow row in dataSet.Tables["QuestPart"].Rows)
-			{
-                int questPartID =(int) row["ID"];
-                string defaultNPC = invitingNPC;
-
-                DataRow[] triggerRows = dataSet.Tables["QuestPartTrigger"].Select("QuestPartID="+questPartID);
-                foreach (DataRow triggerRow in triggerRows) {
-                    if (isMobName(triggerRow[TRIGGER_I])) {
-                        defaultNPC =(string) triggerRow[TRIGGER_I];
-                        break;
-                    } else if (isMobName(triggerRow[TRIGGER_K])) {
-                        defaultNPC =(string) triggerRow[TRIGGER_K];
-                        break;
-                    }
-                }
-
-                DataRow[] requRows = dataSet.Tables["QuestPartRequirement"].Select("QuestPartID="+questPartID);
-                foreach (DataRow requRow in requRows) {
-                    if (isMobName(requRow[REQUIREMENT_N])) {
-                        defaultNPC =(string) requRow[REQUIREMENT_N];
-                        break;
-                    } else if (isMobName(requRow[REQUIREMENT_V])) {
-                        defaultNPC =(string) requRow[REQUIREMENT_V];
-                        break;
-                    }
-                }
-
-                DataRow[] actionRows = dataSet.Tables["QuestPartAction"].Select("QuestPartID="+questPartID);
-                foreach (DataRow actionRow in actionRows) {
-                    if (isMobName(actionRow[ACTION_P])) {
-                        defaultNPC =(string) actionRow[ACTION_P];
-                        break;
-                    } else if (isMobName(actionRow[ACTION_Q])) {
-                        defaultNPC =(string) actionRow[ACTION_Q];
-                        break;
-                    }
-                }
-				
-                row["defaultNPC"] = defaultNPC;
-			}
-            
-			
-			dataSet.AcceptChanges();
-
-			string tempquest = Path.GetTempFileName();			
-			dataSet.WriteXml(tempquest);
-
-			XslCompiledTransform xsltransform = new XslCompiledTransform();
-			XsltSettings xsltsettings = new XsltSettings();
-
-			XmlReaderSettings rsettings = new XmlReaderSettings();
-			rsettings.CloseInput = true;
-
-			XmlWriterSettings wsettings = new XmlWriterSettings();
-			wsettings.OmitXmlDeclaration = true;
-			wsettings.ConformanceLevel = ConformanceLevel.Auto;
-
-			XmlReader xmlreader = XmlReader.Create(tempquest, rsettings);
-			XmlWriter xmlwriter = XmlWriter.Create(scriptPath, wsettings);
-
-			xsltransform.Load(WorkingDirectory + XSL_PATH);
-			xsltransform.Transform(xmlreader, xmlwriter);
-
-			xmlreader.Close();
-			xmlwriter.Close();
-
-			// cleanup temp files            
-			dataSet.Dispose();
-			File.Delete(tempquest);
-			return true;
-		}
     }
 }

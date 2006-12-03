@@ -1,4 +1,4 @@
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	partial class PositionConverterPopup
 	{
@@ -31,7 +31,7 @@ namespace QuestDesigner
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PositionConverterPopup));
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.buttonClose = new System.Windows.Forms.Button();
-			this.positionConverter1 = new QuestDesigner.PositionConverter();
+			this.positionConverter1 = new DOL.Tools.QuestDesigner.PositionConverter();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -69,7 +69,7 @@ namespace QuestDesigner
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.buttonClose;
-			this.ClientSize = new System.Drawing.Size(282, 205);
+			this.ClientSize = new System.Drawing.Size(282, 235);
 			this.Controls.Add(this.positionConverter1);
 			this.Controls.Add(this.flowLayoutPanel1);
 			this.DoubleBuffered = true;

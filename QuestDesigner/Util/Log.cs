@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
-namespace QuestDesigner.Util
+namespace DOL.Tools.QuestDesigner.Util
 {
 	class Log
 	{
@@ -13,17 +13,17 @@ namespace QuestDesigner.Util
 
 		public static void Info(string msg)
 		{
-			ShowMessage(msg, global::QuestDesigner.Properties.Resources.info);
+			ShowMessage(msg, global::DOL.Tools.QuestDesigner.Properties.Resources.info);
 		}
 
 		public static void Warning(string msg)
 		{
-			ShowMessage(msg, global::QuestDesigner.Properties.Resources.warning);
+			ShowMessage(msg, global::DOL.Tools.QuestDesigner.Properties.Resources.warning);
 		}
 
 		public static void Error(string msg)
 		{
-			ShowMessage(msg, global::QuestDesigner.Properties.Resources.error);
+			ShowMessage(msg, global::DOL.Tools.QuestDesigner.Properties.Resources.error);
 		}
 
 		public static void ShowMessage(string msg, Icon ico)

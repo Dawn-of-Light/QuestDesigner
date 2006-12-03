@@ -7,14 +7,16 @@ using System.Text;
 using System.Windows.Forms;
 using Flobbster.Windows.Forms;
 using System.Collections;
-using QuestDesigner.Controls;
+using DOL.Tools.QuestDesigner.Controls;
 using System.Reflection;
-using QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Util;
 using DOL.GS.PacketHandler;
 using DOL.GS;
-using QuestDesigner.Exceptions;
+using DOL.Tools.QuestDesigner.Exceptions;
+using DOL.Tools.QuestDesigner.Converter;
+using Microsoft.DirectX;
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	public partial class NPC : UserControl
 	{
@@ -151,7 +153,7 @@ namespace QuestDesigner
 					spec.Category = "Location";
 					break;
 				case "Region":
-					spec.ConverterTypeName = "QuestDesigner.Converter.RegionConverter";
+                    spec.ConverterTypeName = typeof(RegionConverter).FullName;
 					spec.Category = "Location";
 					break;
 				case "ClassType":
@@ -168,10 +170,10 @@ namespace QuestDesigner
 					spec.Category = "Visual";
 					break;
 				case "Realm":
-					spec.ConverterTypeName = "QuestDesigner.Converter.RealmConverter";
+                    spec.ConverterTypeName = typeof(RealmConverter).FullName;
 					break;
 				case "DamageType":
-					spec.ConverterTypeName = "QuestDesigner.Converter.DamageTypeConverter"; ;
+                    spec.ConverterTypeName = typeof(DamageTypeConverter).FullName;
 					break;
 			}
 
@@ -219,11 +221,22 @@ namespace QuestDesigner
 			if (listViewNPC.SelectedItems != null && listViewNPC.SelectedItems.Count>0)
 			{
 				ListViewItem item = listViewNPC.SelectedItems[0];
-				((DataRow)item.Tag)[e.Property.Name] = e.Value;
+
+                DataRow row = (DataRow)item.Tag;
+
+                // little hack since the typconverter seems to be skipped if the mousewheel is used to select a value from propertygrid
+                if (!row[e.Property.Name].GetType().IsAssignableFrom(e.Value.GetType()))
+                {
+                    TypeConverter conv = (TypeConverter)Activator.CreateInstance(Assembly.GetCallingAssembly().GetType(e.Property.ConverterTypeName));
+                    e.Value = conv.ConvertTo(e.Value, row[e.Property.Name].GetType());
+                }
+                // little hackend
+
+				row[e.Property.Name] = e.Value;
                 // update objectname if name changed
                 if (e.Property.Name == "Name")
                 {
-                    ((DataRow)item.Tag)["ObjectName"] = Utils.ConvertToObjectName((String)e.Value);
+                    row["ObjectName"] = Utils.ConvertToObjectName((String)e.Value);
                 }
 			}
 		}
@@ -360,6 +373,49 @@ namespace QuestDesigner
                 }
 			}
 		}
+
+        private void pasteLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IDataObject ido = Clipboard.GetDataObject();
+
+            if (ido.GetDataPresent(ClipboardLocation.Format.Name))
+            {
+                // Text data is present on the clipboard
+                ClipboardLocation loc = (ClipboardLocation)ido.GetData(ClipboardLocation.Format.Name);                
+
+                if (listViewNPC.SelectedItems != null && listViewNPC.SelectedItems.Count > 0)
+                {
+                    ListViewItem item = listViewNPC.SelectedItems[0];
+                    ((DataRow)item.Tag)["X"] = loc.X;
+                    ((DataRow)item.Tag)["Y"] = loc.Y;
+                    ((DataRow)item.Tag)["Z"] = loc.Z;
+                    ((DataRow)item.Tag)["region"] = loc.RegionID;
+
+                    if (loc.Heading>=0)
+                        ((DataRow)item.Tag)["heading"] = loc.Heading;
+                }
+            }
+        }
+
+        private void showOnMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (listViewNPC.SelectedItems != null && listViewNPC.SelectedItems.Count > 0) {
+
+                ListViewItem item = listViewNPC.SelectedItems[0];
+                    
+
+                Vector3 location = new Vector3();
+
+                location.X = (float) Convert.ToDouble(((DataRow)item.Tag)["X"]);
+                location.Y = (float) Convert.ToDouble(((DataRow)item.Tag)["Y"]);
+
+                int regionID = Convert.ToInt32(((DataRow)item.Tag)["region"]);
+                QuestDesignerMain.DesignerForm.DXControl.ShowLocation(location, regionID);
+                QuestDesignerMain.DesignerForm.ShowTab("Map Editor");
+
+            }
+        }	
 		
 	}
 }

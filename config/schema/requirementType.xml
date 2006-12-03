@@ -250,7 +250,8 @@ Possible parameters:
 		<help>Checks for player's quest N at step V using eComparator, if N is empty current quest is used</help>
 		<v>int</v>
 		<n>QuestType:string</n>
-		<text>the queststep of $N{0}$ is $V{1}$</text>
+		<comparator>quantity</comparator>
+		<text>the queststep of $N{0}$ is $C{1}$ $V{2}$</text>
 	</RequirementType>
 	<RequirementType>
 		<value>eRequirementType.QuestGivable</value>

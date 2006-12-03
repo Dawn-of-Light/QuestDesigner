@@ -1,4 +1,4 @@
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
     partial class QuestDesignerForm
     {
@@ -63,9 +63,13 @@ namespace QuestDesigner
             System.Data.DataColumn dataColumn22;
             System.Data.DataColumn dataColumnText;
             System.Data.DataColumn dataColumnDefaultNPC;
+            System.Data.DataColumn dataColumn28;
+            System.Data.DataColumn dataColumn32;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
             NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
             NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
+            System.Data.DataColumn dataColumn33;
+            System.Data.DataColumn dataColumn34;
             this.dataSetQuest = new System.Data.DataSet();
             this.dataTableQuestPart = new System.Data.DataTable();
             this.dataTableTrigger = new System.Data.DataTable();
@@ -175,7 +179,6 @@ namespace QuestDesigner
             this.dataColumn12 = new System.Data.DataColumn();
             this.dataColumn13 = new System.Data.DataColumn();
             this.dataTableLocation = new System.Data.DataTable();
-            this.dataColumn23 = new System.Data.DataColumn();
             this.dataSetData = new System.Data.DataSet();
             this.dataTableRegion = new System.Data.DataTable();
             this.dataTableZone = new System.Data.DataTable();
@@ -237,14 +240,19 @@ namespace QuestDesigner
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dOL18QuestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dOL20QuestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sQLExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemTaskPane = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.positionConverterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
@@ -255,28 +263,30 @@ namespace QuestDesigner
             this.StatusProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.tabControlMain = new NETXP.Controls.Docking.TabControl();
             this.tabPageQuest = new NETXP.Controls.Docking.TabPage();
-            this.questInfo = new QuestDesigner.QuestInfo();
             this.tabPageNPC = new NETXP.Controls.Docking.TabPage();
-            this.npcView = new QuestDesigner.NPC();
             this.tabPageItem = new NETXP.Controls.Docking.TabPage();
-            this.itemView = new QuestDesigner.Item();
             this.tabPageQuestPart = new NETXP.Controls.Docking.TabPage();
-            this.questPartItems = new QuestDesigner.QuestPartItems();
             this.tabPageArea = new NETXP.Controls.Docking.TabPage();
-            this.areaView = new QuestDesigner.Area();
             this.tabPageLocation = new NETXP.Controls.Docking.TabPage();
-            this.locationView = new QuestDesigner.Location();
             this.tabPageCode = new NETXP.Controls.Docking.TabPage();
-            this.customCode = new QuestDesigner.CustomCode();
+            this.tabPageMap = new NETXP.Controls.Docking.TabPage();
             this.xpTaskPane = new NETXP.Controls.TaskPane.XPTaskPane();
             this.xpTGActions = new NETXP.Controls.TaskPane.XPTaskPaneGroup();
             this.linkSaveQuest = new System.Windows.Forms.LinkLabel();
-            this.linkCreateQuest = new System.Windows.Forms.LinkLabel();
             this.linkLoadQuest = new System.Windows.Forms.LinkLabel();
             this.openQuestDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveScriptDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.imageListNPC = new System.Windows.Forms.ImageList(this.components);
+            this.dataTableAreaType = new System.Data.DataTable();
+            this.questInfo = new DOL.Tools.QuestDesigner.QuestInfo();
+            this.npcView = new DOL.Tools.QuestDesigner.NPC();
+            this.itemView = new DOL.Tools.QuestDesigner.Item();
+            this.questPartItems = new DOL.Tools.QuestDesigner.QuestPartItems();
+            this.areaView = new DOL.Tools.QuestDesigner.Area();
+            this.locationView = new DOL.Tools.QuestDesigner.Location();
+            this.customCode = new DOL.Tools.QuestDesigner.CustomCode();
+            this.DXControl = new DOL.Tools.Mapping.Forms.DXControl();
             dataColumnQuestPartIF = new System.Data.DataColumn();
             dataColumnTriggerQuestPart = new System.Data.DataColumn();
             dataColumnTriggerType = new System.Data.DataColumn();
@@ -311,6 +321,10 @@ namespace QuestDesigner
             dataColumn22 = new System.Data.DataColumn();
             dataColumnText = new System.Data.DataColumn();
             dataColumnDefaultNPC = new System.Data.DataColumn();
+            dataColumn28 = new System.Data.DataColumn();
+            dataColumn32 = new System.Data.DataColumn();
+            dataColumn33 = new System.Data.DataColumn();
+            dataColumn34 = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetQuest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableQuestPart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableTrigger)).BeginInit();
@@ -345,8 +359,10 @@ namespace QuestDesigner
             this.tabPageArea.SuspendLayout();
             this.tabPageLocation.SuspendLayout();
             this.tabPageCode.SuspendLayout();
+            this.tabPageMap.SuspendLayout();
             this.xpTaskPane.SuspendLayout();
             this.xpTGActions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableAreaType)).BeginInit();
             this.SuspendLayout();
             // 
             // dataColumnQuestPartIF
@@ -518,6 +534,16 @@ namespace QuestDesigner
             // dataColumnDefaultNPC
             // 
             dataColumnDefaultNPC.ColumnName = "defaultNPC";
+            // 
+            // dataColumn28
+            // 
+            dataColumn28.ColumnName = "width";
+            dataColumn28.DataType = typeof(int);
+            // 
+            // dataColumn32
+            // 
+            dataColumn32.ColumnName = "height";
+            dataColumn32.DataType = typeof(int);
             // 
             // dataSetQuest
             // 
@@ -1266,15 +1292,8 @@ namespace QuestDesigner
             dataColumn19,
             dataColumn20,
             dataColumn21,
-            dataColumn22,
-            this.dataColumn23});
+            dataColumn22});
             this.dataTableLocation.TableName = "Location";
-            // 
-            // dataColumn23
-            // 
-            this.dataColumn23.Caption = "Zone";
-            this.dataColumn23.ColumnName = "ZoneID";
-            this.dataColumn23.DataType = typeof(int);
             // 
             // dataSetData
             // 
@@ -1286,7 +1305,8 @@ namespace QuestDesigner
             this.dataTableActionType,
             this.dataTableRequirementType,
             this.dataTableHand,
-            this.dataTableeEnumeration});
+            this.dataTableeEnumeration,
+            this.dataTableAreaType});
             this.dataSetData.Initialized += new System.EventHandler(this.dataSetData_Initialized);
             // 
             // dataTableRegion
@@ -1303,7 +1323,9 @@ namespace QuestDesigner
             dataColumnZoneRegionID,
             dataColumnZoneDescription,
             dataColumnZoneOffsetY,
-            dataColumnZoneOffsetX});
+            dataColumnZoneOffsetX,
+            dataColumn28,
+            dataColumn32});
             this.dataTableZone.TableName = "Zone";
             // 
             // dataTableTriggerType
@@ -1574,7 +1596,7 @@ namespace QuestDesigner
             this.toolStripMenuItem1});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(418, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(439, 24);
             this.menuStripMain.TabIndex = 1;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -1600,7 +1622,7 @@ namespace QuestDesigner
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -1610,14 +1632,14 @@ namespace QuestDesigner
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(153, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(148, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -1625,41 +1647,65 @@ namespace QuestDesigner
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(153, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(148, 6);
             // 
             // createToolStripMenuItem
             // 
+            this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dOL18QuestToolStripMenuItem,
+            this.dOL20QuestToolStripMenuItem,
+            this.sQLExportToolStripMenuItem});
             this.createToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("createToolStripMenuItem.Image")));
             this.createToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.createToolStripMenuItem.Text = "&Create";
-            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
+            // 
+            // dOL18QuestToolStripMenuItem
+            // 
+            this.dOL18QuestToolStripMenuItem.Name = "dOL18QuestToolStripMenuItem";
+            this.dOL18QuestToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.dOL18QuestToolStripMenuItem.Text = "DOL 1.8 Quest";
+            this.dOL18QuestToolStripMenuItem.Click += new System.EventHandler(this.dOL18QuestToolStripMenuItem_Click);
+            // 
+            // dOL20QuestToolStripMenuItem
+            // 
+            this.dOL20QuestToolStripMenuItem.Name = "dOL20QuestToolStripMenuItem";
+            this.dOL20QuestToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.dOL20QuestToolStripMenuItem.Text = "DOL 2.0 Quest";
+            this.dOL20QuestToolStripMenuItem.Click += new System.EventHandler(this.dOL20QuestToolStripMenuItem_Click);
+            // 
+            // sQLExportToolStripMenuItem
+            // 
+            this.sQLExportToolStripMenuItem.Name = "sQLExportToolStripMenuItem";
+            this.sQLExportToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.sQLExportToolStripMenuItem.Text = "SQL Export";
+            this.sQLExportToolStripMenuItem.Click += new System.EventHandler(this.sQLExportToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(153, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(148, 6);
             // 
             // exitToolStripMenuItem
             // 
+            this.exitToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.delete;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1685,33 +1731,51 @@ namespace QuestDesigner
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.positionConverterToolStripMenuItem});
+            this.positionConverterToolStripMenuItem,
+            this.dataDownloadToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // positionConverterToolStripMenuItem
             // 
-            this.positionConverterToolStripMenuItem.Image = global::QuestDesigner.Properties.Resources.globe;
+            this.positionConverterToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.globe;
             this.positionConverterToolStripMenuItem.Name = "positionConverterToolStripMenuItem";
             this.positionConverterToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.positionConverterToolStripMenuItem.Text = "Position Converter...";
             this.positionConverterToolStripMenuItem.Click += new System.EventHandler(this.positionConverterToolStripMenuItem_Click);
             // 
+            // dataDownloadToolStripMenuItem
+            // 
+            this.dataDownloadToolStripMenuItem.Name = "dataDownloadToolStripMenuItem";
+            this.dataDownloadToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.dataDownloadToolStripMenuItem.Text = "Data Download";
+            this.dataDownloadToolStripMenuItem.Click += new System.EventHandler(this.dataDownloadToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.creditsToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(24, 20);
             this.toolStripMenuItem1.Text = "?";
             // 
             // aboutToolStripMenuItem
             // 
+            this.aboutToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.questpart;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // creditsToolStripMenuItem
+            // 
+            this.creditsToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.info;
+            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.creditsToolStripMenuItem.Text = "Credits";
+            this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
             // 
             // RightToolStripPanel
             // 
@@ -1746,11 +1810,11 @@ namespace QuestDesigner
             this.toolStripContainerForm.ContentPanel.AutoScroll = true;
             this.toolStripContainerForm.ContentPanel.Controls.Add(this.tabControlMain);
             this.toolStripContainerForm.ContentPanel.Controls.Add(this.xpTaskPane);
-            this.toolStripContainerForm.ContentPanel.Size = new System.Drawing.Size(418, 153);
+            this.toolStripContainerForm.ContentPanel.Size = new System.Drawing.Size(439, 248);
             this.toolStripContainerForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainerForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainerForm.Name = "toolStripContainerForm";
-            this.toolStripContainerForm.Size = new System.Drawing.Size(418, 199);
+            this.toolStripContainerForm.Size = new System.Drawing.Size(439, 294);
             this.toolStripContainerForm.TabIndex = 0;
             this.toolStripContainerForm.Text = "toolStripContainer2";
             // 
@@ -1767,7 +1831,7 @@ namespace QuestDesigner
             this.StatusProgress});
             this.statusStrip.Location = new System.Drawing.Point(0, 0);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(418, 22);
+            this.statusStrip.Size = new System.Drawing.Size(439, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -1781,7 +1845,7 @@ namespace QuestDesigner
             // 
             this.StatusLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(301, 17);
+            this.StatusLabel.Size = new System.Drawing.Size(322, 17);
             this.StatusLabel.Spring = true;
             this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.StatusLabel.Click += new System.EventHandler(this.StatusLabel_Click);
@@ -1806,7 +1870,7 @@ namespace QuestDesigner
             this.tabControlMain.ShowArrows = true;
             this.tabControlMain.ShowClose = false;
             this.tabControlMain.ShrinkPagesToFit = false;
-            this.tabControlMain.Size = new System.Drawing.Size(250, 153);
+            this.tabControlMain.Size = new System.Drawing.Size(271, 248);
             this.tabControlMain.TabIndex = 3;
             this.tabControlMain.TabPages.AddRange(new NETXP.Controls.Docking.TabPage[] {
             this.tabPageQuest,
@@ -1815,164 +1879,108 @@ namespace QuestDesigner
             this.tabPageQuestPart,
             this.tabPageArea,
             this.tabPageLocation,
-            this.tabPageCode});
+            this.tabPageCode,
+            this.tabPageMap});
             // 
             // tabPageQuest
             // 
             this.tabPageQuest.Controls.Add(this.questInfo);
             this.tabPageQuest.Location = new System.Drawing.Point(2, 23);
             this.tabPageQuest.Name = "tabPageQuest";
-            this.tabPageQuest.Size = new System.Drawing.Size(246, 128);
+            this.tabPageQuest.Size = new System.Drawing.Size(267, 223);
             this.tabPageQuest.TabIndex = 3;
             this.tabPageQuest.Title = "QuestInfo";
             this.tabPageQuest.ToolTipText = "Detailed Information about Quest";
-            // 
-            // questInfo
-            // 
-            this.questInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questInfo.Location = new System.Drawing.Point(0, 0);
-            this.questInfo.Name = "questInfo";
-            this.questInfo.Size = new System.Drawing.Size(246, 128);
-            this.questInfo.TabIndex = 28;
             // 
             // tabPageNPC
             // 
             this.tabPageNPC.Controls.Add(this.npcView);
             this.tabPageNPC.Location = new System.Drawing.Point(2, 23);
             this.tabPageNPC.Name = "tabPageNPC";
-            this.tabPageNPC.Size = new System.Drawing.Size(246, 128);
+            this.tabPageNPC.Size = new System.Drawing.Size(267, 223);
             this.tabPageNPC.TabIndex = 4;
             this.tabPageNPC.Title = "NPC";
             this.tabPageNPC.ToolTipText = "NPC\'s associated with the quest";
-            // 
-            // npcView
-            // 
-            this.npcView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.npcView.Location = new System.Drawing.Point(0, 0);
-            this.npcView.Name = "npcView";
-            this.npcView.Size = new System.Drawing.Size(246, 128);
-            this.npcView.TabIndex = 0;
             // 
             // tabPageItem
             // 
             this.tabPageItem.Controls.Add(this.itemView);
             this.tabPageItem.Location = new System.Drawing.Point(2, 23);
             this.tabPageItem.Name = "tabPageItem";
-            this.tabPageItem.Size = new System.Drawing.Size(246, 128);
+            this.tabPageItem.Size = new System.Drawing.Size(267, 223);
             this.tabPageItem.TabIndex = 5;
             this.tabPageItem.Title = "Item";
             this.tabPageItem.ToolTipText = "Item\'s associated with the quest";
-            // 
-            // itemView
-            // 
-            this.itemView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemView.Location = new System.Drawing.Point(0, 0);
-            this.itemView.Name = "itemView";
-            this.itemView.Size = new System.Drawing.Size(246, 128);
-            this.itemView.TabIndex = 0;
             // 
             // tabPageQuestPart
             // 
             this.tabPageQuestPart.Controls.Add(this.questPartItems);
             this.tabPageQuestPart.Location = new System.Drawing.Point(2, 23);
             this.tabPageQuestPart.Name = "tabPageQuestPart";
-            this.tabPageQuestPart.Size = new System.Drawing.Size(246, 128);
+            this.tabPageQuestPart.Size = new System.Drawing.Size(267, 223);
             this.tabPageQuestPart.TabIndex = 6;
             this.tabPageQuestPart.Title = "QuestPart";
             this.tabPageQuestPart.ToolTipText = "QuestPart\'s making up the whole logic of a quest";
-            // 
-            // questPartItems
-            // 
-            this.questPartItems.ActionColor = System.Drawing.Color.RosyBrown;
-            this.questPartItems.ActionSelectedColor = System.Drawing.Color.OrangeRed;
-            this.questPartItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questPartItems.ForeColor = System.Drawing.Color.Gray;
-            this.questPartItems.ForeColorSelected = System.Drawing.Color.Black;
-            this.questPartItems.Location = new System.Drawing.Point(0, 0);
-            this.questPartItems.Name = "questPartItems";
-            this.questPartItems.QuestPartRow = null;
-            this.questPartItems.QuestPartRowID = 0;
-            this.questPartItems.RequirementColor = System.Drawing.Color.Tan;
-            this.questPartItems.RequirementSelectedColor = System.Drawing.Color.Orange;
-            this.questPartItems.Size = new System.Drawing.Size(246, 128);
-            this.questPartItems.TabIndex = 0;
-            this.questPartItems.TriggerColor = System.Drawing.Color.Olive;
-            this.questPartItems.TriggerSelectedColor = System.Drawing.Color.Green;
             // 
             // tabPageArea
             // 
             this.tabPageArea.Controls.Add(this.areaView);
             this.tabPageArea.Location = new System.Drawing.Point(2, 23);
             this.tabPageArea.Name = "tabPageArea";
-            this.tabPageArea.Size = new System.Drawing.Size(246, 128);
+            this.tabPageArea.Size = new System.Drawing.Size(267, 223);
             this.tabPageArea.TabIndex = 7;
             this.tabPageArea.Title = "Area";
             this.tabPageArea.ToolTipText = "Area\'s used within a quest";
-            // 
-            // areaView
-            // 
-            this.areaView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.areaView.Location = new System.Drawing.Point(0, 0);
-            this.areaView.Name = "areaView";
-            this.areaView.Size = new System.Drawing.Size(246, 128);
-            this.areaView.TabIndex = 2;
             // 
             // tabPageLocation
             // 
             this.tabPageLocation.Controls.Add(this.locationView);
             this.tabPageLocation.Location = new System.Drawing.Point(2, 23);
             this.tabPageLocation.Name = "tabPageLocation";
-            this.tabPageLocation.Size = new System.Drawing.Size(246, 128);
+            this.tabPageLocation.Size = new System.Drawing.Size(267, 223);
             this.tabPageLocation.TabIndex = 9;
             this.tabPageLocation.Title = "Location";
             this.tabPageLocation.ToolTipText = "Define Locations used for QuestParts";
-            // 
-            // locationView
-            // 
-            this.locationView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.locationView.Location = new System.Drawing.Point(0, 0);
-            this.locationView.Name = "locationView";
-            this.locationView.Size = new System.Drawing.Size(246, 128);
-            this.locationView.TabIndex = 0;
             // 
             // tabPageCode
             // 
             this.tabPageCode.Controls.Add(this.customCode);
             this.tabPageCode.Location = new System.Drawing.Point(2, 23);
             this.tabPageCode.Name = "tabPageCode";
-            this.tabPageCode.Size = new System.Drawing.Size(246, 128);
+            this.tabPageCode.Size = new System.Drawing.Size(267, 223);
             this.tabPageCode.TabIndex = 8;
             this.tabPageCode.Title = "CustomCode";
             this.tabPageCode.ToolTipText = "CustomCode of the quest ";
             // 
-            // customCode
+            // tabPageMap
             // 
-            this.customCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customCode.Location = new System.Drawing.Point(0, 0);
-            this.customCode.Name = "customCode";
-            this.customCode.Size = new System.Drawing.Size(246, 128);
-            this.customCode.TabIndex = 3;
+            this.tabPageMap.Controls.Add(this.DXControl);
+            this.tabPageMap.Location = new System.Drawing.Point(2, 23);
+            this.tabPageMap.Name = "tabPageMap";
+            this.tabPageMap.Size = new System.Drawing.Size(267, 223);
+            this.tabPageMap.TabIndex = 10;
+            this.tabPageMap.Title = "Map Editor";
+            this.tabPageMap.ToolTipText = "Uthgard Map Editor";
             // 
             // xpTaskPane
             // 
             this.xpTaskPane.AutoScroll = true;
             this.xpTaskPane.ColorTable = dynamicColorTable1;
             this.xpTaskPane.Controls.Add(this.xpTGActions);
-            this.xpTaskPane.DataBindings.Add(new System.Windows.Forms.Binding("Visible", global::QuestDesigner.Properties.Settings.Default, "ShowTaskPane", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.xpTaskPane.DataBindings.Add(new System.Windows.Forms.Binding("Visible", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "ShowTaskPane", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.xpTaskPane.Dock = System.Windows.Forms.DockStyle.Left;
             this.xpTaskPane.Location = new System.Drawing.Point(0, 0);
             this.xpTaskPane.Name = "xpTaskPane";
             this.xpTaskPane.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.xpTaskPane.Size = new System.Drawing.Size(168, 153);
+            this.xpTaskPane.Size = new System.Drawing.Size(168, 248);
             this.xpTaskPane.TabIndex = 29;
             this.xpTaskPane.Text = "xpTaskPane1";
-            this.xpTaskPane.Visible = global::QuestDesigner.Properties.Settings.Default.ShowTaskPane;
+            this.xpTaskPane.Visible = global::DOL.Tools.QuestDesigner.Properties.Settings.Default.ShowTaskPane;
             // 
             // xpTGActions
             // 
             this.xpTGActions.ColorTable = dynamicColorTable1;
             this.xpTGActions.Controls.Add(this.linkSaveQuest);
-            this.xpTGActions.Controls.Add(this.linkCreateQuest);
             this.xpTGActions.Controls.Add(this.linkLoadQuest);
             this.xpTGActions.Image = ((System.Drawing.Image)(resources.GetObject("xpTGActions.Image")));
             this.xpTGActions.Location = new System.Drawing.Point(13, 3);
@@ -1997,25 +2005,10 @@ namespace QuestDesigner
             this.linkSaveQuest.Text = "Save Quest ...";
             this.linkSaveQuest.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSaveQuest_LinkClicked);
             // 
-            // linkCreateQuest
-            // 
-            this.linkCreateQuest.AutoSize = true;
-            this.linkCreateQuest.Image = global::QuestDesigner.Properties.Resources.questpart;
-            this.linkCreateQuest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.linkCreateQuest.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkCreateQuest.Location = new System.Drawing.Point(11, 88);
-            this.linkCreateQuest.Name = "linkCreateQuest";
-            this.linkCreateQuest.Padding = new System.Windows.Forms.Padding(18, 2, 0, 2);
-            this.linkCreateQuest.Size = new System.Drawing.Size(99, 17);
-            this.linkCreateQuest.TabIndex = 1;
-            this.linkCreateQuest.TabStop = true;
-            this.linkCreateQuest.Text = "Create Quest ...";
-            this.linkCreateQuest.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCreateQuest_LinkClicked);
-            // 
             // linkLoadQuest
             // 
             this.linkLoadQuest.AutoSize = true;
-            this.linkLoadQuest.Image = global::QuestDesigner.Properties.Resources.quest;
+            this.linkLoadQuest.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.quest;
             this.linkLoadQuest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkLoadQuest.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLoadQuest.Location = new System.Drawing.Point(11, 48);
@@ -2036,8 +2029,7 @@ namespace QuestDesigner
             // 
             // saveScriptDialog
             // 
-            this.saveScriptDialog.DefaultExt = "cs";
-            this.saveScriptDialog.Filter = "C# Source File|*.cs";
+            this.saveScriptDialog.Filter = "All files|*.*";
             this.saveScriptDialog.RestoreDirectory = true;
             this.saveScriptDialog.Title = "Save Questscript";
             // 
@@ -2047,17 +2039,108 @@ namespace QuestDesigner
             this.imageListNPC.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListNPC.Images.SetKeyName(0, "user.ico");
             // 
+            // dataTableAreaType
+            // 
+            this.dataTableAreaType.Columns.AddRange(new System.Data.DataColumn[] {
+            dataColumn33,
+            dataColumn34});
+            this.dataTableAreaType.TableName = "AreaType";
+            // 
+            // dataColumn33
+            // 
+            dataColumn33.ColumnName = "value";
+            // 
+            // dataColumn34
+            // 
+            dataColumn34.ColumnName = "description";
+            // 
+            // questInfo
+            // 
+            this.questInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questInfo.Location = new System.Drawing.Point(0, 0);
+            this.questInfo.Name = "questInfo";
+            this.questInfo.Size = new System.Drawing.Size(267, 223);
+            this.questInfo.TabIndex = 28;
+            // 
+            // npcView
+            // 
+            this.npcView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.npcView.Location = new System.Drawing.Point(0, 0);
+            this.npcView.Name = "npcView";
+            this.npcView.Size = new System.Drawing.Size(267, 223);
+            this.npcView.TabIndex = 0;
+            // 
+            // itemView
+            // 
+            this.itemView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemView.Location = new System.Drawing.Point(0, 0);
+            this.itemView.Name = "itemView";
+            this.itemView.Size = new System.Drawing.Size(267, 223);
+            this.itemView.TabIndex = 0;
+            // 
+            // questPartItems
+            // 
+            this.questPartItems.ActionColor = System.Drawing.Color.RosyBrown;
+            this.questPartItems.ActionSelectedColor = System.Drawing.Color.OrangeRed;
+            this.questPartItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questPartItems.ForeColor = System.Drawing.Color.Gray;
+            this.questPartItems.ForeColorSelected = System.Drawing.Color.Black;
+            this.questPartItems.Location = new System.Drawing.Point(0, 0);
+            this.questPartItems.Name = "questPartItems";
+            this.questPartItems.QuestPartRow = null;
+            this.questPartItems.QuestPartRowID = 0;
+            this.questPartItems.RequirementColor = System.Drawing.Color.Tan;
+            this.questPartItems.RequirementSelectedColor = System.Drawing.Color.Orange;
+            this.questPartItems.Size = new System.Drawing.Size(267, 223);
+            this.questPartItems.TabIndex = 0;
+            this.questPartItems.TriggerColor = System.Drawing.Color.Olive;
+            this.questPartItems.TriggerSelectedColor = System.Drawing.Color.Green;
+            // 
+            // areaView
+            // 
+            this.areaView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.areaView.Location = new System.Drawing.Point(0, 0);
+            this.areaView.Name = "areaView";
+            this.areaView.Size = new System.Drawing.Size(267, 223);
+            this.areaView.TabIndex = 2;
+            // 
+            // locationView
+            // 
+            this.locationView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.locationView.Location = new System.Drawing.Point(0, 0);
+            this.locationView.Name = "locationView";
+            this.locationView.Size = new System.Drawing.Size(267, 223);
+            this.locationView.TabIndex = 0;
+            // 
+            // customCode
+            // 
+            this.customCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customCode.Location = new System.Drawing.Point(0, 0);
+            this.customCode.Name = "customCode";
+            this.customCode.Size = new System.Drawing.Size(267, 223);
+            this.customCode.TabIndex = 3;
+            // 
+            // DXControl
+            // 
+            this.DXControl.Cursor = System.Windows.Forms.Cursors.Default;
+            this.DXControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DXControl.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.DXControl.Location = new System.Drawing.Point(0, 0);
+            this.DXControl.Name = "DXControl";
+            this.DXControl.Size = new System.Drawing.Size(267, 223);
+            this.DXControl.TabIndex = 0;
+            // 
             // QuestDesignerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 199);
+            this.ClientSize = new System.Drawing.Size(439, 294);
             this.Controls.Add(this.toolStripContainerForm);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::QuestDesigner.Properties.Settings.Default, "MainformLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Size", global::QuestDesigner.Properties.Settings.Default, "MainformSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "MainformLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Size", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "MainformSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = global::QuestDesigner.Properties.Settings.Default.MainformLocation;
+            this.Location = global::DOL.Tools.QuestDesigner.Properties.Settings.Default.MainformLocation;
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "QuestDesignerForm";
             this.Text = "QuestDesigner";
@@ -2101,9 +2184,11 @@ namespace QuestDesigner
             this.tabPageArea.ResumeLayout(false);
             this.tabPageLocation.ResumeLayout(false);
             this.tabPageCode.ResumeLayout(false);
+            this.tabPageMap.ResumeLayout(false);
             this.xpTaskPane.ResumeLayout(false);
             this.xpTGActions.ResumeLayout(false);
             this.xpTGActions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableAreaType)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2296,8 +2381,7 @@ namespace QuestDesigner
 		private CustomCode customCode;
 		private NETXP.Controls.TaskPane.XPTaskPane xpTaskPane;
 		private NETXP.Controls.TaskPane.XPTaskPaneGroup xpTGActions;
-		private System.Windows.Forms.LinkLabel linkLoadQuest;
-		private System.Windows.Forms.LinkLabel linkCreateQuest;
+        private System.Windows.Forms.LinkLabel linkLoadQuest;
 		private System.Windows.Forms.LinkLabel linkSaveQuest;
 		private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTaskPane;
@@ -2309,7 +2393,6 @@ namespace QuestDesigner
 		private QuestPartItems questPartItems;
 		private System.Data.DataTable dataTableLocation;
         private NETXP.Controls.Docking.TabPage tabPageLocation;
-        private System.Data.DataColumn dataColumn23;
 		private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem positionConverterToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
@@ -2319,7 +2402,15 @@ namespace QuestDesigner
         private System.Data.DataColumn dataColumn27;
         private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
         private Area areaView;
-        private Location locationView;		
+        private Location locationView;
+        private NETXP.Controls.Docking.TabPage tabPageMap;
+        public DOL.Tools.Mapping.Forms.DXControl DXControl;
+        private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dOL18QuestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dOL20QuestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sQLExportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dataDownloadToolStripMenuItem;
+        private System.Data.DataTable dataTableAreaType;		
     }
 }
 

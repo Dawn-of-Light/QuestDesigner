@@ -7,15 +7,16 @@ using System.Text;
 using System.Windows.Forms;
 using Flobbster.Windows.Forms;
 using System.Collections;
-using QuestDesigner.Controls;
+using DOL.Tools.QuestDesigner.Controls;
 using System.Reflection;
-using QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Util;
 using DOL.GS;
 using DOL.Database;
-using QuestDesigner.Exceptions;
+using DOL.Tools.QuestDesigner.Exceptions;
+using DOL.Tools.QuestDesigner.Converter;
 
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	public partial class Item : UserControl
 	{
@@ -166,7 +167,7 @@ namespace QuestDesigner
 				case "Bonus5Type":
 				case "ExtraBonusType":
 					spec.Category = "Magic";
-					spec.ConverterTypeName = "QuestDesigner.Converter.ItemBonusTypeConverter";
+					spec.ConverterTypeName = typeof(ItemBonusTypeConverter).FullName;
 					break;
 				case "SpellID":
 				case "ProcSpellID":
@@ -182,21 +183,21 @@ namespace QuestDesigner
 					spec.Category = "Visual";
 					break;
 				case "Color":
-					spec.ConverterTypeName = "QuestDesigner.Converter.ColorConverter";
+					spec.ConverterTypeName = typeof(DOL.Tools.QuestDesigner.Converter.ColorConverter).FullName;
 					spec.Category = "Visual";
 					break;
 
 
 				case "Item_Type":
-					spec.ConverterTypeName = "QuestDesigner.Converter.ItemTypeConverter";
+                    spec.ConverterTypeName = typeof(ItemTypeConverter).FullName;
 					spec.Category = "Internal";
 					break;
 				case "Object_Type":
-					spec.ConverterTypeName = "QuestDesigner.Converter.ObjectTypeConverter";
+                    spec.ConverterTypeName = typeof(ObjectTypeConverter).FullName;
 					spec.Category = "Internal";
 					break;
 				case "Hand":
-					spec.ConverterTypeName = "QuestDesigner.Converter.HandConverter";
+                    spec.ConverterTypeName = typeof(HandConverter).FullName;
 					spec.Category = "Internal";
 					break;
 				case "ItemTemplateID":
@@ -215,10 +216,10 @@ namespace QuestDesigner
 					spec.Category = "Stats";
 					break;
 				case "Realm":
-					spec.ConverterTypeName = "QuestDesigner.Converter.RealmConverter";
+                    spec.ConverterTypeName = typeof(RealmConverter).FullName;
 					break;
 				case "Type_Damage":
-					spec.ConverterTypeName = "QuestDesigner.Converter.DamageTypeConverter";
+                    spec.ConverterTypeName = typeof(DamageTypeConverter).FullName;
 					break;
 
 			}
@@ -248,11 +249,22 @@ namespace QuestDesigner
 
 		public void itemBag_SetValue(object sender, PropertySpecEventArgs e)
 		{
-
+            
 			if (listViewItem.SelectedItems != null && listViewItem.SelectedItems.Count>0)
 			{
-				ListViewItem item = listViewItem.SelectedItems[0];				
-				((DataRow)item.Tag)[e.Property.Name] = e.Value;				
+				ListViewItem item = listViewItem.SelectedItems[0];
+                //
+                DataRow row = (DataRow)item.Tag;
+
+                // little hack since the typconverter seems to be skipped if the mousewheel is used to select a value from propertygrid
+                if (!row[e.Property.Name].GetType().IsAssignableFrom(e.Value.GetType())) {                
+                    TypeConverter conv =(TypeConverter) Activator.CreateInstance(Assembly.GetCallingAssembly().GetType(e.Property.ConverterTypeName));
+                    e.Value = conv.ConvertTo(e.Value,row[e.Property.Name].GetType());
+                }
+                // little hackend
+
+
+				row[e.Property.Name] = e.Value;				
 			}
 		}		
 
@@ -388,6 +400,8 @@ namespace QuestDesigner
                     itemTable.Rows.Add(row);
                 }
 			}
-		}				
+		}
+
+        			
 	}
 }

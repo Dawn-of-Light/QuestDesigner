@@ -27,9 +27,9 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Collections;
 using DOL.GS;
-using QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Util;
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	public partial class NPCLookupForm : Form
 	{

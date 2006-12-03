@@ -24,7 +24,7 @@ using System.ComponentModel;
 using System.Globalization;
 using DOL.GS;
 
-namespace QuestDesigner.Converter
+namespace DOL.Tools.QuestDesigner.Converter
 {
     class ColorConverter : EnumerationConverterDatabase
     {

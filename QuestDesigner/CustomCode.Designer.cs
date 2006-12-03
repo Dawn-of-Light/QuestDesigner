@@ -1,4 +1,4 @@
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	partial class CustomCode
 	{
@@ -28,7 +28,7 @@ namespace QuestDesigner
 		/// </summary>
 		private void InitializeComponent()
 		{
-			QuestDesigner.Controls.HeaderStrip headerStripCustomCode;
+			DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStripCustomCode;
 			System.Windows.Forms.ToolStripLabel toolStripLabelCustomCode;
 			NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
 			NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
@@ -39,7 +39,7 @@ namespace QuestDesigner
 			this.textBoxLoadedCode = new System.Windows.Forms.TextBox();
 			this.tabPageUnloaded = new NETXP.Controls.Docking.TabPage();
 			this.textBoxUnloadedCode = new System.Windows.Forms.TextBox();
-			headerStripCustomCode = new QuestDesigner.Controls.HeaderStrip();
+			headerStripCustomCode = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
 			toolStripLabelCustomCode = new System.Windows.Forms.ToolStripLabel();
 			headerStripCustomCode.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tabControlCodeSection)).BeginInit();

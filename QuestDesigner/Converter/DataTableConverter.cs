@@ -25,7 +25,7 @@ using System.Collections;
 using System.Data;
 using System.Globalization;
 
-namespace QuestDesigner.Converter
+namespace DOL.Tools.QuestDesigner.Converter
 {
     class DataTableConverter : StringConverter
     {
@@ -91,6 +91,13 @@ namespace QuestDesigner.Converter
                 foreach (DataRow row in QuestDesignerMain.DesignerForm.dataSetData.Tables[tablename].Rows)
                 {
                     if (Convert.ToString(row[valueColumn]) == (string)value)
+                    {
+                        if (destinationType == typeof(string))
+                            return Convert.ChangeType(row[descriptionColumn], destinationType, culture);
+                        else
+                            return Convert.ChangeType(row[valueColumn], destinationType, culture);
+                    }
+                    else if (Convert.ToString(row[descriptionColumn]) == (string)value)
                     {
                         if (destinationType == typeof(string))
                             return Convert.ChangeType(row[descriptionColumn], destinationType, culture);

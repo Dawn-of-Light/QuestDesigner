@@ -23,7 +23,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Globalization;
 
-namespace QuestDesigner.Converter
+namespace DOL.Tools.QuestDesigner.Converter
 {
     class RegionConverter : DataTableConverter
     {

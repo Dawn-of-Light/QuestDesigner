@@ -6,12 +6,12 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using DOL.GS.Quests;
-using QuestDesigner.Util;
-using QuestDesigner.Controls;
+using DOL.Tools.QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Controls;
 using vbAccelerator.Components.Controls;
 using System.Collections;
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 
 	public partial class QuestPartItems : UserControl
@@ -20,7 +20,9 @@ namespace QuestDesigner
 
 		private bool _initializing = false;
 
-        private bool _suspendQuestPartTextUpdate = false;
+        private Object _lastItem = null;
+        private CheckedListBox _lastList = null;
+        private string _lastItemText = null;
 
 		#region UI Customization
 
@@ -82,10 +84,7 @@ namespace QuestDesigner
 		}
 
 		#endregion
-
-		// Instance of VXPLib Tooltip Manager:
-		private VXPLibrary.VXPTooltipManager tooltipManager = new VXPLibrary.VXPTooltipManagerClass();				
-
+		
 		private PopupWindowHelper popupHelper = null;
 
         private DataRowView questPartRow;
@@ -300,8 +299,6 @@ namespace QuestDesigner
 		
 		private void UpdateQuestPartText(DataRow questPartRow)
 		{
-			tooltipManager.tool.Hide(true);
-            
 			bool first = true;
 			bool isLink;
             if (questPartRow != null && questPartRow.RowState != DataRowState.Detached && questPartRow.RowState != DataRowState.Deleted)
@@ -1002,24 +999,6 @@ namespace QuestDesigner
 			toolStripLabelAction.ForeColor = ActionSelectedColor;
 			toolStripLabelTrigger.ForeColor = TriggerSelectedColor;
 			toolStripLabelRequirement.ForeColor = RequirementSelectedColor;
-			// Attaching event handler:
-			this.tooltipManager.OnActivateCustomTooltip += new VXPLibrary._IVXPTooltipManagerEvents_OnActivateCustomTooltipEventHandler(this.ttm_OnActivateCustomTooltip);
-			
-			// The following set of parameters seems to be
-			// optimum for sliders that allow delays:
-			tooltipManager.ShowDelay = 150;
-			tooltipManager.tool.FadeHide = 50;
-			tooltipManager.tool.FadeShow = 50;
-			
-			// Setting up some parameters for our simple
-			// tooltip object:
-			tooltipManager.tool.HasTail = false;
-			tooltipManager.tool.BorderColor =(uint) SystemColors.ButtonShadow.ToArgb();
-			tooltipManager.tool.HasBorder = true;			
-
-			tooltipManager.tool.Autohide = true; // Do not hide automatically
-			tooltipManager.tool.TraceMode = false;	// Follow the mouse cursor			
-
             
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestPartItems));
 
@@ -1037,6 +1016,8 @@ namespace QuestDesigner
             bindingNavigator.Items.Add(addNew);
             bindingNavigator.Refresh();
         }
+
+        
 
         void addNew_Click(object sender, EventArgs e)
         {
@@ -1080,54 +1061,66 @@ namespace QuestDesigner
 
 		#region Tooltip
 
-		// This event is called for any window that doesn't have
-		// a tooltip attached to it:
-		private void ttm_OnActivateCustomTooltip(int hWnd, string ClassName, short X, short Y, ref string Text)
-		{
-			if (hWnd == triggerTypeList.Handle.ToInt32())
-				ShowTooltip(triggerTypeList,triggerTypeList.IndexFromPoint((int)X,(int)Y));
-			else if (hWnd == requirementTypeList.Handle.ToInt32()) 
-				ShowTooltip(requirementTypeList, requirementTypeList.IndexFromPoint((int)X, (int)Y));
-			if (hWnd == actionTypeList.Handle.ToInt32()) 
-				ShowTooltip(actionTypeList, actionTypeList.IndexFromPoint((int)X, (int)Y));
-		}
 
-		private void ShowTooltip(CheckedListBox list, int index)
-		{
-			//tooltip.Hide(true);
+        private void tooltipTimer_Tick(object sender, EventArgs e)
+        {
+            // The timer has gone off, show the tooltip and
+            // disable the timer.
+            toolTip.Active = true;
+            toolTip.SetToolTip(_lastList, _lastItemText);
 
-			// Update the current QHTML document in the tooltip:
-			string helpHTML = null;
+            tooltipTimer.Enabled = false;
 
-			if (list == triggerTypeList)
-				helpHTML = GetTriggerHelp(GetTriggerTypeForDescription(Convert.ToString(triggerTypeList.Items[index])));
-			else if (list == requirementTypeList)
-				helpHTML = GetRequirementHelp(GetRequirementTypeForDescription(Convert.ToString(requirementTypeList.Items[index])));
-			else if (list == actionTypeList)
-				helpHTML = GetActionHelp(GetActionTypeForDescription(Convert.ToString(actionTypeList.Items[index])));
+            tooltipTimer.Tick -= new EventHandler(tooltipTimer_Tick);
+        }
 
-			if (helpHTML != null)
-			{				
-				tooltipManager.tool.html.SetSourceText("<body bgcolor=INFOBK text=INFOTEXT>" + helpHTML);
+        private void questTypeList_MouseMove(object sender, MouseEventArgs e)
+        {
+            _lastList = (CheckedListBox)sender;
 
-				// Because we do not even hide the tooltip we have
-				// to call recalculation of layout manually:
-				tooltipManager.tool.html.RecalculateLayout();				
+            int index = _lastList.IndexFromPoint(e.X, e.Y);
+            Object item = _lastList.Items[index];
 
-				Rectangle rect = list.GetItemRectangle(index);
-				Point pt = new Point(rect.Left, rect.Top);
-				pt.Offset(rect.Width / 3, rect.Height / 2);
-				pt = list.PointToScreen(pt);
-				tooltipManager.tool.ShowAt((short)pt.X, (short)pt.Y);
-			}
-		}
+            if (item == null)
+            {
+                // The mouse isn't over any item -- hide the tooltip
+                toolTip.Active = false;
+                tooltipTimer.Enabled = false;
+            }
+            else if (item != _lastItem)
+            {
+                // The item has changed, hide the tooltip
+                // and restart the timer.
+                toolTip.Active = false;
+                tooltipTimer.Tick += new EventHandler(tooltipTimer_Tick);
+                tooltipTimer.Enabled = true;
+
+                if (sender == triggerTypeList)
+                {
+                    _lastItemText = GetTriggerHelp(GetTriggerTypeForDescription(Convert.ToString(triggerTypeList.Items[index])));
+                }
+                else if (sender == requirementTypeList)
+                {
+                    _lastItemText = GetRequirementHelp(GetRequirementTypeForDescription(Convert.ToString(requirementTypeList.Items[index])));
+                } if (sender == actionTypeList)
+                {
+                    _lastItemText = GetActionHelp(GetActionTypeForDescription(Convert.ToString(actionTypeList.Items[index])));
+                }
+            }
+            else
+            {
+                // It's the same item -- ignore it.
+            }
+
+            _lastItem = item;
+        }
 
 		private string GetActionHelp(int actionID)
 		{
 			DataRow[] rows = DB.ActionTypeTable.Select("id=" + actionID + "");
 			if (rows.Length > 0)
 			{
-				return String.Format("{0}<hr><b>P:</b>{1}<br><b>Q:</b>{2}", new object[] { rows[0]["help"], rows[0]["p"], rows[0]["q"] });
+				return String.Format("{0}\nP:{1}\nQ:{2}", new object[] { rows[0]["help"], rows[0]["p"], rows[0]["q"] });
 			}
 			else
 			{
@@ -1141,7 +1134,7 @@ namespace QuestDesigner
 			
 			if (rows.Length > 0)
 			{
-				return String.Format("{0}<hr><b>K:</b>{1}<br><b>I:</b>{2}", new object[] { rows[0]["help"], rows[0]["k"], rows[0]["i"] });
+				return String.Format("{0}\nK:{1}\nI:{2}", new object[] { rows[0]["help"], rows[0]["k"], rows[0]["i"] });
 			}
 			else
 			{
@@ -1154,7 +1147,7 @@ namespace QuestDesigner
 			DataRow[] rows = DB.RequirementTypeTable.Select("id=" + requirmentID + "");
 			if (rows.Length > 0)
 			{
-				return String.Format("{0}<hr><b>N:</b>{1}<br><b>V:</b>{2}",new object[]{rows[0]["help"],rows[0]["n"],rows[0]["v"]});
+				return String.Format("{0}\nN:{1}\nV:{2}",new object[]{rows[0]["help"],rows[0]["n"],rows[0]["v"]});
 			}
 			else
 			{
@@ -1192,6 +1185,7 @@ namespace QuestDesigner
 			public int BeginIndex;
 			public int EndIndex;
 		}
+
         
 	}
 }

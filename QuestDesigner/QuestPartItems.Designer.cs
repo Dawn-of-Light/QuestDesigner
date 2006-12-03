@@ -1,4 +1,4 @@
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	partial class QuestPartItems
 	{
@@ -35,13 +35,13 @@ namespace QuestDesigner
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.actionTypeList = new System.Windows.Forms.CheckedListBox();
             this.requirementTypeList = new System.Windows.Forms.CheckedListBox();
-            this.headerStrip1 = new QuestDesigner.Controls.HeaderStrip();
+            this.headerStrip1 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             this.toolStripLabelTrigger = new System.Windows.Forms.ToolStripLabel();
-            this.headerStrip2 = new QuestDesigner.Controls.HeaderStrip();
+            this.headerStrip2 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             this.toolStripLabelRequirement = new System.Windows.Forms.ToolStripLabel();
-            this.headerStrip3 = new QuestDesigner.Controls.HeaderStrip();
+            this.headerStrip3 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             this.toolStripLabelAction = new System.Windows.Forms.ToolStripLabel();
-            this.questPartTextbox = new QuestDesigner.Controls.RichTextBoxEx();
+            this.questPartTextbox = new DOL.Tools.QuestDesigner.Controls.RichTextBoxEx();
             this.contextMenuStripQuestPart = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.triggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.interactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +67,8 @@ namespace QuestDesigner
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tooltipTimer = new System.Windows.Forms.Timer(this.components);
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
@@ -89,7 +91,9 @@ namespace QuestDesigner
             this.triggerTypeList.Name = "triggerTypeList";
             this.triggerTypeList.Size = new System.Drawing.Size(125, 199);
             this.triggerTypeList.TabIndex = 1;
+            this.toolTip.SetToolTip(this.triggerTypeList, "Trigger types");
             this.triggerTypeList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.triggerTypeList_ItemCheck);
+            this.triggerTypeList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.questTypeList_MouseMove);
             // 
             // splitContainerMain
             // 
@@ -141,7 +145,9 @@ namespace QuestDesigner
             this.actionTypeList.Name = "actionTypeList";
             this.actionTypeList.Size = new System.Drawing.Size(126, 199);
             this.actionTypeList.TabIndex = 3;
+            this.toolTip.SetToolTip(this.actionTypeList, "Action Types");
             this.actionTypeList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.actionTypeList_ItemCheck);
+            this.actionTypeList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.questTypeList_MouseMove);
             // 
             // requirementTypeList
             // 
@@ -153,7 +159,9 @@ namespace QuestDesigner
             this.requirementTypeList.Name = "requirementTypeList";
             this.requirementTypeList.Size = new System.Drawing.Size(125, 199);
             this.requirementTypeList.TabIndex = 2;
+            this.toolTip.SetToolTip(this.requirementTypeList, "Requirement Types");
             this.requirementTypeList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.requirementTypeList_ItemCheck);
+            this.requirementTypeList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.questTypeList_MouseMove);
             // 
             // headerStrip1
             // 
@@ -452,6 +460,10 @@ namespace QuestDesigner
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // tooltipTimer
+            // 
+            this.tooltipTimer.Tick += new System.EventHandler(this.tooltipTimer_Tick);
+            // 
             // QuestPartItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -481,17 +493,17 @@ namespace QuestDesigner
 
 		#endregion
 
-		private global::QuestDesigner.Controls.RichTextBoxEx questPartTextbox;
+		private global::DOL.Tools.QuestDesigner.Controls.RichTextBoxEx questPartTextbox;
 		private System.Windows.Forms.CheckedListBox triggerTypeList;
 		private System.Windows.Forms.SplitContainer splitContainerMain;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.CheckedListBox actionTypeList;
 		private System.Windows.Forms.CheckedListBox requirementTypeList;
-		private QuestDesigner.Controls.HeaderStrip headerStrip1;
+		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip1;
 		private System.Windows.Forms.ToolStripLabel toolStripLabelTrigger;
-		private QuestDesigner.Controls.HeaderStrip headerStrip2;
+		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip2;
 		private System.Windows.Forms.ToolStripLabel toolStripLabelRequirement;
-		private QuestDesigner.Controls.HeaderStrip headerStrip3;
+		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip3;
 		private System.Windows.Forms.ToolStripLabel toolStripLabelAction;
 		private System.Windows.Forms.BindingNavigator bindingNavigator;
 		private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
@@ -518,5 +530,7 @@ namespace QuestDesigner
 		private System.Windows.Forms.ToolStripMenuItem increaseQueststepToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem defaultStepsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem offerAcceptQuestToolStripMenuItem;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Timer tooltipTimer;
 	}
 }

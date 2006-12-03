@@ -5,7 +5,7 @@ using System.Data;
 using System.Windows.Forms;
 using DOL.GS.Quests;
 
-namespace QuestDesigner.Util
+namespace DOL.Tools.QuestDesigner.Util
 {
 	class DB
 	{
@@ -288,6 +288,61 @@ namespace QuestDesigner.Util
 			else
 				return null;
 		}
+
+        /// <summary>
+        /// Checks the given name against all defined objects in quest.
+        /// Needed to decide wether " should be added or not.
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <returns>true if objectname, else false</returns>
+        public static bool isObjectName(object value)
+        {
+            if (value is string)
+            {
+                string name = (string)value;
+                foreach (DataRow row in DB.MobTable.Rows)
+                {
+                    if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
+                        return true;
+                }
+                foreach (DataRow row in DB.ItemTemplateTable.Rows)
+                {
+                    if (row["ItemTemplateID"] is string && (string)row["ItemTemplateID"] == name)
+                        return true;
+                }
+                foreach (DataRow row in DB.AreaTable.Rows)
+                {
+                    if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
+                        return true;
+                }
+                foreach (DataRow row in DB.LocationTable.Rows)
+                {
+                    if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Checks the given name against all defined objects in quest.
+        /// Needed to decide wether " should be added or not.
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <returns>true if objectname, else false</returns>
+        public static bool isMobName(object value)
+        {
+            if (value is string)
+            {
+                string name = (string)value;
+                foreach (DataRow row in DB.MobTable.Rows)
+                {
+                    if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
+                        return true;
+                }
+            }
+            return false;
+        }
 		
 	}
 }

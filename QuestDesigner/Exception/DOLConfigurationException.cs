@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QuestDesigner.Exceptions 
+namespace DOL.Tools.QuestDesigner.Exceptions 
 {
     class DOLConfigurationException : System.Exception
     {

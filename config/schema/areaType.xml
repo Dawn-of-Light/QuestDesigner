@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<QuestData>
+	<AreaType>
+		<value>Circle</value>
+		<description>Circle</description>
+	</AreaType>
+	<AreaType>
+		<value>Square</value>
+		<description>Square</description>
+	</AreaType>	
+</QuestData>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QuestDesigner.Properties {
+namespace DOL.Tools.QuestDesigner.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace QuestDesigner.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("QuestDesigner.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DOL.Tools.QuestDesigner.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -144,6 +144,20 @@ namespace QuestDesigner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap dol {
+            get {
+                object obj = ResourceManager.GetObject("dol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap empty {
+            get {
+                object obj = ResourceManager.GetObject("empty", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap error {
             get {
                 object obj = ResourceManager.GetObject("error", resourceCulture);
@@ -242,6 +256,13 @@ namespace QuestDesigner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap mob32 {
+            get {
+                object obj = ResourceManager.GetObject("mob32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon mobIcon {
             get {
                 object obj = ResourceManager.GetObject("mobIcon", resourceCulture);
@@ -256,10 +277,24 @@ namespace QuestDesigner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap npc32 {
+            get {
+                object obj = ResourceManager.GetObject("npc32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon npcIcon {
             get {
                 object obj = ResourceManager.GetObject("npcIcon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap path {
+            get {
+                object obj = ResourceManager.GetObject("path", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

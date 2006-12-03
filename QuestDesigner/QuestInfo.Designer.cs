@@ -1,5 +1,5 @@
-using QuestDesigner.Controls;
-namespace QuestDesigner
+using DOL.Tools.QuestDesigner.Controls;
+namespace DOL.Tools.QuestDesigner
 {
 	partial class QuestInfo
 	{
@@ -31,9 +31,9 @@ namespace QuestDesigner
 		{
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-            QuestDesigner.Controls.HeaderStrip headerStrip2;
+            DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip2;
             System.Windows.Forms.ToolStripLabel toolStripLabel2;
-            QuestDesigner.Controls.HeaderStrip headerStrip1;
+            DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip1;
             System.Windows.Forms.ToolStripLabel toolStripLabel1;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.Label labelQuestName;
@@ -60,9 +60,9 @@ namespace QuestDesigner
             this.Notes = new System.Windows.Forms.TextBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            headerStrip2 = new QuestDesigner.Controls.HeaderStrip();
+            headerStrip2 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            headerStrip1 = new QuestDesigner.Controls.HeaderStrip();
+            headerStrip1 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             labelQuestName = new System.Windows.Forms.Label();
             labelTitle = new System.Windows.Forms.Label();

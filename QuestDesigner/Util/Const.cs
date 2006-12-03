@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QuestDesigner.Util
+namespace DOL.Tools.QuestDesigner.Util
 {
 	public class Const
 	{
@@ -22,6 +22,15 @@ namespace QuestDesigner.Util
 		public const char CODE_V = 'V';
 		public const char CODE_P = 'P';
 		public const char CODE_Q = 'Q';
+
+        public const string TRIGGER_I = "I";
+        public const string TRIGGER_K = "K";
+
+        public const string ACTION_P = "P";
+        public const string ACTION_Q = "Q";
+        
+        public const string REQUIREMENT_N = "N";
+        public const string REQUIREMENT_V = "V";
 
         public const string COMPARATOR_BINARY = "binary";
         public const string COMPARATOR_QUANTITY = "quantity";

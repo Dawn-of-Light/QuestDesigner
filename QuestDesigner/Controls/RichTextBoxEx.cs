@@ -4,8 +4,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Text;
+using Marshal = System.Runtime.InteropServices.Marshal;
 
-namespace QuestDesigner.Controls
+namespace DOL.Tools.QuestDesigner.Controls
 {
 	public class RichTextBoxEx : RichTextBox
 	{
@@ -361,32 +362,32 @@ namespace QuestDesigner.Controls
 		private void SetSelectionStyle(UInt32 mask, UInt32 effect)
 		{
 			CHARFORMAT2_STRUCT cf = new CHARFORMAT2_STRUCT();
-			cf.cbSize = (UInt32)Marshal.SizeOf(cf);
+            cf.cbSize = (UInt32)System.Runtime.InteropServices.Marshal.SizeOf(cf);
 			cf.dwMask = mask;
 			cf.dwEffects = effect;
 
 			IntPtr wpar = new IntPtr(SCF_SELECTION);
-			IntPtr lpar = Marshal.AllocCoTaskMem( Marshal.SizeOf( cf ) ); 
-			Marshal.StructureToPtr(cf, lpar, false);
+            IntPtr lpar = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Runtime.InteropServices.Marshal.SizeOf(cf));
+            System.Runtime.InteropServices.Marshal.StructureToPtr(cf, lpar, false);
 
 			IntPtr res = SendMessage(Handle, EM_SETCHARFORMAT, wpar, lpar);
 
-			Marshal.FreeCoTaskMem(lpar);
+            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(lpar);
 		}
 
 		private int GetSelectionStyle(UInt32 mask, UInt32 effect)
 		{
 			CHARFORMAT2_STRUCT cf = new CHARFORMAT2_STRUCT();
-			cf.cbSize = (UInt32)Marshal.SizeOf(cf);
+            cf.cbSize = (UInt32)System.Runtime.InteropServices.Marshal.SizeOf(cf);
 			cf.szFaceName = new char[32];
 
 			IntPtr wpar = new IntPtr(SCF_SELECTION);
-			IntPtr lpar = 	Marshal.AllocCoTaskMem( Marshal.SizeOf( cf ) ); 
-			Marshal.StructureToPtr(cf, lpar, false);
+            IntPtr lpar = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Runtime.InteropServices.Marshal.SizeOf(cf));
+            System.Runtime.InteropServices.Marshal.StructureToPtr(cf, lpar, false);
 
 			IntPtr res = SendMessage(Handle, EM_GETCHARFORMAT, wpar, lpar);
 
-			cf = (CHARFORMAT2_STRUCT)Marshal.PtrToStructure(lpar, typeof(CHARFORMAT2_STRUCT));
+            cf = (CHARFORMAT2_STRUCT)System.Runtime.InteropServices.Marshal.PtrToStructure(lpar, typeof(CHARFORMAT2_STRUCT));
 
 			int state;
 			// dwMask holds the information which properties are consistent throughout the selection:
@@ -401,8 +402,8 @@ namespace QuestDesigner.Controls
 			{
 				state = -1;
 			}
-			
-			Marshal.FreeCoTaskMem(lpar);
+
+            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(lpar);
 			return state;
 		}
 	}

@@ -26,10 +26,10 @@ using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Collections;
-using QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Util;
 
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	public partial class ItemLookupForm : Form
 	{

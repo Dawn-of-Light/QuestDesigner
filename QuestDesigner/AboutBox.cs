@@ -8,8 +8,9 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Configuration;
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	public partial class AboutBox : NETXP.Forms.About
 	{
@@ -39,7 +40,7 @@ namespace QuestDesigner
 
 			AppName.Text = objProduct.Product;
 			BigTitle.Text = objTitle.Title;
-			ProdVer.Text = Application.ProductVersion;
+			ProdVer.Text = QuestDesignerMain.Version;
 			AppDesc.Text = objDescription.Description;
 			CopyrightLabel.Text = objCopyright.Copyright;
 			SerialNo.Text = objGuid.Value;
@@ -48,14 +49,14 @@ namespace QuestDesigner
 		}
 
 		private void LookForUpdatesLink_Click(object sender, EventArgs e)
-		{
-			string targetURL = "http://dol.psykonikcorp.net:8080/display/Tools/Quest+Designer";
+		{            
+			string targetURL = System.Configuration.ConfigurationManager.AppSettings["UpdateUrl"];
 			System.Diagnostics.Process.Start(targetURL);
 		}
 
 		private void ProdInfoLink_Click(object sender, EventArgs e)
 		{
-			string targetURL = "http://dol.psykonikcorp.net:8080/display/Tools/Quest+Designer";
+            string targetURL = System.Configuration.ConfigurationManager.AppSettings["InfoUrl"];
 			System.Diagnostics.Process.Start(targetURL);
 		}
 		

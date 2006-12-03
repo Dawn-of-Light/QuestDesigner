@@ -5,11 +5,13 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Util;
 using Flobbster.Windows.Forms;
-using QuestDesigner.Converter;
+using DOL.Tools.QuestDesigner.Converter;
+using Microsoft.DirectX;
+using System.Reflection;
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
     public partial class Location : UserControl
     {
@@ -31,17 +33,13 @@ namespace QuestDesigner
                     break;
                 case "RegionID":
                     spec.ConverterTypeName = typeof(RegionConverter).FullName;
+                    spec.Category = "Location";
                     break;
-                case "ZoneID":
-                    spec.ConverterTypeName = typeof(ZoneConverter).FullName;
-                    spec.Category = "Local";
-                    break;
+                case "Heading":    
                 case "X":
                 case "Y":
                 case "Z":
-                    spec.Category = "Global";
-                    break;
-                case "Heading":
+                    spec.Category = "Location";
                     break;
             }
             return spec;
@@ -54,50 +52,22 @@ namespace QuestDesigner
                 DataRowView rowView;
                 switch (e.Property.Name)
                 {
-                    case "Zone X":
-                        rowView = ((DataRowView)DB.locationBinding.Current);
-                        if (rowView["ZoneID"] is int)
-                        {
-                            rowView["X"] = Utils.ConvertZoneXToRegion((int)rowView["ZoneID"], (int)e.Value);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Select a Zone first, or the global coordinate cannot be computed.");
-                        }
-                        break;
-                    case "Zone Y":
-                        rowView = ((DataRowView)DB.locationBinding.Current);
-                        if (rowView["ZoneID"] is int)
-                        {
-                            rowView["Y"] = Utils.ConvertZoneYToRegion((int)rowView["ZoneID"], (int)e.Value);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Select a Zone first, or the global coordinate cannot be computed.");
-                        }
-                        break;
-                    case "Zone Z":
-                        rowView = ((DataRowView)DB.locationBinding.Current);
-                        rowView["Z"] = e.Value;
-                        break;
-
                     case "Name":
                         rowView = ((DataRowView)DB.locationBinding.Current);
-                        if (string.IsNullOrEmpty(Convert.ToString(rowView["ObjectName"])))
-                        {
-                            rowView["ObjectName"] = Utils.ConvertToObjectName((string)e.Value);
-                        }
-                        ((DataRowView)DB.locationBinding.Current)[e.Property.Name] = e.Value;
-                        break;
-                    case "RegionID":
-                        if (e.Value is int)
-                            DB.zoneBinding.Filter = "regionID=" + e.Value;
-                        else
-                            DB.zoneBinding.Filter = null;
-
+                        
+                        rowView["ObjectName"] = Utils.ConvertToObjectName((string)e.Value);
+                        
                         ((DataRowView)DB.locationBinding.Current)[e.Property.Name] = e.Value;
                         break;
                     default:
+
+                        // little hack since the typconverter seems to be skipped if the mousewheel is used to select a value from propertygrid
+                        if (!DB.LocationTable.Columns[e.Property.Name].DataType.IsAssignableFrom(e.Value.GetType()))
+                        {
+                            TypeConverter conv = (TypeConverter)Activator.CreateInstance(Assembly.GetCallingAssembly().GetType(e.Property.ConverterTypeName));
+                            e.Value = conv.ConvertTo(e.Value, DB.LocationTable.Columns[e.Property.Name].DataType);
+                        }
+
                         ((DataRowView)DB.locationBinding.Current)[e.Property.Name] = e.Value;
                         break;
                 }
@@ -110,29 +80,11 @@ namespace QuestDesigner
         {
             if (DB.locationBinding.Current != null)
             {
-                DataRowView rowView;
+                DataRowView rowView = ((DataRowView)DB.locationBinding.Current);
                 switch (e.Property.Name)
-                {
-                    case "Zone X":
-                        rowView = ((DataRowView)DB.locationBinding.Current);
-                        if (rowView["ZoneID"] is int && rowView["X"] is int)
-                        {
-                            e.Value = Utils.ConvertRegionXToZone((int)rowView["ZoneID"], (int)rowView["X"]);
-                        }
-
-                        break;
-                    case "Zone Y":
-                        rowView = ((DataRowView)DB.locationBinding.Current);
-                        if (rowView["ZoneID"] is int && rowView["Y"] is int)
-                        {
-                            e.Value = Utils.ConvertRegionYToZone((int)rowView["ZoneID"], (int)rowView["Y"]);
-                        }
-                        break;
-                    case "Zone Z":
-                        e.Value = ((DataRowView)DB.locationBinding.Current)["Z"];
-                        break;
+                {                    
                     default:
-                        e.Value = ((DataRowView)DB.locationBinding.Current)[e.Property.Name];
+                        e.Value = rowView[e.Property.Name];
                         break;
                 }
             }
@@ -149,10 +101,7 @@ namespace QuestDesigner
             foreach (DataColumn col in DB.LocationTable.Columns)
             {
                 locationBag.Properties.Add(getLocationProperties(col));
-            }
-            locationBag.Properties.Add(new PropertySpec("Zone X", typeof(int), "Local", "Zone related X Coordinate"));
-            locationBag.Properties.Add(new PropertySpec("Zone Y", typeof(int), "Local", "Zone related Y Coordinate"));
-            locationBag.Properties.Add(new PropertySpec("Zone Z", typeof(int), "Local", "Zone related Z Coordinate"));
+            }            
 
             propertyGridLocation.SelectedObject = locationBag;
 
@@ -217,6 +166,48 @@ namespace QuestDesigner
             }
             else
                 propertyGridLocation.Enabled = false;
+        }
+
+        private void pasteLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IDataObject ido = Clipboard.GetDataObject();
+
+            if (ido.GetDataPresent(ClipboardLocation.Format.Name))
+            {                
+                ClipboardLocation loc = (ClipboardLocation)ido.GetData(ClipboardLocation.Format.Name);                
+
+                if (DB.locationBinding.Current!=null)
+                {
+                    DataRowView rowView = (DataRowView)DB.locationBinding.Current;                    
+                    rowView["X"] = loc.X;
+                    rowView["Y"] = loc.Y;
+                    rowView["Z"] = loc.Z;
+                    rowView["regionID"] = loc.RegionID;
+                }
+            }
+        }
+
+        private void showOnMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DB.locationBinding.Current != null)
+            {
+
+                DataRowView rowView =(DataRowView) DB.locationBinding.Current;
+
+                if (rowView["X"] != DBNull.Value && rowView["Y"] != DBNull.Value && rowView["regionID"] != DBNull.Value)
+                {
+
+                    Vector3 location = new Vector3();
+
+                    location.X = (float)Convert.ToDouble(rowView["X"]);
+                    location.Y = (float)Convert.ToDouble(rowView["Y"]);
+
+                    int regionID = Convert.ToInt32(rowView["regionID"]);
+                    QuestDesignerMain.DesignerForm.DXControl.ShowLocation(location, regionID);
+                    QuestDesignerMain.DesignerForm.ShowTab("Map Editor");
+                }
+
+            }
         }
     }
 }

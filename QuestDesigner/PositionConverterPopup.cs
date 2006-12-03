@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace QuestDesigner
+namespace DOL.Tools.QuestDesigner
 {
 	public partial class PositionConverterPopup : NETXP.Forms.PopupForm
 	{
