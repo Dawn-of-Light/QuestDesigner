@@ -824,7 +824,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             this.dataColumnSpeed.ColumnName = "Speed";
             this.dataColumnSpeed.DataType = typeof(int);
-            this.dataColumnSpeed.DefaultValue = 100;
+            this.dataColumnSpeed.DefaultValue = 191;
             // 
             // dataColumnHeading
             // 

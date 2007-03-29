@@ -156,11 +156,14 @@ namespace DOL.Tools.QuestDesigner
                     spec.ConverterTypeName = typeof(RegionConverter).FullName;
 					spec.Category = "Location";
 					break;
-				case "ClassType":
+                case "RespawnInterval":
+                    spec.Description = "Insert respawn value in milliseconds, 1000 = 1 second.\n-1 default respawn interval computed based on level and realm.";
+                    spec.Category = "Internal";
+                    break;
+                case "ClassType":
 				case "FactionID":
 				case "Flags":
-				case "MobID":
-				case "RespawnInterval":
+				case "MobID":				
 				case "ObjectName":
 					spec.Category = "Internal";
 					break;
@@ -393,6 +396,8 @@ namespace DOL.Tools.QuestDesigner
 
                     if (loc.Heading>=0)
                         ((DataRow)item.Tag)["heading"] = loc.Heading;
+
+                    propertyGridNPC.Refresh();
                 }
             }
         }

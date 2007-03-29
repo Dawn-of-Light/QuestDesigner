@@ -183,6 +183,8 @@ namespace DOL.Tools.QuestDesigner
                     rowView["Y"] = loc.Y;
                     rowView["Z"] = loc.Z;
                     rowView["regionID"] = loc.RegionID;
+
+                    propertyGridLocation.Refresh();
                 }
             }
         }
