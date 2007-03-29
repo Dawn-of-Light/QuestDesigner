@@ -65,6 +65,12 @@ namespace DOL.Tools.QuestDesigner
 			QuestDesignerMain.InitDB();           			
         }
 
+        public QuestDesignerForm(FileInfo loadFile)
+            : this()
+        {
+            LoadQuest(loadFile.FullName);
+        }
+
         public Boolean registerCreateScriptExtension(string description, string extension, FileInfo xsltFile)
         {
             saveScriptDialog.Filter = description+"|*."+extension+"|"+ saveScriptDialog.Filter;

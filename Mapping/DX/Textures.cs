@@ -168,7 +168,7 @@ namespace DOL.Tools.Mapping.DX
                     if (File.Exists(cacheFile.FullName))
                     {
                         //tex = TextureLoader.FromFile(Common.Device, file,0,0,1,Usage.None,Format.Unknown,Pool.Managed,Filter.None,Filter.None,System.Drawing.Color.Violet.ToArgb());
-                        tex = TextureLoader.FromFile(Common.Device, cacheFile.FullName, 2048, 2048, 1, Usage.RenderTarget, Format.Dxt5, Pool.Default, Filter.None, Filter.None, (int)0xFFFFFF00);
+                        tex = TextureLoader.FromFile(Common.Device, cacheFile.FullName, 0, 0, 1, Usage.RenderTarget, Format.Dxt5, Pool.Default, Filter.None, Filter.None, (int)0xFFFFFF00);
                     }
                     else
                     {

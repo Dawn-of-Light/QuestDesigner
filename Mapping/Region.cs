@@ -244,39 +244,18 @@ namespace DOL.Tools.Mapping.Map
                 // Lets calc our region borders!
                 foreach (Region region in m_Regions)
                 {
-                    int minWidth = -1;
-                    int minHeight = -1;
+                    int minWidth = int.MaxValue;
+                    int minHeight = int.MaxValue;
                     int maxWidth = -1;
                     int maxHeight = -1;
 
                     foreach (Zone zone in region.Zones)
                     {
-                        if (minWidth == -1)
-                            minWidth = zone.X;
-                        if (minHeight == -1)
-                            minHeight = zone.Y;
-                        if (maxWidth == -1)
-                            maxWidth = zone.X + zone.Width;
-                        if (maxHeight == -1)
-                            maxHeight = zone.Y + zone.Height;
+                        minWidth = Math.Min(minWidth, zone.X);
+                        minHeight = Math.Min(minHeight, zone.Y);
 
-                        int newMinW = zone.X;
-                        int newMinH = zone.Y;
-
-                        int newMaxW = zone.X + zone.Width;
-                        int newMaxH = zone.Y + zone.Height;
-
-                        if (newMinW < minWidth)
-                            minWidth = newMinW;
-
-                        if (newMinH < minHeight)
-                            minHeight = newMinH;
-
-                        if (newMaxW > maxWidth)
-                            maxWidth = newMaxW;
-
-                        if (newMaxH > maxHeight)
-                            maxHeight = newMaxH;
+                        maxWidth = Math.Max(maxWidth,zone.X + zone.Width);
+                        maxHeight = Math.Max(maxHeight,zone.Y + zone.Height);
                     }
 
                     region.MinWidth = minWidth;
@@ -338,7 +317,9 @@ namespace DOL.Tools.Mapping.Map
                                 0.0f, 0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f));
             Objects.Add(bj);
             QuestDesignerMain.DesignerForm.DXControl.HBObject = bj;
-                        
+            
+
+
             try
             {
                 if (backgroundWorker!=null && backgroundWorker.IsBusy)
@@ -377,17 +358,29 @@ namespace DOL.Tools.Mapping.Map
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Maximum = 256*256*16;
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.SmallChange = 256;
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.LargeChange = 2560;
-            QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Value = 256*256*16/2; //0
+            //QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Value = 256*256*16/2; //0
 
             //QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Minimum = -(256*256*16);
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Minimum = 0;
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Maximum = 256*256*16;
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.SmallChange = 256;
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.LargeChange = 2560;
-            QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Value = 256*256*16/2; //0
+            //QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Value = 256*256*16/2; //0
 
             QuestDesignerMain.DesignerForm.DXControl.Zoom.Value = (QuestDesignerMain.DesignerForm.DXControl.Zoom.Maximum -
                                                          QuestDesignerMain.DesignerForm.DXControl.Zoom.Minimum)/3*2;
+
+            
+            
+
+            int maxSize = Math.Max (region.MaxHeight - region.MinHeight,region.MaxWidth- region.MinWidth);
+            int zoomFactor = (QuestDesignerMain.DesignerForm.DXControl.Zoom.Maximum - QuestDesignerMain.DesignerForm.DXControl.Zoom.Minimum) / 16 * (maxSize / (256 * 256));
+
+            // restrcit zoomFactor zo Minimum-Maximum
+            QuestDesignerMain.DesignerForm.DXControl.Zoom.Value = Math.Min(QuestDesignerMain.DesignerForm.DXControl.Zoom.Maximum, Math.Max(QuestDesignerMain.DesignerForm.DXControl.Zoom.Minimum, zoomFactor));
+
+            QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Value = (region.MaxHeight + region.MinHeight) /2;
+            QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Value = (region.MaxWidth + region.MinHeight) / 2;
 
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Enabled = true;
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Enabled = true;
@@ -424,6 +417,7 @@ namespace DOL.Tools.Mapping.Map
                     e.Cancel = true;
                     e.Result = false;
                     return;
+
                 }
 
                 //float scaleX = zone.Width / tex.GetLevelDescription(0).Width;
@@ -433,7 +427,7 @@ namespace DOL.Tools.Mapping.Map
                 GeometryObj obj =
                     new GeometryObj(model, DrawLevel.Background, DetailLevel.Nondetailed, zone.X, zone.Y, 0.0f, 0.0f,
                                     0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f));
-                Objects.Add(obj);
+                Objects.Add(obj);                
 
                 QuestDesignerMain.DesignerForm.StatusProgress.PerformStep();
                 QuestDesignerMain.DesignerForm.DXControl.Invalidate();
@@ -517,15 +511,9 @@ namespace DOL.Tools.Mapping.Map
             {
                 Region a = (Region) x;
                 Region b = (Region) y;
-
-                if (a.ID < b.ID)
-                    return -1;
-                if (a.ID == b.ID)
-                    return 0;
-                if (a.ID > b.ID)
-                    return 1;
-
-                return 0;
+                                
+                return (b.Zones.Count - a.Zones.Count) * 10000 + a.Name.CompareTo(b.Name);
+            
             }
         }
     }

@@ -65,11 +65,11 @@ namespace DOL.Tools.QuestDesigner
             System.Data.DataColumn dataColumnDefaultNPC;
             System.Data.DataColumn dataColumn28;
             System.Data.DataColumn dataColumn32;
+            System.Data.DataColumn dataColumn33;
+            System.Data.DataColumn dataColumn34;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
             NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
             NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
-            System.Data.DataColumn dataColumn33;
-            System.Data.DataColumn dataColumn34;
             this.dataSetQuest = new System.Data.DataSet();
             this.dataTableQuestPart = new System.Data.DataTable();
             this.dataTableTrigger = new System.Data.DataTable();
@@ -214,6 +214,7 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnEnumerationValue = new System.Data.DataColumn();
             this.dataColumnEnumerationName = new System.Data.DataColumn();
             this.dataColumnEnumerationDescription = new System.Data.DataColumn();
+            this.dataTableAreaType = new System.Data.DataTable();
             this.dataColumnRealmValue = new System.Data.DataColumn();
             this.dataColumnRealmDescription = new System.Data.DataColumn();
             this.dataColumnTextTypeValue = new System.Data.DataColumn();
@@ -263,13 +264,21 @@ namespace DOL.Tools.QuestDesigner
             this.StatusProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.tabControlMain = new NETXP.Controls.Docking.TabControl();
             this.tabPageQuest = new NETXP.Controls.Docking.TabPage();
+            this.questInfo = new DOL.Tools.QuestDesigner.QuestInfo();
             this.tabPageNPC = new NETXP.Controls.Docking.TabPage();
+            this.npcView = new DOL.Tools.QuestDesigner.NPC();
             this.tabPageItem = new NETXP.Controls.Docking.TabPage();
+            this.itemView = new DOL.Tools.QuestDesigner.Item();
             this.tabPageQuestPart = new NETXP.Controls.Docking.TabPage();
+            this.questPartItems = new DOL.Tools.QuestDesigner.QuestPartItems();
             this.tabPageArea = new NETXP.Controls.Docking.TabPage();
+            this.areaView = new DOL.Tools.QuestDesigner.Area();
             this.tabPageLocation = new NETXP.Controls.Docking.TabPage();
+            this.locationView = new DOL.Tools.QuestDesigner.Location();
             this.tabPageCode = new NETXP.Controls.Docking.TabPage();
+            this.customCode = new DOL.Tools.QuestDesigner.CustomCode();
             this.tabPageMap = new NETXP.Controls.Docking.TabPage();
+            this.DXControl = new DOL.Tools.Mapping.Forms.DXControl();
             this.xpTaskPane = new NETXP.Controls.TaskPane.XPTaskPane();
             this.xpTGActions = new NETXP.Controls.TaskPane.XPTaskPaneGroup();
             this.linkSaveQuest = new System.Windows.Forms.LinkLabel();
@@ -278,15 +287,6 @@ namespace DOL.Tools.QuestDesigner
             this.saveScriptDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.imageListNPC = new System.Windows.Forms.ImageList(this.components);
-            this.dataTableAreaType = new System.Data.DataTable();
-            this.questInfo = new DOL.Tools.QuestDesigner.QuestInfo();
-            this.npcView = new DOL.Tools.QuestDesigner.NPC();
-            this.itemView = new DOL.Tools.QuestDesigner.Item();
-            this.questPartItems = new DOL.Tools.QuestDesigner.QuestPartItems();
-            this.areaView = new DOL.Tools.QuestDesigner.Area();
-            this.locationView = new DOL.Tools.QuestDesigner.Location();
-            this.customCode = new DOL.Tools.QuestDesigner.CustomCode();
-            this.DXControl = new DOL.Tools.Mapping.Forms.DXControl();
             dataColumnQuestPartIF = new System.Data.DataColumn();
             dataColumnTriggerQuestPart = new System.Data.DataColumn();
             dataColumnTriggerType = new System.Data.DataColumn();
@@ -344,6 +344,7 @@ namespace DOL.Tools.QuestDesigner
             ((System.ComponentModel.ISupportInitialize)(this.dataTableRequirementType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableHand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableeEnumeration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableAreaType)).BeginInit();
             this.menuStripMain.SuspendLayout();
             this.toolStripContainerForm.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainerForm.ContentPanel.SuspendLayout();
@@ -362,7 +363,6 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageMap.SuspendLayout();
             this.xpTaskPane.SuspendLayout();
             this.xpTGActions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableAreaType)).BeginInit();
             this.SuspendLayout();
             // 
             // dataColumnQuestPartIF
@@ -544,6 +544,14 @@ namespace DOL.Tools.QuestDesigner
             // 
             dataColumn32.ColumnName = "height";
             dataColumn32.DataType = typeof(int);
+            // 
+            // dataColumn33
+            // 
+            dataColumn33.ColumnName = "value";
+            // 
+            // dataColumn34
+            // 
+            dataColumn34.ColumnName = "description";
             // 
             // dataSetQuest
             // 
@@ -835,12 +843,14 @@ namespace DOL.Tools.QuestDesigner
             // dataColumnEquipmentTemplateID
             // 
             this.dataColumnEquipmentTemplateID.ColumnName = "EquipmentTemplateID";
+            this.dataColumnEquipmentTemplateID.DefaultValue = "0";
             this.dataColumnEquipmentTemplateID.Namespace = "";
             // 
             // dataColumnFlags
             // 
             this.dataColumnFlags.ColumnName = "Flags";
             this.dataColumnFlags.DataType = typeof(byte);
+            this.dataColumnFlags.DefaultValue = ((byte)(0));
             this.dataColumnFlags.Namespace = "";
             // 
             // dataColumnAggroLevel
@@ -955,6 +965,7 @@ namespace DOL.Tools.QuestDesigner
             // dataColumnItemName
             // 
             this.dataColumnItemName.ColumnName = "Name";
+            this.dataColumnItemName.DefaultValue = "";
             // 
             // dataColumnItemLevel
             // 
@@ -1014,6 +1025,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             this.dataColumnHand.ColumnName = "Hand";
             this.dataColumnHand.DataType = typeof(int);
+            this.dataColumnHand.DefaultValue = 0;
             // 
             // dataColumnTypeDamage
             // 
@@ -1169,46 +1181,55 @@ namespace DOL.Tools.QuestDesigner
             // 
             this.dataColumnEmblem.ColumnName = "Emblem";
             this.dataColumnEmblem.DataType = typeof(int);
+            this.dataColumnEmblem.DefaultValue = 0;
             // 
             // dataColumnEffect
             // 
             this.dataColumnEffect.ColumnName = "Effect";
             this.dataColumnEffect.DataType = typeof(int);
+            this.dataColumnEffect.DefaultValue = 0;
             // 
             // dataColumnModelExtension
             // 
             this.dataColumnModelExtension.ColumnName = "ModelExtension";
             this.dataColumnModelExtension.DataType = typeof(byte);
+            this.dataColumnModelExtension.DefaultValue = ((byte)(0));
             // 
             // dataColumn73
             // 
             this.dataColumn73.ColumnName = "MaxCount";
             this.dataColumn73.DataType = typeof(int);
+            this.dataColumn73.DefaultValue = 1;
             // 
             // dataColumn74
             // 
             this.dataColumn74.ColumnName = "PackSize";
             this.dataColumn74.DataType = typeof(int);
+            this.dataColumn74.DefaultValue = 1;
             // 
             // dataColumn75
             // 
             this.dataColumn75.ColumnName = "Charges";
             this.dataColumn75.DataType = typeof(int);
+            this.dataColumn75.DefaultValue = 0;
             // 
             // dataColumnMaxCount
             // 
             this.dataColumnMaxCount.ColumnName = "MaxCharges";
             this.dataColumnMaxCount.DataType = typeof(int);
+            this.dataColumnMaxCount.DefaultValue = 0;
             // 
             // dataColumnSpellID
             // 
             this.dataColumnSpellID.ColumnName = "SpellID";
             this.dataColumnSpellID.DataType = typeof(int);
+            this.dataColumnSpellID.DefaultValue = 0;
             // 
             // dataColumnProcSpellID
             // 
             this.dataColumnProcSpellID.ColumnName = "ProcSpellID";
             this.dataColumnProcSpellID.DataType = typeof(int);
+            this.dataColumnProcSpellID.DefaultValue = 0;
             // 
             // dataTableQuestStep
             // 
@@ -1499,6 +1520,13 @@ namespace DOL.Tools.QuestDesigner
             // 
             this.dataColumnEnumerationDescription.ColumnName = "Description";
             // 
+            // dataTableAreaType
+            // 
+            this.dataTableAreaType.Columns.AddRange(new System.Data.DataColumn[] {
+            dataColumn33,
+            dataColumn34});
+            this.dataTableAreaType.TableName = "AreaType";
+            // 
             // dataColumnRealmValue
             // 
             this.dataColumnRealmValue.ColumnName = "value";
@@ -1596,7 +1624,7 @@ namespace DOL.Tools.QuestDesigner
             this.toolStripMenuItem1});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(439, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(614, 24);
             this.menuStripMain.TabIndex = 1;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -1810,11 +1838,11 @@ namespace DOL.Tools.QuestDesigner
             this.toolStripContainerForm.ContentPanel.AutoScroll = true;
             this.toolStripContainerForm.ContentPanel.Controls.Add(this.tabControlMain);
             this.toolStripContainerForm.ContentPanel.Controls.Add(this.xpTaskPane);
-            this.toolStripContainerForm.ContentPanel.Size = new System.Drawing.Size(439, 248);
+            this.toolStripContainerForm.ContentPanel.Size = new System.Drawing.Size(614, 402);
             this.toolStripContainerForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainerForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainerForm.Name = "toolStripContainerForm";
-            this.toolStripContainerForm.Size = new System.Drawing.Size(439, 294);
+            this.toolStripContainerForm.Size = new System.Drawing.Size(614, 448);
             this.toolStripContainerForm.TabIndex = 0;
             this.toolStripContainerForm.Text = "toolStripContainer2";
             // 
@@ -1831,7 +1859,7 @@ namespace DOL.Tools.QuestDesigner
             this.StatusProgress});
             this.statusStrip.Location = new System.Drawing.Point(0, 0);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(439, 22);
+            this.statusStrip.Size = new System.Drawing.Size(614, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -1845,7 +1873,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             this.StatusLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(322, 17);
+            this.StatusLabel.Size = new System.Drawing.Size(497, 17);
             this.StatusLabel.Spring = true;
             this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.StatusLabel.Click += new System.EventHandler(this.StatusLabel_Click);
@@ -1870,7 +1898,7 @@ namespace DOL.Tools.QuestDesigner
             this.tabControlMain.ShowArrows = true;
             this.tabControlMain.ShowClose = false;
             this.tabControlMain.ShrinkPagesToFit = false;
-            this.tabControlMain.Size = new System.Drawing.Size(271, 248);
+            this.tabControlMain.Size = new System.Drawing.Size(446, 402);
             this.tabControlMain.TabIndex = 3;
             this.tabControlMain.TabPages.AddRange(new NETXP.Controls.Docking.TabPage[] {
             this.tabPageQuest,
@@ -1887,80 +1915,156 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageQuest.Controls.Add(this.questInfo);
             this.tabPageQuest.Location = new System.Drawing.Point(2, 23);
             this.tabPageQuest.Name = "tabPageQuest";
-            this.tabPageQuest.Size = new System.Drawing.Size(267, 223);
+            this.tabPageQuest.Size = new System.Drawing.Size(442, 377);
             this.tabPageQuest.TabIndex = 3;
             this.tabPageQuest.Title = "QuestInfo";
             this.tabPageQuest.ToolTipText = "Detailed Information about Quest";
+            // 
+            // questInfo
+            // 
+            this.questInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questInfo.Location = new System.Drawing.Point(0, 0);
+            this.questInfo.Name = "questInfo";
+            this.questInfo.Size = new System.Drawing.Size(442, 377);
+            this.questInfo.TabIndex = 28;
             // 
             // tabPageNPC
             // 
             this.tabPageNPC.Controls.Add(this.npcView);
             this.tabPageNPC.Location = new System.Drawing.Point(2, 23);
             this.tabPageNPC.Name = "tabPageNPC";
-            this.tabPageNPC.Size = new System.Drawing.Size(267, 223);
+            this.tabPageNPC.Size = new System.Drawing.Size(442, 377);
             this.tabPageNPC.TabIndex = 4;
             this.tabPageNPC.Title = "NPC";
             this.tabPageNPC.ToolTipText = "NPC\'s associated with the quest";
+            // 
+            // npcView
+            // 
+            this.npcView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.npcView.Location = new System.Drawing.Point(0, 0);
+            this.npcView.Name = "npcView";
+            this.npcView.Size = new System.Drawing.Size(442, 377);
+            this.npcView.TabIndex = 0;
             // 
             // tabPageItem
             // 
             this.tabPageItem.Controls.Add(this.itemView);
             this.tabPageItem.Location = new System.Drawing.Point(2, 23);
             this.tabPageItem.Name = "tabPageItem";
-            this.tabPageItem.Size = new System.Drawing.Size(267, 223);
+            this.tabPageItem.Size = new System.Drawing.Size(442, 377);
             this.tabPageItem.TabIndex = 5;
             this.tabPageItem.Title = "Item";
             this.tabPageItem.ToolTipText = "Item\'s associated with the quest";
+            // 
+            // itemView
+            // 
+            this.itemView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemView.Location = new System.Drawing.Point(0, 0);
+            this.itemView.Name = "itemView";
+            this.itemView.Size = new System.Drawing.Size(442, 377);
+            this.itemView.TabIndex = 0;
             // 
             // tabPageQuestPart
             // 
             this.tabPageQuestPart.Controls.Add(this.questPartItems);
             this.tabPageQuestPart.Location = new System.Drawing.Point(2, 23);
             this.tabPageQuestPart.Name = "tabPageQuestPart";
-            this.tabPageQuestPart.Size = new System.Drawing.Size(267, 223);
+            this.tabPageQuestPart.Size = new System.Drawing.Size(442, 377);
             this.tabPageQuestPart.TabIndex = 6;
             this.tabPageQuestPart.Title = "QuestPart";
             this.tabPageQuestPart.ToolTipText = "QuestPart\'s making up the whole logic of a quest";
+            // 
+            // questPartItems
+            // 
+            this.questPartItems.ActionColor = System.Drawing.Color.RosyBrown;
+            this.questPartItems.ActionSelectedColor = System.Drawing.Color.OrangeRed;
+            this.questPartItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questPartItems.ForeColor = System.Drawing.Color.Gray;
+            this.questPartItems.ForeColorSelected = System.Drawing.Color.Black;
+            this.questPartItems.Location = new System.Drawing.Point(0, 0);
+            this.questPartItems.Name = "questPartItems";
+            this.questPartItems.QuestPartRow = null;
+            this.questPartItems.QuestPartRowID = 0;
+            this.questPartItems.RequirementColor = System.Drawing.Color.Tan;
+            this.questPartItems.RequirementSelectedColor = System.Drawing.Color.Orange;
+            this.questPartItems.Size = new System.Drawing.Size(442, 377);
+            this.questPartItems.TabIndex = 0;
+            this.questPartItems.TriggerColor = System.Drawing.Color.Olive;
+            this.questPartItems.TriggerSelectedColor = System.Drawing.Color.Green;
             // 
             // tabPageArea
             // 
             this.tabPageArea.Controls.Add(this.areaView);
             this.tabPageArea.Location = new System.Drawing.Point(2, 23);
             this.tabPageArea.Name = "tabPageArea";
-            this.tabPageArea.Size = new System.Drawing.Size(267, 223);
+            this.tabPageArea.Size = new System.Drawing.Size(442, 377);
             this.tabPageArea.TabIndex = 7;
             this.tabPageArea.Title = "Area";
             this.tabPageArea.ToolTipText = "Area\'s used within a quest";
+            // 
+            // areaView
+            // 
+            this.areaView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.areaView.Location = new System.Drawing.Point(0, 0);
+            this.areaView.Name = "areaView";
+            this.areaView.Size = new System.Drawing.Size(442, 377);
+            this.areaView.TabIndex = 2;
             // 
             // tabPageLocation
             // 
             this.tabPageLocation.Controls.Add(this.locationView);
             this.tabPageLocation.Location = new System.Drawing.Point(2, 23);
             this.tabPageLocation.Name = "tabPageLocation";
-            this.tabPageLocation.Size = new System.Drawing.Size(267, 223);
+            this.tabPageLocation.Size = new System.Drawing.Size(442, 377);
             this.tabPageLocation.TabIndex = 9;
             this.tabPageLocation.Title = "Location";
             this.tabPageLocation.ToolTipText = "Define Locations used for QuestParts";
+            // 
+            // locationView
+            // 
+            this.locationView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.locationView.Location = new System.Drawing.Point(0, 0);
+            this.locationView.Name = "locationView";
+            this.locationView.Size = new System.Drawing.Size(442, 377);
+            this.locationView.TabIndex = 0;
             // 
             // tabPageCode
             // 
             this.tabPageCode.Controls.Add(this.customCode);
             this.tabPageCode.Location = new System.Drawing.Point(2, 23);
             this.tabPageCode.Name = "tabPageCode";
-            this.tabPageCode.Size = new System.Drawing.Size(267, 223);
+            this.tabPageCode.Size = new System.Drawing.Size(442, 377);
             this.tabPageCode.TabIndex = 8;
             this.tabPageCode.Title = "CustomCode";
             this.tabPageCode.ToolTipText = "CustomCode of the quest ";
+            // 
+            // customCode
+            // 
+            this.customCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customCode.Location = new System.Drawing.Point(0, 0);
+            this.customCode.Name = "customCode";
+            this.customCode.Size = new System.Drawing.Size(442, 377);
+            this.customCode.TabIndex = 3;
             // 
             // tabPageMap
             // 
             this.tabPageMap.Controls.Add(this.DXControl);
             this.tabPageMap.Location = new System.Drawing.Point(2, 23);
             this.tabPageMap.Name = "tabPageMap";
-            this.tabPageMap.Size = new System.Drawing.Size(267, 223);
+            this.tabPageMap.Size = new System.Drawing.Size(442, 377);
             this.tabPageMap.TabIndex = 10;
             this.tabPageMap.Title = "Map Editor";
             this.tabPageMap.ToolTipText = "Uthgard Map Editor";
+            // 
+            // DXControl
+            // 
+            this.DXControl.Cursor = System.Windows.Forms.Cursors.Default;
+            this.DXControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DXControl.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.DXControl.Location = new System.Drawing.Point(0, 0);
+            this.DXControl.Name = "DXControl";
+            this.DXControl.Size = new System.Drawing.Size(442, 377);
+            this.DXControl.TabIndex = 0;
             // 
             // xpTaskPane
             // 
@@ -1972,7 +2076,7 @@ namespace DOL.Tools.QuestDesigner
             this.xpTaskPane.Location = new System.Drawing.Point(0, 0);
             this.xpTaskPane.Name = "xpTaskPane";
             this.xpTaskPane.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.xpTaskPane.Size = new System.Drawing.Size(168, 248);
+            this.xpTaskPane.Size = new System.Drawing.Size(168, 402);
             this.xpTaskPane.TabIndex = 29;
             this.xpTaskPane.Text = "xpTaskPane1";
             this.xpTaskPane.Visible = global::DOL.Tools.QuestDesigner.Properties.Settings.Default.ShowTaskPane;
@@ -2039,102 +2143,11 @@ namespace DOL.Tools.QuestDesigner
             this.imageListNPC.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListNPC.Images.SetKeyName(0, "user.ico");
             // 
-            // dataTableAreaType
-            // 
-            this.dataTableAreaType.Columns.AddRange(new System.Data.DataColumn[] {
-            dataColumn33,
-            dataColumn34});
-            this.dataTableAreaType.TableName = "AreaType";
-            // 
-            // dataColumn33
-            // 
-            dataColumn33.ColumnName = "value";
-            // 
-            // dataColumn34
-            // 
-            dataColumn34.ColumnName = "description";
-            // 
-            // questInfo
-            // 
-            this.questInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questInfo.Location = new System.Drawing.Point(0, 0);
-            this.questInfo.Name = "questInfo";
-            this.questInfo.Size = new System.Drawing.Size(267, 223);
-            this.questInfo.TabIndex = 28;
-            // 
-            // npcView
-            // 
-            this.npcView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.npcView.Location = new System.Drawing.Point(0, 0);
-            this.npcView.Name = "npcView";
-            this.npcView.Size = new System.Drawing.Size(267, 223);
-            this.npcView.TabIndex = 0;
-            // 
-            // itemView
-            // 
-            this.itemView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemView.Location = new System.Drawing.Point(0, 0);
-            this.itemView.Name = "itemView";
-            this.itemView.Size = new System.Drawing.Size(267, 223);
-            this.itemView.TabIndex = 0;
-            // 
-            // questPartItems
-            // 
-            this.questPartItems.ActionColor = System.Drawing.Color.RosyBrown;
-            this.questPartItems.ActionSelectedColor = System.Drawing.Color.OrangeRed;
-            this.questPartItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questPartItems.ForeColor = System.Drawing.Color.Gray;
-            this.questPartItems.ForeColorSelected = System.Drawing.Color.Black;
-            this.questPartItems.Location = new System.Drawing.Point(0, 0);
-            this.questPartItems.Name = "questPartItems";
-            this.questPartItems.QuestPartRow = null;
-            this.questPartItems.QuestPartRowID = 0;
-            this.questPartItems.RequirementColor = System.Drawing.Color.Tan;
-            this.questPartItems.RequirementSelectedColor = System.Drawing.Color.Orange;
-            this.questPartItems.Size = new System.Drawing.Size(267, 223);
-            this.questPartItems.TabIndex = 0;
-            this.questPartItems.TriggerColor = System.Drawing.Color.Olive;
-            this.questPartItems.TriggerSelectedColor = System.Drawing.Color.Green;
-            // 
-            // areaView
-            // 
-            this.areaView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.areaView.Location = new System.Drawing.Point(0, 0);
-            this.areaView.Name = "areaView";
-            this.areaView.Size = new System.Drawing.Size(267, 223);
-            this.areaView.TabIndex = 2;
-            // 
-            // locationView
-            // 
-            this.locationView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.locationView.Location = new System.Drawing.Point(0, 0);
-            this.locationView.Name = "locationView";
-            this.locationView.Size = new System.Drawing.Size(267, 223);
-            this.locationView.TabIndex = 0;
-            // 
-            // customCode
-            // 
-            this.customCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customCode.Location = new System.Drawing.Point(0, 0);
-            this.customCode.Name = "customCode";
-            this.customCode.Size = new System.Drawing.Size(267, 223);
-            this.customCode.TabIndex = 3;
-            // 
-            // DXControl
-            // 
-            this.DXControl.Cursor = System.Windows.Forms.Cursors.Default;
-            this.DXControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DXControl.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.DXControl.Location = new System.Drawing.Point(0, 0);
-            this.DXControl.Name = "DXControl";
-            this.DXControl.Size = new System.Drawing.Size(267, 223);
-            this.DXControl.TabIndex = 0;
-            // 
             // QuestDesignerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 294);
+            this.ClientSize = new System.Drawing.Size(614, 448);
             this.Controls.Add(this.toolStripContainerForm);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "MainformLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.DataBindings.Add(new System.Windows.Forms.Binding("Size", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "MainformSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -2164,6 +2177,7 @@ namespace DOL.Tools.QuestDesigner
             ((System.ComponentModel.ISupportInitialize)(this.dataTableRequirementType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableHand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableeEnumeration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableAreaType)).EndInit();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.toolStripContainerForm.BottomToolStripPanel.ResumeLayout(false);
@@ -2188,7 +2202,6 @@ namespace DOL.Tools.QuestDesigner
             this.xpTaskPane.ResumeLayout(false);
             this.xpTGActions.ResumeLayout(false);
             this.xpTGActions.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableAreaType)).EndInit();
             this.ResumeLayout(false);
 
         }

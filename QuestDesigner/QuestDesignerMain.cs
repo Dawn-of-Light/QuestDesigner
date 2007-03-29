@@ -138,19 +138,27 @@ namespace DOL.Tools.QuestDesigner
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             //RELEASE MODE; ERROR DIALOG
             try
             {
+                
+
                 Form.CheckForIllegalCrossThreadCalls = false;            
 
                 WorkingDirectory = Application.StartupPath+"\\";
                 
                 Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);            
+                Application.SetCompatibleTextRenderingDefault(false);
 
-                Application.Run(DesignerForm);                
+                // check for file to load
+                if (args.Length > 0 && File.Exists(args[0]))
+                {
+                    qdForm = new QuestDesignerForm(new FileInfo(args[0]));
+                }
+
+                Application.Run(DesignerForm);
                 Environment.Exit(0);
             }            
             catch (Exception e)

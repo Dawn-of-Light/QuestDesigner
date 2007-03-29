@@ -1079,6 +1079,11 @@ namespace DOL.Tools.QuestDesigner
             _lastList = (CheckedListBox)sender;
 
             int index = _lastList.IndexFromPoint(e.X, e.Y);
+            
+            // no valid index found in list skip display of tooltip
+            if (index < 0)
+                return;
+
             Object item = _lastList.Items[index];
 
             if (item == null)
