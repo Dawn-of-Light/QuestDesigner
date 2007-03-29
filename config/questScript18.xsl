@@ -137,16 +137,15 @@ namespace <xsl:value-of select="Namespace"/> {
 				<xsl:value-of select="ObjectName"/>.Y = <xsl:value-of select="Y"/>;
 				<xsl:value-of select="ObjectName"/>.Z = <xsl:value-of select="Z"/>;
 				<xsl:value-of select="ObjectName"/>.Heading = <xsl:value-of select="Heading"/>;
-				//<xsl:value-of select="ObjectName"/>.RespawnInterval = <xsl:value-of select="RespawnInterval"/>;
+				<xsl:value-of select="ObjectName"/>.RespawnInterval = <xsl:value-of select="RespawnInterval"/>;
 				<xsl:if test="MeleeDamageType"><xsl:value-of select="ObjectName"/>.EquipmentTemplateID = "<xsl:value-of select="EquipmentTemplateID"/>";
 				</xsl:if>
-
-				{
-					StandardMobBrain brain = new StandardMobBrain();
-					brain.AggroLevel = <xsl:value-of select="AggroLevel"/>;
-					brain.AggroRange = <xsl:value-of select="AggroRange"/>;
-					<xsl:value-of select="ObjectName"/>.SetOwnBrain(brain);
-				}
+				
+				StandardMobBrain brain = new StandardMobBrain();
+				brain.AggroLevel = <xsl:value-of select="AggroLevel"/>;
+				brain.AggroRange = <xsl:value-of select="AggroRange"/>;
+				<xsl:value-of select="ObjectName"/>.SetOwnBrain(brain);
+				
 				//You don't have to store the created mob in the db if you don't want,
 				//it will be recreated each time it is not found, just comment the following
 				//line if you rather not modify your database
@@ -241,7 +240,7 @@ namespace <xsl:value-of select="Namespace"/> {
 				<xsl:if test="ModelExtension"><xsl:value-of select="ItemTemplateID"/>.ModelExtension = <xsl:value-of select="ModelExtension"/>;
 				</xsl:if>																						
 				<xsl:value-of select="ItemTemplateID"/>.Quality = <xsl:value-of select="Quality"/>;
-				<xsl:value-of select="ItemTemplateID"/>.MaxQuality = <xsl:value-of select="MaxQuality"/>;
+				//<xsl:value-of select="ItemTemplateID"/>.MaxQuality = <xsl:value-of select="MaxQuality"/>;
 				<xsl:value-of select="ItemTemplateID"/>.Condition = <xsl:value-of select="Condition"/>;
 				<xsl:value-of select="ItemTemplateID"/>.MaxCondition = <xsl:value-of select="MaxCondition"/>;
 				<xsl:value-of select="ItemTemplateID"/>.Durability = <xsl:value-of select="Durability"/>;
