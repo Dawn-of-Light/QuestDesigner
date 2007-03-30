@@ -360,17 +360,29 @@ namespace DOL.Tools.QuestDesigner
                         try
                         {
                             String dolColumn = QuestDesignerMain.DatabaseAdapter.ConvertXMLColumnToDOLColumn(column.ColumnName);
-                            PropertyInfo field = mob.GetType().GetProperty(dolColumn);                            
+                            PropertyInfo field = mob.GetType().GetProperty(dolColumn);
                             if (field != null)
                                 row[column.ColumnName] = field.GetValue(mob, null);
                             else
-                                throw new DOLConfigurationException("No Property found in DOL Mob object for column: " + column.ColumnName);
+                            {
+                                if (dolColumn == "ObjectName" || dolColumn == "AddToWorld")
+                                {
+                                    //skipping ObjectName since it a QuestDesigner internal value.
+                                }
+                                else
+                                {
+                                    throw new DOLConfigurationException("No Property found in DOL Mob object for column: " + column.ColumnName);
+                                }
+                            }
 
                         }
                         catch (DOLConfigurationException ex)
                         {
                             QuestDesignerMain.HandleException(ex);
                         }
+
+                        // generate objectname since it doesn't exists in the dol world.
+                        row["ObjectName"] = Utils.ConvertToObjectName(Convert.ToString(row["Name"]));
                     }
                     npcTable.Rows.Add(row);
                 }

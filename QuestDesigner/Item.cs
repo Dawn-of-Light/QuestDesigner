@@ -388,8 +388,8 @@ namespace DOL.Tools.QuestDesigner
                             if (field != null)
                                 row[column.ColumnName] = field.GetValue(item, null);
                             else
-                            {
-                                throw new DOLConfigurationException("No property found in DOL item object for column :" + column.ColumnName);
+                            {                                
+                                throw new DOLConfigurationException("No property found in DOL item object for column :" + column.ColumnName);                                                                
                             }
                         }
                         catch (DOLConfigurationException ex)
@@ -397,6 +397,9 @@ namespace DOL.Tools.QuestDesigner
                             QuestDesignerMain.HandleException(ex);
                         }
                     }
+
+                    //row["ObjectName"] = Utils.ConvertToObjectName(Convert.ToString(row["Name"]));
+
                     itemTable.Rows.Add(row);
                 }
 			}

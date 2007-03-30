@@ -817,7 +817,7 @@ namespace DOL.Tools.QuestDesigner
             // dataColumnClassType
             // 
             this.dataColumnClassType.ColumnName = "ClassType";
-            this.dataColumnClassType.DefaultValue = "DOL.GS.GameMob";
+            this.dataColumnClassType.DefaultValue = "DOL.GS.GameNPC";
             this.dataColumnClassType.Namespace = "";
             // 
             // dataColumnSpeed
@@ -903,7 +903,9 @@ namespace DOL.Tools.QuestDesigner
             // 
             // dataColumnObjectName
             // 
+            this.dataColumnObjectName.AllowDBNull = false;
             this.dataColumnObjectName.ColumnName = "ObjectName";
+            this.dataColumnObjectName.DefaultValue = "objectName";
             // 
             // dataTableItemTemplate
             // 
