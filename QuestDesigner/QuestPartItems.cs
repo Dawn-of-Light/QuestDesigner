@@ -278,7 +278,9 @@ namespace DOL.Tools.QuestDesigner
 		protected void RefreshQuestPartText()
 		{            
 			questPartTextbox.BeginUpdate();
-			
+
+            int oldStart = questPartTextbox.SelectionStart;
+            
 			questPartTextbox.Clear();
 			questPartTextbox.Select(0, 0);
 			questPartInfos.Clear();
@@ -294,6 +296,18 @@ namespace DOL.Tools.QuestDesigner
 				UpdateQuestPartText(row);
 			}
 
+            if (oldStart >= 0)
+            {
+                if (oldStart < questPartTextbox.TextLength)
+                {
+                    questPartTextbox.Select(oldStart,0);
+                }
+                else
+                {
+                    questPartTextbox.Select(questPartTextbox.TextLength,0);
+                }
+            }
+            
 			questPartTextbox.EndUpdate();
 		}		
 		
@@ -626,10 +640,12 @@ namespace DOL.Tools.QuestDesigner
 
 		private void questPartTextbox_LinkClicked(object sender, LinkClickedEventArgs e)
 		{
-
+            
 			string code = e.LinkText.Substring(e.LinkText.IndexOf('#')+1);
 			int id = Convert.ToInt32(code.Substring(0,code.IndexOf(':')));
 			char param = Convert.ToChar(code.Substring(code.IndexOf(':')+1));
+
+            int questPartID = -1;
 
 			ISelector selector = null;
 			switch (param) {
@@ -639,8 +655,8 @@ namespace DOL.Tools.QuestDesigner
 					DataRow[] rows = DB.TriggerTable.Select("ID=" + id);
 					if (rows.Length > 0)
 					{
-						DataRow triggerRow = rows[0];						
-
+						DataRow triggerRow = rows[0];
+                        questPartID = (int) triggerRow["QuestPartID"];
 						int triggerType = (int)triggerRow["Type"];
 						DataRow triggerTypeRow = DB.GetTriggerTypeRowForID(triggerType);
 
@@ -657,8 +673,8 @@ namespace DOL.Tools.QuestDesigner
 					DataRow[] rows = DB.RequirementTable.Select("ID=" + id);
 					if (rows.Length > 0)
 					{
-						DataRow requirementRow = rows[0];						
-						
+						DataRow requirementRow = rows[0];
+                        questPartID = (int)requirementRow["QuestPartID"];
 						int requirementType = (int)requirementRow["Type"];
 						DataRow requirementTypeRow = DB.GetRequirementTypeRowForID(requirementType);
 
@@ -683,6 +699,7 @@ namespace DOL.Tools.QuestDesigner
 					if (rows.Length > 0)
 					{
 						DataRow actionRow = rows[0];
+                        questPartID = (int)actionRow["QuestPartID"];
 						int actionType = (int)actionRow["Type"];
 						DataRow actionTypeRow = DB.GetActionTypeRowForID(actionType);
 						
@@ -711,6 +728,18 @@ namespace DOL.Tools.QuestDesigner
 					Log.Error("Encountered Selector that is no subclass of System.Windows.Form, and cannot be displayed therefore: " + selector.GetType().Name);
 				}
 			}
+
+            // select the clicked questPart
+            if (questPartID >= 0)
+            {
+                int index = DB.questPartBinding.Find("ID", questPartID);
+                if (index >= 0)
+                {
+                    DataRowView questPartRow = (DataRowView)DB.questPartBinding[index];
+                    QuestPartTextInfo info = GetInfoForQuestPartRow(questPartRow.Row);
+                    questPartTextbox.Select(info.BeginIndex, 0);                    
+                }
+            }
 		}
 
 		void selector_OnItemDeleting(object sender, ItemSelectorEvent e)
@@ -904,7 +933,7 @@ namespace DOL.Tools.QuestDesigner
 			// Add Quest Offer Step
 			DataRow newRow = DB.QuestPartTable.NewRow();
 			if (DB.MobTable.Rows.Count > 0)
-				newRow["NPC"] = DB.MobTable.Rows[0]["ObjectName"];
+				newRow["defaultNPC"] = DB.MobTable.Rows[0]["ObjectName"];
 
 			DB.QuestPartTable.Rows.Add(newRow);
 			int questPartID = (int)newRow["ID"];
@@ -916,7 +945,7 @@ namespace DOL.Tools.QuestDesigner
 			// Add Quest Accept Step
 			newRow = DB.QuestPartTable.NewRow();
 			if (DB.MobTable.Rows.Count > 0)
-				newRow["NPC"] = DB.MobTable.Rows[0]["ObjectName"];
+				newRow["defaultNPC"] = DB.MobTable.Rows[0]["ObjectName"];
 
 			DB.QuestPartTable.Rows.Add(newRow);
 			questPartID = (int)newRow["ID"];
@@ -930,7 +959,7 @@ namespace DOL.Tools.QuestDesigner
 			// Add Quest Decline Step
 			newRow = DB.QuestPartTable.NewRow();
 			if (DB.MobTable.Rows.Count > 0)
-				newRow["NPC"] = DB.MobTable.Rows[0]["ObjectName"];
+				newRow["defaultNPC"] = DB.MobTable.Rows[0]["ObjectName"];
 
 			DB.QuestPartTable.Rows.Add(newRow);
 			questPartID = (int)newRow["ID"];
@@ -1055,7 +1084,7 @@ namespace DOL.Tools.QuestDesigner
             RefreshQuestPartText();
             if (e.Action == DataRowAction.Add)
             {
-                DB.questPartBinding.MoveLast();
+                // move to currently selected questPart???
             }
 		}
 

@@ -367,6 +367,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>BaseSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuestDesigner\Controls\Selectors\TextSelector.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TextSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuestDesigner\CustomCode.resx">
       <SubType>Designer</SubType>
       <DependentUpon>CustomCode.cs</DependentUpon>

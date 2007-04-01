@@ -38,7 +38,7 @@ namespace DOL.Tools.QuestDesigner.Controls
 
                 if (row[Const.ACTION_Q] is string && ((string)row[Const.ACTION_Q]).Contains("["))
                 {
-                    MatchCollection matches = Regex.Matches((string)row[Const.ACTION_P], "\\[(.)*\\]", RegexOptions.Compiled);
+                    MatchCollection matches = Regex.Matches((string)row[Const.ACTION_Q], "\\[(.)*\\]", RegexOptions.Compiled);
                     foreach (Match match in matches)
                     {
                         keywords.Add(match.Value.Trim(WHISPER_TRIMS));

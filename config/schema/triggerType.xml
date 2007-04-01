@@ -129,7 +129,7 @@ Possible parameters:
 		<help>Player whispers the word K to GameLiving I</help>
 		<k>Whisper:string</k>
 		<i>GameLiving:string</i>
-		<text>the player wispers $K{0}$ to $I{1}$</text>
+		<text>the player whispers $K{0}$ to $I{1}$</text>
 	</TriggerType>
 	<TriggerType>
 		<value>eTriggerType.Timer</value>

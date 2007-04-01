@@ -197,10 +197,12 @@ namespace DOL.Tools.QuestDesigner.Util
 			// parameter
 			if (type.StartsWith("QuestType"))
 			{
-				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "this quest" : defaultValue;
-				else
-					return "the quest " + value;
+                if (String.IsNullOrEmpty(value))
+                    return defaultValue == null ? "this quest" : defaultValue;
+                else if (value == DB.QuestTable.Rows[0]["Namespace"] + "." + DB.QuestTable.Rows[0]["Name"])
+                    return "this quest";
+                else
+                    return "the quest " + value;
 			}
 			else if (type.StartsWith("GameLiving") || type.StartsWith("GameNPC"))
 			{
