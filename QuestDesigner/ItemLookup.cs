@@ -44,9 +44,10 @@ namespace DOL.Tools.QuestDesigner
                 IList items = QuestDesignerMain.DatabaseAdapter.GetItemList();
                 if (items.Count > 0)
                 {
-                    comboBoxItem.DataSource = items;
+                    
                     comboBoxItem.DisplayMember = DOLDatabaseAdapter.ITEM_NAME;
                     comboBoxItem.ValueMember = DOLDatabaseAdapter.ITEM_ID;
+                    comboBoxItem.DataSource = items;
 
                     propertyGridItem.SelectedObject = comboBoxItem.SelectedItem;
                     //propertyGridItem.DataBindings.Add(new System.Windows.Forms.Binding("SelectedObject", this.comboBoxItem, "SelectedItem", false));

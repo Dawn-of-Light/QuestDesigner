@@ -40,8 +40,11 @@ namespace DOL.Tools.QuestDesigner
 {
     public static class QuestDesignerMain
     {		
-        public static string XSL_PATH = QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["XLSFilePath"];        
-		
+        public static string XSL_PATH = QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["XLSFilePath"];
+
+        public static string SERVER_CONFIG_PATH = QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["DOLServerConfigFile"];
+
+        public static string SERVER_CONFIG_TEMPLATE_PATH = QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["DOLServerConfigTemplateFile"];        
 
         private static DOLDatabaseAdapter databaseAdapter = null;
 
@@ -152,6 +155,8 @@ namespace DOL.Tools.QuestDesigner
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
+                InitConfig();
+
                 // check for file to load
                 if (args.Length > 0 && File.Exists(args[0]))
                 {
@@ -207,6 +212,21 @@ namespace DOL.Tools.QuestDesigner
         public static void HandleException(Exception e)
         {
             Log.Error(e.Message);
+        }
+
+        public static void InitConfig()
+        {
+            if (!File.Exists(SERVER_CONFIG_PATH))
+            {
+                if (File.Exists(SERVER_CONFIG_TEMPLATE_PATH))
+                {
+                    File.Copy(SERVER_CONFIG_TEMPLATE_PATH, SERVER_CONFIG_PATH, false);
+                }
+                else
+                {
+                    Log.Error("No Template file for DOL Server config found. Should be located in " + SERVER_CONFIG_TEMPLATE_PATH);
+                }
+            }
         }
 
         public static void InitDB()

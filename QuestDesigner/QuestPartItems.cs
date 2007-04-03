@@ -1,3 +1,22 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +45,7 @@ namespace DOL.Tools.QuestDesigner
 
 		#region UI Customization
 
-		private Color foreColorSelected = Color.Gray;
+		private Color foreColorSelected = Color.Black;
 
 		public Color ForeColorSelected
 		{
@@ -121,7 +140,7 @@ namespace DOL.Tools.QuestDesigner
 
 		private IList<QuestPartTextInfo> questPartInfos = new List<QuestPartTextInfo>();
 		
-		public void SetDataSet(DataSet questSet, DataSet dataSet) {
+		public void SetDataSet() {
             
             DB.ActionTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
             DB.ActionTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
@@ -131,7 +150,8 @@ namespace DOL.Tools.QuestDesigner
             DB.RequirementTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
 
             DB.QuestPartTable.RowChanged += new DataRowChangeEventHandler(QuestPartTable_RowChanged);
-
+            DB.QuestPartTable.RowDeleted += new DataRowChangeEventHandler(QuestPartTable_RowDeleted);
+            
             triggerTypeList.Items.Clear();
             foreach (DataRow row in DB.TriggerTypeTable.Rows)
             {
@@ -160,16 +180,28 @@ namespace DOL.Tools.QuestDesigner
             RefreshQuestPartText();
 		}
 
+        void QuestPartTable_RowDeleted(object sender, DataRowChangeEventArgs e)
+        {
+            if (DB.isSuspended)
+                return;
+            
+            RefreshQuestPartText();
+        }
+
         void QuestPartTable_RowChanged(object sender, DataRowChangeEventArgs e)
         {
+            if (DB.isSuspended)
+                return;
+
             if ( e.Action == DataRowAction.Change )
-            {
+            {                
                 RefreshQuestPart(e.Row);
                 RefreshQuestPartText();
             } 
             else if (e.Action == DataRowAction.Delete) {
                 RefreshQuestPart(null);
                 RefreshQuestPartText();
+                
             } 
             else if (e.Action == DataRowAction.Add)                
             {
@@ -275,7 +307,7 @@ namespace DOL.Tools.QuestDesigner
 		#endregion
 		
 
-		protected void RefreshQuestPartText()
+		public void RefreshQuestPartText()
 		{            
 			questPartTextbox.BeginUpdate();
 
@@ -285,14 +317,15 @@ namespace DOL.Tools.QuestDesigner
 			questPartTextbox.Select(0, 0);
 			questPartInfos.Clear();
 			bool first = true;
-			foreach (DataRow row in DB.QuestPartTable.Rows)
+			foreach (DataRowView rowView in DB.questPartBinding.List)
 			{
+                DataRow row = rowView.Row;
                 if (row.RowState == DataRowState.Deleted)
                     continue;
 
 				if (!first)
 					questPartTextbox.InsertText("\n\n");
-				first = false;
+				first = false;                
 				UpdateQuestPartText(row);
 			}
 
@@ -309,7 +342,35 @@ namespace DOL.Tools.QuestDesigner
             }
             
 			questPartTextbox.EndUpdate();
-		}		
+		}
+
+        protected void RefreshQuestPartText(DataRow row)
+        {
+            questPartTextbox.BeginUpdate();
+
+            int oldStart = questPartTextbox.SelectionStart;
+                                   
+            if (row.RowState == DataRowState.Deleted)
+                return;
+            
+            // update questpart
+            UpdateQuestPartText(row);            
+
+            // reselect questpart
+            if (oldStart >= 0)
+            {
+                if (oldStart < questPartTextbox.TextLength)
+                {
+                    questPartTextbox.Select(oldStart, 0);
+                }
+                else
+                {
+                    questPartTextbox.Select(questPartTextbox.TextLength, 0);
+                }
+            }
+
+            questPartTextbox.EndUpdate();
+        }	
 		
 		private void UpdateQuestPartText(DataRow questPartRow)
 		{
@@ -321,29 +382,42 @@ namespace DOL.Tools.QuestDesigner
 				bool selected = (Convert.ToInt16(questPartRow["ID"]) == QuestPartRowID);
 				
 				// textinfo
-				QuestPartTextInfo textinfo = GetInfoForQuestPartRow(questPartRow);								
+				QuestPartTextInfo textinfo = GetInfoForQuestPartRow(questPartRow);
+
+                //
+                string DBG_oldtext = null;
+                int DBG_oldBeginIndex = -1;
+                int DBG_oldEndIndex = -1;
+                //
+
 				if (textinfo !=null) {
 					questPartTextbox.SelectRange(textinfo.BeginIndex, textinfo.EndIndex);
 					questPartTextbox.ReadOnly = false;
+                    
+                    DBG_oldtext = questPartTextbox.SelectedText;
+                    DBG_oldBeginIndex = textinfo.BeginIndex;
+                    DBG_oldEndIndex = textinfo.EndIndex;
+
 					questPartTextbox.SelectedText = "";
 					questPartTextbox.ReadOnly = true;
 				} else {
-					textinfo = new QuestPartTextInfo();					
-					questPartInfos.Add(textinfo);
+					textinfo = new QuestPartTextInfo();
+                    textinfo.QuestPartID = (int)questPartRow["ID"];
+                    textinfo.BeginIndex = questPartTextbox.SelectionStart;					
 				}
-				textinfo.BeginIndex = questPartTextbox.SelectionStart;				
+								
 				// textinfo
-
 				questPartTextbox.Select(textinfo.BeginIndex, 0);
 				int colorBegin = questPartTextbox.SelectionStart;
-				// Trigger
-
+                
+                // Trigger
+                #region Trigger
                 DataRow[] triggerRows = DB.TriggerTable.Select("QuestPartID=" + questPartRow["ID"]);                
 				questPartTextbox.InsertText("If ");				
-				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ForeColorSelected : questPartTextbox.ForeColor);
+				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ForeColorSelected : ForeColor);
 				colorBegin = questPartTextbox.SelectionEnd;
                 if (triggerRows!=null && triggerRows.Length > 0)
-				{					
+				{
 
 					foreach (DataRow row in triggerRows)
 					{
@@ -382,17 +456,19 @@ namespace DOL.Tools.QuestDesigner
 				}
 
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd,selected ? TriggerSelectedColor : TriggerColor);				
-				colorBegin = questPartTextbox.SelectionEnd;
-				// Requirements
+#endregion
 
+                colorBegin = questPartTextbox.SelectionEnd;
 
-				DataRow[] requirementRows = DB.RequirementTable.Select("QuestPartID=" + questPartRow["ID"]);
+                // Requirements
+                #region Requirements
+                DataRow[] requirementRows = DB.RequirementTable.Select("QuestPartID=" + questPartRow["ID"]);
 
 				if (requirementRows.Length > 0)
 				{
 					questPartTextbox.InsertText(" and ");
 
-					questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ForeColorSelected : questPartTextbox.ForeColor);					
+					questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ForeColorSelected : ForeColor);					
 					colorBegin = questPartTextbox.SelectionEnd;					
 
 					first = true;
@@ -431,12 +507,14 @@ namespace DOL.Tools.QuestDesigner
 					// color
 					questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd,selected ? RequirementSelectedColor : RequirementColor);					
 					colorBegin = questPartTextbox.SelectionEnd;
-				}
-				
+                }
+                #endregion
 
-				// Actions
-				questPartTextbox.InsertText(" then ");
-				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd,selected ? ForeColorSelected : questPartTextbox.ForeColor );				
+                // Actions
+                #region Actions
+                
+                questPartTextbox.InsertText(" then ");
+				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd,selected ? ForeColorSelected : ForeColor );				
 				colorBegin = questPartTextbox.SelectionEnd;
 
 				DataRow[] actionRows = DB.ActionTable.Select("QuestPartID=" + questPartRow["ID"]);
@@ -478,23 +556,37 @@ namespace DOL.Tools.QuestDesigner
 				else 
 				{
 					questPartTextbox.InsertText("nothing happens");
-				}
-
-				// end
+                }                
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ActionSelectedColor : ActionColor);
-				questPartTextbox.InsertText(".");
+
+                #endregion
+                // end
+                questPartTextbox.InsertText(".");
 
 				// recalculate index of textinfos after current one
-				if (textinfo.EndIndex > 0)
-				{
-					int newDifference = questPartTextbox.SelectionEnd - textinfo.EndIndex;
-					
-					for (int i = questPartInfos.IndexOf(textinfo)+ 1; i< questPartInfos.Count;i++) {
-						QuestPartTextInfo info = questPartInfos[i];
-						info.BeginIndex += newDifference;
-						info.EndIndex += newDifference;
-					}
-				}
+                string questPartText = questPartTextbox.Text.Substring(textinfo.BeginIndex, questPartTextbox.SelectionEnd - textinfo.BeginIndex);
+                if (questPartText.Contains("\n"))
+                {
+                    Log.Info(questPartText);
+                }
+
+                if (questPartInfos.Contains(textinfo))
+                {
+                    int newDifference = questPartTextbox.SelectionEnd - textinfo.EndIndex;
+
+                    for (int i = 0; i < questPartInfos.Count; i++)
+                    {
+                        if (textinfo.BeginIndex < questPartInfos[i].BeginIndex)
+                        {
+                            questPartInfos[i].BeginIndex += newDifference;
+                            questPartInfos[i].EndIndex += newDifference;
+                        }
+                    }
+                }
+                else
+                {
+                    questPartInfos.Add(textinfo);
+                }
 				textinfo.EndIndex = questPartTextbox.SelectionEnd;				
 
 				questPartTextbox.EndUpdate();
@@ -562,7 +654,7 @@ namespace DOL.Tools.QuestDesigner
 					triggerRow["QuestPartID"] = QuestPartRow["ID"];
 					triggerRow["Type"] = triggerType;
 
-					DB.TriggerTable.Rows.Add(triggerRow);
+					DB.TriggerTable.Rows.Add(triggerRow);                    
 				}
 			}
 			else
@@ -572,8 +664,9 @@ namespace DOL.Tools.QuestDesigner
 
 				foreach (DataRow row in GetTriggersForType(triggerType))
 				{
-					DB.TriggerTable.Rows.Remove(row);
+					DB.TriggerTable.Rows.Remove(row);                    
 				}
+                
 			}			
 		}
 
@@ -591,8 +684,7 @@ namespace DOL.Tools.QuestDesigner
 					DataRow newRow = DB.RequirementTable.NewRow();
 					newRow["QuestPartID"] = QuestPartRow["ID"];
 					newRow["Type"] = requType;
-
-					DB.RequirementTable.Rows.Add(newRow);
+					DB.RequirementTable.Rows.Add(newRow);                    
 				}
 			}
 			else
@@ -602,8 +694,9 @@ namespace DOL.Tools.QuestDesigner
 
 				foreach (DataRow row in GetRequirementsForType(requType))
 				{
-					DB.RequirementTable.Rows.Remove(row);
+					DB.RequirementTable.Rows.Remove(row);                    
 				}
+                
 			}
 		}
 
@@ -622,8 +715,7 @@ namespace DOL.Tools.QuestDesigner
 					newRow["QuestPartID"] = QuestPartRow["ID"];
 					newRow["Type"] = actionType;
 
-					DB.ActionTable.Rows.Add(newRow);
-
+					DB.ActionTable.Rows.Add(newRow);                    
 				}
 			}
 			else
@@ -633,10 +725,23 @@ namespace DOL.Tools.QuestDesigner
 
 				foreach (DataRow row in GetActionsForType(requType))
 				{
-					DB.ActionTable.Rows.Remove(row);
+					DB.ActionTable.Rows.Remove(row);                    
 				}
+                
 			}
 		}
+
+        private void questPartTextbox_MouseClick(object sender, MouseEventArgs e)
+        {
+            int location = questPartTextbox.GetCharIndexFromPosition(e.Location);
+
+            QuestPartTextInfo info = GetInfoForPosition(e.Location);
+            if (info != null)
+            {                
+                int bindingIndex = DB.questPartBinding.Find("ID", info.QuestPartID);
+                DB.questPartBinding.Position = bindingIndex;
+            }
+        }
 
 		private void questPartTextbox_LinkClicked(object sender, LinkClickedEventArgs e)
 		{
@@ -754,8 +859,9 @@ namespace DOL.Tools.QuestDesigner
 							DataRow[] rows = DB.TriggerTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								rows[0].Delete();								
+								rows[0].Delete();                                
 							}
+
 							break;
 						}
 					case Const.CODE_N:
@@ -765,7 +871,7 @@ namespace DOL.Tools.QuestDesigner
 							DataRow[] rows = DB.RequirementTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								rows[0].Delete();								
+								rows[0].Delete();                                
 							}
 							break;
 						}
@@ -775,7 +881,7 @@ namespace DOL.Tools.QuestDesigner
 							DataRow[] rows = DB.ActionTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								rows[0].Delete();								
+								rows[0].Delete();                                
 							}
 							break;
 						}
@@ -798,7 +904,7 @@ namespace DOL.Tools.QuestDesigner
 								DataRow newRow = DB.TriggerTable.NewRow();
 								newRow["QuestPartID"] = rows[0]["QuestPartID"];
 								newRow["Type"] = rows[0]["Type"];
-								DB.TriggerTable.Rows.Add(newRow);								
+								DB.TriggerTable.Rows.Add(newRow);                                
 							}
 							break;
 						}
@@ -812,7 +918,7 @@ namespace DOL.Tools.QuestDesigner
 								DataRow newRow = DB.RequirementTable.NewRow();
 								newRow["QuestPartID"] = rows[0]["QuestPartID"];
 								newRow["Type"] = rows[0]["Type"];
-								DB.RequirementTable.Rows.Add(newRow);								
+								DB.RequirementTable.Rows.Add(newRow);                                
 							}
 							break;
 						}					
@@ -825,7 +931,7 @@ namespace DOL.Tools.QuestDesigner
 								DataRow newRow = DB.ActionTable.NewRow();
 								newRow["QuestPartID"] = rows[0]["QuestPartID"];
 								newRow["Type"] = rows[0]["Type"];
-								DB.ActionTable.Rows.Add(newRow);								
+								DB.ActionTable.Rows.Add(newRow);                                
 							}
 							break;
 						}
@@ -846,8 +952,8 @@ namespace DOL.Tools.QuestDesigner
 							DataRow[] rows = DB.TriggerTable.Select("ID=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);
-								RefreshQuestPartText();
+								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);                                
+                                //RefreshQuestPartText(QuestPartRow.Row);
 							}
 							break;
 						}
@@ -860,7 +966,7 @@ namespace DOL.Tools.QuestDesigner
 							if (rows.Length > 0)
 							{
 								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);
-								RefreshQuestPartText();
+                                //RefreshQuestPartText(QuestPartRow.Row);
 							}
 							break;
 						}
@@ -870,7 +976,7 @@ namespace DOL.Tools.QuestDesigner
 							if (rows.Length > 0)
 							{
 								rows[0][Const.CodeToColumn(e.Param)] = e.Object;
-								RefreshQuestPartText();
+                                //RefreshQuestPartText(QuestPartRow.Row);
 							}
 							break;
 						}
@@ -883,7 +989,7 @@ namespace DOL.Tools.QuestDesigner
 							if (rows.Length > 0)
 							{
 								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);
-								RefreshQuestPartText();
+                                //RefreshQuestPartText(QuestPartRow.Row);
 							}
 							break;
 						}
@@ -962,7 +1068,7 @@ namespace DOL.Tools.QuestDesigner
 				newRow["defaultNPC"] = DB.MobTable.Rows[0]["ObjectName"];
 
 			DB.QuestPartTable.Rows.Add(newRow);
-			questPartID = (int)newRow["ID"];
+			questPartID = (int)newRow["ID"];            
 
 			AddTrigger(eTriggerType.DeclineQuest, questPartID);
 			AddRequirement(eRequirementType.QuestGivable, questPartID);
@@ -983,7 +1089,7 @@ namespace DOL.Tools.QuestDesigner
 			DataRow row = DB.TriggerTable.NewRow();
 			row["QuestPartID"] = questPartID;
 			row["Type"] = triggerType;
-			DB.TriggerTable.Rows.Add(row);
+			DB.TriggerTable.Rows.Add(row);            
 		}
 
 		private void AddRequirement(eRequirementType requirementType)
@@ -1000,7 +1106,7 @@ namespace DOL.Tools.QuestDesigner
 			DataRow row = DB.RequirementTable.NewRow();
 			row["QuestPartID"] = questPartID;
 			row["Type"] = requirementType;
-			DB.RequirementTable.Rows.Add(row);
+			DB.RequirementTable.Rows.Add(row);            
 		}
 
 		private void AddAction(eActionType actionType)
@@ -1017,7 +1123,7 @@ namespace DOL.Tools.QuestDesigner
 			DataRow row = DB.ActionTable.NewRow();
 			row["QuestPartID"] = questPartID;
 			row["Type"] = actionType;
-			DB.ActionTable.Rows.Add(row);
+			DB.ActionTable.Rows.Add(row);            
 		}
 
 		#endregion
@@ -1042,7 +1148,7 @@ namespace DOL.Tools.QuestDesigner
             addNew.Click += new EventHandler(addNew_Click);
 
             bindingNavigator.Items.Remove(bindingNavigator.AddNewItem);
-            bindingNavigator.Items.Add(addNew);
+            bindingNavigator.Items.Insert(9,addNew);
             bindingNavigator.Refresh();
         }
 
@@ -1050,46 +1156,58 @@ namespace DOL.Tools.QuestDesigner
 
         void addNew_Click(object sender, EventArgs e)
         {
-            DB.QuestPartTable.Rows.Add(DB.QuestPartTable.NewRow());
-            DB.QuestPartTable.AcceptChanges();
+            DataRow row = DB.QuestPartTable.NewRow();
+            DB.QuestPartTable.Rows.Add(row);            
         }        
 
 		void questPartBinding_CurrentChanged(object sender, EventArgs e)
 		{
-            QuestPartRow = (DataRowView) ((BindingSource)sender).Current;
-            if (QuestPartRow != null)
-            {
-                RefreshQuestPart(QuestPartRow.Row);
-            }
-            else
-            {
-                RefreshQuestPart(null);
-            }
-            RefreshQuestPartText();
+            DataRow oldCurrentRow = QuestPartRow != null ? QuestPartRow.Row : null;
+            
+            QuestPartRow = (DataRowView) DB.questPartBinding.Current;
             
             if (QuestPartRow != null)
             {
+                RefreshQuestPart(QuestPartRow.Row);
+                
+                if (oldCurrentRow != null)
+                    RefreshQuestPartText(oldCurrentRow);            
+                RefreshQuestPartText(QuestPartRow.Row);
+
                 QuestPartTextInfo info = GetInfoForQuestPartRow(QuestPartRow.Row);
+
                 if (info != null)
                 {
-                    questPartTextbox.Select(info.BeginIndex, 0);
-                    questPartTextbox.ScrollToCaret();
-                    questPartTextbox.Focus();
-                }
+                    Point linePos = questPartTextbox.GetPositionFromCharIndex(info.BeginIndex);
+                    linePos.Y += questPartTextbox.getHorizontalScrollPosition();
+
+                    if (!questPartTextbox.isVisible(linePos))
+                    {
+                        questPartTextbox.Select(info.BeginIndex, 0);
+                        questPartTextbox.ScrollToCaret();
+                        questPartTextbox.Focus();
+                    }
+                }  
             }
+            else
+            {
+                if (oldCurrentRow != null)
+                    RefreshQuestPartText(oldCurrentRow);            
+
+                RefreshQuestPart(null);
+            }
+            
 		}
 
 		void questPartItemTable_RowChanged(object sender, DataRowChangeEventArgs e)
 		{
-            RefreshQuestPartText();
-            if (e.Action == DataRowAction.Add)
-            {
-                // move to currently selected questPart???
-            }
+            if (DB.isSuspended)
+                return;
+            
+            RefreshQuestPartText(QuestPartRow.Row);            
 		}
 
 		#region Tooltip
-
 
         private void tooltipTimer_Tick(object sender, EventArgs e)
         {
@@ -1190,7 +1308,20 @@ namespace DOL.Tools.QuestDesigner
 		}				
 				
 		#endregion
-		
+
+
+        private QuestPartTextInfo GetInfoForPosition(Point position)
+        {
+            int charPosition = questPartTextbox.GetCharIndexFromPosition(position);
+            
+            foreach (QuestPartTextInfo textinfo in questPartInfos)
+            {
+                if (charPosition >= textinfo.BeginIndex && charPosition <= textinfo.EndIndex)
+                    return textinfo;                                
+            }
+            return null;
+        }
+
 		private QuestPartTextInfo GetInfoForQuestPartRow(DataRow questPartRw)
 		{
 			int index = 0;
@@ -1216,10 +1347,50 @@ namespace DOL.Tools.QuestDesigner
 		/// </summary>
 		class QuestPartTextInfo
 		{
+            public int QuestPartID;
 			public int BeginIndex;
 			public int EndIndex;
 		}
 
-        
+        private void toolStripMoveUpButton_Click(object sender, EventArgs e)
+        {
+            if (QuestPartRow != null)
+            {
+                int currentPosition = (int)QuestPartRow["Position"];
+
+                // find the row before this one
+                DataRow[] previousRows = DB.QuestPartTable.Select("Position<" + (currentPosition), "Position DESC");
+                if (previousRows.Length > 0)
+                {
+                    DataRow previousRow = previousRows[0];
+
+                    int previousPosition = (int)previousRow["Position"];
+
+                    previousRow["Position"] = currentPosition;
+                    QuestPartRow.Row["Position"] = previousPosition;
+                }
+            }            
+        }
+
+        private void toolStripMoveDownButton_Click(object sender, EventArgs e)
+        {
+
+            if (QuestPartRow != null)
+            {
+                int currentPosition = (int)QuestPartRow["Position"];
+
+                // find the row before this one
+                DataRow[] nextRows = DB.QuestPartTable.Select("Position>" + (currentPosition), "Position ASC");
+                if (nextRows.Length > 0)
+                {
+                    DataRow nextRow = nextRows[0];
+                    int nextPosition = (int)nextRow["Position"];
+
+                    nextRow["Position"] = currentPosition;
+                    QuestPartRow.Row["Position"] = nextPosition;
+                }
+            }            
+        }
+       
 	}
 }

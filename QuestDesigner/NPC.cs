@@ -1,3 +1,22 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,9 +40,7 @@ namespace DOL.Tools.QuestDesigner
 	public partial class NPC : UserControl
 	{
 
-		View[] listViewModes = new View[] { View.Details, View.List, View.LargeIcon, View.Tile };
-
-		DataTable npcTable;		
+		View[] listViewModes = new View[] { View.Details, View.List, View.LargeIcon, View.Tile };		
 
 		private PropertyBag npcBag;
 
@@ -38,24 +55,22 @@ namespace DOL.Tools.QuestDesigner
 			B_SearchNPC.Enabled = support;
 		}
 
-		public void setDataSet(DataSet questData)
-		{
-            npcTable = DB.MobTable;
-
-            foreach (DataRow npcRow in npcTable.Rows)
+		public void setDataSet()
+		{            
+            foreach (DataRow npcRow in DB.MobTable.Rows)
             {
                 listViewNPC.Items.Add(generateListItem(npcRow));				
             }
 
-			npcTable.RowChanged += new DataRowChangeEventHandler(npcTable_RowChanged);
-			npcTable.RowDeleting += new DataRowChangeEventHandler(npcTable_RowDeleting);
-			npcTable.TableCleared += new DataTableClearEventHandler(npcTable_TableCleared);
+            DB.MobTable.RowChanged += new DataRowChangeEventHandler(npcTable_RowChanged);
+            DB.MobTable.RowDeleting += new DataRowChangeEventHandler(npcTable_RowDeleting);
+            DB.MobTable.TableCleared += new DataTableClearEventHandler(npcTable_TableCleared);
 
 			// Configure PropertyBags
 			npcBag = new PropertyBag();
 			npcBag.GetValue += new PropertySpecEventHandler(this.npcBag_GetValue);
 			npcBag.SetValue += new PropertySpecEventHandler(this.npcBag_SetValue);
-			foreach (DataColumn col in npcTable.Columns)
+            foreach (DataColumn col in DB.MobTable.Columns)
 			{
 				npcBag.Properties.Add(getNPCProperties(col));
 			}
@@ -137,7 +152,7 @@ namespace DOL.Tools.QuestDesigner
 		{
 			foreach (ListViewItem item in listViewNPC.SelectedItems)
 			{				
-				npcTable.Rows.Remove((DataRow)item.Tag);				
+				DB.MobTable.Rows.Remove((DataRow)item.Tag);				
 			}
 		}
 
@@ -185,12 +200,12 @@ namespace DOL.Tools.QuestDesigner
 
 		private void B_NewNPC_Click(object sender, EventArgs e)
 		{
-			DataRow npcRow = npcTable.NewRow();
+			DataRow npcRow = DB.MobTable.NewRow();
 			//			
 			npcRow["Realm"] = eRealm.Albion;
 			npcRow["Name"] = "";			
 			//
-			npcTable.Rows.Add(npcRow);
+            DB.MobTable.Rows.Add(npcRow);
 
 			npcRow["Name"] = "NewNPC" + npcRow["MobID"];
 			npcRow["ObjectName"] = Utils.ConvertToObjectName((string)npcRow["Name"]);
@@ -198,12 +213,12 @@ namespace DOL.Tools.QuestDesigner
 
 		private void B_NewMob_Click(object sender, EventArgs e)
 		{
-			DataRow npcRow = npcTable.NewRow();
+            DataRow npcRow = DB.MobTable.NewRow();
 			//			
 			npcRow["Realm"] = eRealm.None;
 			npcRow["Name"] = "";			
 			//
-			npcTable.Rows.Add(npcRow);
+            DB.MobTable.Rows.Add(npcRow);
 
 			npcRow["Name"] = "NewMob" + npcRow["MobID"];
 			npcRow["ObjectName"] = Utils.ConvertToObjectName((string)npcRow["Name"]);
@@ -354,8 +369,8 @@ namespace DOL.Tools.QuestDesigner
 				Object mob = QuestDesignerMain.NPCLookupForm.SelectedMob;
                 if (mob != null)
                 {
-                    DataRow row = npcTable.NewRow();
-                    foreach (DataColumn column in npcTable.Columns)
+                    DataRow row = DB.MobTable.NewRow();
+                    foreach (DataColumn column in DB.MobTable.Columns)
                     {
                         try
                         {
@@ -384,7 +399,7 @@ namespace DOL.Tools.QuestDesigner
                         // generate objectname since it doesn't exists in the dol world.
                         row["ObjectName"] = Utils.ConvertToObjectName(Convert.ToString(row["Name"]));
                     }
-                    npcTable.Rows.Add(row);
+                    DB.MobTable.Rows.Add(row);
                 }
 			}
 		}

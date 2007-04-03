@@ -270,6 +270,20 @@ namespace DOL.Tools.QuestDesigner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap moveDown {
+            get {
+                object obj = ResourceManager.GetObject("moveDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap moveUp {
+            get {
+                object obj = ResourceManager.GetObject("moveUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap npc {
             get {
                 object obj = ResourceManager.GetObject("npc", resourceCulture);

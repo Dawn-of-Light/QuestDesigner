@@ -1,3 +1,22 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -67,10 +86,7 @@ namespace DOL.Tools.QuestDesigner.Util
         }
 
         public void CreateQuest()
-		{
-			// make sure last edit is stored in dataset
-			DB.QuestDataSet.AcceptChanges();
-
+		{			
             saveDialog = new SaveFileDialog();            
             saveDialog.Filter = Filter;            
 			DialogResult result = saveDialog.ShowDialog();
@@ -79,6 +95,10 @@ namespace DOL.Tools.QuestDesigner.Util
                 return;
 
             string scriptPath = saveDialog.FileName;
+
+            // make sure last edit is stored in dataset
+
+            DB.QuestDataSet.AcceptChanges();            
 
             if (ValidateData(DB.QuestDataSet))
             {
@@ -92,7 +112,23 @@ namespace DOL.Tools.QuestDesigner.Util
         protected virtual DataSet PrepareDataSet(DataSet questDataSet, string scriptPath)
         {
             DataSet dataSet = questDataSet.Copy();
-            
+
+
+            foreach (DataRow quest in dataSet.Tables["Quest"].Rows)
+            {
+                quest["Description"] = Utils.Escape(quest["Description"]);
+                quest["Name"] = Utils.Escape(quest["Name"]);
+                quest["Title"] = Utils.Escape(quest["Title"]);
+                
+            }
+
+            foreach (DataRow questStep in dataSet.Tables["QuestStep"].Rows)
+            {
+                questStep["Description"] = Utils.Escape(questStep["Description"]);
+            }
+
+
+
             String invitingNPC = (string)dataSet.Tables["Quest"].Rows[0]["InvitingNPC"];
 
             // check for string parameter in action, trigger, requirement and add needed ",'
@@ -113,7 +149,7 @@ namespace DOL.Tools.QuestDesigner.Util
                 else
                 {
                     if (!DB.isObjectName(row[Const.TRIGGER_K]))
-                        row[Const.TRIGGER_K] = '"' + Convert.ToString(row[Const.TRIGGER_K]) + '"';
+                        row[Const.TRIGGER_K] =  Utils.ToEscapedText(row[Const.TRIGGER_K]);
                 }
 
                 string i = Convert.ToString(triggerRows[0]["i"]);
@@ -121,7 +157,7 @@ namespace DOL.Tools.QuestDesigner.Util
                 if (i.Contains("string") && !(row[Const.TRIGGER_I] is DBNull))
                 {
                     if (!DB.isObjectName(row[Const.TRIGGER_I]))
-                        row[Const.TRIGGER_I] = '"' + Convert.ToString(row[Const.TRIGGER_I]) + '"';
+                        row[Const.TRIGGER_I] = Utils.ToEscapedText(row[Const.TRIGGER_I]);
                 }
             }
 
@@ -140,7 +176,7 @@ namespace DOL.Tools.QuestDesigner.Util
                 if (n.Contains("string") && !(row[Const.REQUIREMENT_N] is DBNull))
                 {
                     if (!DB.isObjectName(row[Const.REQUIREMENT_N]))
-                        row[Const.REQUIREMENT_N] = '"' + Convert.ToString(row[Const.REQUIREMENT_N]) + '"';
+                        row[Const.REQUIREMENT_N] = Utils.ToEscapedText(row[Const.REQUIREMENT_N]);
                 }
                 else if (row[Const.REQUIREMENT_N] is DBNull)
                 {
@@ -150,7 +186,7 @@ namespace DOL.Tools.QuestDesigner.Util
                 if (v.Contains("string") && !(row[Const.REQUIREMENT_V] is DBNull))
                 {
                     if (!DB.isObjectName(row[Const.REQUIREMENT_V]))
-                        row[Const.REQUIREMENT_V] = '"' + Convert.ToString(row[Const.REQUIREMENT_V]) + '"';
+                        row[Const.REQUIREMENT_V] =Utils.ToEscapedText(row[Const.REQUIREMENT_V]);
                 }
             }
 
@@ -169,7 +205,7 @@ namespace DOL.Tools.QuestDesigner.Util
                 if (p.Contains("string") && !(row[Const.ACTION_P] is DBNull))
                 {
                     if (!DB.isObjectName(row[Const.ACTION_P]))
-                        row[Const.ACTION_P] = '"' + Convert.ToString(row[Const.ACTION_P]) + '"';
+                        row[Const.ACTION_P] = Utils.ToEscapedText(row[Const.ACTION_P]);
                 }
                 else if (row[Const.ACTION_P] is DBNull)
                 {
@@ -179,7 +215,11 @@ namespace DOL.Tools.QuestDesigner.Util
                 if (q.Contains("string") && !(row[Const.ACTION_Q] is DBNull))
                 {
                     if (!DB.isObjectName(row[Const.ACTION_Q]))
-                        row[Const.ACTION_Q] = '"' + Convert.ToString(row[Const.ACTION_Q]) + '"';
+                        row[Const.ACTION_Q] = Utils.ToEscapedText(row[Const.ACTION_Q]);
+                }
+                else if (q.Contains("TextType") && !(row[Const.ACTION_Q] is DBNull))
+                {
+                    row[Const.ACTION_Q] = "(eTextType)"+row[Const.ACTION_Q];
                 }
             }
 

@@ -174,13 +174,14 @@ namespace DOL.Tools.QuestDesigner
 		{
             if (!DB.isInitialized())
                 Log.Error("DB not initialized yet");
-			questInfo.setDataSet(dataSetQuest);
-			npcView.setDataSet(dataSetQuest);
-			itemView.setDataSet(dataSetQuest);
-			customCode.setDataSet(dataSetQuest);
-            areaView.setDataSet(dataSetQuest);
-            locationView.SetDataSet(dataSetQuest);
-			questPartItems.SetDataSet(dataSetQuest, dataSetData);
+
+			questInfo.setDataSet();
+			npcView.setDataSet();
+			itemView.setDataSet();
+			customCode.setDataSet();
+            areaView.setDataSet();
+            locationView.SetDataSet();
+			questPartItems.SetDataSet();
 		}
 
 		private void dataSetData_Initialized(object sender, EventArgs e)
@@ -300,16 +301,15 @@ namespace DOL.Tools.QuestDesigner
 
         private void InitEmptyQuest()
         {
-            DB.questPartBinding.SuspendBinding();
-            dataSetQuest.BeginInit();
-            
-            //DB.Init();
+            DB.SuspendBindings();
+                                   
             dataSetQuest.Clear();
 			dataTableQuest.Rows.Add(dataTableQuest.NewRow());
             dataTableQuestPart.Rows.Add(dataTableQuestPart.NewRow());
-            dataTableQuest.AcceptChanges();
-            dataSetQuest.EndInit();
-            DB.questPartBinding.ResumeBinding();
+            dataSetQuest.AcceptChanges();
+            DB.ResumeBindings();
+            questPartItems.RefreshQuestPartText();
+            DB.questPartBinding.ResetCurrentItem();
             openFilename = null;
         }
 
@@ -329,14 +329,16 @@ namespace DOL.Tools.QuestDesigner
             {
 				try
 				{
-                    DB.questPartBinding.SuspendBinding();
-                    dataSetQuest.BeginInit();
                     
-                    //DB.Init(); // reset bindings
+                    DB.SuspendBindings();
+                    
 					dataSetQuest.Clear();
 					dataSetQuest.ReadXml(xmlfile);
-					dataSetQuest.EndInit();
-                    DB.questPartBinding.ResumeBinding();
+                    dataSetQuest.AcceptChanges();
+                    DB.ResumeBindings();
+                    
+                    questPartItems.RefreshQuestPartText();
+                    DB.questPartBinding.ResetCurrentItem();
 
 					this.openFilename = xmlfile;
 

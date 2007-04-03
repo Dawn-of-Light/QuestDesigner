@@ -1,4 +1,3 @@
-
 /*
  * DAWN OF LIGHT - The first free open source DAoC server emulator
  * 
@@ -32,18 +31,51 @@ namespace DOL.Tools.QuestDesigner.Util
 {
 	class Utils
 	{
+        public static string Escape(object obj)
+        {
+            return Convert.ToString(obj).Replace("\"", "\\\"");
+        }
+
+        public static string ToEscapedText(object obj)
+        {
+            return "\"" + Convert.ToString(obj).Replace("\"","\\\"")+"\"";
+        }
+
 		public static string ConvertToObjectName(string value)
-		{
-			value = value.Replace(" ", "");
-			value = value.Replace("'", "");
-			return value.Trim();
+		{            
+            char[] letters = value.ToCharArray();
+
+            StringBuilder str = new StringBuilder();
+            for (int i=0; i< letters.Length;i++)            
+            {
+                if (str.Length>0 && Char.IsLetterOrDigit(letters[i]))
+                    str.Append(letters[i]);
+                else if (str.Length ==0 && Char.IsLetter(letters[i]))
+                    str.Append(letters[i]);
+
+            }
+
+            return str.ToString();
 		}
 
 		public static string ConvertToNamespace(string value)
 		{
-			value = value.Replace(" ", "");
-			value = value.Replace("'", "");
-			return value.Trim();
+            string[] packageNames = value.Split('.');
+
+            StringBuilder str = new StringBuilder();
+
+            string packageNameValid;
+            foreach (String packageName in packageNames)
+            {
+                packageNameValid = ConvertToObjectName(packageName);
+
+                if (str.Length > 0 && packageNameValid.Length > 0)
+                    str.Append(".");
+
+                str.Append(packageNameValid);
+            }
+			
+			return str.ToString();
 		}
 
 		public static string[] GetQualifiedEnumNames(Type enumeration) 

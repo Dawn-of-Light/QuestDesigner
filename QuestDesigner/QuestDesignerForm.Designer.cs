@@ -67,6 +67,7 @@ namespace DOL.Tools.QuestDesigner
             System.Data.DataColumn dataColumn32;
             System.Data.DataColumn dataColumn33;
             System.Data.DataColumn dataColumn34;
+            System.Data.DataColumn dataColumn23;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
             NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
             NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
@@ -159,7 +160,7 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnCopper = new System.Data.DataColumn();
             this.dataColumnEmblem = new System.Data.DataColumn();
             this.dataColumnEffect = new System.Data.DataColumn();
-            this.dataColumnModelExtension = new System.Data.DataColumn();
+            this.dataColumnExtension = new System.Data.DataColumn();
             this.dataColumn73 = new System.Data.DataColumn();
             this.dataColumn74 = new System.Data.DataColumn();
             this.dataColumn75 = new System.Data.DataColumn();
@@ -264,21 +265,13 @@ namespace DOL.Tools.QuestDesigner
             this.StatusProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.tabControlMain = new NETXP.Controls.Docking.TabControl();
             this.tabPageQuest = new NETXP.Controls.Docking.TabPage();
-            this.questInfo = new DOL.Tools.QuestDesigner.QuestInfo();
             this.tabPageNPC = new NETXP.Controls.Docking.TabPage();
-            this.npcView = new DOL.Tools.QuestDesigner.NPC();
             this.tabPageItem = new NETXP.Controls.Docking.TabPage();
-            this.itemView = new DOL.Tools.QuestDesigner.Item();
             this.tabPageQuestPart = new NETXP.Controls.Docking.TabPage();
-            this.questPartItems = new DOL.Tools.QuestDesigner.QuestPartItems();
             this.tabPageArea = new NETXP.Controls.Docking.TabPage();
-            this.areaView = new DOL.Tools.QuestDesigner.Area();
             this.tabPageLocation = new NETXP.Controls.Docking.TabPage();
-            this.locationView = new DOL.Tools.QuestDesigner.Location();
             this.tabPageCode = new NETXP.Controls.Docking.TabPage();
-            this.customCode = new DOL.Tools.QuestDesigner.CustomCode();
             this.tabPageMap = new NETXP.Controls.Docking.TabPage();
-            this.DXControl = new DOL.Tools.Mapping.Forms.DXControl();
             this.xpTaskPane = new NETXP.Controls.TaskPane.XPTaskPane();
             this.xpTGActions = new NETXP.Controls.TaskPane.XPTaskPaneGroup();
             this.linkSaveQuest = new System.Windows.Forms.LinkLabel();
@@ -287,6 +280,14 @@ namespace DOL.Tools.QuestDesigner
             this.saveScriptDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.imageListNPC = new System.Windows.Forms.ImageList(this.components);
+            this.questInfo = new DOL.Tools.QuestDesigner.QuestInfo();
+            this.npcView = new DOL.Tools.QuestDesigner.NPC();
+            this.itemView = new DOL.Tools.QuestDesigner.Item();
+            this.questPartItems = new DOL.Tools.QuestDesigner.QuestPartItems();
+            this.areaView = new DOL.Tools.QuestDesigner.Area();
+            this.locationView = new DOL.Tools.QuestDesigner.Location();
+            this.customCode = new DOL.Tools.QuestDesigner.CustomCode();
+            this.DXControl = new DOL.Tools.Mapping.Forms.DXControl();
             dataColumnQuestPartIF = new System.Data.DataColumn();
             dataColumnTriggerQuestPart = new System.Data.DataColumn();
             dataColumnTriggerType = new System.Data.DataColumn();
@@ -325,6 +326,7 @@ namespace DOL.Tools.QuestDesigner
             dataColumn32 = new System.Data.DataColumn();
             dataColumn33 = new System.Data.DataColumn();
             dataColumn34 = new System.Data.DataColumn();
+            dataColumn23 = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetQuest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableQuestPart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableTrigger)).BeginInit();
@@ -553,6 +555,13 @@ namespace DOL.Tools.QuestDesigner
             // 
             dataColumn34.ColumnName = "description";
             // 
+            // dataColumn23
+            // 
+            dataColumn23.AllowDBNull = false;
+            dataColumn23.AutoIncrement = true;
+            dataColumn23.ColumnName = "Position";
+            dataColumn23.DataType = typeof(int);
+            // 
             // dataSetQuest
             // 
             this.dataSetQuest.DataSetName = "Quest";
@@ -584,7 +593,8 @@ namespace DOL.Tools.QuestDesigner
             // 
             this.dataTableQuestPart.Columns.AddRange(new System.Data.DataColumn[] {
             dataColumnQuestPartIF,
-            dataColumnDefaultNPC});
+            dataColumnDefaultNPC,
+            dataColumn23});
             this.dataTableQuestPart.TableName = "QuestPart";
             // 
             // dataTableTrigger
@@ -949,7 +959,7 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnCopper,
             this.dataColumnEmblem,
             this.dataColumnEffect,
-            this.dataColumnModelExtension,
+            this.dataColumnExtension,
             this.dataColumn73,
             this.dataColumn74,
             this.dataColumn75,
@@ -1191,11 +1201,12 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnEffect.DataType = typeof(int);
             this.dataColumnEffect.DefaultValue = 0;
             // 
-            // dataColumnModelExtension
+            // dataColumnExtension
             // 
-            this.dataColumnModelExtension.ColumnName = "ModelExtension";
-            this.dataColumnModelExtension.DataType = typeof(byte);
-            this.dataColumnModelExtension.DefaultValue = ((byte)(0));
+            this.dataColumnExtension.Caption = "Extension";
+            this.dataColumnExtension.ColumnName = "Extension";
+            this.dataColumnExtension.DataType = typeof(byte);
+            this.dataColumnExtension.DefaultValue = ((byte)(0));
             // 
             // dataColumn73
             // 
@@ -1714,6 +1725,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             // dOL20QuestToolStripMenuItem
             // 
+            this.dOL20QuestToolStripMenuItem.Enabled = false;
             this.dOL20QuestToolStripMenuItem.Name = "dOL20QuestToolStripMenuItem";
             this.dOL20QuestToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.dOL20QuestToolStripMenuItem.Text = "DOL 2.0 Quest";
@@ -1922,14 +1934,6 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageQuest.Title = "QuestInfo";
             this.tabPageQuest.ToolTipText = "Detailed Information about Quest";
             // 
-            // questInfo
-            // 
-            this.questInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questInfo.Location = new System.Drawing.Point(0, 0);
-            this.questInfo.Name = "questInfo";
-            this.questInfo.Size = new System.Drawing.Size(442, 377);
-            this.questInfo.TabIndex = 28;
-            // 
             // tabPageNPC
             // 
             this.tabPageNPC.Controls.Add(this.npcView);
@@ -1939,14 +1943,6 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageNPC.TabIndex = 4;
             this.tabPageNPC.Title = "NPC";
             this.tabPageNPC.ToolTipText = "NPC\'s associated with the quest";
-            // 
-            // npcView
-            // 
-            this.npcView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.npcView.Location = new System.Drawing.Point(0, 0);
-            this.npcView.Name = "npcView";
-            this.npcView.Size = new System.Drawing.Size(442, 377);
-            this.npcView.TabIndex = 0;
             // 
             // tabPageItem
             // 
@@ -1958,14 +1954,6 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageItem.Title = "Item";
             this.tabPageItem.ToolTipText = "Item\'s associated with the quest";
             // 
-            // itemView
-            // 
-            this.itemView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemView.Location = new System.Drawing.Point(0, 0);
-            this.itemView.Name = "itemView";
-            this.itemView.Size = new System.Drawing.Size(442, 377);
-            this.itemView.TabIndex = 0;
-            // 
             // tabPageQuestPart
             // 
             this.tabPageQuestPart.Controls.Add(this.questPartItems);
@@ -1975,24 +1963,6 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageQuestPart.TabIndex = 6;
             this.tabPageQuestPart.Title = "QuestPart";
             this.tabPageQuestPart.ToolTipText = "QuestPart\'s making up the whole logic of a quest";
-            // 
-            // questPartItems
-            // 
-            this.questPartItems.ActionColor = System.Drawing.Color.RosyBrown;
-            this.questPartItems.ActionSelectedColor = System.Drawing.Color.OrangeRed;
-            this.questPartItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questPartItems.ForeColor = System.Drawing.Color.Gray;
-            this.questPartItems.ForeColorSelected = System.Drawing.Color.Black;
-            this.questPartItems.Location = new System.Drawing.Point(0, 0);
-            this.questPartItems.Name = "questPartItems";
-            this.questPartItems.QuestPartRow = null;
-            this.questPartItems.QuestPartRowID = 0;
-            this.questPartItems.RequirementColor = System.Drawing.Color.Tan;
-            this.questPartItems.RequirementSelectedColor = System.Drawing.Color.Orange;
-            this.questPartItems.Size = new System.Drawing.Size(442, 377);
-            this.questPartItems.TabIndex = 0;
-            this.questPartItems.TriggerColor = System.Drawing.Color.Olive;
-            this.questPartItems.TriggerSelectedColor = System.Drawing.Color.Green;
             // 
             // tabPageArea
             // 
@@ -2004,14 +1974,6 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageArea.Title = "Area";
             this.tabPageArea.ToolTipText = "Area\'s used within a quest";
             // 
-            // areaView
-            // 
-            this.areaView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.areaView.Location = new System.Drawing.Point(0, 0);
-            this.areaView.Name = "areaView";
-            this.areaView.Size = new System.Drawing.Size(442, 377);
-            this.areaView.TabIndex = 2;
-            // 
             // tabPageLocation
             // 
             this.tabPageLocation.Controls.Add(this.locationView);
@@ -2021,14 +1983,6 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageLocation.TabIndex = 9;
             this.tabPageLocation.Title = "Location";
             this.tabPageLocation.ToolTipText = "Define Locations used for QuestParts";
-            // 
-            // locationView
-            // 
-            this.locationView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.locationView.Location = new System.Drawing.Point(0, 0);
-            this.locationView.Name = "locationView";
-            this.locationView.Size = new System.Drawing.Size(442, 377);
-            this.locationView.TabIndex = 0;
             // 
             // tabPageCode
             // 
@@ -2040,14 +1994,6 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageCode.Title = "CustomCode";
             this.tabPageCode.ToolTipText = "CustomCode of the quest ";
             // 
-            // customCode
-            // 
-            this.customCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customCode.Location = new System.Drawing.Point(0, 0);
-            this.customCode.Name = "customCode";
-            this.customCode.Size = new System.Drawing.Size(442, 377);
-            this.customCode.TabIndex = 3;
-            // 
             // tabPageMap
             // 
             this.tabPageMap.Controls.Add(this.DXControl);
@@ -2057,16 +2003,6 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageMap.TabIndex = 10;
             this.tabPageMap.Title = "Map Editor";
             this.tabPageMap.ToolTipText = "Uthgard Map Editor";
-            // 
-            // DXControl
-            // 
-            this.DXControl.Cursor = System.Windows.Forms.Cursors.Default;
-            this.DXControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DXControl.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.DXControl.Location = new System.Drawing.Point(0, 0);
-            this.DXControl.Name = "DXControl";
-            this.DXControl.Size = new System.Drawing.Size(442, 377);
-            this.DXControl.TabIndex = 0;
             // 
             // xpTaskPane
             // 
@@ -2144,6 +2080,82 @@ namespace DOL.Tools.QuestDesigner
             this.imageListNPC.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListNPC.ImageStream")));
             this.imageListNPC.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListNPC.Images.SetKeyName(0, "user.ico");
+            // 
+            // questInfo
+            // 
+            this.questInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questInfo.Location = new System.Drawing.Point(0, 0);
+            this.questInfo.Name = "questInfo";
+            this.questInfo.Size = new System.Drawing.Size(442, 377);
+            this.questInfo.TabIndex = 28;
+            // 
+            // npcView
+            // 
+            this.npcView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.npcView.Location = new System.Drawing.Point(0, 0);
+            this.npcView.Name = "npcView";
+            this.npcView.Size = new System.Drawing.Size(442, 377);
+            this.npcView.TabIndex = 0;
+            // 
+            // itemView
+            // 
+            this.itemView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemView.Location = new System.Drawing.Point(0, 0);
+            this.itemView.Name = "itemView";
+            this.itemView.Size = new System.Drawing.Size(442, 377);
+            this.itemView.TabIndex = 0;
+            // 
+            // questPartItems
+            // 
+            this.questPartItems.ActionColor = System.Drawing.Color.RosyBrown;
+            this.questPartItems.ActionSelectedColor = System.Drawing.Color.OrangeRed;
+            this.questPartItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questPartItems.ForeColor = System.Drawing.Color.Gray;
+            this.questPartItems.ForeColorSelected = System.Drawing.Color.Black;
+            this.questPartItems.Location = new System.Drawing.Point(0, 0);
+            this.questPartItems.Name = "questPartItems";
+            this.questPartItems.QuestPartRow = null;
+            this.questPartItems.QuestPartRowID = 0;
+            this.questPartItems.RequirementColor = System.Drawing.Color.Tan;
+            this.questPartItems.RequirementSelectedColor = System.Drawing.Color.Orange;
+            this.questPartItems.Size = new System.Drawing.Size(442, 377);
+            this.questPartItems.TabIndex = 0;
+            this.questPartItems.TriggerColor = System.Drawing.Color.Olive;
+            this.questPartItems.TriggerSelectedColor = System.Drawing.Color.Green;
+            // 
+            // areaView
+            // 
+            this.areaView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.areaView.Location = new System.Drawing.Point(0, 0);
+            this.areaView.Name = "areaView";
+            this.areaView.Size = new System.Drawing.Size(442, 377);
+            this.areaView.TabIndex = 2;
+            // 
+            // locationView
+            // 
+            this.locationView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.locationView.Location = new System.Drawing.Point(0, 0);
+            this.locationView.Name = "locationView";
+            this.locationView.Size = new System.Drawing.Size(442, 377);
+            this.locationView.TabIndex = 0;
+            // 
+            // customCode
+            // 
+            this.customCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customCode.Location = new System.Drawing.Point(0, 0);
+            this.customCode.Name = "customCode";
+            this.customCode.Size = new System.Drawing.Size(442, 377);
+            this.customCode.TabIndex = 3;
+            // 
+            // DXControl
+            // 
+            this.DXControl.Cursor = System.Windows.Forms.Cursors.Default;
+            this.DXControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DXControl.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.DXControl.Location = new System.Drawing.Point(0, 0);
+            this.DXControl.Name = "DXControl";
+            this.DXControl.Size = new System.Drawing.Size(442, 377);
+            this.DXControl.TabIndex = 0;
             // 
             // QuestDesignerForm
             // 
@@ -2232,7 +2244,7 @@ namespace DOL.Tools.QuestDesigner
         private System.Data.DataColumn dataColumnIdNb;
         private System.Data.DataColumn dataColumnItemName;
         private System.Data.DataColumn dataColumnItemLevel;
-		private System.Data.DataTable dataTableQuestPart;
+        private System.Data.DataTable dataTableQuestPart;
         public System.Data.DataSet dataSetQuest;
         public System.Data.DataSet dataSetData;
         public System.Data.DataTable dataTableTrigger;
@@ -2350,7 +2362,7 @@ namespace DOL.Tools.QuestDesigner
         public System.Windows.Forms.ToolStripProgressBar StatusProgress;
         private System.Data.DataColumn dataColumnEmblem;
         private System.Data.DataColumn dataColumnEffect;
-        private System.Data.DataColumn dataColumnModelExtension;
+        private System.Data.DataColumn dataColumnExtension;
         private System.Data.DataColumn dataColumnBonus5;
         private System.Data.DataColumn dataColumnBonus5Type;
         private System.Data.DataColumn dataColumnExtraBonus;

@@ -410,7 +410,7 @@
     <Content Include="config\dol\regions.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="config\dol\serverconfig.xml">
+    <Content Include="config\dol\serverconfig.template.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="config\dol\zones.xml">
@@ -2946,6 +2946,8 @@
     <Content Include="lib\log4net.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\moveDown.png" />
+    <None Include="Resources\moveUp.png" />
     <None Include="Resources\mob32.png" />
     <None Include="Resources\npc32.png" />
     <None Include="Resources\empty.bmp" />

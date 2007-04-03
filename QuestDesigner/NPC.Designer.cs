@@ -35,10 +35,10 @@ namespace DOL.Tools.QuestDesigner
             System.Windows.Forms.ImageList imageListNPCLarge;
             System.Windows.Forms.ColumnHeader columnName;
             System.Windows.Forms.ColumnHeader columnType;
+            System.Windows.Forms.ToolStripButton B_ToggleGroups;
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Monster", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("NPC", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Merchants", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ToolStripButton B_ToggleGroups;
             this.propertyGridNPC = new System.Windows.Forms.PropertyGrid();
             this.splitContainerNPC = new System.Windows.Forms.SplitContainer();
             this.listViewNPC = new System.Windows.Forms.ListView();
@@ -93,6 +93,19 @@ namespace DOL.Tools.QuestDesigner
             // 
             columnType.Text = "Type";
             columnType.Width = 95;
+            // 
+            // B_ToggleGroups
+            // 
+            B_ToggleGroups.Checked = true;
+            B_ToggleGroups.CheckOnClick = true;
+            B_ToggleGroups.CheckState = System.Windows.Forms.CheckState.Checked;
+            B_ToggleGroups.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            B_ToggleGroups.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.listviewGroup;
+            B_ToggleGroups.ImageTransparentColor = System.Drawing.Color.Magenta;
+            B_ToggleGroups.Name = "B_ToggleGroups";
+            B_ToggleGroups.Size = new System.Drawing.Size(23, 22);
+            B_ToggleGroups.Text = "Toggle Grouping";
+            B_ToggleGroups.CheckStateChanged += new System.EventHandler(this.B_ToggleGroups_CheckStateChanged);
             // 
             // propertyGridNPC
             // 
@@ -243,6 +256,7 @@ namespace DOL.Tools.QuestDesigner
             // B_SearchNPC
             // 
             this.B_SearchNPC.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.B_SearchNPC.Enabled = false;
             this.B_SearchNPC.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.searchNPC;
             this.B_SearchNPC.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.B_SearchNPC.Name = "B_SearchNPC";
@@ -318,19 +332,6 @@ namespace DOL.Tools.QuestDesigner
             this.B_ListViewTiles.Size = new System.Drawing.Size(136, 22);
             this.B_ListViewTiles.Text = "Tiles";
             this.B_ListViewTiles.Click += new System.EventHandler(this.B_ListViewTiles_Click);
-            // 
-            // B_ToggleGroups
-            // 
-            B_ToggleGroups.Checked = true;
-            B_ToggleGroups.CheckOnClick = true;
-            B_ToggleGroups.CheckState = System.Windows.Forms.CheckState.Checked;
-            B_ToggleGroups.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            B_ToggleGroups.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.listviewGroup;
-            B_ToggleGroups.ImageTransparentColor = System.Drawing.Color.Magenta;
-            B_ToggleGroups.Name = "B_ToggleGroups";
-            B_ToggleGroups.Size = new System.Drawing.Size(23, 22);
-            B_ToggleGroups.Text = "Toggle Grouping";
-            B_ToggleGroups.CheckStateChanged += new System.EventHandler(this.B_ToggleGroups_CheckStateChanged);
             // 
             // NPC
             // 

@@ -1,3 +1,22 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
+
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -245,8 +264,9 @@ namespace DOL.Tools.QuestDesigner.Controls
 			SelectRange(begin, end);
 			SelectionColor = color;
 
-			SelectionStart = origStart;
-			SelectionLength = origLength;
+            Select(origStart, origLength);
+            //SelectionLength = origLength;
+            //SelectionStart = origStart;			
 		}
 
 		public void SelectRange(int begin, int end)
@@ -406,5 +426,50 @@ namespace DOL.Tools.QuestDesigner.Controls
             System.Runtime.InteropServices.Marshal.FreeCoTaskMem(lpar);
 			return state;
 		}
+
+        // getScrollPos()
+
+        #region Win32 Interop
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetScrollInfo(IntPtr hWnd, int n, ref ScrollInfoStruct lpScrollInfo);
+        #endregion
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct ScrollInfoStruct
+        {
+            public int cbSize;
+            public UInt32 fMask;
+            public Int32 nMin;
+            public Int32 nMax;
+            public UInt32 nPage;
+            public Int32 nPos;
+            public Int32 nTrackPos;
+        }
+
+        public int getHorizontalScrollPosition()
+        {
+            ScrollInfoStruct sInfo = new ScrollInfoStruct();
+            sInfo.fMask = 0x4; //(0x1 | 0x2 | 0x4 | 0x10);
+            sInfo.cbSize = System.Runtime.InteropServices.Marshal.SizeOf(sInfo);
+
+            if (GetScrollInfo(this.Handle, 0x1, ref sInfo)>=0)
+            {
+                return sInfo.nPos;
+            }
+            else
+            {
+                return -1;
+            }
+            
+        }
+
+        public bool isVisible(Point location)
+        {
+            int scrollPosition = getHorizontalScrollPosition()>=0? getHorizontalScrollPosition() : 0;
+
+            return location.Y >= scrollPosition && location.Y <= (scrollPosition + Height);
+        }
+     
 	}
+
 }

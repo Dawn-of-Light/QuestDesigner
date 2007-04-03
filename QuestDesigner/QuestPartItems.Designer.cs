@@ -36,11 +36,8 @@ namespace DOL.Tools.QuestDesigner
             this.actionTypeList = new System.Windows.Forms.CheckedListBox();
             this.requirementTypeList = new System.Windows.Forms.CheckedListBox();
             this.headerStrip1 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
-            this.toolStripLabelTrigger = new System.Windows.Forms.ToolStripLabel();
             this.headerStrip2 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
-            this.toolStripLabelRequirement = new System.Windows.Forms.ToolStripLabel();
             this.headerStrip3 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
-            this.toolStripLabelAction = new System.Windows.Forms.ToolStripLabel();
             this.questPartTextbox = new DOL.Tools.QuestDesigner.Controls.RichTextBoxEx();
             this.contextMenuStripQuestPart = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.triggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,15 +64,18 @@ namespace DOL.Tools.QuestDesigner
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMoveUpButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripMoveDownButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabelTrigger = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabelRequirement = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabelAction = new System.Windows.Forms.ToolStripLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tooltipTimer = new System.Windows.Forms.Timer(this.components);
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.headerStrip1.SuspendLayout();
-            this.headerStrip2.SuspendLayout();
-            this.headerStrip3.SuspendLayout();
             this.contextMenuStripQuestPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).BeginInit();
             this.bindingNavigator.SuspendLayout();
@@ -170,20 +170,11 @@ namespace DOL.Tools.QuestDesigner
             this.headerStrip1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.headerStrip1.ForeColor = System.Drawing.Color.Gray;
             this.headerStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.headerStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabelTrigger});
             this.headerStrip1.Location = new System.Drawing.Point(0, 0);
             this.headerStrip1.Name = "headerStrip1";
             this.headerStrip1.Size = new System.Drawing.Size(131, 20);
             this.headerStrip1.TabIndex = 4;
             this.headerStrip1.Text = "headerStrip1";
-            // 
-            // toolStripLabelTrigger
-            // 
-            this.toolStripLabelTrigger.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.toolStripLabelTrigger.Name = "toolStripLabelTrigger";
-            this.toolStripLabelTrigger.Size = new System.Drawing.Size(59, 17);
-            this.toolStripLabelTrigger.Text = "Trigger";
             // 
             // headerStrip2
             // 
@@ -192,20 +183,11 @@ namespace DOL.Tools.QuestDesigner
             this.headerStrip2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.headerStrip2.ForeColor = System.Drawing.Color.Gray;
             this.headerStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.headerStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabelRequirement});
             this.headerStrip2.Location = new System.Drawing.Point(131, 0);
             this.headerStrip2.Name = "headerStrip2";
             this.headerStrip2.Size = new System.Drawing.Size(131, 20);
             this.headerStrip2.TabIndex = 5;
             this.headerStrip2.Text = "headerStrip2";
-            // 
-            // toolStripLabelRequirement
-            // 
-            this.toolStripLabelRequirement.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.toolStripLabelRequirement.Name = "toolStripLabelRequirement";
-            this.toolStripLabelRequirement.Size = new System.Drawing.Size(99, 17);
-            this.toolStripLabelRequirement.Text = "Requirement";
             // 
             // headerStrip3
             // 
@@ -214,20 +196,11 @@ namespace DOL.Tools.QuestDesigner
             this.headerStrip3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.headerStrip3.ForeColor = System.Drawing.Color.Gray;
             this.headerStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.headerStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabelAction});
             this.headerStrip3.Location = new System.Drawing.Point(262, 0);
             this.headerStrip3.Name = "headerStrip3";
             this.headerStrip3.Size = new System.Drawing.Size(132, 20);
             this.headerStrip3.TabIndex = 6;
             this.headerStrip3.Text = "headerStrip3";
-            // 
-            // toolStripLabelAction
-            // 
-            this.toolStripLabelAction.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.toolStripLabelAction.Name = "toolStripLabelAction";
-            this.toolStripLabelAction.Size = new System.Drawing.Size(60, 17);
-            this.toolStripLabelAction.Text = "Actions";
             // 
             // questPartTextbox
             // 
@@ -242,6 +215,7 @@ namespace DOL.Tools.QuestDesigner
             this.questPartTextbox.TabIndex = 0;
             this.questPartTextbox.Text = "";
             this.questPartTextbox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.questPartTextbox_LinkClicked);
+            this.questPartTextbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.questPartTextbox_MouseClick);
             // 
             // contextMenuStripQuestPart
             // 
@@ -363,7 +337,10 @@ namespace DOL.Tools.QuestDesigner
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem});
+            this.bindingNavigatorDeleteItem,
+            this.toolStripSeparator1,
+            this.toolStripMoveUpButton,
+            this.toolStripMoveDownButton});
             this.bindingNavigator.Location = new System.Drawing.Point(0, 87);
             this.bindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -460,6 +437,55 @@ namespace DOL.Tools.QuestDesigner
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripMoveUpButton
+            // 
+            this.toolStripMoveUpButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMoveUpButton.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.moveUp;
+            this.toolStripMoveUpButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripMoveUpButton.Name = "toolStripMoveUpButton";
+            this.toolStripMoveUpButton.Size = new System.Drawing.Size(23, 22);
+            this.toolStripMoveUpButton.Text = "Move Up";
+            this.toolStripMoveUpButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripMoveUpButton.ToolTipText = "Move queststep up";
+            this.toolStripMoveUpButton.Click += new System.EventHandler(this.toolStripMoveUpButton_Click);
+            // 
+            // toolStripMoveDownButton
+            // 
+            this.toolStripMoveDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMoveDownButton.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.moveDown;
+            this.toolStripMoveDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripMoveDownButton.Name = "toolStripMoveDownButton";
+            this.toolStripMoveDownButton.Size = new System.Drawing.Size(23, 22);
+            this.toolStripMoveDownButton.Text = "Move Down";
+            this.toolStripMoveDownButton.ToolTipText = "Move queststep down";
+            this.toolStripMoveDownButton.Click += new System.EventHandler(this.toolStripMoveDownButton_Click);
+            // 
+            // toolStripLabelTrigger
+            // 
+            this.toolStripLabelTrigger.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.toolStripLabelTrigger.Name = "toolStripLabelTrigger";
+            this.toolStripLabelTrigger.Size = new System.Drawing.Size(59, 17);
+            this.toolStripLabelTrigger.Text = "Trigger";
+            // 
+            // toolStripLabelRequirement
+            // 
+            this.toolStripLabelRequirement.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.toolStripLabelRequirement.Name = "toolStripLabelRequirement";
+            this.toolStripLabelRequirement.Size = new System.Drawing.Size(99, 17);
+            this.toolStripLabelRequirement.Text = "Requirement";
+            // 
+            // toolStripLabelAction
+            // 
+            this.toolStripLabelAction.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.toolStripLabelAction.Name = "toolStripLabelAction";
+            this.toolStripLabelAction.Size = new System.Drawing.Size(60, 17);
+            this.toolStripLabelAction.Text = "Actions";
+            // 
             // tooltipTimer
             // 
             this.tooltipTimer.Tick += new System.EventHandler(this.tooltipTimer_Tick);
@@ -477,12 +503,6 @@ namespace DOL.Tools.QuestDesigner
             this.splitContainerMain.Panel2.PerformLayout();
             this.splitContainerMain.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.headerStrip1.ResumeLayout(false);
-            this.headerStrip1.PerformLayout();
-            this.headerStrip2.ResumeLayout(false);
-            this.headerStrip2.PerformLayout();
-            this.headerStrip3.ResumeLayout(false);
-            this.headerStrip3.PerformLayout();
             this.contextMenuStripQuestPart.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).EndInit();
             this.bindingNavigator.ResumeLayout(false);
@@ -532,5 +552,8 @@ namespace DOL.Tools.QuestDesigner
 		private System.Windows.Forms.ToolStripMenuItem offerAcceptQuestToolStripMenuItem;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Timer tooltipTimer;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripMoveUpButton;
+        private System.Windows.Forms.ToolStripButton toolStripMoveDownButton;
 	}
 }

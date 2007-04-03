@@ -50,10 +50,11 @@ namespace DOL.Tools.QuestDesigner
             {                
                 IList mobs = QuestDesignerMain.DatabaseAdapter.GetNPCList();
                 if (mobs.Count > 0)
-                {
-                    comboBoxNPC.DataSource = mobs;
+                {                    
                     comboBoxNPC.DisplayMember = DOLDatabaseAdapter.MOB_NAME;
                     comboBoxNPC.ValueMember = DOLDatabaseAdapter.MOB_ID;
+                    comboBoxNPC.DataSource = mobs;
+
                     propertyGridNPC.SelectedObject = comboBoxNPC.SelectedItem;
                     //propertyGridNPC.DataBindings.Add(new System.Windows.Forms.Binding("SelectedObject", this.comboBoxNPC, "SelectedItem", false));
                 }
