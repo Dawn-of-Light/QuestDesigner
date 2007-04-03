@@ -25,7 +25,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Name: "associatefiletype"; Description: "{cm:AssocFileExtension,Quest Designer, .qst}"; GroupDescription: "{cm:AdditionalIcons}";
 
 [Files]
-Source: "E:\_WORK\DOLTools\QuestDesigner\bin\Release\*"; DestDir: "{app}"; Excludes: "data,*.vshost.*,NETXP*.xml,*.pdb"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\_WORK\DOLTools\QuestDesigner\bin\Release\*"; DestDir: "{app}"; Excludes: "data,*.vshost.*,NETXP*.xml,*.pdb,serverconfig.xml"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
