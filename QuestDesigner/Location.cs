@@ -73,8 +73,8 @@ namespace DOL.Tools.QuestDesigner
                 {
                     case "Name":
                         rowView = ((DataRowView)DB.locationBinding.Current);
-                        
-                        rowView["ObjectName"] = Utils.ConvertToObjectName((string)e.Value);
+
+                        rowView[DB.COL_LOCATION_OBJECTNAME] = Utils.ConvertToObjectName((string)e.Value);
                         
                         ((DataRowView)DB.locationBinding.Current)[e.Property.Name] = e.Value;
                         break;
@@ -127,9 +127,9 @@ namespace DOL.Tools.QuestDesigner
             dataGridViewLocation.AutoGenerateColumns = false;
             dataGridViewLocation.DataSource = DB.locationBinding;
             
-            colRegionID.ValueMember = "id";
-            colRegionID.DisplayMember = "description";
-            colRegionID.DataPropertyName = "RegionID";
+            colRegionID.ValueMember = DB.COL_REGION_ID;
+            colRegionID.DisplayMember = DB.COL_REGION_DESCRIPTION;
+            colRegionID.DataPropertyName = DB.COL_LOCATION_REGIONID;
             colRegionID.DataSource = DB.regionBinding;
         }
 
@@ -137,7 +137,7 @@ namespace DOL.Tools.QuestDesigner
 
         private void dataGridViewLocation_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
-            e.Row.Cells[colObjectName.Name].Value = "<AUTO>";
+            e.Row.Cells[colObjectName.Name].Value = Const.GRID_AUTOFILL_VALUE;
         }
 
         private void dataGridViewLocation_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
@@ -148,7 +148,7 @@ namespace DOL.Tools.QuestDesigner
                 dataGridViewLocation.Rows[e.RowIndex + 1].IsNewRow &&
                 row.Cells[colObjectName.Name].Value != null &&
                 (row.Cells[colObjectName.Name].Value == DBNull.Value ||
-                 row.Cells[colObjectName.Name].Value.ToString() == "<AUTO>")
+                 row.Cells[colObjectName.Name].Value.ToString() == Const.GRID_AUTOFILL_VALUE)
                 )
             {
                 string coname = row.Cells[colLocationName.Name].Value as string;
@@ -160,7 +160,7 @@ namespace DOL.Tools.QuestDesigner
             }
             else if (row.Cells[colObjectName.Name].Value != null &&
                 row.Cells[colObjectName.Name].Value != DBNull.Value &&
-                row.Cells[colObjectName.Name].Value.ToString() != "<AUTO>")
+                row.Cells[colObjectName.Name].Value.ToString() != Const.GRID_AUTOFILL_VALUE)
             {
                 row.Cells[colObjectName.Name].Value = Utils.ConvertToObjectName(Convert.ToString(row.Cells[colObjectName.Name].Value));
             }
@@ -198,10 +198,10 @@ namespace DOL.Tools.QuestDesigner
                 if (DB.locationBinding.Current!=null)
                 {
                     DataRowView rowView = (DataRowView)DB.locationBinding.Current;                    
-                    rowView["X"] = loc.X;
-                    rowView["Y"] = loc.Y;
-                    rowView["Z"] = loc.Z;
-                    rowView["regionID"] = loc.RegionID;
+                    rowView[DB.COL_LOCATION_X] = loc.X;
+                    rowView[DB.COL_LOCATION_Y] = loc.Y;
+                    rowView[DB.COL_LOCATION_Y] = loc.Z;
+                    rowView[DB.COL_LOCATION_REGIONID] = loc.RegionID;
 
                     propertyGridLocation.Refresh();
                 }
@@ -215,15 +215,15 @@ namespace DOL.Tools.QuestDesigner
 
                 DataRowView rowView =(DataRowView) DB.locationBinding.Current;
 
-                if (rowView["X"] != DBNull.Value && rowView["Y"] != DBNull.Value && rowView["regionID"] != DBNull.Value)
+                if (rowView[DB.COL_LOCATION_X] != DBNull.Value && rowView[DB.COL_LOCATION_Y] != DBNull.Value && rowView[DB.COL_LOCATION_REGIONID] != DBNull.Value)
                 {
 
                     Vector3 location = new Vector3();
 
-                    location.X = (float)Convert.ToDouble(rowView["X"]);
-                    location.Y = (float)Convert.ToDouble(rowView["Y"]);
+                    location.X = (float)Convert.ToDouble(rowView[DB.COL_LOCATION_X]);
+                    location.Y = (float)Convert.ToDouble(rowView[DB.COL_LOCATION_Y]);
 
-                    int regionID = Convert.ToInt32(rowView["regionID"]);
+                    int regionID = Convert.ToInt32(rowView[DB.COL_LOCATION_REGIONID]);
                     QuestDesignerMain.DesignerForm.DXControl.ShowLocation(location, regionID);
                     QuestDesignerMain.DesignerForm.ShowTab("Map Editor");
                 }

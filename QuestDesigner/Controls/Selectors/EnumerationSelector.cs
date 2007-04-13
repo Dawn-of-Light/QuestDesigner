@@ -33,10 +33,12 @@ namespace DOL.Tools.QuestDesigner.Controls
 		public EnumerationSelector(int itemID, char param, string type)
 			: base(itemID, param)
 		{
-			this.list.DataSource = DB.GetBindingSourceForEnumeration(type);
-			
-			this.list.ValueMember = "Value";
-			this.list.DisplayMember = "Description";
+            this.list.ValueMember = DB.COL_ENUMERATION_VALUE;
+            this.list.DisplayMember = DB.COL_ENUMERATION_DESCRIPTION;
+
+            this.list.DataSource = DB.GetBindingSourceForEnumeration(type);
+
+            
 			this.Editable = false;
 		}
 

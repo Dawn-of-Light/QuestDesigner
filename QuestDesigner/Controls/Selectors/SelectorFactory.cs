@@ -39,31 +39,31 @@ namespace DOL.Tools.QuestDesigner.Controls
 
 			if (param == Const.CODE_COMPARATOR)
 				selector = new ComparatorSelector(id, param,comparatorType);
-			else if (description.StartsWith("QuestType"))
+			else if (description.StartsWith(Const.SELECTOR_QUESTTYPE))
 				selector = new QuestSelector(id, param);
-			else if (description.StartsWith("GameLiving"))
+            else if (description.StartsWith(Const.SELECTOR_GAMELIVING) || description.StartsWith(Const.SELECTOR_GAMENPC))
 				selector = new NPCSelector(id, param);
-			else if (description.StartsWith("Area"))
+            else if (description.StartsWith(Const.SELECTOR_AREA))
 				selector = new AreaSelector(id, param);
-			else if (description.StartsWith("Item"))
+            else if (description.StartsWith(Const.SELECTOR_ITEM))
 				selector = new ItemSelector(id, param);
-			else if (description.StartsWith("Whisper"))
+            else if (description.StartsWith(Const.SELECTOR_WHIPSER))
 				selector = new WhisperSelector(id, param);
-			else if (description.StartsWith("Region"))
+            else if (description.StartsWith(Const.SELECTOR_REGION))
 				selector = new RegionSelector(id, param);
-			else if (description.StartsWith("Zone"))
+            else if (description.StartsWith(Const.SELECTOR_ZONE))
 				selector = new ZoneSelector(id, param);
-			else if (description.StartsWith("TextType"))
+            else if (description.StartsWith(Const.SELECTOR_TEXTTYPE))
 				selector = new EnumerationSelector(id, param, typeof(DOL.GS.Quests.eTextType).Name);
-			else if (description.StartsWith("Text"))
+            else if (description.StartsWith(Const.SELECTOR_TEXT))
 				selector = new TextSelector(id, param);
-			else if (description.StartsWith("Location"))
-				selector = new LocationSelector(id, param);			
-			else if (description.StartsWith("Comparator"))
+            else if (description.StartsWith(Const.SELECTOR_LOCATION))
+				selector = new LocationSelector(id, param);
+            else if (description.StartsWith(Const.SELECTOR_COMPARATOR))
 				selector = new ComparatorSelector(id, param,comparatorType);
-			else if (description.StartsWith("Emote"))
+            else if (description.StartsWith(Const.SELECTOR_EMOTE))
 				selector = new EnumerationSelector(id, param, typeof(DOL.GS.PacketHandler.eEmote).Name);
-			else if (description.StartsWith("CharacterClass"))
+            else if (description.StartsWith(Const.SELECTOR_CHARACTERCLASS))
 				selector = new EnumerationSelector(id, param, typeof(DOL.GS.eCharacterClass).Name);
 			else
 				selector = new BaseSelector(id, param);

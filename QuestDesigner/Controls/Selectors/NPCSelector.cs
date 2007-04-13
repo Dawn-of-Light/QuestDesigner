@@ -28,16 +28,16 @@ using DOL.Tools.QuestDesigner.Util;
 namespace DOL.Tools.QuestDesigner.Controls
 {
 
-	[SelectorAttribute("GameLiving")]
+	[SelectorAttribute(Const.SELECTOR_GAMELIVING)]
 	public class NPCSelector : BaseSelector
 	{		
 
 		public NPCSelector(int questPartID, char param): base(questPartID,param)
 		{			
 			this.list.DataSource = DB.MobTable;
-			
-			this.list.ValueMember = "ObjectName";
-			this.list.DisplayMember = "Name";
+
+            this.list.ValueMember = DB.COL_NPC_OBJECTNAME;
+            this.list.DisplayMember = DB.COL_NPC_NAME;
 			
 		}
 

@@ -27,16 +27,18 @@ using DOL.Tools.QuestDesigner.Util;
 
 namespace DOL.Tools.QuestDesigner.Controls
 {
-	[SelectorAttribute("Location")]
+	[SelectorAttribute(Const.SELECTOR_LOCATION)]
 	public class LocationSelector : BaseSelector
 	{		
 
 		public LocationSelector(int triggerID, char param): base(triggerID,param)
-		{			
-			this.list.DataSource = DB.LocationTable;
+		{
+            this.list.ValueMember = DB.COL_LOCATION_OBJECTNAME;
+            this.list.DisplayMember = DB.COL_LOCATION_NAME;
+
+            this.list.DataSource = DB.LocationTable;
 			
-			this.list.ValueMember = "ObjectName";
-			this.list.DisplayMember = "Name";
+			
 			this.Editable = false;
 		}
 

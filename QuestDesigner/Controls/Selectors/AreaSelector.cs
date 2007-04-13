@@ -28,16 +28,18 @@ using DOL.Tools.QuestDesigner.Util;
 namespace DOL.Tools.QuestDesigner.Controls
 {
 	
-	[SelectorAttribute("Area")]
+	[SelectorAttribute(Const.SELECTOR_AREA)]
 	public class AreaSelector : BaseSelector
 	{		
 
 		public AreaSelector(int itemID, char param): base(itemID,param)
-		{			
-			this.list.DataSource = DB.AreaTable;
-			
-			this.list.ValueMember = "ObjectName";
-			this.list.DisplayMember = "Name";			
+		{
+            this.list.ValueMember = DB.COL_AREA_OBJECTNAME;
+            this.list.DisplayMember = DB.COL_AREA_NAME;
+
+            this.list.DataSource = DB.AreaTable;
+
+            
 		}
 
 		protected override System.Drawing.Image getImage(int index)

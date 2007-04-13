@@ -43,7 +43,7 @@ namespace DOL.Tools.Mapping.Modules
             ClearObjectRowMapping();
             
             // load locations
-            DataRow[] locations = DB.LocationTable.Select("RegionID=" + RegionMgr.CurrentRegion.ID);
+            DataRow[] locations = DB.LocationTable.Select(DB.COL_LOCATION_REGIONID+"=" + RegionMgr.CurrentRegion.ID);
             foreach (DataRow location in locations)
             {
                 AddLocation(location);
@@ -60,6 +60,7 @@ namespace DOL.Tools.Mapping.Modules
 
         public override void ObjectMoved(IMapObject obj)
         {
+            Objects.Render();
         }
 
         public override IMapObject GetObjectAt(int x, int y)
@@ -100,8 +101,8 @@ namespace DOL.Tools.Mapping.Modules
 
         private GeometryObj AddLocation(DataRow locationRow)
         {
-            float x = (float)Convert.ToDouble(locationRow["X"]);
-            float y = (float)Convert.ToDouble(locationRow["Y"]);
+            float x = (float)Convert.ToDouble(locationRow[DB.COL_LOCATION_X]);
+            float y = (float)Convert.ToDouble(locationRow[DB.COL_LOCATION_Y]);
 
             GeometryObj obj = null;
             if (x > 0 || y > 0)
@@ -122,7 +123,7 @@ namespace DOL.Tools.Mapping.Modules
         private void LocationTable_RowChanged(object sender, DataRowChangeEventArgs e)
         {
             DataRow locationRow = e.Row;
-            if (RegionMgr.CurrentRegion != null && locationRow["RegionID"] is int && (int)locationRow["RegionID"] == RegionMgr.CurrentRegion.ID)
+            if (RegionMgr.CurrentRegion != null && locationRow[DB.COL_LOCATION_REGIONID] is int && (int)locationRow[DB.COL_LOCATION_REGIONID] == RegionMgr.CurrentRegion.ID)
             {
                 if (e.Action == DataRowAction.Add)
                 {
@@ -138,8 +139,8 @@ namespace DOL.Tools.Mapping.Modules
                 }
                 else if (e.Action == DataRowAction.Change)
                 {
-                    float x = (float)Convert.ToDouble(locationRow["X"]);
-                    float y = (float)Convert.ToDouble(locationRow["Y"]);
+                    float x = (float)Convert.ToDouble(locationRow[DB.COL_LOCATION_X]);
+                    float y = (float)Convert.ToDouble(locationRow[DB.COL_LOCATION_Y]);
 
                     GeometryObj obj = GetObjectForRow(locationRow);
                     if (obj != null)

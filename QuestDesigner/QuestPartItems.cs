@@ -25,6 +25,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using DOL.GS.Quests;
+using DOL.Tools.QuestDesigner.Exceptions;
 using DOL.Tools.QuestDesigner.Util;
 using DOL.Tools.QuestDesigner.Controls;
 using vbAccelerator.Components.Controls;
@@ -127,7 +128,7 @@ namespace DOL.Tools.QuestDesigner
 			}
             set {
                 questPartRow = value;
-                QuestPartRowID = QuestPartRow != null ? Convert.ToInt32(QuestPartRow["ID"]) : -1;
+                QuestPartRowID = QuestPartRow != null ? Convert.ToInt32(QuestPartRow[DB.COL_QUESTPART_ID]) : -1;
             }
 		}
 
@@ -155,19 +156,19 @@ namespace DOL.Tools.QuestDesigner
             triggerTypeList.Items.Clear();
             foreach (DataRow row in DB.TriggerTypeTable.Rows)
             {
-                triggerTypeList.Items.Add(row["description"], false);
+                triggerTypeList.Items.Add(row[DB.COL_TRIGGERTYPE_DESCRIPTION], false);
             }
 
             requirementTypeList.Items.Clear();
             foreach (DataRow row in DB.RequirementTypeTable.Rows)
             {
-                requirementTypeList.Items.Add(row["description"], false);
+                requirementTypeList.Items.Add(row[DB.COL_REQUIREMENTTYPE_DESCRIPTION], false);
             }
 
             actionTypeList.Items.Clear();
             foreach (DataRow row in DB.ActionTypeTable.Rows)
             {
-                actionTypeList.Items.Add(row["description"], false);
+                actionTypeList.Items.Add(row[DB.COL_ACTIONTYPE_DESCRIPTION], false);
             }
 
             this.bindingNavigator.BindingSource = DB.questPartBinding;
@@ -328,7 +329,15 @@ namespace DOL.Tools.QuestDesigner
 				first = false;                
 				UpdateQuestPartText(row);
 			}
+/*
+            if (QuestPartRow != null)
+            {
+                QuestPartTextInfo info = GetInfoForQuestPartRow(QuestPartRow.Row);
+                questPartTextbox.SelectRange(info.BeginIndex, info.EndIndex);
+                questPartTextbox.SelectionIndent = 20;
 
+            }
+*/
             if (oldStart >= 0)
             {
                 if (oldStart < questPartTextbox.TextLength)
@@ -379,30 +388,30 @@ namespace DOL.Tools.QuestDesigner
             if (questPartRow != null && questPartRow.RowState != DataRowState.Detached && questPartRow.RowState != DataRowState.Deleted)
 			{
 				questPartTextbox.BeginUpdate();
-				bool selected = (Convert.ToInt16(questPartRow["ID"]) == QuestPartRowID);
+				bool selected = (Convert.ToInt16(questPartRow[DB.COL_QUESTPART_ID]) == QuestPartRowID);
 				
 				// textinfo
 				QuestPartTextInfo textinfo = GetInfoForQuestPartRow(questPartRow);
 
-                //
+                /*
                 string DBG_oldtext = null;
                 int DBG_oldBeginIndex = -1;
                 int DBG_oldEndIndex = -1;
-                //
+                */
 
 				if (textinfo !=null) {
-					questPartTextbox.SelectRange(textinfo.BeginIndex, textinfo.EndIndex);
+					questPartTextbox.SelectRange(textinfo.BeginIndex, textinfo.EndIndex);                    
 					questPartTextbox.ReadOnly = false;
-                    
+                    /*
                     DBG_oldtext = questPartTextbox.SelectedText;
                     DBG_oldBeginIndex = textinfo.BeginIndex;
                     DBG_oldEndIndex = textinfo.EndIndex;
-
+                    */
 					questPartTextbox.SelectedText = "";
 					questPartTextbox.ReadOnly = true;
 				} else {
 					textinfo = new QuestPartTextInfo();
-                    textinfo.QuestPartID = (int)questPartRow["ID"];
+                    textinfo.QuestPartID = (int)questPartRow[DB.COL_QUESTPART_ID];
                     textinfo.BeginIndex = questPartTextbox.SelectionStart;					
 				}
 								
@@ -412,7 +421,7 @@ namespace DOL.Tools.QuestDesigner
                 
                 // Trigger
                 #region Trigger
-                DataRow[] triggerRows = DB.TriggerTable.Select("QuestPartID=" + questPartRow["ID"]);                
+                DataRow[] triggerRows = DB.TriggerTable.Select(DB.COL_QUESTPARTTRIGGER_QUESTPARTID+"=" + questPartRow[DB.COL_QUESTPART_ID]);                
 				questPartTextbox.InsertText("If ");				
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ForeColorSelected : ForeColor);
 				colorBegin = questPartTextbox.SelectionEnd;
@@ -421,9 +430,9 @@ namespace DOL.Tools.QuestDesigner
 
 					foreach (DataRow row in triggerRows)
 					{
-						int triggerType = (int)row["Type"];						
-						string k = Convert.ToString(row["K"]);
-						string i = Convert.ToString(row["I"]);
+						int triggerType = (int)row[DB.COL_QUESTPARTTRIGGER_TYPE];
+                        string k = Convert.ToString(row[DB.COL_QUESTPARTTRIGGER_K]);
+                        string i = Convert.ToString(row[DB.COL_QUESTPARTTRIGGER_I]);
 						
 						k = string.IsNullOrEmpty(k) ? null : k;
 						i = string.IsNullOrEmpty(i) ? null : i;
@@ -441,7 +450,7 @@ namespace DOL.Tools.QuestDesigner
 						{
 							if (isLink)
 							{
-								questPartTextbox.InsertLink(str.Substring(1), (int)row["ID"] + ":"+ str.Substring(0,1));
+                                questPartTextbox.InsertLink(str.Substring(1), (int)row[DB.COL_QUESTPARTTRIGGER_ID] + ":" + str.Substring(0, 1));
 							}
 							else
 								questPartTextbox.InsertText(str);
@@ -456,13 +465,13 @@ namespace DOL.Tools.QuestDesigner
 				}
 
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd,selected ? TriggerSelectedColor : TriggerColor);				
-#endregion
+                #endregion
 
                 colorBegin = questPartTextbox.SelectionEnd;
 
                 // Requirements
                 #region Requirements
-                DataRow[] requirementRows = DB.RequirementTable.Select("QuestPartID=" + questPartRow["ID"]);
+                DataRow[] requirementRows = DB.RequirementTable.Select(DB.COL_QUESTPARTREQUIREMENT_QUESTPARTID+"=" + questPartRow[DB.COL_QUESTPART_ID]);
 
 				if (requirementRows.Length > 0)
 				{
@@ -474,10 +483,10 @@ namespace DOL.Tools.QuestDesigner
 					first = true;
 					foreach (DataRow row in requirementRows)
 					{
-						int type = (int)row["Type"];						
-						string n = Convert.ToString(row["N"]);
-						string v = Convert.ToString(row["V"]);
-						eComparator comp = row["Comparator"] is int ? (eComparator)((int)row["Comparator"]) : eComparator.None;
+                        int type = (int)row[DB.COL_QUESTPARTREQUIREMENT_TYPE];
+                        string n = Convert.ToString(row[DB.COL_QUESTPARTREQUIREMENT_N]);
+                        string v = Convert.ToString(row[DB.COL_QUESTPARTREQUIREMENT_V]);
+                        eComparator comp = row[DB.COL_QUESTPARTREQUIREMENT_COMPARATOR] is int ? (eComparator)((int)row[DB.COL_QUESTPARTREQUIREMENT_COMPARATOR]) : eComparator.None;
 						
 						n = string.IsNullOrEmpty(n) ? null : n;
 						v = string.IsNullOrEmpty(v) ? null : v;
@@ -495,7 +504,7 @@ namespace DOL.Tools.QuestDesigner
 						{
 							if (isLink)
 							{
-								questPartTextbox.InsertLink(str.Substring(1), (int)row["ID"] + ":" + str.Substring(0, 1));
+                                questPartTextbox.InsertLink(str.Substring(1), (int)row[DB.COL_QUESTPARTREQUIREMENT_ID] + ":" + str.Substring(0, 1));
 							}
 							else
 								questPartTextbox.InsertText(str);
@@ -517,16 +526,16 @@ namespace DOL.Tools.QuestDesigner
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd,selected ? ForeColorSelected : ForeColor );				
 				colorBegin = questPartTextbox.SelectionEnd;
 
-				DataRow[] actionRows = DB.ActionTable.Select("QuestPartID=" + questPartRow["ID"]);
+				DataRow[] actionRows = DB.ActionTable.Select(DB.COL_QUESTPARTACTION_QUESTPARTID+"=" + questPartRow[DB.COL_QUESTPART_ID]);
 
 				if (actionRows.Length > 0)
 				{					
 					first = true;
 					foreach (DataRow row in actionRows)
 					{
-						int type = (int)row["Type"];						
-						string p = Convert.ToString(row["P"]);
-						string q = Convert.ToString(row["Q"]);
+                        int type = (int)row[DB.COL_QUESTPARTACTION_TYPE];
+                        string p = Convert.ToString(row[DB.COL_QUESTPARTACTION_P]);
+                        string q = Convert.ToString(row[DB.COL_QUESTPARTACTION_Q]);
 						
 						p = string.IsNullOrEmpty(p) ? null : p;
 						q = string.IsNullOrEmpty(q) ? null : q;
@@ -544,7 +553,7 @@ namespace DOL.Tools.QuestDesigner
 						{
 							if (isLink)
 							{
-								questPartTextbox.InsertLink(str.Substring(1), (int)row["ID"] + ":" + str.Substring(0, 1));
+                                questPartTextbox.InsertLink(str.Substring(1), (int)row[DB.COL_QUESTPARTACTION_ID] + ":" + str.Substring(0, 1));
 							}
 							else
 								questPartTextbox.InsertText(str);
@@ -563,13 +572,16 @@ namespace DOL.Tools.QuestDesigner
                 // end
                 questPartTextbox.InsertText(".");
 
-				// recalculate index of textinfos after current one
+				
+                /*
                 string questPartText = questPartTextbox.Text.Substring(textinfo.BeginIndex, questPartTextbox.SelectionEnd - textinfo.BeginIndex);
                 if (questPartText.Contains("\n"))
                 {
                     Log.Info(questPartText);
                 }
+                */
 
+                // recalculate index of textinfos after current one
                 if (questPartInfos.Contains(textinfo))
                 {
                     int newDifference = questPartTextbox.SelectionEnd - textinfo.EndIndex;
@@ -615,23 +627,23 @@ namespace DOL.Tools.QuestDesigner
 
 			if (questPartRow != null)
 			{				
-				foreach (DataRow row in DB.TriggerTable.Select("QuestPartID=" + questPartRow["ID"]))
-				{					
-					int index = GetIndexForTriggerType((int)row["Type"]);
+				foreach (DataRow row in DB.TriggerTable.Select(DB.COL_QUESTPARTTRIGGER_QUESTPARTID+"=" + questPartRow["ID"]))
+				{
+                    int index = GetIndexForTriggerType((int)row[DB.COL_QUESTPARTTRIGGER_TYPE]);
 					if (index >= 0 && !triggerTypeList.GetItemChecked(index))
 						triggerTypeList.SetItemChecked(index, true);
 				}
 
-				foreach (DataRow row in DB.RequirementTable.Select("QuestPartID=" + questPartRow["ID"]))
+				foreach (DataRow row in DB.RequirementTable.Select(DB.COL_QUESTPARTREQUIREMENT_QUESTPARTID+"=" + questPartRow["ID"]))
 				{
-					int index = GetIndexForRequirementType((int)row["Type"]);
+                    int index = GetIndexForRequirementType((int)row[DB.COL_QUESTPARTREQUIREMENT_TYPE]);
 					if (index >= 0 && !requirementTypeList.GetItemChecked(index))
 						requirementTypeList.SetItemChecked(index, true);
 				}
 
-				foreach (DataRow row in DB.ActionTable.Select("QuestPartID=" + questPartRow["ID"]))
+				foreach (DataRow row in DB.ActionTable.Select(DB.COL_QUESTPARTACTION_QUESTPARTID+"=" + questPartRow["ID"]))
 				{
-					int index = GetIndexForActionType((int)row["Type"]);
+                    int index = GetIndexForActionType((int)row[DB.COL_QUESTPARTACTION_TYPE]);
 					if (index >= 0 && !actionTypeList.GetItemChecked(index))
 						actionTypeList.SetItemChecked(index, true);
 				}
@@ -651,8 +663,8 @@ namespace DOL.Tools.QuestDesigner
 				if (triggerType >=0)
 				{					
 					DataRow triggerRow = DB.TriggerTable.NewRow();
-					triggerRow["QuestPartID"] = QuestPartRow["ID"];
-					triggerRow["Type"] = triggerType;
+                    triggerRow[DB.COL_QUESTPARTTRIGGER_QUESTPARTID] = QuestPartRow["ID"];
+                    triggerRow[DB.COL_QUESTPARTTRIGGER_TYPE] = triggerType;
 
 					DB.TriggerTable.Rows.Add(triggerRow);                    
 				}
@@ -682,8 +694,8 @@ namespace DOL.Tools.QuestDesigner
 				if (requType >= 0)
 				{
 					DataRow newRow = DB.RequirementTable.NewRow();
-					newRow["QuestPartID"] = QuestPartRow["ID"];
-					newRow["Type"] = requType;
+                    newRow[DB.COL_QUESTPARTREQUIREMENT_QUESTPARTID] = QuestPartRow["ID"];
+                    newRow[DB.COL_QUESTPARTREQUIREMENT_TYPE] = requType;
 					DB.RequirementTable.Rows.Add(newRow);                    
 				}
 			}
@@ -712,8 +724,8 @@ namespace DOL.Tools.QuestDesigner
 				if (actionType >= 0)
 				{
 					DataRow newRow = DB.ActionTable.NewRow();
-					newRow["QuestPartID"] = QuestPartRow["ID"];
-					newRow["Type"] = actionType;
+                    newRow[DB.COL_QUESTPARTACTION_QUESTPARTID] = QuestPartRow["ID"];
+                    newRow[DB.COL_QUESTPARTACTION_TYPE] = actionType;
 
 					DB.ActionTable.Rows.Add(newRow);                    
 				}
@@ -744,11 +756,20 @@ namespace DOL.Tools.QuestDesigner
         }
 
 		private void questPartTextbox_LinkClicked(object sender, LinkClickedEventArgs e)
-		{
-            
-			string code = e.LinkText.Substring(e.LinkText.IndexOf('#')+1);
-			int id = Convert.ToInt32(code.Substring(0,code.IndexOf(':')));
-			char param = Convert.ToChar(code.Substring(code.IndexOf(':')+1));
+        {
+            string code;
+            char param;
+            int id;
+            try
+            {
+                code = e.LinkText.Substring(e.LinkText.LastIndexOf('#') + 1);                
+                id = Convert.ToInt32(code.Substring(0, code.IndexOf(':')));
+                param = Convert.ToChar(code.Substring(code.IndexOf(':') + 1));
+            }
+            catch (FormatException ex)
+            {                
+                throw new QuestPartConfigurationException("The internal Link representation was invalid. Should be of the form \"#Code:Id:Param\".\n LinkText: \""+e.LinkText+"\"",ex);
+            }
 
             int questPartID = -1;
 
@@ -757,15 +778,15 @@ namespace DOL.Tools.QuestDesigner
 				case Const.CODE_I:
 				case Const.CODE_K:
 				{
-					DataRow[] rows = DB.TriggerTable.Select("ID=" + id);
+					DataRow[] rows = DB.TriggerTable.Select(DB.COL_QUESTPARTTRIGGER_ID+"=" + id);
 					if (rows.Length > 0)
 					{
 						DataRow triggerRow = rows[0];
-                        questPartID = (int) triggerRow["QuestPartID"];
-						int triggerType = (int)triggerRow["Type"];
+                        questPartID = (int) triggerRow[DB.COL_QUESTPARTTRIGGER_QUESTPARTID];
+                        int triggerType = (int)triggerRow[DB.COL_QUESTPARTTRIGGER_TYPE];
 						DataRow triggerTypeRow = DB.GetTriggerTypeRowForID(triggerType);
 
-						selector = SelectorFactory.GetSelector(Convert.ToString(triggerTypeRow[Const.CodeToColumn(param).ToLower()]), (int)triggerRow["ID"], param);
+                        selector = SelectorFactory.GetSelector(Convert.ToString(triggerTypeRow[Const.CodeToColumn(param).ToLower()]), (int)triggerRow[DB.COL_QUESTPARTTRIGGER_ID], param);
 						selector.SelectedValue = triggerRow[Const.CodeToColumn(param)];
 
 					}
@@ -775,22 +796,22 @@ namespace DOL.Tools.QuestDesigner
 			case Const.CODE_V:
 			case Const.CODE_COMPARATOR:
 				{
-					DataRow[] rows = DB.RequirementTable.Select("ID=" + id);
+					DataRow[] rows = DB.RequirementTable.Select(DB.COL_QUESTPARTREQUIREMENT_ID+"=" + id);
 					if (rows.Length > 0)
 					{
 						DataRow requirementRow = rows[0];
-                        questPartID = (int)requirementRow["QuestPartID"];
-						int requirementType = (int)requirementRow["Type"];
+                        questPartID = (int)requirementRow[DB.COL_QUESTPARTREQUIREMENT_QUESTPARTID];
+                        int requirementType = (int)requirementRow[DB.COL_QUESTPARTREQUIREMENT_TYPE];
 						DataRow requirementTypeRow = DB.GetRequirementTypeRowForID(requirementType);
 
 						if (requirementType ==(int) eRequirementType.Region && param == Const.CODE_N)
 						{
-							selector = new ZoneSelector((int)requirementRow["ID"], param, requirementRow["V"] != DBNull.Value ? Convert.ToInt32(requirementRow["V"]) : -1);
+                            selector = new ZoneSelector((int)requirementRow[DB.COL_QUESTPARTREQUIREMENT_ID], param, requirementRow[DB.COL_QUESTPARTREQUIREMENT_V] != DBNull.Value ? Convert.ToInt32(requirementRow[DB.COL_QUESTPARTREQUIREMENT_V]) : -1);
 						}
 						else
 						{
-                            string comparatorType = Convert.ToString(requirementTypeRow["comparator"]);
-                            selector = SelectorFactory.GetSelector(Convert.ToString(requirementTypeRow[Const.CodeToColumn(param).ToLower()]), (int)requirementRow["ID"], param,comparatorType);							
+                            string comparatorType = Convert.ToString(requirementTypeRow[DB.COL_QUESTPARTREQUIREMENT_COMPARATOR]);
+                            selector = SelectorFactory.GetSelector(Convert.ToString(requirementTypeRow[Const.CodeToColumn(param).ToLower()]), (int)requirementRow[DB.COL_QUESTPARTREQUIREMENT_ID], param, comparatorType);							
 						}						
 						selector.SelectedValue = requirementRow[Const.CodeToColumn(param)];
 
@@ -800,15 +821,15 @@ namespace DOL.Tools.QuestDesigner
 			case Const.CODE_P:
 			case Const.CODE_Q:			
 				{
-					DataRow[] rows = DB.ActionTable.Select("ID=" + id);
+					DataRow[] rows = DB.ActionTable.Select(DB.COL_QUESTPARTACTION_ID+"=" + id);
 					if (rows.Length > 0)
 					{
 						DataRow actionRow = rows[0];
-                        questPartID = (int)actionRow["QuestPartID"];
-						int actionType = (int)actionRow["Type"];
+                        questPartID = (int)actionRow[DB.COL_QUESTPARTACTION_QUESTPARTID];
+                        int actionType = (int)actionRow[DB.COL_QUESTPARTACTION_TYPE];
 						DataRow actionTypeRow = DB.GetActionTypeRowForID(actionType);
-						
-						selector = SelectorFactory.GetSelector(Convert.ToString(actionTypeRow[Const.CodeToColumn(param).ToLower()]), (int)actionRow["ID"], param);
+
+                        selector = SelectorFactory.GetSelector(Convert.ToString(actionTypeRow[Const.CodeToColumn(param).ToLower()]), (int)actionRow[DB.COL_QUESTPARTACTION_ID], param);
 						selector.SelectedValue = actionRow[Const.CodeToColumn(param)];
 					}
 					break;
@@ -837,7 +858,7 @@ namespace DOL.Tools.QuestDesigner
             // select the clicked questPart
             if (questPartID >= 0)
             {
-                int index = DB.questPartBinding.Find("ID", questPartID);
+                int index = DB.questPartBinding.Find(DB.COL_QUESTPART_ID, questPartID);
                 if (index >= 0)
                 {
                     DataRowView questPartRow = (DataRowView)DB.questPartBinding[index];
@@ -856,7 +877,7 @@ namespace DOL.Tools.QuestDesigner
 					case Const.CODE_I:
 					case Const.CODE_K:
 						{
-							DataRow[] rows = DB.TriggerTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.TriggerTable.Select(DB.COL_QUESTPARTTRIGGER_ID+"=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								rows[0].Delete();                                
@@ -868,7 +889,7 @@ namespace DOL.Tools.QuestDesigner
 					case Const.CODE_V:
 					case Const.CODE_COMPARATOR:
 						{
-							DataRow[] rows = DB.RequirementTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.RequirementTable.Select(DB.COL_QUESTPARTREQUIREMENT_ID+"=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								rows[0].Delete();                                
@@ -878,7 +899,7 @@ namespace DOL.Tools.QuestDesigner
 					case Const.CODE_P:
 					case Const.CODE_Q:
 						{
-							DataRow[] rows = DB.ActionTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.ActionTable.Select(DB.COL_QUESTPARTACTION_ID+"=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								rows[0].Delete();                                
@@ -898,12 +919,12 @@ namespace DOL.Tools.QuestDesigner
 					case Const.CODE_I:
 					case Const.CODE_K:
 						{
-							DataRow[] rows = DB.TriggerTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.TriggerTable.Select(DB.COL_QUESTPARTTRIGGER_ID+"=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								DataRow newRow = DB.TriggerTable.NewRow();
-								newRow["QuestPartID"] = rows[0]["QuestPartID"];
-								newRow["Type"] = rows[0]["Type"];
+                                newRow[DB.COL_QUESTPARTTRIGGER_QUESTPARTID] = rows[0][DB.COL_QUESTPARTTRIGGER_QUESTPARTID];
+                                newRow[DB.COL_QUESTPARTTRIGGER_TYPE] = rows[0][DB.COL_QUESTPARTTRIGGER_TYPE];
 								DB.TriggerTable.Rows.Add(newRow);                                
 							}
 							break;
@@ -912,12 +933,12 @@ namespace DOL.Tools.QuestDesigner
 					case Const.CODE_V:
 					case Const.CODE_COMPARATOR:
 						{
-							DataRow[] rows = DB.RequirementTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.RequirementTable.Select(DB.COL_QUESTPARTREQUIREMENT_ID+"=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								DataRow newRow = DB.RequirementTable.NewRow();
-								newRow["QuestPartID"] = rows[0]["QuestPartID"];
-								newRow["Type"] = rows[0]["Type"];
+                                newRow[DB.COL_QUESTPARTREQUIREMENT_QUESTPARTID] = rows[0][DB.COL_QUESTPARTREQUIREMENT_QUESTPARTID];
+                                newRow[DB.COL_QUESTPARTREQUIREMENT_TYPE] = rows[0][DB.COL_QUESTPARTREQUIREMENT_TYPE];
 								DB.RequirementTable.Rows.Add(newRow);                                
 							}
 							break;
@@ -925,12 +946,12 @@ namespace DOL.Tools.QuestDesigner
 					case Const.CODE_P:
 					case Const.CODE_Q:
 						{
-							DataRow[] rows = DB.ActionTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.ActionTable.Select(DB.COL_QUESTPARTACTION_ID+"=" + e.ItemID);
 							if (rows.Length > 0)
 							{
 								DataRow newRow = DB.ActionTable.NewRow();
-								newRow["QuestPartID"] = rows[0]["QuestPartID"];
-								newRow["Type"] = rows[0]["Type"];
+                                newRow[DB.COL_QUESTPARTACTION_QUESTPARTID] = rows[0][DB.COL_QUESTPARTACTION_QUESTPARTID];
+                                newRow[DB.COL_QUESTPARTACTION_TYPE] = rows[0][DB.COL_QUESTPARTACTION_TYPE];
 								DB.ActionTable.Rows.Add(newRow);                                
 							}
 							break;
@@ -949,11 +970,10 @@ namespace DOL.Tools.QuestDesigner
 					case Const.CODE_I:
 					case Const.CODE_K:
 						{
-							DataRow[] rows = DB.TriggerTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.TriggerTable.Select(DB.COL_QUESTPARTTRIGGER_ID+"=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);                                
-                                //RefreshQuestPartText(QuestPartRow.Row);
+								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);                                                                
 							}
 							break;
 						}
@@ -962,21 +982,19 @@ namespace DOL.Tools.QuestDesigner
 					case Const.CODE_N:
 					case Const.CODE_V:
 						{
-							DataRow[] rows = DB.RequirementTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.RequirementTable.Select(DB.COL_QUESTPARTREQUIREMENT_ID+"=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);
-                                //RefreshQuestPartText(QuestPartRow.Row);
+								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);                                
 							}
 							break;
 						}
 					case Const.CODE_COMPARATOR:
 						{
-							DataRow[] rows = DB.RequirementTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.RequirementTable.Select(DB.COL_QUESTPARTREQUIREMENT_ID+"=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								rows[0][Const.CodeToColumn(e.Param)] = e.Object;
-                                //RefreshQuestPartText(QuestPartRow.Row);
+								rows[0][Const.CodeToColumn(e.Param)] = e.Object;                               
 							}
 							break;
 						}
@@ -985,11 +1003,10 @@ namespace DOL.Tools.QuestDesigner
 					case Const.CODE_P:
 					case Const.CODE_Q:
 						{
-							DataRow[] rows = DB.ActionTable.Select("ID=" + e.ItemID);
+							DataRow[] rows = DB.ActionTable.Select(DB.COL_QUESTPARTACTION_ID+"=" + e.ItemID);
 							if (rows.Length > 0)
 							{
-								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);
-                                //RefreshQuestPartText(QuestPartRow.Row);
+								rows[0][Const.CodeToColumn(e.Param)] = Convert.ToString(e.Object);                                
 							}
 							break;
 						}
@@ -1039,10 +1056,10 @@ namespace DOL.Tools.QuestDesigner
 			// Add Quest Offer Step
 			DataRow newRow = DB.QuestPartTable.NewRow();
 			if (DB.MobTable.Rows.Count > 0)
-				newRow["defaultNPC"] = DB.MobTable.Rows[0]["ObjectName"];
+				newRow[DB.COL_QUESTPART_DEFAULTNPC] = DB.MobTable.Rows[0][DB.COL_NPC_OBJECTNAME];
 
 			DB.QuestPartTable.Rows.Add(newRow);
-			int questPartID = (int)newRow["ID"];
+            int questPartID = (int)newRow[DB.COL_QUESTPART_ID];
 
 			AddTrigger(eTriggerType.Interact, questPartID);
 			AddAction(eActionType.OfferQuest, questPartID);
@@ -1051,10 +1068,10 @@ namespace DOL.Tools.QuestDesigner
 			// Add Quest Accept Step
 			newRow = DB.QuestPartTable.NewRow();
 			if (DB.MobTable.Rows.Count > 0)
-				newRow["defaultNPC"] = DB.MobTable.Rows[0]["ObjectName"];
+                newRow[DB.COL_QUESTPART_DEFAULTNPC] = DB.MobTable.Rows[0][DB.COL_NPC_OBJECTNAME];
 
 			DB.QuestPartTable.Rows.Add(newRow);
-			questPartID = (int)newRow["ID"];
+            questPartID = (int)newRow[DB.COL_QUESTPART_ID];
 
 			AddTrigger(eTriggerType.AcceptQuest, questPartID);
 			AddRequirement(eRequirementType.QuestGivable, questPartID);
@@ -1065,10 +1082,10 @@ namespace DOL.Tools.QuestDesigner
 			// Add Quest Decline Step
 			newRow = DB.QuestPartTable.NewRow();
 			if (DB.MobTable.Rows.Count > 0)
-				newRow["defaultNPC"] = DB.MobTable.Rows[0]["ObjectName"];
+                newRow[DB.COL_QUESTPART_DEFAULTNPC] = DB.MobTable.Rows[0][DB.COL_NPC_OBJECTNAME];
 
 			DB.QuestPartTable.Rows.Add(newRow);
-			questPartID = (int)newRow["ID"];            
+            questPartID = (int)newRow[DB.COL_QUESTPART_ID];            
 
 			AddTrigger(eTriggerType.DeclineQuest, questPartID);
 			AddRequirement(eRequirementType.QuestGivable, questPartID);
@@ -1079,7 +1096,7 @@ namespace DOL.Tools.QuestDesigner
 		{
 			if (QuestPartRow != null)
 			{
-				int questPartID = (int)QuestPartRow["ID"];
+                int questPartID = (int)QuestPartRow[DB.COL_QUESTPART_ID];
 				AddTrigger(triggerType, questPartID);
 			}
 		}
@@ -1087,8 +1104,8 @@ namespace DOL.Tools.QuestDesigner
 		private void AddTrigger(eTriggerType triggerType, int questPartID)
 		{
 			DataRow row = DB.TriggerTable.NewRow();
-			row["QuestPartID"] = questPartID;
-			row["Type"] = triggerType;
+            row[DB.COL_QUESTPARTTRIGGER_QUESTPARTID] = questPartID;
+            row[DB.COL_QUESTPARTTRIGGER_TYPE] = triggerType;
 			DB.TriggerTable.Rows.Add(row);            
 		}
 
@@ -1096,7 +1113,7 @@ namespace DOL.Tools.QuestDesigner
 		{
 			if (QuestPartRow!=null)
 			{
-				int questPartID = (int)QuestPartRow["ID"];
+                int questPartID = (int)QuestPartRow[DB.COL_QUESTPART_ID];
 				AddRequirement(requirementType, questPartID);
 			}
 		}
@@ -1104,8 +1121,8 @@ namespace DOL.Tools.QuestDesigner
 		private void AddRequirement(eRequirementType requirementType, int questPartID)
 		{
 			DataRow row = DB.RequirementTable.NewRow();
-			row["QuestPartID"] = questPartID;
-			row["Type"] = requirementType;
+            row[DB.COL_QUESTPARTREQUIREMENT_QUESTPARTID] = questPartID;
+            row[DB.COL_QUESTPARTREQUIREMENT_TYPE] = requirementType;
 			DB.RequirementTable.Rows.Add(row);            
 		}
 
@@ -1113,7 +1130,7 @@ namespace DOL.Tools.QuestDesigner
 		{
 			if (QuestPartRow !=null)
 			{
-				int questPartID = (int) QuestPartRow["ID"];
+                int questPartID = (int)QuestPartRow[DB.COL_QUESTPART_ID];
 				AddAction(actionType, questPartID);
 			}
 		}
@@ -1121,8 +1138,8 @@ namespace DOL.Tools.QuestDesigner
 		private void AddAction(eActionType actionType, int questPartID)
 		{
 			DataRow row = DB.ActionTable.NewRow();
-			row["QuestPartID"] = questPartID;
-			row["Type"] = actionType;
+            row[DB.COL_QUESTPARTACTION_QUESTPARTID] = questPartID;
+            row[DB.COL_QUESTPARTACTION_TYPE] = actionType;
 			DB.ActionTable.Rows.Add(row);            
 		}
 
@@ -1269,10 +1286,10 @@ namespace DOL.Tools.QuestDesigner
 
 		private string GetActionHelp(int actionID)
 		{
-			DataRow[] rows = DB.ActionTypeTable.Select("id=" + actionID + "");
+			DataRow[] rows = DB.ActionTypeTable.Select(DB.COL_ACTIONTYPE_ID+"=" + actionID + "");
 			if (rows.Length > 0)
 			{
-				return String.Format("{0}\nP:{1}\nQ:{2}", new object[] { rows[0]["help"], rows[0]["p"], rows[0]["q"] });
+                return String.Format("{0}\nP:{1}\nQ:{2}", new object[] { rows[0][DB.COL_ACTIONTYPE_HELP], rows[0][DB.COL_ACTIONTYPE_P], rows[0][DB.COL_ACTIONTYPE_Q] });
 			}
 			else
 			{
@@ -1282,11 +1299,11 @@ namespace DOL.Tools.QuestDesigner
 
 		private string GetTriggerHelp(int triggerID)
 		{
-			DataRow[] rows = DB.TriggerTypeTable.Select("id=" + triggerID + "");
+			DataRow[] rows = DB.TriggerTypeTable.Select(DB.COL_TRIGGERTYPE_ID+"=" + triggerID + "");
 			
 			if (rows.Length > 0)
 			{
-				return String.Format("{0}\nK:{1}\nI:{2}", new object[] { rows[0]["help"], rows[0]["k"], rows[0]["i"] });
+                return String.Format("{0}\nK:{1}\nI:{2}", new object[] { rows[0][DB.COL_TRIGGERTYPE_HELP], rows[0][DB.COL_TRIGGERTYPE_K], rows[0][DB.COL_TRIGGERTYPE_I] });
 			}
 			else
 			{
@@ -1296,10 +1313,10 @@ namespace DOL.Tools.QuestDesigner
 
 		private string GetRequirementHelp(int requirmentID)
 		{
-			DataRow[] rows = DB.RequirementTypeTable.Select("id=" + requirmentID + "");
+			DataRow[] rows = DB.RequirementTypeTable.Select(DB.COL_REQUIREMENTTYPE_ID+"=" + requirmentID + "");
 			if (rows.Length > 0)
 			{
-				return String.Format("{0}\nN:{1}\nV:{2}",new object[]{rows[0]["help"],rows[0]["n"],rows[0]["v"]});
+                return String.Format("{0}\nN:{1}\nV:{2}", new object[] { rows[0][DB.COL_REQUIREMENTTYPE_HELP], rows[0][DB.COL_REQUIREMENTTYPE_N], rows[0][DB.COL_REQUIREMENTTYPE_V] });
 			}
 			else
 			{
@@ -1356,18 +1373,18 @@ namespace DOL.Tools.QuestDesigner
         {
             if (QuestPartRow != null)
             {
-                int currentPosition = (int)QuestPartRow["Position"];
+                int currentPosition = (int)QuestPartRow[DB.COL_QUESTPART_POSITION];
 
                 // find the row before this one
-                DataRow[] previousRows = DB.QuestPartTable.Select("Position<" + (currentPosition), "Position DESC");
+                DataRow[] previousRows = DB.QuestPartTable.Select(DB.COL_QUESTPART_POSITION+"<" + (currentPosition), DB.COL_QUESTPART_POSITION+" DESC");
                 if (previousRows.Length > 0)
                 {
                     DataRow previousRow = previousRows[0];
 
-                    int previousPosition = (int)previousRow["Position"];
+                    int previousPosition = (int)previousRow[DB.COL_QUESTPART_POSITION];
 
-                    previousRow["Position"] = currentPosition;
-                    QuestPartRow.Row["Position"] = previousPosition;
+                    previousRow[DB.COL_QUESTPART_POSITION] = currentPosition;
+                    QuestPartRow.Row[DB.COL_QUESTPART_POSITION] = previousPosition;
                 }
             }            
         }
@@ -1377,17 +1394,17 @@ namespace DOL.Tools.QuestDesigner
 
             if (QuestPartRow != null)
             {
-                int currentPosition = (int)QuestPartRow["Position"];
+                int currentPosition = (int)QuestPartRow[DB.COL_QUESTPART_POSITION];
 
                 // find the row before this one
-                DataRow[] nextRows = DB.QuestPartTable.Select("Position>" + (currentPosition), "Position ASC");
+                DataRow[] nextRows = DB.QuestPartTable.Select(DB.COL_QUESTPART_POSITION+">" + (currentPosition), DB.COL_QUESTPART_POSITION+" ASC");
                 if (nextRows.Length > 0)
                 {
                     DataRow nextRow = nextRows[0];
-                    int nextPosition = (int)nextRow["Position"];
+                    int nextPosition = (int)nextRow[DB.COL_QUESTPART_POSITION];
 
-                    nextRow["Position"] = currentPosition;
-                    QuestPartRow.Row["Position"] = nextPosition;
+                    nextRow[DB.COL_QUESTPART_POSITION] = currentPosition;
+                    QuestPartRow.Row[DB.COL_QUESTPART_POSITION] = nextPosition;
                 }
             }            
         }

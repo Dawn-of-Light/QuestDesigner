@@ -44,18 +44,18 @@ namespace DOL.Tools.QuestDesigner
 		private void PositionConverter_Load(object sender, EventArgs e)
 		{
             
-            comboBoxRegion.DisplayMember = "description";
-            comboBoxRegion.ValueMember = "id";
+            comboBoxRegion.DisplayMember = DB.COL_REGION_DESCRIPTION;
+            comboBoxRegion.ValueMember = DB.COL_REGION_ID;
             comboBoxRegion.DataSource = DB.regionBinding;
 
-            
-            comboBoxZone.DisplayMember = "description";
-            comboBoxZone.ValueMember = "zoneID";
+
+            comboBoxZone.DisplayMember = DB.COL_ZONE_DESCRIPTION;
+            comboBoxZone.ValueMember = DB.COL_ZONE_ID;
             comboBoxZone.DataSource = DB.zoneBinding;
 
             if (comboBoxRegion.SelectedValue is int)
             {
-                DB.zoneBinding.Filter = "regionID=" + comboBoxRegion.SelectedValue;
+                DB.zoneBinding.Filter = DB.COL_ZONE_REGIONID+ "=" + comboBoxRegion.SelectedValue;
                 loc.RegionID = Convert.ToInt32(comboBoxRegion.SelectedValue);
             }
 
@@ -70,7 +70,7 @@ namespace DOL.Tools.QuestDesigner
                 return;
 
 			if (comboBoxRegion.SelectedValue is int) {
-				DB.zoneBinding.Filter = "regionID=" + comboBoxRegion.SelectedValue;
+				DB.zoneBinding.Filter = DB.COL_ZONE_REGIONID+ "=" + comboBoxRegion.SelectedValue;
                 loc.RegionID = Convert.ToInt32(comboBoxRegion.SelectedValue);
 			}
 		}
@@ -87,7 +87,7 @@ namespace DOL.Tools.QuestDesigner
 				DataRowView zoneRow = (DataRowView)comboBoxZone.SelectedItem;
 
 				Point3D local = new Point3D(Convert.ToInt32(zoneX.Value), Convert.ToInt32(zoneY.Value), Convert.ToInt32(zoneZ.Value));
-				Point3D global = Utils.ConvertZonePointToRegion((int)zoneRow["zoneID"],local);
+                Point3D global = Utils.ConvertZonePointToRegion((int)zoneRow[DB.COL_ZONE_ID], local);
 
                 loc.X = global.X;
                 loc.Y = global.Y;

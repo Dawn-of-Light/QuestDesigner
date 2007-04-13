@@ -73,14 +73,14 @@ namespace DOL.Tools.QuestDesigner.Util
         public String ConvertDOLColumnToXMLColumn(String dolColumnName)
         {
             if (dolColumnName.Equals(ITEM_ID))
-                return "ItemTemplateID";
+                return DB.COL_ITEMTEMPLATE_ID;
             else
                 return dolColumnName;
         }
 
         public String ConvertXMLColumnToDOLColumn(String xmlColumnName)
         {
-            if (xmlColumnName.Equals("ItemTemplateID"))
+            if (xmlColumnName.Equals(DB.COL_ITEMTEMPLATE_ID))
                 return ITEM_ID;
             else
                 return xmlColumnName;

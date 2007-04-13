@@ -43,7 +43,7 @@ namespace DOL.Tools.Mapping.Modules
             ClearObjectRowMapping();
 
             // load locations
-            DataRow[] areas = DB.AreaTable.Select("RegionID=" + RegionMgr.CurrentRegion.ID);
+            DataRow[] areas = DB.AreaTable.Select(DB.COL_AREA_REGIONID+"=" + RegionMgr.CurrentRegion.ID);
             foreach (DataRow area in areas)
             {
                 AddArea(area);
@@ -100,10 +100,10 @@ namespace DOL.Tools.Mapping.Modules
 
         private GeometryObj AddArea(DataRow areaRow)
         {
-            float x = (float)Convert.ToDouble(areaRow["X"]);
-            float y = (float)Convert.ToDouble(areaRow["Y"]);
+            float x = (float)Convert.ToDouble(areaRow[DB.COL_AREA_X]);
+            float y = (float)Convert.ToDouble(areaRow[DB.COL_AREA_Y]);
 
-            float r = areaRow["R"] == DBNull.Value ? 0 : (float)Convert.ToDouble(areaRow["R"]);
+            float r = areaRow[DB.COL_AREA_R] == DBNull.Value ? 0 : (float)Convert.ToDouble(areaRow[DB.COL_AREA_R]);
 
             GeometryObj obj = null;
             if (x > 0 || y > 0)
@@ -124,7 +124,7 @@ namespace DOL.Tools.Mapping.Modules
         private void AreaTable_RowChanged(object sender, DataRowChangeEventArgs e)
         {
             DataRow areaRow = e.Row;
-            if (RegionMgr.CurrentRegion != null && areaRow["RegionID"] is int && (int)areaRow["RegionID"] == RegionMgr.CurrentRegion.ID)
+            if (RegionMgr.CurrentRegion != null && areaRow[DB.COL_AREA_REGIONID] is int && (int)areaRow[DB.COL_AREA_REGIONID] == RegionMgr.CurrentRegion.ID)
             {
                 if (e.Action == DataRowAction.Add)
                 {
@@ -140,8 +140,8 @@ namespace DOL.Tools.Mapping.Modules
                 }
                 else if (e.Action == DataRowAction.Change)
                 {
-                    float x = (float)Convert.ToDouble(areaRow["X"]);
-                    float y = (float)Convert.ToDouble(areaRow["Y"]);
+                    float x = (float)Convert.ToDouble(areaRow[DB.COL_AREA_X]);
+                    float y = (float)Convert.ToDouble(areaRow[DB.COL_AREA_Y]);
 
 
 

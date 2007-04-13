@@ -23,10 +23,12 @@ using System.Text;
 
 namespace DOL.Tools.QuestDesigner.Exceptions 
 {
-    class DOLConfigurationException : System.Exception
+    public class DOLConfigurationException : System.Exception
     {
         public DOLConfigurationException(): base() {}
 
-        public DOLConfigurationException(String msg) : base(msg) {}        
+        public DOLConfigurationException(String msg) : base(msg) {}
+
+        public DOLConfigurationException(String msg, Exception innerException) : base(msg, innerException) { }        
     }
 }

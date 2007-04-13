@@ -50,10 +50,11 @@ Possible parameters:
 	<RequirementType>
 		<value>eRequirementType.InventoryItem</value>
 		<description>InventoryItem</description>
-		<help>Checks inventory for V instances of item N</help>
+		<help>Checks inventory for V instances of item N using Comparator</help>
 		<v>int(1)</v>
 		<n>Item:string</n>
-		<text>player has $V{0}$ instances of $N{1}$</text>
+    	        <comparator>quantity</comparator>
+		<text>player has $C{0}$ $V{0}$ instances of $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
 		<value>eRequirementType.Class</value>
@@ -65,10 +66,11 @@ Possible parameters:
 	<RequirementType>
 		<value>eRequirementType.Quest</value>
 		<description>Quest</description>
-		<help>Checks for quest N completed V times, if N is empty current quest is used</help>
+		<help>Checks for quest N completed V times using Comparator, if N is empty current quest is used</help>
 		<v>int</v>
 		<n>QuestType:string</n>
-		<text>the player has finished $N{0}$ less then $V{1}$ times</text>
+		<comparator>quantity</comparator>
+		<text>the player has finished $N{0}$ $C{0}$ $V{1}$ times</text>
 	</RequirementType>
 	<RequirementType>
 		<value>eRequirementType.Encumbrance</value>
@@ -258,8 +260,9 @@ Possible parameters:
 		<description>QuestGivable</description>
 		<help>Checks for quest N to be givable by NPC to player, if N is empty current quest is used</help>
 		<n>QuestType:string</n>
+		<v>GameNPC:string</v>
 		<comparator>binary</comparator>
-		<text>the player $C{0}$ allowed to do $N{1}$</text>
+		<text>the player $C{0}$ allowed to do $N{1}$ offered by $V{2}$</text>
 	</RequirementType>
 	<RequirementType>
 		<value>eRequirementType.Distance</value>

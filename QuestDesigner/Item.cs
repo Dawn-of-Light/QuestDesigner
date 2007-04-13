@@ -40,9 +40,7 @@ namespace DOL.Tools.QuestDesigner
 	public partial class Item : UserControl
 	{
 
-		View[] listViewModes = new View[] { View.Details, View.List, View.LargeIcon, View.Tile };
-
-		DataTable itemTable;		
+		View[] listViewModes = new View[] { View.Details, View.List, View.LargeIcon, View.Tile };		
 
 		private PropertyBag itemBag;
 
@@ -59,31 +57,29 @@ namespace DOL.Tools.QuestDesigner
 		public void setDataSet()
 		{
 			// setting groups
-			foreach (DataRow row in QuestDesignerMain.DesignerForm.dataTableeEnumeration.Select("Type='" + typeof(eObjectType).Name + "'"))
+			foreach (DataRowView rowView in DB.objectTypeBinding.List)
 			{
 				ListViewGroup group = new ListViewGroup();
-				group.Name = Convert.ToString(row["Value"]);
-				group.Header = Convert.ToString(row["Description"]);
+                group.Name = Convert.ToString(rowView[DB.COL_ENUMERATION_VALUE]);
+                group.Header = Convert.ToString(rowView[DB.COL_ENUMERATION_DESCRIPTION]);
 				this.listViewItem.Groups.Add(group);
 			}
-
-            itemTable = DB.ItemTemplateTable;
-
+           
             // Load initial data from table
-            foreach (DataRow itemRow in itemTable.Rows)
+            foreach (DataRow itemRow in DB.ItemTemplateTable.Rows)
             {
                 listViewItem.Items.Add(generateListItem(itemRow));
             }
-            
-			itemTable.RowChanged += new DataRowChangeEventHandler(itemTable_RowChanged);
-			itemTable.RowDeleting += new DataRowChangeEventHandler(itemTable_RowDeleting);
-			itemTable.TableCleared += new DataTableClearEventHandler(itemTable_TableCleared);
+
+            DB.ItemTemplateTable.RowChanged += new DataRowChangeEventHandler(itemTable_RowChanged);
+            DB.ItemTemplateTable.RowDeleting += new DataRowChangeEventHandler(itemTable_RowDeleting);
+            DB.ItemTemplateTable.TableCleared += new DataTableClearEventHandler(itemTable_TableCleared);
 
 			// Configure PropertyBags
 			itemBag = new PropertyBag();
 			itemBag.GetValue += new PropertySpecEventHandler(this.itemBag_GetValue);
 			itemBag.SetValue += new PropertySpecEventHandler(this.itemBag_SetValue);
-			foreach (DataColumn col in itemTable.Columns)
+            foreach (DataColumn col in DB.ItemTemplateTable.Columns)
 			{
 				itemBag.Properties.Add(getItemProperties(col));
 			}
@@ -137,20 +133,19 @@ namespace DOL.Tools.QuestDesigner
 			ListViewItem.ListViewSubItem subItem = new ListViewItem.ListViewSubItem();
 			subItem.Name ="Type";
 
-			item.Name = Convert.ToString(itemRow["ItemTemplateID"]);
-			item.Text = Convert.ToString(itemRow["Name"]);
+			item.Name = Convert.ToString(itemRow[DB.COL_ITEMTEMPLATE_ID]);
+            item.Text = Convert.ToString(itemRow[DB.COL_ITEMTEMPLATE_NAME]);
 			item.Tag = itemRow;
 			item.ImageIndex = 0;
 
 			subItem.Text = "Generic Item";
-			DataRow[] rows = QuestDesignerMain.DesignerForm.dataTableeEnumeration.Select("Type='"+typeof(eObjectType).Name+"' AND Value="+itemRow["Object_Type"]);
-			
+			DataRow[] rows = DB.EnumerationTable.Select(DB.COL_ENUMERATION_TYPE+"='"+typeof(eObjectType).Name+"' AND "+DB.COL_ENUMERATION_VALUE+"="+itemRow[DB.COL_ITEMTEMPLATE_OBJECTTYPE]);			
 			if (rows.Length>0)
 			{
 				//item.ImageIndex = rows[0]["id"];
-				item.Group = listViewItem.Groups[Convert.ToString(rows[0]["Value"])];
-				
-				subItem.Text = Convert.ToString(rows[0]["Description"]);
+				item.Group = listViewItem.Groups[Convert.ToString(rows[0][DB.COL_ENUMERATION_VALUE])];
+
+                subItem.Text = Convert.ToString(rows[0][DB.COL_ENUMERATION_DESCRIPTION]);
 			}
 			item.SubItems.Add(subItem);
 			
@@ -161,7 +156,7 @@ namespace DOL.Tools.QuestDesigner
 		{
 			foreach (ListViewItem item in listViewItem.SelectedItems)
 			{
-				itemTable.Rows.Remove((DataRow)item.Tag);				
+				DB.ItemTemplateTable.Rows.Remove((DataRow)item.Tag);				
 			}
 		}
 
@@ -176,6 +171,11 @@ namespace DOL.Tools.QuestDesigner
 				case "Bonus3":
 				case "Bonus4":
 				case "Bonus5":
+                case "Bonus6":
+                case "Bonus7":
+                case "Bonus8":
+                case "Bonus9":
+                case "Bonus10":
 				case "ExtraBonus":
 					spec.Category = "Magic";
 					break;
@@ -184,20 +184,40 @@ namespace DOL.Tools.QuestDesigner
 				case "Bonus3Type":
 				case "Bonus4Type":
 				case "Bonus5Type":
+                case "Bonus6Type":
+                case "Bonus7Type":
+                case "Bonus8Type":
+                case "Bonus9Type":
+                case "Bonus10Type":
 				case "ExtraBonusType":
 					spec.Category = "Magic";
 					spec.ConverterTypeName = typeof(ItemBonusTypeConverter).FullName;
 					break;
-				case "SpellID":
+                case "Effect":
+                    spec.Category = "Magic";
+                    spec.ConverterTypeName = typeof(EffectConverter).FullName;
+                    break;
+                case "SpellID":
 				case "ProcSpellID":
-				case "Effect":
+                case "SpellID1":
+                case "ProcSpellID1":
+				
 				case "Charges":
+                case "Charges1":
 				case "MaxCharges":
+                case "MaxCharges1":
+                    
+                case "PoisonCharges":
+                case "PoisonMaxCharges":
+                case "PoisonSpellID":
 					spec.Category = "Magic";
 					break;
 
-				case "Model":
-				case "Extension":
+                case "Extension":
+                    spec.Category = "Visual";
+                    spec.ConverterTypeName = typeof(ExtensionConverter).FullName;
+                    break;
+                case "Model":				
 				case "Emblem":
 					spec.Category = "Visual";
 					break;
@@ -225,8 +245,7 @@ namespace DOL.Tools.QuestDesigner
 
 				case "Durability":
 				case "MaxDurability":
-				case "Quality":
-				case "MaxQuality":
+				case "Quality":				
 				case "Condition":
 				case "MaxCondition":
 				case "PackSize":
@@ -247,13 +266,13 @@ namespace DOL.Tools.QuestDesigner
 
 		private void B_NewItem_Click(object sender, EventArgs e)
 		{
-			DataRow itemRow = itemTable.NewRow();
+			DataRow itemRow = DB.ItemTemplateTable.NewRow();
 			//
 			int uniqueID = Environment.TickCount % 100; // pseudo unique
-			itemRow["Name"] = "NewItem"+uniqueID;
-			itemRow["ItemTemplateID"] = Utils.ConvertToObjectName((string)itemRow["Name"]);
+			itemRow[DB.COL_ITEMTEMPLATE_NAME] = "NewItem"+uniqueID;
+            itemRow[DB.COL_ITEMTEMPLATE_ID] = Utils.ConvertToObjectName((string)itemRow[DB.COL_ITEMTEMPLATE_NAME]);
 			//
-			itemTable.Rows.Add(itemRow);
+			DB.ItemTemplateTable.Rows.Add(itemRow);
 		}
 				
 
@@ -276,9 +295,12 @@ namespace DOL.Tools.QuestDesigner
                 DataRow row = (DataRow)item.Tag;
 
                 // little hack since the typconverter seems to be skipped if the mousewheel is used to select a value from propertygrid
-                if (!row[e.Property.Name].GetType().IsAssignableFrom(e.Value.GetType())) {                
+                if (!row[e.Property.Name].GetType().IsAssignableFrom(e.Value.GetType()) && e.Property.ConverterTypeName!=null) {                
                     TypeConverter conv =(TypeConverter) Activator.CreateInstance(Assembly.GetCallingAssembly().GetType(e.Property.ConverterTypeName));
-                    e.Value = conv.ConvertTo(e.Value,row[e.Property.Name].GetType());
+
+                    Type destinationType = row.Table.Columns[e.Property.Name].DataType;
+
+                    e.Value = conv.ConvertTo(e.Value,destinationType);
                 }
                 // little hackend
 
@@ -360,7 +382,7 @@ namespace DOL.Tools.QuestDesigner
 				ListViewItem item = listViewItem.Items[e.Item];
 				if (e.Label != null && e.Label.Length > 0)
 				{
-					((DataRow)item.Tag)["Name"] = e.Label;
+                    ((DataRow)item.Tag)[DB.COL_ITEMTEMPLATE_NAME] = e.Label;
 					propertyGridItem.SelectedObject = itemBag;
 				}
 			}
@@ -397,8 +419,8 @@ namespace DOL.Tools.QuestDesigner
                 Object item = QuestDesignerMain.ItemLookupForm.SelectedItem;
                 if (item != null)
                 {
-                    DataRow row = itemTable.NewRow();
-                    foreach (DataColumn column in itemTable.Columns)
+                    DataRow row = DB.ItemTemplateTable.NewRow();
+                    foreach (DataColumn column in DB.ItemTemplateTable.Columns)
                     {
                         try
                         {
@@ -419,7 +441,7 @@ namespace DOL.Tools.QuestDesigner
 
                     //row["ObjectName"] = Utils.ConvertToObjectName(Convert.ToString(row["Name"]));
 
-                    itemTable.Rows.Add(row);
+                    DB.ItemTemplateTable.Rows.Add(row);
                 }
 			}
 		}

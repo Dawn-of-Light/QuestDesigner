@@ -38,6 +38,7 @@ namespace DOL.Tools.QuestDesigner.Util
 
         public static string ToEscapedText(object obj)
         {
+            
             return "\"" + Convert.ToString(obj).Replace("\"","\\\"")+"\"";
         }
 
@@ -92,8 +93,8 @@ namespace DOL.Tools.QuestDesigner.Util
 
         public static int ConvertZoneXToRegionByRegionID(int regionID,int globalX) {
             int localX = -1;            
-            foreach(DataRow row in DB.ZoneTable.Select("regionID="+regionID)) {
-                localX = globalX - Convert.ToInt32(row["offsetx"]) * 8192;
+            foreach(DataRow row in DB.ZoneTable.Select(DB.COL_ZONE_REGIONID+"="+regionID)) {
+                localX = globalX - Convert.ToInt32(row[DB.COL_ZONE_OFFSETX]) * 8192;
 
                 if (localX >= 0 && localX <= 8 * 8192)                
                     return localX;
@@ -104,9 +105,9 @@ namespace DOL.Tools.QuestDesigner.Util
         public static int ConvertZoneYToRegionByRegionID(int regionID, int globalY)
         {
             int localY = -1;
-            foreach (DataRow row in DB.ZoneTable.Select("regionID="+regionID))
+            foreach (DataRow row in DB.ZoneTable.Select(DB.COL_ZONE_REGIONID+"="+regionID))
             {
-                localY = globalY - Convert.ToInt32(row["offsety"]) * 8192;
+                localY = globalY - Convert.ToInt32(row[DB.COL_ZONE_OFFSETY]) * 8192;
 
                 if (localY >= 0 && localY <= 8 * 8192)
                     return localY;
@@ -118,13 +119,13 @@ namespace DOL.Tools.QuestDesigner.Util
         {
             int localX = -1;
             int localY = -1;
-            foreach (DataRow row in DB.ZoneTable.Select("regionID=" + regionID))
+            foreach (DataRow row in DB.ZoneTable.Select(DB.COL_ZONE_REGIONID+"=" + regionID))
             {
-                localX = globalX - Convert.ToInt32(row["offsetx"]) * 8192;
-                localY = globalY - Convert.ToInt32(row["offsety"]) * 8192;
+                localX = globalX - Convert.ToInt32(row[DB.COL_ZONE_OFFSETX]) * 8192;
+                localY = globalY - Convert.ToInt32(row[DB.COL_ZONE_OFFSETY]) * 8192;
 
-                if (localX >= 0 && localX <= (int)row["width"] * 8192 && localY >= 0 && localY <= (int)row["height"] * 8192)
-                    return (int)row["zoneID"];
+                if (localX >= 0 && localX <= (int)row[DB.COL_ZONE_WIDTH] * 8192 && localY >= 0 && localY <= (int)row[DB.COL_ZONE_HEIGHT] * 8192)
+                    return (int)row[DB.COL_ZONE_ID];
             }
             return -1;
         }
@@ -132,10 +133,10 @@ namespace DOL.Tools.QuestDesigner.Util
 		public static Point3D ConvertZonePointToRegion(int zoneID, Point3D local)
 		{
 			Point3D global = new Point3D();
-			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
+			DataRow[] row = DB.ZoneTable.Select(DB.COL_ZONE_ID+"=" + zoneID);
 			if (row.Length>0) {
-				global.X = Convert.ToInt32(row[0]["offsetx"]) * 8192 + local.X;
-				global.Y = Convert.ToInt32(row[0]["offsety"]) * 8192 + local.Y;
+                global.X = Convert.ToInt32(row[0][DB.COL_ZONE_OFFSETX]) * 8192 + local.X;
+                global.Y = Convert.ToInt32(row[0][DB.COL_ZONE_OFFSETY]) * 8192 + local.Y;
 				global.Z = local.Z;
 			}
 
@@ -145,11 +146,11 @@ namespace DOL.Tools.QuestDesigner.Util
 		public static Point3D ConvertRegionPointToZone(int zoneID, Point3D global)
 		{
 			Point3D local = new Point3D();
-			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
+			DataRow[] row = DB.ZoneTable.Select(DB.COL_ZONE_ID+"=" + zoneID);
 			if (row.Length > 0)
 			{
-				local.X = global.X - Convert.ToInt32(row[0]["offsetx"]) * 8192;
-				local.Y = global.Y - Convert.ToInt32(row[0]["offsety"]) * 8192;
+                local.X = global.X - Convert.ToInt32(row[0][DB.COL_ZONE_OFFSETX]) * 8192;
+                local.Y = global.Y - Convert.ToInt32(row[0][DB.COL_ZONE_OFFSETY]) * 8192;
 				local.Z = global.Z;
 			}
 
@@ -159,10 +160,10 @@ namespace DOL.Tools.QuestDesigner.Util
 		public static int ConvertZoneXToRegion(int zoneID, int localX)
 		{
 			int globalX = 0;
-			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
+			DataRow[] row = DB.ZoneTable.Select(DB.COL_ZONE_ID+"=" + zoneID);
 			if (row.Length > 0)
 			{
-				globalX = Convert.ToInt32(row[0]["offsetx"]) * 8192 + localX;
+                globalX = Convert.ToInt32(row[0][DB.COL_ZONE_OFFSETX]) * 8192 + localX;
 			}
 			return globalX;
 		}
@@ -170,10 +171,10 @@ namespace DOL.Tools.QuestDesigner.Util
 		public static int ConvertRegionXToZone(int zoneID, int globalX)
 		{
 			int localX = 0;
-			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
+			DataRow[] row = DB.ZoneTable.Select(DB.COL_ZONE_ID+"=" + zoneID);
 			if (row.Length > 0)
 			{
-				localX = globalX - Convert.ToInt32(row[0]["offsetx"]) * 8192;
+                localX = globalX - Convert.ToInt32(row[0][DB.COL_ZONE_OFFSETX]) * 8192;
 			}
 			return localX;
 		}
@@ -181,10 +182,10 @@ namespace DOL.Tools.QuestDesigner.Util
 		public static int ConvertRegionYToZone(int zoneID, int globalY)
 		{
 			int localY = 0;
-			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
+			DataRow[] row = DB.ZoneTable.Select(DB.COL_ZONE_ID+"=" + zoneID);
 			if (row.Length > 0)
 			{
-				localY = globalY - Convert.ToInt32(row[0]["offsety"]) * 8192;
+                localY = globalY - Convert.ToInt32(row[0][DB.COL_ZONE_OFFSETY]) * 8192;
 			}
 			return localY;
 		}
@@ -192,10 +193,10 @@ namespace DOL.Tools.QuestDesigner.Util
 		public static int ConvertZoneYToRegion(int zoneID, int localY)
 		{
 			int globalY = 0;
-			DataRow[] row = DB.ZoneTable.Select("zoneID=" + zoneID);
+			DataRow[] row = DB.ZoneTable.Select(DB.COL_ZONE_ID+"=" + zoneID);
 			if (row.Length > 0)
 			{
-				globalY = Convert.ToInt32(row[0]["offsety"]) * 8192 + localY;
+                globalY = Convert.ToInt32(row[0][DB.COL_ZONE_OFFSETY]) * 8192 + localY;
 			}
 
 			return globalY;
@@ -227,37 +228,37 @@ namespace DOL.Tools.QuestDesigner.Util
 				type = typeDescr;
 
 			// parameter
-			if (type.StartsWith("QuestType"))
+			if (type.StartsWith(Const.SELECTOR_QUESTTYPE))
 			{
                 if (String.IsNullOrEmpty(value))
                     return defaultValue == null ? "this quest" : defaultValue;
-                else if (value == DB.QuestTable.Rows[0]["Namespace"] + "." + DB.QuestTable.Rows[0]["Name"])
+                else if (value == DB.QuestTable.Rows[0][DB.COL_QUEST_NAMESPACE] + "." + DB.QuestTable.Rows[0][DB.COL_QUEST_NAME])
                     return "this quest";
                 else
                     return "the quest " + value;
 			}
-			else if (type.StartsWith("GameLiving") || type.StartsWith("GameNPC"))
+            else if (type.StartsWith(Const.SELECTOR_GAMELIVING) || type.StartsWith(Const.SELECTOR_GAMENPC))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "nobody" : defaultValue;
 				else
 					return DB.GetNPCNameForID(value);				
 			}
-			else if (type.StartsWith("Area"))
+			else if (type.StartsWith(Const.SELECTOR_AREA))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "an area" : defaultValue;
 				else
 					return DB.GetAreaNameForID(value);
 			}
-			else if (type.StartsWith("Item"))
+			else if (type.StartsWith(Const.SELECTOR_ITEM))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "an item" : defaultValue;
 				else
 					return DB.GetItemNameForID(value);				
 			}
-			else if (type.StartsWith("Whisper"))
+            else if (type.StartsWith(Const.SELECTOR_WHIPSER))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "a word" : defaultValue;
@@ -265,56 +266,56 @@ namespace DOL.Tools.QuestDesigner.Util
 					return value;
 
 			}
-			else if (type.StartsWith("Zone"))
+            else if (type.StartsWith(Const.SELECTOR_ZONE))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "a zone" : defaultValue;
 				else
 					return DB.GetZoneNameForID(value);
 			}
-			else if (type.StartsWith("Region"))
+            else if (type.StartsWith(Const.SELECTOR_REGION))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "a region" : defaultValue;
 				else
 					return DB.GetRegionNameForID(value);
 			}
-			else if (type.StartsWith("TextType"))
+            else if (type.StartsWith(Const.SELECTOR_TEXTTYPE))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "texttype" : defaultValue;
 				else
 					return TextTypeToText((eTextType)Enum.Parse(typeof(eTextType),value));
 			}
-			else if (type.StartsWith("Text"))
+            else if (type.StartsWith(Const.SELECTOR_TEXT))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "text" : defaultValue;
 				else
 					return value;
 			}
-			else if (type.StartsWith("int") || type.StartsWith("long"))
+			else if (type.StartsWith(Const.TYPE_INT) || type.StartsWith(Const.TYPE_LONG))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "number" : defaultValue;
 				else 
 					return value;
 			}
-			else if (type.StartsWith("Location"))
+            else if (type.StartsWith(Const.SELECTOR_LOCATION))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "a location" : defaultValue;
 				else
 					return DB.GetLocationForID(value);
 			}
-			else if (type.StartsWith("Emote"))
+            else if (type.StartsWith(Const.SELECTOR_EMOTE))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "eEmote" : defaultValue;
 				else
 					return DB.getEnumerationNameForID(typeof(eEmote).Name, value);
 			}
-			else if (type.StartsWith("CharacterClass"))
+            else if (type.StartsWith(Const.SELECTOR_CHARACTERCLASS))
 			{
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "eCharacterClass" : defaultValue;
@@ -339,9 +340,9 @@ namespace DOL.Tools.QuestDesigner.Util
 
 			if (triggerRow != null)
 			{
-				text = Convert.ToString(triggerRow["text"]);
-				string typeI = Convert.ToString(triggerRow["i"]);
-				string typeK = Convert.ToString(triggerRow["k"]);
+				text = Convert.ToString(triggerRow[DB.COL_TRIGGERTYPE_TEXT]);
+                string typeI = Convert.ToString(triggerRow[DB.COL_TRIGGERTYPE_I]);
+                string typeK = Convert.ToString(triggerRow[DB.COL_TRIGGERTYPE_K]);
 
 
 				int startIndex = 0;
@@ -380,10 +381,10 @@ namespace DOL.Tools.QuestDesigner.Util
 			if (requirementRow != null)
 			{
 
-				text = Convert.ToString(requirementRow["text"]);
-				string typeN = Convert.ToString(requirementRow["n"]);
-				string typeV = Convert.ToString(requirementRow["v"]);
-                string comparatorType = Convert.ToString(requirementRow["comparator"]);
+				text = Convert.ToString(requirementRow[DB.COL_REQUIREMENTTYPE_TEXT]);
+                string typeN = Convert.ToString(requirementRow[DB.COL_REQUIREMENTTYPE_N]);
+                string typeV = Convert.ToString(requirementRow[DB.COL_REQUIREMENTTYPE_V]);
+                string comparatorType = Convert.ToString(requirementRow[DB.COL_REQUIREMENTTYPE_COMPARATOR]);
 
 				int startIndex = 0;
 				int index;
@@ -422,9 +423,9 @@ namespace DOL.Tools.QuestDesigner.Util
 			DataRow actionRow = DB.GetActionTypeRowForID((int)Type);
 			if (actionRow != null)
 			{
-				text = Convert.ToString(actionRow["text"]);
-				string typeP = Convert.ToString(actionRow["p"]);
-				string typeQ = Convert.ToString(actionRow["q"]);
+                text = Convert.ToString(actionRow[DB.COL_ACTIONTYPE_TEXT]);
+                string typeP = Convert.ToString(actionRow[DB.COL_ACTIONTYPE_P]);
+                string typeQ = Convert.ToString(actionRow[DB.COL_ACTIONTYPE_Q]);
 
 				int startIndex = 0;
 				int index;

@@ -27,16 +27,18 @@ using DOL.Tools.QuestDesigner.Util;
 
 namespace DOL.Tools.QuestDesigner.Controls
 {
-	[SelectorAttribute("Item")]
+	[SelectorAttribute(Const.SELECTOR_ITEM)]
 	public class ItemSelector : BaseSelector
 	{		
 
 		public ItemSelector(int triggerID, char param): base(triggerID,param)
-		{			
-			this.list.DataSource = DB.ItemTemplateTable;
-			
-			this.list.ValueMember = "ItemTemplateID";
-			this.list.DisplayMember = "Name";			
+		{
+            this.list.ValueMember = DB.COL_ITEMTEMPLATE_ID;
+            this.list.DisplayMember = DB.COL_ITEMTEMPLATE_NAME;
+
+            this.list.DataSource = DB.ItemTemplateTable;
+
+            
 		}
 
 		protected override System.Drawing.Image getImage(int index)

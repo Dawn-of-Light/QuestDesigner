@@ -38,9 +38,9 @@ namespace DOL.Tools.QuestDesigner
 
 		public void setDataSet()
 		{		
-			this.textBoxLoadedCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, "ScriptLoadedCode", true));
-            this.textBoxUnloadedCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, "ScriptUnloadedCode", true));
-            this.textBoxInitCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, "InitializationCode", true));
+			this.textBoxLoadedCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_SCRIPTLOADEDCODE, true));
+            this.textBoxUnloadedCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_SCRIPTUNLOADEDCODE, true));
+            this.textBoxInitCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_INITIALIZATIONCODE, true));
 		}
 	}
 }

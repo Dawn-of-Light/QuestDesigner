@@ -1,0 +1,1172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<QuestData>
+	<!-- Area Types -->
+	<eEnumeration Type="AreaType">
+		<Value>Circle</Value>
+		<Name>Circle</Name>
+		<Description>Circle</Description>
+	</eEnumeration>
+	<eEnumeration Type="AreaType">
+		<Value>Square</Value>
+		<Name>Circle</Name>
+		<Description>Square</Description>
+	</eEnumeration>
+	<!-- Hand value -->
+	<eEnumeration Type="Hand">
+		<Value>0</Value>
+		<Name>righthanded</Name>
+		<Description>righthanded</Description>
+	</eEnumeration>
+	<eEnumeration Type="Hand">
+		<Value>1</Value>
+		<Name>twohanded</Name>
+		<Description>twohanded</Description>
+	</eEnumeration>
+	<eEnumeration Type="Hand">
+		<Value>2</Value>
+		<Name>lefthand</Name>
+		<Description>lefthand</Description>
+	</eEnumeration>
+	<eEnumeration Type="Hand">
+		<Value>3</Value>
+		<Name>left-/righthanded</Name>
+		<Description>left-/righthanded</Description>
+	</eEnumeration>
+	<!-- Section Extensions for items -->
+	<eEnumeration Type="Extension">
+		<Value>0</Value>
+		<Name>none</Name>
+		<Description>none</Description>
+	</eEnumeration>
+	<eEnumeration Type="Extension">
+		<Value>1</Value>
+		<Name>Slight</Name>
+		<Description>Slight</Description>
+	</eEnumeration>
+	<eEnumeration Type="Extension">
+		<Value>2</Value>
+		<Name>Some</Name>
+		<Description>Some</Description>
+	</eEnumeration>
+	<eEnumeration Type="Extension">
+		<Value>3</Value>
+		<Name>Medium</Name>
+		<Description>Medium</Description>
+	</eEnumeration>
+	<eEnumeration Type="Extension">
+		<Value>4</Value>
+		<Name>Heavy</Name>
+		<Description>Heavy</Description>
+	</eEnumeration>
+	<eEnumeration Type="Extension">
+		<Value>5</Value>
+		<Name>Extra Heavy</Name>
+		<Description>Extra Heavy</Description>
+	</eEnumeration>
+	<!-- item effects -->
+	<eEnumeration Type="Effect">
+		<Value>0</Value>
+		<Name>none</Name>
+		<Description>none</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>1</Value>
+		<Name>univ longsword propane-style flame</Name>
+		<Description>univ longsword propane-style flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>2</Value>
+		<Name>univ longsword regular flame</Name>
+		<Description>univ longsword regular flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>3</Value>
+		<Name>univ longsword orange flame</Name>
+		<Description>univ longsword orange flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value></Value>
+		<Name>univ longsword rising flame</Name>
+		<Description>univ longsword rising flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>5</Value>
+		<Name>univ longsword flame w/smoke</Name>
+		<Description>univ longsword flame w/smoke</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>6</Value>
+		<Name>univ longsword flame w/sparks</Name>
+		<Description>univ longsword flame w/sparks</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>7</Value>
+		<Name>univ longsword hot glow</Name>
+		<Description>univ longsword hot glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>8</Value>
+		<Name>univ longsword hot aura</Name>
+		<Description>univ longsword hot aura</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>9</Value>
+		<Name>univ longsword blue aura</Name>
+		<Description>univ longsword blue aura</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>10</Value>
+		<Name>univ longsword hot blue glow</Name>
+		<Description>univ longsword hot blue glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>11</Value>
+		<Name>univ longsword hot gold glow</Name>
+		<Description>univ longsword hot gold glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>12</Value>
+		<Name>univ longsword hot red glow</Name>
+		<Description>univ longsword hot red glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>13</Value>
+		<Name>univ longsword red aura</Name>
+		<Description>univ longsword red aura</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>14</Value>
+		<Name>univ longsword cold aura w/sparkles</Name>
+		<Description>univ longsword cold aura w/sparkles</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>15</Value>
+		<Name>univ longsword cold aura w/vapor</Name>
+		<Description>univ longsword cold aura w/vapor</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>16</Value>
+		<Name>longsword hilt wavering blue beam</Name>
+		<Description>longsword hilt wavering blue beam</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>17</Value>
+		<Name>longsword hilt wavering green beam</Name>
+		<Description>longsword hilt wavering green beam</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>18</Value>
+		<Name>longsword hilt wavering red beam</Name>
+		<Description>longsword hilt wavering red beam</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>19</Value>
+		<Name>longsword hilt red/blue beam</Name>
+		<Description>longsword hilt red/blue beam</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>20</Value>
+		<Name>longsword hilt purple beam</Name>
+		<Description>longsword hilt purple beam</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>21</Value>
+		<Name>univ 2h/gr sword yellow flames</Name>
+		<Description>univ 2h/gr sword yellow flames</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>22</Value>
+		<Name>univ 2h/gr sword orange flames</Name>
+		<Description>univ 2h/gr sword orange flames</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>23</Value>
+		<Name>univ 2h/gr sword fire w/smoke</Name>
+		<Description>univ 2h/gr sword fire w/smoke</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>24</Value>
+		<Name>univ 2h/gr sword fire w/sparks</Name>
+		<Description>univ 2h/gr sword fire w/sparks</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>25</Value>
+		<Name>univ 2h/gr blue glow w/sparkles</Name>
+		<Description>univ 2h/gr blue glow w/sparkles</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>26</Value>
+		<Name>univ 2h/gr blue aura w/cold vapor</Name>
+		<Description>univ 2h/gr blue aura w/cold vapor</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>27</Value>
+		<Name>univ 2h/gr icy blue glow</Name>
+		<Description>univ 2h/gr icy blue glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>28</Value>
+		<Name>univ 2h/gr red aura</Name>
+		<Description>univ 2h/gr red aura</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>29</Value>
+		<Name>univ 2h/gr strong crimson glow</Name>
+		<Description>univ 2h/gr strong crimson glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>30</Value>
+		<Name>univ 2h/gr white core red glow</Name>
+		<Description>univ 2h/gr white core red glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>31</Value>
+		<Name>univ 2h/gr silvery/white glow</Name>
+		<Description>univ 2h/gr silvery/white glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>32</Value>
+		<Name>univ 2h/gr gold/yellow glow</Name>
+		<Description>univ 2h/gr gold/yellow glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>33</Value>
+		<Name>univ 2h/gr hot green glow</Name>
+		<Description>univ 2h/gr hot green glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>34</Value>
+		<Name>univ 1h hammer red aura</Name>
+		<Description>univ 1h hammer red aura</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>35</Value>
+		<Name>univ 1h hammer fiery glow</Name>
+		<Description>univ 1h hammer fiery glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>36</Value>
+		<Name>univ 1h hammer more intense fiery glow</Name>
+		<Description>univ 1h hammer more intense fiery glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>37</Value>
+		<Name>univ 1h hammer flaming</Name>
+		<Description>univ 1h hammer flaming</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>38</Value>
+		<Name>univ 1h hammer torchlike flaming</Name>
+		<Description>univ 1h hammer torchlike flaming</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>39</Value>
+		<Name>univ 1h hammer silvery glow</Name>
+		<Description>univ 1h hammer silvery glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>40</Value>
+		<Name>univ 1h hammer purple glow</Name>
+		<Description>univ 1h hammer purple glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>41</Value>
+		<Name>univ 1h hammer blue aura</Name>
+		<Description>univ 1h hammer blue aura</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>42</Value>
+		<Name>univ 1h hammer blue glow</Name>
+		<Description>univ 1h hammer blue glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>43</Value>
+		<Name>univ 1h hammer arcs from head to handle</Name>
+		<Description>univ 1h hammer arcs from head to handle</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>44</Value>
+		<Name>univ 1h crush arcing halo</Name>
+		<Description>univ 1h crush arcing halo</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>45</Value>
+		<Name>univ 1h crush center arcing</Name>
+		<Description>univ 1h crush center arcing</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>46</Value>
+		<Name>univ 1h crush smaller arcing halo</Name>
+		<Description>univ 1h crush smaller arcing halo</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>47</Value>
+		<Name>univ 1h crush hot orange core glow</Name>
+		<Description>univ 1h crush hot orange core glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>48</Value>
+		<Name>univ 1h crush orange aura</Name>
+		<Description>univ 1h crush orange aura</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>49</Value>
+		<Name>univ 1h crush subtle aura with sparks</Name>
+		<Description>univ 1h crush subtle aura with sparks</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>50</Value>
+		<Name>univ 1h crush yellow flame</Name>
+		<Description>univ 1h crush yellow flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>51</Value>
+		<Name>univ 1h crush mana flame</Name>
+		<Description>univ 1h crush mana flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>52</Value>
+		<Name>univ 1h crush hot green glow</Name>
+		<Description>univ 1h crush hot green glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>53</Value>
+		<Name>univ 1h crush hot red glow</Name>
+		<Description>univ 1h crush hot red glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>54</Value>
+		<Name>univ 1h crush hot purple glow</Name>
+		<Description>univ 1h crush hot purple glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>55</Value>
+		<Name>univ 1h crush cold vapor</Name>
+		<Description>univ 1h crush cold vapor</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>56</Value>
+		<Name>univ 1h axe basic flame</Name>
+		<Description>univ 1h axe basic flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>57</Value>
+		<Name>univ 1h axe orange flame</Name>
+		<Description>univ 1h axe orange flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>58</Value>
+		<Name>univ 1h axe slow orange flame w/sparks</Name>
+		<Description>univ 1h axe slow orange flame w/sparks</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>59</Value>
+		<Name>univ 1h axe fiery/trailing flame</Name>
+		<Description>univ 1h axe fiery/trailing flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>60</Value>
+		<Name>univ 1h axe cold vapor</Name>
+		<Description>univ 1h axe cold vapor</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>61</Value>
+		<Name>univ 1h axe blue aura with twinkles</Name>
+		<Description>univ 1h axe blue aura with twinkles</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>62</Value>
+		<Name>univ 1h axe hot green glow</Name>
+		<Description>univ 1h axe hot green glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>63</Value>
+		<Name>univ 1h axe hot blue glow</Name>
+		<Description>univ 1h axe hot blue glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>64</Value>
+		<Name>univ 1h axe hot cyan glow</Name>
+		<Description>univ 1h axe hot cyan glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>65</Value>
+		<Name>univ 1h axe hot purple glow</Name>
+		<Description>univ 1h axe hot purple glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>66</Value>
+		<Name>univ 1h axe blue->purple->orange glow</Name>
+		<Description>univ 1h axe blue->purple->orange glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>67</Value>
+		<Name>univ shortsword propane flame</Name>
+		<Description>univ shortsword propane flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>68</Value>
+		<Name>univ shortsword orange flame with sparks</Name>
+		<Description>univ shortsword orange flame with sparks</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>69</Value>
+		<Name>univ shortsword blue aura with twinkles</Name>
+		<Description>univ shortsword blue aura with twinkles</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>70</Value>
+		<Name>univ shortsword green cloud with bubbles</Name>
+		<Description>univ shortsword green cloud with bubbles</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>71</Value>
+		<Name>univ shortsword red aura with blood bubbles</Name>
+		<Description>univ shortsword red aura with blood bubbles</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>72</Value>
+		<Name>univ shortsword evil green glow</Name>
+		<Description>univ shortsword evil green glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>73</Value>
+		<Name>univ shortsword black glow</Name>
+		<Description>univ shortsword black glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>74</Value>
+		<Name>Midgard battlespear cold with twinkles</Name>
+		<Description>Midgard battlespear cold with twinkles</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>75</Value>
+		<Name>Midgard battlespear evil green aura</Name>
+		<Description>Midgard battlespear evil green aura</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>76</Value>
+		<Name>Midgard battlespear evil red aura</Name>
+		<Description>Midgard battlespear evil red aura</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>77</Value>
+		<Name>Midgard battlespear flaming</Name>
+		<Description>Midgard battlespear flaming</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>78</Value>
+		<Name>Midgard battlespear hot gold glow</Name>
+		<Description>Midgard battlespear hot gold glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>79</Value>
+		<Name>Midgard battlespear hot fire glow</Name>
+		<Description>Midgard battlespear hot fire glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>80</Value>
+		<Name>Midgard battlespear red aura</Name>
+		<Description>Midgard battlespear red aura</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>81</Value>
+		<Name>Midgard lugged spear blue glow</Name>
+		<Description>Midgard lugged spear blue glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>82</Value>
+		<Name>Midgard lugged spear hot blue glow</Name>
+		<Description>Midgard lugged spear hot blue glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>83</Value>
+		<Name>Midgard lugged spear cold with twinkles</Name>
+		<Description>Midgard lugged spear cold with twinkles</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>84</Value>
+		<Name>Midgard lugged spear electric arcing</Name>
+		<Description>Midgard lugged spear electric arcing</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>85</Value>
+		<Name>Midgard lugged spear hot yellow flame</Name>
+		<Description>Midgard lugged spear hot yellow flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>86</Value>
+		<Name>Midgard lugged spear orange flame w/ sparks</Name>
+		<Description>Midgard lugged spear orange flame w/ sparks</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>87</Value>
+		<Name>Midgard lugged spear orange to purple flame</Name>
+		<Description>Midgard lugged spear orange to purple flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>88</Value>
+		<Name>Midgard lugged spear hot purple flame</Name>
+		<Description>Midgard lugged spear hot purple flame</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>89</Value>
+		<Name>Midgard lugged spear silvery glow</Name>
+		<Description>Midgard lugged spear silvery glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>90</Value>
+		<Name>Briton quarterstaff blue glow</Name>
+		<Description>Briton quarterstaff blue glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>91</Value>
+		<Name>Briton quarterstaff blue glow w/ twinkles</Name>
+		<Description>Briton quarterstaff blue glow w/ twinkles</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>92</Value>
+		<Name>Briton quarterstaff gold glow</Name>
+		<Description>Briton quarterstaff gold glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>93</Value>
+		<Name>Briton quarterstaff gold glow w/ twinkles</Name>
+		<Description>Briton quarterstaff gold glow w/ twinkles</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>94</Value>
+		<Name>Briton quarterstaff faint red glow</Name>
+		<Description>Briton quarterstaff faint red glow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>95</Value>
+		<Name>Relic pad effect</Name>
+		<Description>Relic pad effect</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>96</Value>
+		<Name>Admorenths Staff Effect (Admorenth ONLY)</Name>
+		<Description>Admorenths Staff Effect (Admorenth ONLY)</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>256</Value>
+		<Name>Paladin Epic Two Handed Slash</Name>
+		<Description>Paladin Epic Two Handed Slash</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>257</Value>
+		<Name>Hero Epic Blunt</Name>
+		<Description>Hero Epic Blunt</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>258</Value>
+		<Name>Warrior Epic One Handed Axe</Name>
+		<Description>Warrior Epic One Handed Axe</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>259</Value>
+		<Name>Hero_Piercing_2H</Name>
+		<Description>Hero_Piercing_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>260</Value>
+		<Name>Hero_Spear_2H</Name>
+		<Description>Hero_Spear_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>261</Value>
+		<Name>Hero_Spear_1H</Name>
+		<Description>Hero_Spear_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>262</Value>
+		<Name>Hero_Piercing_1H</Name>
+		<Description>Hero_Piercing_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>263</Value>
+		<Name>Hero_Blunt_2H</Name>
+		<Description>Hero_Blunt_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>264</Value>
+		<Name>Hero_Blade_2H</Name>
+		<Description>Hero_Blade_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>265</Value>
+		<Name>Hero_Blade_1H</Name>
+		<Description>Hero_Blade_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>266</Value>
+		<Name>Reaver_Sword_1H</Name>
+		<Description>Reaver_Sword_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>267</Value>
+		<Name>palladin_Slash_1h</Name>
+		<Description>palladin_Slash_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>268</Value>
+		<Name>palladin_Thrust_2H</Name>
+		<Description>palladin_Thrust_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>269</Value>
+		<Name>palladin_Thrust_1H</Name>
+		<Description>palladin_Thrust_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>270</Value>
+		<Name>Reaver_Thrust_1H</Name>
+		<Description>Reaver_Thrust_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>271</Value>
+		<Name>Reaver_Crush_1H</Name>
+		<Description>Reaver_Crush_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>272</Value>
+		<Name>Warrior_Sword_1H</Name>
+		<Description>Warrior_Sword_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>273</Value>
+		<Name>Warrior_Hammer_2H</Name>
+		<Description>Warrior_Hammer_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>274</Value>
+		<Name>Warrior_Hammer_1H</Name>
+		<Description>Warrior_Hammer_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>275</Value>
+		<Name>Warrior_Axe_2H</Name>
+		<Description>Warrior_Axe_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>276</Value>
+		<Name>Warrior_Sword_2H</Name>
+		<Description>Warrior_Sword_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>277</Value>
+		<Name>Reaver_Flex_1H</Name>
+		<Description>Reaver_Flex_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>278</Value>
+		<Name>palladin_Crush_2H</Name>
+		<Description>palladin_Crush_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>279</Value>
+		<Name>palladin_Crush_1H</Name>
+		<Description>palladin_Crush_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>280</Value>
+		<Name>Armsman_Thrust_2H</Name>
+		<Description>Armsman_Thrust_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>281</Value>
+		<Name>Armsman_Crush_1H</Name>
+		<Description>Armsman_Crush_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>282</Value>
+		<Name>Armsman_Crush_2H</Name>
+		<Description>Armsman_Crush_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>283</Value>
+		<Name>Armsman_Pole_S</Name>
+		<Description>Armsman_Pole_S</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>284</Value>
+		<Name>Armsman_Sword_1H</Name>
+		<Description>Armsman_Sword_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>285</Value>
+		<Name>Armsman_Sword_2H</Name>
+		<Description>Armsman_Sword_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>286</Value>
+		<Name>Armsman_Thrust_1H</Name>
+		<Description>Armsman_Thrust_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>287</Value>
+		<Name>Mercenary_T</Name>
+		<Description>Mercenary_T</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>288</Value>
+		<Name>Mercenary_C</Name>
+		<Description>Mercenary_C</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>289</Value>
+		<Name>Mercenary_S</Name>
+		<Description>Mercenary_S</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>290</Value>
+		<Name>minstrel_T</Name>
+		<Description>minstrel_T</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>291</Value>
+		<Name>minstrel_S</Name>
+		<Description>minstrel_S</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>292</Value>
+		<Name>minstrel_H</Name>
+		<Description>minstrel_H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>293</Value>
+		<Name>infiltrator_T</Name>
+		<Description>infiltrator_T</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>294</Value>
+		<Name>Infiltrator_S</Name>
+		<Description>Infiltrator_S</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>295</Value>
+		<Name>sfx_epic_wpn_Armsman_Pole_C</Name>
+		<Description>sfx_epic_wpn_Armsman_Pole_C</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>296</Value>
+		<Name>Heretic_flexS_1H</Name>
+		<Description>Heretic_flexS_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>297</Value>
+		<Name>Heretic_crush_1H</Name>
+		<Description>Heretic_crush_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>298</Value>
+		<Name>Heretic_flexC_1H</Name>
+		<Description>Heretic_flexC_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>299</Value>
+		<Name>sfx_epic_wpn_cleric_C</Name>
+		<Description>sfx_epic_wpn_cleric_C</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>300</Value>
+		<Name>Scout_Bow</Name>
+		<Description>Scout_Bow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>301</Value>
+		<Name>Scout_T</Name>
+		<Description>Scout_T</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>302</Value>
+		<Name>Scout_S</Name>
+		<Description>Scout_S</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>303</Value>
+		<Name>sfx_epic_wpn_skald_axe_1h</Name>
+		<Description>sfx_epic_wpn_skald_axe_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>304</Value>
+		<Name>sfx_epic_wpn_skald_hammer_1h</Name>
+		<Description>sfx_epic_wpn_skald_hammer_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>305</Value>
+		<Name>sfx_epic_wpn_skald_sword_1h</Name>
+		<Description>sfx_epic_wpn_skald_sword_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>306</Value>
+		<Name>sfx_epic_wpn_skald_hammer_2h</Name>
+		<Description>sfx_epic_wpn_skald_hammer_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>307</Value>
+		<Name>sfx_epic_wpn_skald_axe_2h</Name>
+		<Description>sfx_epic_wpn_skald_axe_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>308</Value>
+		<Name>sfx_epic_wpn_skald_sword_2h</Name>
+		<Description>sfx_epic_wpn_skald_sword_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>309</Value>
+		<Name>sfx_epic_Druid_Crush_1H</Name>
+		<Description>sfx_epic_Druid_Crush_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>310</Value>
+		<Name>sfx_epic_Druid_Blade_1H</Name>
+		<Description>sfx_epic_Druid_Blade_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>311</Value>
+		<Name>sfx_epic_wpn_savage_sword_1h</Name>
+		<Description>sfx_epic_wpn_savage_sword_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>312</Value>
+		<Name>sfx_epic_wpn_savage_sword_2h</Name>
+		<Description>sfx_epic_wpn_savage_sword_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>313</Value>
+		<Name>sfx_epic_wpn_savage_axe_1h</Name>
+		<Description>sfx_epic_wpn_savage_axe_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>314</Value>
+		<Name>sfx_epic_Warden_Blade_1H</Name>
+		<Description>sfx_epic_Warden_Blade_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>315</Value>
+		<Name>sfx_epic_Warden_Crush_1H</Name>
+		<Description>sfx_epic_Warden_Crush_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>316</Value>
+		<Name>sfx_epic_Friar_Staff&amp;Crush</Name>
+		<Description>sfx_epic_Friar_Staff&amp;Crush</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>317</Value>
+		<Name>sfx_epic_Necromancer_Staff</Name>
+		<Description>sfx_epic_Necromancer_Staff</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>318</Value>
+		<Name>sfx_epic_wpn_savage_axe_2h</Name>
+		<Description>sfx_epic_wpn_savage_axe_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>319</Value>
+		<Name>sfx_epic_wpn_savage_hth</Name>
+		<Description>sfx_epic_wpn_savage_hth</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>320</Value>
+		<Name>sfx_epic_wpn_savage_hammer_1h</Name>
+		<Description>sfx_epic_wpn_savage_hammer_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>321</Value>
+		<Name>sfx_epic_wpn_savage_hammer_2h</Name>
+		<Description>sfx_epic_wpn_savage_hammer_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>322</Value>
+		<Name>sfx_epic_wpn_valkyrie_sword_1h</Name>
+		<Description>sfx_epic_wpn_valkyrie_sword_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>323</Value>
+		<Name>sfx_epic_wpn_valkyrie_sword_2h</Name>
+		<Description>sfx_epic_wpn_valkyrie_sword_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>324</Value>
+		<Name>sfx_epic_Ranger_Bow</Name>
+		<Description>sfx_epic_Ranger_Bow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>325</Value>
+		<Name>sfx_epic_Ranger_Pierce_1H</Name>
+		<Description>sfx_epic_Ranger_Pierce_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>326</Value>
+		<Name>sfx_epic_Ranger_Slash_1H</Name>
+		<Description>sfx_epic_Ranger_Slash_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>327</Value>
+		<Name>sfx_epic_wpn_valkyrie_spear</Name>
+		<Description>sfx_epic_wpn_valkyrie_spear</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>328</Value>
+		<Name>sfx_epic_wpn_Sorcerer_St</Name>
+		<Description>sfx_epic_wpn_Sorcerer_St</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>329</Value>
+		<Name>sfx_epic_wpn_hunter_sword_2h</Name>
+		<Description>sfx_epic_wpn_hunter_sword_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>330</Value>
+		<Name>sfx_epic_wpn_hunter_sword_1H</Name>
+		<Description>sfx_epic_wpn_hunter_sword_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>331</Value>
+		<Name>sfx_epic_wpn_hunter_spear</Name>
+		<Description>sfx_epic_wpn_hunter_spear</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>332</Value>
+		<Name>sfx_epic_wpn_hunter_bow</Name>
+		<Description>sfx_epic_wpn_hunter_bow</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>333</Value>
+		<Name>sfx_epic_Blademaster_Pierce_1H</Name>
+		<Description>sfx_epic_Blademaster_Pierce_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>334</Value>
+		<Name>sfx_epic_Blademaster_Slash_1H</Name>
+		<Description>sfx_epic_Blademaster_Slash_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>335</Value>
+		<Name>sfx_epic_Blademaster_Crush_1H</Name>
+		<Description>sfx_epic_Blademaster_Crush_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>336</Value>
+		<Name>sfx_epic_wpn_thane_sword_2h</Name>
+		<Description>sfx_epic_wpn_thane_sword_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>337</Value>
+		<Name>sfx_epic_wpn_thane_sword_1h</Name>
+		<Description>sfx_epic_wpn_thane_sword_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>338</Value>
+		<Name>sfx_epic_wpn_thane_axe_2h</Name>
+		<Description>sfx_epic_wpn_thane_axe_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>339</Value>
+		<Name>sfx_epic_wpn_thane_axe_1h</Name>
+		<Description>sfx_epic_wpn_thane_axe_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>340</Value>
+		<Name>sfx_epic_Bainshee_Staff</Name>
+		<Description>sfx_epic_Bainshee_Staff</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>341</Value>
+		<Name>sfx_epic_Animist_Staff</Name>
+		<Description>sfx_epic_Animist_Staff</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>342</Value>
+		<Name>sfx_epic_Eldritch_Staff</Name>
+		<Description>sfx_epic_Eldritch_Staff</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>343</Value>
+		<Name>sfx_epic_Enchanter_Staff</Name>
+		<Description>sfx_epic_Enchanter_Staff</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>344</Value>
+		<Name>sfx_epic_wpn_thane_hammer_2h</Name>
+		<Description>sfx_epic_wpn_thane_hammer_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>345</Value>
+		<Name>sfx_epic_wpn_thane_hammer_1h</Name>
+		<Description>sfx_epic_wpn_thane_hammer_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>346</Value>
+		<Name>sfx_epic_wpn_shadowblade_sword_2h</Name>
+		<Description>sfx_epic_wpn_shadowblade_sword_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>347</Value>
+		<Name>sfx_epic_wpn_shadowblade_sword_1h</Name>
+		<Description>sfx_epic_wpn_shadowblade_sword_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>348</Value>
+		<Name>sfx_epic_Mentalist_Staff</Name>
+		<Description>sfx_epic_Mentalist_Staff</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>349</Value>
+		<Name>sfx_epic_Valewalker_Sy</Name>
+		<Description>sfx_epic_Valewalker_Sy</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>350</Value>
+		<Name>sfx_epic_wpn_shadowblade_axe_1h</Name>
+		<Description>sfx_epic_wpn_shadowblade_axe_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>351</Value>
+		<Name>sfx_epic_wpn_shadowblade_axe_2h</Name>
+		<Description>sfx_epic_wpn_shadowblade_axe_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>352</Value>
+		<Name>sfx_epic_Healer_Crush_2H</Name>
+		<Description>sfx_epic_Healer_Crush_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>353</Value>
+		<Name>sfx_epic_Healer_Crush_1H</Name>
+		<Description>sfx_epic_Healer_Crush_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>354</Value>
+		<Name>sfx_epic_Spiritmaster_Staff</Name>
+		<Description>sfx_epic_Spiritmaster_Staff</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>355</Value>
+		<Name>sfx_epic_wpn_Cabalist_st</Name>
+		<Description>sfx_epic_wpn_Cabalist_st</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>356</Value>
+		<Name>sfx_epic_wpn_Theurgist_St</Name>
+		<Description>sfx_epic_wpn_Theurgist_St</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>357</Value>
+		<Name>sfx_epic_wpn_Vampiir_T</Name>
+		<Description>sfx_epic_wpn_Vampiir_T</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>358</Value>
+		<Name>sfx_epic_wpn_Wizard_St</Name>
+		<Description>sfx_epic_wpn_Wizard_St</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>359</Value>
+		<Name>sfx_epic_wpn_Runemaster_St</Name>
+		<Description>sfx_epic_wpn_Runemaster_St</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>360</Value>
+		<Name>sfx_epic_Shaman_Crush_1H</Name>
+		<Description>sfx_epic_Shaman_Crush_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>361</Value>
+		<Name>sfx_epic_Bonedancer_Staff</Name>
+		<Description>sfx_epic_Bonedancer_Staff</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>362</Value>
+		<Name>sfx_epic_Warlock_Staff</Name>
+		<Description>sfx_epic_Warlock_Staff</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>363</Value>
+		<Name>sfx_epic_Shaman_Crush_2H</Name>
+		<Description>sfx_epic_Shaman_Crush_2H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>364</Value>
+		<Name>sfx_epic_wpn_Champion_Slash_2h</Name>
+		<Description>sfx_epic_wpn_Champion_Slash_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>365</Value>
+		<Name>sfx_epic_wpn_Champion_Slash_1h</Name>
+		<Description>sfx_epic_wpn_Champion_Slash_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>366</Value>
+		<Name>sfx_epic_wpn_Champion_Pierce_1h</Name>
+		<Description>sfx_epic_wpn_Champion_Pierce_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>367</Value>
+		<Name>sfx_epic_wpn_Champion_Crush_2h</Name>
+		<Description>sfx_epic_wpn_Champion_Crush_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>368</Value>
+		<Name>sfx_epic_wpn_Champion_Crush_1h</Name>
+		<Description>sfx_epic_wpn_Champion_Crush_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>369</Value>
+		<Name>sfx_epic_wpn_nightshade_T</Name>
+		<Description>sfx_epic_wpn_nightshade_T</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>370</Value>
+		<Name>sfx_epic_wpn_nightshade_S</Name>
+		<Description>sfx_epic_wpn_nightshade_S</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>371</Value>
+		<Name>sfx_epic_wpn_berserker_axe_2h</Name>
+		<Description>sfx_epic_wpn_berserker_axe_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>372</Value>
+		<Name>sfx_epic_wpn_berserker_axe_1h</Name>
+		<Description>sfx_epic_wpn_berserker_axe_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>373</Value>
+		<Name>sfx_epic_wpn_berserker_sword_2h</Name>
+		<Description>sfx_epic_wpn_berserker_sword_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>374</Value>
+		<Name>sfx_epic_wpn_berserker_sword_1h</Name>
+		<Description>sfx_epic_wpn_berserker_sword_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>375</Value>
+		<Name>sfx_epic_wpn_berserker_hammer_2h</Name>
+		<Description>sfx_epic_wpn_berserker_hammer_2h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>376</Value>
+		<Name>sfx_epic_wpn_berserker_hammer_1h</Name>
+		<Description>sfx_epic_wpn_berserker_hammer_1h</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>377</Value>
+		<Name>sfx_epic_wpn_Bard_Blade_1H</Name>
+		<Description>sfx_epic_wpn_Bard_Blade_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>378</Value>
+		<Name>sfx_epic_wpn_Bard_Crush_1H</Name>
+		<Description>sfx_epic_wpn_Bard_Crush_1H</Description>
+	</eEnumeration>
+	<eEnumeration Type="Effect">
+		<Value>379</Value>
+		<Name>sfx_epic_wpn_Bard_Harp</Name>
+		<Description>sfx_epic_wpn_Bard_Harp</Description>
+	</eEnumeration>
+</QuestData>

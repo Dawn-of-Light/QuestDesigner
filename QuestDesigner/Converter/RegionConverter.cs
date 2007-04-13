@@ -22,11 +22,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 using System.Globalization;
+using DOL.Tools.QuestDesigner.Util;
 
 namespace DOL.Tools.QuestDesigner.Converter
 {
     class RegionConverter : DataTableConverter
     {
-        public RegionConverter(): base("Region","id","description") { }
+        public RegionConverter() : base(DB.TABLE_REGION, DB.COL_REGION_ID, DB.COL_REGION_DESCRIPTION) { }
     }
 }

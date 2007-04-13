@@ -97,8 +97,9 @@ Possible parameters:
 		<value>eTriggerType.EnemyDying</value>
 		<description>EnemyDying</description>
 		<help>Enemy I died, no matter who/what killed it</help>
+  	    <k>string</k>
 		<i>GameLiving:string</i>
-		<text>$I{0}$ dies</text>
+		<text>$K{0}$ / $I{1}$ dies</text>
 	</TriggerType>	
 	<TriggerType>
 		<value>eTriggerType.PlayerKilled</value>

@@ -67,10 +67,14 @@ namespace DOL.Tools.QuestDesigner
             dataGridArea.AutoGenerateColumns = false;
             dataGridArea.DataSource = DB.areaBinding;
             
-            colRegionID.DataPropertyName = "RegionID";
-            colRegionID.ValueMember = "id";
-            colRegionID.DisplayMember = "description";
+            colRegionID.DataPropertyName = DB.COL_AREA_REGIONID;
+            colRegionID.ValueMember = DB.COL_REGION_ID;
+            colRegionID.DisplayMember = DB.COL_REGION_DESCRIPTION;
             colRegionID.DataSource = DB.RegionTable;
+            
+            colAreaType.ValueMember = DB.COL_ENUMERATION_VALUE;
+            colAreaType.DisplayMember = DB.COL_ENUMERATION_DESCRIPTION;
+            colAreaType.DataSource = DB.areaTypeBinding;
         }
         void areaBag_SetValue(object sender, PropertySpecEventArgs e)
         {
@@ -86,13 +90,13 @@ namespace DOL.Tools.QuestDesigner
                 {
                     case "Name":                        
                         rowView[e.Property.Name] = e.Value;
-                        rowView["ObjectName"] = Utils.ConvertToObjectName((string)e.Value);
+                        rowView[DB.COL_AREA_OBJECTNAME] = Utils.ConvertToObjectName((string)e.Value);
                         break;
                     case "Width":
-                        rowView["Z"] = e.Value;
+                        rowView[DB.COL_AREA_Z] = e.Value;
                         break;
                     case "Height":
-                        rowView["R"] = e.Value;
+                        rowView[DB.COL_AREA_R] = e.Value;
                         break;                    
                     default:
 
@@ -132,10 +136,10 @@ namespace DOL.Tools.QuestDesigner
                 switch (e.Property.Name)
                 {
                     case "Width":
-                        e.Value = rowView["Z"];
+                        e.Value = rowView[DB.COL_AREA_Z];
                         break;
                     case "Height":
-                        e.Value = rowView["R"];
+                        e.Value = rowView[DB.COL_AREA_R];
                         break;
                     default:
                         e.Value = rowView[e.Property.Name];
@@ -149,20 +153,20 @@ namespace DOL.Tools.QuestDesigner
             PropertySpec spec = new PropertySpec(col.ColumnName, col.DataType, null, null, col.DefaultValue);
             switch (col.ColumnName)
             {
-                case "RegionID":
+                case DB.COL_AREA_REGIONID:
                     spec.ConverterTypeName = typeof(RegionConverter).FullName;
                     spec.Category = "Location";
                     break;
-                case "R":
+                case DB.COL_AREA_R:
                     spec.Description = "Radius of Circle";
                     spec.Category = "Location";
                     break;
-                case "X":
-                case "Y":
-                case "Z":                
+                case DB.COL_AREA_X:
+                case DB.COL_AREA_Y:
+                case DB.COL_AREA_Z:                
                     spec.Category = "Location";
                     break;
-                case "AreaType":
+                case DB.COL_AREA_AREATYPE:
                     spec.ConverterTypeName = typeof(AreaTypeConverter).FullName;
                     break;
             }
@@ -174,29 +178,29 @@ namespace DOL.Tools.QuestDesigner
             PropertySpec spec = new PropertySpec(col.ColumnName, col.DataType, null, null, col.DefaultValue);
             switch (col.ColumnName)
             {
-                case "RegionID":
+                case DB.COL_AREA_REGIONID:
                     spec.ConverterTypeName = typeof(RegionConverter).FullName;
                     spec.Category = "Location";
                     break;
-                case "X":
+                case DB.COL_AREA_X:
                     spec.Description = "X Coordinate of Square";
                     spec.Category = "Location";
                     break;
-                case "Y":
+                case DB.COL_AREA_Y:
                     spec.Description = "Y Coordinate of Square";
                     spec.Category = "Location";
                     break;
-                case "Z":
+                case DB.COL_AREA_Z:
                     spec.Name = "Width";
                     spec.Description = "Width of Square";
                     spec.Category = "Location";
                     break;
-                case "R":
+                case DB.COL_AREA_R:
                     spec.Name = "Height";
                     spec.Description = "Height of Square";
                     spec.Category = "Location";
                     break;
-                case "AreaType":
+                case DB.COL_AREA_AREATYPE:
                     spec.ConverterTypeName = typeof(AreaTypeConverter).FullName;
                     break;
             }
@@ -254,7 +258,7 @@ namespace DOL.Tools.QuestDesigner
             if (DB.areaBinding.Current != null && dataGridArea.CurrentRow != null && !dataGridArea.CurrentRow.IsNewRow)
             {
                 propertyGridArea.Enabled = true;
-                if (Convert.ToString(((DataRowView)DB.areaBinding.Current)["AreaType"]) == "Square")
+                if (Convert.ToString(((DataRowView)DB.areaBinding.Current)[DB.COL_AREA_AREATYPE]) == "Square")
                     propertyGridArea.SelectedObject = areaSquareBag;
                 else
                     propertyGridArea.SelectedObject = areaCircleBag;
@@ -275,10 +279,10 @@ namespace DOL.Tools.QuestDesigner
                 if (DB.areaBinding.Current != null)
                 {
                     DataRowView rowView = (DataRowView)DB.areaBinding.Current;
-                    rowView["X"] = loc.X;
-                    rowView["Y"] = loc.Y;
-                    rowView["Z"] = loc.Z;
-                    rowView["regionID"] = loc.RegionID;
+                    rowView[DB.COL_AREA_X] = loc.X;
+                    rowView[DB.COL_AREA_Y] = loc.Y;
+                    rowView[DB.COL_AREA_Y] = loc.Z;
+                    rowView[DB.COL_AREA_REGIONID] = loc.RegionID;
 
                     propertyGridArea.Refresh();
                 }
@@ -292,14 +296,14 @@ namespace DOL.Tools.QuestDesigner
 
                 DataRowView rowView = (DataRowView)DB.areaBinding.Current;
 
-                if (rowView["X"] != DBNull.Value && rowView["Y"] != DBNull.Value && rowView["regionID"] != DBNull.Value)
+                if (rowView[DB.COL_AREA_X] != DBNull.Value && rowView[DB.COL_AREA_Y] != DBNull.Value && rowView[DB.COL_AREA_REGIONID] != DBNull.Value)
                 {
                     Vector3 location = new Vector3();
 
-                    location.X = (float)Convert.ToDouble(rowView["X"]);
-                    location.Y = (float)Convert.ToDouble(rowView["Y"]);
+                    location.X = (float)Convert.ToDouble(rowView[DB.COL_AREA_X]);
+                    location.Y = (float)Convert.ToDouble(rowView[DB.COL_AREA_Y]);
 
-                    int regionID = Convert.ToInt32(rowView["regionID"]);
+                    int regionID = Convert.ToInt32(rowView[DB.COL_AREA_REGIONID]);
                     QuestDesignerMain.DesignerForm.DXControl.ShowLocation(location, regionID);
                     QuestDesignerMain.DesignerForm.ShowTab("Map Editor");
                 }

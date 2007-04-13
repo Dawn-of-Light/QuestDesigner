@@ -27,22 +27,23 @@ using DOL.Tools.QuestDesigner.Util;
 
 namespace DOL.Tools.QuestDesigner.Controls
 {
-	[SelectorAttribute("Comparator")]
+    [SelectorAttribute(Const.SELECTOR_COMPARATOR)]
 	public class ComparatorSelector : BaseSelector
 	{
 
 		public ComparatorSelector(int itemID, char param,string comparatorType)
 			: base(itemID, param)
-		{			
+		{
+            this.list.ValueMember = DB.COL_ENUMERATION_VALUE;
+            this.list.DisplayMember = DB.COL_ENUMERATION_DESCRIPTION;
+
             if (Const.COMPARATOR_BINARY.Equals(comparatorType))
 			    this.list.DataSource = DB.comparatorBinaryBinding;
             else if (Const.COMPARATOR_QUANTITY.Equals(comparatorType))
                 this.list.DataSource = DB.comparatorQuantityBinding;
             else
                 this.list.DataSource = DB.comparatorBinding;
-			
-			this.list.ValueMember = "Value";
-			this.list.DisplayMember = "Description";
+            
 			this.Editable = false;
 		}
 

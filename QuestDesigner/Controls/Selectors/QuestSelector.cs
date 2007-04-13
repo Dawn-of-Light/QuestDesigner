@@ -29,7 +29,7 @@ using System.Data;
 
 namespace DOL.Tools.QuestDesigner.Controls
 {
-	[SelectorAttribute("QuestType")]
+	[SelectorAttribute(Const.SELECTOR_QUESTTYPE)]
 	public class QuestSelector : BaseSelector
 	{		
 
@@ -37,7 +37,7 @@ namespace DOL.Tools.QuestDesigner.Controls
 		{
 			foreach (DataRow row in DB.QuestTable.Rows)
 			{
-				this.list.Items.Add(row["Namespace"] + "." + row["Name"]);
+                this.list.Items.Add(row[DB.COL_QUEST_NAMESPACE] + "." + row[DB.COL_QUEST_NAME]);
 			}
 		}
 

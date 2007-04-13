@@ -38,24 +38,39 @@ using ICSharpCode.SharpZipLib.Zip;
 
 namespace DOL.Tools.QuestDesigner
 {
-    public static class QuestDesignerMain
-    {		
+    public static class QuestDesignerMain {
+    
+        public static String WorkingDirectory = Application.StartupPath+"\\";
+    		
         public static string XSL_PATH = QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["XLSFilePath"];
 
         public static string SERVER_CONFIG_PATH = QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["DOLServerConfigFile"];
+
+        public static string DESIGNER_CONFIG_PATH = QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["DesignerConfigFile"];
 
         public static string SERVER_CONFIG_TEMPLATE_PATH = QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["DOLServerConfigTemplateFile"];        
 
         private static DOLDatabaseAdapter databaseAdapter = null;
 
-		public static QuestDesignerForm qdForm;
+		private static QuestDesignerForm qdForm;
+        private static QuestDesignerConfiguration designerConfig;
 		public static NPCLookupForm npcForm;
         public static ItemLookupForm itemForm;
 		private static PositionConverterPopup posConvForm;
 
         private static BackgroundWorker databaseWorker = new BackgroundWorker();
        
-        public static String WorkingDirectory;
+        
+
+        public static QuestDesignerConfiguration DesignerConfiguration
+        {
+            get
+            {
+                if (designerConfig == null)
+                    designerConfig = new QuestDesignerConfiguration(DESIGNER_CONFIG_PATH);
+                return designerConfig;
+            }
+        }
 
 		public static QuestDesignerForm DesignerForm
 		{
@@ -171,8 +186,7 @@ namespace DOL.Tools.QuestDesigner
                 new ErrorForm(e);
             }
         }
-
-              
+        
 
         public static bool DatabaseSupported
         {
@@ -218,13 +232,28 @@ namespace DOL.Tools.QuestDesigner
         {
             if (!File.Exists(SERVER_CONFIG_PATH))
             {
-                if (File.Exists(SERVER_CONFIG_TEMPLATE_PATH))
+                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                folderBrowserDialog.ShowNewFolderButton = false;
+                folderBrowserDialog.Description = "Initialization\nSelect the root directory of your DOL Server (That's the directory where DolServer.exe is located):";
+                DialogResult result = folderBrowserDialog.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    File.Copy(SERVER_CONFIG_TEMPLATE_PATH, SERVER_CONFIG_PATH, false);
+                    FileInfo serverConfig = new FileInfo(folderBrowserDialog.SelectedPath + "/" + System.Configuration.ConfigurationManager.AppSettings["DOLServerOriginalConfigFile"]);
+                    if (serverConfig.Exists)
+                    {
+                        File.Copy(serverConfig.FullName, SERVER_CONFIG_PATH, false);
+                    }
                 }
                 else
                 {
-                    Log.Error("No Template file for DOL Server config found. Should be located in " + SERVER_CONFIG_TEMPLATE_PATH);
+                    if (File.Exists(SERVER_CONFIG_TEMPLATE_PATH))
+                    {
+                        File.Copy(SERVER_CONFIG_TEMPLATE_PATH, SERVER_CONFIG_PATH, false);
+                    }
+                    else
+                    {
+                        Log.Error("No Template file for DOL Server config found. Should be located in " + SERVER_CONFIG_TEMPLATE_PATH);
+                    }
                 }
             }
         }

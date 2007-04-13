@@ -123,12 +123,12 @@ namespace DOL.Tools.QuestDesigner
 			item.SubItems.Clear();
 			ListViewItem.ListViewSubItem subItem = new ListViewItem.ListViewSubItem();
 			subItem.Name ="Type";
-			
-			item.Name = Convert.ToString(npcRow["MobID"]);
-			item.Text = Convert.ToString(npcRow["Name"]);
+
+            item.Name = Convert.ToString(npcRow[DB.COL_NPC_ID]);
+            item.Text = Convert.ToString(npcRow[DB.COL_NPC_NAME]);
 			item.Tag = npcRow;
-			
-			if (npcRow["Realm"] is byte && (byte)npcRow["Realm"] == 0)
+
+            if (npcRow[DB.COL_NPC_REALM] is byte && (byte)npcRow[DB.COL_NPC_REALM] == 0)
 			{
 				item.ImageIndex = 1;
 				item.Group = listViewNPC.Groups["LVG_Monster"];
@@ -161,13 +161,13 @@ namespace DOL.Tools.QuestDesigner
 			PropertySpec spec = new PropertySpec(col.ColumnName, col.DataType, null, null, col.DefaultValue);
 			switch (col.ColumnName)
 			{
-				case "X":
-				case "Y":
-				case "Z":
-				case "Heading":
+				case DB.COL_NPC_X:
+                case DB.COL_NPC_Y:
+                case DB.COL_NPC_Z:
+				case DB.COL_NPC_HEADING:
 					spec.Category = "Location";
 					break;
-				case "Region":
+				case DB.COL_NPC_REGION:
                     spec.ConverterTypeName = typeof(RegionConverter).FullName;
 					spec.Category = "Location";
 					break;
@@ -183,11 +183,11 @@ namespace DOL.Tools.QuestDesigner
 					spec.Category = "Internal";
 					break;
 				case "Model":
-				case "size":
+				case "Size":
 				case "EquipmentTemplateID":
 					spec.Category = "Visual";
 					break;
-				case "Realm":
+				case DB.COL_NPC_REALM:
                     spec.ConverterTypeName = typeof(RealmConverter).FullName;
 					break;
 				case "DamageType":
@@ -202,26 +202,26 @@ namespace DOL.Tools.QuestDesigner
 		{
 			DataRow npcRow = DB.MobTable.NewRow();
 			//			
-			npcRow["Realm"] = eRealm.Albion;
-			npcRow["Name"] = "";			
+            npcRow[DB.COL_NPC_REALM] = eRealm.Albion;
+            npcRow[DB.COL_NPC_NAME] = "";			
 			//
             DB.MobTable.Rows.Add(npcRow);
 
-			npcRow["Name"] = "NewNPC" + npcRow["MobID"];
-			npcRow["ObjectName"] = Utils.ConvertToObjectName((string)npcRow["Name"]);
+            npcRow[DB.COL_NPC_NAME] = "NewNPC" + npcRow[DB.COL_NPC_ID];
+            npcRow[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName((string)npcRow[DB.COL_NPC_NAME]);
 		}
 
 		private void B_NewMob_Click(object sender, EventArgs e)
 		{
             DataRow npcRow = DB.MobTable.NewRow();
 			//			
-			npcRow["Realm"] = eRealm.None;
-			npcRow["Name"] = "";			
+            npcRow[DB.COL_NPC_REALM] = eRealm.None;
+            npcRow[DB.COL_NPC_NAME] = "";			
 			//
             DB.MobTable.Rows.Add(npcRow);
 
-			npcRow["Name"] = "NewMob" + npcRow["MobID"];
-			npcRow["ObjectName"] = Utils.ConvertToObjectName((string)npcRow["Name"]);
+            npcRow[DB.COL_NPC_NAME] = "NewMob" + npcRow[DB.COL_NPC_ID];
+            npcRow[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName((string)npcRow[DB.COL_NPC_NAME]);
 		}		
 
 		public void npcBag_GetValue(object sender, PropertySpecEventArgs e)
@@ -246,15 +246,18 @@ namespace DOL.Tools.QuestDesigner
                 if (!row[e.Property.Name].GetType().IsAssignableFrom(e.Value.GetType()))
                 {
                     TypeConverter conv = (TypeConverter)Activator.CreateInstance(Assembly.GetCallingAssembly().GetType(e.Property.ConverterTypeName));
-                    e.Value = conv.ConvertTo(e.Value, row[e.Property.Name].GetType());
+
+                    Type destinationType = row.Table.Columns[e.Property.Name].DataType;
+
+                    e.Value = conv.ConvertTo(e.Value, destinationType);
                 }
                 // little hackend
 
 				row[e.Property.Name] = e.Value;
                 // update objectname if name changed
-                if (e.Property.Name == "Name")
+                if (e.Property.Name == DB.COL_NPC_NAME)
                 {
-                    row["ObjectName"] = Utils.ConvertToObjectName((String)e.Value);
+                    row[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName((String)e.Value);
                 }
 			}
 		}
@@ -332,7 +335,7 @@ namespace DOL.Tools.QuestDesigner
 				ListViewItem item = listViewNPC.Items[e.Item];
 				if (e.Label != null && e.Label.Length > 0)
 				{
-					((DataRow)item.Tag)["Name"] = e.Label;
+                    ((DataRow)item.Tag)[DB.COL_NPC_NAME] = e.Label;
 					propertyGridNPC.SelectedObject = npcBag;
 				}
 			}
@@ -380,7 +383,7 @@ namespace DOL.Tools.QuestDesigner
                                 row[column.ColumnName] = field.GetValue(mob, null);
                             else
                             {
-                                if (dolColumn == "ObjectName" || dolColumn == "AddToWorld")
+                                if (dolColumn == DB.COL_NPC_OBJECTNAME || dolColumn == "AddToWorld")
                                 {
                                     //skipping ObjectName since it a QuestDesigner internal value.
                                 }
@@ -397,7 +400,7 @@ namespace DOL.Tools.QuestDesigner
                         }
 
                         // generate objectname since it doesn't exists in the dol world.
-                        row["ObjectName"] = Utils.ConvertToObjectName(Convert.ToString(row["Name"]));
+                        row[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName(Convert.ToString(row[DB.COL_NPC_NAME]));
                     }
                     DB.MobTable.Rows.Add(row);
                 }
@@ -416,13 +419,13 @@ namespace DOL.Tools.QuestDesigner
                 if (listViewNPC.SelectedItems != null && listViewNPC.SelectedItems.Count > 0)
                 {
                     ListViewItem item = listViewNPC.SelectedItems[0];
-                    ((DataRow)item.Tag)["X"] = loc.X;
-                    ((DataRow)item.Tag)["Y"] = loc.Y;
-                    ((DataRow)item.Tag)["Z"] = loc.Z;
-                    ((DataRow)item.Tag)["region"] = loc.RegionID;
+                    ((DataRow)item.Tag)[DB.COL_NPC_X] = loc.X;
+                    ((DataRow)item.Tag)[DB.COL_NPC_Y] = loc.Y;
+                    ((DataRow)item.Tag)[DB.COL_NPC_Z] = loc.Z;
+                    ((DataRow)item.Tag)[DB.COL_NPC_REGION] = loc.RegionID;
 
                     if (loc.Heading>=0)
-                        ((DataRow)item.Tag)["heading"] = loc.Heading;
+                        ((DataRow)item.Tag)[DB.COL_NPC_HEADING] = loc.Heading;
 
                     propertyGridNPC.Refresh();
                 }
@@ -439,10 +442,10 @@ namespace DOL.Tools.QuestDesigner
 
                 Vector3 location = new Vector3();
 
-                location.X = (float) Convert.ToDouble(((DataRow)item.Tag)["X"]);
-                location.Y = (float) Convert.ToDouble(((DataRow)item.Tag)["Y"]);
+                location.X = (float)Convert.ToDouble(((DataRow)item.Tag)[DB.COL_NPC_X]);
+                location.Y = (float)Convert.ToDouble(((DataRow)item.Tag)[DB.COL_NPC_Y]);
 
-                int regionID = Convert.ToInt32(((DataRow)item.Tag)["region"]);
+                int regionID = Convert.ToInt32(((DataRow)item.Tag)[DB.COL_NPC_REGION]);
                 QuestDesignerMain.DesignerForm.DXControl.ShowLocation(location, regionID);
                 QuestDesignerMain.DesignerForm.ShowTab("Map Editor");
 

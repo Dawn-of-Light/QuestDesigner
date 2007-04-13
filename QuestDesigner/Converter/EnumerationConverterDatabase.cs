@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Collections;
 using System.Data;
 using System.Globalization;
+using DOL.Tools.QuestDesigner.Util;
 
 namespace DOL.Tools.QuestDesigner.Converter
 {
@@ -37,8 +38,8 @@ namespace DOL.Tools.QuestDesigner.Converter
 			: base()
 		{
 			this.typename = typename;
-			this.valueColumn = "Value";
-			this.descriptionColumn = "Description";
+			this.valueColumn = DB.COL_ENUMERATION_VALUE;
+            this.descriptionColumn = DB.COL_ENUMERATION_DESCRIPTION;
 		}
 
         public EnumerationConverterDatabase(string typename, string valuecol, string desccol) : base() 
@@ -83,7 +84,7 @@ namespace DOL.Tools.QuestDesigner.Converter
             }
             else if (value!=null && !(value is DBNull))
             {
-				DataRow[] rows = QuestDesignerMain.DesignerForm.dataTableeEnumeration.Select("Type='" + typename + "' AND " + descriptionColumn + "=" + value);
+				DataRow[] rows = DB.EnumerationTable.Select(DB.COL_ENUMERATION_TYPE+"='" + typename + "' AND " + descriptionColumn + "='" + value+"'");
                 object obj = null;
                 if (rows.Length >= 1)
                 {
@@ -91,10 +92,10 @@ namespace DOL.Tools.QuestDesigner.Converter
                     // skip xx_First, xx_Last entries
                     foreach (DataRow tmpRow in rows)
                     {
-                        string name = Convert.ToString(tmpRow["Name"]);
+                        string name = Convert.ToString(tmpRow[DB.COL_ENUMERATION_NAME]);
 
                         // search for a entry without _first or _last and return it, if none is found use the first entry found.
-                        if (!(name.StartsWith("Max") && name.StartsWith("Min") && name.EndsWith("_Last") && name.EndsWith("_First")))
+                        if (!(name.StartsWith("Max") || name.StartsWith("Min") || name.EndsWith("_Last") || name.EndsWith("_First")))
                         {
                             row = tmpRow;
                             break;
@@ -112,7 +113,7 @@ namespace DOL.Tools.QuestDesigner.Converter
         {
             if (value is string)
             {
-				foreach (DataRow row in QuestDesignerMain.DesignerForm.dataTableeEnumeration.Select("Type='" + typename + "'"))
+				foreach (DataRow row in DB.EnumerationTable.Select(DB.COL_ENUMERATION_TYPE+"='" + typename + "'"))
                 {
                     if (Convert.ToString(row[valueColumn]) == (string)value)
                     {
@@ -132,7 +133,7 @@ namespace DOL.Tools.QuestDesigner.Converter
             } 
             else if (value!=null && !(value is DBNull))
             {
-				DataRow[] rows = QuestDesignerMain.DesignerForm.dataTableeEnumeration.Select("Type='"+typename+"' AND "+ valueColumn + "=" + value);
+				DataRow[] rows = DB.EnumerationTable.Select(DB.COL_ENUMERATION_TYPE+"='"+typename+"' AND "+ valueColumn + "='" + value+"'");
                 if (rows.Length>=1)
                 {
                     DataRow row = rows[0];
@@ -140,10 +141,10 @@ namespace DOL.Tools.QuestDesigner.Converter
                     // skip xx_First, xx_Last entries
                     foreach (DataRow tmpRow in rows)
                     {
-                        string name = Convert.ToString(tmpRow["Name"]);
+                        string name = Convert.ToString(tmpRow[DB.COL_ENUMERATION_NAME]);
 
                         // search for a entry without _first or _last and return it, if none is found use the first entry found.
-                        if (!(name.StartsWith("Max") && name.StartsWith("Min") && name.EndsWith("_Last") && name.EndsWith("_First")))
+                        if (!(name.StartsWith("Max") || name.StartsWith("Min") || name.EndsWith("_Last") || name.EndsWith("_First")))
                         {
                             row = tmpRow;
                             break;

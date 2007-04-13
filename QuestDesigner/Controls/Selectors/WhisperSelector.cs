@@ -30,7 +30,7 @@ using System.Data;
 
 namespace DOL.Tools.QuestDesigner.Controls
 {
-	[SelectorAttribute("Whisper")]
+	[SelectorAttribute(Const.SELECTOR_WHIPSER)]
 	public class WhisperSelector : BaseSelector
 	{
 
@@ -46,18 +46,18 @@ namespace DOL.Tools.QuestDesigner.Controls
 			ArrayList keywords = new ArrayList();
 			foreach (DataRow row in DB.ActionTable.Rows)
 			{
-                if (row[Const.ACTION_P] is string && ((string)row[Const.ACTION_P]).Contains("["))
+                if (row[DB.COL_QUESTPARTACTION_P] is string && ((string)row[DB.COL_QUESTPARTACTION_P]).Contains("["))
 				{
-                    MatchCollection matches = Regex.Matches((string)row[Const.ACTION_P], "\\[(.)*\\]", RegexOptions.Compiled);
+                    MatchCollection matches = Regex.Matches((string)row[DB.COL_QUESTPARTACTION_P], "\\[(.)*\\]", RegexOptions.Compiled);
 					foreach (Match match in matches)
 					{
 						keywords.Add(match.Value.Trim(WHISPER_TRIMS));
 					}
 				}
 
-                if (row[Const.ACTION_Q] is string && ((string)row[Const.ACTION_Q]).Contains("["))
+                if (row[DB.COL_QUESTPARTACTION_Q] is string && ((string)row[DB.COL_QUESTPARTACTION_Q]).Contains("["))
                 {
-                    MatchCollection matches = Regex.Matches((string)row[Const.ACTION_Q], "\\[(.)*\\]", RegexOptions.Compiled);
+                    MatchCollection matches = Regex.Matches((string)row[DB.COL_QUESTPARTACTION_Q], "\\[(.)*\\]", RegexOptions.Compiled);
                     foreach (Match match in matches)
                     {
                         keywords.Add(match.Value.Trim(WHISPER_TRIMS));

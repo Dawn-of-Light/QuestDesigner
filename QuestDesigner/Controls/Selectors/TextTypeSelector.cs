@@ -27,17 +27,17 @@ using DOL.Tools.QuestDesigner.Util;
 
 namespace DOL.Tools.QuestDesigner.Controls
 {
-	[SelectorAttribute("TextType")]
+	[SelectorAttribute(Const.SELECTOR_TEXTTYPE)]
 	public class TextTypeSelector : BaseSelector
 	{
 
 		public TextTypeSelector(int itemID, char param)
 			: base(itemID, param)
 		{
-			this.list.DataSource = DB.textTypeBinding;
+            this.list.ValueMember = DB.COL_ENUMERATION_VALUE;
+            this.list.DisplayMember = DB.COL_ENUMERATION_DESCRIPTION;
 
-			this.list.ValueMember = "Value";
-			this.list.DisplayMember = "Description";
+            this.list.DataSource = DB.textTypeBinding;
 			this.Editable = false;
 		}
 

@@ -41,11 +41,11 @@ namespace DOL.Tools.Mapping.Modules
             {
                 get
                 {
-                    return (int)row["X"];
+                    return (int)row[DB.COL_NPC_X];
                 }
                 set
                 {
-                    row["X"] = value;
+                    row[DB.COL_NPC_X] = value;
                 }
             }
 
@@ -53,11 +53,11 @@ namespace DOL.Tools.Mapping.Modules
             {
                 get
                 {
-                    return (int)row["Y"];
+                    return (int)row[DB.COL_NPC_Y];
                 }
                 set
                 {
-                    row["Y"] = value;
+                    row[DB.COL_NPC_Y] = value;
                 }
             }
 
@@ -100,7 +100,7 @@ namespace DOL.Tools.Mapping.Modules
             ClearObjectRowMapping();
 
             // load mobs
-            DataRow[] mobs = DB.MobTable.Select("Region=" + RegionMgr.CurrentRegion.ID);
+            DataRow[] mobs = DB.MobTable.Select(DB.COL_NPC_REGION+"=" + RegionMgr.CurrentRegion.ID);
             foreach (DataRow mob in mobs)
             {
                 AddMob(mob);
@@ -125,7 +125,7 @@ namespace DOL.Tools.Mapping.Modules
 
         public override IMapObject GetObjectAt(int x, int y)
         {
-            DataRow[] mobs = DB.MobTable.Select("Region=" + RegionMgr.CurrentRegion.ID+" AND "+x+">=X-"+(MobMapObject.WIDTH/2)+" AND "+x+"<=X+"+(MobMapObject.WIDTH/2)+" AND "+y+">=Y-"+(MobMapObject.HEIGHT/2)+" AND "+y+"<=Y+"+(MobMapObject.HEIGHT/2));
+            DataRow[] mobs = DB.MobTable.Select(DB.COL_NPC_REGION + "=" + RegionMgr.CurrentRegion.ID + " AND " + x + ">=" + DB.COL_NPC_X + "-" + (MobMapObject.WIDTH / 2) + " AND " + x + "<=" + DB.COL_NPC_X + "+" + (MobMapObject.WIDTH / 2) + " AND " + y + ">=" + DB.COL_NPC_Y + "-" + (MobMapObject.HEIGHT / 2) + " AND " + y + "<=" + DB.COL_NPC_Y + "+" + (MobMapObject.HEIGHT / 2));
             if (mobs.Length > 0)
                 return new MobMapObject(mobs[0]);
             else
@@ -164,15 +164,15 @@ namespace DOL.Tools.Mapping.Modules
 
         private GeometryObj AddMob(DataRow mobRow)
         {
-            float x = (float)Convert.ToDouble(mobRow["X"]);
-            float y = (float)Convert.ToDouble(mobRow["Y"]);
+            float x = (float)Convert.ToDouble(mobRow[DB.COL_NPC_X]);
+            float y = (float)Convert.ToDouble(mobRow[DB.COL_NPC_Y]);
 
             GeometryObj obj = null;
             if (x > 0 || y > 0)
             {
                 
                 Model m_PointModel;
-                if ((byte)mobRow["Realm"] == (byte)DOL.GS.PacketHandler.eRealm.None)
+                if ((byte)mobRow[DB.COL_NPC_REALM] == (byte)DOL.GS.PacketHandler.eRealm.None)
                 {
                     m_PointModel = new Model(Plane, Textures.Mob);
                 }
@@ -192,7 +192,7 @@ namespace DOL.Tools.Mapping.Modules
         private void MobTable_RowChanged(object sender, DataRowChangeEventArgs e)
         {
             DataRow mobRow = e.Row;
-            if (RegionMgr.CurrentRegion != null && (int)mobRow["Region"] == RegionMgr.CurrentRegion.ID)
+            if (RegionMgr.CurrentRegion != null && (int)mobRow[DB.COL_NPC_REGION] == RegionMgr.CurrentRegion.ID)
             {
                 if (e.Action == DataRowAction.Add)
                 {
@@ -208,8 +208,8 @@ namespace DOL.Tools.Mapping.Modules
                 }
                 else if (e.Action == DataRowAction.Change)
                 {
-                    float x = (float)Convert.ToDouble(mobRow["X"]);
-                    float y = (float)Convert.ToDouble(mobRow["Y"]);
+                    float x = (float)Convert.ToDouble(mobRow[DB.COL_NPC_X]);
+                    float y = (float)Convert.ToDouble(mobRow[DB.COL_NPC_Y]);
 
                     GeometryObj obj = GetObjectForRow(mobRow);
                     if (obj != null)

@@ -58,6 +58,12 @@ namespace DOL.Tools.QuestDesigner
             this.InvitingNPC = new System.Windows.Forms.ComboBox();
             this.MaxQuestCount = new System.Windows.Forms.NumericUpDown();
             this.Notes = new System.Windows.Forms.TextBox();
+            this.labelClasses = new System.Windows.Forms.Label();
+            this.listBoxAllowed = new System.Windows.Forms.ListBox();
+            this.listBoxAvailable = new System.Windows.Forms.ListBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonAddClass = new System.Windows.Forms.Button();
+            this.buttonRemoveClass = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             headerStrip2 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
@@ -81,6 +87,7 @@ namespace DOL.Tools.QuestDesigner
             ((System.ComponentModel.ISupportInitialize)(this.LevelMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LevelMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MaxQuestCount)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,13 +96,13 @@ namespace DOL.Tools.QuestDesigner
             tableLayoutPanel5.ColumnCount = 6;
             tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             tableLayoutPanel5.Controls.Add(headerStrip2, 0, 0);
-            tableLayoutPanel5.Controls.Add(headerStrip1, 0, 7);
-            tableLayoutPanel5.Controls.Add(this.QuestStep, 0, 8);
+            tableLayoutPanel5.Controls.Add(headerStrip1, 0, 8);
+            tableLayoutPanel5.Controls.Add(this.QuestStep, 0, 9);
             tableLayoutPanel5.Controls.Add(labelQuestName, 0, 1);
             tableLayoutPanel5.Controls.Add(this.QuestName, 1, 1);
             tableLayoutPanel5.Controls.Add(labelTitle, 0, 2);
@@ -117,6 +124,10 @@ namespace DOL.Tools.QuestDesigner
             tableLayoutPanel5.Controls.Add(this.MaxQuestCount, 4, 3);
             tableLayoutPanel5.Controls.Add(labelNotes, 3, 4);
             tableLayoutPanel5.Controls.Add(this.Notes, 3, 5);
+            tableLayoutPanel5.Controls.Add(this.labelClasses, 0, 7);
+            tableLayoutPanel5.Controls.Add(this.listBoxAllowed, 1, 7);
+            tableLayoutPanel5.Controls.Add(this.listBoxAvailable, 3, 7);
+            tableLayoutPanel5.Controls.Add(this.flowLayoutPanel1, 2, 7);
             tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
             tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2);
@@ -129,9 +140,10 @@ namespace DOL.Tools.QuestDesigner
             tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel5.Size = new System.Drawing.Size(606, 309);
+            tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            tableLayoutPanel5.Size = new System.Drawing.Size(606, 464);
             tableLayoutPanel5.TabIndex = 8;
             // 
             // headerStrip2
@@ -167,7 +179,7 @@ namespace DOL.Tools.QuestDesigner
             headerStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             headerStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             toolStripLabel1});
-            headerStrip1.Location = new System.Drawing.Point(0, 186);
+            headerStrip1.Location = new System.Drawing.Point(0, 266);
             headerStrip1.Name = "headerStrip1";
             headerStrip1.Size = new System.Drawing.Size(606, 25);
             headerStrip1.TabIndex = 22;
@@ -192,10 +204,10 @@ namespace DOL.Tools.QuestDesigner
             tableLayoutPanel5.SetColumnSpan(this.QuestStep, 6);
             this.QuestStep.DataMember = "QuestStep";
             this.QuestStep.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QuestStep.Location = new System.Drawing.Point(3, 214);
+            this.QuestStep.Location = new System.Drawing.Point(3, 294);
             this.QuestStep.Name = "QuestStep";
             this.QuestStep.RowTemplate.Height = 24;
-            this.QuestStep.Size = new System.Drawing.Size(600, 92);
+            this.QuestStep.Size = new System.Drawing.Size(600, 167);
             this.QuestStep.TabIndex = 21;
             // 
             // labelQuestName
@@ -213,7 +225,7 @@ namespace DOL.Tools.QuestDesigner
             this.QuestName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.QuestName.Location = new System.Drawing.Point(115, 33);
             this.QuestName.Name = "QuestName";
-            this.QuestName.Size = new System.Drawing.Size(175, 20);
+            this.QuestName.Size = new System.Drawing.Size(170, 20);
             this.QuestName.TabIndex = 1;
             this.QuestName.Validating += new System.ComponentModel.CancelEventHandler(this.QuestName_Validating);
             // 
@@ -232,7 +244,7 @@ namespace DOL.Tools.QuestDesigner
             this.Title.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Title.Location = new System.Drawing.Point(115, 59);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(175, 20);
+            this.Title.Size = new System.Drawing.Size(170, 20);
             this.Title.TabIndex = 3;
             // 
             // labelAuthor
@@ -250,7 +262,7 @@ namespace DOL.Tools.QuestDesigner
             this.Author.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Author.Location = new System.Drawing.Point(115, 86);
             this.Author.Name = "Author";
-            this.Author.Size = new System.Drawing.Size(175, 20);
+            this.Author.Size = new System.Drawing.Size(170, 20);
             this.Author.TabIndex = 5;
             // 
             // labelDate
@@ -268,7 +280,7 @@ namespace DOL.Tools.QuestDesigner
             this.scriptDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scriptDate.Location = new System.Drawing.Point(115, 112);
             this.scriptDate.Name = "scriptDate";
-            this.scriptDate.Size = new System.Drawing.Size(175, 20);
+            this.scriptDate.Size = new System.Drawing.Size(170, 20);
             this.scriptDate.TabIndex = 7;
             // 
             // labelVersion
@@ -286,7 +298,7 @@ namespace DOL.Tools.QuestDesigner
             this.Version.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Version.Location = new System.Drawing.Point(115, 138);
             this.Version.Name = "Version";
-            this.Version.Size = new System.Drawing.Size(175, 20);
+            this.Version.Size = new System.Drawing.Size(170, 20);
             this.Version.TabIndex = 9;
             // 
             // labelNamespace
@@ -306,7 +318,7 @@ namespace DOL.Tools.QuestDesigner
             this.Namespace.Location = new System.Drawing.Point(114, 163);
             this.Namespace.Margin = new System.Windows.Forms.Padding(2);
             this.Namespace.Name = "Namespace";
-            this.Namespace.Size = new System.Drawing.Size(177, 20);
+            this.Namespace.Size = new System.Drawing.Size(172, 20);
             this.Namespace.TabIndex = 11;
             this.Namespace.Validating += new System.ComponentModel.CancelEventHandler(this.Namespace_Validating);
             // 
@@ -314,7 +326,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             labelLevel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             labelLevel.AutoSize = true;
-            labelLevel.Location = new System.Drawing.Point(316, 36);
+            labelLevel.Location = new System.Drawing.Point(321, 36);
             labelLevel.Name = "labelLevel";
             labelLevel.Size = new System.Drawing.Size(86, 13);
             labelLevel.TabIndex = 12;
@@ -323,34 +335,34 @@ namespace DOL.Tools.QuestDesigner
             // LevelMin
             // 
             this.LevelMin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LevelMin.Location = new System.Drawing.Point(428, 33);
+            this.LevelMin.Location = new System.Drawing.Point(433, 33);
             this.LevelMin.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.LevelMin.Name = "LevelMin";
-            this.LevelMin.Size = new System.Drawing.Size(84, 20);
+            this.LevelMin.Size = new System.Drawing.Size(82, 20);
             this.LevelMin.TabIndex = 13;
             // 
             // LevelMax
             // 
             this.LevelMax.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LevelMax.Location = new System.Drawing.Point(518, 33);
+            this.LevelMax.Location = new System.Drawing.Point(521, 33);
             this.LevelMax.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.LevelMax.Name = "LevelMax";
-            this.LevelMax.Size = new System.Drawing.Size(85, 20);
+            this.LevelMax.Size = new System.Drawing.Size(82, 20);
             this.LevelMax.TabIndex = 14;
             // 
             // labelInvitingNPC
             // 
             labelInvitingNPC.Anchor = System.Windows.Forms.AnchorStyles.Left;
             labelInvitingNPC.AutoSize = true;
-            labelInvitingNPC.Location = new System.Drawing.Point(316, 63);
+            labelInvitingNPC.Location = new System.Drawing.Point(321, 63);
             labelInvitingNPC.Name = "labelInvitingNPC";
             labelInvitingNPC.Size = new System.Drawing.Size(66, 13);
             labelInvitingNPC.TabIndex = 15;
@@ -362,9 +374,9 @@ namespace DOL.Tools.QuestDesigner
             this.InvitingNPC.DisplayMember = "Name";
             this.InvitingNPC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InvitingNPC.FormattingEnabled = true;
-            this.InvitingNPC.Location = new System.Drawing.Point(428, 59);
+            this.InvitingNPC.Location = new System.Drawing.Point(433, 59);
             this.InvitingNPC.Name = "InvitingNPC";
-            this.InvitingNPC.Size = new System.Drawing.Size(175, 21);
+            this.InvitingNPC.Size = new System.Drawing.Size(170, 21);
             this.InvitingNPC.TabIndex = 16;
             this.InvitingNPC.ValueMember = "ObjectName";
             // 
@@ -372,7 +384,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             labelMaxQuestCount.Anchor = System.Windows.Forms.AnchorStyles.Left;
             labelMaxQuestCount.AutoSize = true;
-            labelMaxQuestCount.Location = new System.Drawing.Point(316, 89);
+            labelMaxQuestCount.Location = new System.Drawing.Point(321, 89);
             labelMaxQuestCount.Name = "labelMaxQuestCount";
             labelMaxQuestCount.Size = new System.Drawing.Size(83, 13);
             labelMaxQuestCount.TabIndex = 17;
@@ -382,21 +394,21 @@ namespace DOL.Tools.QuestDesigner
             // 
             tableLayoutPanel5.SetColumnSpan(this.MaxQuestCount, 2);
             this.MaxQuestCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MaxQuestCount.Location = new System.Drawing.Point(428, 86);
+            this.MaxQuestCount.Location = new System.Drawing.Point(433, 86);
             this.MaxQuestCount.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.MaxQuestCount.Name = "MaxQuestCount";
-            this.MaxQuestCount.Size = new System.Drawing.Size(175, 20);
+            this.MaxQuestCount.Size = new System.Drawing.Size(170, 20);
             this.MaxQuestCount.TabIndex = 18;
             // 
             // labelNotes
             // 
             labelNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             labelNotes.AutoSize = true;
-            labelNotes.Location = new System.Drawing.Point(316, 122);
+            labelNotes.Location = new System.Drawing.Point(321, 122);
             labelNotes.Name = "labelNotes";
             labelNotes.Size = new System.Drawing.Size(103, 13);
             labelNotes.TabIndex = 19;
@@ -406,12 +418,79 @@ namespace DOL.Tools.QuestDesigner
             // 
             tableLayoutPanel5.SetColumnSpan(this.Notes, 3);
             this.Notes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Notes.Location = new System.Drawing.Point(316, 138);
+            this.Notes.Location = new System.Drawing.Point(321, 138);
             this.Notes.Multiline = true;
             this.Notes.Name = "Notes";
             tableLayoutPanel5.SetRowSpan(this.Notes, 2);
-            this.Notes.Size = new System.Drawing.Size(287, 45);
+            this.Notes.Size = new System.Drawing.Size(282, 45);
             this.Notes.TabIndex = 20;
+            // 
+            // labelClasses
+            // 
+            this.labelClasses.AutoSize = true;
+            this.labelClasses.Location = new System.Drawing.Point(3, 189);
+            this.labelClasses.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.labelClasses.Name = "labelClasses";
+            this.labelClasses.Size = new System.Drawing.Size(83, 13);
+            this.labelClasses.TabIndex = 25;
+            this.labelClasses.Text = "Allowed Classes";
+            // 
+            // listBoxAllowed
+            // 
+            this.listBoxAllowed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxAllowed.FormattingEnabled = true;
+            this.listBoxAllowed.Location = new System.Drawing.Point(115, 189);
+            this.listBoxAllowed.Name = "listBoxAllowed";
+            this.listBoxAllowed.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBoxAllowed.Size = new System.Drawing.Size(170, 69);
+            this.listBoxAllowed.TabIndex = 26;
+            // 
+            // listBoxAvailable
+            // 
+            tableLayoutPanel5.SetColumnSpan(this.listBoxAvailable, 3);
+            this.listBoxAvailable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxAvailable.FormattingEnabled = true;
+            this.listBoxAvailable.Location = new System.Drawing.Point(321, 189);
+            this.listBoxAvailable.Name = "listBoxAvailable";
+            this.listBoxAvailable.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBoxAvailable.Size = new System.Drawing.Size(282, 69);
+            this.listBoxAvailable.TabIndex = 27;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.flowLayoutPanel1.Controls.Add(this.buttonAddClass);
+            this.flowLayoutPanel1.Controls.Add(this.buttonRemoveClass);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(291, 189);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(24, 74);
+            this.flowLayoutPanel1.TabIndex = 28;
+            // 
+            // buttonAddClass
+            // 
+            this.buttonAddClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.buttonAddClass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddClass.Location = new System.Drawing.Point(1, 1);
+            this.buttonAddClass.Margin = new System.Windows.Forms.Padding(1);
+            this.buttonAddClass.Name = "buttonAddClass";
+            this.buttonAddClass.Size = new System.Drawing.Size(23, 23);
+            this.buttonAddClass.TabIndex = 0;
+            this.buttonAddClass.Text = "<";
+            this.buttonAddClass.UseVisualStyleBackColor = true;
+            this.buttonAddClass.Click += new System.EventHandler(this.buttonAddClass_Click);
+            // 
+            // buttonRemoveClass
+            // 
+            this.buttonRemoveClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.buttonRemoveClass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRemoveClass.Location = new System.Drawing.Point(1, 26);
+            this.buttonRemoveClass.Margin = new System.Windows.Forms.Padding(1);
+            this.buttonRemoveClass.Name = "buttonRemoveClass";
+            this.buttonRemoveClass.Size = new System.Drawing.Size(23, 23);
+            this.buttonRemoveClass.TabIndex = 1;
+            this.buttonRemoveClass.Text = ">";
+            this.buttonRemoveClass.UseVisualStyleBackColor = true;
+            this.buttonRemoveClass.Click += new System.EventHandler(this.buttonRemoveClass_Click);
             // 
             // errorProvider
             // 
@@ -423,7 +502,7 @@ namespace DOL.Tools.QuestDesigner
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(tableLayoutPanel5);
             this.Name = "QuestInfo";
-            this.Size = new System.Drawing.Size(606, 309);
+            this.Size = new System.Drawing.Size(606, 464);
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
             headerStrip2.ResumeLayout(false);
@@ -434,6 +513,7 @@ namespace DOL.Tools.QuestDesigner
             ((System.ComponentModel.ISupportInitialize)(this.LevelMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LevelMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MaxQuestCount)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
@@ -453,7 +533,13 @@ namespace DOL.Tools.QuestDesigner
 		private System.Windows.Forms.TextBox Namespace;
 		private System.Windows.Forms.NumericUpDown MaxQuestCount;
 		private System.Windows.Forms.DataGridView QuestStep;
-		private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Label labelClasses;
+        private System.Windows.Forms.ListBox listBoxAllowed;
+        private System.Windows.Forms.ListBox listBoxAvailable;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button buttonAddClass;
+        private System.Windows.Forms.Button buttonRemoveClass;
 
 	}
 }

@@ -27,16 +27,18 @@ using DOL.Tools.QuestDesigner.Util;
 
 namespace DOL.Tools.QuestDesigner.Controls
 {
-	[SelectorAttribute("Region")]
+	[SelectorAttribute(Const.SELECTOR_REGION)]
 	public class RegionSelector : BaseSelector
 	{		
 
 		public RegionSelector(int itemID, char param): base(itemID,param)
-		{			
-			this.list.DataSource = DB.RegionTable;
+		{
+            this.list.ValueMember = DB.COL_REGION_ID;
+            this.list.DisplayMember = DB.COL_REGION_DESCRIPTION;
+
+            this.list.DataSource = DB.RegionTable;
 			
-			this.list.ValueMember = "id";
-			this.list.DisplayMember = "description";
+			
 			this.Editable = false;
 		}
 

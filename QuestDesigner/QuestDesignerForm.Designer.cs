@@ -65,9 +65,44 @@ namespace DOL.Tools.QuestDesigner
             System.Data.DataColumn dataColumnDefaultNPC;
             System.Data.DataColumn dataColumn28;
             System.Data.DataColumn dataColumn32;
-            System.Data.DataColumn dataColumn33;
-            System.Data.DataColumn dataColumn34;
             System.Data.DataColumn dataColumn23;
+            System.Data.DataTable dataTableQuestCharacterClass;
+            System.Data.DataColumn dataColumnCharacterClass;
+            System.Data.DataColumn dataColumnDescription;
+            System.Data.DataColumn dataColumnGold;
+            System.Data.DataColumn dataColumnSilver;
+            System.Data.DataColumn dataColumnCopper;
+            System.Data.DataColumn dataColumnEmblem;
+            System.Data.DataColumn dataColumnEffect;
+            System.Data.DataColumn dataColumnExtension;
+            System.Data.DataColumn dataColumn73;
+            System.Data.DataColumn dataColumnPackSize;
+            System.Data.DataColumn dataColumnCharges;
+            System.Data.DataColumn dataColumnMaxCount;
+            System.Data.DataColumn dataColumnSpellID;
+            System.Data.DataColumn dataColumnProcSpellID;
+            System.Data.DataColumn dataColumnPoisonCharges;
+            System.Data.DataColumn dataColumnPoisonMaxCharges;
+            System.Data.DataColumn dataColumnPoisonSpellID;
+            System.Data.DataColumn dataColumnProcSpellID1;
+            System.Data.DataColumn dataColumnSpellID1;
+            System.Data.DataColumn dataColumnMaxCharges1;
+            System.Data.DataColumn dataColumnCharges1;
+            System.Data.DataColumn dataColumnIsTradable;
+            System.Data.DataColumn dataColumnCanDropAsLoot;
+            System.Data.DataColumn dataColumnBonus6Type;
+            System.Data.DataColumn dataColumnBonus6;
+            System.Data.DataColumn dataColumnBonus7Type;
+            System.Data.DataColumn dataColumnBonus7;
+            System.Data.DataColumn dataColumnBonus8Type;
+            System.Data.DataColumn dataColumnBonus8;
+            System.Data.DataColumn dataColumnBonus9Type;
+            System.Data.DataColumn dataColumnBonus9;
+            System.Data.DataColumn dataColumnBonus10Type;
+            System.Data.DataColumn dataColumnBonus10;
+            System.Data.DataColumn dataColumn59;
+            System.Data.DataColumn dataColumn66;
+            System.Data.DataColumn dataColumnPlatinum;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
             NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
             NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
@@ -129,7 +164,6 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnCondition = new System.Data.DataColumn();
             this.dataColumnMaxcondition = new System.Data.DataColumn();
             this.dataColumnQuality = new System.Data.DataColumn();
-            this.dataColumnMaxQuality = new System.Data.DataColumn();
             this.dataColumnDPS_AF = new System.Data.DataColumn();
             this.dataColumnSPD_ABS = new System.Data.DataColumn();
             this.dataColumnHand = new System.Data.DataColumn();
@@ -137,7 +171,7 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnObjectType = new System.Data.DataColumn();
             this.dataColumnItemType = new System.Data.DataColumn();
             this.dataColumnWeight = new System.Data.DataColumn();
-            this.dataColumn26 = new System.Data.DataColumn();
+            this.dataColumnItemModel = new System.Data.DataColumn();
             this.dataColumnRealm = new System.Data.DataColumn();
             this.dataColumnIsPickable = new System.Data.DataColumn();
             this.dataColumnIsDropable = new System.Data.DataColumn();
@@ -155,18 +189,6 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnExtraBonus = new System.Data.DataColumn();
             this.dataColumnExtraBonusType = new System.Data.DataColumn();
             this.dataColumnColor = new System.Data.DataColumn();
-            this.dataColumnGold = new System.Data.DataColumn();
-            this.dataColumnSilver = new System.Data.DataColumn();
-            this.dataColumnCopper = new System.Data.DataColumn();
-            this.dataColumnEmblem = new System.Data.DataColumn();
-            this.dataColumnEffect = new System.Data.DataColumn();
-            this.dataColumnExtension = new System.Data.DataColumn();
-            this.dataColumn73 = new System.Data.DataColumn();
-            this.dataColumn74 = new System.Data.DataColumn();
-            this.dataColumn75 = new System.Data.DataColumn();
-            this.dataColumnMaxCount = new System.Data.DataColumn();
-            this.dataColumnSpellID = new System.Data.DataColumn();
-            this.dataColumnProcSpellID = new System.Data.DataColumn();
             this.dataTableQuestStep = new System.Data.DataTable();
             this.dataColumnStep = new System.Data.DataColumn();
             this.dataColumnStepDescription = new System.Data.DataColumn();
@@ -207,15 +229,11 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnRequirementTypeID = new System.Data.DataColumn();
             this.dataColumn24 = new System.Data.DataColumn();
             this.dataColumn27 = new System.Data.DataColumn();
-            this.dataTableHand = new System.Data.DataTable();
-            this.dataColumnHandValue = new System.Data.DataColumn();
-            this.dataColumnHandDescription = new System.Data.DataColumn();
             this.dataTableeEnumeration = new System.Data.DataTable();
             this.dataColumnEnumerationType = new System.Data.DataColumn();
             this.dataColumnEnumerationValue = new System.Data.DataColumn();
             this.dataColumnEnumerationName = new System.Data.DataColumn();
             this.dataColumnEnumerationDescription = new System.Data.DataColumn();
-            this.dataTableAreaType = new System.Data.DataTable();
             this.dataColumnRealmValue = new System.Data.DataColumn();
             this.dataColumnRealmDescription = new System.Data.DataColumn();
             this.dataColumnTextTypeValue = new System.Data.DataColumn();
@@ -242,9 +260,6 @@ namespace DOL.Tools.QuestDesigner
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dOL18QuestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dOL20QuestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sQLExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -265,29 +280,30 @@ namespace DOL.Tools.QuestDesigner
             this.StatusProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.tabControlMain = new NETXP.Controls.Docking.TabControl();
             this.tabPageQuest = new NETXP.Controls.Docking.TabPage();
+            this.questInfo = new DOL.Tools.QuestDesigner.QuestInfo();
             this.tabPageNPC = new NETXP.Controls.Docking.TabPage();
+            this.npcView = new DOL.Tools.QuestDesigner.NPC();
             this.tabPageItem = new NETXP.Controls.Docking.TabPage();
+            this.itemView = new DOL.Tools.QuestDesigner.Item();
             this.tabPageQuestPart = new NETXP.Controls.Docking.TabPage();
+            this.questPartItems = new DOL.Tools.QuestDesigner.QuestPartItems();
             this.tabPageArea = new NETXP.Controls.Docking.TabPage();
+            this.areaView = new DOL.Tools.QuestDesigner.Area();
             this.tabPageLocation = new NETXP.Controls.Docking.TabPage();
+            this.locationView = new DOL.Tools.QuestDesigner.Location();
             this.tabPageCode = new NETXP.Controls.Docking.TabPage();
+            this.customCode = new DOL.Tools.QuestDesigner.CustomCode();
             this.tabPageMap = new NETXP.Controls.Docking.TabPage();
+            this.DXControl = new DOL.Tools.Mapping.Forms.DXControl();
             this.xpTaskPane = new NETXP.Controls.TaskPane.XPTaskPane();
             this.xpTGActions = new NETXP.Controls.TaskPane.XPTaskPaneGroup();
+            this.linkLabelNewQuest = new System.Windows.Forms.LinkLabel();
             this.linkSaveQuest = new System.Windows.Forms.LinkLabel();
             this.linkLoadQuest = new System.Windows.Forms.LinkLabel();
             this.openQuestDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveScriptDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.imageListNPC = new System.Windows.Forms.ImageList(this.components);
-            this.questInfo = new DOL.Tools.QuestDesigner.QuestInfo();
-            this.npcView = new DOL.Tools.QuestDesigner.NPC();
-            this.itemView = new DOL.Tools.QuestDesigner.Item();
-            this.questPartItems = new DOL.Tools.QuestDesigner.QuestPartItems();
-            this.areaView = new DOL.Tools.QuestDesigner.Area();
-            this.locationView = new DOL.Tools.QuestDesigner.Location();
-            this.customCode = new DOL.Tools.QuestDesigner.CustomCode();
-            this.DXControl = new DOL.Tools.Mapping.Forms.DXControl();
             dataColumnQuestPartIF = new System.Data.DataColumn();
             dataColumnTriggerQuestPart = new System.Data.DataColumn();
             dataColumnTriggerType = new System.Data.DataColumn();
@@ -324,9 +340,45 @@ namespace DOL.Tools.QuestDesigner
             dataColumnDefaultNPC = new System.Data.DataColumn();
             dataColumn28 = new System.Data.DataColumn();
             dataColumn32 = new System.Data.DataColumn();
-            dataColumn33 = new System.Data.DataColumn();
-            dataColumn34 = new System.Data.DataColumn();
             dataColumn23 = new System.Data.DataColumn();
+            dataTableQuestCharacterClass = new System.Data.DataTable();
+            dataColumnCharacterClass = new System.Data.DataColumn();
+            dataColumnDescription = new System.Data.DataColumn();
+            dataColumnGold = new System.Data.DataColumn();
+            dataColumnSilver = new System.Data.DataColumn();
+            dataColumnCopper = new System.Data.DataColumn();
+            dataColumnEmblem = new System.Data.DataColumn();
+            dataColumnEffect = new System.Data.DataColumn();
+            dataColumnExtension = new System.Data.DataColumn();
+            dataColumn73 = new System.Data.DataColumn();
+            dataColumnPackSize = new System.Data.DataColumn();
+            dataColumnCharges = new System.Data.DataColumn();
+            dataColumnMaxCount = new System.Data.DataColumn();
+            dataColumnSpellID = new System.Data.DataColumn();
+            dataColumnProcSpellID = new System.Data.DataColumn();
+            dataColumnPoisonCharges = new System.Data.DataColumn();
+            dataColumnPoisonMaxCharges = new System.Data.DataColumn();
+            dataColumnPoisonSpellID = new System.Data.DataColumn();
+            dataColumnProcSpellID1 = new System.Data.DataColumn();
+            dataColumnSpellID1 = new System.Data.DataColumn();
+            dataColumnMaxCharges1 = new System.Data.DataColumn();
+            dataColumnCharges1 = new System.Data.DataColumn();
+            dataColumnIsTradable = new System.Data.DataColumn();
+            dataColumnCanDropAsLoot = new System.Data.DataColumn();
+            dataColumnBonus6Type = new System.Data.DataColumn();
+            dataColumnBonus6 = new System.Data.DataColumn();
+            dataColumnBonus7Type = new System.Data.DataColumn();
+            dataColumnBonus7 = new System.Data.DataColumn();
+            dataColumnBonus8Type = new System.Data.DataColumn();
+            dataColumnBonus8 = new System.Data.DataColumn();
+            dataColumnBonus9Type = new System.Data.DataColumn();
+            dataColumnBonus9 = new System.Data.DataColumn();
+            dataColumnBonus10Type = new System.Data.DataColumn();
+            dataColumnBonus10 = new System.Data.DataColumn();
+            dataColumn59 = new System.Data.DataColumn();
+            dataColumn66 = new System.Data.DataColumn();
+            dataColumnPlatinum = new System.Data.DataColumn();
+            ((System.ComponentModel.ISupportInitialize)(dataTableQuestCharacterClass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetQuest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableQuestPart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableTrigger)).BeginInit();
@@ -344,9 +396,7 @@ namespace DOL.Tools.QuestDesigner
             ((System.ComponentModel.ISupportInitialize)(this.dataTableTriggerType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableActionType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableRequirementType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableHand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableeEnumeration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableAreaType)).BeginInit();
             this.menuStripMain.SuspendLayout();
             this.toolStripContainerForm.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainerForm.ContentPanel.SuspendLayout();
@@ -547,20 +597,239 @@ namespace DOL.Tools.QuestDesigner
             dataColumn32.ColumnName = "height";
             dataColumn32.DataType = typeof(int);
             // 
-            // dataColumn33
-            // 
-            dataColumn33.ColumnName = "value";
-            // 
-            // dataColumn34
-            // 
-            dataColumn34.ColumnName = "description";
-            // 
             // dataColumn23
             // 
             dataColumn23.AllowDBNull = false;
             dataColumn23.AutoIncrement = true;
             dataColumn23.ColumnName = "Position";
             dataColumn23.DataType = typeof(int);
+            // 
+            // dataTableQuestCharacterClass
+            // 
+            dataTableQuestCharacterClass.Columns.AddRange(new System.Data.DataColumn[] {
+            dataColumnCharacterClass,
+            dataColumnDescription});
+            dataTableQuestCharacterClass.Constraints.AddRange(new System.Data.Constraint[] {
+            new System.Data.UniqueConstraint("Constraint1", new string[] {
+                        "Value"}, true)});
+            dataTableQuestCharacterClass.MinimumCapacity = 5;
+            dataTableQuestCharacterClass.PrimaryKey = new System.Data.DataColumn[] {
+        dataColumnCharacterClass};
+            dataTableQuestCharacterClass.TableName = "QuestCharacterClass";
+            // 
+            // dataColumnCharacterClass
+            // 
+            dataColumnCharacterClass.AllowDBNull = false;
+            dataColumnCharacterClass.ColumnName = "Value";
+            dataColumnCharacterClass.DataType = typeof(int);
+            // 
+            // dataColumnDescription
+            // 
+            dataColumnDescription.ColumnName = "Description";
+            // 
+            // dataColumnGold
+            // 
+            dataColumnGold.ColumnName = "Gold";
+            dataColumnGold.DataType = typeof(short);
+            dataColumnGold.DefaultValue = ((short)(0));
+            // 
+            // dataColumnSilver
+            // 
+            dataColumnSilver.ColumnName = "Silver";
+            dataColumnSilver.DataType = typeof(byte);
+            dataColumnSilver.DefaultValue = ((byte)(0));
+            // 
+            // dataColumnCopper
+            // 
+            dataColumnCopper.ColumnName = "Copper";
+            dataColumnCopper.DataType = typeof(byte);
+            dataColumnCopper.DefaultValue = ((byte)(0));
+            // 
+            // dataColumnEmblem
+            // 
+            dataColumnEmblem.ColumnName = "Emblem";
+            dataColumnEmblem.DataType = typeof(int);
+            dataColumnEmblem.DefaultValue = 0;
+            // 
+            // dataColumnEffect
+            // 
+            dataColumnEffect.ColumnName = "Effect";
+            dataColumnEffect.DataType = typeof(int);
+            dataColumnEffect.DefaultValue = 0;
+            // 
+            // dataColumnExtension
+            // 
+            dataColumnExtension.Caption = "Extension";
+            dataColumnExtension.ColumnName = "Extension";
+            dataColumnExtension.DataType = typeof(byte);
+            dataColumnExtension.DefaultValue = ((byte)(0));
+            // 
+            // dataColumn73
+            // 
+            dataColumn73.ColumnName = "MaxCount";
+            dataColumn73.DataType = typeof(int);
+            dataColumn73.DefaultValue = 1;
+            // 
+            // dataColumnPackSize
+            // 
+            dataColumnPackSize.ColumnName = "PackSize";
+            dataColumnPackSize.DataType = typeof(int);
+            dataColumnPackSize.DefaultValue = 1;
+            // 
+            // dataColumnCharges
+            // 
+            dataColumnCharges.ColumnName = "Charges";
+            dataColumnCharges.DataType = typeof(int);
+            dataColumnCharges.DefaultValue = 0;
+            // 
+            // dataColumnMaxCount
+            // 
+            dataColumnMaxCount.ColumnName = "MaxCharges";
+            dataColumnMaxCount.DataType = typeof(int);
+            dataColumnMaxCount.DefaultValue = 0;
+            // 
+            // dataColumnSpellID
+            // 
+            dataColumnSpellID.ColumnName = "SpellID";
+            dataColumnSpellID.DataType = typeof(int);
+            dataColumnSpellID.DefaultValue = 0;
+            // 
+            // dataColumnProcSpellID
+            // 
+            dataColumnProcSpellID.ColumnName = "ProcSpellID";
+            dataColumnProcSpellID.DataType = typeof(int);
+            dataColumnProcSpellID.DefaultValue = 0;
+            // 
+            // dataColumnPoisonCharges
+            // 
+            dataColumnPoisonCharges.ColumnName = "PoisonCharges";
+            dataColumnPoisonCharges.DataType = typeof(int);
+            dataColumnPoisonCharges.DefaultValue = 0;
+            // 
+            // dataColumnPoisonMaxCharges
+            // 
+            dataColumnPoisonMaxCharges.ColumnName = "PoisonMaxCharges";
+            dataColumnPoisonMaxCharges.DataType = typeof(int);
+            dataColumnPoisonMaxCharges.DefaultValue = 0;
+            // 
+            // dataColumnPoisonSpellID
+            // 
+            dataColumnPoisonSpellID.ColumnName = "PoisonSpellID";
+            dataColumnPoisonSpellID.DataType = typeof(int);
+            dataColumnPoisonSpellID.DefaultValue = 0;
+            // 
+            // dataColumnProcSpellID1
+            // 
+            dataColumnProcSpellID1.ColumnName = "ProcSpellID1";
+            dataColumnProcSpellID1.DefaultValue = "0";
+            // 
+            // dataColumnSpellID1
+            // 
+            dataColumnSpellID1.ColumnName = "SpellID1";
+            dataColumnSpellID1.DataType = typeof(int);
+            dataColumnSpellID1.DefaultValue = 0;
+            // 
+            // dataColumnMaxCharges1
+            // 
+            dataColumnMaxCharges1.ColumnName = "MaxCharges1";
+            dataColumnMaxCharges1.DataType = typeof(int);
+            dataColumnMaxCharges1.DefaultValue = 0;
+            // 
+            // dataColumnCharges1
+            // 
+            dataColumnCharges1.ColumnName = "Charges1";
+            dataColumnCharges1.DataType = typeof(int);
+            dataColumnCharges1.DefaultValue = 0;
+            // 
+            // dataColumnIsTradable
+            // 
+            dataColumnIsTradable.ColumnName = "IsTradable";
+            dataColumnIsTradable.DataType = typeof(bool);
+            dataColumnIsTradable.DefaultValue = true;
+            // 
+            // dataColumnCanDropAsLoot
+            // 
+            dataColumnCanDropAsLoot.ColumnName = "CanDropAsLoot";
+            dataColumnCanDropAsLoot.DataType = typeof(bool);
+            dataColumnCanDropAsLoot.DefaultValue = true;
+            // 
+            // dataColumnBonus6Type
+            // 
+            dataColumnBonus6Type.ColumnName = "Bonus6Type";
+            dataColumnBonus6Type.DataType = typeof(int);
+            dataColumnBonus6Type.DefaultValue = 0;
+            // 
+            // dataColumnBonus6
+            // 
+            dataColumnBonus6.ColumnName = "Bonus6";
+            dataColumnBonus6.DataType = typeof(int);
+            dataColumnBonus6.DefaultValue = 0;
+            // 
+            // dataColumnBonus7Type
+            // 
+            dataColumnBonus7Type.ColumnName = "Bonus7Type";
+            dataColumnBonus7Type.DataType = typeof(int);
+            dataColumnBonus7Type.DefaultValue = 0;
+            // 
+            // dataColumnBonus7
+            // 
+            dataColumnBonus7.ColumnName = "Bonus7";
+            dataColumnBonus7.DataType = typeof(int);
+            dataColumnBonus7.DefaultValue = 0;
+            // 
+            // dataColumnBonus8Type
+            // 
+            dataColumnBonus8Type.ColumnName = "Bonus8Type";
+            dataColumnBonus8Type.DataType = typeof(int);
+            dataColumnBonus8Type.DefaultValue = 0;
+            // 
+            // dataColumnBonus8
+            // 
+            dataColumnBonus8.ColumnName = "Bonus8";
+            dataColumnBonus8.DataType = typeof(int);
+            dataColumnBonus8.DefaultValue = 0;
+            // 
+            // dataColumnBonus9Type
+            // 
+            dataColumnBonus9Type.ColumnName = "Bonus9Type";
+            dataColumnBonus9Type.DataType = typeof(int);
+            dataColumnBonus9Type.DefaultValue = 0;
+            // 
+            // dataColumnBonus9
+            // 
+            dataColumnBonus9.ColumnName = "Bonus9";
+            dataColumnBonus9.DataType = typeof(int);
+            dataColumnBonus9.DefaultValue = 0;
+            // 
+            // dataColumnBonus10Type
+            // 
+            dataColumnBonus10Type.ColumnName = "Bonus10Type";
+            dataColumnBonus10Type.DataType = typeof(int);
+            dataColumnBonus10Type.DefaultValue = 0;
+            // 
+            // dataColumnBonus10
+            // 
+            dataColumnBonus10.ColumnName = "Bonus10";
+            dataColumnBonus10.DataType = typeof(int);
+            dataColumnBonus10.DefaultValue = 0;
+            // 
+            // dataColumn59
+            // 
+            dataColumn59.ColumnName = "BodyType";
+            dataColumn59.DataType = typeof(int);
+            dataColumn59.DefaultValue = 0;
+            // 
+            // dataColumn66
+            // 
+            dataColumn66.ColumnName = "NPCTemplateID";
+            dataColumn66.DataType = typeof(int);
+            dataColumn66.DefaultValue = -1;
+            // 
+            // dataColumnPlatinum
+            // 
+            dataColumnPlatinum.ColumnName = "Platinum";
+            dataColumnPlatinum.DataType = typeof(int);
+            dataColumnPlatinum.DefaultValue = 0;
             // 
             // dataSetQuest
             // 
@@ -586,7 +855,8 @@ namespace DOL.Tools.QuestDesigner
             this.dataTableItemTemplate,
             this.dataTableQuestStep,
             this.dataTableArea,
-            this.dataTableLocation});
+            this.dataTableLocation,
+            dataTableQuestCharacterClass});
             this.dataSetQuest.Initialized += new System.EventHandler(this.dataSetQuest_Initialized);
             // 
             // dataTableQuestPart
@@ -761,7 +1031,9 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnMobMeleeDamageType,
             this.dataColumnMobItemsListTemplateID,
             this.dataColumnAddToworld,
-            this.dataColumnObjectName});
+            this.dataColumnObjectName,
+            dataColumn59,
+            dataColumn66});
             this.dataTableMob.TableName = "Mob";
             // 
             // dataColumnName
@@ -928,7 +1200,6 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnCondition,
             this.dataColumnMaxcondition,
             this.dataColumnQuality,
-            this.dataColumnMaxQuality,
             this.dataColumnDPS_AF,
             this.dataColumnSPD_ABS,
             this.dataColumnHand,
@@ -936,10 +1207,12 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnObjectType,
             this.dataColumnItemType,
             this.dataColumnWeight,
-            this.dataColumn26,
+            this.dataColumnItemModel,
             this.dataColumnRealm,
             this.dataColumnIsPickable,
             this.dataColumnIsDropable,
+            dataColumnCanDropAsLoot,
+            dataColumnIsTradable,
             this.dataColumnBonus,
             this.dataColumnBonus1,
             this.dataColumnBonus1Type,
@@ -951,21 +1224,39 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnBonus4Type,
             this.dataColumnBonus5,
             this.dataColumnBonus5Type,
+            dataColumnBonus6,
+            dataColumnBonus6Type,
+            dataColumnBonus7,
+            dataColumnBonus7Type,
+            dataColumnBonus8,
+            dataColumnBonus8Type,
+            dataColumnBonus9,
+            dataColumnBonus9Type,
+            dataColumnBonus10,
+            dataColumnBonus10Type,
             this.dataColumnExtraBonus,
             this.dataColumnExtraBonusType,
             this.dataColumnColor,
-            this.dataColumnGold,
-            this.dataColumnSilver,
-            this.dataColumnCopper,
-            this.dataColumnEmblem,
-            this.dataColumnEffect,
-            this.dataColumnExtension,
-            this.dataColumn73,
-            this.dataColumn74,
-            this.dataColumn75,
-            this.dataColumnMaxCount,
-            this.dataColumnSpellID,
-            this.dataColumnProcSpellID});
+            dataColumnPlatinum,
+            dataColumnGold,
+            dataColumnSilver,
+            dataColumnCopper,
+            dataColumnEmblem,
+            dataColumnEffect,
+            dataColumnExtension,
+            dataColumn73,
+            dataColumnPackSize,
+            dataColumnCharges,
+            dataColumnMaxCount,
+            dataColumnSpellID,
+            dataColumnProcSpellID,
+            dataColumnPoisonCharges,
+            dataColumnPoisonMaxCharges,
+            dataColumnPoisonSpellID,
+            dataColumnSpellID1,
+            dataColumnProcSpellID1,
+            dataColumnCharges1,
+            dataColumnMaxCharges1});
             this.dataTableItemTemplate.TableName = "ItemTemplate";
             // 
             // dataColumnIdNb
@@ -1015,12 +1306,6 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnQuality.DataType = typeof(int);
             this.dataColumnQuality.DefaultValue = 100;
             // 
-            // dataColumnMaxQuality
-            // 
-            this.dataColumnMaxQuality.ColumnName = "MaxQuality";
-            this.dataColumnMaxQuality.DataType = typeof(int);
-            this.dataColumnMaxQuality.DefaultValue = 100;
-            // 
             // dataColumnDPS_AF
             // 
             this.dataColumnDPS_AF.ColumnName = "DPS_AF";
@@ -1063,11 +1348,11 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnWeight.DataType = typeof(int);
             this.dataColumnWeight.DefaultValue = 1;
             // 
-            // dataColumn26
+            // dataColumnItemModel
             // 
-            this.dataColumn26.ColumnName = "Model";
-            this.dataColumn26.DataType = typeof(int);
-            this.dataColumn26.DefaultValue = 0;
+            this.dataColumnItemModel.ColumnName = "Model";
+            this.dataColumnItemModel.DataType = typeof(int);
+            this.dataColumnItemModel.DefaultValue = 488;
             // 
             // dataColumnRealm
             // 
@@ -1171,79 +1456,6 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnColor.DataType = typeof(int);
             this.dataColumnColor.DefaultValue = 0;
             // 
-            // dataColumnGold
-            // 
-            this.dataColumnGold.ColumnName = "Gold";
-            this.dataColumnGold.DataType = typeof(short);
-            this.dataColumnGold.DefaultValue = ((short)(0));
-            // 
-            // dataColumnSilver
-            // 
-            this.dataColumnSilver.ColumnName = "Silver";
-            this.dataColumnSilver.DataType = typeof(byte);
-            this.dataColumnSilver.DefaultValue = ((byte)(0));
-            // 
-            // dataColumnCopper
-            // 
-            this.dataColumnCopper.ColumnName = "Copper";
-            this.dataColumnCopper.DataType = typeof(byte);
-            this.dataColumnCopper.DefaultValue = ((byte)(0));
-            // 
-            // dataColumnEmblem
-            // 
-            this.dataColumnEmblem.ColumnName = "Emblem";
-            this.dataColumnEmblem.DataType = typeof(int);
-            this.dataColumnEmblem.DefaultValue = 0;
-            // 
-            // dataColumnEffect
-            // 
-            this.dataColumnEffect.ColumnName = "Effect";
-            this.dataColumnEffect.DataType = typeof(int);
-            this.dataColumnEffect.DefaultValue = 0;
-            // 
-            // dataColumnExtension
-            // 
-            this.dataColumnExtension.Caption = "Extension";
-            this.dataColumnExtension.ColumnName = "Extension";
-            this.dataColumnExtension.DataType = typeof(byte);
-            this.dataColumnExtension.DefaultValue = ((byte)(0));
-            // 
-            // dataColumn73
-            // 
-            this.dataColumn73.ColumnName = "MaxCount";
-            this.dataColumn73.DataType = typeof(int);
-            this.dataColumn73.DefaultValue = 1;
-            // 
-            // dataColumn74
-            // 
-            this.dataColumn74.ColumnName = "PackSize";
-            this.dataColumn74.DataType = typeof(int);
-            this.dataColumn74.DefaultValue = 1;
-            // 
-            // dataColumn75
-            // 
-            this.dataColumn75.ColumnName = "Charges";
-            this.dataColumn75.DataType = typeof(int);
-            this.dataColumn75.DefaultValue = 0;
-            // 
-            // dataColumnMaxCount
-            // 
-            this.dataColumnMaxCount.ColumnName = "MaxCharges";
-            this.dataColumnMaxCount.DataType = typeof(int);
-            this.dataColumnMaxCount.DefaultValue = 0;
-            // 
-            // dataColumnSpellID
-            // 
-            this.dataColumnSpellID.ColumnName = "SpellID";
-            this.dataColumnSpellID.DataType = typeof(int);
-            this.dataColumnSpellID.DefaultValue = 0;
-            // 
-            // dataColumnProcSpellID
-            // 
-            this.dataColumnProcSpellID.ColumnName = "ProcSpellID";
-            this.dataColumnProcSpellID.DataType = typeof(int);
-            this.dataColumnProcSpellID.DefaultValue = 0;
-            // 
             // dataTableQuestStep
             // 
             this.dataTableQuestStep.Columns.AddRange(new System.Data.DataColumn[] {
@@ -1338,9 +1550,7 @@ namespace DOL.Tools.QuestDesigner
             this.dataTableTriggerType,
             this.dataTableActionType,
             this.dataTableRequirementType,
-            this.dataTableHand,
-            this.dataTableeEnumeration,
-            this.dataTableAreaType});
+            this.dataTableeEnumeration});
             this.dataSetData.Initialized += new System.EventHandler(this.dataSetData_Initialized);
             // 
             // dataTableRegion
@@ -1491,22 +1701,6 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumn27.Caption = "Comparator";
             this.dataColumn27.ColumnName = "comparator";
             // 
-            // dataTableHand
-            // 
-            this.dataTableHand.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumnHandValue,
-            this.dataColumnHandDescription});
-            this.dataTableHand.TableName = "Hand";
-            // 
-            // dataColumnHandValue
-            // 
-            this.dataColumnHandValue.ColumnName = "value";
-            this.dataColumnHandValue.DataType = typeof(int);
-            // 
-            // dataColumnHandDescription
-            // 
-            this.dataColumnHandDescription.ColumnName = "description";
-            // 
             // dataTableeEnumeration
             // 
             this.dataTableeEnumeration.Columns.AddRange(new System.Data.DataColumn[] {
@@ -1518,12 +1712,12 @@ namespace DOL.Tools.QuestDesigner
             // 
             // dataColumnEnumerationType
             // 
+            this.dataColumnEnumerationType.ColumnMapping = System.Data.MappingType.Attribute;
             this.dataColumnEnumerationType.ColumnName = "Type";
             // 
             // dataColumnEnumerationValue
             // 
             this.dataColumnEnumerationValue.ColumnName = "Value";
-            this.dataColumnEnumerationValue.DataType = typeof(int);
             // 
             // dataColumnEnumerationName
             // 
@@ -1532,13 +1726,6 @@ namespace DOL.Tools.QuestDesigner
             // dataColumnEnumerationDescription
             // 
             this.dataColumnEnumerationDescription.ColumnName = "Description";
-            // 
-            // dataTableAreaType
-            // 
-            this.dataTableAreaType.Columns.AddRange(new System.Data.DataColumn[] {
-            dataColumn33,
-            dataColumn34});
-            this.dataTableAreaType.TableName = "AreaType";
             // 
             // dataColumnRealmValue
             // 
@@ -1706,37 +1893,11 @@ namespace DOL.Tools.QuestDesigner
             // 
             // createToolStripMenuItem
             // 
-            this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dOL18QuestToolStripMenuItem,
-            this.dOL20QuestToolStripMenuItem,
-            this.sQLExportToolStripMenuItem});
             this.createToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("createToolStripMenuItem.Image")));
             this.createToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
             this.createToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.createToolStripMenuItem.Text = "&Create";
-            // 
-            // dOL18QuestToolStripMenuItem
-            // 
-            this.dOL18QuestToolStripMenuItem.Name = "dOL18QuestToolStripMenuItem";
-            this.dOL18QuestToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.dOL18QuestToolStripMenuItem.Text = "DOL 1.8 Quest";
-            this.dOL18QuestToolStripMenuItem.Click += new System.EventHandler(this.dOL18QuestToolStripMenuItem_Click);
-            // 
-            // dOL20QuestToolStripMenuItem
-            // 
-            this.dOL20QuestToolStripMenuItem.Enabled = false;
-            this.dOL20QuestToolStripMenuItem.Name = "dOL20QuestToolStripMenuItem";
-            this.dOL20QuestToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.dOL20QuestToolStripMenuItem.Text = "DOL 2.0 Quest";
-            this.dOL20QuestToolStripMenuItem.Click += new System.EventHandler(this.dOL20QuestToolStripMenuItem_Click);
-            // 
-            // sQLExportToolStripMenuItem
-            // 
-            this.sQLExportToolStripMenuItem.Name = "sQLExportToolStripMenuItem";
-            this.sQLExportToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.sQLExportToolStripMenuItem.Text = "SQL Export";
-            this.sQLExportToolStripMenuItem.Click += new System.EventHandler(this.sQLExportToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -1934,6 +2095,14 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageQuest.Title = "QuestInfo";
             this.tabPageQuest.ToolTipText = "Detailed Information about Quest";
             // 
+            // questInfo
+            // 
+            this.questInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questInfo.Location = new System.Drawing.Point(0, 0);
+            this.questInfo.Name = "questInfo";
+            this.questInfo.Size = new System.Drawing.Size(442, 377);
+            this.questInfo.TabIndex = 28;
+            // 
             // tabPageNPC
             // 
             this.tabPageNPC.Controls.Add(this.npcView);
@@ -1943,6 +2112,14 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageNPC.TabIndex = 4;
             this.tabPageNPC.Title = "NPC";
             this.tabPageNPC.ToolTipText = "NPC\'s associated with the quest";
+            // 
+            // npcView
+            // 
+            this.npcView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.npcView.Location = new System.Drawing.Point(0, 0);
+            this.npcView.Name = "npcView";
+            this.npcView.Size = new System.Drawing.Size(442, 377);
+            this.npcView.TabIndex = 0;
             // 
             // tabPageItem
             // 
@@ -1954,6 +2131,14 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageItem.Title = "Item";
             this.tabPageItem.ToolTipText = "Item\'s associated with the quest";
             // 
+            // itemView
+            // 
+            this.itemView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemView.Location = new System.Drawing.Point(0, 0);
+            this.itemView.Name = "itemView";
+            this.itemView.Size = new System.Drawing.Size(442, 377);
+            this.itemView.TabIndex = 0;
+            // 
             // tabPageQuestPart
             // 
             this.tabPageQuestPart.Controls.Add(this.questPartItems);
@@ -1963,6 +2148,24 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageQuestPart.TabIndex = 6;
             this.tabPageQuestPart.Title = "QuestPart";
             this.tabPageQuestPart.ToolTipText = "QuestPart\'s making up the whole logic of a quest";
+            // 
+            // questPartItems
+            // 
+            this.questPartItems.ActionColor = System.Drawing.Color.RosyBrown;
+            this.questPartItems.ActionSelectedColor = System.Drawing.Color.OrangeRed;
+            this.questPartItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questPartItems.ForeColor = System.Drawing.Color.Gray;
+            this.questPartItems.ForeColorSelected = System.Drawing.Color.Black;
+            this.questPartItems.Location = new System.Drawing.Point(0, 0);
+            this.questPartItems.Name = "questPartItems";
+            this.questPartItems.QuestPartRow = null;
+            this.questPartItems.QuestPartRowID = 0;
+            this.questPartItems.RequirementColor = System.Drawing.Color.Tan;
+            this.questPartItems.RequirementSelectedColor = System.Drawing.Color.Orange;
+            this.questPartItems.Size = new System.Drawing.Size(442, 377);
+            this.questPartItems.TabIndex = 0;
+            this.questPartItems.TriggerColor = System.Drawing.Color.Olive;
+            this.questPartItems.TriggerSelectedColor = System.Drawing.Color.Green;
             // 
             // tabPageArea
             // 
@@ -1974,6 +2177,14 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageArea.Title = "Area";
             this.tabPageArea.ToolTipText = "Area\'s used within a quest";
             // 
+            // areaView
+            // 
+            this.areaView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.areaView.Location = new System.Drawing.Point(0, 0);
+            this.areaView.Name = "areaView";
+            this.areaView.Size = new System.Drawing.Size(442, 377);
+            this.areaView.TabIndex = 2;
+            // 
             // tabPageLocation
             // 
             this.tabPageLocation.Controls.Add(this.locationView);
@@ -1983,6 +2194,14 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageLocation.TabIndex = 9;
             this.tabPageLocation.Title = "Location";
             this.tabPageLocation.ToolTipText = "Define Locations used for QuestParts";
+            // 
+            // locationView
+            // 
+            this.locationView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.locationView.Location = new System.Drawing.Point(0, 0);
+            this.locationView.Name = "locationView";
+            this.locationView.Size = new System.Drawing.Size(442, 377);
+            this.locationView.TabIndex = 0;
             // 
             // tabPageCode
             // 
@@ -1994,6 +2213,14 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageCode.Title = "CustomCode";
             this.tabPageCode.ToolTipText = "CustomCode of the quest ";
             // 
+            // customCode
+            // 
+            this.customCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customCode.Location = new System.Drawing.Point(0, 0);
+            this.customCode.Name = "customCode";
+            this.customCode.Size = new System.Drawing.Size(442, 377);
+            this.customCode.TabIndex = 3;
+            // 
             // tabPageMap
             // 
             this.tabPageMap.Controls.Add(this.DXControl);
@@ -2003,6 +2230,16 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageMap.TabIndex = 10;
             this.tabPageMap.Title = "Map Editor";
             this.tabPageMap.ToolTipText = "Uthgard Map Editor";
+            // 
+            // DXControl
+            // 
+            this.DXControl.Cursor = System.Windows.Forms.Cursors.Default;
+            this.DXControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DXControl.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.DXControl.Location = new System.Drawing.Point(0, 0);
+            this.DXControl.Name = "DXControl";
+            this.DXControl.Size = new System.Drawing.Size(442, 377);
+            this.DXControl.TabIndex = 0;
             // 
             // xpTaskPane
             // 
@@ -2022,6 +2259,7 @@ namespace DOL.Tools.QuestDesigner
             // xpTGActions
             // 
             this.xpTGActions.ColorTable = dynamicColorTable1;
+            this.xpTGActions.Controls.Add(this.linkLabelNewQuest);
             this.xpTGActions.Controls.Add(this.linkSaveQuest);
             this.xpTGActions.Controls.Add(this.linkLoadQuest);
             this.xpTGActions.Image = ((System.Drawing.Image)(resources.GetObject("xpTGActions.Image")));
@@ -2032,13 +2270,28 @@ namespace DOL.Tools.QuestDesigner
             this.xpTGActions.TabIndex = 0;
             this.xpTGActions.Text = "Actions";
             // 
+            // linkLabelNewQuest
+            // 
+            this.linkLabelNewQuest.AutoSize = true;
+            this.linkLabelNewQuest.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.add;
+            this.linkLabelNewQuest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.linkLabelNewQuest.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabelNewQuest.Location = new System.Drawing.Point(11, 48);
+            this.linkLabelNewQuest.Name = "linkLabelNewQuest";
+            this.linkLabelNewQuest.Padding = new System.Windows.Forms.Padding(18, 2, 0, 2);
+            this.linkLabelNewQuest.Size = new System.Drawing.Size(90, 17);
+            this.linkLabelNewQuest.TabIndex = 3;
+            this.linkLabelNewQuest.TabStop = true;
+            this.linkLabelNewQuest.Text = "New Quest ...";
+            this.linkLabelNewQuest.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelNewQuest_LinkClicked);
+            // 
             // linkSaveQuest
             // 
             this.linkSaveQuest.AutoSize = true;
             this.linkSaveQuest.Image = ((System.Drawing.Image)(resources.GetObject("linkSaveQuest.Image")));
             this.linkSaveQuest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkSaveQuest.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkSaveQuest.Location = new System.Drawing.Point(11, 68);
+            this.linkSaveQuest.Location = new System.Drawing.Point(11, 88);
             this.linkSaveQuest.Name = "linkSaveQuest";
             this.linkSaveQuest.Padding = new System.Windows.Forms.Padding(18, 2, 0, 2);
             this.linkSaveQuest.Size = new System.Drawing.Size(93, 17);
@@ -2053,7 +2306,7 @@ namespace DOL.Tools.QuestDesigner
             this.linkLoadQuest.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.quest;
             this.linkLoadQuest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkLoadQuest.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkLoadQuest.Location = new System.Drawing.Point(11, 48);
+            this.linkLoadQuest.Location = new System.Drawing.Point(11, 68);
             this.linkLoadQuest.Name = "linkLoadQuest";
             this.linkLoadQuest.Padding = new System.Windows.Forms.Padding(18, 2, 0, 2);
             this.linkLoadQuest.Size = new System.Drawing.Size(92, 17);
@@ -2081,82 +2334,6 @@ namespace DOL.Tools.QuestDesigner
             this.imageListNPC.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListNPC.Images.SetKeyName(0, "user.ico");
             // 
-            // questInfo
-            // 
-            this.questInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questInfo.Location = new System.Drawing.Point(0, 0);
-            this.questInfo.Name = "questInfo";
-            this.questInfo.Size = new System.Drawing.Size(442, 377);
-            this.questInfo.TabIndex = 28;
-            // 
-            // npcView
-            // 
-            this.npcView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.npcView.Location = new System.Drawing.Point(0, 0);
-            this.npcView.Name = "npcView";
-            this.npcView.Size = new System.Drawing.Size(442, 377);
-            this.npcView.TabIndex = 0;
-            // 
-            // itemView
-            // 
-            this.itemView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemView.Location = new System.Drawing.Point(0, 0);
-            this.itemView.Name = "itemView";
-            this.itemView.Size = new System.Drawing.Size(442, 377);
-            this.itemView.TabIndex = 0;
-            // 
-            // questPartItems
-            // 
-            this.questPartItems.ActionColor = System.Drawing.Color.RosyBrown;
-            this.questPartItems.ActionSelectedColor = System.Drawing.Color.OrangeRed;
-            this.questPartItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.questPartItems.ForeColor = System.Drawing.Color.Gray;
-            this.questPartItems.ForeColorSelected = System.Drawing.Color.Black;
-            this.questPartItems.Location = new System.Drawing.Point(0, 0);
-            this.questPartItems.Name = "questPartItems";
-            this.questPartItems.QuestPartRow = null;
-            this.questPartItems.QuestPartRowID = 0;
-            this.questPartItems.RequirementColor = System.Drawing.Color.Tan;
-            this.questPartItems.RequirementSelectedColor = System.Drawing.Color.Orange;
-            this.questPartItems.Size = new System.Drawing.Size(442, 377);
-            this.questPartItems.TabIndex = 0;
-            this.questPartItems.TriggerColor = System.Drawing.Color.Olive;
-            this.questPartItems.TriggerSelectedColor = System.Drawing.Color.Green;
-            // 
-            // areaView
-            // 
-            this.areaView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.areaView.Location = new System.Drawing.Point(0, 0);
-            this.areaView.Name = "areaView";
-            this.areaView.Size = new System.Drawing.Size(442, 377);
-            this.areaView.TabIndex = 2;
-            // 
-            // locationView
-            // 
-            this.locationView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.locationView.Location = new System.Drawing.Point(0, 0);
-            this.locationView.Name = "locationView";
-            this.locationView.Size = new System.Drawing.Size(442, 377);
-            this.locationView.TabIndex = 0;
-            // 
-            // customCode
-            // 
-            this.customCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customCode.Location = new System.Drawing.Point(0, 0);
-            this.customCode.Name = "customCode";
-            this.customCode.Size = new System.Drawing.Size(442, 377);
-            this.customCode.TabIndex = 3;
-            // 
-            // DXControl
-            // 
-            this.DXControl.Cursor = System.Windows.Forms.Cursors.Default;
-            this.DXControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DXControl.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.DXControl.Location = new System.Drawing.Point(0, 0);
-            this.DXControl.Name = "DXControl";
-            this.DXControl.Size = new System.Drawing.Size(442, 377);
-            this.DXControl.TabIndex = 0;
-            // 
             // QuestDesignerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2172,6 +2349,7 @@ namespace DOL.Tools.QuestDesigner
             this.Name = "QuestDesignerForm";
             this.Text = "QuestDesigner";
             this.Load += new System.EventHandler(this.QuestDesignerForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(dataTableQuestCharacterClass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetQuest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableQuestPart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableTrigger)).EndInit();
@@ -2189,9 +2367,7 @@ namespace DOL.Tools.QuestDesigner
             ((System.ComponentModel.ISupportInitialize)(this.dataTableTriggerType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableActionType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableRequirementType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableHand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableeEnumeration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTableAreaType)).EndInit();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.toolStripContainerForm.BottomToolStripPanel.ResumeLayout(false);
@@ -2293,7 +2469,6 @@ namespace DOL.Tools.QuestDesigner
         private System.Data.DataColumn dataColumnCondition;
         private System.Data.DataColumn dataColumnMaxcondition;
         private System.Data.DataColumn dataColumnQuality;
-        private System.Data.DataColumn dataColumnMaxQuality;
         private System.Data.DataColumn dataColumnDPS_AF;
         private System.Data.DataColumn dataColumnSPD_ABS;
         private System.Data.DataColumn dataColumnHand;
@@ -2308,7 +2483,7 @@ namespace DOL.Tools.QuestDesigner
         private System.Data.DataColumn dataColumnObjectType;
         private System.Data.DataColumn dataColumnItemType;
         private System.Data.DataColumn dataColumnWeight;
-        private System.Data.DataColumn dataColumn26;
+        private System.Data.DataColumn dataColumnItemModel;
         private System.Data.DataColumn dataColumnRealm;
         private System.Data.DataColumn dataColumnIsPickable;
         private System.Data.DataColumn dataColumnIsDropable;
@@ -2324,10 +2499,7 @@ namespace DOL.Tools.QuestDesigner
 		private System.Data.DataColumn dataColumnColor;
         private System.Windows.Forms.SaveFileDialog saveScriptDialog;
         private System.Data.DataColumn dataColumnAddToworld;
-		private System.Data.DataColumn dataColumn41;
-        private System.Data.DataColumn dataColumnGold;
-        private System.Data.DataColumn dataColumnSilver;
-        private System.Data.DataColumn dataColumnCopper;
+        private System.Data.DataColumn dataColumn41;
         private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;
         private System.Windows.Forms.ToolStripPanel TopToolStripPanel;
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
@@ -2345,10 +2517,7 @@ namespace DOL.Tools.QuestDesigner
         private System.Data.DataColumn dataColumn54;
 		private System.Data.DataColumn dataColumn55;
         private System.Data.DataColumn dataColumn56;
-		private System.Data.DataColumn dataColumn57;
-        private System.Data.DataTable dataTableHand;
-        private System.Data.DataColumn dataColumnHandValue;
-		private System.Data.DataColumn dataColumnHandDescription;
+        private System.Data.DataColumn dataColumn57;
         private System.Data.DataColumn dataColumn60;
 		private System.Data.DataColumn dataColumn61;
 		private System.Data.DataColumn dataColumnActionTypeQ;
@@ -2360,19 +2529,10 @@ namespace DOL.Tools.QuestDesigner
 		public System.Data.DataTable dataTableActionType;
         public System.Data.DataTable dataTableRequirementType;
         public System.Windows.Forms.ToolStripProgressBar StatusProgress;
-        private System.Data.DataColumn dataColumnEmblem;
-        private System.Data.DataColumn dataColumnEffect;
-        private System.Data.DataColumn dataColumnExtension;
         private System.Data.DataColumn dataColumnBonus5;
         private System.Data.DataColumn dataColumnBonus5Type;
         private System.Data.DataColumn dataColumnExtraBonus;
         private System.Data.DataColumn dataColumnExtraBonusType;
-        private System.Data.DataColumn dataColumn73;
-        private System.Data.DataColumn dataColumn74;
-        private System.Data.DataColumn dataColumn75;
-        private System.Data.DataColumn dataColumnMaxCount;
-        private System.Data.DataColumn dataColumnSpellID;
-		private System.Data.DataColumn dataColumnProcSpellID;
 		private System.Data.DataColumn dataColumnObjectName;
 		private System.Data.DataColumn dataColumn4;
 		private System.Data.DataColumn dataColumn5;
@@ -2433,11 +2593,8 @@ namespace DOL.Tools.QuestDesigner
         private NETXP.Controls.Docking.TabPage tabPageMap;
         public DOL.Tools.Mapping.Forms.DXControl DXControl;
         private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dOL18QuestToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dOL20QuestToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sQLExportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dataDownloadToolStripMenuItem;
-        private System.Data.DataTable dataTableAreaType;		
+        private System.Windows.Forms.LinkLabel linkLabelNewQuest;		
     }
 }
 

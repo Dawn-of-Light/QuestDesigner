@@ -67,21 +67,9 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DOLBase, Version=2.0.0.20908, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\sharedModules\DOLBase.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DOLDatabase, Version=1.5.0.20907, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\sharedModules\DOLDatabase.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GameServer, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\sharedModules\GameServer.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="DOLBase, Version=2.0.0.18647, Culture=neutral, PublicKeyToken=db45e164f53c301b, processorArchitecture=MSIL" />
+    <Reference Include="DOLDatabase, Version=1.5.0.18646, Culture=neutral, PublicKeyToken=db45e164f53c301b, processorArchitecture=MSIL" />
+    <Reference Include="GameServer, Version=1.9.0.0, Culture=neutral, PublicKeyToken=db45e164f53c301b, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.83.1.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\dol\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -136,9 +124,18 @@
     <Compile Include="Mapping\Module\MobModule.cs" />
     <Compile Include="Mapping\Module\ModulAttribute.cs" />
     <Compile Include="Mapping\Module\ModulMgr.cs" />
+    <Compile Include="QuestDesigner\Controls\ListBoxEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuestDesigner\Controls\ListBoxEx.Designer.cs">
+      <DependentUpon>ListBoxEx.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuestDesigner\Converter\AreaTypeConverter.cs" />
-    <Compile Include="QuestDesigner\Export\DOLScript20Exporter.cs" />
-    <Compile Include="QuestDesigner\Export\DOLScript18Exporter.cs" />
+    <Compile Include="QuestDesigner\Converter\EffectConverter.cs" />
+    <Compile Include="QuestDesigner\Converter\ExtensionConverter.cs" />
+    <Compile Include="QuestDesigner\Exception\QuestPartConfigurationException.cs" />
+    <Compile Include="QuestDesigner\Export\BaseExporter.cs" />
+    <Compile Include="QuestDesigner\Export\DOLScriptExporter.cs" />
     <Compile Include="QuestDesigner\Export\SQLExporter.cs" />
     <Compile Include="QuestDesigner\InfoForm.cs">
       <SubType>Form</SubType>
@@ -219,6 +216,7 @@
     <Compile Include="QuestDesigner\PositionConverterPopup.Designer.cs">
       <DependentUpon>PositionConverterPopup.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuestDesigner\QuestDesignerConfiguration.cs" />
     <Compile Include="QuestDesigner\Util\ClipboardLocation.cs" />
     <Compile Include="QuestDesigner\Util\Const.cs" />
     <Compile Include="Mapping\DAoCMapping.cs" />
@@ -363,6 +361,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>Area.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuestDesigner\Controls\ListBoxEx.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ListBoxEx.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuestDesigner\Controls\Selectors\BaseSelector.resx">
       <SubType>Designer</SubType>
       <DependentUpon>BaseSelector.cs</DependentUpon>
@@ -407,6 +409,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>PositionConverter.cs</DependentUpon>
     </EmbeddedResource>
+    <Content Include="config\config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="config\dol\regions.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -422,13 +427,10 @@
     <Content Include="config\schema\actionType.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="config\schema\areaType.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="config\schema\hand.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="config\questScript18.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="config\schema\eEnumeration.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="config\schema\requirementType.xml">
@@ -2946,6 +2948,9 @@
     <Content Include="lib\log4net.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\copy.png" />
+    <None Include="Resources\paste.png" />
+    <None Include="Resources\add.png" />
     <None Include="Resources\moveDown.png" />
     <None Include="Resources\moveUp.png" />
     <None Include="Resources\mob32.png" />

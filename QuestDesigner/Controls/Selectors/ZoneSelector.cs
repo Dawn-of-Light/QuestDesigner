@@ -27,27 +27,28 @@ using DOL.Tools.QuestDesigner.Util;
 
 namespace DOL.Tools.QuestDesigner.Controls
 {
-	[SelectorAttribute("Zone")]
+	[SelectorAttribute(Const.SELECTOR_ZONE)]
 	public class ZoneSelector : BaseSelector
 	{		
 		BindingSource bindingSourceZone;
 
 		public ZoneSelector(int itemID, char param, int regionID): base (itemID,param)
 		{
+            this.list.ValueMember = DB.COL_ZONE_ID;
+            this.list.DisplayMember = DB.COL_ZONE_DESCRIPTION;
+
 			if (regionID >= 0)
 			{
 				this.bindingSourceZone = new BindingSource();
 				this.bindingSourceZone.DataSource = DB.ZoneTable;
-				this.bindingSourceZone.Sort = "description";
-				this.bindingSourceZone.Filter = "regionID=" + regionID;
+				this.bindingSourceZone.Sort = DB.COL_ZONE_DESCRIPTION;
+				this.bindingSourceZone.Filter = DB.COL_ZONE_REGIONID+"=" + regionID;
 				this.list.DataSource = this.bindingSourceZone;
 			}
 			else
 			{
 				this.list.DataSource = DB.ZoneTable;
 			}
-			this.list.ValueMember = "zoneID";
-			this.list.DisplayMember = "description";
 			this.Editable = false;
 		}
 

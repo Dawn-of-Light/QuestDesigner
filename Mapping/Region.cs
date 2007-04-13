@@ -198,8 +198,8 @@ namespace DOL.Tools.Mapping.Map
                 //Look for regions...
                 foreach (DataRow regionRow in DB.RegionTable.Rows)
                 {
-                    int id = (int)regionRow["id"];
-                    string name = (string)regionRow["description"];
+                    int id = (int)regionRow[DB.COL_REGION_ID];
+                    string name = (string)regionRow[DB.COL_REGION_DESCRIPTION];
 
                     Region region = new Region(name, id);
                     m_Regions.Add(region);
@@ -212,14 +212,14 @@ namespace DOL.Tools.Mapping.Map
                     //1=1;8;8;67;67
                     //id=region;widht;height;xoff;yoff
 
-                    int id = (int)zoneRow["zoneID"]; // int.Parse((string) entry.Key);
+                    int id = (int)zoneRow[DB.COL_ZONE_ID]; // int.Parse((string) entry.Key);
                     //string[] paras = ((string) entry.Value).Split(';');
-                    int region = (int)zoneRow["regionID"]; // int.Parse(paras[0]);
-                    int width = ((int)zoneRow["width"]) * 8192; //8192 = 256*256/8 - a zone is parted into 8 subzones
-                    int height = ((int)zoneRow["height"]) * 8192; //see above
-                    int x = ((int)zoneRow["offsetx"]) * 8192;
-                    int y = ((int)zoneRow["offsety"]) * 8192;
-                    string descr = Convert.ToString(zoneRow["description"]);
+                    int region = (int)zoneRow[DB.COL_ZONE_REGIONID]; // int.Parse(paras[0]);
+                    int width = ((int)zoneRow[DB.COL_ZONE_WIDTH]) * 8192; //8192 = 256*256/8 - a zone is parted into 8 subzones
+                    int height = ((int)zoneRow[DB.COL_ZONE_HEIGHT]) * 8192; //see above
+                    int x = ((int)zoneRow[DB.COL_ZONE_OFFSETX]) * 8192;
+                    int y = ((int)zoneRow[DB.COL_ZONE_OFFSETY]) * 8192;
+                    string descr = Convert.ToString(zoneRow[DB.COL_ZONE_DESCRIPTION]);
                     string img = "data\\maps\\" + id + ".jpg";
 
                     /*if (File.Exists(img))

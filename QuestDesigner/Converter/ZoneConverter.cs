@@ -28,6 +28,6 @@ namespace DOL.Tools.QuestDesigner.Converter
 {
     class ZoneConverter : BindingSourceConverter
     {
-        public ZoneConverter(): base(DB.zoneBinding,"zoneID","description") { }
+        public ZoneConverter() : base(DB.zoneBinding, DB.COL_ZONE_ID, DB.COL_ZONE_DESCRIPTION) { }
     }
 }

@@ -229,7 +229,7 @@ namespace DOL.Tools.Mapping.Forms
             // 
             // copyLocationToolStripMenuItem
             // 
-            this.copyLocationToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.globe;
+            this.copyLocationToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.copy;
             this.copyLocationToolStripMenuItem.Name = "copyLocationToolStripMenuItem";
             this.copyLocationToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.copyLocationToolStripMenuItem.Text = "Copy Location";
@@ -237,6 +237,7 @@ namespace DOL.Tools.Mapping.Forms
             // 
             // filterMenuItem
             // 
+            this.filterMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.search;
             this.filterMenuItem.Name = "filterMenuItem";
             this.filterMenuItem.Size = new System.Drawing.Size(153, 22);
             this.filterMenuItem.Text = "Filter";

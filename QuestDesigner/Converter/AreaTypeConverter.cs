@@ -25,8 +25,8 @@ using System.Globalization;
 
 namespace DOL.Tools.QuestDesigner.Converter
 {
-	class AreaTypeConverter : DataTableConverter
+	class AreaTypeConverter : EnumerationConverterDatabase
     {
-        public AreaTypeConverter() : base("AreaType", "value", "description") { }
+        public AreaTypeConverter() : base("AreaType") { }
     }
 }

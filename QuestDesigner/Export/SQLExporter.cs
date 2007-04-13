@@ -26,16 +26,13 @@ using System.Xml;
 using System.IO;
 using System.Data;
 
-namespace DOL.Tools.QuestDesigner.Util
+namespace DOL.Tools.QuestDesigner.Export
 {
     public class SQLExporter : Exporter
     {
         
-        public SQLExporter()
-        {
-            this.Name = "SQL Export";
-            this.Filter = "SQL Files|*.sql";
-            this.XsltFile = "config\\sqlScript.xsl";
+        public SQLExporter(DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator transformator) : base( transformator)
+        {            
         }
 
         protected override bool ValidateData(DataSet questDataSet)

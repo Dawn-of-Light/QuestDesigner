@@ -133,6 +133,8 @@ namespace <xsl:value-of select="Namespace"/> {
 				</xsl:if>
 				<xsl:if test="FactionID"><xsl:value-of select="ObjectName"/>.Faction = FactionMgr.GetFactionByID(<xsl:value-of select="FactionID"/>);
 				</xsl:if>
+				<xsl:if test="NPCTemplateID"><xsl:value-of select="ObjectName"/>.NPCTemplateID = <xsl:value-of select="NPCTemplateID"/>;
+				</xsl:if>
 				<xsl:value-of select="ObjectName"/>.X = <xsl:value-of select="X"/>;
 				<xsl:value-of select="ObjectName"/>.Y = <xsl:value-of select="Y"/>;
 				<xsl:value-of select="ObjectName"/>.Z = <xsl:value-of select="Z"/>;
@@ -140,7 +142,9 @@ namespace <xsl:value-of select="Namespace"/> {
 				<xsl:value-of select="ObjectName"/>.RespawnInterval = <xsl:value-of select="RespawnInterval"/>;
 				<xsl:if test="MeleeDamageType"><xsl:value-of select="ObjectName"/>.EquipmentTemplateID = "<xsl:value-of select="EquipmentTemplateID"/>";
 				</xsl:if>
-				
+				<xsl:if test="BodyType"><xsl:value-of select="ObjectName"/>.BodyType = <xsl:value-of select="BodyType"/>;
+				</xsl:if>
+
 				StandardMobBrain brain = new StandardMobBrain();
 				brain.AggroLevel = <xsl:value-of select="AggroLevel"/>;
 				brain.AggroRange = <xsl:value-of select="AggroRange"/>;
@@ -175,21 +179,25 @@ namespace <xsl:value-of select="Namespace"/> {
 				if (log.IsWarnEnabled)
 					log.Warn("Could not find " + <xsl:value-of select="ItemTemplateID"/>.Name + ", creating it ...");
 				<xsl:value-of select="ItemTemplateID"/>.Level = <xsl:value-of select="Level"/>;
-
 				<xsl:value-of select="ItemTemplateID"/>.Weight = <xsl:value-of select="Weight"/>;
 				<xsl:value-of select="ItemTemplateID"/>.Model = <xsl:value-of select="Model"/>;
-
 				<xsl:value-of select="ItemTemplateID"/>.Object_Type = <xsl:value-of select="Object_Type"/>;
 				<xsl:if test="Item_Type"><xsl:value-of select="ItemTemplateID"/>.Item_Type = <xsl:value-of select="Item_Type"/>;
 				</xsl:if>
 				<xsl:value-of select="ItemTemplateID"/>.Id_nb = "<xsl:value-of select="ItemTemplateID"/>";
 				<xsl:if test="Hand"><xsl:value-of select="ItemTemplateID"/>.Hand = <xsl:value-of select="Hand"/>;
 				</xsl:if>
+				<xsl:if test="Platinum"><xsl:value-of select="ItemTemplateID"/>.Platinum = <xsl:value-of select="Platinum"/>;
+				</xsl:if>
 				<xsl:value-of select="ItemTemplateID"/>.Gold = <xsl:value-of select="Gold"/>;
 				<xsl:value-of select="ItemTemplateID"/>.Silver = <xsl:value-of select="Silver"/>;
 				<xsl:value-of select="ItemTemplateID"/>.Copper = <xsl:value-of select="Copper"/>;
 				<xsl:value-of select="ItemTemplateID"/>.IsPickable = <xsl:value-of select="IsPickable"/>;
 				<xsl:value-of select="ItemTemplateID"/>.IsDropable = <xsl:value-of select="IsDropable"/>;
+				<xsl:if test="IsTradable"><xsl:value-of select="ItemTemplateID"/>.IsTradable = <xsl:value-of select="IsTradable"/>;
+				</xsl:if>
+				<xsl:if test="CanDropAsLoot"><xsl:value-of select="ItemTemplateID"/>.CanDropAsLoot = <xsl:value-of select="CanDropAsLoot"/>;
+				</xsl:if>
 				<xsl:if test="Color"><xsl:value-of select="ItemTemplateID"/>.Color = <xsl:value-of select="Color"/>;
 				</xsl:if>
 				<xsl:value-of select="ItemTemplateID"/>.Bonus = <xsl:value-of select="Bonus"/>; // default bonus				
@@ -212,6 +220,26 @@ namespace <xsl:value-of select="Namespace"/> {
 				<xsl:if test="Bonus5">
 				<xsl:value-of select="ItemTemplateID"/>.Bonus5 = <xsl:value-of select="Bonus5"/>;
 				<xsl:value-of select="ItemTemplateID"/>.Bonus5Type = (int) <xsl:value-of select="Bonus5Type"/>;
+				</xsl:if>
+				<xsl:if test="Bonus6">
+				<xsl:value-of select="ItemTemplateID"/>.Bonus6 = <xsl:value-of select="Bonus6"/>;
+				<xsl:value-of select="ItemTemplateID"/>.Bonus6Type = (int) <xsl:value-of select="Bonus6Type"/>;
+				</xsl:if>
+				<xsl:if test="Bonus7">
+				<xsl:value-of select="ItemTemplateID"/>.Bonus7 = <xsl:value-of select="Bonus7"/>;
+				<xsl:value-of select="ItemTemplateID"/>.Bonus7Type = (int) <xsl:value-of select="Bonus7Type"/>;
+				</xsl:if>
+				<xsl:if test="Bonus8">
+				<xsl:value-of select="ItemTemplateID"/>.Bonus8 = <xsl:value-of select="Bonus8"/>;
+				<xsl:value-of select="ItemTemplateID"/>.Bonus8Type = (int) <xsl:value-of select="Bonus8Type"/>;
+				</xsl:if>
+				<xsl:if test="Bonus9">
+				<xsl:value-of select="ItemTemplateID"/>.Bonus9 = <xsl:value-of select="Bonus9"/>;
+				<xsl:value-of select="ItemTemplateID"/>.Bonus9Type = (int) <xsl:value-of select="Bonus9Type"/>;
+				</xsl:if>
+				<xsl:if test="Bonus10">
+				<xsl:value-of select="ItemTemplateID"/>.Bonus10 = <xsl:value-of select="Bonus10"/>;
+				<xsl:value-of select="ItemTemplateID"/>.Bonus10Type = (int) <xsl:value-of select="Bonus10Type"/>;
 				</xsl:if>
 				<xsl:if test="ExtraBonus">
 				<xsl:value-of select="ItemTemplateID"/>.ExtraBonus = <xsl:value-of select="ExtraBonus"/>;
@@ -237,21 +265,33 @@ namespace <xsl:value-of select="Namespace"/> {
 				</xsl:if>																			
 				<xsl:if test="PackSize"><xsl:value-of select="ItemTemplateID"/>.PackSize = <xsl:value-of select="PackSize"/>;
 				</xsl:if>																			
-				<xsl:if test="ModelExtension"><xsl:value-of select="ItemTemplateID"/>.ModelExtension = <xsl:value-of select="ModelExtension"/>;
+				<xsl:if test="Extension"><xsl:value-of select="ItemTemplateID"/>.Extension = <xsl:value-of select="Extension"/>;
 				</xsl:if>																						
-				<xsl:value-of select="ItemTemplateID"/>.Quality = <xsl:value-of select="Quality"/>;
-				//<xsl:value-of select="ItemTemplateID"/>.MaxQuality = <xsl:value-of select="MaxQuality"/>;
+				<xsl:value-of select="ItemTemplateID"/>.Quality = <xsl:value-of select="Quality"/>;				
 				<xsl:value-of select="ItemTemplateID"/>.Condition = <xsl:value-of select="Condition"/>;
 				<xsl:value-of select="ItemTemplateID"/>.MaxCondition = <xsl:value-of select="MaxCondition"/>;
 				<xsl:value-of select="ItemTemplateID"/>.Durability = <xsl:value-of select="Durability"/>;
 				<xsl:value-of select="ItemTemplateID"/>.MaxDurability = <xsl:value-of select="MaxDurability"/>;
-
+				<xsl:if test="PoisonCharges"><xsl:value-of select="ItemTemplateID"/>.PoisonCharges = <xsl:value-of select="PoisonCharges"/>;
+				</xsl:if>
+				<xsl:if test="PoisonMaxCharges"><xsl:value-of select="ItemTemplateID"/>.PoisonMaxCharges = <xsl:value-of select="PoisonMaxCharges"/>;
+				</xsl:if>
+				<xsl:if test="PoisonSpellID"><xsl:value-of select="ItemTemplateID"/>.PoisonSpellID = <xsl:value-of select="PoisonSpellID"/>;
+				</xsl:if>
+				<xsl:if test="ProcSpellID1"><xsl:value-of select="ItemTemplateID"/>.ProcSpellID1 = <xsl:value-of select="ProcSpellID1"/>;
+				</xsl:if>
+				<xsl:if test="SpellID1"><xsl:value-of select="ItemTemplateID"/>.SpellID1 = <xsl:value-of select="SpellID1"/>;
+				</xsl:if>
+				<xsl:if test="MaxCharges1"><xsl:value-of select="ItemTemplateID"/>.MaxCharges1 = <xsl:value-of select="MaxCharges1"/>;
+				</xsl:if>
+				<xsl:if test="Charges1"><xsl:value-of select="ItemTemplateID"/>.Charges1 = <xsl:value-of select="Charges1"/>;
+				</xsl:if>
 				//You don't have to store the created item in the db if you don't want,
 				//it will be recreated each time it is not found, just comment the following
 				//line if you rather not modify your database
 				if (SAVE_INTO_DATABASE)
 					GameServer.Database.AddNewObject(<xsl:value-of select="ItemTemplateID"/>);
-			}
+				}
 			</xsl:for-each>
 
 			#endregion
@@ -282,12 +322,12 @@ namespace <xsl:value-of select="Namespace"/> {
 			QuestBuilder builder = QuestMgr.getBuilder(typeof(<xsl:value-of select="Name"/>));
 			BaseQuestPart a;
 			<xsl:for-each select="/Quest/QuestPart">a = builder.CreateQuestPart(<xsl:value-of select="defaultNPC"/>);
-				<xsl:for-each select="QuestPartTrigger">a.AddTrigger(<xsl:value-of select="TypeName"/><xsl:if test="K">,<xsl:value-of select="K"/></xsl:if><xsl:if test="I">,<xsl:value-of select="I"/></xsl:if>);
-				</xsl:for-each>
-				<xsl:for-each select="QuestPartRequirement">a.AddRequirement(<xsl:value-of select="TypeName"/><xsl:if test="N">,<xsl:value-of select="N"/></xsl:if><xsl:if test="V">,<xsl:value-of select="V"/></xsl:if><xsl:if test="Comparator">,(eComparator)<xsl:value-of select="Comparator"/></xsl:if>);
-				</xsl:for-each>
-				<xsl:for-each select="QuestPartAction">a.AddAction(<xsl:value-of select="TypeName"/><xsl:if test="P">,<xsl:value-of select="P"/></xsl:if><xsl:if test="Q">,<xsl:value-of select="Q"/></xsl:if>);
-				</xsl:for-each>AddQuestPart(a);
+			<xsl:for-each select="QuestPartTrigger">a.AddTrigger(<xsl:value-of select="TypeName"/><xsl:if test="K">,<xsl:value-of disable-output-escaping="yes" select="K"/></xsl:if><xsl:if test="I">,<xsl:value-of disable-output-escaping="yes" select="I"/></xsl:if>);
+			</xsl:for-each>
+			<xsl:for-each select="QuestPartRequirement">a.AddRequirement(<xsl:value-of select="TypeName"/><xsl:if test="N">,<xsl:value-of disable-output-escaping="yes" select="N"/></xsl:if><xsl:if test="V">,<xsl:value-of disable-output-escaping="yes" select="V"/></xsl:if><xsl:if test="Comparator">,(eComparator)<xsl:value-of select="Comparator"/></xsl:if>);
+			</xsl:for-each>
+			<xsl:for-each select="QuestPartAction">a.AddAction(<xsl:value-of select="TypeName"/><xsl:if test="P">,<xsl:value-of disable-output-escaping="yes" select="P"/></xsl:if><xsl:if test="Q">,<xsl:value-of disable-output-escaping="yes" select="Q"/></xsl:if>);
+			</xsl:for-each>AddQuestPart(a);
 			</xsl:for-each>
 			#endregion
 
@@ -366,6 +406,16 @@ namespace <xsl:value-of select="Namespace"/> {
 			if (player.Level &gt; maximumLevel || player.Level &lt; minimumLevel )
 				return false;
 		</xsl:text>
+
+		<xsl:if test="/Quest/QuestCharacterClass">
+			if (
+		<xsl:for-each select="/Quest/QuestCharacterClass">
+			player.CharacterClass.ID != (byte) eCharacterClass.<xsl:value-of select="Description"/> <xsl:text disable-output-escaping="yes"> &amp;&amp; </xsl:text>		
+		</xsl:for-each>
+				true) {
+				return false;			
+			}
+		</xsl:if>
 			return true;
 		}
 

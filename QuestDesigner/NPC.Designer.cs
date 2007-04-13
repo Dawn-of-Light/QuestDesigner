@@ -178,10 +178,11 @@ namespace DOL.Tools.QuestDesigner
             this.pasteLocationToolStripMenuItem,
             this.showOnMapToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(156, 48);
+            this.contextMenuStrip.Size = new System.Drawing.Size(156, 70);
             // 
             // pasteLocationToolStripMenuItem
             // 
+            this.pasteLocationToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.paste;
             this.pasteLocationToolStripMenuItem.Name = "pasteLocationToolStripMenuItem";
             this.pasteLocationToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.pasteLocationToolStripMenuItem.Text = "Paste Location";

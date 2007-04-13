@@ -25,8 +25,8 @@ using System.Globalization;
 
 namespace DOL.Tools.QuestDesigner.Converter
 {
-	class HandConverter : DataTableConverter
+	class HandConverter : EnumerationConverterDatabase
     {
-        public HandConverter(): base("Hand","value","description") { }
+        public HandConverter(): base("Hand") { }
     }
 }

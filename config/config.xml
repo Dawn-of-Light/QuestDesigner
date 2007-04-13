@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<QuestDesignerConfiguration>
+	<Export>
+		<Transformator xls="config/questScript18.xsl" extension="cs" name="DOL Quest 1.8" description="Generates the quest code for DOL Server 1.8" exporterClass="DOL.Tools.QuestDesigner.Export.DOLScriptExporter" enabled="true"/>
+		<Transformator xls="config/questScript20.xsl" extension="cs" name="DOL Quest 2.0" description="Generates the quest code for DOL Server 2.0" exporterClass="DOL.Tools.QuestDesigner.Export.DOLScriptExporter" enabled="false"/>
+		<Transformator xls="config/sqlScript.xsl" extension="sql" name="SQL Script 1.8" description="Generates SQL insert statements for the defines objects (item,npc, ...) for DOL Server 1.8 database" exporterClass="DOL.Tools.QuestDesigner.Export.SQLExporter" enabled="true"/>		
+	</Export>	
+</QuestDesignerConfiguration>

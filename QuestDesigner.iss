@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=Quest Designer
-AppVerName=Quest Designer 0.4.4.1
+AppVerName=Quest Designer 0.4.4.2
 AppPublisher=DOL Tools
 DefaultDirName={pf}\Quest Designer
 DefaultGroupName=Quest Designer
@@ -18,6 +18,10 @@ InfoAfterFile=readme.txt
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
+
+[InstallDelete]
+Type: files; Name: "{app}\config\schema\hand.xml"
+Type: files; Name: "{app}\config\schema\areaType.xml"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked

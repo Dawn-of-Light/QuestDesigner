@@ -27,7 +27,7 @@ using DOL.Tools.QuestDesigner.Util;
 
 namespace DOL.Tools.QuestDesigner.Controls
 {
-	[SelectorAttribute("Text")]
+	[SelectorAttribute(Const.SELECTOR_TEXT)]
 	public class TextSelector : BaseSelector
     {        
 

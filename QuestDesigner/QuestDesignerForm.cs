@@ -46,17 +46,18 @@ using DOL.Tools.QuestDesigner.Exceptions;
 using DOL.Tools.Mapping.Forms;
 using System.Net;
 using DOL.Tools.Mapping.Map;
+using DOL.Tools.QuestDesigner.Export;
 
 namespace DOL.Tools.QuestDesigner
 {
     public partial class QuestDesignerForm : Form
     {		
 
-        public static string TITLE = " ::  "+Application.ProductName+" "+QuestDesignerMain.Version+" :: ";
-		
-        protected string openFilename = null;
+        public static string TITLE = " ::  " + Application.ProductName+" "+QuestDesignerMain.Version+" :: ";
 
-        private Hashtable createScriptExtensionMapping = new Hashtable();
+        private const string DOWNLOAD_DATA_FILENAME = "data.zip";
+
+        protected string openFilename = null;
 
         public QuestDesignerForm()
         {            
@@ -71,17 +72,36 @@ namespace DOL.Tools.QuestDesigner
             LoadQuest(loadFile.FullName);
         }
 
-        public Boolean registerCreateScriptExtension(string description, string extension, FileInfo xsltFile)
+        public Boolean registerCreateScriptExtension(DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator transformator)
         {
-            saveScriptDialog.Filter = description+"|*."+extension+"|"+ saveScriptDialog.Filter;
-            createScriptExtensionMapping[extension] = xsltFile;
+            ToolStripMenuItem exportMenuItem = new ToolStripMenuItem();
+            exportMenuItem.Enabled = transformator.Enabled;
+            exportMenuItem.Name = "QuestToolStripMenuItem" + Utils.ConvertToObjectName(transformator.Name) + this.createToolStripMenuItem.DropDownItems.Count;
+            //exportMenuItem.Size = new System.Drawing.Size(156, 22);
+            exportMenuItem.Text = transformator.Name;
+            exportMenuItem.ToolTipText = transformator.Description;
+            exportMenuItem.Tag = transformator;
+            exportMenuItem.Click += new EventHandler(exportMenuItem_Click);            
+
+            this.createToolStripMenuItem.DropDownItems.Add(exportMenuItem);
             return true;
+        }
+
+        void exportMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem exportMenuItem = (ToolStripMenuItem)sender;
+            DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator transformator =(DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator) exportMenuItem.Tag;
+
+            Exporter exporter = (Exporter)Activator.CreateInstance(transformator.ExporterClass, new object[] { transformator });            
+            exporter.CreateQuest();
         }
 
 		private void QuestDesignerForm_Load(object sender, EventArgs e)
 		{
-            registerCreateScriptExtension("DOL 1.8 Questscript", "cs", new FileInfo(Application.StartupPath + "/config/questScript.xsl"));
-            registerCreateScriptExtension("SQL Import File", "sql", new FileInfo(Application.StartupPath + "/config/sqlScript.xsl"));
+            foreach (DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator transformator in QuestDesignerMain.DesignerConfiguration.getTransformators())
+            {                
+                registerCreateScriptExtension(transformator);
+            }
 
 			// Configure L&F
 			NETXP.Controls.Docking.Renderers.Office2003 XPRenderers = new NETXP.Controls.Docking.Renderers.Office2003();
@@ -144,7 +164,7 @@ namespace DOL.Tools.QuestDesigner
                     WebClient webClient = new WebClient();
                     webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
                     webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
-                    webClient.DownloadFileAsync(uri, QuestDesignerMain.WorkingDirectory + "data.zip");
+                    webClient.DownloadFileAsync(uri, QuestDesignerMain.WorkingDirectory + DOWNLOAD_DATA_FILENAME);
                     StatusProgress.Value = StatusProgress.Minimum;
                 }
                 else
@@ -158,7 +178,7 @@ namespace DOL.Tools.QuestDesigner
 
         void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            Zip.Unzip(QuestDesignerMain.WorkingDirectory + "data.zip", QuestDesignerMain.WorkingDirectory);
+            Zip.Unzip(QuestDesignerMain.WorkingDirectory + DOWNLOAD_DATA_FILENAME, QuestDesignerMain.WorkingDirectory);
             
             StatusProgress.Value = StatusProgress.Minimum;
 
@@ -204,53 +224,53 @@ namespace DOL.Tools.QuestDesigner
 			// check Action,Trigger,RequirementTypes and fill table with respective Ids
 			foreach (DataRow row in dataTableTriggerType.Rows)
 			{
-				string value = Convert.ToString(row["value"]);
+                string value = Convert.ToString(row[DB.COL_TRIGGERTYPE_VALUE]);
 				value = value.Substring(value.IndexOf('.') + 1);
 				object id = Enum.Parse(typeof(eTriggerType), value);
 				if (id is eTriggerType)
 				{
-					row["id"] = id;
+                    row[DB.COL_TRIGGERTYPE_ID] = id;
 				}
 				else
 				{
-					Log.Warning("TriggerType with name: " + row["value"] + " couldn't be parsed to corresponding value:" + id);
+                    Log.Warning("TriggerType with name: " + row[DB.COL_TRIGGERTYPE_VALUE] + " couldn't be parsed to corresponding value:" + id);
 				}
 			}
 
 			foreach (DataRow row in dataTableRequirementType.Rows)
 			{
-				string value = Convert.ToString(row["value"]);
+                string value = Convert.ToString(row[DB.COL_REQUIREMENTTYPE_VALUE]);
 				value = value.Substring(value.IndexOf('.') + 1);
 				object id = Enum.Parse(typeof(eRequirementType), value);
 				if (id is eRequirementType)
 				{
-					row["id"] = id;
+                    row[DB.COL_REQUIREMENTTYPE_ID] = id;
 				}
 				else
 				{
-					Log.Warning("Requirementype with name: " + row["value"] + " couldn't be parsed to corresponding value:" + id);
+                    Log.Warning("Requirementype with name: " + row[DB.COL_REQUIREMENTTYPE_VALUE] + " couldn't be parsed to corresponding value:" + id);
 				}
 			}
 
 			foreach (DataRow row in dataTableActionType.Rows)
 			{
-				string value = Convert.ToString(row["value"]);
+				string value = Convert.ToString(row[DB.COL_ACTIONTYPE_VALUE]);
 				value = value.Substring(value.IndexOf('.') + 1);
                 try
                 {
                     object id = Enum.Parse(typeof(eActionType), value);
                     if (id is eActionType)
                     {
-                        row["id"] = id;
+                        row[DB.COL_ACTIONTYPE_ID] = id;
                     }
                     else
                     {
-                        Log.Warning("Actiontype with name: " + row["value"] + " couldn't be parsed to corresponding value:" + id);
+                        Log.Warning("Actiontype with name: " + row[DB.COL_ACTIONTYPE_VALUE] + " couldn't be parsed to corresponding value:" + id);
                     }
                 }
                 catch (ArgumentException)
                 {
-                    Log.Warning("Actiontype with name: " + row["value"] + " not found.");                    
+                    Log.Warning("Actiontype with name: " + row[DB.COL_ACTIONTYPE_VALUE] + " not found.");                    
                 }
 			}
 
@@ -271,10 +291,10 @@ namespace DOL.Tools.QuestDesigner
 					{
 						//dataSetData.Tables[type.Name].Rows.Add(new object[] { enumArray.GetValue(i), enumNames[i] });
 						DataRow row = dataTableeEnumeration.NewRow();
-						row["Name"] = enumNames[i];
-						row["Description"] = enumNames[i];
-						row["Value"] = enumArray.GetValue(i);
-						row["Type"] = type.Name;
+						row[DB.COL_ENUMERATION_NAME] = enumNames[i];
+                        row[DB.COL_ENUMERATION_DESCRIPTION] = enumNames[i];
+                        row[DB.COL_ENUMERATION_VALUE] = Convert.ChangeType(enumArray.GetValue(i), Enum.GetUnderlyingType(type));
+                        row[DB.COL_ENUMERATION_TYPE] = type.Name;
 						dataTableeEnumeration.Rows.Add(row);
 					}
 				}
@@ -336,9 +356,10 @@ namespace DOL.Tools.QuestDesigner
 					dataSetQuest.ReadXml(xmlfile);
                     dataSetQuest.AcceptChanges();
                     DB.ResumeBindings();
-                    
+                                        
                     questPartItems.RefreshQuestPartText();
                     DB.questPartBinding.ResetCurrentItem();
+                    this.questInfo.UpdateDataset();
 
 					this.openFilename = xmlfile;
 
@@ -351,7 +372,7 @@ namespace DOL.Tools.QuestDesigner
 				{					
 					MessageBox.Show(e.Message, e.GetType().Name);
 					InitEmptyQuest();
-					Log.Error("File load error: " + xmlfile);
+					Log.Error("Quest load error: " + xmlfile);
 					return false;
 				}
             }
@@ -364,11 +385,15 @@ namespace DOL.Tools.QuestDesigner
 		
 		
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InitEmptyQuest();
+        {                        
+            DialogResult result = MessageBox.Show("Any changes of the opened quest will be lost. Do you really want to start a new quest?", "Create new quest", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                InitEmptyQuest();
 
-            this.Text = TITLE + openFilename;
-            Log.Info( "New Quest created");
+                this.Text = TITLE + openFilename;
+                Log.Info("New Quest created");
+            }                 
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -506,26 +531,16 @@ namespace DOL.Tools.QuestDesigner
             new InfoForm().ShowDialog();
         }
 
-        private void dOL18QuestToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
-            Exporter.getExporter(Exporter.DOL_18).CreateQuest();
-        }
-
-        private void dOL20QuestToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Exporter.getExporter(Exporter.DOL_20).CreateQuest();
-        }
-
-        private void sQLExportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Exporter.getExporter(Exporter.SQL).CreateQuest();
-        }
-
         private void dataDownloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.DownloadData = true;
             CheckData();
         }
+
+        private void linkLabelNewQuest_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            newToolStripMenuItem_Click(sender, e);
+        }        
  
     }
 }

@@ -23,18 +23,21 @@ using System.Text;
 using System.Data;
 using System.Windows.Forms;
 using DOL.GS.Quests;
+using DOL.GS;
+using DOL.GS.PacketHandler;
 
 namespace DOL.Tools.QuestDesigner.Util
 {
 	class DB
 	{
         public const string TABLE_QUEST = "Quest";
-        public const string TABLE_MOB = "Mob";
+        public const string TABLE_NPC = "Mob";
         public const string TABLE_AREA = "Area";
         public const string TABLE_ITEMTEMPLATE = "ItemTemplate";
         public const string TABLE_LOCATION = "Location";
         public const string TABLE_QUESTSTEP = "QuestStep";
         public const string TABLE_QUESTPART = "QuestPart";
+        public const string TABLE_QUESTCHARACTERCLASS = "QuestCharacterClass";
         public const string TABLE_QUESTPARTACTION = "QuestPartAction";
         public const string TABLE_QUESTPARTTRIGGER = "QuestPartTrigger";
         public const string TABLE_QUESTPARTREQUIREMENT = "QuestPartRequirement";
@@ -46,11 +49,131 @@ namespace DOL.Tools.QuestDesigner.Util
         public const string TABLE_REQUIREMENTTYPE = "RequirementType";
         public const string TABLE_ACTIONTYPE = "ActionType";
         public const string TABLE_TRIGGERTYPE = "TriggerType";
-        public const string TABLE_HAND = "Hand";        
-        
 
+        public const string COL_QUESTPARTTRIGGER_ID = "ID";
+        public const string COL_QUESTPARTTRIGGER_TYPENAME = "TypeName";        
+        public const string COL_QUESTPARTTRIGGER_TYPE = "Type";
+        public const string COL_QUESTPARTTRIGGER_K = "K";
+        public const string COL_QUESTPARTTRIGGER_I = "I";
+        public const string COL_QUESTPARTTRIGGER_QUESTPARTID = "QuestPartID";
+
+        public const string COL_TRIGGERTYPE_VALUE = "Value";
+        public const string COL_TRIGGERTYPE_ID = "ID";
+        public const string COL_TRIGGERTYPE_K = "K";
+        public const string COL_TRIGGERTYPE_HELP = "Help";
+        public const string COL_TRIGGERTYPE_TEXT = "Text";
+        public const string COL_TRIGGERTYPE_I = "I";
+        public const string COL_TRIGGERTYPE_DESCRIPTION = "Description";
+
+        public const string COL_QUESTPARTREQUIREMENT_ID = "ID";
+        public const string COL_QUESTPARTREQUIREMENT_TYPENAME = "TypeName";        
+        public const string COL_QUESTPARTREQUIREMENT_TYPE = "Type";
+        public const string COL_QUESTPARTREQUIREMENT_N = "N";
+        public const string COL_QUESTPARTREQUIREMENT_V = "V";
+        public const string COL_QUESTPARTREQUIREMENT_QUESTPARTID = "QuestPartID";
+        public const string COL_QUESTPARTREQUIREMENT_COMPARATOR = "Comparator";
+
+        public const string COL_REQUIREMENTTYPE_VALUE = "Value";
+        public const string COL_REQUIREMENTTYPE_ID = "ID";
+        public const string COL_REQUIREMENTTYPE_N = "N";
+        public const string COL_REQUIREMENTTYPE_V = "V";
+        public const string COL_REQUIREMENTTYPE_COMPARATOR = "Comparator";
+        public const string COL_REQUIREMENTTYPE_TEXT = "Text";
+        public const string COL_REQUIREMENTTYPE_HELP = "Help";
+        public const string COL_REQUIREMENTTYPE_DESCRIPTION = "Description";
+
+        public const string COL_QUESTPARTACTION_ID = "ID";
+        public const string COL_QUESTPARTACTION_TYPENAME = "TypeName";
+        public const string COL_QUESTPARTACTION_TYPE = "Type";
+        public const string COL_QUESTPARTACTION_P = "P";
+        public const string COL_QUESTPARTACTION_Q = "Q";
+        public const string COL_QUESTPARTACTION_QUESTPARTID = "QuestPartID";
+
+        public const string COL_ACTIONTYPE_VALUE = "Value";
+        public const string COL_ACTIONTYPE_ID = "ID";
+        public const string COL_ACTIONTYPE_P = "P";
+        public const string COL_ACTIONTYPE_Q = "Q";
+        public const string COL_ACTIONTYPE_HELP = "Help";
+        public const string COL_ACTIONTYPE_TEXT = "Text";
+        public const string COL_ACTIONTYPE_DESCRIPTION = "Description";
+
+        public const string COL_QUEST_NAME = "Name";
+        public const string COL_QUEST_TITLE = "Title";
+        public const string COL_QUEST_AUTHOR = "Author";
+        public const string COL_QUEST_DATE = "Date";
+        public const string COL_QUEST_VERSION = "Version";
+        public const string COL_QUEST_MAXQUESTCOUNT = "MaxQuestCount";
+        public const string COL_QUEST_NAMESPACE = "Namespace";
+        public const string COL_QUEST_MINIMUMLEVEL = "MinimumLevel";
+        public const string COL_QUEST_MAXIMUMLEVEL = "MaximumLevel";
+        public const string COL_QUEST_DESCRIPTION = "Description";
+        public const string COL_QUEST_INVITINGNPC = "InvitingNPC";        
+        public const string COL_QUEST_SCRIPTLOADEDCODE = "ScriptLoadedCode";
+        public const string COL_QUEST_SCRIPTUNLOADEDCODE = "ScriptUnloadedCode";
+        public const string COL_QUEST_INITIALIZATIONCODE = "InitializationCode";
+
+        public const string COL_NPC_ID = "MobID";
+        public const string COL_NPC_REALM = "Realm";        
+        public const string COL_NPC_NAME = "Name";
+        public const string COL_NPC_OBJECTNAME = "ObjectName";
+        public const string COL_NPC_X = "X";
+        public const string COL_NPC_Y = "Y";
+        public const string COL_NPC_Z = "Z";
+        public const string COL_NPC_HEADING = "Heading";
+        public const string COL_NPC_REGION = "Region";
+
+        public const string COL_ITEMTEMPLATE_ID = "ItemTemplateID";
+        public const string COL_ITEMTEMPLATE_NAME = "Name";
+        public const string COL_ITEMTEMPLATE_OBJECTNAME = "ObjectName";
+        public const string COL_ITEMTEMPLATE_OBJECTTYPE = "Object_Type";
+
+        public const string COL_AREA_REGIONID = "RegionID";
+        public const string COL_AREA_OBJECTNAME = "ObjectName";
+        public const string COL_AREA_NAME = "Name";
+        public const string COL_AREA_X="X";
+        public const string COL_AREA_Y = "Y";
+        public const string COL_AREA_Z = "Z";
+        public const string COL_AREA_R = "R";
+        public const string COL_AREA_AREATYPE = "AreaType";
+
+        public const string COL_LOCATION_OBJECTNAME = "ObjectName";
+        public const string COL_LOCATION_NAME = "Name";
+        public const string COL_LOCATION_X = "X";
+        public const string COL_LOCATION_Y = "Y";
+        public const string COL_LOCATION_Z = "Z";
+        public const string COL_LOCATION_REGIONID = "RegionID";
+
+        public const string COL_REGION_ID = "ID";
+        public const string COL_REGION_DESCRIPTION = "Description";
+
+        public const string COL_ZONE_ID = "zoneID";
+        public const string COL_ZONE_REGIONID = "regionID";
+        public const string COL_ZONE_DESCRIPTION = "Description";
+        public const string COL_ZONE_OFFSETX = "OffsetX";
+        public const string COL_ZONE_OFFSETY = "OffsetY";
+        public const string COL_ZONE_WIDTH = "Width";
+        public const string COL_ZONE_HEIGHT = "Height";
+
+        public const string COL_QUESTSTEP_DESCRIPTION = "Description";
+
+        public const string COL_QUESTPART_ID = "ID";
+        public const string COL_QUESTPART_POSITION = "Position";
+        public const string COL_QUESTPART_DEFAULTNPC = "DefaultNPC";
+
+        public const string COL_QUESTCHARACTERCLASS_VALUE = "Value";
+        public const string COL_QUESTCHARACTERCLASS_DESCRIPTION = "Description";
+
+        public const string COL_ENUMERATION_VALUE = "Value";
+        public const string COL_ENUMERATION_NAME = "Name";
+        public const string COL_ENUMERATION_DESCRIPTION = "Description";
+        public const string COL_ENUMERATION_TYPE = "Type";
+
+        public static BindingSource characterClassBinding;
 		public static BindingSource emoteBinding;
         public static BindingSource areaBinding;
+        public static BindingSource handBinding;
+        public static BindingSource areaTypeBinding;
+        public static BindingSource objectTypeBinding;
         public static BindingSource locationBinding;
 		public static BindingSource questPartBinding;
 		public static BindingSource zoneBinding;
@@ -103,12 +226,7 @@ namespace DOL.Tools.QuestDesigner.Util
         public static DataTable RegionTable
         {
             get { return ConfigDataSet.Tables[TABLE_REGION]; }
-        }
-
-        public static DataTable HandTable
-        {
-            get { return ConfigDataSet.Tables[TABLE_HAND]; }
-        }
+        }        
 
         public static DataTable EnumerationTable
         {
@@ -134,6 +252,11 @@ namespace DOL.Tools.QuestDesigner.Util
         public static DataTable QuestTable
         {
             get { return QuestDataSet.Tables[TABLE_QUEST]; }
+        }
+
+        public static DataTable QuestCharacterClassTable
+        {
+            get { return QuestDataSet.Tables[TABLE_QUESTCHARACTERCLASS]; }
         }
 
         public static DataTable QuestStepTable
@@ -163,7 +286,7 @@ namespace DOL.Tools.QuestDesigner.Util
 
         public static DataTable MobTable
         {
-            get { return QuestDataSet.Tables[TABLE_MOB]; }
+            get { return QuestDataSet.Tables[TABLE_NPC]; }
         }
 
         public static DataTable ItemTemplateTable
@@ -187,37 +310,57 @@ namespace DOL.Tools.QuestDesigner.Util
         {
             areaBinding = new BindingSource(QuestDataSet, TABLE_AREA);
             
-            mobBinding = new BindingSource(QuestDataSet, TABLE_MOB);
+            mobBinding = new BindingSource(QuestDataSet, TABLE_NPC);
 
             locationBinding = new BindingSource(QuestDataSet, TABLE_LOCATION);
             
             questPartBinding = new BindingSource(QuestDataSet, TABLE_QUESTPART);
-            questPartBinding.Sort = "Position";
+            questPartBinding.Sort = DB.COL_QUESTPART_POSITION;
             
             zoneBinding = new BindingSource(ConfigDataSet, TABLE_ZONE);
-            zoneBinding.Sort = "Description";
+            zoneBinding.Sort = DB.COL_ZONE_DESCRIPTION;
 
             regionBinding = new BindingSource(ConfigDataSet, TABLE_REGION);
-            regionBinding.Sort = "Description";
+            regionBinding.Sort = DB.COL_REGION_DESCRIPTION;
             
             textTypeBinding = new BindingSource(ConfigDataSet, TABLE_ENUMERATION);
             textTypeBinding.AllowNew = false;                        
-            textTypeBinding.Filter = "Type=\'eTextType\'";
-            textTypeBinding.Sort = "Description";
+            textTypeBinding.Filter = DB.COL_ENUMERATION_TYPE+"='"+typeof(eTextType).Name+"'";
+            textTypeBinding.Sort = DB.COL_ENUMERATION_DESCRIPTION;
+
+            areaTypeBinding = new BindingSource(ConfigDataSet, TABLE_ENUMERATION);
+            areaTypeBinding.AllowNew = false;
+            areaTypeBinding.Filter = DB.COL_ENUMERATION_TYPE  +"='AreaType'";
+            areaTypeBinding.Sort = DB.COL_ENUMERATION_DESCRIPTION;
+
+            objectTypeBinding = new BindingSource(ConfigDataSet, TABLE_ENUMERATION);
+            objectTypeBinding.AllowNew = false;
+            objectTypeBinding.Filter = DB.COL_ENUMERATION_TYPE  +"='" + typeof(eObjectType).Name + "'";
+            objectTypeBinding.Sort = DB.COL_ENUMERATION_DESCRIPTION;
+
+            handBinding = new BindingSource(ConfigDataSet, TABLE_ENUMERATION);
+            handBinding.AllowNew = false;
+            handBinding.Filter = DB.COL_ENUMERATION_TYPE  +"='Hand'";
+            handBinding.Sort = DB.COL_ENUMERATION_VALUE;
+
+            characterClassBinding = new BindingSource(ConfigDataSet, TABLE_ENUMERATION);
+            characterClassBinding.AllowNew = false;
+            characterClassBinding.Filter = DB.COL_ENUMERATION_TYPE  +"='" + typeof(eCharacterClass).Name + "'";
+            characterClassBinding.Sort = DB.COL_ENUMERATION_DESCRIPTION;
             
             requirementTypeBinding = new BindingSource(ConfigDataSet, TABLE_REQUIREMENTTYPE);
                         
-            comparatorBinding = new BindingSource(ConfigDataSet,TABLE_ENUMERATION);                       
-            comparatorBinding.Filter = "Type=\'eComparator\'";
-            comparatorBinding.Sort = "Value";
+            comparatorBinding = new BindingSource(ConfigDataSet,TABLE_ENUMERATION);
+            comparatorBinding.Filter = DB.COL_ENUMERATION_TYPE  +"='"+typeof(eComparator).Name+"'";
+            comparatorBinding.Sort = DB.COL_ENUMERATION_VALUE;
 
-            comparatorBinaryBinding = new BindingSource(ConfigDataSet, TABLE_ENUMERATION);            
-            comparatorBinaryBinding.Filter = "Type=\'eComparator\' and (Value=" + (byte)eComparator.None + " OR Value=" + (byte)eComparator.Not + ")";
-            comparatorBinaryBinding.Sort = "Value";
+            comparatorBinaryBinding = new BindingSource(ConfigDataSet, TABLE_ENUMERATION);
+            comparatorBinaryBinding.Filter = DB.COL_ENUMERATION_TYPE + "='" + typeof(eComparator).Name + "' and (" + DB.COL_ENUMERATION_VALUE + "='" + (byte)eComparator.None + "' OR " + DB.COL_ENUMERATION_VALUE + "='" + (byte)eComparator.Not + "')";
+            comparatorBinaryBinding.Sort = DB.COL_ENUMERATION_VALUE;
 
             comparatorQuantityBinding = new BindingSource(ConfigDataSet, TABLE_ENUMERATION);
-            comparatorQuantityBinding.Filter = "Type=\'eComparator\' and Value<>" + (byte)eComparator.None + " and Value<>" + (byte)eComparator.Not + "";
-            comparatorQuantityBinding.Sort = "Value";
+            comparatorQuantityBinding.Filter = DB.COL_ENUMERATION_TYPE + "='" + typeof(eComparator).Name + "' and " + DB.COL_ENUMERATION_VALUE + "<>'" + (byte)eComparator.None + "' and " + DB.COL_ENUMERATION_VALUE + "<>'" + (byte)eComparator.Not + "'";
+            comparatorQuantityBinding.Sort = DB.COL_ENUMERATION_VALUE;
             
             actionTypeBinding = new BindingSource(ConfigDataSet, TABLE_ACTIONTYPE);                        
          
@@ -225,8 +368,8 @@ namespace DOL.Tools.QuestDesigner.Util
             
             emoteBinding = new BindingSource(ConfigDataSet, TABLE_ENUMERATION);
             emoteBinding.AllowNew = false;
-            emoteBinding.Filter = "Type=\'eEmote\'";
-            emoteBinding.Sort = "Description";
+            emoteBinding.Filter = DB.COL_ENUMERATION_TYPE + "='" + typeof(eEmote).Name + "'";
+            emoteBinding.Sort = DB.COL_ENUMERATION_DESCRIPTION;
         }
 
         public static void SuspendBindings()
@@ -311,76 +454,76 @@ namespace DOL.Tools.QuestDesigner.Util
 		{
 			BindingSource bs =  new BindingSource();
 			bs.DataSource = EnumerationTable;
-			bs.Filter = "Type='" + type + "'";
+			bs.Filter = DB.COL_ENUMERATION_TYPE+"='" + type + "'";
 			return bs;
 		}
 
 		public static string GetItemNameForID(string id)
 		{
-			DataRow[] rows = ItemTemplateTable.Select("ItemTemplateID='" + id + "'");
+			DataRow[] rows = ItemTemplateTable.Select(COL_ITEMTEMPLATE_ID+"='" + id + "'");
 			if (rows.Length > 0)
-				return Convert.ToString(rows[0]["Name"]);
+                return Convert.ToString(rows[0][COL_ITEMTEMPLATE_NAME]);
 			else
 				return id;
 		}
 
 		public static string getEnumerationNameForID(string type, string id)
 		{
-			DataRow[] rows = EnumerationTable.Select("Type='" + type + "' and Value="+id);
+			DataRow[] rows = EnumerationTable.Select(DB.COL_ENUMERATION_TYPE+"='" + type + "' and "+DB.COL_ENUMERATION_VALUE+"='"+id+"'");
 			if (rows.Length > 0)
-				return Convert.ToString(rows[0]["Description"]);
+				return Convert.ToString(rows[0][DB.COL_ENUMERATION_DESCRIPTION]);
 			else
 				return id;
 		}
 
 		public static string GetRegionNameForID(string id)
 		{
-			DataRow[] rows = RegionTable.Select("ID='" + id + "'");
+			DataRow[] rows = RegionTable.Select(DB.COL_REGION_ID+"='" + id + "'");
 			if (rows.Length > 0)
-				return Convert.ToString(rows[0]["description"]);
+                return Convert.ToString(rows[0][DB.COL_REGION_DESCRIPTION]);
 			else
 				return id;
 		}
 
 		public static string GetZoneNameForID(string id)
 		{
-			DataRow[] rows = ZoneTable.Select("ZoneID='" + id + "'");
+			DataRow[] rows = ZoneTable.Select(DB.COL_ZONE_ID+"='" + id + "'");
 			if (rows.Length > 0)
-				return Convert.ToString(rows[0]["description"]);
+                return Convert.ToString(rows[0][DB.COL_ZONE_DESCRIPTION]);
 			else
 				return id;
 		}
 
 		public static string GetNPCNameForID(string id)
 		{
-			DataRow[] rows = MobTable.Select("ObjectName='" + id + "'");
+			DataRow[] rows = MobTable.Select(COL_NPC_OBJECTNAME+"='" + id + "'");
 			if (rows.Length > 0)
-				return Convert.ToString(rows[0]["Name"]);
+				return Convert.ToString(rows[0][COL_NPC_NAME]);
 			else
 				return id;
 		}
 
 		public static string GetAreaNameForID(string id)
 		{
-			DataRow[] rows = AreaTable.Select("ObjectName='" + id + "'");
+			DataRow[] rows = AreaTable.Select(COL_AREA_OBJECTNAME+"='" + id + "'");
 			if (rows.Length > 0)
-				return Convert.ToString(rows[0]["Name"]);
+                return Convert.ToString(rows[0][COL_AREA_NAME]);
 			else
 				return id;
 		}
 
 		public static string GetLocationForID(string id)
 		{
-			DataRow[] rows = LocationTable.Select("ObjectName='" + id + "'");
+			DataRow[] rows = LocationTable.Select(COL_LOCATION_OBJECTNAME+"='" + id + "'");
 			if (rows.Length > 0)
-				return Convert.ToString(rows[0]["Name"]);
+                return Convert.ToString(rows[0][COL_LOCATION_NAME]);
 			else
 				return id;
 		}
 
 		public static DataRow GetTriggerTypeRowForID(int id)
 		{
-			DataRow[] triggerRows = TriggerTypeTable.Select("ID=" + id);
+			DataRow[] triggerRows = TriggerTypeTable.Select(COL_TRIGGERTYPE_ID+"=" + id);
 			if (triggerRows.Length > 0)
 				return triggerRows[0];
 			else
@@ -389,7 +532,7 @@ namespace DOL.Tools.QuestDesigner.Util
 
 		public static DataRow GetRequirementTypeRowForID(int id)
 		{
-			DataRow[] requRows = RequirementTypeTable.Select("ID=" + id);
+			DataRow[] requRows = RequirementTypeTable.Select(COL_REQUIREMENTTYPE_ID+"=" + id);
 			if (requRows.Length > 0)
 				return requRows[0];
 			else
@@ -398,7 +541,7 @@ namespace DOL.Tools.QuestDesigner.Util
 
 		public static DataRow GetActionTypeRowForID(int id)
 		{
-			DataRow[] actionRows = ActionTypeTable.Select("ID=" + id);
+			DataRow[] actionRows = ActionTypeTable.Select(COL_ACTIONTYPE_ID+"=" + id);
 			if (actionRows.Length > 0)
 				return actionRows[0];
 			else
@@ -418,22 +561,22 @@ namespace DOL.Tools.QuestDesigner.Util
                 string name = (string)value;
                 foreach (DataRow row in DB.MobTable.Rows)
                 {
-                    if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
+                    if (row[COL_NPC_OBJECTNAME] is string && (string)row[COL_NPC_OBJECTNAME] == name)
                         return true;
                 }
                 foreach (DataRow row in DB.ItemTemplateTable.Rows)
                 {
-                    if (row["ItemTemplateID"] is string && (string)row["ItemTemplateID"] == name)
+                    if (row[COL_ITEMTEMPLATE_ID] is string && (string)row[COL_ITEMTEMPLATE_ID] == name)
                         return true;
                 }
                 foreach (DataRow row in DB.AreaTable.Rows)
                 {
-                    if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
+                    if (row[COL_AREA_OBJECTNAME] is string && (string)row[COL_AREA_OBJECTNAME] == name)
                         return true;
                 }
                 foreach (DataRow row in DB.LocationTable.Rows)
                 {
-                    if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
+                    if (row[COL_LOCATION_OBJECTNAME] is string && (string)row[COL_LOCATION_OBJECTNAME] == name)
                         return true;
                 }
             }
@@ -453,7 +596,7 @@ namespace DOL.Tools.QuestDesigner.Util
                 string name = (string)value;
                 foreach (DataRow row in DB.MobTable.Rows)
                 {
-                    if (row["ObjectName"] is string && (string)row["ObjectName"] == name)
+                    if (row[COL_NPC_OBJECTNAME] is string && (string)row[COL_NPC_OBJECTNAME] == name)
                         return true;
                 }
             }

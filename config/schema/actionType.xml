@@ -49,9 +49,9 @@ Possible parameters:
 	<ActionType>
 		<value>eActionType.Attack</value>
 		<description>Attack</description>
-		<help>Player is attacked with aggroamount P by monster Q</help>
+		<help>Player is attacked with aggroamount P by Q</help>
 		<p>int(Player.Level/2)</p>
-		<q>GameLiving:string</q>
+		<q>GameNPC:string</q>
 		<text>$Q{0}$ attacks the player (aggro:$P{1}$)</text>
 	</ActionType>
 	<ActionType>
@@ -59,15 +59,15 @@ Possible parameters:
 		<description>WalkTo</description>
 		<help>GameNPC Q walks to point P, or player if P is empty</help>
 		<p>Location:var(the player)</p>
-		<q>GameLiving:string</q>
+		<q>GameNPC:string</q>
 		<text>$Q{0}$ walks to $P{1}$</text>
 	</ActionType>
 	<ActionType>
 		<value>eActionType.WalkToSpawn</value>
 		<description>WalkToSpawn</description>
-		<help>GameNPC Q walks to spawnpoint</help>
-		<q>GameLiving:string</q>
-		<text>$Q{0}$ walks to his spawn point</text>
+		<help>GameNPC P walks to spawnpoint</help>
+		<p>GameNPC:string</p>
+		<text>$P{0}$ walks to his spawn point</text>
 	</ActionType>
 	<ActionType>
 		<value>eActionType.MoveTo</value>
@@ -188,10 +188,10 @@ Possible parameters:
 	<ActionType>
 		<value>eActionType.SetMonsterPath</value>
 		<description>SetMonsterPath</description>
-		<help>Mob Q is assigned to path P</help>
-		<q>GameLiving:string</q>
+		<help>GameNPC Q is assigned to path P</help>
+		<q>GameNPC:string</q>
 		<p>Pathpoint:string</p>
-		<text>the mob $Q{0}$ walks on path initiated by point $P{1}$</text>
+		<text>the npc $Q{0}$ walks on path initiated by point $P{1}$</text>
 	</ActionType>
 
 	<ActionType>
