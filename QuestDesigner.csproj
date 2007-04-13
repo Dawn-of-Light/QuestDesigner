@@ -67,9 +67,15 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DOLBase, Version=2.0.0.18647, Culture=neutral, PublicKeyToken=db45e164f53c301b, processorArchitecture=MSIL" />
-    <Reference Include="DOLDatabase, Version=1.5.0.18646, Culture=neutral, PublicKeyToken=db45e164f53c301b, processorArchitecture=MSIL" />
-    <Reference Include="GameServer, Version=1.9.0.0, Culture=neutral, PublicKeyToken=db45e164f53c301b, processorArchitecture=MSIL" />
+    <Reference Include="DOLBase, Version=2.0.0.18647, Culture=neutral, PublicKeyToken=db45e164f53c301b, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DOLDatabase, Version=1.5.0.18646, Culture=neutral, PublicKeyToken=db45e164f53c301b, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GameServer, Version=1.9.0.0, Culture=neutral, PublicKeyToken=db45e164f53c301b, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.83.1.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\dol\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -124,12 +130,6 @@
     <Compile Include="Mapping\Module\MobModule.cs" />
     <Compile Include="Mapping\Module\ModulAttribute.cs" />
     <Compile Include="Mapping\Module\ModulMgr.cs" />
-    <Compile Include="QuestDesigner\Controls\ListBoxEx.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="QuestDesigner\Controls\ListBoxEx.Designer.cs">
-      <DependentUpon>ListBoxEx.cs</DependentUpon>
-    </Compile>
     <Compile Include="QuestDesigner\Converter\AreaTypeConverter.cs" />
     <Compile Include="QuestDesigner\Converter\EffectConverter.cs" />
     <Compile Include="QuestDesigner\Converter\ExtensionConverter.cs" />
@@ -360,10 +360,6 @@
     <EmbeddedResource Include="QuestDesigner\Area.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Area.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="QuestDesigner\Controls\ListBoxEx.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ListBoxEx.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuestDesigner\Controls\Selectors\BaseSelector.resx">
       <SubType>Designer</SubType>
@@ -2347,6 +2343,9 @@
     <Content Include="data\maps\9.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="quests\church_5.qst">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\dol.PNG" />
     <Content Include="data\maps\95.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

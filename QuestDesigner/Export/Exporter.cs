@@ -303,7 +303,7 @@ namespace DOL.Tools.QuestDesigner.Export
             wsettings.ConformanceLevel = ConformanceLevel.Auto;
 
             FileInfo outputFile = new FileInfo(scriptPath);
-            FileStream outputStream = outputFile.OpenWrite();
+            FileStream outputStream = outputFile.Open(FileMode.Create,FileAccess.Write);
             
             XmlReader xmlreader = XmlReader.Create(tempquest, rsettings);
             XmlWriter xmlwriter = XmlWriter.Create(outputStream, wsettings);

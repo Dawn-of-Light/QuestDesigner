@@ -335,7 +335,13 @@ namespace DOL.Tools.QuestDesigner
 
         private bool SaveQuest(string xmlfile)
         {
-            dataSetQuest.WriteXml(xmlfile);
+            FileInfo xmlFileinfo = new FileInfo(xmlfile);                        
+            FileStream xmlStream = xmlFileinfo.Open(FileMode.Create,FileAccess.Write);
+            
+            dataSetQuest.WriteXml(xmlStream);
+
+            xmlStream.Close();
+
             openFilename = xmlfile;
             this.Text = TITLE + xmlfile;
             Log.Info("Quest saved to " + xmlfile);

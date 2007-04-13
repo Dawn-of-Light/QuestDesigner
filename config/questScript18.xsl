@@ -117,8 +117,15 @@ namespace <xsl:value-of select="Namespace"/> {
 	<xsl:for-each select="/Quest/Mob">
 			npcs = WorldMgr.GetNPCsByName("<xsl:value-of select="Name"/>",(eRealm) <xsl:value-of select="Realm"/>);
 			if (npcs.Length == 0)
-			{
-				<xsl:value-of select="ObjectName"/> = new <xsl:value-of select="ClassType"/>();
+			{			
+				<xsl:choose>
+					<xsl:when test="NPCTemplateID!='-1'">
+						<xsl:value-of select="ObjectName"/> = new <xsl:value-of select="ClassType"/>(NPCTemplateMgr.GetTemplate(<xsl:value-of select="NPCTemplateID"/>));
+					</xsl:when>			
+					<xsl:otherwise>
+						<xsl:value-of select="ObjectName"/> = new <xsl:value-of select="ClassType"/>();
+					</xsl:otherwise>		
+				</xsl:choose>
 				<xsl:value-of select="ObjectName"/>.Model = <xsl:value-of select="Model"/>;
 				<xsl:value-of select="ObjectName"/>.Name = "<xsl:value-of select="Name"/>";
 				if (log.IsWarnEnabled)
@@ -132,9 +139,7 @@ namespace <xsl:value-of select="Namespace"/> {
 				<xsl:if test="MeleeDamageType"><xsl:value-of select="ObjectName"/>.MeleeDamageType = <xsl:value-of select="MeleeDamageType"/>;
 				</xsl:if>
 				<xsl:if test="FactionID"><xsl:value-of select="ObjectName"/>.Faction = FactionMgr.GetFactionByID(<xsl:value-of select="FactionID"/>);
-				</xsl:if>
-				<xsl:if test="NPCTemplateID"><xsl:value-of select="ObjectName"/>.NPCTemplateID = <xsl:value-of select="NPCTemplateID"/>;
-				</xsl:if>
+				</xsl:if>				
 				<xsl:value-of select="ObjectName"/>.X = <xsl:value-of select="X"/>;
 				<xsl:value-of select="ObjectName"/>.Y = <xsl:value-of select="Y"/>;
 				<xsl:value-of select="ObjectName"/>.Z = <xsl:value-of select="Z"/>;

@@ -42,7 +42,7 @@ namespace DOL.Tools.QuestDesigner
             this.QuestName.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_NAME, true));
             this.Title.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_TITLE ,true));
             this.Author.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_AUTHOR, true));
-            this.scriptDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_DATE, true));
+            this.scriptDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", DB.QuestTable, DB.COL_QUEST_DATE, true));            
             this.Version.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_VERSION, true));
             this.MaxQuestCount.DataBindings.Add(new System.Windows.Forms.Binding("Value", DB.QuestTable, DB.COL_QUEST_MAXQUESTCOUNT, true));
             this.Namespace.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_NAMESPACE, true));

@@ -103,6 +103,7 @@ namespace DOL.Tools.QuestDesigner
             System.Data.DataColumn dataColumn59;
             System.Data.DataColumn dataColumn66;
             System.Data.DataColumn dataColumnPlatinum;
+            System.Data.DataColumn dataColumnQuestDate;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
             NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
             NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
@@ -118,7 +119,6 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnQuestID = new System.Data.DataColumn();
             this.dataColumnQuestName = new System.Data.DataColumn();
             this.dataColumnQuestAuthor = new System.Data.DataColumn();
-            this.dataColumnQuestDate = new System.Data.DataColumn();
             this.dataColumnQuestVersion = new System.Data.DataColumn();
             this.dataColumnQuestDescription = new System.Data.DataColumn();
             this.dataColumn14 = new System.Data.DataColumn();
@@ -378,6 +378,7 @@ namespace DOL.Tools.QuestDesigner
             dataColumn59 = new System.Data.DataColumn();
             dataColumn66 = new System.Data.DataColumn();
             dataColumnPlatinum = new System.Data.DataColumn();
+            dataColumnQuestDate = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(dataTableQuestCharacterClass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetQuest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableQuestPart)).BeginInit();
@@ -823,7 +824,6 @@ namespace DOL.Tools.QuestDesigner
             // 
             dataColumn66.ColumnName = "NPCTemplateID";
             dataColumn66.DataType = typeof(int);
-            dataColumn66.DefaultValue = -1;
             // 
             // dataColumnPlatinum
             // 
@@ -919,7 +919,7 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnQuestID,
             this.dataColumnQuestName,
             this.dataColumnQuestAuthor,
-            this.dataColumnQuestDate,
+            dataColumnQuestDate,
             this.dataColumnQuestVersion,
             this.dataColumnQuestDescription,
             this.dataColumn14,
@@ -950,8 +950,8 @@ namespace DOL.Tools.QuestDesigner
             // 
             // dataColumnQuestDate
             // 
-            this.dataColumnQuestDate.ColumnName = "Date";
-            this.dataColumnQuestDate.DataType = typeof(System.DateTime);
+            dataColumnQuestDate.ColumnName = "Date";
+            dataColumnQuestDate.DataType = typeof(System.DateTime);
             // 
             // dataColumnQuestVersion
             // 
@@ -2443,7 +2443,6 @@ namespace DOL.Tools.QuestDesigner
         private System.Data.DataColumn dataColumnQuestID;
         private System.Data.DataColumn dataColumnQuestName;
         private System.Data.DataColumn dataColumnQuestAuthor;
-        private System.Data.DataColumn dataColumnQuestDate;
         private System.Data.DataColumn dataColumnQuestVersion;
         private System.Data.DataColumn dataColumnQuestDescription;
 		public System.Data.DataTable dataTableAction;
