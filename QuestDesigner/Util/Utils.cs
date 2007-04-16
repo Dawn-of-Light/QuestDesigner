@@ -36,10 +36,19 @@ namespace DOL.Tools.QuestDesigner.Util
             return Convert.ToString(obj).Replace("\"", "\\\"");
         }
 
-        public static string ToEscapedText(object obj)
+        public static string EscapeRtf(string obj)
         {
-            
+            return obj.Replace("\\", "\\\\").Replace("{","\\{").Replace("}","\\}");
+        }
+
+        public static string ToEscapedText(object obj)
+        {            
             return "\"" + Convert.ToString(obj).Replace("\"","\\\"")+"\"";
+        }
+
+        public static bool EqualsIgnoreCase(string str1, string str2)
+        {
+            return str1.ToLower().Equals(str2.ToLower());
         }
 
 		public static string ConvertToObjectName(string value)
@@ -292,7 +301,7 @@ namespace DOL.Tools.QuestDesigner.Util
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "text" : defaultValue;
 				else
-					return value;
+					return Utils.EscapeRtf(value);
 			}
 			else if (type.StartsWith(Const.TYPE_INT) || type.StartsWith(Const.TYPE_LONG))
 			{
@@ -327,7 +336,7 @@ namespace DOL.Tools.QuestDesigner.Util
 				if (String.IsNullOrEmpty(value))
 					return defaultValue == null ? "parameter" : defaultValue;
 				else
-					return value;
+					return Utils.EscapeRtf(value);
 			}
 		}
 

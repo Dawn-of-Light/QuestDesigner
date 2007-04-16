@@ -9,10 +9,10 @@ using DOL.Tools.Mapping.DX;
 using DOL.Tools.Mapping.DX.Meshes;
 using DOL.Tools.Mapping.Map;
 using Timer=System.Timers.Timer;
-using DOL.Tools.Mapping.Resource;
 using DOL.Tools.QuestDesigner.Util;
 using DOL.Tools.QuestDesigner;
 using DOL.Tools.Mapping.Modules;
+using DOL.Tools.QuestDesigner.QuestDesigner.Util;
 
 namespace DOL.Tools.Mapping.Forms
 {
@@ -32,8 +32,7 @@ namespace DOL.Tools.Mapping.Forms
         private int MouseValueH = 0;
         private int MouseValueV = 0;
         private Matrix View = Matrix.Zero;
-        private Matrix Proj = Matrix.Zero;
-        public bool DeviceReady = false;
+        private Matrix Proj = Matrix.Zero;        
         public GeometryObj HBObject;
         public ToolStrip toolStrip;
         public ToolStripComboBox comboBoxMaps;
@@ -49,8 +48,17 @@ namespace DOL.Tools.Mapping.Forms
         private ToolStripMenuItem filterMenuItem;
         private Vector3 cachedLocation;
 
-        public DXControl()
+        private static Set<GeometryObj> geoObjects = new Set<GeometryObj>();
+
+        public static Set<GeometryObj> GeoObjects
         {
+            get { return geoObjects; }
+        }
+	
+
+        public DXControl()
+        {           
+            DB.DatabaseLoaded += new DB.DatabaseLoadedEventHandler(DB_DatabaseLoaded);
             // This call is required by the Windows.Forms Form Designer.
             InitializeComponent();
 
@@ -68,9 +76,16 @@ namespace DOL.Tools.Mapping.Forms
             
         }
 
+        void DB_DatabaseLoaded()
+        {
+            
+            RegionMgr.PreloadRegions();            
+            ModulMgr.PreloadModules();
+        }
+
         public void ShowLocation(Vector3 point, int regionID)
         {
-            if (DeviceReady)
+            if (Common.DeviceReady)
             {
 
                 RegionMgr.LoadRegion(regionID);
@@ -291,70 +306,66 @@ namespace DOL.Tools.Mapping.Forms
         {
             if (!DB.isInitialized())
                 return;
-            
-            GeometryObj[] array = (GeometryObj[]) Objects.ToArray();
+                                   
+            DetailLevel lvl = GetDetailLevel();
+            int objs = 0;
 
-            lock (array)
+            //float zoomval = Zoom.Value / (Zoom.Maximum - Zoom.Minimum) + 1;
+            double ViewFac = DOL.Tools.QuestDesigner.Properties.Settings.Default.ViewFactor;                                
+            double zoomval = Math.Pow(Zoom.Value, 1.20)/(Zoom.Maximum - Zoom.Minimum)/26*(256*256/16)*ViewFac;
+
+            int x = (int) (ClientRectangle.Width*zoomval);
+            int y = (int) (ClientRectangle.Height*zoomval);
+
+            float cameraX = (float) hScrollBar.Value;
+            float cameraY = (float) vScrollBar.Value;
+
+            int plusX = (int) cameraX + x;
+            int minusX = (int) cameraX - x;
+            int plusY = (int) cameraY + y;
+            int minusY = (int) cameraY - y;
+
+            for (byte a = (byte) DrawLevel._START; a <= (byte) DrawLevel._LAST; a++)
             {
-                DetailLevel lvl = GetDetailLevel();
-                int objs = 0;
-
-                //float zoomval = Zoom.Value / (Zoom.Maximum - Zoom.Minimum) + 1;
-                double ViewFac = DOL.Tools.QuestDesigner.Properties.Settings.Default.ViewFactor;                                
-                double zoomval = Math.Pow(Zoom.Value, 1.20)/(Zoom.Maximum - Zoom.Minimum)/26*(256*256/16)*ViewFac;
-
-                int x = (int) (ClientRectangle.Width*zoomval);
-                int y = (int) (ClientRectangle.Height*zoomval);
-
-                float cameraX = (float) hScrollBar.Value;
-                float cameraY = (float) vScrollBar.Value;
-
-                int plusX = (int) cameraX + x;
-                int minusX = (int) cameraX - x;
-                int plusY = (int) cameraY + y;
-                int minusY = (int) cameraY - y;
-
-                for (byte a = (byte) DrawLevel._START; a <= (byte) DrawLevel._LAST; a++)
+                foreach (GeometryObj obj in GeoObjects)
                 {
-                    foreach (GeometryObj obj in array)
+                    if (!InDetailLevel(obj.DetailLevel, lvl))
+                        continue;
+
+                    if (obj.DrawLevel == (DrawLevel) a)
                     {
-                        if (!InDetailLevel(obj.DetailLevel, lvl))
-                            continue;
-
-                        if (obj.DrawLevel == (DrawLevel) a)
+                        if ((DrawLevel) a != DrawLevel.Background)
                         {
-                            if ((DrawLevel) a != DrawLevel.Background)
-                            {
-                                if (!((obj.X >= minusX && obj.X <= plusX) && (obj.Y >= minusY && obj.Y <= plusY)))
-                                    continue;
-                            }
-                            //World Matrix..
-                            //Common.Device.Transform.World = Matrix.RotationYawPitchRoll(obj.Yaw, obj.Pitch, obj.Roll)*Matrix.Translation(obj.X, -obj.Y, obj.Z);
-                            Common.Device.Transform.World = Objects.CreateWorldMatrix(obj);
-
-                            //Texture
-                            Common.Device.SetTexture(0, obj.Model.Texture);
-
-                            //Set Blend Texture
-                            if (obj.Model.BlendTexture != null)
-                            {
-                                Common.Device.SetTexture(1, obj.Model.BlendTexture);
-                                Common.Device.TextureState[1].ColorOperation = TextureOperation.Modulate;
-                                Common.Device.TextureState[1].ColorArgument1 = TextureArgument.TextureColor;
-                                Common.Device.TextureState[1].ColorArgument2 = TextureArgument.Current;
-                                Common.Device.TextureState[2].ColorOperation = TextureOperation.Disable;
-                            }
-                            else
-                                Common.Device.TextureState[1].ColorOperation = TextureOperation.Disable;
-
-                            //Rendern..
-                            obj.Model.Mesh.Render();
-
-                            //Objects increasen..
-                            objs++;
+                            if (!((obj.X >= minusX && obj.X <= plusX) && (obj.Y >= minusY && obj.Y <= plusY)))
+                                continue;
                         }
+                        //World Matrix..
+                        //Common.Device.Transform.World = Matrix.RotationYawPitchRoll(obj.Yaw, obj.Pitch, obj.Roll)*Matrix.Translation(obj.X, -obj.Y, obj.Z);
+                        Common.Device.Transform.World = obj.CreateWorldMatrix();
+
+                        //Texture
+                        Common.Device.SetTexture(0, obj.Model.Texture);
+
+                        //Set Blend Texture
+                        if (obj.Model.BlendTexture != null)
+                        {
+                            Common.Device.SetTexture(1, obj.Model.BlendTexture);
+                            Common.Device.TextureState[1].ColorOperation = TextureOperation.Modulate;
+                            Common.Device.TextureState[1].ColorArgument1 = TextureArgument.TextureColor;
+                            Common.Device.TextureState[1].ColorArgument2 = TextureArgument.Current;
+                            Common.Device.TextureState[2].ColorOperation = TextureOperation.Disable;
+                        }
+                        else
+                            Common.Device.TextureState[1].ColorOperation = TextureOperation.Disable;
+
+                        //Rendern..
+                        obj.Model.Mesh.Render();
+
+                        //Objects increasen..
+                        objs++;
                     }
                 }
+                
                 StatusChangeObjects(objs);
             }
         }
@@ -571,7 +582,7 @@ namespace DOL.Tools.Mapping.Forms
             if (HBObject.Model.Mesh == null)
                 return new Vector3(0, 0, 0);
 
-            Matrix World = Objects.CreateWorldMatrix(HBObject);
+            Matrix World = HBObject.CreateWorldMatrix();
 
             Vector3 rayStart, rayDirection;
 
@@ -669,12 +680,9 @@ namespace DOL.Tools.Mapping.Forms
 
         private void DXControl_Load(object sender, EventArgs e)
         {
-            
-
             RegionMgr.LoadRegions();
-
             ModulMgr.LoadModules();
-
+            
             if (cachedRegionID >= 0)
             {
                 RegionMgr.LoadRegion(cachedRegionID);
@@ -692,6 +700,8 @@ namespace DOL.Tools.Mapping.Forms
                 Invalidate();
 
             }
+
+
 
             
         }

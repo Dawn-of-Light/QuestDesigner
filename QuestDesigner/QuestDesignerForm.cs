@@ -111,17 +111,19 @@ namespace DOL.Tools.QuestDesigner
 			this.tabControlMain.Renderer = XPRenderers;
 			this.xpTaskPane.ColorTable = NETXP.Library.ColorTables.XPBlue;
             this.xpTGActions.ColorTable = NETXP.Library.ColorTables.XPBlue;
+            this.xpTGQuestPart.ColorTable = NETXP.Library.ColorTables.XPBlue;
+            this.xpTGQuestPart.PerformAutoScale();
 
             this.tabControlMain.Renderer = XPRenderers;
 
 			toolStripMenuItemTaskPane.CheckState = Settings.Default.ShowTaskPane ? CheckState.Checked: CheckState.Unchecked;
 
-            tabControlMain.TabPages["Map Editor"].Enabled = QuestDesignerMain.DataSupported;
+            this.tabPageMap.Enabled = QuestDesignerMain.DataSupported;
 
 			// Load last file
-			if (!String.IsNullOrEmpty(XMLFile))
+            if (!String.IsNullOrEmpty(Settings.Default.XMLFile))
 			{
-				if (!LoadQuest(XMLFile))
+                if (!LoadQuest(Settings.Default.XMLFile))
 					InitEmptyQuest();
 			}
 			else
@@ -134,7 +136,9 @@ namespace DOL.Tools.QuestDesigner
 
             Log.register();
 
-            CheckData();            
+            CheckData();
+
+
 		}
 
         public void ShowTab(int index)
@@ -182,7 +186,7 @@ namespace DOL.Tools.QuestDesigner
             
             StatusProgress.Value = StatusProgress.Minimum;
 
-            tabControlMain.TabPages["Map Editor"].Enabled = QuestDesignerMain.DataSupported;
+            this.tabPageMap.Enabled = QuestDesignerMain.DataSupported;
         }
 
         void webClient_DownloadProgressChanged(object sender, System.Net.DownloadProgressChangedEventArgs e)
@@ -202,6 +206,26 @@ namespace DOL.Tools.QuestDesigner
             areaView.setDataSet();
             locationView.SetDataSet();
 			questPartItems.SetDataSet();
+
+
+            //this.checkedListBoxCategories.Items.AddRange(DB.QuestTypeCategories.ToArray());
+
+            foreach (string category in DB.QuestTypeCategories)
+            {
+                CheckBox checkBox = new System.Windows.Forms.CheckBox();
+                checkBox.AutoSize = true;                
+                checkBox.Name = "checkBox"+category;                                
+                checkBox.Text = category;
+                checkBox.Tag = category;
+                checkBox.UseVisualStyleBackColor = true;
+                checkBox.CheckStateChanged += new System.EventHandler(this.questPartCheckbox_CheckStateChanged);
+                checkBox.Left = 5;
+                checkBox.Top = 30 + (xpTGQuestPart.Controls.Count * 20);
+                this.xpTGQuestPart.Controls.Add(checkBox);
+            }
+
+            this.xpTGQuestPart.Height = 30 + ((xpTGQuestPart.Controls.Count) * 20);
+
 		}
 
 		private void dataSetData_Initialized(object sender, EventArgs e)
@@ -305,19 +329,7 @@ namespace DOL.Tools.QuestDesigner
         {
             itemView.SetDatabaseSupport( support);
 			npcView.SetDatabaseSupport( support);            
-        }
-
-        protected string XMLFile
-        {
-            get
-            {
-                return (string)Settings.Default["XMLFile"];
-            }
-            set
-            {
-                Settings.Default["XMLFile"] = value;
-            }
-        }
+        }        
 
         private void InitEmptyQuest()
         {
@@ -333,6 +345,27 @@ namespace DOL.Tools.QuestDesigner
             openFilename = null;
         }
 
+        private bool SaveQuest()
+        {
+            if (!String.IsNullOrEmpty(Settings.Default.LastSaveDirectory))
+            {                
+                saveQuestDialog.InitialDirectory = Settings.Default.LastSaveDirectory;
+            }
+
+            DialogResult result = saveQuestDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                FileInfo file = new FileInfo(saveQuestDialog.FileName);
+                Settings.Default.LastSaveDirectory = file.DirectoryName;
+
+                return SaveQuest(saveQuestDialog.FileName);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private bool SaveQuest(string xmlfile)
         {
             FileInfo xmlFileinfo = new FileInfo(xmlfile);                        
@@ -345,8 +378,29 @@ namespace DOL.Tools.QuestDesigner
             openFilename = xmlfile;
             this.Text = TITLE + xmlfile;
             Log.Info("Quest saved to " + xmlfile);
-            XMLFile = xmlfile;
+            Settings.Default.XMLFile = xmlfile;
             return true;
+        }
+
+        private bool LoadQuest()
+        {
+            if (!String.IsNullOrEmpty(Settings.Default.LastSaveDirectory))
+            {
+                openQuestDialog.InitialDirectory = Settings.Default.LastSaveDirectory;
+            }
+
+            DialogResult result = openQuestDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                FileInfo file = new FileInfo(openQuestDialog.FileName);
+                Settings.Default.LastSaveDirectory = file.DirectoryName;
+
+                return LoadQuest(openQuestDialog.FileName);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private bool LoadQuest(string xmlfile)
@@ -361,6 +415,13 @@ namespace DOL.Tools.QuestDesigner
 					dataSetQuest.Clear();
 					dataSetQuest.ReadXml(xmlfile);
                     dataSetQuest.AcceptChanges();
+
+                    // precompute questpartcategory
+                    foreach (DataRow row in DB.QuestPartTable.Rows)
+                    {
+                        row[DB.COL_QUESTPART_CATEGORY] = DB.GetQuestPartCategoriesForID((int)row[DB.COL_QUESTPART_ID]);
+                    }
+
                     DB.ResumeBindings();
                                         
                     questPartItems.RefreshQuestPartText();
@@ -371,7 +432,7 @@ namespace DOL.Tools.QuestDesigner
 
 					this.Text = TITLE + xmlfile;
 					Log.Info("Quest loaded from " + xmlfile);
-					XMLFile = xmlfile;
+                    Settings.Default.XMLFile = xmlfile;
 					return true;
 				}
 				catch (Exception e)
@@ -406,8 +467,7 @@ namespace DOL.Tools.QuestDesigner
         {
             if (String.IsNullOrEmpty(openFilename))
             {
-                saveAsToolStripMenuItem_Click(sender, e);
-                return;
+                SaveQuest();
             }
             else
             {
@@ -417,25 +477,21 @@ namespace DOL.Tools.QuestDesigner
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = saveQuestDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                SaveQuest(saveQuestDialog.FileName);
-            }
+            SaveQuest();
         }  
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = openQuestDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                LoadQuest(openQuestDialog.FileName);                                
-            }            
-        }           
+            LoadQuest();          
+        }
+
+        private void linkLoadQuest_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LoadQuest();
+        }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Settings.Default.Save();
+        {            
             this.Close();
         }                                            	        
 
@@ -443,16 +499,7 @@ namespace DOL.Tools.QuestDesigner
         {
             TextBox questName = (TextBox)sender;            
             questName.Text=Utils.ConvertToObjectName(questName.Text);            
-        }        		           			
-		
-		private void linkLoadQuest_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			DialogResult result = openQuestDialog.ShowDialog();
-			if (result == DialogResult.OK)
-			{
-				LoadQuest(openQuestDialog.FileName);
-			}    
-		}
+        }        		           							
 
 		private void toolStripMenuItemTaskPane_CheckStateChanged(object sender, EventArgs e)
 		{
@@ -523,8 +570,7 @@ namespace DOL.Tools.QuestDesigner
         {
             if (String.IsNullOrEmpty(openFilename))
             {
-                saveAsToolStripMenuItem_Click(sender, e);
-                return;
+                SaveQuest();
             }
             else
             {
@@ -539,7 +585,7 @@ namespace DOL.Tools.QuestDesigner
 
         private void dataDownloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.DownloadData = true;
+            Settings.Default.DownloadData = true;
             CheckData();
         }
 
@@ -547,6 +593,28 @@ namespace DOL.Tools.QuestDesigner
         {
             newToolStripMenuItem_Click(sender, e);
         }        
- 
+
+        private void tabControlMain_SelectionChanged(object sender, EventArgs e)
+        {
+            if (tabControlMain.SelectedTab == this.tabPageQuestPart)
+            {
+                this.xpTGQuestPart.Visible = true;
+            }
+            else
+            {
+                this.xpTGQuestPart.Visible = false;
+            }
+        }
+
+        private void questPartCheckbox_CheckStateChanged(object sender, EventArgs e)
+        {
+            CheckBox checkedCheckbox = (CheckBox)sender;
+            string category = (string)checkedCheckbox.Tag;
+
+            if (checkedCheckbox.CheckState == CheckState.Checked)
+                DB.AddQuestPartCategoryFilter(category);
+            else
+                DB.RemoveQuestPartCategoryFilter(category);            
+        }
     }
 }

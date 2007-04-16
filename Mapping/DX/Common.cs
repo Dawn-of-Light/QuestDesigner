@@ -9,7 +9,7 @@ namespace DOL.Tools.Mapping.DX
     public class Common
     {
         private static Device m_Device = null;
-        private static bool DeviceReady = false;
+        public static bool DeviceReady = false;
 
         public static Device Device
         {

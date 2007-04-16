@@ -42,25 +42,31 @@ namespace DOL.Tools.QuestDesigner.Controls
 		}
 
 		public static string[] GetWhisperKeywords()
-		{
+		{            
 			ArrayList keywords = new ArrayList();
+            String whisperKeyword = null;
 			foreach (DataRow row in DB.ActionTable.Rows)
 			{
                 if (row[DB.COL_QUESTPARTACTION_P] is string && ((string)row[DB.COL_QUESTPARTACTION_P]).Contains("["))
 				{
                     MatchCollection matches = Regex.Matches((string)row[DB.COL_QUESTPARTACTION_P], "\\[([^\\]])*\\]", RegexOptions.Compiled);
-					foreach (Match match in matches)
-					{
-						keywords.Add(match.Value.Trim(WHISPER_TRIMS));
+					
+                    foreach (Match match in matches)
+					{       
+                        whisperKeyword = match.Value.Trim(WHISPER_TRIMS);
+                        if (!keywords.Contains(whisperKeyword))                            
+						    keywords.Add(whisperKeyword);
 					}
 				}
 
                 if (row[DB.COL_QUESTPARTACTION_Q] is string && ((string)row[DB.COL_QUESTPARTACTION_Q]).Contains("["))
                 {
-                    MatchCollection matches = Regex.Matches((string)row[DB.COL_QUESTPARTACTION_Q], "\\[([^\\]])*\\]", RegexOptions.Compiled);
+                    MatchCollection matches = Regex.Matches((string)row[DB.COL_QUESTPARTACTION_Q], "\\[([^\\]])*\\]", RegexOptions.Compiled);                    
                     foreach (Match match in matches)
                     {
-                        keywords.Add(match.Value.Trim(WHISPER_TRIMS));
+                        whisperKeyword = match.Value.Trim(WHISPER_TRIMS);
+                        if (!keywords.Contains(whisperKeyword))
+                            keywords.Add(whisperKeyword);
                     }
                 }
 			}

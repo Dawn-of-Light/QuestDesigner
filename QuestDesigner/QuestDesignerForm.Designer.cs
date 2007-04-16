@@ -104,9 +104,28 @@ namespace DOL.Tools.QuestDesigner
             System.Data.DataColumn dataColumn66;
             System.Data.DataColumn dataColumnPlatinum;
             System.Data.DataColumn dataColumnQuestDate;
+            System.Data.DataColumn dataColumn26;
+            System.Data.DataColumn dataColumn33;
+            System.Data.DataColumn dataColumn34;
+            System.Data.DataColumn dataColumn35;
+            System.Data.DataColumn dataColumnQuestID;
+            System.Data.DataColumn dataColumnQuestName;
+            System.Data.DataColumn dataColumnQuestAuthor;
+            System.Data.DataColumn dataColumnQuestVersion;
+            System.Data.DataColumn dataColumnQuestDescription;
+            System.Data.DataColumn dataColumn14;
+            System.Data.DataColumn dataColumnMinimumLevel;
+            System.Data.DataColumn dataColumnMaximumLevel;
+            System.Data.DataColumn dataColumnInvintingNPC;
+            System.Data.DataColumn dataColumn41;
+            System.Data.DataColumn dataColumn62;
+            System.Data.DataColumn dataColumn63;
+            System.Data.DataColumn dataColumn64;
+            System.Data.DataColumn dataColumn65;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
             NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
             NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
+            System.Data.DataColumn dataColumn36;
             this.dataSetQuest = new System.Data.DataSet();
             this.dataTableQuestPart = new System.Data.DataTable();
             this.dataTableTrigger = new System.Data.DataTable();
@@ -116,20 +135,6 @@ namespace DOL.Tools.QuestDesigner
             this.dataTableAction = new System.Data.DataTable();
             this.dataColumn31 = new System.Data.DataColumn();
             this.dataTableQuest = new System.Data.DataTable();
-            this.dataColumnQuestID = new System.Data.DataColumn();
-            this.dataColumnQuestName = new System.Data.DataColumn();
-            this.dataColumnQuestAuthor = new System.Data.DataColumn();
-            this.dataColumnQuestVersion = new System.Data.DataColumn();
-            this.dataColumnQuestDescription = new System.Data.DataColumn();
-            this.dataColumn14 = new System.Data.DataColumn();
-            this.dataColumnMinimumLevel = new System.Data.DataColumn();
-            this.dataColumnMaximumLevel = new System.Data.DataColumn();
-            this.dataColumnInvintingNPC = new System.Data.DataColumn();
-            this.dataColumn41 = new System.Data.DataColumn();
-            this.dataColumn62 = new System.Data.DataColumn();
-            this.dataColumn63 = new System.Data.DataColumn();
-            this.dataColumn64 = new System.Data.DataColumn();
-            this.dataColumn65 = new System.Data.DataColumn();
             this.dataTableMob = new System.Data.DataTable();
             this.dataColumnName = new System.Data.DataColumn();
             this.dataColumnModel = new System.Data.DataColumn();
@@ -296,6 +301,7 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageMap = new NETXP.Controls.Docking.TabPage();
             this.DXControl = new DOL.Tools.Mapping.Forms.DXControl();
             this.xpTaskPane = new NETXP.Controls.TaskPane.XPTaskPane();
+            this.xpTGQuestPart = new NETXP.Controls.TaskPane.XPTaskPaneGroup();
             this.xpTGActions = new NETXP.Controls.TaskPane.XPTaskPaneGroup();
             this.linkLabelNewQuest = new System.Windows.Forms.LinkLabel();
             this.linkSaveQuest = new System.Windows.Forms.LinkLabel();
@@ -379,6 +385,25 @@ namespace DOL.Tools.QuestDesigner
             dataColumn66 = new System.Data.DataColumn();
             dataColumnPlatinum = new System.Data.DataColumn();
             dataColumnQuestDate = new System.Data.DataColumn();
+            dataColumn26 = new System.Data.DataColumn();
+            dataColumn33 = new System.Data.DataColumn();
+            dataColumn34 = new System.Data.DataColumn();
+            dataColumn35 = new System.Data.DataColumn();
+            dataColumnQuestID = new System.Data.DataColumn();
+            dataColumnQuestName = new System.Data.DataColumn();
+            dataColumnQuestAuthor = new System.Data.DataColumn();
+            dataColumnQuestVersion = new System.Data.DataColumn();
+            dataColumnQuestDescription = new System.Data.DataColumn();
+            dataColumn14 = new System.Data.DataColumn();
+            dataColumnMinimumLevel = new System.Data.DataColumn();
+            dataColumnMaximumLevel = new System.Data.DataColumn();
+            dataColumnInvintingNPC = new System.Data.DataColumn();
+            dataColumn41 = new System.Data.DataColumn();
+            dataColumn62 = new System.Data.DataColumn();
+            dataColumn63 = new System.Data.DataColumn();
+            dataColumn64 = new System.Data.DataColumn();
+            dataColumn65 = new System.Data.DataColumn();
+            dataColumn36 = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(dataTableQuestCharacterClass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetQuest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableQuestPart)).BeginInit();
@@ -831,6 +856,38 @@ namespace DOL.Tools.QuestDesigner
             dataColumnPlatinum.DataType = typeof(int);
             dataColumnPlatinum.DefaultValue = 0;
             // 
+            // dataColumnQuestDate
+            // 
+            dataColumnQuestDate.ColumnName = "Date";
+            dataColumnQuestDate.DataType = typeof(System.DateTime);
+            // 
+            // dataColumn26
+            // 
+            dataColumn26.AllowDBNull = false;
+            dataColumn26.ColumnName = "Category";
+            dataColumn26.DefaultValue = "";
+            // 
+            // dataColumn33
+            // 
+            dataColumn33.AllowDBNull = false;
+            dataColumn33.Caption = "Category";
+            dataColumn33.ColumnName = "category";
+            dataColumn33.DefaultValue = "";
+            // 
+            // dataColumn34
+            // 
+            dataColumn34.AllowDBNull = false;
+            dataColumn34.Caption = "Category";
+            dataColumn34.ColumnName = "category";
+            dataColumn34.DefaultValue = "";
+            // 
+            // dataColumn35
+            // 
+            dataColumn35.AllowDBNull = false;
+            dataColumn35.Caption = "Category";
+            dataColumn35.ColumnName = "category";
+            dataColumn35.DefaultValue = "";
+            // 
             // dataSetQuest
             // 
             this.dataSetQuest.DataSetName = "Quest";
@@ -864,7 +921,8 @@ namespace DOL.Tools.QuestDesigner
             this.dataTableQuestPart.Columns.AddRange(new System.Data.DataColumn[] {
             dataColumnQuestPartIF,
             dataColumnDefaultNPC,
-            dataColumn23});
+            dataColumn23,
+            dataColumn26});
             this.dataTableQuestPart.TableName = "QuestPart";
             // 
             // dataTableTrigger
@@ -916,94 +974,90 @@ namespace DOL.Tools.QuestDesigner
             // dataTableQuest
             // 
             this.dataTableQuest.Columns.AddRange(new System.Data.DataColumn[] {
-            this.dataColumnQuestID,
-            this.dataColumnQuestName,
-            this.dataColumnQuestAuthor,
+            dataColumnQuestID,
+            dataColumnQuestName,
+            dataColumnQuestAuthor,
             dataColumnQuestDate,
-            this.dataColumnQuestVersion,
-            this.dataColumnQuestDescription,
-            this.dataColumn14,
-            this.dataColumnMinimumLevel,
-            this.dataColumnMaximumLevel,
-            this.dataColumnInvintingNPC,
-            this.dataColumn41,
-            this.dataColumn62,
-            this.dataColumn63,
-            this.dataColumn64,
-            this.dataColumn65});
+            dataColumnQuestVersion,
+            dataColumnQuestDescription,
+            dataColumn14,
+            dataColumnMinimumLevel,
+            dataColumnMaximumLevel,
+            dataColumnInvintingNPC,
+            dataColumn41,
+            dataColumn62,
+            dataColumn63,
+            dataColumn64,
+            dataColumn65,
+            dataColumn36});
             this.dataTableQuest.TableName = "Quest";
             // 
             // dataColumnQuestID
             // 
-            this.dataColumnQuestID.AllowDBNull = false;
-            this.dataColumnQuestID.AutoIncrement = true;
-            this.dataColumnQuestID.ColumnName = "ID";
-            this.dataColumnQuestID.DataType = typeof(int);
+            dataColumnQuestID.AllowDBNull = false;
+            dataColumnQuestID.AutoIncrement = true;
+            dataColumnQuestID.ColumnName = "ID";
+            dataColumnQuestID.DataType = typeof(int);
             // 
             // dataColumnQuestName
             // 
-            this.dataColumnQuestName.ColumnName = "Name";
+            dataColumnQuestName.ColumnName = "Name";
             // 
             // dataColumnQuestAuthor
             // 
-            this.dataColumnQuestAuthor.ColumnName = "Author";
-            // 
-            // dataColumnQuestDate
-            // 
-            dataColumnQuestDate.ColumnName = "Date";
-            dataColumnQuestDate.DataType = typeof(System.DateTime);
+            dataColumnQuestAuthor.ColumnName = "Author";
             // 
             // dataColumnQuestVersion
             // 
-            this.dataColumnQuestVersion.ColumnName = "Version";
-            this.dataColumnQuestVersion.DefaultValue = "0";
+            dataColumnQuestVersion.ColumnName = "Version";
+            dataColumnQuestVersion.DefaultValue = "0";
             // 
             // dataColumnQuestDescription
             // 
-            this.dataColumnQuestDescription.ColumnName = "Description";
+            dataColumnQuestDescription.ColumnName = "Description";
             // 
             // dataColumn14
             // 
-            this.dataColumn14.ColumnName = "Title";
+            dataColumn14.ColumnName = "Title";
             // 
             // dataColumnMinimumLevel
             // 
-            this.dataColumnMinimumLevel.ColumnName = "MinimumLevel";
-            this.dataColumnMinimumLevel.DataType = typeof(int);
-            this.dataColumnMinimumLevel.DefaultValue = 1;
+            dataColumnMinimumLevel.ColumnName = "MinimumLevel";
+            dataColumnMinimumLevel.DataType = typeof(int);
+            dataColumnMinimumLevel.DefaultValue = 1;
             // 
             // dataColumnMaximumLevel
             // 
-            this.dataColumnMaximumLevel.ColumnName = "MaximumLevel";
-            this.dataColumnMaximumLevel.DataType = typeof(int);
-            this.dataColumnMaximumLevel.DefaultValue = 1;
+            dataColumnMaximumLevel.ColumnName = "MaximumLevel";
+            dataColumnMaximumLevel.DataType = typeof(int);
+            dataColumnMaximumLevel.DefaultValue = 1;
             // 
             // dataColumnInvintingNPC
             // 
-            this.dataColumnInvintingNPC.ColumnName = "InvitingNPC";
+            dataColumnInvintingNPC.ColumnName = "InvitingNPC";
             // 
             // dataColumn41
             // 
-            this.dataColumn41.AllowDBNull = false;
-            this.dataColumn41.ColumnName = "Namespace";
-            this.dataColumn41.DefaultValue = "DOL.GS.Quests";
+            dataColumn41.AllowDBNull = false;
+            dataColumn41.ColumnName = "Namespace";
+            dataColumn41.DefaultValue = "DOL.GS.Quests";
             // 
             // dataColumn62
             // 
-            this.dataColumn62.ColumnName = "MaxQuestCount";
-            this.dataColumn62.DefaultValue = "1";
+            dataColumn62.ColumnName = "MaxQuestCount";
+            dataColumn62.DefaultValue = "1";
             // 
             // dataColumn63
             // 
-            this.dataColumn63.ColumnName = "ScriptLoadedCode";
+            dataColumn63.ColumnName = "ScriptLoadedCode";
             // 
             // dataColumn64
             // 
-            this.dataColumn64.ColumnName = "ScriptUnloadedCode";
+            dataColumn64.ColumnName = "ScriptUnloadedCode";
             // 
             // dataColumn65
             // 
-            this.dataColumn65.ColumnName = "InitializationCode";
+            dataColumn65.ColumnName = "InitializationCode";
             // 
             // dataTableMob
             // 
@@ -1581,7 +1635,8 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnTriggerTypeK,
             this.dataColumnTriggerTypeI,
             this.dataColumnTriggerTypeID,
-            dataColumnText});
+            dataColumnText,
+            dataColumn33});
             this.dataTableTriggerType.TableName = "TriggerType";
             // 
             // dataColumnTriggerTypeValue
@@ -1618,7 +1673,8 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnActionTypeP,
             this.dataColumnActionTypeQ,
             this.dataColumnActionTypeID,
-            this.dataColumn25});
+            this.dataColumn25,
+            dataColumn34});
             this.dataTableActionType.TableName = "ActionType";
             // 
             // dataColumnActionTypeValue
@@ -1662,7 +1718,8 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumnRequirementTypeV,
             this.dataColumnRequirementTypeID,
             this.dataColumn24,
-            this.dataColumn27});
+            this.dataColumn27,
+            dataColumn35});
             this.dataTableRequirementType.TableName = "RequirementType";
             // 
             // dataColumnRequirementTypeValue
@@ -2084,6 +2141,7 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageLocation,
             this.tabPageCode,
             this.tabPageMap});
+            this.tabControlMain.SelectionChanged += new System.EventHandler(this.tabControlMain_SelectionChanged);
             // 
             // tabPageQuest
             // 
@@ -2245,6 +2303,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             this.xpTaskPane.AutoScroll = true;
             this.xpTaskPane.ColorTable = dynamicColorTable1;
+            this.xpTaskPane.Controls.Add(this.xpTGQuestPart);
             this.xpTaskPane.Controls.Add(this.xpTGActions);
             this.xpTaskPane.DataBindings.Add(new System.Windows.Forms.Binding("Visible", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "ShowTaskPane", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.xpTaskPane.Dock = System.Windows.Forms.DockStyle.Left;
@@ -2255,6 +2314,16 @@ namespace DOL.Tools.QuestDesigner
             this.xpTaskPane.TabIndex = 29;
             this.xpTaskPane.Text = "xpTaskPane1";
             this.xpTaskPane.Visible = global::DOL.Tools.QuestDesigner.Properties.Settings.Default.ShowTaskPane;
+            // 
+            // xpTGQuestPart
+            // 
+            this.xpTGQuestPart.ColorTable = dynamicColorTable1;
+            this.xpTGQuestPart.Location = new System.Drawing.Point(13, 133);
+            this.xpTGQuestPart.Name = "xpTGQuestPart";
+            this.xpTGQuestPart.Size = new System.Drawing.Size(144, 201);
+            this.xpTGQuestPart.TabIndex = 1;
+            this.xpTGQuestPart.Text = "QuestPart";
+            this.xpTGQuestPart.Visible = false;
             // 
             // xpTGActions
             // 
@@ -2276,7 +2345,7 @@ namespace DOL.Tools.QuestDesigner
             this.linkLabelNewQuest.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.add;
             this.linkLabelNewQuest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkLabelNewQuest.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkLabelNewQuest.Location = new System.Drawing.Point(11, 48);
+            this.linkLabelNewQuest.Location = new System.Drawing.Point(5, 48);
             this.linkLabelNewQuest.Name = "linkLabelNewQuest";
             this.linkLabelNewQuest.Padding = new System.Windows.Forms.Padding(18, 2, 0, 2);
             this.linkLabelNewQuest.Size = new System.Drawing.Size(90, 17);
@@ -2291,7 +2360,7 @@ namespace DOL.Tools.QuestDesigner
             this.linkSaveQuest.Image = ((System.Drawing.Image)(resources.GetObject("linkSaveQuest.Image")));
             this.linkSaveQuest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkSaveQuest.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkSaveQuest.Location = new System.Drawing.Point(11, 88);
+            this.linkSaveQuest.Location = new System.Drawing.Point(5, 88);
             this.linkSaveQuest.Name = "linkSaveQuest";
             this.linkSaveQuest.Padding = new System.Windows.Forms.Padding(18, 2, 0, 2);
             this.linkSaveQuest.Size = new System.Drawing.Size(93, 17);
@@ -2306,7 +2375,7 @@ namespace DOL.Tools.QuestDesigner
             this.linkLoadQuest.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.quest;
             this.linkLoadQuest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.linkLoadQuest.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkLoadQuest.Location = new System.Drawing.Point(11, 68);
+            this.linkLoadQuest.Location = new System.Drawing.Point(5, 68);
             this.linkLoadQuest.Name = "linkLoadQuest";
             this.linkLoadQuest.Padding = new System.Windows.Forms.Padding(18, 2, 0, 2);
             this.linkLoadQuest.Size = new System.Drawing.Size(92, 17);
@@ -2333,6 +2402,10 @@ namespace DOL.Tools.QuestDesigner
             this.imageListNPC.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListNPC.ImageStream")));
             this.imageListNPC.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListNPC.Images.SetKeyName(0, "user.ico");
+            // 
+            // dataColumn36
+            // 
+            dataColumn36.ColumnName = "CheckQuestQualificationCode";
             // 
             // QuestDesignerForm
             // 
@@ -2440,11 +2513,6 @@ namespace DOL.Tools.QuestDesigner
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.OpenFileDialog openQuestDialog;
         public System.Data.DataTable dataTableQuest;
-        private System.Data.DataColumn dataColumnQuestID;
-        private System.Data.DataColumn dataColumnQuestName;
-        private System.Data.DataColumn dataColumnQuestAuthor;
-        private System.Data.DataColumn dataColumnQuestVersion;
-        private System.Data.DataColumn dataColumnQuestDescription;
 		public System.Data.DataTable dataTableAction;
         private System.Data.DataColumn dataColumnTriggerTypeValue;
 		private System.Data.DataColumn dataColumnTriggerTypeDescription;
@@ -2472,10 +2540,6 @@ namespace DOL.Tools.QuestDesigner
         private System.Data.DataColumn dataColumnSPD_ABS;
         private System.Data.DataColumn dataColumnHand;
         private System.Data.DataColumn dataColumnTypeDamage;
-        private System.Data.DataColumn dataColumn14;
-        private System.Data.DataColumn dataColumnMinimumLevel;
-		private System.Data.DataColumn dataColumnMaximumLevel;
-		private System.Data.DataColumn dataColumnInvintingNPC;
         private System.Data.DataTable dataTableQuestStep;
         private System.Data.DataColumn dataColumnStep;
 		private System.Data.DataColumn dataColumnStepDescription;
@@ -2498,7 +2562,6 @@ namespace DOL.Tools.QuestDesigner
 		private System.Data.DataColumn dataColumnColor;
         private System.Windows.Forms.SaveFileDialog saveScriptDialog;
         private System.Data.DataColumn dataColumnAddToworld;
-        private System.Data.DataColumn dataColumn41;
         private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;
         private System.Windows.Forms.ToolStripPanel TopToolStripPanel;
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
@@ -2519,11 +2582,7 @@ namespace DOL.Tools.QuestDesigner
         private System.Data.DataColumn dataColumn57;
         private System.Data.DataColumn dataColumn60;
 		private System.Data.DataColumn dataColumn61;
-		private System.Data.DataColumn dataColumnActionTypeQ;
-		private System.Data.DataColumn dataColumn62;
-        private System.Data.DataColumn dataColumn63;
-        private System.Data.DataColumn dataColumn64;
-		private System.Data.DataColumn dataColumn65;
+        private System.Data.DataColumn dataColumnActionTypeQ;
 		public System.Data.DataTable dataTableTriggerType;
 		public System.Data.DataTable dataTableActionType;
         public System.Data.DataTable dataTableRequirementType;
@@ -2593,7 +2652,8 @@ namespace DOL.Tools.QuestDesigner
         public DOL.Tools.Mapping.Forms.DXControl DXControl;
         private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dataDownloadToolStripMenuItem;
-        private System.Windows.Forms.LinkLabel linkLabelNewQuest;		
+        private System.Windows.Forms.LinkLabel linkLabelNewQuest;
+        private NETXP.Controls.TaskPane.XPTaskPaneGroup xpTGQuestPart;		
     }
 }
 

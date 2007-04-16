@@ -60,66 +60,70 @@ namespace DOL.Tools.Mapping.Modules
 
         public static void LoadModules()
         {
-            Log.Info("Loading Modules..");
+            Log.Info("Loading Modules...");
+            foreach (ModulObj modulObj in m_Modules)
+            {
+                ModulAttribute attrib = GetModulAttributeForType(modulObj.Type);
 
-            //Instances.DialogMain.menuItemModules.MenuItems.Clear();
-            //Instances.DialogMain.menuItemModules.MenuItems.Add("None", new EventHandler(Instances.DialogMain.ModulClick));
+                if (attrib.InFilterList)                
+                    QuestDesignerMain.DesignerForm.DXControl.AddFilter(modulObj.Name);
+                //if (list)
+                // QuestDesignerMain.DesignerForm.DXControl.contextMenuStrip.MenuItems.Add(name, new EventHandler(Instances.DialogMain.ModulClick));
+            }
+
+            Log.Info("Loading Modules finished.");
+            QuestDesignerMain.DesignerForm.Update();
+        }
+
+        public static ModulAttribute GetModulAttributeForType(Type type)
+        {
+            object[] attribs = type.GetCustomAttributes(typeof(ModulAttribute), false);
+
+            if (attribs.Length <= 0)
+                return null;            
+
+            foreach (object obj in attribs)
+            {
+                if (obj is ModulAttribute)
+                {
+                    return (ModulAttribute) obj;
+                }
+            }
+            return null;
+        }
+
+        public static void PreloadModules()
+        {
+            Log.Info("Preloading Modules...");            
 
             Assembly asmly = Assembly.GetCallingAssembly();
 
             foreach (Type type in asmly.GetTypes())
             {
                 if (type == null)
-                    continue;                
-
-                if (type.Namespace == null)
                     continue;
 
-                if (!type.Namespace.StartsWith(typeof(ModulMgr).Namespace))
+                if (type.Namespace == null)
                     continue;
 
                 if (type.IsSubclassOf(typeof(IModul)))
                     continue;
 
-                object[] attribs = type.GetCustomAttributes(typeof (ModulAttribute), false);
+                ModulAttribute attrib = GetModulAttributeForType(type);
 
-                if (attribs.Length <= 0)
-                    continue;
+                if (attrib == null || String.IsNullOrEmpty(attrib.ModulName))
+                    continue;                               
 
-                string name = "";
-                bool filter = false;
-                bool list = false;
+                Log.Info("Loading Module: " + attrib.ModulName);
 
-                foreach (object obj in attribs)
-                {
-                    if (obj is ModulAttribute)
-                    {
-                        name = ((ModulAttribute) obj).ModulName;
-                        filter = ((ModulAttribute) obj).InFilterList;
-                        list = ((ModulAttribute) obj).InModulList;
-                        break;
-                    }
-                }
-
-                if (name == "")
-                    continue;
-
-                Log.Info("Loading Module: " + name);
-
-                IModul o = (IModul) Activator.CreateInstance(type);
-                ModulObj mod = new ModulObj(name, type, o);
-                m_Modules.Add(mod);
-
-                //if (list)
-                // QuestDesignerMain.DesignerForm.DXControl.contextMenuStrip.MenuItems.Add(name, new EventHandler(Instances.DialogMain.ModulClick));
-                if (filter)
-                    QuestDesignerMain.DesignerForm.DXControl.AddFilter(name);
+                IModul o = (IModul)Activator.CreateInstance(type);
+                ModulObj mod = new ModulObj(attrib.ModulName, type, o);
+                m_Modules.Add(mod);                
 
                 o.Load();
-            }            
+            }
 
-            Log.Info("Ready");
-            QuestDesignerMain.DesignerForm.Update();
+            Log.Info("Preloading Modules finished.");                        
         }
 
         public static void UnloadModules()

@@ -111,6 +111,7 @@ Possible parameters:
 	<ActionType>
 		<value>eActionType.FinishQuest</value>
 		<description>FinishQuest</description>
+		<category>Finalization</category>
 		<help>Quest P is set as completed for player, if P is empty current quest is used</help>
 		<p>QuestType:string</p>
 		<text>$P{0}$ is finished</text>
@@ -155,6 +156,7 @@ Possible parameters:
 	<ActionType>
 		<value>eActionType.GiveQuest</value>
 		<description>GiveQuest</description>
+		<category>Invitation</category>
 		<help>NPC Q assigns quest P to player, if P is empty current quest is used</help>
 		<p>QuestType:string</p>
 		<q>GameLiving:string</q>
@@ -163,6 +165,7 @@ Possible parameters:
 	<ActionType>
 		<value>eActionType.OfferQuest</value>
 		<description>OfferQuest</description>
+		<category>Invitation</category>
 		<help>Quest P is offered to player via customdialog with message Q, if P is empty current quest is used</help>
 		<p>QuestType:string</p>
 		<q>Text:string</q>
@@ -170,7 +173,8 @@ Possible parameters:
 	</ActionType>
 	<ActionType>
 		<value>eActionType.OfferQuestAbort</value>
-		<description>OfferQuestAbort</description>
+		<description>Finalization</description>
+		<category>Invitation</category>
 		<help>Quest P abort is offered to player via customdialog with message Q, if P is empty current quest is used</help>
 		<p>QuestType:string</p>
 		<q>Text:string</q>
@@ -205,6 +209,7 @@ Possible parameters:
 	<ActionType>
 		<value>eActionType.AbortQuest</value>
 		<description>AbortQuest</description>
+		<category>Finalization</category>
 		<help>Aborts quest P, if P is empty current quest is used</help>
 		<p>QuestType:string</p>
 		<text>$P{0}$ is aborted</text>

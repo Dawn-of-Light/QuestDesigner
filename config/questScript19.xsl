@@ -403,10 +403,15 @@ namespace <xsl:value-of select="Namespace"/> {
 		/// </summary>
 		/// <returns>true if qualified, false if not</returns>
 		public override bool CheckQuestQualification(GamePlayer player)
-		{
+		{		
 			// if the player is already doing the quest his level is no longer of relevance
 			if (player.IsDoingQuest(typeof (<xsl:value-of select="Name"/>)) != null)
 				return true;
+				
+			// Custom Code Begin
+			<xsl:value-of select="CheckQuestQualificationCode"/>
+			// Custom  Code End
+			
 		<xsl:text disable-output-escaping="yes">
 			if (player.Level &gt; maximumLevel || player.Level &lt; minimumLevel )
 				return false;

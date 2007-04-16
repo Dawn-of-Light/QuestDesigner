@@ -12,6 +12,8 @@ using System.Data;
 using DOL.Tools.QuestDesigner;
 using System.ComponentModel;
 using DOL.Tools.Mapping.Modules;
+using System.Threading;
+using DOL.Tools.Mapping.Forms;
 
 namespace DOL.Tools.Mapping.Map
 {
@@ -190,10 +192,7 @@ namespace DOL.Tools.Mapping.Map
 
             lock (m_Regions.SyncRoot)
             {
-                Log.Info("Loading Regions..");
-
-                if (!QuestDesignerMain.WaitForDatabase())
-                    return false;
+                Log.Info("Loading Regions..");                
 
                 //Look for regions...
                 foreach (DataRow regionRow in DB.RegionTable.Rows)
@@ -302,6 +301,10 @@ namespace DOL.Tools.Mapping.Map
                 return true;
             }
 
+            // we are still loading a old region, cancel that operation
+            if (backgroundWorker!=null && backgroundWorker.IsBusy)
+                backgroundWorker.CancelAsync();
+                       
             UnloadRegion();                    
 
             Log.Info("Loading zones of region "+region.Name);
@@ -315,18 +318,13 @@ namespace DOL.Tools.Mapping.Map
             GeometryObj bj =
                 new GeometryObj(mdl, DrawLevel.NonRender, DetailLevel.Nondetailed, 256*256*16/2, 256*256*16/2, 0.0f,
                                 0.0f, 0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f));
-            Objects.Add(bj);
+            DXControl.GeoObjects.Add(bj);
             QuestDesignerMain.DesignerForm.DXControl.HBObject = bj;
             
 
 
             try
             {
-                if (backgroundWorker!=null && backgroundWorker.IsBusy)
-                {
-                    backgroundWorker.CancelAsync();                    
-                }
-                
                 m_OpenedRegion = region;
 
                 backgroundWorker = new BackgroundWorker();
@@ -389,7 +387,7 @@ namespace DOL.Tools.Mapping.Map
             ModulMgr.TriggerModule(ModulMgr.ModulEvent.RegionLoad, region);
 
             // render newly added objects from Modules
-            Objects.Render();
+            QuestDesignerMain.DesignerForm.DXControl.Invalidate();
 
             return true;
         }
@@ -404,33 +402,35 @@ namespace DOL.Tools.Mapping.Map
 
             QuestDesignerMain.DesignerForm.StatusProgress.Step = QuestDesignerMain.DesignerForm.StatusProgress.Maximum / m_OpenedRegion.Zones.Count;
 
-            foreach (Zone zone in m_OpenedRegion.Zones)
+            lock (DXControl.GeoObjects)
             {
-                //Create it!
-                Log.Info("Loading Texture for "+zone.Description);
-                Plane mesh = new Plane(Common.Device, zone.Width, zone.Height, false);
-                
-                Texture tex = Textures.LoadTexture(zone.Texture);
-                
-                if (e.Cancel || worker.CancellationPending)
+                foreach (Zone zone in m_OpenedRegion.Zones)
                 {
-                    e.Cancel = true;
-                    e.Result = false;
-                    return;
+                    //Create it!
+                    Log.Info("Loading Texture for " + zone.Description);
+                    Plane mesh = new Plane(Common.Device, zone.Width, zone.Height, false);
 
+                    Texture tex = Textures.LoadTexture(zone.Texture);
+
+                    if (e.Cancel || worker.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        e.Result = false;
+                        return;
+                    }
+
+                    //float scaleX = zone.Width / tex.GetLevelDescription(0).Width;
+                    //float scaleY = zone.Height / tex.GetLevelDescription(0).Height;
+
+                    Model model = new Model(mesh, tex);
+                    GeometryObj obj =
+                        new GeometryObj(model, DrawLevel.Background, DetailLevel.Nondetailed, zone.X, zone.Y, 0.0f, 0.0f,
+                                        0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f));
+                    DXControl.GeoObjects.Add(obj);
+
+                    QuestDesignerMain.DesignerForm.StatusProgress.PerformStep();
+                    QuestDesignerMain.DesignerForm.DXControl.Invalidate();
                 }
-
-                //float scaleX = zone.Width / tex.GetLevelDescription(0).Width;
-                //float scaleY = zone.Height / tex.GetLevelDescription(0).Height;
-
-                Model model = new Model(mesh, tex);
-                GeometryObj obj =
-                    new GeometryObj(model, DrawLevel.Background, DetailLevel.Nondetailed, zone.X, zone.Y, 0.0f, 0.0f,
-                                    0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f));
-                Objects.Add(obj);                
-
-                QuestDesignerMain.DesignerForm.StatusProgress.PerformStep();
-                QuestDesignerMain.DesignerForm.DXControl.Invalidate();
             }
 
             e.Result = true;
@@ -459,18 +459,19 @@ namespace DOL.Tools.Mapping.Map
             Log.Info("Unloading Region");
 
             //Delete all objects // SLOW
-            Log.Info("Disposing Meshes..");
-            foreach (GeometryObj obj in Objects.ToArray())
+            lock (DXControl.GeoObjects)
             {
-                obj.Model.Mesh.Dispose();
-                obj.Model = null;
+                foreach (GeometryObj obj in DXControl.GeoObjects)
+                {
+                    obj.Model.Mesh.Dispose();
+                    obj.Model = null;
+                }
+                QuestDesignerMain.DesignerForm.DXControl.HBObject = null;
+
+                Log.Info("Clearing Lists..,");
+
+                DXControl.GeoObjects.Clear();                
             }
-            QuestDesignerMain.DesignerForm.DXControl.HBObject = null;
-
-            Log.Info("Clearing Lists..");
-
-            Objects.Clear();
-            
             // dont empty textures is caching is enabled
             if (!DOL.Tools.QuestDesigner.Properties.Settings.Default.CacheTextures)                
                 Textures.Reset();
@@ -497,10 +498,8 @@ namespace DOL.Tools.Mapping.Map
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Enabled = false;
             QuestDesignerMain.DesignerForm.DXControl.Zoom.Enabled = false;
 
-            Log.Info("Redrawing..");
-
+            Log.Info("Redrawing...");
             QuestDesignerMain.DesignerForm.DXControl.Invalidate();
-            GC.Collect();
             Log.Info("Ready");
             return true;
         }

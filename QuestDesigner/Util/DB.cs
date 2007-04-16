@@ -25,6 +25,9 @@ using System.Windows.Forms;
 using DOL.GS.Quests;
 using DOL.GS;
 using DOL.GS.PacketHandler;
+using DOL.Tools.QuestDesigner.QuestDesigner.Util;
+using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace DOL.Tools.QuestDesigner.Util
 {
@@ -58,6 +61,7 @@ namespace DOL.Tools.QuestDesigner.Util
         public const string COL_QUESTPARTTRIGGER_QUESTPARTID = "QuestPartID";
 
         public const string COL_TRIGGERTYPE_VALUE = "Value";
+        public const string COL_TRIGGERTYPE_CATEGORY = "Category";
         public const string COL_TRIGGERTYPE_ID = "ID";
         public const string COL_TRIGGERTYPE_K = "K";
         public const string COL_TRIGGERTYPE_HELP = "Help";
@@ -74,6 +78,7 @@ namespace DOL.Tools.QuestDesigner.Util
         public const string COL_QUESTPARTREQUIREMENT_COMPARATOR = "Comparator";
 
         public const string COL_REQUIREMENTTYPE_VALUE = "Value";
+        public const string COL_REQUIREMENTTYPE_CATEGORY = "Category";
         public const string COL_REQUIREMENTTYPE_ID = "ID";
         public const string COL_REQUIREMENTTYPE_N = "N";
         public const string COL_REQUIREMENTTYPE_V = "V";
@@ -90,6 +95,7 @@ namespace DOL.Tools.QuestDesigner.Util
         public const string COL_QUESTPARTACTION_QUESTPARTID = "QuestPartID";
 
         public const string COL_ACTIONTYPE_VALUE = "Value";
+        public const string COL_ACTIONTYPE_CATEGORY = "Category";
         public const string COL_ACTIONTYPE_ID = "ID";
         public const string COL_ACTIONTYPE_P = "P";
         public const string COL_ACTIONTYPE_Q = "Q";
@@ -111,6 +117,7 @@ namespace DOL.Tools.QuestDesigner.Util
         public const string COL_QUEST_SCRIPTLOADEDCODE = "ScriptLoadedCode";
         public const string COL_QUEST_SCRIPTUNLOADEDCODE = "ScriptUnloadedCode";
         public const string COL_QUEST_INITIALIZATIONCODE = "InitializationCode";
+        public const string COL_QUEST_CHECKQUESTQUALIFICATIONCODE = "CheckQuestQualificationCode";
 
         public const string COL_NPC_ID = "MobID";
         public const string COL_NPC_REALM = "Realm";        
@@ -157,6 +164,7 @@ namespace DOL.Tools.QuestDesigner.Util
         public const string COL_QUESTSTEP_DESCRIPTION = "Description";
 
         public const string COL_QUESTPART_ID = "ID";
+        public const string COL_QUESTPART_CATEGORY = "Category";
         public const string COL_QUESTPART_POSITION = "Position";
         public const string COL_QUESTPART_DEFAULTNPC = "DefaultNPC";
 
@@ -167,6 +175,8 @@ namespace DOL.Tools.QuestDesigner.Util
         public const string COL_ENUMERATION_NAME = "Name";
         public const string COL_ENUMERATION_DESCRIPTION = "Description";
         public const string COL_ENUMERATION_TYPE = "Type";
+
+        public delegate void DatabaseLoadedEventHandler();
 
         public static BindingSource characterClassBinding;
 		public static BindingSource emoteBinding;
@@ -187,11 +197,23 @@ namespace DOL.Tools.QuestDesigner.Util
         public static BindingSource comparatorQuantityBinding;
         public static BindingSource mobBinding;
 
+        private static Set<String> questTypeCategories = null;
+
+        private static Set<String> questTypeFilterCategories = new Set<String>();
+
+        public static Set<String> QuestTypeFilterCategories
+        {
+            get { return questTypeFilterCategories ; }
+            set { questTypeFilterCategories = value; }
+        }
+	
+
         private static Boolean suspended = false;
+        private static Boolean initialized = false;
 
         #region Config Data Tables
 
-        private static DataSet configDataSet;
+        private static DataSet configDataSet = null;
 
         public static DataSet ConfigDataSet
         {
@@ -237,7 +259,7 @@ namespace DOL.Tools.QuestDesigner.Util
 
         #region Quest Data Tables
 
-        private static DataSet questDataSet;
+        private static DataSet questDataSet = null;
 
         public static DataSet QuestDataSet
         {
@@ -308,6 +330,10 @@ namespace DOL.Tools.QuestDesigner.Util
 
         public static void Init()
         {
+
+            if (initialized)
+                throw new Exception("DB already inited");
+
             areaBinding = new BindingSource(QuestDataSet, TABLE_AREA);
             
             mobBinding = new BindingSource(QuestDataSet, TABLE_NPC);
@@ -369,8 +395,43 @@ namespace DOL.Tools.QuestDesigner.Util
             emoteBinding = new BindingSource(ConfigDataSet, TABLE_ENUMERATION);
             emoteBinding.AllowNew = false;
             emoteBinding.Filter = DB.COL_ENUMERATION_TYPE + "='" + typeof(eEmote).Name + "'";
-            emoteBinding.Sort = DB.COL_ENUMERATION_DESCRIPTION;
+            emoteBinding.Sort = DB.COL_ENUMERATION_DESCRIPTION;            
+
+            initialized = true;
+
+            if (DatabaseLoaded != null)
+            {
+                DatabaseLoaded();
+            }
         }
+
+        public static void AddQuestPartCategoryFilter(string category)
+        {
+            QuestTypeFilterCategories.Add(category);
+
+            questPartBinding.Filter = GetQuestPartCategoryFilterString();
+        }
+
+        public static void RemoveQuestPartCategoryFilter(string category)
+        {
+            QuestTypeFilterCategories.Remove(category);
+
+            questPartBinding.Filter = GetQuestPartCategoryFilterString();
+        }
+
+        private static string GetQuestPartCategoryFilterString()
+        {
+            StringBuilder filter = new StringBuilder();
+            for (int i = 0; i < QuestTypeFilterCategories.Count; i++)
+            {
+                if (i > 0)
+                    filter.Append(" OR ");
+                filter.Append(COL_QUESTPART_CATEGORY+" LIKE '%"+QuestTypeFilterCategories[i]+";%'");
+            }
+            return filter.ToString();
+        }
+
+        public static event DatabaseLoadedEventHandler DatabaseLoaded;
 
         public static void SuspendBindings()
         {            
@@ -447,7 +508,7 @@ namespace DOL.Tools.QuestDesigner.Util
 
 		public static bool isInitialized()
 		{
-			return QuestDataSet != null && ConfigDataSet !=null;
+            return initialized;
 		}
 
 		public static BindingSource GetBindingSourceForEnumeration(string type)
@@ -548,6 +609,123 @@ namespace DOL.Tools.QuestDesigner.Util
 				return null;
 		}
 
+        public static Set<String> QuestTypeCategories
+        {
+            get
+            {
+                if (questTypeCategories == null)
+                {
+                    questTypeCategories = new Set<String>();
+
+                    // look for trigger categories            
+                    foreach (DataRow triggerTypeRow in TriggerTypeTable.Rows)
+                    {
+                        if (!String.IsNullOrEmpty((string)triggerTypeRow[COL_TRIGGERTYPE_CATEGORY]))
+                        {
+                            CategoryComparator comparator = new CategoryComparator((string)triggerTypeRow[COL_TRIGGERTYPE_CATEGORY]);
+                            questTypeCategories.Add(comparator.Name);
+                        }
+                    }
+
+                    // look for requirement categories            
+                    foreach (DataRow requTypeRow in RequirementTypeTable.Rows)
+                    {
+                        if (!String.IsNullOrEmpty((string)requTypeRow[COL_REQUIREMENTTYPE_CATEGORY]))
+                        {
+                            CategoryComparator comparator = new CategoryComparator((string)requTypeRow[COL_REQUIREMENTTYPE_CATEGORY]);
+                            questTypeCategories.Add(comparator.Name);
+                        }
+                    }
+
+                    // look for action categories            
+                    foreach (DataRow actionTypeRow in ActionTypeTable.Rows)
+                    {
+                        if (!String.IsNullOrEmpty((string)actionTypeRow[COL_ACTIONTYPE_CATEGORY]))
+                        {
+                            CategoryComparator comparator = new CategoryComparator((string)actionTypeRow[COL_ACTIONTYPE_CATEGORY]);
+                            questTypeCategories.Add(comparator.Name);
+                        }
+                    }
+                }
+
+                return questTypeCategories;
+            }
+        }
+
+        public static string GetQuestPartCategoriesForID(int id)
+        {
+            
+            Set<String> categoriesSet = new Set<String>();            
+
+            // look for trigger categories
+            DataRow[] triggerRows = TriggerTable.Select(COL_QUESTPARTTRIGGER_QUESTPARTID + "=" + id);
+            foreach (DataRow triggerRow in triggerRows)
+            {
+                DataRow triggerTypeRow = GetTriggerTypeRowForID((int) triggerRow[COL_QUESTPARTTRIGGER_TYPE]);
+                if (!String.IsNullOrEmpty((string)triggerTypeRow[COL_TRIGGERTYPE_CATEGORY]))
+                {                    
+                    string categoryString = (string)triggerTypeRow[COL_TRIGGERTYPE_CATEGORY];
+                    string[] categories = categoryString.Split(';');
+
+                    foreach (string category in categories)
+                    {
+                        CategoryComparator comparer = new CategoryComparator(category);
+                        if (comparer.Compare(triggerRow))
+                            categoriesSet.Add(comparer.Name);
+                    }
+                }
+            }
+
+            // look for requirement categories
+            DataRow[] requRows = RequirementTable.Select(COL_QUESTPARTREQUIREMENT_QUESTPARTID + "=" + id);
+            foreach (DataRow requRow in requRows)
+            {                
+                DataRow requTypeRow = GetRequirementTypeRowForID((int)requRow[COL_QUESTPARTREQUIREMENT_TYPE]);
+                if (!String.IsNullOrEmpty((string)requTypeRow[COL_REQUIREMENTTYPE_CATEGORY]))
+                {
+                    string categoryString = (string)requTypeRow[COL_REQUIREMENTTYPE_CATEGORY];
+                    string[] categories = categoryString.Split(';');
+
+                    foreach (string category in categories) {
+                        CategoryComparator comparer = new CategoryComparator(category);
+                        if (comparer.Compare(requRow))
+                            categoriesSet.Add(comparer.Name);
+                    }
+                }
+            }
+
+            // look for action categories
+            DataRow[] actionRows = ActionTable.Select(COL_QUESTPARTACTION_QUESTPARTID + "=" + id);
+            foreach (DataRow actionRow in actionRows)
+            {
+                DataRow actionTypeRow = GetActionTypeRowForID((int)actionRow[COL_QUESTPARTACTION_TYPE]);
+                if (!String.IsNullOrEmpty((string)actionTypeRow[COL_ACTIONTYPE_CATEGORY]))
+                {
+                    string categoryString = (string)actionTypeRow[COL_ACTIONTYPE_CATEGORY];
+                    string[] categories = categoryString.Split(';');
+
+                    foreach (string category in categories)
+                    {
+                        CategoryComparator comparer = new CategoryComparator(category);
+                        if (comparer.Compare(actionRow))
+                            categoriesSet.Add(comparer.Name);
+                    }
+                }
+            }
+            
+
+            StringBuilder categoryStringBuilder = new StringBuilder();
+            for (int i = 0; i < categoriesSet.Count; i++)
+            {
+                categoryStringBuilder.Append(categoriesSet[i]);
+                categoryStringBuilder.Append(";");
+            }
+
+            Console.WriteLine(id+":"+categoryStringBuilder.ToString());
+
+            return categoryStringBuilder.ToString();
+        }
+
         /// <summary>
         /// Checks the given name against all defined objects in quest.
         /// Needed to decide wether " should be added or not.
@@ -604,4 +782,98 @@ namespace DOL.Tools.QuestDesigner.Util
         }
 		
 	}
+
+    public class CategoryComparator
+    {
+
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }        
+
+        public bool IsFiltered
+        {
+            get { return FilterParameter!=null && FilterValue!=null; }            
+        }
+
+        private string filterParameter;
+
+        public string FilterParameter
+        {
+            get { return filterParameter; }
+            set { filterParameter = value; }
+        }
+
+        private object filterValue;
+
+        public object FilterValue
+        {
+            get { return filterValue; }
+            set { filterValue = value; }
+        }
+	
+        public CategoryComparator(string categoryString)
+        {
+            
+            Match matches = Regex.Match(categoryString, "([^\\(]+)\\(([^=]+)=([^\\)]+)\\)", RegexOptions.Compiled);
+
+            if (matches.Success && matches.Groups.Count == 4)
+            {
+                Name = matches.Groups[1].Value;
+                FilterParameter = matches.Groups[2].Value;
+                string expressionValue = matches.Groups[3].Value;
+                if (Utils.EqualsIgnoreCase(DB.COL_REQUIREMENTTYPE_COMPARATOR, FilterParameter))
+                {
+                    eComparator comparator = (eComparator)Enum.Parse(typeof(eComparator), expressionValue);
+                    FilterValue = comparator;
+                }
+                else
+                {
+                    FilterValue = expressionValue;
+                }
+            }
+            else
+            {
+                Name = categoryString;
+            }
+        }
+
+        public bool Compare(DataRow row)
+        {
+            if (!IsFiltered)
+                return true;
+
+            if (Utils.EqualsIgnoreCase(DB.COL_REQUIREMENTTYPE_COMPARATOR, FilterParameter))
+            {
+                try
+                {
+                    object value = row[DB.COL_REQUIREMENTTYPE_COMPARATOR];
+                    if (value!=DBNull.Value)
+                    {
+                        eComparator comparatorRow = (eComparator)Enum.Parse(typeof(eComparator), Convert.ToString(value));
+                        return (comparatorRow == (eComparator)FilterValue);
+                    }
+                    else
+                    {
+                        if ((eComparator)filterValue == eComparator.None)
+                            return true;
+                        else
+                            return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    QuestDesignerMain.HandleException(e);
+                    return false;
+                }
+            }
+            else
+            {
+                return (string)FilterValue == (string)row[FilterParameter];
+            }
+        }
+    }
 }

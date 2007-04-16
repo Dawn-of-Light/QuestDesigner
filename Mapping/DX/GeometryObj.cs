@@ -108,6 +108,13 @@ namespace DOL.Tools.Mapping.DX
             set { m_DetailLevel = value; }
         }
 
+        public Matrix CreateWorldMatrix()
+        {
+            return
+                Matrix.Scaling(ScaleVector) * Matrix.RotationYawPitchRoll(Yaw, Pitch, Roll) *
+                Matrix.Translation(X, -Y, Z);
+        }
+
         /// <summary>
         /// Creates a new Geometry Object
         /// </summary>

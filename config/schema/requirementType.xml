@@ -70,7 +70,7 @@ Possible parameters:
 		<v>int</v>
 		<n>QuestType:string</n>
 		<comparator>quantity</comparator>
-		<text>the player has finished $N{0}$ $C{0}$ $V{1}$ times</text>
+		<text>the player has finished $N{0}$ $C{1}$ $V{2}$ times</text>
 	</RequirementType>
 	<RequirementType>
 		<value>eRequirementType.Encumbrance</value>
@@ -188,6 +188,7 @@ Possible parameters:
 		<RequirementType>
 		<value>eRequirementType.QuestPending</value>
 		<description>QuestPending</description>
+		<category>Storyline(comparator=None)</category>
 		<help>Checks for player's pending quest N, if N is empty current quest is used</help>
 		<n>QuestType:string</n>
 		<comparator>binary</comparator>
@@ -198,7 +199,8 @@ Possible parameters:
 		<description>Race</description>
 		<help>Compares player's race with N</help>
 		<n>int</n>
-		<text>the player's race is $N{0}$</text>
+  	        <comparator>binary</comparator>
+		<text>the player's race $C{0}$ $N{1}$</text>
 	</RequirementType>
 	<RequirementType>
 		<value>eRequirementType.Random</value>
@@ -249,6 +251,7 @@ Possible parameters:
 	<RequirementType>
 		<value>eRequirementType.QuestStep</value>
 		<description>QuestStep</description>
+		<category>Storyline</category>
 		<help>Checks for player's quest N at step V using eComparator, if N is empty current quest is used</help>
 		<v>int</v>
 		<n>QuestType:string</n>
@@ -258,6 +261,7 @@ Possible parameters:
 	<RequirementType>
 		<value>eRequirementType.QuestGivable</value>
 		<description>QuestGivable</description>
+		<category>Invitation(comparator=None)</category>
 		<help>Checks for quest N to be givable by NPC to player, if N is empty current quest is used</help>
 		<n>QuestType:string</n>
 		<v>GameNPC:string</v>

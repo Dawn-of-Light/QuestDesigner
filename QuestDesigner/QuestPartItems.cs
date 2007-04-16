@@ -172,7 +172,10 @@ namespace DOL.Tools.QuestDesigner
             }
 
             this.bindingNavigator.BindingSource = DB.questPartBinding;
+            //this.bindingNavigator.BindingSource.Filter = "Type=0";
+
             DB.questPartBinding.CurrentChanged += new EventHandler(questPartBinding_CurrentChanged);
+            DB.questPartBinding.ListChanged += new ListChangedEventHandler(questPartBinding_ListChanged);
 
             // Fill triggertype checklist with triggertypes...            
             QuestPartRow = (DataRowView) DB.questPartBinding.Current;
@@ -181,19 +184,44 @@ namespace DOL.Tools.QuestDesigner
             RefreshQuestPartText();
 		}
 
+        void questPartBinding_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == ListChangedType.ItemChanged)
+            {
+//                DataRowView rowView = (DataRowView)DB.questPartBinding[e.NewIndex];
+//                RefreshQuestPart(QuestPartRow);
+                RefreshQuestPartText();                
+                
+            }
+            else if (e.ListChangedType == ListChangedType.ItemAdded)
+            {
+                DB.questPartBinding.MoveLast();
+                RefreshQuestPartText();
+            }
+            else if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {                
+                RefreshQuestPartText();
+            }
+            else if (e.ListChangedType == ListChangedType.Reset)
+            {
+                RefreshQuestPartText();
+            }
+
+        }
+
         void QuestPartTable_RowDeleted(object sender, DataRowChangeEventArgs e)
         {
             if (DB.isSuspended)
                 return;
             
-            RefreshQuestPartText();
+            //RefreshQuestPartText();
         }
 
         void QuestPartTable_RowChanged(object sender, DataRowChangeEventArgs e)
         {
             if (DB.isSuspended)
                 return;
-
+/*
             if ( e.Action == DataRowAction.Change )
             {                
                 RefreshQuestPart(e.Row);
@@ -210,6 +238,7 @@ namespace DOL.Tools.QuestDesigner
                 RefreshQuestPartText();
                 DB.questPartBinding.MoveLast();
             }
+*/
         }
 
 		#region Helper Methods
@@ -422,7 +451,7 @@ namespace DOL.Tools.QuestDesigner
                 // Trigger
                 #region Trigger
                 DataRow[] triggerRows = DB.TriggerTable.Select(DB.COL_QUESTPARTTRIGGER_QUESTPARTID+"=" + questPartRow[DB.COL_QUESTPART_ID]);                
-				questPartTextbox.InsertText("If ");				
+				questPartTextbox.InsertText(questPartRow["Position"]+": If ");				
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ForeColorSelected : ForeColor);
 				colorBegin = questPartTextbox.SelectionEnd;
                 if (triggerRows!=null && triggerRows.Length > 0)
@@ -599,7 +628,7 @@ namespace DOL.Tools.QuestDesigner
                 {
                     questPartInfos.Add(textinfo);
                 }
-				textinfo.EndIndex = questPartTextbox.SelectionEnd;				
+				textinfo.EndIndex = questPartTextbox.SelectionEnd;
 
 				questPartTextbox.EndUpdate();
 			}			
@@ -1167,13 +1196,14 @@ namespace DOL.Tools.QuestDesigner
             bindingNavigator.Items.Remove(bindingNavigator.AddNewItem);
             bindingNavigator.Items.Insert(9,addNew);
             bindingNavigator.Refresh();
-        }
-
-        
+        }        
 
         void addNew_Click(object sender, EventArgs e)
         {
             DataRow row = DB.QuestPartTable.NewRow();
+            
+            //TODO prefill questPartRow to apply to filter
+
             DB.QuestPartTable.Rows.Add(row);            
         }        
 
@@ -1221,7 +1251,15 @@ namespace DOL.Tools.QuestDesigner
             if (DB.isSuspended)
                 return;
             
+            
+
             RefreshQuestPartText(QuestPartRow.Row);            
+
+            string categories = DB.GetQuestPartCategoriesForID(QuestPartRowID);
+            Log.Info("Computed categories are:" + categories);
+
+            QuestPartRow.Row[DB.COL_QUESTPART_CATEGORY] = categories;
+
 		}
 
 		#region Tooltip

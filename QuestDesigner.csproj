@@ -198,7 +198,6 @@
     <Compile Include="Mapping\DX\Meshes\Plane.cs" />
     <Compile Include="Mapping\DX\Meshes\XMesh.cs" />
     <Compile Include="Mapping\DX\Model.cs" />
-    <Compile Include="Mapping\DX\Objects.cs" />
     <Compile Include="Mapping\DX\Textures.cs" />
     <Compile Include="QuestDesigner\ErrorForm.cs">
       <SubType>Form</SubType>
@@ -339,6 +338,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="QuestDesigner\Util\Set.cs" />
     <Compile Include="QuestDesigner\Util\Settings.cs" />
     <Compile Include="QuestDesigner\Converter\DataTableConverter.cs" />
     <Compile Include="QuestDesigner\Converter\RegionConverter.cs" />
@@ -349,7 +349,6 @@
       <DependentUpon>QuestInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="QuestDesigner\Util\Utils.cs" />
-    <Compile Include="Mapping\DX\ResourceMgr.cs" />
     <Compile Include="QuestDesigner\Util\Zip.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -417,13 +416,13 @@
     <Content Include="config\dol\zones.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="config\questScript19.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="config\questScript20.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="config\schema\actionType.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="config\questScript18.xsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="config\schema\eEnumeration.xml">
@@ -2344,6 +2343,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="quests\church_5.qst">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="quests\HelpSirQuait.qst">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\dol.PNG" />

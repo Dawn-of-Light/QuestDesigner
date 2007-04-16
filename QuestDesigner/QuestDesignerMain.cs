@@ -35,6 +35,7 @@ using System.Reflection;
 using System.Deployment.Application;
 using System.Net;
 using ICSharpCode.SharpZipLib.Zip;
+using DOL.Tools.QuestDesigner.Properties;
 
 namespace DOL.Tools.QuestDesigner
 {
@@ -178,15 +179,20 @@ namespace DOL.Tools.QuestDesigner
                     qdForm = new QuestDesignerForm(new FileInfo(args[0]));
                 }
 
+                Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+
                 Application.Run(DesignerForm);
-                Environment.Exit(0);
             }            
             catch (Exception e)
             {
                 new ErrorForm(e);
             }
         }
-        
+
+        static void Application_ApplicationExit(object sender, EventArgs e)
+        {
+            Settings.Default.Save();
+        }        
 
         public static bool DatabaseSupported
         {

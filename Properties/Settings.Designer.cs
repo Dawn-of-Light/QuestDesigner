@@ -190,5 +190,29 @@ namespace DOL.Tools.QuestDesigner.Properties {
                 this["CacheTextures"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastExportDirectory {
+            get {
+                return ((string)(this["LastExportDirectory"]));
+            }
+            set {
+                this["LastExportDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSaveDirectory {
+            get {
+                return ((string)(this["LastSaveDirectory"]));
+            }
+            set {
+                this["LastSaveDirectory"] = value;
+            }
+        }
     }
 }

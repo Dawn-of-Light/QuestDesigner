@@ -317,12 +317,12 @@ namespace DOL.Tools.QuestDesigner.Controls
 			if (position < 0 || position > this.Text.Length)
 				throw new ArgumentOutOfRangeException("position");
 
-			this.SelectionStart = position;
-			this.SelectionLength = 0;
+            this.Select(position, 0);
 			this.SelectedText = text;
-			this.Select(position, text.Length);
+            this.SelectRange(position, this.SelectionStart);
+			//this.Select(position, text.Length);
 			this.SetSelectionLink(true);
-			this.Select(position + text.Length, 0);
+			this.Select(this.SelectionEnd, 0);
 		}
 		
 		/// <summary>
@@ -353,12 +353,13 @@ namespace DOL.Tools.QuestDesigner.Controls
 			if (position < 0 || position > this.Text.Length)
 				throw new ArgumentOutOfRangeException("position");
 
-			this.SelectionStart = position;
-			this.SelectionLength = 0;
-			this.SelectedRtf = @"{\rtf1\ansi "+text+@"\v #"+hyperlink+@"\v0}";
-			this.Select(position, text.Length + hyperlink.Length + 1);
+			this.Select(position,0);
+			this.SelectedRtf = @"{\rtf1\ansi "+text+@"\v #"+hyperlink+@"\v0}";            
+			//this.Select(position, text.Length + hyperlink.Length + 1);
+            this.SelectRange(position, this.SelectionStart);
 			this.SetSelectionLink(true);
-			this.Select(position + text.Length + hyperlink.Length + 1, 0);
+            this.Select(this.SelectionEnd, 0);
+			//this.Select(position + text.Length + hyperlink.Length + 1, 0);
 		}
 
 		/// <summary>

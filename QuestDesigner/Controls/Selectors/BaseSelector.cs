@@ -343,9 +343,7 @@ private bool editable = true;
 		private void text_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
-			{
-                text.Text = text.Text.Replace('{', '<');
-                text.Text = text.Text.Replace('}', '>');
+			{                
 				SelectItem(text.Text);
 				this.Close();
 			}

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Microsoft.DirectX;
 using System.Drawing;
 using DOL.Tools.QuestDesigner;
+using DOL.Tools.Mapping.Forms;
 
 namespace DOL.Tools.Mapping.Modules
 {
@@ -81,7 +82,7 @@ namespace DOL.Tools.Mapping.Modules
         {
             foreach (GeometryObj obj in GetObjects())
             {
-                Objects.Remove(obj);
+                DXControl.GeoObjects.Remove(obj);
             }
         }
 
@@ -89,7 +90,7 @@ namespace DOL.Tools.Mapping.Modules
         {
             foreach (GeometryObj obj in GetObjects())
             {
-                Objects.Add(obj);
+                DXControl.GeoObjects.Add(obj);
             }
         }
 
@@ -115,7 +116,7 @@ namespace DOL.Tools.Mapping.Modules
                 Model mod = new Model(rect, null);
                 obj = new GeometryObj(mod, DrawLevel.Middle, DetailLevel.MoreDetailed, x, y, 0, 0, 0, 0, new Vector3(1, 1, 1));
 
-                Objects.Add(obj);
+                DXControl.GeoObjects.Add(obj);
                 SetObjectForRow(areaRow, obj);
             }
             return obj;
@@ -134,7 +135,7 @@ namespace DOL.Tools.Mapping.Modules
                 {
                     GeometryObj obj = GetObjectForRow(areaRow);
                     if (obj != null)
-                        Objects.Remove(obj);
+                        DXControl.GeoObjects.Remove(obj);
 
                     RemoveObjectForRow(areaRow);
                 }
@@ -147,7 +148,7 @@ namespace DOL.Tools.Mapping.Modules
 
                     GeometryObj obj = GetObjectForRow(areaRow);
                     if (obj != null)
-                        Objects.Remove(obj);
+                        DXControl.GeoObjects.Remove(obj);
 
                     // since the radius etc can change be havto create a new object from scratch
                     AddArea(areaRow);

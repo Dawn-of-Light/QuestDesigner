@@ -47,6 +47,7 @@ Possible parameters:
 	<TriggerType>
 		<value>eTriggerType.AcceptQuest</value>
 		<description>AcceptQuest</description>
+		<category>Invitation</category>
 		<help>Player accepts quest I, if I is empty current quest is used</help>
 		<i>QuestType:string</i>
 		<text>the player accepts $I{0}$</text>
@@ -54,6 +55,7 @@ Possible parameters:
 	<TriggerType>
 		<value>eTriggerType.DeclineQuest</value>
 		<description>DeclineQuest</description>
+		<category>Invitation</category>
 		<help>Player declines quest I, if I is empty current quest is used</help>
 		<i>QuestType:string</i>
 		<text>the player declines $I{0}$</text>
@@ -61,6 +63,7 @@ Possible parameters:
 	<TriggerType>
 		<value>eTriggerType.ContinueQuest</value>
 		<description>ContinueQuest</description>
+		<category>Invitation</category>
 		<help>Continue quest I after abort quest offer, if I is empty current quest is used</help>
 		<i>QuestType:string</i>
 		<text>the player continues $I{0}$</text>
@@ -68,6 +71,7 @@ Possible parameters:
 	<TriggerType>
 		<value>eTriggerType.AbortQuest</value>
 		<description>AbortQuest</description>
+		<category>Invitation</category>
 		<help>Abort quest I after abort quest offer, if I is empty current quest is used</help>
 		<i>QuestType:string</i>
 		<text>the player aborts $I{0}$</text>

@@ -29,6 +29,7 @@ using DOL.GS.Quests;
 using DOL.Tools.QuestDesigner.Util;
 using System.ComponentModel;
 using System.Threading;
+using DOL.Tools.QuestDesigner.Properties;
 
 namespace DOL.Tools.QuestDesigner.Export
 {
@@ -50,38 +51,47 @@ namespace DOL.Tools.QuestDesigner.Export
 
         public Exporter(QuestDesignerConfiguration.Transformator transformator) {
             this.transformator = transformator;
+            this.saveDialog = new SaveFileDialog();            
         }
         
         public void CreateQuest()
-		{			
-            saveDialog = new SaveFileDialog();            
-            saveDialog.Filter = getFilter();            
-			DialogResult result = saveDialog.ShowDialog();
-            
-            if (result != DialogResult.OK)
-                return;
+		{			            
+            saveDialog.Filter = getFilter();
 
-            Log.Info("Exporting quest to "+saveDialog.FileName+".");
-            // make sure last edit is stored in dataset
-
-            try
+            if (!String.IsNullOrEmpty(Settings.Default.LastExportDirectory))
             {                
-                QuestDesignerMain.DesignerForm.Cursor = Cursors.WaitCursor;
-
-                BackgroundWorker exportWorker = new BackgroundWorker();
-                exportWorker.DoWork += new DoWorkEventHandler(exportWorker_DoWork);
-                exportWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(exportWorker_RunWorkerCompleted);
-                exportWorker.RunWorkerAsync();                
+                saveDialog.InitialDirectory = Settings.Default.LastExportDirectory;
             }
-            catch (Exception e)
+
+			DialogResult result = saveDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
             {
-                QuestDesignerMain.HandleException(e, "Export error: " + e.Message);
-                Cursor.Current = Cursors.Default;
+                FileInfo fileInfo = new FileInfo(saveDialog.FileName);
+                Settings.Default.LastExportDirectory = fileInfo.DirectoryName;
+
+                Log.Info("Exporting quest to " + saveDialog.FileName + ".");
+                // make sure last edit is stored in dataset
+
+                try
+                {
+                    QuestDesignerMain.DesignerForm.Cursor = Cursors.WaitCursor;
+
+                    BackgroundWorker exportWorker = new BackgroundWorker();
+                    exportWorker.DoWork += new DoWorkEventHandler(exportWorker_DoWork);
+                    exportWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(exportWorker_RunWorkerCompleted);
+                    exportWorker.RunWorkerAsync();
+                }
+                catch (Exception e)
+                {
+                    QuestDesignerMain.HandleException(e, "Export error: " + e.Message);
+                    Cursor.Current = Cursors.Default;
+                }
             }
             
 		}
 
-        void exportWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void exportWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             Log.Info("Quest successfully exported to "+saveDialog.FileName+".");
 
@@ -89,11 +99,15 @@ namespace DOL.Tools.QuestDesigner.Export
             QuestDesignerMain.DesignerForm.StatusProgress.Value = QuestDesignerMain.DesignerForm.StatusProgress.Minimum;
         }
 
-        void exportWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void exportWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             QuestDesignerMain.DesignerForm.StatusProgress.Value = QuestDesignerMain.DesignerForm.StatusProgress.Minimum;
 
+            DB.SuspendBindings();
+
             DB.QuestDataSet.AcceptChanges();
+
+            DB.ResumeBindings();
 
             QuestDesignerMain.DesignerForm.StatusProgress.Value = (int) (QuestDesignerMain.DesignerForm.StatusProgress.Maximum * 0.7);
 

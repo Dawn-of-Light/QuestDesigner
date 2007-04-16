@@ -76,6 +76,7 @@ namespace DOL.Tools.QuestDesigner
             colAreaType.DisplayMember = DB.COL_ENUMERATION_DESCRIPTION;
             colAreaType.DataSource = DB.areaTypeBinding;
         }
+
         void areaBag_SetValue(object sender, PropertySpecEventArgs e)
         {
             if (DB.areaBinding.Current != null)

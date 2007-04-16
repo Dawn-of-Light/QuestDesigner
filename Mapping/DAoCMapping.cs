@@ -2,7 +2,6 @@ using System.Collections;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
-using DOL.Tools.Mapping.Resource;
 using System.Windows.Forms;
 /// <summary>
 /// Provides Functions for the DAoC Mapping/Coordinate system

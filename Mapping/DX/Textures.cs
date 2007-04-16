@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using Microsoft.DirectX.Direct3D;
-using DOL.Tools.Mapping.Resource;
 using InvalidDataException=Microsoft.DirectX.Direct3D.InvalidDataException;
 using System.Windows.Forms;
 using DOL.Tools.QuestDesigner;
@@ -24,9 +23,7 @@ namespace DOL.Tools.Mapping.DX
         private static Texture m_Mob;
         private static Texture m_NPC;
         private static Texture m_Path;
-
-        
-
+       
         public static Texture Null
         {
             get
@@ -168,7 +165,7 @@ namespace DOL.Tools.Mapping.DX
                     if (File.Exists(cacheFile.FullName))
                     {
                         //tex = TextureLoader.FromFile(Common.Device, file,0,0,1,Usage.None,Format.Unknown,Pool.Managed,Filter.None,Filter.None,System.Drawing.Color.Violet.ToArgb());
-                        tex = TextureLoader.FromFile(Common.Device, cacheFile.FullName, 0, 0, 1, Usage.RenderTarget, Format.Dxt5, Pool.Default, Filter.None, Filter.None, (int)0xFFFFFF00);
+                        tex = TextureLoader.FromFile(Common.Device, cacheFile.FullName, 0, 0, 1, Usage.None, Format.Dxt5, Pool.Default, Filter.None, Filter.None, (int)0xFFFFFF00);
                     }
                     else
                     {

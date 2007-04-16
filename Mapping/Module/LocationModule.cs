@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DOL.Tools.Mapping.DX.Meshes;
 using Microsoft.DirectX;
 using DOL.Tools.QuestDesigner;
+using DOL.Tools.Mapping.Forms;
 
 namespace DOL.Tools.Mapping.Modules
 {
@@ -60,7 +61,7 @@ namespace DOL.Tools.Mapping.Modules
 
         public override void ObjectMoved(IMapObject obj)
         {
-            Objects.Render();
+            QuestDesignerMain.DesignerForm.DXControl.Invalidate();
         }
 
         public override IMapObject GetObjectAt(int x, int y)
@@ -77,7 +78,7 @@ namespace DOL.Tools.Mapping.Modules
         {
             foreach (GeometryObj obj in GetObjects())
             {
-                Objects.Remove(obj);
+                DXControl.GeoObjects.Remove(obj);
             }
         }
 
@@ -85,7 +86,7 @@ namespace DOL.Tools.Mapping.Modules
         {
             foreach (GeometryObj obj in GetObjects())
             {
-                Objects.Add(obj);
+                DXControl.GeoObjects.Add(obj);
             }
         }
 
@@ -114,7 +115,7 @@ namespace DOL.Tools.Mapping.Modules
 
                 obj = new GeometryObj(m_PointModel, DrawLevel.Forer, DetailLevel.MoreDetailed, x, y, 0, 0, 0, 0,
                     new Vector3(2, 2, 2));
-                Objects.Add(obj);
+                DXControl.GeoObjects.Add(obj);
                 SetObjectForRow(locationRow, obj);
             }
             return obj;
@@ -133,7 +134,7 @@ namespace DOL.Tools.Mapping.Modules
                 {
                     GeometryObj obj = GetObjectForRow(locationRow);
                     if (obj != null)
-                        Objects.Remove(obj);
+                        DXControl.GeoObjects.Remove(obj);
 
                     RemoveObjectForRow(locationRow);
                 }

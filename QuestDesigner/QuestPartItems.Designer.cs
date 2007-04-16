@@ -33,11 +33,14 @@ namespace DOL.Tools.QuestDesigner
             this.triggerTypeList = new System.Windows.Forms.CheckedListBox();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.actionTypeList = new System.Windows.Forms.CheckedListBox();
+            this.headerStripTrigger = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
+            this.toolStripLabelTrigger = new System.Windows.Forms.ToolStripLabel();
+            this.headerStripRequirement = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
+            this.toolStripLabelRequirement = new System.Windows.Forms.ToolStripLabel();
+            this.headerStripActions = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
+            this.toolStripLabelAction = new System.Windows.Forms.ToolStripLabel();
             this.requirementTypeList = new System.Windows.Forms.CheckedListBox();
-            this.headerStrip1 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
-            this.headerStrip2 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
-            this.headerStrip3 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
+            this.actionTypeList = new System.Windows.Forms.CheckedListBox();
             this.questPartTextbox = new DOL.Tools.QuestDesigner.Controls.RichTextBoxEx();
             this.contextMenuStripQuestPart = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.triggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,15 +70,15 @@ namespace DOL.Tools.QuestDesigner
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMoveUpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripMoveDownButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabelTrigger = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabelRequirement = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabelAction = new System.Windows.Forms.ToolStripLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tooltipTimer = new System.Windows.Forms.Timer(this.components);
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.headerStripTrigger.SuspendLayout();
+            this.headerStripRequirement.SuspendLayout();
+            this.headerStripActions.SuspendLayout();
             this.contextMenuStripQuestPart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).BeginInit();
             this.bindingNavigator.SuspendLayout();
@@ -120,34 +123,86 @@ namespace DOL.Tools.QuestDesigner
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel1.Controls.Add(this.headerStripTrigger, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.headerStripRequirement, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.headerStripActions, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.triggerTypeList, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.actionTypeList, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.requirementTypeList, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.headerStrip1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.headerStrip2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.headerStrip3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.actionTypeList, 2, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 228);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
-            // actionTypeList
+            // headerStripTrigger
             // 
-            this.actionTypeList.CheckOnClick = true;
-            this.actionTypeList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.actionTypeList.Enabled = false;
-            this.actionTypeList.FormattingEnabled = true;
-            this.actionTypeList.Location = new System.Drawing.Point(265, 23);
-            this.actionTypeList.Name = "actionTypeList";
-            this.actionTypeList.Size = new System.Drawing.Size(126, 199);
-            this.actionTypeList.TabIndex = 3;
-            this.toolTip.SetToolTip(this.actionTypeList, "Action Types");
-            this.actionTypeList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.actionTypeList_ItemCheck);
-            this.actionTypeList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.questTypeList_MouseMove);
+            this.headerStripTrigger.AutoSize = false;
+            this.headerStripTrigger.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerStripTrigger.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.headerStripTrigger.ForeColor = System.Drawing.Color.Gray;
+            this.headerStripTrigger.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.headerStripTrigger.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabelTrigger});
+            this.headerStripTrigger.Location = new System.Drawing.Point(0, 0);
+            this.headerStripTrigger.Name = "headerStripTrigger";
+            this.headerStripTrigger.Size = new System.Drawing.Size(131, 20);
+            this.headerStripTrigger.TabIndex = 4;
+            this.headerStripTrigger.Text = "Trigger";
+            // 
+            // toolStripLabelTrigger
+            // 
+            this.toolStripLabelTrigger.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.toolStripLabelTrigger.Name = "toolStripLabelTrigger";
+            this.toolStripLabelTrigger.Size = new System.Drawing.Size(59, 17);
+            this.toolStripLabelTrigger.Text = "Trigger";
+            // 
+            // headerStripRequirement
+            // 
+            this.headerStripRequirement.AutoSize = false;
+            this.headerStripRequirement.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerStripRequirement.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.headerStripRequirement.ForeColor = System.Drawing.Color.Gray;
+            this.headerStripRequirement.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.headerStripRequirement.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabelRequirement});
+            this.headerStripRequirement.Location = new System.Drawing.Point(131, 0);
+            this.headerStripRequirement.Name = "headerStripRequirement";
+            this.headerStripRequirement.Size = new System.Drawing.Size(131, 20);
+            this.headerStripRequirement.TabIndex = 5;
+            this.headerStripRequirement.Text = "Requirement";
+            // 
+            // toolStripLabelRequirement
+            // 
+            this.toolStripLabelRequirement.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.toolStripLabelRequirement.Name = "toolStripLabelRequirement";
+            this.toolStripLabelRequirement.Size = new System.Drawing.Size(99, 17);
+            this.toolStripLabelRequirement.Text = "Requirement";
+            // 
+            // headerStripActions
+            // 
+            this.headerStripActions.AutoSize = false;
+            this.headerStripActions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerStripActions.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.headerStripActions.ForeColor = System.Drawing.Color.Gray;
+            this.headerStripActions.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.headerStripActions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabelAction});
+            this.headerStripActions.Location = new System.Drawing.Point(262, 0);
+            this.headerStripActions.Name = "headerStripActions";
+            this.headerStripActions.Size = new System.Drawing.Size(132, 20);
+            this.headerStripActions.TabIndex = 6;
+            this.headerStripActions.Text = "Action";
+            // 
+            // toolStripLabelAction
+            // 
+            this.toolStripLabelAction.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.toolStripLabelAction.Name = "toolStripLabelAction";
+            this.toolStripLabelAction.Size = new System.Drawing.Size(60, 17);
+            this.toolStripLabelAction.Text = "Actions";
             // 
             // requirementTypeList
             // 
@@ -163,44 +218,19 @@ namespace DOL.Tools.QuestDesigner
             this.requirementTypeList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.requirementTypeList_ItemCheck);
             this.requirementTypeList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.questTypeList_MouseMove);
             // 
-            // headerStrip1
+            // actionTypeList
             // 
-            this.headerStrip1.AutoSize = false;
-            this.headerStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.headerStrip1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.headerStrip1.ForeColor = System.Drawing.Color.Gray;
-            this.headerStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.headerStrip1.Location = new System.Drawing.Point(0, 0);
-            this.headerStrip1.Name = "headerStrip1";
-            this.headerStrip1.Size = new System.Drawing.Size(131, 20);
-            this.headerStrip1.TabIndex = 4;
-            this.headerStrip1.Text = "headerStrip1";
-            // 
-            // headerStrip2
-            // 
-            this.headerStrip2.AutoSize = false;
-            this.headerStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.headerStrip2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.headerStrip2.ForeColor = System.Drawing.Color.Gray;
-            this.headerStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.headerStrip2.Location = new System.Drawing.Point(131, 0);
-            this.headerStrip2.Name = "headerStrip2";
-            this.headerStrip2.Size = new System.Drawing.Size(131, 20);
-            this.headerStrip2.TabIndex = 5;
-            this.headerStrip2.Text = "headerStrip2";
-            // 
-            // headerStrip3
-            // 
-            this.headerStrip3.AutoSize = false;
-            this.headerStrip3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.headerStrip3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.headerStrip3.ForeColor = System.Drawing.Color.Gray;
-            this.headerStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.headerStrip3.Location = new System.Drawing.Point(262, 0);
-            this.headerStrip3.Name = "headerStrip3";
-            this.headerStrip3.Size = new System.Drawing.Size(132, 20);
-            this.headerStrip3.TabIndex = 6;
-            this.headerStrip3.Text = "headerStrip3";
+            this.actionTypeList.CheckOnClick = true;
+            this.actionTypeList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.actionTypeList.Enabled = false;
+            this.actionTypeList.FormattingEnabled = true;
+            this.actionTypeList.Location = new System.Drawing.Point(265, 23);
+            this.actionTypeList.Name = "actionTypeList";
+            this.actionTypeList.Size = new System.Drawing.Size(126, 199);
+            this.actionTypeList.TabIndex = 3;
+            this.toolTip.SetToolTip(this.actionTypeList, "Action Types");
+            this.actionTypeList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.actionTypeList_ItemCheck);
+            this.actionTypeList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.questTypeList_MouseMove);
             // 
             // questPartTextbox
             // 
@@ -465,27 +495,6 @@ namespace DOL.Tools.QuestDesigner
             this.toolStripMoveDownButton.ToolTipText = "Move queststep down";
             this.toolStripMoveDownButton.Click += new System.EventHandler(this.toolStripMoveDownButton_Click);
             // 
-            // toolStripLabelTrigger
-            // 
-            this.toolStripLabelTrigger.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.toolStripLabelTrigger.Name = "toolStripLabelTrigger";
-            this.toolStripLabelTrigger.Size = new System.Drawing.Size(59, 17);
-            this.toolStripLabelTrigger.Text = "Trigger";
-            // 
-            // toolStripLabelRequirement
-            // 
-            this.toolStripLabelRequirement.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.toolStripLabelRequirement.Name = "toolStripLabelRequirement";
-            this.toolStripLabelRequirement.Size = new System.Drawing.Size(99, 17);
-            this.toolStripLabelRequirement.Text = "Requirement";
-            // 
-            // toolStripLabelAction
-            // 
-            this.toolStripLabelAction.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.toolStripLabelAction.Name = "toolStripLabelAction";
-            this.toolStripLabelAction.Size = new System.Drawing.Size(60, 17);
-            this.toolStripLabelAction.Text = "Actions";
-            // 
             // tooltipTimer
             // 
             this.tooltipTimer.Tick += new System.EventHandler(this.tooltipTimer_Tick);
@@ -503,6 +512,12 @@ namespace DOL.Tools.QuestDesigner
             this.splitContainerMain.Panel2.PerformLayout();
             this.splitContainerMain.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.headerStripTrigger.ResumeLayout(false);
+            this.headerStripTrigger.PerformLayout();
+            this.headerStripRequirement.ResumeLayout(false);
+            this.headerStripRequirement.PerformLayout();
+            this.headerStripActions.ResumeLayout(false);
+            this.headerStripActions.PerformLayout();
             this.contextMenuStripQuestPart.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator)).EndInit();
             this.bindingNavigator.ResumeLayout(false);
@@ -519,11 +534,11 @@ namespace DOL.Tools.QuestDesigner
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.CheckedListBox actionTypeList;
 		private System.Windows.Forms.CheckedListBox requirementTypeList;
-		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip1;
+		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStripTrigger;
 		private System.Windows.Forms.ToolStripLabel toolStripLabelTrigger;
-		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip2;
+		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStripRequirement;
 		private System.Windows.Forms.ToolStripLabel toolStripLabelRequirement;
-		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStrip3;
+		private DOL.Tools.QuestDesigner.Controls.HeaderStrip headerStripActions;
 		private System.Windows.Forms.ToolStripLabel toolStripLabelAction;
 		private System.Windows.Forms.BindingNavigator bindingNavigator;
 		private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
