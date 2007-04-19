@@ -29,13 +29,21 @@ namespace DOL.Tools.QuestDesigner.Converter
 {
     class DataTableConverter : StringConverter
     {
-        protected string tablename;
+        protected DataTable table;
         protected string valueColumn;
         protected string descriptionColumn;
 
         public DataTableConverter(string tablename, string valuecol, string desccol) : base() 
         { 
-            this.tablename = tablename; 
+            this.table = QuestDesignerMain.DesignerForm.dataSetData.Tables[tablename]; 
+            this.valueColumn = valuecol;
+            this.descriptionColumn = desccol;
+        }
+
+        public DataTableConverter(DataTable table, string valuecol, string desccol)
+            : base()
+        {
+            this.table = table;
             this.valueColumn = valuecol;
             this.descriptionColumn = desccol;
         }
@@ -43,7 +51,7 @@ namespace DOL.Tools.QuestDesigner.Converter
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {            
             ArrayList vals = new ArrayList();
-            foreach (DataRow row in QuestDesignerMain.DesignerForm.dataSetData.Tables[tablename].Rows)
+            foreach (DataRow row in table.Rows)
             {
                 vals.Add(row[descriptionColumn]);
             }
@@ -65,7 +73,7 @@ namespace DOL.Tools.QuestDesigner.Converter
         {
             if (value is string)
             {
-				foreach (DataRow row in QuestDesignerMain.DesignerForm.dataSetData.Tables[tablename].Rows)
+				foreach (DataRow row in table.Rows)
 				{
 					if (Convert.ToString(row[descriptionColumn]) == (string)value)
 					{
@@ -75,7 +83,7 @@ namespace DOL.Tools.QuestDesigner.Converter
             }
             else if (value!=null && !(value is DBNull))
             {
-                DataRow[] rows = QuestDesignerMain.DesignerForm.dataSetData.Tables[tablename].Select(descriptionColumn + "=" + value);
+                DataRow[] rows = table.Select(descriptionColumn + "=" + value);
                 if (rows.Length == 1)
                 {
                     return rows[0][valueColumn];
@@ -88,7 +96,7 @@ namespace DOL.Tools.QuestDesigner.Converter
         {
             if (value is string)
             {
-                foreach (DataRow row in QuestDesignerMain.DesignerForm.dataSetData.Tables[tablename].Rows)
+                foreach (DataRow row in table.Rows)
                 {
                     if (Convert.ToString(row[valueColumn]) == (string)value)
                     {
@@ -108,7 +116,7 @@ namespace DOL.Tools.QuestDesigner.Converter
             } 
             else if (value!=null && !(value is DBNull))
             {
-                DataRow[] rows = QuestDesignerMain.DesignerForm.dataSetData.Tables[tablename].Select(valueColumn + "=" + value);
+                DataRow[] rows = table.Select(valueColumn + "=" + value);
                 if (rows.Length==1)
                 {                    
                     if (destinationType == typeof(string))

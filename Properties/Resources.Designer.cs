@@ -81,6 +81,13 @@ namespace DOL.Tools.QuestDesigner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap create {
+            get {
+                object obj = ResourceManager.GetObject("create", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap databaseError {
             get {
                 object obj = ResourceManager.GetObject("databaseError", resourceCulture);

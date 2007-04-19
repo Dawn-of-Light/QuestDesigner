@@ -326,8 +326,8 @@ namespace <xsl:value-of select="Namespace"/> {
 
 			QuestBuilder builder = QuestMgr.getBuilder(typeof(<xsl:value-of select="Name"/>));
 			BaseQuestPart a;
-			<xsl:for-each select="/Quest/QuestPart">a = builder.CreateQuestPart(<xsl:value-of select="defaultNPC"/>);
-			<xsl:for-each select="QuestPartTrigger">a.AddTrigger(<xsl:value-of select="TypeName"/><xsl:if test="K">,<xsl:value-of disable-output-escaping="yes" select="K"/></xsl:if><xsl:if test="I">,<xsl:value-of disable-output-escaping="yes" select="I"/></xsl:if>);
+			<xsl:for-each select="/Quest/QuestPart"><xsl:sort select="Position" order="ascending" data-type="number"/>a = builder.CreateQuestPart(<xsl:value-of select="defaultNPC"/>,<xsl:value-of select="MaxExecutions"/>);
+				<xsl:for-each select="QuestPartTrigger">a.AddTrigger(<xsl:value-of select="TypeName"/><xsl:if test="K">,<xsl:value-of disable-output-escaping="yes" select="K"/></xsl:if><xsl:if test="I">,<xsl:value-of disable-output-escaping="yes" select="I"/></xsl:if>);
 			</xsl:for-each>
 			<xsl:for-each select="QuestPartRequirement">a.AddRequirement(<xsl:value-of select="TypeName"/><xsl:if test="N">,<xsl:value-of disable-output-escaping="yes" select="N"/></xsl:if><xsl:if test="V">,<xsl:value-of disable-output-escaping="yes" select="V"/></xsl:if><xsl:if test="Comparator">,(eComparator)<xsl:value-of select="Comparator"/></xsl:if>);
 			</xsl:for-each>

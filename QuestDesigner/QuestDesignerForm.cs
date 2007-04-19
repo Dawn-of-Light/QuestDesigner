@@ -84,7 +84,39 @@ namespace DOL.Tools.QuestDesigner
             exportMenuItem.Click += new EventHandler(exportMenuItem_Click);            
 
             this.createToolStripMenuItem.DropDownItems.Add(exportMenuItem);
+
+            // add link label for active transformators
+
+            if (transformator.Enabled)
+            {
+                LinkLabel exportLinkLabel = new LinkLabel();
+                exportLinkLabel.AutoSize = true;
+                exportLinkLabel.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.create;
+                exportLinkLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                exportLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+                exportLinkLabel.Location = new System.Drawing.Point(5, 48 + (this.xpTGActions.Controls.Count * 20));
+                exportLinkLabel.Name = "linkLabelExport" + transformator.Name;
+                exportLinkLabel.Padding = new System.Windows.Forms.Padding(18, 2, 0, 2);
+                exportLinkLabel.Text = "Export " + transformator.Name + " ...";
+                exportLinkLabel.Tag = transformator;
+                exportLinkLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(exportLinkLabel_LinkClicked);
+
+                this.xpTGActions.Controls.Add(exportLinkLabel);                
+                this.xpTGActions.Height = 48 + (this.xpTGActions.Controls.Count * 20);
+
+
+                this.xpTGQuestPart.Location = new Point(this.xpTGQuestPart.Location.X, this.xpTGActions.Location.Y + this.xpTGActions.Height + 20);
+            }
             return true;
+        }
+
+        void exportLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LinkLabel exportLinkLabel = (LinkLabel)sender;
+            DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator transformator = (DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator)exportLinkLabel.Tag;
+
+            Exporter exporter = (Exporter)Activator.CreateInstance(transformator.ExporterClass, new object[] { transformator });
+            exporter.CreateQuest();
         }
 
         void exportMenuItem_Click(object sender, EventArgs e)
@@ -207,14 +239,19 @@ namespace DOL.Tools.QuestDesigner
             locationView.SetDataSet();
 			questPartItems.SetDataSet();
 
+            RefreshQuestPartCategories();          
 
-            //this.checkedListBoxCategories.Items.AddRange(DB.QuestTypeCategories.ToArray());
+		}
+
+        public void RefreshQuestPartCategories()
+        {
+            this.xpTGQuestPart.Controls.Clear();
 
             foreach (string category in DB.QuestTypeCategories)
             {
                 CheckBox checkBox = new System.Windows.Forms.CheckBox();
-                checkBox.AutoSize = true;                
-                checkBox.Name = "checkBox"+category;                                
+                checkBox.AutoSize = true;
+                checkBox.Name = "checkBox" + category;
                 checkBox.Text = category;
                 checkBox.Tag = category;
                 checkBox.UseVisualStyleBackColor = true;
@@ -225,8 +262,7 @@ namespace DOL.Tools.QuestDesigner
             }
 
             this.xpTGQuestPart.Height = 30 + ((xpTGQuestPart.Controls.Count) * 20);
-
-		}
+        }
 
 		private void dataSetData_Initialized(object sender, EventArgs e)
 		{			
@@ -419,7 +455,9 @@ namespace DOL.Tools.QuestDesigner
                     // precompute questpartcategory
                     foreach (DataRow row in DB.QuestPartTable.Rows)
                     {
-                        row[DB.COL_QUESTPART_CATEGORY] = DB.GetQuestPartCategoriesForID((int)row[DB.COL_QUESTPART_ID]);
+                        if( (Boolean)row[DB.COL_QUESTPART_CATEGORYAUTOGENERATE]) {
+                            row[DB.COL_QUESTPART_CATEGORY] = DB.GetQuestPartCategoriesForID((int)row[DB.COL_QUESTPART_ID]);
+                        }
                     }
 
                     DB.ResumeBindings();

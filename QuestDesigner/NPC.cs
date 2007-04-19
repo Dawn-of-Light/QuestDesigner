@@ -57,20 +57,20 @@ namespace DOL.Tools.QuestDesigner
 
 		public void setDataSet()
 		{            
-            foreach (DataRow npcRow in DB.MobTable.Rows)
+            foreach (DataRow npcRow in DB.NPCTable.Rows)
             {
                 listViewNPC.Items.Add(generateListItem(npcRow));				
             }
 
-            DB.MobTable.RowChanged += new DataRowChangeEventHandler(npcTable_RowChanged);
-            DB.MobTable.RowDeleting += new DataRowChangeEventHandler(npcTable_RowDeleting);
-            DB.MobTable.TableCleared += new DataTableClearEventHandler(npcTable_TableCleared);
+            DB.NPCTable.RowChanged += new DataRowChangeEventHandler(npcTable_RowChanged);
+            DB.NPCTable.RowDeleting += new DataRowChangeEventHandler(npcTable_RowDeleting);
+            DB.NPCTable.TableCleared += new DataTableClearEventHandler(npcTable_TableCleared);
 
 			// Configure PropertyBags
 			npcBag = new PropertyBag();
 			npcBag.GetValue += new PropertySpecEventHandler(this.npcBag_GetValue);
 			npcBag.SetValue += new PropertySpecEventHandler(this.npcBag_SetValue);
-            foreach (DataColumn col in DB.MobTable.Columns)
+            foreach (DataColumn col in DB.NPCTable.Columns)
 			{
 				npcBag.Properties.Add(getNPCProperties(col));
 			}
@@ -152,7 +152,7 @@ namespace DOL.Tools.QuestDesigner
 		{
 			foreach (ListViewItem item in listViewNPC.SelectedItems)
 			{				
-				DB.MobTable.Rows.Remove((DataRow)item.Tag);				
+				DB.NPCTable.Rows.Remove((DataRow)item.Tag);				
 			}
 		}
 
@@ -200,12 +200,12 @@ namespace DOL.Tools.QuestDesigner
 
 		private void B_NewNPC_Click(object sender, EventArgs e)
 		{
-			DataRow npcRow = DB.MobTable.NewRow();
+			DataRow npcRow = DB.NPCTable.NewRow();
 			//			
             npcRow[DB.COL_NPC_REALM] = eRealm.Albion;
             npcRow[DB.COL_NPC_NAME] = "";			
 			//
-            DB.MobTable.Rows.Add(npcRow);
+            DB.NPCTable.Rows.Add(npcRow);
 
             npcRow[DB.COL_NPC_NAME] = "NewNPC" + npcRow[DB.COL_NPC_ID];
             npcRow[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName((string)npcRow[DB.COL_NPC_NAME]);
@@ -213,12 +213,12 @@ namespace DOL.Tools.QuestDesigner
 
 		private void B_NewMob_Click(object sender, EventArgs e)
 		{
-            DataRow npcRow = DB.MobTable.NewRow();
+            DataRow npcRow = DB.NPCTable.NewRow();
 			//			
             npcRow[DB.COL_NPC_REALM] = eRealm.None;
             npcRow[DB.COL_NPC_NAME] = "";			
 			//
-            DB.MobTable.Rows.Add(npcRow);
+            DB.NPCTable.Rows.Add(npcRow);
 
             npcRow[DB.COL_NPC_NAME] = "NewMob" + npcRow[DB.COL_NPC_ID];
             npcRow[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName((string)npcRow[DB.COL_NPC_NAME]);
@@ -372,8 +372,8 @@ namespace DOL.Tools.QuestDesigner
 				Object mob = QuestDesignerMain.NPCLookupForm.SelectedMob;
                 if (mob != null)
                 {
-                    DataRow row = DB.MobTable.NewRow();
-                    foreach (DataColumn column in DB.MobTable.Columns)
+                    DataRow row = DB.NPCTable.NewRow();
+                    foreach (DataColumn column in DB.NPCTable.Columns)
                     {
                         try
                         {
@@ -402,7 +402,7 @@ namespace DOL.Tools.QuestDesigner
                         // generate objectname since it doesn't exists in the dol world.
                         row[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName(Convert.ToString(row[DB.COL_NPC_NAME]));
                     }
-                    DB.MobTable.Rows.Add(row);
+                    DB.NPCTable.Rows.Add(row);
                 }
 			}
 		}

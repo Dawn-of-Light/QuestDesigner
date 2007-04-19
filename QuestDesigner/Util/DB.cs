@@ -165,8 +165,11 @@ namespace DOL.Tools.QuestDesigner.Util
 
         public const string COL_QUESTPART_ID = "ID";
         public const string COL_QUESTPART_CATEGORY = "Category";
+        public const string COL_QUESTPART_CATEGORYAUTOGENERATE = "CategoryAutoGenerate";
         public const string COL_QUESTPART_POSITION = "Position";
-        public const string COL_QUESTPART_DEFAULTNPC = "DefaultNPC";
+        public const string COL_QUESTPART_DEFAULTNPC = "defaultNPC";
+        public const string COL_QUESTPART_MAXEXECUTIONS = "MaxExecutions";
+        
 
         public const string COL_QUESTCHARACTERCLASS_VALUE = "Value";
         public const string COL_QUESTCHARACTERCLASS_DESCRIPTION = "Description";
@@ -306,7 +309,7 @@ namespace DOL.Tools.QuestDesigner.Util
             get { return QuestDataSet.Tables[TABLE_QUESTPARTREQUIREMENT]; }
         }
 
-        public static DataTable MobTable
+        public static DataTable NPCTable
         {
             get { return QuestDataSet.Tables[TABLE_NPC]; }
         }
@@ -403,6 +406,21 @@ namespace DOL.Tools.QuestDesigner.Util
             {
                 DatabaseLoaded();
             }
+        }
+
+        public static void AddQuestPartCategory(string category)
+        {
+            if (!String.IsNullOrEmpty(category))
+            {
+                QuestTypeCategories.Add(category);
+                QuestDesignerMain.DesignerForm.RefreshQuestPartCategories();
+            }
+        }
+
+        public static void RemoveQuestPartCategory(string category)
+        {
+            QuestTypeCategories.Remove(category);
+            QuestDesignerMain.DesignerForm.RefreshQuestPartCategories();
         }
 
         public static void AddQuestPartCategoryFilter(string category)
@@ -557,7 +575,7 @@ namespace DOL.Tools.QuestDesigner.Util
 
 		public static string GetNPCNameForID(string id)
 		{
-			DataRow[] rows = MobTable.Select(COL_NPC_OBJECTNAME+"='" + id + "'");
+			DataRow[] rows = NPCTable.Select(COL_NPC_OBJECTNAME+"='" + id + "'");
 			if (rows.Length > 0)
 				return Convert.ToString(rows[0][COL_NPC_NAME]);
 			else
@@ -737,7 +755,7 @@ namespace DOL.Tools.QuestDesigner.Util
             if (value is string)
             {
                 string name = (string)value;
-                foreach (DataRow row in DB.MobTable.Rows)
+                foreach (DataRow row in DB.NPCTable.Rows)
                 {
                     if (row[COL_NPC_OBJECTNAME] is string && (string)row[COL_NPC_OBJECTNAME] == name)
                         return true;
@@ -772,7 +790,7 @@ namespace DOL.Tools.QuestDesigner.Util
             if (value is string)
             {
                 string name = (string)value;
-                foreach (DataRow row in DB.MobTable.Rows)
+                foreach (DataRow row in DB.NPCTable.Rows)
                 {
                     if (row[COL_NPC_OBJECTNAME] is string && (string)row[COL_NPC_OBJECTNAME] == name)
                         return true;

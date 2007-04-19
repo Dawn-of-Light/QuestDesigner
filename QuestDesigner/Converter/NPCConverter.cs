@@ -18,33 +18,16 @@
  */
 
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
-using System.Windows.Forms;
+using System.ComponentModel;
+using System.Globalization;
 using DOL.Tools.QuestDesigner.Util;
 
-namespace DOL.Tools.QuestDesigner.Controls
+namespace DOL.Tools.QuestDesigner.Converter
 {
-
-	[SelectorAttribute(Const.SELECTOR_GAMELIVING)]
-	public class NPCSelector : BaseSelector
-	{		
-
-		public NPCSelector(int questPartID, char param): base(questPartID,param)
-		{			
-			this.list.DataSource = DB.NPCTable;
-
-            this.list.ValueMember = DB.COL_NPC_OBJECTNAME;
-            this.list.DisplayMember = DB.COL_NPC_NAME;
-			
-		}
-
-		protected override System.Drawing.Image getImage(int index)
-		{
-			return global::DOL.Tools.QuestDesigner.Properties.Resources.npc;
-		}	
-		
-	}
+    class NPCConverter : DataTableConverter
+    {
+        public NPCConverter() : base(DB.NPCTable, DB.COL_NPC_OBJECTNAME, DB.COL_NPC_NAME) { }
+    }
 }

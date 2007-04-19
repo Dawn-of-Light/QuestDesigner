@@ -79,12 +79,12 @@ namespace DOL.Tools.Mapping.Modules
         public override void Load()
         {
             mobTableEventHandler = new DataRowChangeEventHandler(MobTable_RowChanged);
-            DB.MobTable.RowChanged += mobTableEventHandler;
+            DB.NPCTable.RowChanged += mobTableEventHandler;
         }
 
         public override void Unload()
         {
-            DB.MobTable.RowChanged -= mobTableEventHandler;
+            DB.NPCTable.RowChanged -= mobTableEventHandler;
             mobTableEventHandler = null;
         }
 
@@ -101,7 +101,7 @@ namespace DOL.Tools.Mapping.Modules
             ClearObjectRowMapping();
 
             // load mobs
-            DataRow[] mobs = DB.MobTable.Select(DB.COL_NPC_REGION+"=" + RegionMgr.CurrentRegion.ID);
+            DataRow[] mobs = DB.NPCTable.Select(DB.COL_NPC_REGION+"=" + RegionMgr.CurrentRegion.ID);
             foreach (DataRow mob in mobs)
             {
                 AddMob(mob);
@@ -126,7 +126,7 @@ namespace DOL.Tools.Mapping.Modules
 
         public override IMapObject GetObjectAt(int x, int y)
         {
-            DataRow[] mobs = DB.MobTable.Select(DB.COL_NPC_REGION + "=" + RegionMgr.CurrentRegion.ID + " AND " + x + ">=" + DB.COL_NPC_X + "-" + (MobMapObject.WIDTH / 2) + " AND " + x + "<=" + DB.COL_NPC_X + "+" + (MobMapObject.WIDTH / 2) + " AND " + y + ">=" + DB.COL_NPC_Y + "-" + (MobMapObject.HEIGHT / 2) + " AND " + y + "<=" + DB.COL_NPC_Y + "+" + (MobMapObject.HEIGHT / 2));
+            DataRow[] mobs = DB.NPCTable.Select(DB.COL_NPC_REGION + "=" + RegionMgr.CurrentRegion.ID + " AND " + x + ">=" + DB.COL_NPC_X + "-" + (MobMapObject.WIDTH / 2) + " AND " + x + "<=" + DB.COL_NPC_X + "+" + (MobMapObject.WIDTH / 2) + " AND " + y + ">=" + DB.COL_NPC_Y + "-" + (MobMapObject.HEIGHT / 2) + " AND " + y + "<=" + DB.COL_NPC_Y + "+" + (MobMapObject.HEIGHT / 2));
             if (mobs.Length > 0)
                 return new MobMapObject(mobs[0]);
             else

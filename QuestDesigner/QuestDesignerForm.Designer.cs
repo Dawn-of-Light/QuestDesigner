@@ -122,10 +122,11 @@ namespace DOL.Tools.QuestDesigner
             System.Data.DataColumn dataColumn63;
             System.Data.DataColumn dataColumn64;
             System.Data.DataColumn dataColumn65;
+            System.Data.DataColumn dataColumn36;
+            System.Data.DataColumn dataColumn37;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
             NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
             NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
-            System.Data.DataColumn dataColumn36;
             this.dataSetQuest = new System.Data.DataSet();
             this.dataTableQuestPart = new System.Data.DataTable();
             this.dataTableTrigger = new System.Data.DataTable();
@@ -310,6 +311,7 @@ namespace DOL.Tools.QuestDesigner
             this.saveScriptDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.imageListNPC = new System.Windows.Forms.ImageList(this.components);
+            this.dataColumn38 = new System.Data.DataColumn();
             dataColumnQuestPartIF = new System.Data.DataColumn();
             dataColumnTriggerQuestPart = new System.Data.DataColumn();
             dataColumnTriggerType = new System.Data.DataColumn();
@@ -404,6 +406,7 @@ namespace DOL.Tools.QuestDesigner
             dataColumn64 = new System.Data.DataColumn();
             dataColumn65 = new System.Data.DataColumn();
             dataColumn36 = new System.Data.DataColumn();
+            dataColumn37 = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(dataTableQuestCharacterClass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetQuest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableQuestPart)).BeginInit();
@@ -888,6 +891,84 @@ namespace DOL.Tools.QuestDesigner
             dataColumn35.ColumnName = "category";
             dataColumn35.DefaultValue = "";
             // 
+            // dataColumnQuestID
+            // 
+            dataColumnQuestID.AllowDBNull = false;
+            dataColumnQuestID.AutoIncrement = true;
+            dataColumnQuestID.ColumnName = "ID";
+            dataColumnQuestID.DataType = typeof(int);
+            // 
+            // dataColumnQuestName
+            // 
+            dataColumnQuestName.ColumnName = "Name";
+            // 
+            // dataColumnQuestAuthor
+            // 
+            dataColumnQuestAuthor.ColumnName = "Author";
+            // 
+            // dataColumnQuestVersion
+            // 
+            dataColumnQuestVersion.ColumnName = "Version";
+            dataColumnQuestVersion.DefaultValue = "0";
+            // 
+            // dataColumnQuestDescription
+            // 
+            dataColumnQuestDescription.ColumnName = "Description";
+            // 
+            // dataColumn14
+            // 
+            dataColumn14.ColumnName = "Title";
+            // 
+            // dataColumnMinimumLevel
+            // 
+            dataColumnMinimumLevel.ColumnName = "MinimumLevel";
+            dataColumnMinimumLevel.DataType = typeof(int);
+            dataColumnMinimumLevel.DefaultValue = 1;
+            // 
+            // dataColumnMaximumLevel
+            // 
+            dataColumnMaximumLevel.ColumnName = "MaximumLevel";
+            dataColumnMaximumLevel.DataType = typeof(int);
+            dataColumnMaximumLevel.DefaultValue = 1;
+            // 
+            // dataColumnInvintingNPC
+            // 
+            dataColumnInvintingNPC.ColumnName = "InvitingNPC";
+            // 
+            // dataColumn41
+            // 
+            dataColumn41.AllowDBNull = false;
+            dataColumn41.ColumnName = "Namespace";
+            dataColumn41.DefaultValue = "DOL.GS.Quests";
+            // 
+            // dataColumn62
+            // 
+            dataColumn62.ColumnName = "MaxQuestCount";
+            dataColumn62.DefaultValue = "1";
+            // 
+            // dataColumn63
+            // 
+            dataColumn63.ColumnName = "ScriptLoadedCode";
+            // 
+            // dataColumn64
+            // 
+            dataColumn64.ColumnName = "ScriptUnloadedCode";
+            // 
+            // dataColumn65
+            // 
+            dataColumn65.ColumnName = "InitializationCode";
+            // 
+            // dataColumn36
+            // 
+            dataColumn36.ColumnName = "CheckQuestQualificationCode";
+            // 
+            // dataColumn37
+            // 
+            dataColumn37.AllowDBNull = false;
+            dataColumn37.ColumnName = "CategoryAutoGenerate";
+            dataColumn37.DataType = typeof(bool);
+            dataColumn37.DefaultValue = true;
+            // 
             // dataSetQuest
             // 
             this.dataSetQuest.DataSetName = "Quest";
@@ -922,7 +1003,9 @@ namespace DOL.Tools.QuestDesigner
             dataColumnQuestPartIF,
             dataColumnDefaultNPC,
             dataColumn23,
-            dataColumn26});
+            dataColumn26,
+            dataColumn37,
+            this.dataColumn38});
             this.dataTableQuestPart.TableName = "QuestPart";
             // 
             // dataTableTrigger
@@ -991,73 +1074,6 @@ namespace DOL.Tools.QuestDesigner
             dataColumn65,
             dataColumn36});
             this.dataTableQuest.TableName = "Quest";
-            // 
-            // dataColumnQuestID
-            // 
-            dataColumnQuestID.AllowDBNull = false;
-            dataColumnQuestID.AutoIncrement = true;
-            dataColumnQuestID.ColumnName = "ID";
-            dataColumnQuestID.DataType = typeof(int);
-            // 
-            // dataColumnQuestName
-            // 
-            dataColumnQuestName.ColumnName = "Name";
-            // 
-            // dataColumnQuestAuthor
-            // 
-            dataColumnQuestAuthor.ColumnName = "Author";
-            // 
-            // dataColumnQuestVersion
-            // 
-            dataColumnQuestVersion.ColumnName = "Version";
-            dataColumnQuestVersion.DefaultValue = "0";
-            // 
-            // dataColumnQuestDescription
-            // 
-            dataColumnQuestDescription.ColumnName = "Description";
-            // 
-            // dataColumn14
-            // 
-            dataColumn14.ColumnName = "Title";
-            // 
-            // dataColumnMinimumLevel
-            // 
-            dataColumnMinimumLevel.ColumnName = "MinimumLevel";
-            dataColumnMinimumLevel.DataType = typeof(int);
-            dataColumnMinimumLevel.DefaultValue = 1;
-            // 
-            // dataColumnMaximumLevel
-            // 
-            dataColumnMaximumLevel.ColumnName = "MaximumLevel";
-            dataColumnMaximumLevel.DataType = typeof(int);
-            dataColumnMaximumLevel.DefaultValue = 1;
-            // 
-            // dataColumnInvintingNPC
-            // 
-            dataColumnInvintingNPC.ColumnName = "InvitingNPC";
-            // 
-            // dataColumn41
-            // 
-            dataColumn41.AllowDBNull = false;
-            dataColumn41.ColumnName = "Namespace";
-            dataColumn41.DefaultValue = "DOL.GS.Quests";
-            // 
-            // dataColumn62
-            // 
-            dataColumn62.ColumnName = "MaxQuestCount";
-            dataColumn62.DefaultValue = "1";
-            // 
-            // dataColumn63
-            // 
-            dataColumn63.ColumnName = "ScriptLoadedCode";
-            // 
-            // dataColumn64
-            // 
-            dataColumn64.ColumnName = "ScriptUnloadedCode";
-            // 
-            // dataColumn65
-            // 
-            dataColumn65.ColumnName = "InitializationCode";
             // 
             // dataTableMob
             // 
@@ -1907,7 +1923,7 @@ namespace DOL.Tools.QuestDesigner
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -1917,14 +1933,14 @@ namespace DOL.Tools.QuestDesigner
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(148, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(149, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -1932,40 +1948,40 @@ namespace DOL.Tools.QuestDesigner
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(148, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // createToolStripMenuItem
             // 
-            this.createToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("createToolStripMenuItem.Image")));
+            this.createToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.create;
             this.createToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.createToolStripMenuItem.Text = "&Create";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(148, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.delete;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -2403,9 +2419,12 @@ namespace DOL.Tools.QuestDesigner
             this.imageListNPC.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListNPC.Images.SetKeyName(0, "user.ico");
             // 
-            // dataColumn36
+            // dataColumn38
             // 
-            dataColumn36.ColumnName = "CheckQuestQualificationCode";
+            this.dataColumn38.AllowDBNull = false;
+            this.dataColumn38.ColumnName = "MaxExecutions";
+            this.dataColumn38.DataType = typeof(int);
+            this.dataColumn38.DefaultValue = -1;
             // 
             // QuestDesignerForm
             // 
@@ -2653,7 +2672,8 @@ namespace DOL.Tools.QuestDesigner
         private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dataDownloadToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabelNewQuest;
-        private NETXP.Controls.TaskPane.XPTaskPaneGroup xpTGQuestPart;		
+        private NETXP.Controls.TaskPane.XPTaskPaneGroup xpTGQuestPart;
+        private System.Data.DataColumn dataColumn38;		
     }
 }
 

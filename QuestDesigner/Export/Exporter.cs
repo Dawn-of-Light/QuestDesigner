@@ -171,7 +171,7 @@ namespace DOL.Tools.QuestDesigner.Export
 
                 string i = Convert.ToString(triggerRows[0][DB.COL_TRIGGERTYPE_I]);
 
-                if (i.Contains("string") && !(row[DB.COL_QUESTPARTTRIGGER_I] is DBNull))
+                if (i.Contains(Const.TYPE_STRING) && !(row[DB.COL_QUESTPARTTRIGGER_I] is DBNull))
                 {
                     if (!DB.isObjectName(row[DB.COL_QUESTPARTTRIGGER_I]))
                         row[DB.COL_QUESTPARTTRIGGER_I] = Utils.ToEscapedText(row[DB.COL_QUESTPARTTRIGGER_I]);
@@ -190,7 +190,7 @@ namespace DOL.Tools.QuestDesigner.Export
                 string n = Convert.ToString(requRows[0][DB.COL_REQUIREMENTTYPE_N]);
                 string v = Convert.ToString(requRows[0][DB.COL_REQUIREMENTTYPE_V]);
 
-                if (n.Contains("string") && !(row[DB.COL_QUESTPARTREQUIREMENT_N] is DBNull))
+                if (n.Contains(Const.TYPE_STRING) && !(row[DB.COL_QUESTPARTREQUIREMENT_N] is DBNull))
                 {
                     if (!DB.isObjectName(row[DB.COL_QUESTPARTREQUIREMENT_N]))
                         row[DB.COL_QUESTPARTREQUIREMENT_N] = Utils.ToEscapedText(row[DB.COL_QUESTPARTREQUIREMENT_N]);
@@ -200,7 +200,7 @@ namespace DOL.Tools.QuestDesigner.Export
                     row[DB.COL_QUESTPARTREQUIREMENT_N] = "null";
                 }
 
-                if (v.Contains("string") && !(row[DB.COL_QUESTPARTREQUIREMENT_V] is DBNull))
+                if (v.Contains(Const.TYPE_STRING) && !(row[DB.COL_QUESTPARTREQUIREMENT_V] is DBNull))
                 {
                     if (!DB.isObjectName(row[DB.COL_QUESTPARTREQUIREMENT_V]))
                         row[DB.COL_QUESTPARTREQUIREMENT_V] = Utils.ToEscapedText(row[DB.COL_QUESTPARTREQUIREMENT_V]);
@@ -219,7 +219,7 @@ namespace DOL.Tools.QuestDesigner.Export
                 string p = Convert.ToString(actionRows[0][DB.COL_ACTIONTYPE_P]);
                 string q = Convert.ToString(actionRows[0][DB.COL_ACTIONTYPE_Q]);
 
-                if (p.Contains("string") && !(row[DB.COL_QUESTPARTACTION_P] is DBNull))
+                if (p.Contains(Const.TYPE_STRING) && !(row[DB.COL_QUESTPARTACTION_P] is DBNull))
                 {
                     if (!DB.isObjectName(row[DB.COL_QUESTPARTACTION_P]))
                         row[DB.COL_QUESTPARTACTION_P] = Utils.ToEscapedText(row[DB.COL_QUESTPARTACTION_P]);
@@ -229,7 +229,7 @@ namespace DOL.Tools.QuestDesigner.Export
                     row[DB.COL_QUESTPARTACTION_P] = "null";
                 }
 
-                if (q.Contains("string") && !(row[DB.COL_QUESTPARTACTION_Q] is DBNull))
+                if (q.Contains(Const.TYPE_STRING) && !(row[DB.COL_QUESTPARTACTION_Q] is DBNull))
                 {
                     if (!DB.isObjectName(row[DB.COL_QUESTPARTACTION_Q]))
                         row[DB.COL_QUESTPARTACTION_Q] = Utils.ToEscapedText(row[DB.COL_QUESTPARTACTION_Q]);
@@ -294,6 +294,7 @@ namespace DOL.Tools.QuestDesigner.Export
                 row[DB.COL_QUESTPART_DEFAULTNPC] = defaultNPC;
             }
 
+            // Accept all changes made
             dataSet.AcceptChanges();
             
             return dataSet;

@@ -131,6 +131,7 @@
     <Compile Include="Mapping\Module\ModulAttribute.cs" />
     <Compile Include="Mapping\Module\ModulMgr.cs" />
     <Compile Include="QuestDesigner\Converter\AreaTypeConverter.cs" />
+    <Compile Include="QuestDesigner\Converter\NPCConverter.cs" />
     <Compile Include="QuestDesigner\Converter\EffectConverter.cs" />
     <Compile Include="QuestDesigner\Converter\ExtensionConverter.cs" />
     <Compile Include="QuestDesigner\Exception\QuestPartConfigurationException.cs" />
@@ -2949,6 +2950,7 @@
     <Content Include="lib\log4net.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\create.png" />
     <None Include="Resources\copy.png" />
     <None Include="Resources\paste.png" />
     <None Include="Resources\add.png" />
