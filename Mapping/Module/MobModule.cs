@@ -163,8 +163,24 @@ namespace DOL.Tools.Mapping.Modules
             return null;
         }
 
+        private GeometryObj EditMob(GeometryObj obj, DataRow mobRow)
+        {
+            if (mobRow[DB.COL_NPC_X] == DBNull.Value || mobRow[DB.COL_NPC_Y] == DBNull.Value)
+                return null;
+
+            float x = (float)Convert.ToDouble(mobRow[DB.COL_NPC_X]);
+            float y = (float)Convert.ToDouble(mobRow[DB.COL_NPC_Y]);
+            obj.X = x;
+            obj.Y = y;
+
+            return obj;
+        }
+
         private GeometryObj AddMob(DataRow mobRow)
         {
+            if (mobRow[DB.COL_NPC_X] == DBNull.Value || mobRow[DB.COL_NPC_Y] == DBNull.Value)
+                return null;
+
             float x = (float)Convert.ToDouble(mobRow[DB.COL_NPC_X]);
             float y = (float)Convert.ToDouble(mobRow[DB.COL_NPC_Y]);
 
@@ -209,14 +225,12 @@ namespace DOL.Tools.Mapping.Modules
                 }
                 else if (e.Action == DataRowAction.Change)
                 {
-                    float x = (float)Convert.ToDouble(mobRow[DB.COL_NPC_X]);
-                    float y = (float)Convert.ToDouble(mobRow[DB.COL_NPC_Y]);
+                    
 
                     GeometryObj obj = GetObjectForRow(mobRow);
                     if (obj != null)
                     {
-                        obj.X = x;
-                        obj.Y = y;
+                        
                     }
                     else
                     {

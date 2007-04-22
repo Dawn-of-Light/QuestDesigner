@@ -299,7 +299,7 @@ namespace DOL.Tools.QuestDesigner
                     break;                                
                 case DB.COL_QUESTPART_MAXEXECUTIONS:
                     spec.Category = "General";
-                    spec.Description = "Maximum number of executions this questpart should be executed during on quest for each player.";
+                    spec.Description = "Maximum number of executions this questpart should be executed during on quest for each player. Attention: Will work only for queststeps AFTER the quest was given to the player. (The player must be doing the quest)";
                     break;
 
             }

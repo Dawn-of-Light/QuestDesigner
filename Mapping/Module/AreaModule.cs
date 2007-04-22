@@ -97,10 +97,13 @@ namespace DOL.Tools.Mapping.Modules
         public override Form GetPropertyForm()
         {
             return null;
-        }
+        }        
 
         private GeometryObj AddArea(DataRow areaRow)
         {
+            if (areaRow[DB.COL_AREA_X] == DBNull.Value || areaRow[DB.COL_AREA_Y] == DBNull.Value)
+                return null;
+
             float x = (float)Convert.ToDouble(areaRow[DB.COL_AREA_X]);
             float y = (float)Convert.ToDouble(areaRow[DB.COL_AREA_Y]);
 
@@ -140,17 +143,12 @@ namespace DOL.Tools.Mapping.Modules
                     RemoveObjectForRow(areaRow);
                 }
                 else if (e.Action == DataRowAction.Change)
-                {
-                    float x = (float)Convert.ToDouble(areaRow[DB.COL_AREA_X]);
-                    float y = (float)Convert.ToDouble(areaRow[DB.COL_AREA_Y]);
-
-
-
+                {                    
                     GeometryObj obj = GetObjectForRow(areaRow);
                     if (obj != null)
                         DXControl.GeoObjects.Remove(obj);
 
-                    // since the radius etc can change be havto create a new object from scratch
+                    // since the radius etc can change be have create a new object from scratch
                     AddArea(areaRow);
 
                 }

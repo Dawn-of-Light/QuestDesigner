@@ -100,8 +100,25 @@ namespace DOL.Tools.Mapping.Modules
             return base.GetObjects();            
         }
 
+        private GeometryObj EditLocation(GeometryObj obj, DataRow locationRow)
+        {
+            if (locationRow[DB.COL_LOCATION_X] == DBNull.Value || locationRow[DB.COL_LOCATION_Y] == DBNull.Value)
+                return obj;
+
+            float x = (float)Convert.ToDouble(locationRow[DB.COL_LOCATION_X]);
+            float y = (float)Convert.ToDouble(locationRow[DB.COL_LOCATION_Y]);
+
+            obj.X = x;
+            obj.Y = y;
+
+            return obj;
+        }
+
         private GeometryObj AddLocation(DataRow locationRow)
         {
+            if (locationRow[DB.COL_LOCATION_X] == DBNull.Value || locationRow[DB.COL_LOCATION_Y] == DBNull.Value)
+                return null;
+
             float x = (float)Convert.ToDouble(locationRow[DB.COL_LOCATION_X]);
             float y = (float)Convert.ToDouble(locationRow[DB.COL_LOCATION_Y]);
 
@@ -139,15 +156,11 @@ namespace DOL.Tools.Mapping.Modules
                     RemoveObjectForRow(locationRow);
                 }
                 else if (e.Action == DataRowAction.Change)
-                {
-                    float x = (float)Convert.ToDouble(locationRow[DB.COL_LOCATION_X]);
-                    float y = (float)Convert.ToDouble(locationRow[DB.COL_LOCATION_Y]);
-
+                {                    
                     GeometryObj obj = GetObjectForRow(locationRow);
                     if (obj != null)
                     {
-                        obj.X = x;
-                        obj.Y = y;
+                        EditLocation(obj, locationRow);
                     }
                     else // no object found add it
                     {

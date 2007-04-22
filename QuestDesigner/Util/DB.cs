@@ -739,8 +739,6 @@ namespace DOL.Tools.QuestDesigner.Util
                 categoryStringBuilder.Append(";");
             }
 
-            Console.WriteLine(id+":"+categoryStringBuilder.ToString());
-
             return categoryStringBuilder.ToString();
         }
 

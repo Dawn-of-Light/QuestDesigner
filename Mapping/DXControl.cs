@@ -325,48 +325,53 @@ namespace DOL.Tools.Mapping.Forms
             int plusY = (int) cameraY + y;
             int minusY = (int) cameraY - y;
 
-            for (byte a = (byte) DrawLevel._START; a <= (byte) DrawLevel._LAST; a++)
+            // use a copy of geoobjects list so that list can be manipulated during lazy loading of mapelements
+            GeometryObj[] objects = GeoObjects.ToArray();
+            lock (objects.SyncRoot)
             {
-                foreach (GeometryObj obj in GeoObjects)
+                for (byte a = (byte)DrawLevel._START; a <= (byte)DrawLevel._LAST; a++)
                 {
-                    if (!InDetailLevel(obj.DetailLevel, lvl))
-                        continue;
 
-                    if (obj.DrawLevel == (DrawLevel) a)
+                    foreach (GeometryObj obj in objects)
                     {
-                        if ((DrawLevel) a != DrawLevel.Background)
+                        if (!InDetailLevel(obj.DetailLevel, lvl))
+                            continue;
+
+                        if (obj.DrawLevel == (DrawLevel)a)
                         {
-                            if (!((obj.X >= minusX && obj.X <= plusX) && (obj.Y >= minusY && obj.Y <= plusY)))
-                                continue;
+                            if ((DrawLevel)a != DrawLevel.Background)
+                            {
+                                if (!((obj.X >= minusX && obj.X <= plusX) && (obj.Y >= minusY && obj.Y <= plusY)))
+                                    continue;
+                            }
+                            //World Matrix..
+                            //Common.Device.Transform.World = Matrix.RotationYawPitchRoll(obj.Yaw, obj.Pitch, obj.Roll)*Matrix.Translation(obj.X, -obj.Y, obj.Z);
+                            Common.Device.Transform.World = obj.CreateWorldMatrix();
+
+                            //Texture
+                            Common.Device.SetTexture(0, obj.Model.Texture);
+
+                            //Set Blend Texture
+                            if (obj.Model.BlendTexture != null)
+                            {
+                                Common.Device.SetTexture(1, obj.Model.BlendTexture);
+                                Common.Device.TextureState[1].ColorOperation = TextureOperation.Modulate;
+                                Common.Device.TextureState[1].ColorArgument1 = TextureArgument.TextureColor;
+                                Common.Device.TextureState[1].ColorArgument2 = TextureArgument.Current;
+                                Common.Device.TextureState[2].ColorOperation = TextureOperation.Disable;
+                            }
+                            else
+                                Common.Device.TextureState[1].ColorOperation = TextureOperation.Disable;
+
+                            //Rendern..
+                            obj.Model.Mesh.Render();
+
+                            //Objects increasen..
+                            objs++;
                         }
-                        //World Matrix..
-                        //Common.Device.Transform.World = Matrix.RotationYawPitchRoll(obj.Yaw, obj.Pitch, obj.Roll)*Matrix.Translation(obj.X, -obj.Y, obj.Z);
-                        Common.Device.Transform.World = obj.CreateWorldMatrix();
-
-                        //Texture
-                        Common.Device.SetTexture(0, obj.Model.Texture);
-
-                        //Set Blend Texture
-                        if (obj.Model.BlendTexture != null)
-                        {
-                            Common.Device.SetTexture(1, obj.Model.BlendTexture);
-                            Common.Device.TextureState[1].ColorOperation = TextureOperation.Modulate;
-                            Common.Device.TextureState[1].ColorArgument1 = TextureArgument.TextureColor;
-                            Common.Device.TextureState[1].ColorArgument2 = TextureArgument.Current;
-                            Common.Device.TextureState[2].ColorOperation = TextureOperation.Disable;
-                        }
-                        else
-                            Common.Device.TextureState[1].ColorOperation = TextureOperation.Disable;
-
-                        //Rendern..
-                        obj.Model.Mesh.Render();
-
-                        //Objects increasen..
-                        objs++;
                     }
+                    StatusChangeObjects(objs);
                 }
-                
-                StatusChangeObjects(objs);
             }
         }
 
