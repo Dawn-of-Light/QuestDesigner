@@ -1,4 +1,6 @@
 using Microsoft.DirectX;
+using System;
+using DOL.Tools.Mapping.Modules;
 
 namespace DOL.Tools.Mapping.DX
 {
@@ -8,7 +10,7 @@ namespace DOL.Tools.Mapping.DX
     /// Holds World X,Y,Z
     /// Holds Yaw,Pitch,Roll
     /// </summary>
-    public class GeometryObj
+    public class GeometryObj : IComparable<GeometryObj>
     {
         private Model m_Model;
         private float m_X;
@@ -20,6 +22,9 @@ namespace DOL.Tools.Mapping.DX
         private DrawLevel m_DrawLevel;
         private DetailLevel m_DetailLevel;
         private Vector3 m_ScaleVector;
+        private IModul m_Modul;
+
+        private bool m_IsMovable;
 
         /// <summary>
         /// The Model Object
@@ -28,6 +33,18 @@ namespace DOL.Tools.Mapping.DX
         {
             get { return m_Model; }
             set { m_Model = value; }
+        }
+
+        public IModul Modul
+        {
+            get { return m_Modul; }
+            set { m_Modul = value; }
+        }
+
+        public bool IsMovable
+        {
+            get { return m_IsMovable; }
+            set { m_IsMovable = value; }
         }
 
         public Vector3 ScaleVector
@@ -109,11 +126,17 @@ namespace DOL.Tools.Mapping.DX
         }
 
         public Matrix CreateWorldMatrix()
-        {
+        {            
             return
                 Matrix.Scaling(ScaleVector) * Matrix.RotationYawPitchRoll(Yaw, Pitch, Roll) *
                 Matrix.Translation(X, -Y, Z);
         }
+
+        public int CompareTo(GeometryObj obj)
+        {
+            return this.DrawLevel - obj.DrawLevel;
+        }
+
 
         /// <summary>
         /// Creates a new Geometry Object
@@ -127,9 +150,10 @@ namespace DOL.Tools.Mapping.DX
         /// <param name="yaw">Yaw</param>
         /// <param name="pitch">Pitch</param>
         /// <param name="roll">Roll</param>
-        public GeometryObj(Model model, DrawLevel drawlevel, DetailLevel lvl, float x, float y, float z, float yaw,
-                           float pitch, float roll, Vector3 scale)
+        public GeometryObj(IModul modul,Model model, DrawLevel drawlevel, DetailLevel lvl, float x, float y, float z, float yaw,
+                           float pitch, float roll, Vector3 scale, bool isMovable)
         {
+            Modul = modul;
             Model = model;
             DrawLevel = drawlevel;
             DetailLevel = lvl;
@@ -140,35 +164,28 @@ namespace DOL.Tools.Mapping.DX
             Pitch = pitch;
             Roll = roll;
             ScaleVector = scale;
+            IsMovable = isMovable;
         }
     }
 
     public enum DrawLevel : int
     {
         NonRender = -1,
-
-        _START = 0,
-
+       
         Background = 0,
         Backer = 1,
         Middle = 2,
         Forer = 3,
-        Foreground = 4,
-
-        _LAST = 4
+        Foreground = 4        
     }
 
     public enum DetailLevel : byte
-    {
-        _START = 0,
-
+    {       
         Nondetailed = 0,
         Undetailed = 1,
         Middle = 2,
         Detailed = 3,
         MoreDetailed = 4,
-        MostDetailed = 5,
-
-        _LAST = 5
+        MostDetailed = 5      
     }
 }

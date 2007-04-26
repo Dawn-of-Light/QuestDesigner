@@ -15,64 +15,13 @@ using DOL.Tools.Mapping.Forms;
 
 namespace DOL.Tools.Mapping.Modules
 {
-    [Modul(MODULE_NAME, true, true)]
+    [Modul(true, true)]
     public class MobModule : AbstractDataRowModule
-    {
+    {        
 
         public const string MODULE_NAME = "Mob";
-
-        public class MobMapObject : IMapObject
-        {
-            DataRow row;
-
-            public const int WIDTH = 300;
-            public const int HEIGHT = 350;
-
-            public MobMapObject(DataRow row)
-            {
-                this.row = row;
-            }
-
-            public IModul Modul
-            {
-                get { return ModulMgr.GetModulByName(MODULE_NAME).Modul; }
-            }
-
-            public int X
-            {
-                get
-                {
-                    return (int)row[DB.COL_NPC_X];
-                }
-                set
-                {
-                    row[DB.COL_NPC_X] = value;
-                }
-            }
-
-            public int Y
-            {
-                get
-                {
-                    return (int)row[DB.COL_NPC_Y];
-                }
-                set
-                {
-                    row[DB.COL_NPC_Y] = value;
-                }
-            }
-
-            public bool IsMovable
-            {
-                get {return true;}
-            }
-
-            public bool IsHit(int x, int y)
-            {
-                return (x >= X - (WIDTH/2) && x <= X + (WIDTH/2) && y >= Y - (HEIGHT/2) && y <= Y + (HEIGHT/2));
-            }
-        }
-
+       
+        public MobModule(): base(MODULE_NAME,350,350) {}
 
         private DataRowChangeEventHandler mobTableEventHandler;
 
@@ -86,20 +35,10 @@ namespace DOL.Tools.Mapping.Modules
         {
             DB.NPCTable.RowChanged -= mobTableEventHandler;
             mobTableEventHandler = null;
-        }
-
-        public override void Activate()
-        {
-        }
-
-        public override void Deactivate()
-        {
-        }
+        }        
 
         public override void RegionLoad(RegionMgr.Region region)
-        {
-            ClearObjectRowMapping();
-
+        {            
             // load mobs
             DataRow[] mobs = DB.NPCTable.Select(DB.COL_NPC_REGION+"=" + RegionMgr.CurrentRegion.ID);
             foreach (DataRow mob in mobs)
@@ -110,35 +49,42 @@ namespace DOL.Tools.Mapping.Modules
 
         public override void RegionUnload(RegionMgr.Region region)
         {
+            ClearObjectRowMapping();
         }
 
         public override void DXClick(MouseEventArgs e)
         {
         }
 
-        public override void ObjectMoved(IMapObject obj)
+        public override void ObjectMoved(GeometryObj obj)
         {
             // new coordinates are already in the db row nothing else needs to be done.
+
+            DataRow row = GetRowForObject(obj);
+
+            if (row != null)
+            {
+                row.BeginEdit();
+                row[DB.COL_NPC_X] = obj.X;
+                row[DB.COL_NPC_Y] = obj.Y;
+                row.EndEdit();
+            }
 
             // render moved objects
             QuestDesignerMain.DesignerForm.DXControl.Invalidate();
         }
 
-        public override IMapObject GetObjectAt(int x, int y)
+        public override GeometryObj GetObjectAt(int x, int y)
         {
-            DataRow[] mobs = DB.NPCTable.Select(DB.COL_NPC_REGION + "=" + RegionMgr.CurrentRegion.ID + " AND " + x + ">=" + DB.COL_NPC_X + "-" + (MobMapObject.WIDTH / 2) + " AND " + x + "<=" + DB.COL_NPC_X + "+" + (MobMapObject.WIDTH / 2) + " AND " + y + ">=" + DB.COL_NPC_Y + "-" + (MobMapObject.HEIGHT / 2) + " AND " + y + "<=" + DB.COL_NPC_Y + "+" + (MobMapObject.HEIGHT / 2));
+            DataRow[] mobs = DB.NPCTable.Select(DB.COL_NPC_REGION + "=" + RegionMgr.CurrentRegion.ID + " AND " + x + ">=" + DB.COL_NPC_X + "-" + (Width / 2) + " AND " + x + "<=" + DB.COL_NPC_X + "+" + (Width / 2) + " AND " + y + ">=" + DB.COL_NPC_Y + "-" + (Height / 2) + " AND " + y + "<=" + DB.COL_NPC_Y + "+" + (Height / 2));
             if (mobs.Length > 0)
-                return new MobMapObject(mobs[0]);
+                return GetObjectForRow(mobs[0]);
+                //return new MobMapObject(mobs[0]);
             else
                 return null;
-        }
+        }        
 
-        public override ArrayList GetObjects()
-        {
-            return base.GetObjects();
-        }
-
-        public override void Filter(ModulMgr.ModulObj mod)
+        public override void Filter()
         {
             foreach (GeometryObj obj in GetObjects())
             {
@@ -146,22 +92,14 @@ namespace DOL.Tools.Mapping.Modules
             }
         }
 
-        public override void Unfilter(ModulMgr.ModulObj mod)
-        {
-            foreach (GeometryObj obj in GetObjects())
-            {
-                DXControl.GeoObjects.Add(obj);
-            }
+        public override void Unfilter()
+        {            
+            DXControl.GeoObjects.AddRange(GetObjects());
         }
 
         public override void ClearDirty()
         {            
-        }
-
-        public override Form GetPropertyForm()
-        {
-            return null;
-        }
+        }        
 
         private GeometryObj EditMob(GeometryObj obj, DataRow mobRow)
         {
@@ -170,8 +108,11 @@ namespace DOL.Tools.Mapping.Modules
 
             float x = (float)Convert.ToDouble(mobRow[DB.COL_NPC_X]);
             float y = (float)Convert.ToDouble(mobRow[DB.COL_NPC_Y]);
+            float heading = Utils.HeadingToRadians((float)Convert.ToDouble(mobRow[DB.COL_NPC_HEADING]));
+
             obj.X = x;
             obj.Y = y;
+            obj.Roll = heading;
 
             return obj;
         }
@@ -183,6 +124,7 @@ namespace DOL.Tools.Mapping.Modules
 
             float x = (float)Convert.ToDouble(mobRow[DB.COL_NPC_X]);
             float y = (float)Convert.ToDouble(mobRow[DB.COL_NPC_Y]);
+            float heading = Utils.HeadingToRadians((float)((Convert.ToDouble(mobRow[DB.COL_NPC_HEADING]) )));
 
             GeometryObj obj = null;
             if (x > 0 || y > 0)
@@ -198,8 +140,8 @@ namespace DOL.Tools.Mapping.Modules
                     m_PointModel = new Model(Plane, Textures.NPC);
                 }
 
-                obj = new GeometryObj(m_PointModel, DrawLevel.Forer, DetailLevel.MoreDetailed, x, y, 0, 0, 0, 0,
-                    new Vector3(2, 2, 2));
+                obj = new GeometryObj(this,m_PointModel, DrawLevel.Forer, DetailLevel.MoreDetailed, x, y, 0, 0, 0, heading,
+                    new Vector3(1, 1, 1),true);
                 DXControl.GeoObjects.Add(obj);
                 SetObjectForRow(mobRow, obj);
             }
@@ -224,13 +166,11 @@ namespace DOL.Tools.Mapping.Modules
                     RemoveObjectForRow(mobRow);
                 }
                 else if (e.Action == DataRowAction.Change)
-                {
-                    
-
+                {                    
                     GeometryObj obj = GetObjectForRow(mobRow);
                     if (obj != null)
                     {
-                        
+                        EditMob(obj,mobRow);
                     }
                     else
                     {

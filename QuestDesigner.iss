@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=Quest Designer
-AppVerName=Quest Designer 0.4.6.0
+AppVerName=Quest Designer 0.4.7.2
 AppPublisher=DOL Tools
 DefaultDirName={pf}\Quest Designer
 DefaultGroupName=Quest Designer

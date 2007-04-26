@@ -138,9 +138,13 @@ namespace DOL.Tools.QuestDesigner.Util
         public const string COL_AREA_OBJECTNAME = "ObjectName";
         public const string COL_AREA_NAME = "Name";
         public const string COL_AREA_X="X";
-        public const string COL_AREA_Y = "Y";
+        public const string COL_AREA_Y = "Y";        
         public const string COL_AREA_Z = "Z";
         public const string COL_AREA_R = "R";
+        public const string COL_AREA_SOUND = "Sound";
+        public const string COL_AREA_DISPLAYMESSAGE = "DisplayMessage";
+        public const string COL_AREA_CANBROADCAST = "CanBroadcast";
+        public const string COL_AREA_ISSAFEAREA = "IsSafeArea";
         public const string COL_AREA_AREATYPE = "AreaType";
 
         public const string COL_LOCATION_OBJECTNAME = "ObjectName";

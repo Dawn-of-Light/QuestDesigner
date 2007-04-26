@@ -308,7 +308,15 @@ namespace <xsl:value-of select="Namespace"/> {
         			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).X = <xsl:value-of select="X"/>;
         			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).Y = <xsl:value-of select="Y"/>;
         			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).Radius = <xsl:value-of select="R"/>;
-        			<xsl:value-of select="ObjectName"/>.RegionID = <xsl:value-of select="RegionID"/>;
+					<xsl:if test="Sound"><xsl:value-of select="ObjectName"/>.Sound = <xsl:value-of select="Sound"/>;
+					</xsl:if>
+					<xsl:if test="IsSafeArea"><xsl:value-of select="ObjectName"/>.IsSafeArea = <xsl:value-of select="IsSafeArea"/>;
+					</xsl:if>
+					<xsl:if test="CanBroadcast"><xsl:value-of select="ObjectName"/>.CanBroadcast = <xsl:value-of select="CanBroadcast"/>;
+					</xsl:if>
+					<xsl:if test="DisplayMessage"><xsl:value-of select="ObjectName"/>.DisplayMessage = "<xsl:value-of select="DisplayMessage"/>";
+					</xsl:if>
+					<xsl:value-of select="ObjectName"/>.RegionID = <xsl:value-of select="RegionID"/>;
         			AreaMgr.RegisterArea(<xsl:value-of select="ObjectName"/>);
 				</xsl:if>
 				<xsl:if test="AreaType='Square'">
@@ -318,7 +326,15 @@ namespace <xsl:value-of select="Namespace"/> {
         			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).Y = <xsl:value-of select="Y"/>;
         			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).Width = <xsl:value-of select="Z"/>;
         			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).Height = <xsl:value-of select="R"/>;
-        			<xsl:value-of select="ObjectName"/>.RegionID = <xsl:value-of select="RegionID"/>;
+					<xsl:if test="Sound"><xsl:value-of select="ObjectName"/>.Sound = <xsl:value-of select="Sound"/>;
+					</xsl:if>
+					<xsl:if test="IsSafeArea"><xsl:value-of select="ObjectName"/>.IsSafeArea = <xsl:value-of select="IsSafeArea"/>;
+					</xsl:if>
+					<xsl:if test="CanBroadcast"><xsl:value-of select="ObjectName"/>.CanBroadcast = <xsl:value-of select="CanBroadcast"/>;
+					</xsl:if>
+					<xsl:if test="DisplayMessage"><xsl:value-of select="ObjectName"/>.DisplayMessage = "<xsl:value-of select="DisplayMessage"/>";
+					</xsl:if>
+					<xsl:value-of select="ObjectName"/>.RegionID = <xsl:value-of select="RegionID"/>;
         			AreaMgr.RegisterArea(<xsl:value-of select="ObjectName"/>);
 				</xsl:if>
 			</xsl:for-each>

@@ -23,6 +23,8 @@ namespace DOL.Tools.Mapping.DX
         private static Texture m_Mob;
         private static Texture m_NPC;
         private static Texture m_Path;
+        private static Texture m_AreaSquare;
+        private static Texture m_AreaCircle;
        
         public static Texture Null
         {
@@ -36,6 +38,34 @@ namespace DOL.Tools.Mapping.DX
                 return m_Null;
             }
             set { m_Null = null; }
+        }
+
+        public static Texture AreaSquare
+        {
+            get
+            {
+                if (m_AreaSquare == null || m_AreaSquare.Disposed)
+                {
+                    m_AreaSquare = Texture.FromBitmap(Common.Device, DOL.Tools.QuestDesigner.Properties.Resources.areaSquare, Usage.None, Pool.Managed);
+                    //Texture.FromStream(Common.Device, ResourceMgr.GetStream("Resource.null.bmp"), Usage.None, Pool.Managed);
+                }
+                return m_AreaSquare;
+            }
+            set { m_AreaSquare = null; }
+        }
+
+        public static Texture AreaCircle
+        {
+            get
+            {
+                if (m_AreaCircle == null || m_AreaCircle.Disposed)
+                {
+                    m_AreaCircle = Texture.FromBitmap(Common.Device, DOL.Tools.QuestDesigner.Properties.Resources.areaCircle, Usage.None, Pool.Managed);
+                    //Texture.FromStream(Common.Device, ResourceMgr.GetStream("Resource.null.bmp"), Usage.None, Pool.Managed);
+                }
+                return m_AreaCircle;
+            }
+            set { m_AreaCircle = null; }
         }
 
         public static Texture Mob
@@ -109,9 +139,39 @@ namespace DOL.Tools.Mapping.DX
                 }
             }
 
-            Null = null;
-            Mob = null;
-            Path = null;
+            if (m_NPC != null)
+            {
+                NPC.Dispose();
+                NPC = null;
+            }
+            if (m_Null != null)
+            {
+                Null.Dispose();
+                Null = null;
+            }
+            if (m_Mob != null)
+            {
+                Mob.Dispose();
+                Mob = null;
+            }
+
+            if (m_Path != null)
+            {
+                Path.Dispose();
+                Path = null;
+            }
+
+            if (m_AreaCircle != null)
+            {
+                AreaCircle.Dispose();
+                AreaCircle = null;
+            }
+
+            if (m_AreaSquare != null)
+            {
+                AreaSquare.Dispose();
+                AreaSquare = null;
+            }
 
             m_ColorTextures.Clear();
             m_Textures.Clear();

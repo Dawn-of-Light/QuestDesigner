@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Windows.Forms;
 using DOL.Tools.Mapping.Map;
+using DOL.Tools.Mapping.DX;
+using System.Collections.Generic;
 
 namespace DOL.Tools.Mapping.Modules
 {
     public interface IModul
     {
+
+        string Name { get;}
         /// <summary>
         /// Loads the given module, called by Modulmanager during intialization
         /// </summary>
@@ -13,10 +17,7 @@ namespace DOL.Tools.Mapping.Modules
         /// <summary>
         /// Unloads the given module, called by Modulmanager during termination
         /// </summary>
-        void Unload();
-        void Activate();
-        void Deactivate();
-        
+        void Unload();                
         /// <summary>
         /// Called whenever a new region is loaded, displayed
         /// </summary>
@@ -36,22 +37,21 @@ namespace DOL.Tools.Mapping.Modules
         /// Ab Object is moved by the user via drag&drop
         /// </summary>
         /// <param name="obj"></param>
-        void ObjectMoved(IMapObject obj);
+        void ObjectMoved(GeometryObj obj);
         /// <summary>
         /// Searches for an object at the given coordinates and returns it, or null if nothing is found
         /// </summary>
         /// <param name="x">x coordinate on map</param>
         /// <param name="y">y coordinate on map</param>
         /// <returns></returns>
-        IMapObject GetObjectAt(int x, int y);
-        void Filter(ModulMgr.ModulObj mod);
-        void Unfilter(ModulMgr.ModulObj mod);
+        GeometryObj GetObjectAt(int x, int y);
+        void Filter();
+        void Unfilter();
         void ClearDirty();
         /// <summary>
         /// Returns the list of geometry objects that should be displayed on the map
         /// </summary>
         /// <returns>List of Geometry objects to be displayed on the map</returns>
-        ArrayList GetObjects();        
-        Form GetPropertyForm();
+        ICollection<GeometryObj> GetObjects();        
     }
 }

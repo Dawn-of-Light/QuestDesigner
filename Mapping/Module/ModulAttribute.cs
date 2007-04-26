@@ -5,7 +5,7 @@ namespace DOL.Tools.Mapping.Modules
     [AttributeUsage(AttributeTargets.Class)]
     public class ModulAttribute : Attribute
     {
-        private string m_ModulName;
+        
         private bool m_InModulList;
         private bool m_InFilterList;
 
@@ -21,15 +21,10 @@ namespace DOL.Tools.Mapping.Modules
             set { m_InFilterList = value; }
         }
 
-        public string ModulName
-        {
-            get { return m_ModulName; }
-            set { m_ModulName = value; }
-        }
+        
 
-        public ModulAttribute(string modulname, bool inmodullist, bool infilterlist)
-        {
-            m_ModulName = modulname;
+        public ModulAttribute(bool inmodullist, bool infilterlist)
+        {            
             m_InModulList = inmodullist;
             m_InFilterList = infilterlist;
         }

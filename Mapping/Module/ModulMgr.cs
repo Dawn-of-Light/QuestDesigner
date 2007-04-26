@@ -6,76 +6,54 @@ using DOL.Tools.Mapping.Forms;
 using DOL.Tools.Mapping.Map;
 using DOL.Tools.QuestDesigner.Util;
 using DOL.Tools.QuestDesigner;
+using System.Collections.Generic;
+using DOL.Tools.Mapping.DX;
 
 namespace DOL.Tools.Mapping.Modules
 {
+
+    public enum ModulEvent
+    {
+        Load = 0,
+        Unload = 1,
+        DBConnect = 2,
+        DBDisconnect = 3,
+        RegionLoad = 4,
+        RegionUnload = 5,
+        DXClick = 6,        
+        Filter = 9,
+        Unfilter = 10,
+        ClearDirty = 11,
+    }
+
     public class ModulMgr
     {
-        private static ArrayList m_Modules = new ArrayList();
-        private static ModulObj m_ActiveModul;
+        private static List<IModul> m_Modules = new List<IModul>();
+        
         private static bool m_Dirty = false;
 
         public static bool Dirty
         {
             get { return m_Dirty; }
             set { m_Dirty = value; }
-        }
-
-        public static ModulObj ActiveModul
-        {
-            get { return m_ActiveModul; }
-        }
-
-        public class ModulObj
-        {
-            private string m_Name;
-            private Type m_Type;
-            private IModul m_Modul;
-
-            public string Name
-            {
-                get { return m_Name; }
-                set { m_Name = value; }
-            }
-
-            public Type Type
-            {
-                get { return m_Type; }
-                set { m_Type = value; }
-            }
-
-            public IModul Modul
-            {
-                get { return m_Modul; }
-                set { m_Modul = value; }
-            }
-
-            public ModulObj(string name, Type type, IModul mod)
-            {
-                Name = name;
-                Type = type;
-                Modul = mod;
-            }
-        }
+        }             
 
         public static void LoadModules()
         {
             Log.Info("Loading Modules...");
-            foreach (ModulObj modulObj in m_Modules)
+            foreach (IModul modul in m_Modules)
             {
-                ModulAttribute attrib = GetModulAttributeForType(modulObj.Type);
+                ModulAttribute attrib = GetModulAttributeForType(modul.GetType());
 
                 if (attrib.InFilterList)                
-                    QuestDesignerMain.DesignerForm.DXControl.AddFilter(modulObj.Name);
-                //if (list)
-                // QuestDesignerMain.DesignerForm.DXControl.contextMenuStrip.MenuItems.Add(name, new EventHandler(Instances.DialogMain.ModulClick));
+                    QuestDesignerMain.DesignerForm.DXControl.AddFilter(modul.Name);                
             }
 
             Log.Info("Loading Modules finished.");
             QuestDesignerMain.DesignerForm.Update();
         }
 
-        public static ModulAttribute GetModulAttributeForType(Type type)
+        private static ModulAttribute GetModulAttributeForType(Type type)
         {
             object[] attribs = type.GetCustomAttributes(typeof(ModulAttribute), false);
 
@@ -103,128 +81,86 @@ namespace DOL.Tools.Mapping.Modules
                 if (type == null)
                     continue;
 
-                if (type.Namespace == null)
-                    continue;
-
-                if (type.IsSubclassOf(typeof(IModul)))
-                    continue;
-
                 ModulAttribute attrib = GetModulAttributeForType(type);
 
-                if (attrib == null || String.IsNullOrEmpty(attrib.ModulName))
+                if (attrib == null)
                     continue;                               
 
-                Log.Info("Loading Module: " + attrib.ModulName);
+                Log.Info("Preloading Module: " + type.Name);
 
-                IModul o = (IModul)Activator.CreateInstance(type);
-                ModulObj mod = new ModulObj(attrib.ModulName, type, o);
-                m_Modules.Add(mod);                
-
-                o.Load();
+                IModul o = (IModul)Activator.CreateInstance(type);                
+                m_Modules.Add(o);                
             }
+            TriggerModules(ModulEvent.Load);
 
             Log.Info("Preloading Modules finished.");                        
         }
 
         public static void UnloadModules()
         {
-            Log.Info("Unloading Modules..");
-            foreach (ModulObj mod in m_Modules)
-            {
-                Log.Info("Unloading Modul: " + mod.Name);
-                mod.Modul.Unload();
-            }
-            //Instances.DialogMain.StatusChangeStatus("Clearing Modullist..");
-            //m_Modules.Clear();
-            //Instances.DialogMain.StatusChangeStatus("Ready");
+            Log.Info("Unloading Modules...");
+            TriggerModules(ModulEvent.Unload);
+            Log.Info("Unloading Modules finished.");
         }
 
-        public static void TriggerModule(ModulEvent modulevent, params object[] args)
+        public static void TriggerModules(ModulEvent modulevent, params object[] args)
         {
-            foreach (ModulObj mdl in m_Modules)
+            foreach (IModul mdl in m_Modules)
             {
-                switch (modulevent)
-                {                    
-                    case ModulEvent.DXClick:
-                        mdl.Modul.DXClick((MouseEventArgs) args[0]);
-                        break;
-                    case ModulEvent.Load:
-                        mdl.Modul.Load();
-                        break;
-                    case ModulEvent.RegionLoad:
-                        mdl.Modul.RegionLoad((RegionMgr.Region) args[0]);
-                        break;
-                    case ModulEvent.RegionUnload:
-                        mdl.Modul.RegionUnload((RegionMgr.Region) args[0]);
-                        break;
-                    case ModulEvent.Unload:
-                        mdl.Modul.Unload();
-                        break;
-                    case ModulEvent.Filter:
-                        mdl.Modul.Filter((ModulObj) args[0]);
-                        break;
-                    case ModulEvent.Unfilter:
-                        mdl.Modul.Unfilter((ModulObj) args[0]);
-                        break;
-                    case ModulEvent.ClearDirty:
-                        mdl.Modul.ClearDirty();
-                        break;
-                }
+                TriggerModule(mdl,modulevent,args);
             }
         }
 
-        public static void SwitchModul(ModulObj newmodul)
+        public static void TriggerModule(IModul mdl, ModulEvent modulevent, params object[] args)
         {
-            if (m_ActiveModul != null)
+            switch (modulevent)
             {
-                m_ActiveModul.Modul.Deactivate();
-                m_ActiveModul = null;
-            }
-
-            //Instances.DialogMain.DXControl.contextMenu.MenuItems.Clear();
-
-            if (newmodul != null)
-            {
-                m_ActiveModul = newmodul;
-                m_ActiveModul.Modul.Activate();
+                case ModulEvent.DXClick:
+                    mdl.DXClick((MouseEventArgs) args[0]);
+                    break;
+                case ModulEvent.Load:
+                    mdl.Load();
+                    break;
+                case ModulEvent.RegionLoad:
+                    mdl.RegionLoad((RegionMgr.Region) args[0]);
+                    break;
+                case ModulEvent.RegionUnload:
+                    mdl.RegionUnload((RegionMgr.Region) args[0]);
+                    break;
+                case ModulEvent.Unload:
+                    mdl.Unload();
+                    break;
+                case ModulEvent.Filter:                    
+                    mdl.Filter();
+                    break;
+                case ModulEvent.Unfilter:
+                    mdl.Unfilter();
+                    break;
+                case ModulEvent.ClearDirty:
+                    mdl.ClearDirty();
+                    break;
             }
         }
 
-        public static ModulObj GetModulByName(string name)
+        public static IModul GetModulByName(string name)
         {
-            foreach (ModulObj mod in m_Modules)
+            foreach (IModul mod in m_Modules)
             {
                 if (mod.Name == name)
                     return mod;
             }
             return null;
-        }
+        }        
 
-        public enum ModulEvent
+        public static GeometryObj GetObjectAt(int x, int y)
         {
-            Load = 0,
-            Unload = 1,
-            DBConnect = 2,
-            DBDisconnect = 3,
-            RegionLoad = 4,
-            RegionUnload = 5,
-            DXClick = 6,
-            Activate = 7,
-            Deactivate = 8,
-            Filter = 9,
-            Unfilter = 10,
-            ClearDirty = 11,
-        }
-
-        public static IMapObject GetObjectAt(int x, int y)
-        {
-            IMapObject obj = null;
+            GeometryObj obj = null;
 
             if (RegionMgr.CurrentRegion != null)
             {
-                foreach (ModulObj mod in m_Modules)
+                foreach (IModul mod in m_Modules)
                 {
-                    obj = mod.Modul.GetObjectAt(x, y);
+                    obj = mod.GetObjectAt(x, y);
                     if (obj != null)
                         break;
 
@@ -233,12 +169,29 @@ namespace DOL.Tools.Mapping.Modules
             return obj;
         }
 
-        public static ArrayList GetDirtyObjects()
+        public static List<GeometryObj> GetObjectsAt(int x, int y)
         {
-            ArrayList items = new ArrayList();
+            List<GeometryObj> items = new List<GeometryObj>();
 
-            foreach (ModulObj mod in m_Modules)
-                items.AddRange(mod.Modul.GetObjects());
+            if (RegionMgr.CurrentRegion != null)
+            {
+                foreach (IModul mod in m_Modules)
+                {
+                    GeometryObj obj = mod.GetObjectAt(x, y);
+                    if (obj != null)
+                        items.Add(obj);
+
+                }
+            }
+            return items;
+        }
+
+        public static List<GeometryObj> GetDirtyObjects()
+        {
+            List<GeometryObj> items = new List<GeometryObj>();
+
+            foreach (IModul mod in m_Modules)
+                items.AddRange(mod.GetObjects());
 
             return items;
         }

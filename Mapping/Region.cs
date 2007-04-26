@@ -14,6 +14,7 @@ using System.ComponentModel;
 using DOL.Tools.Mapping.Modules;
 using System.Threading;
 using DOL.Tools.Mapping.Forms;
+using System.Collections.Generic;
 
 namespace DOL.Tools.Mapping.Map
 {
@@ -38,7 +39,7 @@ namespace DOL.Tools.Mapping.Map
             private int m_MaxWidth;
             private int m_MaxHeight;
             private int m_ID;
-            private ArrayList m_Zones;
+            private List<Zone> m_Zones;
 
             public string Name
             {
@@ -76,12 +77,12 @@ namespace DOL.Tools.Mapping.Map
                 set { m_ID = value; }
             }
 
-            public ArrayList Zones
+            public List<Zone> Zones
             {
                 get
                 {
                     if (m_Zones == null)
-                        m_Zones = new ArrayList();
+                        m_Zones = new List<Zone>();
 
                     return m_Zones;
                 }
@@ -316,8 +317,8 @@ namespace DOL.Tools.Mapping.Map
             Texture tx = Textures.Generator(Color.Cyan);
             Model mdl = new Model(ms, tx);
             GeometryObj bj =
-                new GeometryObj(mdl, DrawLevel.NonRender, DetailLevel.Nondetailed, 256*256*16/2, 256*256*16/2, 0.0f,
-                                0.0f, 0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f));
+                new GeometryObj(null,mdl, DrawLevel.NonRender, DetailLevel.Nondetailed, 256*256*16/2, 256*256*16/2, 0.0f,
+                                0.0f, 0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f),false);
             DXControl.GeoObjects.Add(bj);
             QuestDesignerMain.DesignerForm.DXControl.HBObject = bj;
             
@@ -384,7 +385,7 @@ namespace DOL.Tools.Mapping.Map
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Enabled = true;
             QuestDesignerMain.DesignerForm.DXControl.Zoom.Enabled = true;
 
-            ModulMgr.TriggerModule(ModulMgr.ModulEvent.RegionLoad, region);
+            ModulMgr.TriggerModules(ModulEvent.RegionLoad, region);
 
             // render newly added objects from Modules
             QuestDesignerMain.DesignerForm.DXControl.Invalidate();
@@ -424,12 +425,15 @@ namespace DOL.Tools.Mapping.Map
 
                     Model model = new Model(mesh, tex);
                     GeometryObj obj =
-                        new GeometryObj(model, DrawLevel.Background, DetailLevel.Nondetailed, zone.X, zone.Y, 0.0f, 0.0f,
-                                        0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f));
+                        new GeometryObj(null,model, DrawLevel.Background, DetailLevel.Nondetailed, zone.X, zone.Y, 0.0f, 0.0f,
+                                        0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f),false);
                     DXControl.GeoObjects.Add(obj);
 
-                    QuestDesignerMain.DesignerForm.StatusProgress.PerformStep();
-                    QuestDesignerMain.DesignerForm.DXControl.Invalidate();
+                    if (QuestDesignerMain.DesignerForm != null && !QuestDesignerMain.DesignerForm.StatusProgress.IsDisposed)
+                    {
+                        QuestDesignerMain.DesignerForm.StatusProgress.PerformStep();
+                        QuestDesignerMain.DesignerForm.DXControl.Invalidate();
+                    }
                 }
             }
 
@@ -447,8 +451,11 @@ namespace DOL.Tools.Mapping.Map
                 QuestDesignerMain.DesignerForm.DXControl.Invalidate();
                 Log.Info("Region successfully loaded");                
             }
-            GC.Collect();
-            QuestDesignerMain.DesignerForm.StatusProgress.Value = QuestDesignerMain.DesignerForm.StatusProgress.Minimum;
+
+            if (QuestDesignerMain.DesignerForm != null && !QuestDesignerMain.DesignerForm.StatusProgress.IsDisposed)
+            {
+                QuestDesignerMain.DesignerForm.StatusProgress.Value = QuestDesignerMain.DesignerForm.StatusProgress.Minimum;
+            }
         }
 
         public static bool UnloadRegion()
@@ -478,7 +485,7 @@ namespace DOL.Tools.Mapping.Map
 
             Log.Info("Resetting Controls");
 
-            ModulMgr.TriggerModule(ModulMgr.ModulEvent.RegionLoad, m_OpenedRegion);
+            ModulMgr.TriggerModules(ModulEvent.RegionUnload, m_OpenedRegion);
 
             //Unset region
             m_OpenedRegion = null;

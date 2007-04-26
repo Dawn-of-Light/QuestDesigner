@@ -113,7 +113,7 @@ namespace DOL.Tools.QuestDesigner
                 }
                 if ("AreaType".Equals(e.Property.Name))
                 {
-                    if ("Square".Equals(e.Value))
+                    if (Const.AREA_SQUARE.Equals(e.Value))
                         propertyGridArea.SelectedObject = areaSquareBag;
                     else
                         propertyGridArea.SelectedObject = areaCircleBag;
@@ -170,6 +170,12 @@ namespace DOL.Tools.QuestDesigner
                 case DB.COL_AREA_AREATYPE:
                     spec.ConverterTypeName = typeof(AreaTypeConverter).FullName;
                     break;
+                case DB.COL_AREA_SOUND:
+                case DB.COL_AREA_CANBROADCAST:
+                case DB.COL_AREA_ISSAFEAREA:
+                case DB.COL_AREA_DISPLAYMESSAGE:
+                    spec.Category = "Settings";
+                    break;
             }
             return spec;
         }
@@ -204,6 +210,12 @@ namespace DOL.Tools.QuestDesigner
                 case DB.COL_AREA_AREATYPE:
                     spec.ConverterTypeName = typeof(AreaTypeConverter).FullName;
                     break;
+                case DB.COL_AREA_SOUND:
+                case DB.COL_AREA_CANBROADCAST:
+                case DB.COL_AREA_ISSAFEAREA:
+                case DB.COL_AREA_DISPLAYMESSAGE:
+                    spec.Category = "Settings";
+                    break;
             }
             return spec;
         }
@@ -224,7 +236,7 @@ namespace DOL.Tools.QuestDesigner
                  row.Cells[colObjectName.Name].Value.ToString() == Const.GRID_AUTOFILL_VALUE)
                 )
             {
-                string coname = row.Cells[colAreaName.Name].Value as string;
+                string coname = row.Cells[colName.Name].Value as string;
                 if (coname != null)
                 {
                     row.Cells[colObjectName.Name].Value = Utils.ConvertToObjectName(coname);
@@ -237,6 +249,13 @@ namespace DOL.Tools.QuestDesigner
             {
                 row.Cells[colObjectName.Name].Value = Utils.ConvertToObjectName(Convert.ToString(row.Cells[colObjectName.Name].Value));
             }
+
+            
+            if (Const.AREA_SQUARE.Equals(row.Cells[colAreaType.Name].Value))
+                propertyGridArea.SelectedObject = areaSquareBag;
+            else
+                propertyGridArea.SelectedObject = areaCircleBag;
+            
         }
 
         private void dataGridArea_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -259,7 +278,7 @@ namespace DOL.Tools.QuestDesigner
             if (DB.areaBinding.Current != null && dataGridArea.CurrentRow != null && !dataGridArea.CurrentRow.IsNewRow)
             {
                 propertyGridArea.Enabled = true;
-                if (Convert.ToString(((DataRowView)DB.areaBinding.Current)[DB.COL_AREA_AREATYPE]) == "Square")
+                if (Convert.ToString(((DataRowView)DB.areaBinding.Current)[DB.COL_AREA_AREATYPE]) == Const.AREA_SQUARE)
                     propertyGridArea.SelectedObject = areaSquareBag;
                 else
                     propertyGridArea.SelectedObject = areaCircleBag;
@@ -282,7 +301,7 @@ namespace DOL.Tools.QuestDesigner
                     DataRowView rowView = (DataRowView)DB.areaBinding.Current;
                     rowView[DB.COL_AREA_X] = loc.X;
                     rowView[DB.COL_AREA_Y] = loc.Y;
-                    rowView[DB.COL_AREA_Y] = loc.Z;
+                    //rowView[DB.COL_AREA_Z] = loc.Z; this is misused for with, radius
                     rowView[DB.COL_AREA_REGIONID] = loc.RegionID;
 
                     propertyGridArea.Refresh();

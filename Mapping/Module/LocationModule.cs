@@ -15,11 +15,17 @@ using DOL.Tools.Mapping.Forms;
 
 namespace DOL.Tools.Mapping.Modules
 {
-    [Modul("Location", true, true)]
+    [Modul(true, true)]
     public class LocationModule : AbstractDataRowModule
     {
 
+        public const int WIDTH = 300;
+        public const int HEIGHT = 350;
+        public const string MODULE_NAME = "Location";
+
         private DataRowChangeEventHandler locationTableEventHandler;
+
+        public LocationModule(): base(MODULE_NAME) {}
 
         public override void Load()
         {
@@ -31,18 +37,10 @@ namespace DOL.Tools.Mapping.Modules
         {
             DB.LocationTable.RowChanged -= locationTableEventHandler;
             locationTableEventHandler = null;
-        }
-        public override void Activate()
-        {
-        }
-        public override void Deactivate()
-        {
-        }
+        }        
 
         public override void RegionLoad(RegionMgr.Region region)
-        {
-            ClearObjectRowMapping();
-            
+        {            
             // load locations
             DataRow[] locations = DB.LocationTable.Select(DB.COL_LOCATION_REGIONID+"=" + RegionMgr.CurrentRegion.ID);
             foreach (DataRow location in locations)
@@ -53,20 +51,36 @@ namespace DOL.Tools.Mapping.Modules
 
         public override void RegionUnload(RegionMgr.Region region)
         {
+            ClearObjectRowMapping();
         }
 
         public override void DXClick(MouseEventArgs e)
         {
         }
 
-        public override void ObjectMoved(IMapObject obj)
+        public override void ObjectMoved(GeometryObj obj)
         {
+            DataRow row = GetRowForObject(obj);
+
+            if (row != null)
+            {
+                row.BeginEdit();
+                row[DB.COL_LOCATION_X] = obj.X;
+                row[DB.COL_LOCATION_Y] = obj.Y;
+                row.EndEdit();
+//                Log.Info("Moving to" + row[DB.COL_LOCATION_Y] + "|" + obj.Y);
+            }
             QuestDesignerMain.DesignerForm.DXControl.Invalidate();
         }
 
-        public override IMapObject GetObjectAt(int x, int y)
-        {
-            return null;
+        public override GeometryObj GetObjectAt(int x, int y)
+        {            
+            DataRow[] objs = DB.LocationTable.Select(DB.COL_LOCATION_REGIONID + "=" + RegionMgr.CurrentRegion.ID + " AND " + x + ">=" + DB.COL_LOCATION_X + "-" + (WIDTH / 2) + " AND " + x + "<=" + DB.COL_LOCATION_X + "+" + (WIDTH / 2) + " AND " + y + ">=" + DB.COL_LOCATION_Y + "-" + (HEIGHT / 2) + " AND " + y + "<=" + DB.COL_LOCATION_Y + "+" + (HEIGHT / 2));
+            if (objs.Length > 0)
+                return GetObjectForRow(objs[0]);
+            //return new LocationMapObject(objs[0]);
+            else
+                return null;
         }
 
         public override void ClearDirty()
@@ -74,7 +88,7 @@ namespace DOL.Tools.Mapping.Modules
             
         }
 
-        public override void Filter(ModulMgr.ModulObj mod)
+        public override void Filter()
         {
             foreach (GeometryObj obj in GetObjects())
             {
@@ -82,23 +96,10 @@ namespace DOL.Tools.Mapping.Modules
             }
         }
 
-        public override void Unfilter(ModulMgr.ModulObj mod)
+        public override void Unfilter()
         {
-            foreach (GeometryObj obj in GetObjects())
-            {
-                DXControl.GeoObjects.Add(obj);
-            }
-        }
-
-        public override Form GetPropertyForm()
-        {
-            return null;
-        }
-
-        public override ArrayList GetObjects()
-        {
-            return base.GetObjects();            
-        }
+            DXControl.GeoObjects.AddRange(GetObjects());
+        }              
 
         private GeometryObj EditLocation(GeometryObj obj, DataRow locationRow)
         {
@@ -130,8 +131,8 @@ namespace DOL.Tools.Mapping.Modules
 
                 m_PointModel = new Model(Plane, Textures.Path);
 
-                obj = new GeometryObj(m_PointModel, DrawLevel.Forer, DetailLevel.MoreDetailed, x, y, 0, 0, 0, 0,
-                    new Vector3(2, 2, 2));
+                obj = new GeometryObj(this,m_PointModel, DrawLevel.Forer, DetailLevel.MoreDetailed, x, y, 0, 0, 0, 0,
+                    new Vector3(2, 2, 2),true);
                 DXControl.GeoObjects.Add(obj);
                 SetObjectForRow(locationRow, obj);
             }

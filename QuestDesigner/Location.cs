@@ -151,7 +151,7 @@ namespace DOL.Tools.QuestDesigner
                  row.Cells[colObjectName.Name].Value.ToString() == Const.GRID_AUTOFILL_VALUE)
                 )
             {
-                string coname = row.Cells[colLocationName.Name].Value as string;
+                string coname = row.Cells[colObjectName.Name].Value as string;
                 if (coname != null)
                 {
                     row.Cells[colObjectName.Name].Value = Utils.ConvertToObjectName(coname);
@@ -200,7 +200,7 @@ namespace DOL.Tools.QuestDesigner
                     DataRowView rowView = (DataRowView)DB.locationBinding.Current;                    
                     rowView[DB.COL_LOCATION_X] = loc.X;
                     rowView[DB.COL_LOCATION_Y] = loc.Y;
-                    rowView[DB.COL_LOCATION_Y] = loc.Z;
+                    rowView[DB.COL_LOCATION_Z] = loc.Z;
                     rowView[DB.COL_LOCATION_REGIONID] = loc.RegionID;
 
                     propertyGridLocation.Refresh();

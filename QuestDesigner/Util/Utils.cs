@@ -51,6 +51,15 @@ namespace DOL.Tools.QuestDesigner.Util
             return str1.ToLower().Equals(str2.ToLower());
         }
 
+        public static float HeadingToRadians(float heading)
+        {            
+            heading = heading * 360.0f / 4096.0f;
+            heading += 90; // don't know why probably because directx and daoc client have different angle origin
+            heading = (float) (heading * Math.PI / 180);
+
+            return heading;
+        }
+
 		public static string ConvertToObjectName(string value)
 		{            
             char[] letters = value.ToCharArray();

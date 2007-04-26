@@ -74,6 +74,20 @@ namespace DOL.Tools.QuestDesigner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap areaCircle {
+            get {
+                object obj = ResourceManager.GetObject("areaCircle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap areaSquare {
+            get {
+                object obj = ResourceManager.GetObject("areaSquare", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap copy {
             get {
                 object obj = ResourceManager.GetObject("copy", resourceCulture);

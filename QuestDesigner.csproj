@@ -122,7 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mapping\DX\Meshes\Rectangle.cs" />
-    <Compile Include="Mapping\IMapObject.cs" />
     <Compile Include="Mapping\Module\AbstractDataRowModule.cs" />
     <Compile Include="Mapping\Module\AreaModule.cs" />
     <Compile Include="Mapping\Module\LocationModule.cs" />
@@ -2950,6 +2949,8 @@
     <Content Include="lib\log4net.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\areaCircle.png" />
+    <None Include="Resources\areaSquare.png" />
     <None Include="Resources\create.png" />
     <None Include="Resources\copy.png" />
     <None Include="Resources\paste.png" />

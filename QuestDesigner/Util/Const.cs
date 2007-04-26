@@ -25,6 +25,10 @@ namespace DOL.Tools.QuestDesigner.Util
 {
 	public class Const
 	{
+        public const string AREA_CIRCLE = "Circle";
+        public const string AREA_SQUARE = "Square";
+
+
 
         public const string SELECTOR_QUESTTYPE = "QuestType";
         public const string SELECTOR_GAMELIVING ="GameLiving";

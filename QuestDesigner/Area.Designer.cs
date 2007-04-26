@@ -34,24 +34,24 @@ namespace DOL.Tools.QuestDesigner
             System.Windows.Forms.ToolStripLabel toolStripLabel1;
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showOnMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridArea = new System.Windows.Forms.DataGridView();
             this.propertyGridArea = new System.Windows.Forms.PropertyGrid();
-            this.showOnMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.colObjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAreaName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRegionID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.colAreaType = new System.Windows.Forms.DataGridViewComboBoxColumn();
             toolStripLabelArea = new System.Windows.Forms.ToolStripLabel();
             headerStripArea = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            headerStripArea.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridArea)).BeginInit();
-            headerStripArea.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripLabelArea
@@ -59,6 +59,26 @@ namespace DOL.Tools.QuestDesigner
             toolStripLabelArea.Name = "toolStripLabelArea";
             toolStripLabelArea.Size = new System.Drawing.Size(53, 22);
             toolStripLabelArea.Text = "Areas";
+            // 
+            // headerStripArea
+            // 
+            headerStripArea.AutoSize = false;
+            headerStripArea.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            headerStripArea.ForeColor = System.Drawing.Color.Gray;
+            headerStripArea.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            headerStripArea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            toolStripLabel1});
+            headerStripArea.Location = new System.Drawing.Point(0, 0);
+            headerStripArea.Name = "headerStripArea";
+            headerStripArea.Size = new System.Drawing.Size(458, 25);
+            headerStripArea.TabIndex = 4;
+            headerStripArea.Text = "headerStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new System.Drawing.Size(53, 22);
+            toolStripLabel1.Text = "Areas";
             // 
             // contextMenuStrip
             // 
@@ -75,6 +95,15 @@ namespace DOL.Tools.QuestDesigner
             this.pasteLocationToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.pasteLocationToolStripMenuItem.Text = "Paste Location";
             this.pasteLocationToolStripMenuItem.Click += new System.EventHandler(this.pasteLocationToolStripMenuItem_Click);
+            // 
+            // showOnMapToolStripMenuItem
+            // 
+            this.showOnMapToolStripMenuItem.Enabled = global::DOL.Tools.QuestDesigner.Properties.Settings.Default.ShowTaskPane;
+            this.showOnMapToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.area;
+            this.showOnMapToolStripMenuItem.Name = "showOnMapToolStripMenuItem";
+            this.showOnMapToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.showOnMapToolStripMenuItem.Text = "Show on Map";
+            this.showOnMapToolStripMenuItem.Click += new System.EventHandler(this.showOnMapToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -99,7 +128,7 @@ namespace DOL.Tools.QuestDesigner
             this.dataGridArea.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridArea.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colObjectName,
-            this.colAreaName,
+            this.colName,
             this.colRegionID,
             this.colAreaType});
             this.dataGridArea.ContextMenuStrip = this.contextMenuStrip;
@@ -121,35 +150,6 @@ namespace DOL.Tools.QuestDesigner
             this.propertyGridArea.Size = new System.Drawing.Size(104, 125);
             this.propertyGridArea.TabIndex = 0;
             // 
-            // showOnMapToolStripMenuItem
-            // 
-            this.showOnMapToolStripMenuItem.Enabled = global::DOL.Tools.QuestDesigner.Properties.Settings.Default.ShowTaskPane;
-            this.showOnMapToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.area;
-            this.showOnMapToolStripMenuItem.Name = "showOnMapToolStripMenuItem";
-            this.showOnMapToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.showOnMapToolStripMenuItem.Text = "Show on Map";
-            this.showOnMapToolStripMenuItem.Click += new System.EventHandler(this.showOnMapToolStripMenuItem_Click);
-            // 
-            // headerStripArea
-            // 
-            headerStripArea.AutoSize = false;
-            headerStripArea.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            headerStripArea.ForeColor = System.Drawing.Color.Gray;
-            headerStripArea.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            headerStripArea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            toolStripLabel1});
-            headerStripArea.Location = new System.Drawing.Point(0, 0);
-            headerStripArea.Name = "headerStripArea";
-            headerStripArea.Size = new System.Drawing.Size(458, 25);
-            headerStripArea.TabIndex = 4;
-            headerStripArea.Text = "headerStrip1";
-            // 
-            // toolStripLabel1
-            // 
-            toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new System.Drawing.Size(53, 22);
-            toolStripLabel1.Text = "Areas";
-            // 
             // colObjectName
             // 
             this.colObjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -159,13 +159,13 @@ namespace DOL.Tools.QuestDesigner
             this.colObjectName.Name = "colObjectName";
             this.colObjectName.Visible = false;
             // 
-            // colAreaName
+            // colName
             // 
-            this.colAreaName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colAreaName.DataPropertyName = "Name";
-            this.colAreaName.FillWeight = 124.2128F;
-            this.colAreaName.HeaderText = "Name";
-            this.colAreaName.Name = "colAreaName";
+            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colName.DataPropertyName = "Name";
+            this.colName.FillWeight = 124.2128F;
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
             // 
             // colRegionID
             // 
@@ -191,13 +191,13 @@ namespace DOL.Tools.QuestDesigner
             this.Name = "Area";
             this.Size = new System.Drawing.Size(458, 150);
             this.Load += new System.EventHandler(this.Area_Load);
+            headerStripArea.ResumeLayout(false);
+            headerStripArea.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridArea)).EndInit();
-            headerStripArea.ResumeLayout(false);
-            headerStripArea.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -212,7 +212,7 @@ namespace DOL.Tools.QuestDesigner
         private System.Windows.Forms.ToolStripMenuItem showOnMapToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colObjectName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAreaName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewComboBoxColumn colRegionID;
         private System.Windows.Forms.DataGridViewComboBoxColumn colAreaType;
     }

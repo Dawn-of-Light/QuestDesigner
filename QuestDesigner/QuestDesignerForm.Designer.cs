@@ -125,10 +125,15 @@ namespace DOL.Tools.QuestDesigner
             System.Data.DataColumn dataColumn36;
             System.Data.DataColumn dataColumn37;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
-            NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
-            NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
+            NETXP.Controls.Docking.Renderers.Office2003 office20033 = new NETXP.Controls.Docking.Renderers.Office2003();
+            NETXP.Library.DynamicColorTable dynamicColorTable3 = new NETXP.Library.DynamicColorTable();
+            System.Data.DataColumn dataColumn39;
+            System.Data.DataColumn dataColumn40;
+            System.Data.DataColumn dataColumn42;
+            System.Data.DataColumn dataColumn43;
             this.dataSetQuest = new System.Data.DataSet();
             this.dataTableQuestPart = new System.Data.DataTable();
+            this.dataColumn38 = new System.Data.DataColumn();
             this.dataTableTrigger = new System.Data.DataTable();
             this.dataColumn29 = new System.Data.DataColumn();
             this.dataTableRequirement = new System.Data.DataTable();
@@ -311,7 +316,6 @@ namespace DOL.Tools.QuestDesigner
             this.saveScriptDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.imageListNPC = new System.Windows.Forms.ImageList(this.components);
-            this.dataColumn38 = new System.Data.DataColumn();
             dataColumnQuestPartIF = new System.Data.DataColumn();
             dataColumnTriggerQuestPart = new System.Data.DataColumn();
             dataColumnTriggerType = new System.Data.DataColumn();
@@ -407,6 +411,10 @@ namespace DOL.Tools.QuestDesigner
             dataColumn65 = new System.Data.DataColumn();
             dataColumn36 = new System.Data.DataColumn();
             dataColumn37 = new System.Data.DataColumn();
+            dataColumn39 = new System.Data.DataColumn();
+            dataColumn40 = new System.Data.DataColumn();
+            dataColumn42 = new System.Data.DataColumn();
+            dataColumn43 = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(dataTableQuestCharacterClass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetQuest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableQuestPart)).BeginInit();
@@ -1008,6 +1016,13 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumn38});
             this.dataTableQuestPart.TableName = "QuestPart";
             // 
+            // dataColumn38
+            // 
+            this.dataColumn38.AllowDBNull = false;
+            this.dataColumn38.ColumnName = "MaxExecutions";
+            this.dataColumn38.DataType = typeof(int);
+            this.dataColumn38.DefaultValue = -1;
+            // 
             // dataTableTrigger
             // 
             this.dataTableTrigger.Columns.AddRange(new System.Data.DataColumn[] {
@@ -1556,7 +1571,11 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumn10,
             this.dataColumn11,
             this.dataColumn12,
-            this.dataColumn13});
+            this.dataColumn13,
+            dataColumn39,
+            dataColumn40,
+            dataColumn42,
+            dataColumn43});
             this.dataTableArea.TableName = "Area";
             // 
             // dataColumn6
@@ -1923,7 +1942,7 @@ namespace DOL.Tools.QuestDesigner
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -1933,14 +1952,14 @@ namespace DOL.Tools.QuestDesigner
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(148, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -1948,40 +1967,40 @@ namespace DOL.Tools.QuestDesigner
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(148, 6);
             // 
             // createToolStripMenuItem
             // 
             this.createToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.create;
             this.createToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.createToolStripMenuItem.Text = "&Create";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(148, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.delete;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -2141,8 +2160,8 @@ namespace DOL.Tools.QuestDesigner
             this.tabControlMain.PixelArea = true;
             this.tabControlMain.PixelBorder = true;
             this.tabControlMain.PositionTop = true;
-            office20031.ColorTable = dynamicColorTable1;
-            this.tabControlMain.Renderer = office20031;
+            office20033.ColorTable = dynamicColorTable3;
+            this.tabControlMain.Renderer = office20033;
             this.tabControlMain.ShowArrows = true;
             this.tabControlMain.ShowClose = false;
             this.tabControlMain.ShrinkPagesToFit = false;
@@ -2318,7 +2337,7 @@ namespace DOL.Tools.QuestDesigner
             // xpTaskPane
             // 
             this.xpTaskPane.AutoScroll = true;
-            this.xpTaskPane.ColorTable = dynamicColorTable1;
+            this.xpTaskPane.ColorTable = dynamicColorTable3;
             this.xpTaskPane.Controls.Add(this.xpTGQuestPart);
             this.xpTaskPane.Controls.Add(this.xpTGActions);
             this.xpTaskPane.DataBindings.Add(new System.Windows.Forms.Binding("Visible", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "ShowTaskPane", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -2333,7 +2352,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             // xpTGQuestPart
             // 
-            this.xpTGQuestPart.ColorTable = dynamicColorTable1;
+            this.xpTGQuestPart.ColorTable = dynamicColorTable3;
             this.xpTGQuestPart.Location = new System.Drawing.Point(13, 133);
             this.xpTGQuestPart.Name = "xpTGQuestPart";
             this.xpTGQuestPart.Size = new System.Drawing.Size(144, 201);
@@ -2343,7 +2362,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             // xpTGActions
             // 
-            this.xpTGActions.ColorTable = dynamicColorTable1;
+            this.xpTGActions.ColorTable = dynamicColorTable3;
             this.xpTGActions.Controls.Add(this.linkLabelNewQuest);
             this.xpTGActions.Controls.Add(this.linkSaveQuest);
             this.xpTGActions.Controls.Add(this.linkLoadQuest);
@@ -2419,12 +2438,28 @@ namespace DOL.Tools.QuestDesigner
             this.imageListNPC.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListNPC.Images.SetKeyName(0, "user.ico");
             // 
-            // dataColumn38
+            // dataColumn39
             // 
-            this.dataColumn38.AllowDBNull = false;
-            this.dataColumn38.ColumnName = "MaxExecutions";
-            this.dataColumn38.DataType = typeof(int);
-            this.dataColumn38.DefaultValue = -1;
+            dataColumn39.ColumnName = "Sound";
+            dataColumn39.DataType = typeof(int);
+            // 
+            // dataColumn40
+            // 
+            dataColumn40.AllowDBNull = false;
+            dataColumn40.ColumnName = "IsSafeArea";
+            dataColumn40.DataType = typeof(bool);
+            dataColumn40.DefaultValue = false;
+            // 
+            // dataColumn42
+            // 
+            dataColumn42.AllowDBNull = false;
+            dataColumn42.ColumnName = "CanBroadcast";
+            dataColumn42.DataType = typeof(bool);
+            dataColumn42.DefaultValue = "False";
+            // 
+            // dataColumn43
+            // 
+            dataColumn43.ColumnName = "DisplayMessage";
             // 
             // QuestDesignerForm
             // 

@@ -13,6 +13,7 @@ using DOL.Tools.QuestDesigner.Util;
 using DOL.Tools.QuestDesigner;
 using DOL.Tools.Mapping.Modules;
 using DOL.Tools.QuestDesigner.QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Properties;
 
 namespace DOL.Tools.Mapping.Forms
 {
@@ -26,7 +27,7 @@ namespace DOL.Tools.Mapping.Forms
         public HScrollBar hScrollBar;
         public VScrollBar vScrollBar;        
         private bool MapMoving = false;
-        private IMapObject ObjectMove;
+        private GeometryObj ObjectMove;
         private Point MouseMoveStart = new Point(-1, -1);
         private Vector3 LastMouseVector = new Vector3();
         private int MouseValueH = 0;
@@ -57,7 +58,7 @@ namespace DOL.Tools.Mapping.Forms
 	
 
         public DXControl()
-        {           
+        {                       
             DB.DatabaseLoaded += new DB.DatabaseLoadedEventHandler(DB_DatabaseLoaded);
             // This call is required by the Windows.Forms Form Designer.
             InitializeComponent();
@@ -285,11 +286,7 @@ namespace DOL.Tools.Mapping.Forms
         }
 
         #endregion
-
         
-
-        
-
         private void DXRender()
         {
             Common.Device.Clear(ClearFlags.Target, Color.Black, 0.0f, 0);
@@ -306,12 +303,15 @@ namespace DOL.Tools.Mapping.Forms
         {
             if (!DB.isInitialized())
                 return;
+
+            if (GeoObjects.Count == 0)
+                return;
                                    
             DetailLevel lvl = GetDetailLevel();
             int objs = 0;
 
             //float zoomval = Zoom.Value / (Zoom.Maximum - Zoom.Minimum) + 1;
-            double ViewFac = DOL.Tools.QuestDesigner.Properties.Settings.Default.ViewFactor;                                
+            double ViewFac = Settings.Default.ViewFactor;                                
             double zoomval = Math.Pow(Zoom.Value, 1.20)/(Zoom.Maximum - Zoom.Minimum)/26*(256*256/16)*ViewFac;
 
             int x = (int) (ClientRectangle.Width*zoomval);
@@ -324,55 +324,54 @@ namespace DOL.Tools.Mapping.Forms
             int minusX = (int) cameraX - x;
             int plusY = (int) cameraY + y;
             int minusY = (int) cameraY - y;
-
+            
             // use a copy of geoobjects list so that list can be manipulated during lazy loading of mapelements
             GeometryObj[] objects = GeoObjects.ToArray();
+            Array.Sort(objects);
+
             lock (objects.SyncRoot)
-            {
-                for (byte a = (byte)DrawLevel._START; a <= (byte)DrawLevel._LAST; a++)
+            {                                    
+                foreach (GeometryObj obj in objects)
                 {
-
-                    foreach (GeometryObj obj in objects)
+                    if (obj.DrawLevel == DrawLevel.NonRender)
+                        continue;
+                    if (!InDetailLevel(obj.DetailLevel, lvl))
+                        continue;
+                    
+                    if ((DrawLevel)obj.DrawLevel != DrawLevel.Background)
                     {
-                        if (!InDetailLevel(obj.DetailLevel, lvl))
+                        if (!((obj.X >= minusX && obj.X <= plusX) && (obj.Y >= minusY && obj.Y <= plusY)))
                             continue;
-
-                        if (obj.DrawLevel == (DrawLevel)a)
-                        {
-                            if ((DrawLevel)a != DrawLevel.Background)
-                            {
-                                if (!((obj.X >= minusX && obj.X <= plusX) && (obj.Y >= minusY && obj.Y <= plusY)))
-                                    continue;
-                            }
-                            //World Matrix..
-                            //Common.Device.Transform.World = Matrix.RotationYawPitchRoll(obj.Yaw, obj.Pitch, obj.Roll)*Matrix.Translation(obj.X, -obj.Y, obj.Z);
-                            Common.Device.Transform.World = obj.CreateWorldMatrix();
-
-                            //Texture
-                            Common.Device.SetTexture(0, obj.Model.Texture);
-
-                            //Set Blend Texture
-                            if (obj.Model.BlendTexture != null)
-                            {
-                                Common.Device.SetTexture(1, obj.Model.BlendTexture);
-                                Common.Device.TextureState[1].ColorOperation = TextureOperation.Modulate;
-                                Common.Device.TextureState[1].ColorArgument1 = TextureArgument.TextureColor;
-                                Common.Device.TextureState[1].ColorArgument2 = TextureArgument.Current;
-                                Common.Device.TextureState[2].ColorOperation = TextureOperation.Disable;
-                            }
-                            else
-                                Common.Device.TextureState[1].ColorOperation = TextureOperation.Disable;
-
-                            //Rendern..
-                            obj.Model.Mesh.Render();
-
-                            //Objects increasen..
-                            objs++;
-                        }
                     }
-                    StatusChangeObjects(objs);
+                    //World Matrix..
+                    //Common.Device.Transform.World = Matrix.RotationYawPitchRoll(obj.Yaw, obj.Pitch, obj.Roll)*Matrix.Translation(obj.X, -obj.Y, obj.Z);
+                    Common.Device.Transform.World = obj.CreateWorldMatrix();
+
+                    //Texture
+                    Common.Device.SetTexture(0, obj.Model.Texture);
+
+                    //Set Blend Texture
+                    if (obj.Model.BlendTexture != null)
+                    {
+                        Common.Device.SetTexture(1, obj.Model.BlendTexture);
+                        Common.Device.TextureState[1].ColorOperation = TextureOperation.Modulate;
+                        Common.Device.TextureState[1].ColorArgument1 = TextureArgument.TextureColor;
+                        Common.Device.TextureState[1].ColorArgument2 = TextureArgument.Current;
+                        Common.Device.TextureState[2].ColorOperation = TextureOperation.Disable;
+                    }
+                    else
+                        Common.Device.TextureState[1].ColorOperation = TextureOperation.Disable;
+
+                    //Rendern..
+                    obj.Model.Mesh.Render();
+
+                    //Objects increasen..
+                    objs++;
+                    
                 }
+                StatusChangeObjects(objs);
             }
+            
         }
 
         public void StatusChangeCoords(int x, int y)
@@ -468,17 +467,20 @@ namespace DOL.Tools.Mapping.Forms
             {
                                 
                 Vector3 v3 = DXClickToVector(new Vector2(e.X, e.Y));
-                IMapObject mapObject = ModulMgr.GetObjectAt((int) v3.X, (int) v3.Y);
+                GeometryObj mapObject = ModulMgr.GetObjectAt((int) v3.X, (int) v3.Y);
                 if (mapObject != null && mapObject.IsMovable)
                 {
                     ObjectMove = mapObject;
-                    return;
+                    MapMoving = false;
                 }
-                
-                MouseMoveStart = new Point(e.X, e.Y);
-                MouseValueH = hScrollBar.Value;
-                MouseValueV = vScrollBar.Value;
-                MapMoving = true;
+                else
+                {
+
+                    MouseMoveStart = new Point(e.X, e.Y);
+                    MouseValueH = hScrollBar.Value;
+                    MouseValueV = vScrollBar.Value;
+                    MapMoving = true;
+                }
             }
         }
 
@@ -507,9 +509,13 @@ namespace DOL.Tools.Mapping.Forms
             }
             else if (ObjectMove != null)
             {
+                
+            
                 Vector3 v3 = DXClickToVector(new Vector2(e.X, e.Y));
                 ObjectMove.X = (int) v3.X;
                 ObjectMove.Y = (int) v3.Y;
+
+                Log.Info("Moving to" + v3.Y+"|"+ObjectMove.Y);
                 ObjectMove.Modul.ObjectMoved(ObjectMove);
             }
             StatusChangeCoords(e.X, e.Y);
@@ -529,7 +535,7 @@ namespace DOL.Tools.Mapping.Forms
             int diffY = Math.Abs(MouseMoveStart.Y - e.Y);
 
             if ((diffX <= 3 && diffY <= 3) || (MouseMoveStart.X == -1 && MouseMoveStart.Y == -1))
-                ModulMgr.TriggerModule(ModulMgr.ModulEvent.DXClick, e);
+                ModulMgr.TriggerModules(ModulEvent.DXClick, e);
             LastMouseVector = DXClickToVector(new Vector2(e.X, e.Y));
 
             if (e.Button == MouseButtons.Right)
@@ -636,15 +642,16 @@ namespace DOL.Tools.Mapping.Forms
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
 
-            ModulMgr.ModulObj mod = ModulMgr.GetModulByName(item.Text);
+            IModul mod = ModulMgr.GetModulByName(item.Text);
 
             if (mod == null)
                 throw new ArgumentException("No Module with name:"+item.Text+" found.");
 
-            if (item.Checked)
-                mod.Modul.Unfilter(mod);
+            if (item.Checked)                
+                ModulMgr.TriggerModule(mod, ModulEvent.Unfilter);
             else
-                mod.Modul.Filter(mod);            
+                ModulMgr.TriggerModule(mod, ModulEvent.Filter);
+                
         }
 
         
@@ -704,11 +711,7 @@ namespace DOL.Tools.Mapping.Forms
 
                 Invalidate();
 
-            }
-
-
-
-            
+            }   
         }
 
         private void copyLocationToolStripMenuItem_Click(object sender, EventArgs e)
