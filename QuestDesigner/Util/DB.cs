@@ -146,6 +146,8 @@ namespace DOL.Tools.QuestDesigner.Util
         public const string COL_AREA_CANBROADCAST = "CanBroadcast";
         public const string COL_AREA_ISSAFEAREA = "IsSafeArea";
         public const string COL_AREA_AREATYPE = "AreaType";
+        public const string COL_AREA_CHECKLOS = "CheckLOS";
+        
 
         public const string COL_LOCATION_OBJECTNAME = "ObjectName";
         public const string COL_LOCATION_NAME = "Name";

@@ -31,15 +31,16 @@ namespace DOL.Tools.QuestDesigner
             this.components = new System.ComponentModel.Container();
             this.splitContainerLocation = new System.Windows.Forms.SplitContainer();
             this.dataGridViewLocation = new System.Windows.Forms.DataGridView();
+            this.colObjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRegionID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showOnMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyGridLocation = new System.Windows.Forms.PropertyGrid();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headerStrip3 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.colObjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRegionID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.splitContainerLocation.Panel1.SuspendLayout();
             this.splitContainerLocation.Panel2.SuspendLayout();
             this.splitContainerLocation.SuspendLayout();
@@ -85,13 +86,39 @@ namespace DOL.Tools.QuestDesigner
             this.dataGridViewLocation.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewLocation_DataError);
             this.dataGridViewLocation.SelectionChanged += new System.EventHandler(this.dataGridViewLocation_SelectionChanged);
             // 
+            // colObjectName
+            // 
+            this.colObjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colObjectName.DataPropertyName = "ObjectName";
+            this.colObjectName.FillWeight = 63.5826F;
+            this.colObjectName.HeaderText = "ObjectName";
+            this.colObjectName.Name = "colObjectName";
+            this.colObjectName.Visible = false;
+            // 
+            // colName
+            // 
+            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colName.DataPropertyName = "Name";
+            this.colName.FillWeight = 183.1179F;
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
+            // 
+            // colRegionID
+            // 
+            this.colRegionID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colRegionID.FillWeight = 53.29949F;
+            this.colRegionID.HeaderText = "RegionID";
+            this.colRegionID.Name = "colRegionID";
+            // 
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem,
             this.pasteLocationToolStripMenuItem,
             this.showOnMapToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(156, 48);
+            this.contextMenuStrip.Size = new System.Drawing.Size(156, 92);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // pasteLocationToolStripMenuItem
             // 
@@ -118,6 +145,14 @@ namespace DOL.Tools.QuestDesigner
             this.propertyGridLocation.Size = new System.Drawing.Size(147, 298);
             this.propertyGridLocation.TabIndex = 3;
             // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.copy;
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.copyToolStripMenuItem.Text = "Copy Location";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
             // headerStrip3
             // 
             this.headerStrip3.AutoSize = false;
@@ -137,30 +172,6 @@ namespace DOL.Tools.QuestDesigner
             this.toolStripLabel3.Name = "toolStripLabel3";
             this.toolStripLabel3.Size = new System.Drawing.Size(85, 22);
             this.toolStripLabel3.Text = "Locations";
-            // 
-            // colObjectName
-            // 
-            this.colObjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colObjectName.DataPropertyName = "ObjectName";
-            this.colObjectName.FillWeight = 63.5826F;
-            this.colObjectName.HeaderText = "ObjectName";
-            this.colObjectName.Name = "colObjectName";
-            this.colObjectName.Visible = false;
-            // 
-            // colName
-            // 
-            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colName.DataPropertyName = "Name";
-            this.colName.FillWeight = 183.1179F;
-            this.colName.HeaderText = "Name";
-            this.colName.Name = "colName";
-            // 
-            // colRegionID
-            // 
-            this.colRegionID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colRegionID.FillWeight = 53.29949F;
-            this.colRegionID.HeaderText = "RegionID";
-            this.colRegionID.Name = "colRegionID";
             // 
             // Location
             // 
@@ -194,6 +205,7 @@ namespace DOL.Tools.QuestDesigner
         private System.Windows.Forms.DataGridViewTextBoxColumn colObjectName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewComboBoxColumn colRegionID;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
 
     }
 }

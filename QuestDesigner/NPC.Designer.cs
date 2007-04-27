@@ -35,16 +35,17 @@ namespace DOL.Tools.QuestDesigner
             System.Windows.Forms.ImageList imageListNPCLarge;
             System.Windows.Forms.ColumnHeader columnName;
             System.Windows.Forms.ColumnHeader columnType;
-            System.Windows.Forms.ToolStripButton B_ToggleGroups;
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Monster", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("NPC", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Merchants", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ToolStripButton B_ToggleGroups;
             this.propertyGridNPC = new System.Windows.Forms.PropertyGrid();
             this.splitContainerNPC = new System.Windows.Forms.SplitContainer();
             this.listViewNPC = new System.Windows.Forms.ListView();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showOnMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headerStrip1 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -93,19 +94,6 @@ namespace DOL.Tools.QuestDesigner
             // 
             columnType.Text = "Type";
             columnType.Width = 95;
-            // 
-            // B_ToggleGroups
-            // 
-            B_ToggleGroups.Checked = true;
-            B_ToggleGroups.CheckOnClick = true;
-            B_ToggleGroups.CheckState = System.Windows.Forms.CheckState.Checked;
-            B_ToggleGroups.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            B_ToggleGroups.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.listviewGroup;
-            B_ToggleGroups.ImageTransparentColor = System.Drawing.Color.Magenta;
-            B_ToggleGroups.Name = "B_ToggleGroups";
-            B_ToggleGroups.Size = new System.Drawing.Size(23, 22);
-            B_ToggleGroups.Text = "Toggle Grouping";
-            B_ToggleGroups.CheckStateChanged += new System.EventHandler(this.B_ToggleGroups_CheckStateChanged);
             // 
             // propertyGridNPC
             // 
@@ -175,10 +163,12 @@ namespace DOL.Tools.QuestDesigner
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyLocationToolStripMenuItem,
             this.pasteLocationToolStripMenuItem,
             this.showOnMapToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(156, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(156, 92);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // pasteLocationToolStripMenuItem
             // 
@@ -196,6 +186,14 @@ namespace DOL.Tools.QuestDesigner
             this.showOnMapToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.showOnMapToolStripMenuItem.Text = "Show on Map";
             this.showOnMapToolStripMenuItem.Click += new System.EventHandler(this.showOnMapToolStripMenuItem_Click);
+            // 
+            // copyLocationToolStripMenuItem
+            // 
+            this.copyLocationToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.copy;
+            this.copyLocationToolStripMenuItem.Name = "copyLocationToolStripMenuItem";
+            this.copyLocationToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.copyLocationToolStripMenuItem.Text = "Copy Location";
+            this.copyLocationToolStripMenuItem.Click += new System.EventHandler(this.copyLocationToolStripMenuItem_Click);
             // 
             // headerStrip1
             // 
@@ -334,6 +332,19 @@ namespace DOL.Tools.QuestDesigner
             this.B_ListViewTiles.Text = "Tiles";
             this.B_ListViewTiles.Click += new System.EventHandler(this.B_ListViewTiles_Click);
             // 
+            // B_ToggleGroups
+            // 
+            B_ToggleGroups.Checked = true;
+            B_ToggleGroups.CheckOnClick = true;
+            B_ToggleGroups.CheckState = System.Windows.Forms.CheckState.Checked;
+            B_ToggleGroups.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            B_ToggleGroups.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.listviewGroup;
+            B_ToggleGroups.ImageTransparentColor = System.Drawing.Color.Magenta;
+            B_ToggleGroups.Name = "B_ToggleGroups";
+            B_ToggleGroups.Size = new System.Drawing.Size(23, 22);
+            B_ToggleGroups.Text = "Toggle Grouping";
+            B_ToggleGroups.CheckStateChanged += new System.EventHandler(this.B_ToggleGroups_CheckStateChanged);
+            // 
             // NPC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -373,5 +384,6 @@ namespace DOL.Tools.QuestDesigner
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem pasteLocationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showOnMapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyLocationToolStripMenuItem;
 	}
 }

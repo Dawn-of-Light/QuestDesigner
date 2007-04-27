@@ -54,7 +54,7 @@ Possible parameters:
 		<v>int(1)</v>
 		<n>Item:string</n>
     	        <comparator>quantity</comparator>
-		<text>player has $C{0}$ $V{0}$ instances of $N{1}$</text>
+		<text>player has $C{0}$ $V{1}$ instances of $N{2}$</text>
 	</RequirementType>
 	<RequirementType>
 		<value>eRequirementType.Class</value>

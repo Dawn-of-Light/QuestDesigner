@@ -448,8 +448,55 @@ namespace DOL.Tools.QuestDesigner
                 int regionID = Convert.ToInt32(((DataRow)item.Tag)[DB.COL_NPC_REGION]);
                 QuestDesignerMain.DesignerForm.DXControl.ShowLocation(location, regionID);
                 QuestDesignerMain.DesignerForm.ShowTab("Map Editor");
-
             }
+        }
+
+        private void copyLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+            if (listViewNPC.SelectedItems != null && listViewNPC.SelectedItems.Count > 0)
+            {
+                ListViewItem item = listViewNPC.SelectedItems[0];
+
+                int x = Convert.ToInt32(((DataRow)item.Tag)[DB.COL_NPC_X]);
+                int y = Convert.ToInt32(((DataRow)item.Tag)[DB.COL_NPC_Y]);
+                int regionID = Convert.ToInt32(((DataRow)item.Tag)[DB.COL_NPC_REGION]);
+
+                IDataObject ido = new DataObject();
+
+                ClipboardLocation loc = new ClipboardLocation(x, y, regionID);
+
+                ido.SetData(loc);
+                Clipboard.SetDataObject(ido, true);
+            }
+        }
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            Boolean enabled = false;
+            if (listViewNPC.SelectedItems != null && listViewNPC.SelectedItems.Count > 0)
+            {
+                ListViewItem item = listViewNPC.SelectedItems[0];
+                DataRow row = (DataRow)item.Tag;
+                if (row[DB.COL_NPC_X] != DBNull.Value && row[DB.COL_NPC_Y] != DBNull.Value && row[DB.COL_NPC_REGION] != DBNull.Value)
+                {
+                    enabled = true;
+                }
+            }
+            copyLocationToolStripMenuItem.Enabled = enabled;
+            showOnMapToolStripMenuItem.Enabled = enabled;
+
+            enabled = listViewNPC.SelectedItems != null && listViewNPC.SelectedItems.Count > 0;
+            IDataObject ido = Clipboard.GetDataObject();
+            if (ido.GetDataPresent(ClipboardLocation.Format.Name))
+            {
+                enabled &= true;
+            }
+            else
+            {
+                enabled = false;
+            }
+            pasteLocationToolStripMenuItem.Enabled = enabled;
         }	
 		
 	}

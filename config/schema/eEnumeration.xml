@@ -8,8 +8,13 @@
 	</eEnumeration>
 	<eEnumeration Type="AreaType">
 		<Value>Square</Value>
-		<Name>Circle</Name>
+		<Name>Square</Name>
 		<Description>Square</Description>
+	</eEnumeration>
+	<eEnumeration Type="AreaType">
+		<Value>BindArea</Value>
+		<Name>BindArea</Name>
+		<Description>BindArea</Description>
 	</eEnumeration>
 	<!-- Hand value -->
 	<eEnumeration Type="Hand">

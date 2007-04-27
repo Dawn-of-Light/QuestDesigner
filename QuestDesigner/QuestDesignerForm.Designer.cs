@@ -124,13 +124,13 @@ namespace DOL.Tools.QuestDesigner
             System.Data.DataColumn dataColumn65;
             System.Data.DataColumn dataColumn36;
             System.Data.DataColumn dataColumn37;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
-            NETXP.Controls.Docking.Renderers.Office2003 office20033 = new NETXP.Controls.Docking.Renderers.Office2003();
-            NETXP.Library.DynamicColorTable dynamicColorTable3 = new NETXP.Library.DynamicColorTable();
             System.Data.DataColumn dataColumn39;
             System.Data.DataColumn dataColumn40;
             System.Data.DataColumn dataColumn42;
             System.Data.DataColumn dataColumn43;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
+            NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
+            NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
             this.dataSetQuest = new System.Data.DataSet();
             this.dataTableQuestPart = new System.Data.DataTable();
             this.dataColumn38 = new System.Data.DataColumn();
@@ -212,6 +212,7 @@ namespace DOL.Tools.QuestDesigner
             this.dataColumn11 = new System.Data.DataColumn();
             this.dataColumn12 = new System.Data.DataColumn();
             this.dataColumn13 = new System.Data.DataColumn();
+            this.dataColumn44 = new System.Data.DataColumn();
             this.dataTableLocation = new System.Data.DataTable();
             this.dataSetData = new System.Data.DataSet();
             this.dataTableRegion = new System.Data.DataTable();
@@ -316,6 +317,8 @@ namespace DOL.Tools.QuestDesigner
             this.saveScriptDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.imageListNPC = new System.Windows.Forms.ImageList(this.components);
+            this.tabPageWeb = new NETXP.Controls.Docking.TabPage();
+            this.webBrowser1 = new DOL.Tools.QuestDesigner.QuestDesigner.WebBrowser();
             dataColumnQuestPartIF = new System.Data.DataColumn();
             dataColumnTriggerQuestPart = new System.Data.DataColumn();
             dataColumnTriggerType = new System.Data.DataColumn();
@@ -452,6 +455,7 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageMap.SuspendLayout();
             this.xpTaskPane.SuspendLayout();
             this.xpTGActions.SuspendLayout();
+            this.tabPageWeb.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataColumnQuestPartIF
@@ -976,6 +980,32 @@ namespace DOL.Tools.QuestDesigner
             dataColumn37.ColumnName = "CategoryAutoGenerate";
             dataColumn37.DataType = typeof(bool);
             dataColumn37.DefaultValue = true;
+            // 
+            // dataColumn39
+            // 
+            dataColumn39.ColumnName = "Sound";
+            dataColumn39.DataType = typeof(int);
+            // 
+            // dataColumn40
+            // 
+            dataColumn40.AllowDBNull = false;
+            dataColumn40.ColumnName = "IsSafeArea";
+            dataColumn40.DataType = typeof(bool);
+            dataColumn40.DefaultValue = false;
+            // 
+            // dataColumn42
+            // 
+            dataColumn42.AllowDBNull = false;
+            dataColumn42.ColumnName = "CanBroadcast";
+            dataColumn42.DataType = typeof(bool);
+            dataColumn42.DefaultValue = false;
+            // 
+            // dataColumn43
+            // 
+            dataColumn43.AllowDBNull = false;
+            dataColumn43.ColumnName = "DisplayMessage";
+            dataColumn43.DataType = typeof(bool);
+            dataColumn43.DefaultValue = true;
             // 
             // dataSetQuest
             // 
@@ -1575,7 +1605,8 @@ namespace DOL.Tools.QuestDesigner
             dataColumn39,
             dataColumn40,
             dataColumn42,
-            dataColumn43});
+            dataColumn43,
+            this.dataColumn44});
             this.dataTableArea.TableName = "Area";
             // 
             // dataColumn6
@@ -1616,6 +1647,13 @@ namespace DOL.Tools.QuestDesigner
             // 
             this.dataColumn13.ColumnName = "R";
             this.dataColumn13.DataType = typeof(int);
+            // 
+            // dataColumn44
+            // 
+            this.dataColumn44.AllowDBNull = false;
+            this.dataColumn44.ColumnName = "CheckLOS";
+            this.dataColumn44.DataType = typeof(bool);
+            this.dataColumn44.DefaultValue = false;
             // 
             // dataTableLocation
             // 
@@ -2160,8 +2198,8 @@ namespace DOL.Tools.QuestDesigner
             this.tabControlMain.PixelArea = true;
             this.tabControlMain.PixelBorder = true;
             this.tabControlMain.PositionTop = true;
-            office20033.ColorTable = dynamicColorTable3;
-            this.tabControlMain.Renderer = office20033;
+            office20031.ColorTable = dynamicColorTable1;
+            this.tabControlMain.Renderer = office20031;
             this.tabControlMain.ShowArrows = true;
             this.tabControlMain.ShowClose = false;
             this.tabControlMain.ShrinkPagesToFit = false;
@@ -2175,7 +2213,8 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageArea,
             this.tabPageLocation,
             this.tabPageCode,
-            this.tabPageMap});
+            this.tabPageMap,
+            this.tabPageWeb});
             this.tabControlMain.SelectionChanged += new System.EventHandler(this.tabControlMain_SelectionChanged);
             // 
             // tabPageQuest
@@ -2337,7 +2376,7 @@ namespace DOL.Tools.QuestDesigner
             // xpTaskPane
             // 
             this.xpTaskPane.AutoScroll = true;
-            this.xpTaskPane.ColorTable = dynamicColorTable3;
+            this.xpTaskPane.ColorTable = dynamicColorTable1;
             this.xpTaskPane.Controls.Add(this.xpTGQuestPart);
             this.xpTaskPane.Controls.Add(this.xpTGActions);
             this.xpTaskPane.DataBindings.Add(new System.Windows.Forms.Binding("Visible", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "ShowTaskPane", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -2352,7 +2391,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             // xpTGQuestPart
             // 
-            this.xpTGQuestPart.ColorTable = dynamicColorTable3;
+            this.xpTGQuestPart.ColorTable = dynamicColorTable1;
             this.xpTGQuestPart.Location = new System.Drawing.Point(13, 133);
             this.xpTGQuestPart.Name = "xpTGQuestPart";
             this.xpTGQuestPart.Size = new System.Drawing.Size(144, 201);
@@ -2362,7 +2401,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             // xpTGActions
             // 
-            this.xpTGActions.ColorTable = dynamicColorTable3;
+            this.xpTGActions.ColorTable = dynamicColorTable1;
             this.xpTGActions.Controls.Add(this.linkLabelNewQuest);
             this.xpTGActions.Controls.Add(this.linkSaveQuest);
             this.xpTGActions.Controls.Add(this.linkLoadQuest);
@@ -2438,28 +2477,23 @@ namespace DOL.Tools.QuestDesigner
             this.imageListNPC.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListNPC.Images.SetKeyName(0, "user.ico");
             // 
-            // dataColumn39
+            // tabPageWeb
             // 
-            dataColumn39.ColumnName = "Sound";
-            dataColumn39.DataType = typeof(int);
+            this.tabPageWeb.Controls.Add(this.webBrowser1);
+            this.tabPageWeb.Location = new System.Drawing.Point(2, 23);
+            this.tabPageWeb.Name = "tabPageWeb";
+            this.tabPageWeb.Size = new System.Drawing.Size(442, 377);
+            this.tabPageWeb.TabIndex = 11;
+            this.tabPageWeb.Title = "Web";
+            this.tabPageWeb.ToolTipText = "Web";
             // 
-            // dataColumn40
+            // webBrowser1
             // 
-            dataColumn40.AllowDBNull = false;
-            dataColumn40.ColumnName = "IsSafeArea";
-            dataColumn40.DataType = typeof(bool);
-            dataColumn40.DefaultValue = false;
-            // 
-            // dataColumn42
-            // 
-            dataColumn42.AllowDBNull = false;
-            dataColumn42.ColumnName = "CanBroadcast";
-            dataColumn42.DataType = typeof(bool);
-            dataColumn42.DefaultValue = "False";
-            // 
-            // dataColumn43
-            // 
-            dataColumn43.ColumnName = "DisplayMessage";
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(442, 377);
+            this.webBrowser1.TabIndex = 0;
             // 
             // QuestDesignerForm
             // 
@@ -2519,6 +2553,7 @@ namespace DOL.Tools.QuestDesigner
             this.xpTaskPane.ResumeLayout(false);
             this.xpTGActions.ResumeLayout(false);
             this.xpTGActions.PerformLayout();
+            this.tabPageWeb.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2708,7 +2743,10 @@ namespace DOL.Tools.QuestDesigner
         private System.Windows.Forms.ToolStripMenuItem dataDownloadToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabelNewQuest;
         private NETXP.Controls.TaskPane.XPTaskPaneGroup xpTGQuestPart;
-        private System.Data.DataColumn dataColumn38;		
+        private System.Data.DataColumn dataColumn38;
+        private System.Data.DataColumn dataColumn44;
+        private NETXP.Controls.Docking.TabPage tabPageWeb;
+        private DOL.Tools.QuestDesigner.QuestDesigner.WebBrowser webBrowser1;		
     }
 }
 

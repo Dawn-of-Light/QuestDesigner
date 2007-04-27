@@ -171,6 +171,7 @@ namespace DOL.Tools.QuestDesigner
                     spec.ConverterTypeName = typeof(AreaTypeConverter).FullName;
                     break;
                 case DB.COL_AREA_SOUND:
+                case DB.COL_AREA_CHECKLOS:
                 case DB.COL_AREA_CANBROADCAST:
                 case DB.COL_AREA_ISSAFEAREA:
                 case DB.COL_AREA_DISPLAYMESSAGE:
@@ -211,6 +212,7 @@ namespace DOL.Tools.QuestDesigner
                     spec.ConverterTypeName = typeof(AreaTypeConverter).FullName;
                     break;
                 case DB.COL_AREA_SOUND:
+                case DB.COL_AREA_CHECKLOS:
                 case DB.COL_AREA_CANBROADCAST:
                 case DB.COL_AREA_ISSAFEAREA:
                 case DB.COL_AREA_DISPLAYMESSAGE:
@@ -313,7 +315,6 @@ namespace DOL.Tools.QuestDesigner
         {
             if (DB.areaBinding.Current != null)
             {
-
                 DataRowView rowView = (DataRowView)DB.areaBinding.Current;
 
                 if (rowView[DB.COL_AREA_X] != DBNull.Value && rowView[DB.COL_AREA_Y] != DBNull.Value && rowView[DB.COL_AREA_REGIONID] != DBNull.Value)
@@ -328,6 +329,56 @@ namespace DOL.Tools.QuestDesigner
                     QuestDesignerMain.DesignerForm.ShowTab("Map Editor");
                 }
             }
+        }
+
+        private void copyLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DB.areaBinding.Current != null)
+            {
+                DataRowView rowView = (DataRowView)DB.areaBinding.Current;
+
+                if (rowView[DB.COL_AREA_X] != DBNull.Value && rowView[DB.COL_AREA_Y] != DBNull.Value && rowView[DB.COL_AREA_REGIONID] != DBNull.Value)
+                {
+                    int x = Convert.ToInt32(rowView.Row[DB.COL_AREA_X]);
+                    int y = Convert.ToInt32(rowView.Row[DB.COL_AREA_Y]);
+                    int regionID = Convert.ToInt32(rowView.Row[DB.COL_AREA_REGIONID]);
+
+                    IDataObject ido = new DataObject();
+
+                    ClipboardLocation loc = new ClipboardLocation(x, y, regionID);
+
+                    ido.SetData(loc);
+                    Clipboard.SetDataObject(ido, true);
+                }
+            }
+        }
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            Boolean enabled = false;
+            if (DB.areaBinding.Current != null)
+            {
+                DataRowView rowView = (DataRowView)DB.areaBinding.Current;
+
+                if (rowView[DB.COL_AREA_X] != DBNull.Value && rowView[DB.COL_AREA_Y] != DBNull.Value && rowView[DB.COL_AREA_REGIONID] != DBNull.Value)
+                {
+                    enabled = true;
+                }
+            }
+            copyLocationToolStripMenuItem.Enabled = enabled;
+            showOnMapToolStripMenuItem.Enabled = enabled;
+
+            enabled = DB.areaBinding.Current != null;
+            IDataObject ido = Clipboard.GetDataObject();
+            if (ido.GetDataPresent(ClipboardLocation.Format.Name))
+            {
+                enabled &= true;
+            }
+            else
+            {
+                enabled = false;
+            }
+            pasteLocationToolStripMenuItem.Enabled = enabled;
         }
     }
 }

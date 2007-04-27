@@ -301,46 +301,47 @@ namespace <xsl:value-of select="Namespace"/> {
 
 			#endregion
 
+			#region defineAreas
 			<xsl:for-each select="/Quest/Area">
-				<xsl:if test="AreaType='Circle'">
-				    <xsl:value-of select="ObjectName"/> = new <xsl:value-of select="AreaType"/>();
-        			<xsl:value-of select="ObjectName"/>.Description = "<xsl:value-of select="Name"/>";
-        			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).X = <xsl:value-of select="X"/>;
-        			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).Y = <xsl:value-of select="Y"/>;
-        			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).Radius = <xsl:value-of select="R"/>;
-					<xsl:if test="Sound"><xsl:value-of select="ObjectName"/>.Sound = <xsl:value-of select="Sound"/>;
-					</xsl:if>
-					<xsl:if test="IsSafeArea"><xsl:value-of select="ObjectName"/>.IsSafeArea = <xsl:value-of select="IsSafeArea"/>;
-					</xsl:if>
-					<xsl:if test="CanBroadcast"><xsl:value-of select="ObjectName"/>.CanBroadcast = <xsl:value-of select="CanBroadcast"/>;
-					</xsl:if>
-					<xsl:if test="DisplayMessage"><xsl:value-of select="ObjectName"/>.DisplayMessage = "<xsl:value-of select="DisplayMessage"/>";
-					</xsl:if>
-					<xsl:value-of select="ObjectName"/>.RegionID = <xsl:value-of select="RegionID"/>;
-        			AreaMgr.RegisterArea(<xsl:value-of select="ObjectName"/>);
+				<xsl:choose>
+					<xsl:when test="AreaType='BindArea'">
+						BindPoint <xsl:value-of select="ObjectName"/>BindPoint = new BindPoint();
+						<xsl:value-of select="ObjectName"/>BindPoint.Radius = (ushort)<xsl:value-of select="R"/>;
+						<xsl:value-of select="ObjectName"/>BindPoint.X = <xsl:value-of select="X"/>;
+						<xsl:value-of select="ObjectName"/>BindPoint.Y = <xsl:value-of select="Y"/>;
+						<xsl:value-of select="ObjectName"/>BindPoint.Z = <xsl:value-of select="Z"/>;
+						<xsl:value-of select="ObjectName"/>BindPoint.Region = <xsl:value-of select="RegionID"/>;
+						<xsl:value-of select="ObjectName"/> = new Area.BindArea("<xsl:value-of select="Name"/>",<xsl:value-of select="ObjectName"/>BindPoint);
+					</xsl:when>
+					<xsl:otherwise>						
+						<xsl:value-of select="ObjectName"/> = new Area.<xsl:value-of select="AreaType"/>("<xsl:value-of select="Name"/>",<xsl:value-of select="X"/>,<xsl:value-of select="Y"/>,<xsl:value-of select="Z"/>,<xsl:value-of select="R"/>);											
+					</xsl:otherwise>
+				</xsl:choose>
+				<xsl:if test="Sound">
+					<xsl:value-of select="ObjectName"/>.Sound = (byte)<xsl:value-of select="Sound"/>;
 				</xsl:if>
-				<xsl:if test="AreaType='Square'">
-				    <xsl:value-of select="ObjectName"/> = new <xsl:value-of select="AreaType"/>();
-        			<xsl:value-of select="ObjectName"/>.Description = "<xsl:value-of select="Name"/>";
-        			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).X = <xsl:value-of select="X"/>;
-        			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).Y = <xsl:value-of select="Y"/>;
-        			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).Width = <xsl:value-of select="Z"/>;
-        			((<xsl:value-of select="AreaType"/>)<xsl:value-of select="ObjectName"/>).Height = <xsl:value-of select="R"/>;
-					<xsl:if test="Sound"><xsl:value-of select="ObjectName"/>.Sound = <xsl:value-of select="Sound"/>;
-					</xsl:if>
-					<xsl:if test="IsSafeArea"><xsl:value-of select="ObjectName"/>.IsSafeArea = <xsl:value-of select="IsSafeArea"/>;
-					</xsl:if>
-					<xsl:if test="CanBroadcast"><xsl:value-of select="ObjectName"/>.CanBroadcast = <xsl:value-of select="CanBroadcast"/>;
-					</xsl:if>
-					<xsl:if test="DisplayMessage"><xsl:value-of select="ObjectName"/>.DisplayMessage = "<xsl:value-of select="DisplayMessage"/>";
-					</xsl:if>
-					<xsl:value-of select="ObjectName"/>.RegionID = <xsl:value-of select="RegionID"/>;
-        			AreaMgr.RegisterArea(<xsl:value-of select="ObjectName"/>);
+				<xsl:if test="IsSafeArea">
+					<xsl:value-of select="ObjectName"/>.IsSafeArea = <xsl:value-of select="IsSafeArea"/>;
 				</xsl:if>
-			</xsl:for-each>
-			#region defineQuestParts
+				<xsl:if test="CanBroadcast">
+					<xsl:value-of select="ObjectName"/>.CanBroadcast = <xsl:value-of select="CanBroadcast"/>;
+				</xsl:if>
+				<xsl:if test="DisplayMessage">
+					<xsl:value-of select="ObjectName"/>.DisplayMessage = <xsl:value-of select="DisplayMessage"/>;
+				</xsl:if>
+				<xsl:if test="CheckLOS">
+					<xsl:value-of select="ObjectName"/>.CheckLOS = <xsl:value-of select="CheckLOS"/>;
+				</xsl:if>
+				Region <xsl:value-of select="ObjectName"/>Region = WorldMgr.GetRegion(<xsl:value-of select="RegionID"/>);
+				if (<xsl:value-of select="ObjectName"/>Region != null)
+					<xsl:value-of select="ObjectName"/>Region.AddArea(<xsl:value-of select="ObjectName"/>);
+			
+		</xsl:for-each>
+		#endregion
+		
+		#region defineQuestParts
 
-			QuestBuilder builder = QuestMgr.getBuilder(typeof(<xsl:value-of select="Name"/>));
+		QuestBuilder builder = QuestMgr.getBuilder(typeof(<xsl:value-of select="Name"/>));
 			BaseQuestPart a;
 			<xsl:for-each select="/Quest/QuestPart"><xsl:sort select="Position" order="ascending" data-type="number"/>a = builder.CreateQuestPart(<xsl:value-of select="defaultNPC"/>,<xsl:value-of select="MaxExecutions"/>);
 				<xsl:for-each select="QuestPartTrigger">a.AddTrigger(<xsl:value-of select="TypeName"/><xsl:if test="K">,<xsl:value-of disable-output-escaping="yes" select="K"/></xsl:if><xsl:if test="I">,<xsl:value-of disable-output-escaping="yes" select="I"/></xsl:if>);
@@ -369,8 +370,10 @@ namespace <xsl:value-of select="Namespace"/> {
 			<xsl:value-of select="ScriptUnloadedCode"/>
 			// Custom Scriptunloaded Code End
 
-			<xsl:for-each select="/Quest/Area">
-			AreaMgr.UnregisterArea(<xsl:value-of select="ObjectName"/>);
+			<xsl:for-each select="/Quest/Area">				
+				Region <xsl:value-of select="ObjectName"/>Region = WorldMgr.GetRegion(<xsl:value-of select="RegionID"/>);
+				if (<xsl:value-of select="ObjectName"/>Region != null)
+						<xsl:value-of select="ObjectName"/>Region.RemoveArea(<xsl:value-of select="ObjectName"/>);
 			</xsl:for-each>
 
 			/* If <xsl:value-of select="InvitingNPC"/> has not been initialized, then we don't have to remove any

@@ -39,6 +39,8 @@ namespace DOL.Tools.Mapping.Forms
         private Label label3;
         private Label label7;
         private Label label8;
+        private Label label10;
+        private Label label11;
 
         /// <summary>
         /// Required designer variable.
@@ -89,6 +91,8 @@ namespace DOL.Tools.Mapping.Forms
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +108,7 @@ namespace DOL.Tools.Mapping.Forms
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(232, 269);
+            this.buttonClose.Location = new System.Drawing.Point(232, 345);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(104, 23);
             this.buttonClose.TabIndex = 1;
@@ -190,11 +194,31 @@ namespace DOL.Tools.Mapping.Forms
             this.label8.TabIndex = 9;
             this.label8.Text = "DAoC Mapping";
             // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(4, 319);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(215, 16);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "© Metty";
+            // 
+            // label11
+            // 
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(3, 287);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(256, 32);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "Item/Mob/Model Preview";
+            // 
             // InfoForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(348, 304);
+            this.ClientSize = new System.Drawing.Size(348, 380);
             this.ControlBox = false;
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);

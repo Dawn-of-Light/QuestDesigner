@@ -230,5 +230,56 @@ namespace DOL.Tools.QuestDesigner
 
             }
         }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DB.locationBinding.Current != null)
+            {
+                DataRowView rowView = (DataRowView)DB.locationBinding.Current;
+
+                if (rowView[DB.COL_LOCATION_X] != DBNull.Value && rowView[DB.COL_LOCATION_Y] != DBNull.Value && rowView[DB.COL_LOCATION_REGIONID] != DBNull.Value)
+                {
+                    int x = Convert.ToInt32(rowView.Row[DB.COL_LOCATION_X]);
+                    int y = Convert.ToInt32(rowView.Row[DB.COL_LOCATION_Y]);
+                    int regionID = Convert.ToInt32(rowView.Row[DB.COL_LOCATION_REGIONID]);
+
+                    IDataObject ido = new DataObject();
+
+                    ClipboardLocation loc = new ClipboardLocation(x, y, regionID);
+
+                    ido.SetData(loc);
+                    Clipboard.SetDataObject(ido, true);
+                }
+            }
+        }
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            Boolean enabled = false;
+            if (DB.locationBinding.Current != null)
+            {
+                DataRowView rowView = (DataRowView)DB.locationBinding.Current;
+
+                if (rowView[DB.COL_LOCATION_X] != DBNull.Value && rowView[DB.COL_LOCATION_Y] != DBNull.Value && rowView[DB.COL_LOCATION_REGIONID] != DBNull.Value)
+                {
+                    enabled = true;
+                }
+            }
+            copyToolStripMenuItem.Enabled = enabled;
+            showOnMapToolStripMenuItem.Enabled = enabled;
+
+            
+            enabled = DB.locationBinding.Current != null;            
+            IDataObject ido = Clipboard.GetDataObject();
+            if (ido.GetDataPresent(ClipboardLocation.Format.Name))
+            {
+                enabled &= true;
+            }
+            else
+            {
+                enabled = false;
+            }
+            pasteLocationToolStripMenuItem.Enabled = enabled;
+        }
     }
 }
