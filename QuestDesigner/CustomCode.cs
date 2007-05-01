@@ -34,14 +34,16 @@ namespace DOL.Tools.QuestDesigner
 		public CustomCode()
 		{
 			InitializeComponent();
+            DB.DatabaseLoaded += new DB.DatabaseLoadedEventHandler(DB_DatabaseLoaded);
 		}
 
-		public void setDataSet()
-		{		
-			this.textBoxLoadedCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_SCRIPTLOADEDCODE, true));
+        void DB_DatabaseLoaded()
+        {
+            this.textBoxLoadedCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_SCRIPTLOADEDCODE, true));
             this.textBoxUnloadedCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_SCRIPTUNLOADEDCODE, true));
             this.textBoxInitCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_INITIALIZATIONCODE, true));
             this.textBoxCheckQuestQualification.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_CHECKQUESTQUALIFICATIONCODE, true));
-		}
+        }
+		
 	}
 }

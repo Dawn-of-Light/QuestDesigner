@@ -30,9 +30,6 @@
       <Value Profile="(Default)">350</Value>
     </Setting>
     <Setting Name="ZoomValuePow" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
-    </Setting>
-    <Setting Name="ViewFactor" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="ZoomValueMul" Type="System.Double" Scope="User">

@@ -61,8 +61,8 @@ namespace DOL.Tools.QuestDesigner
 
         public QuestDesignerForm()
         {            
-			InitializeComponent();			
-			
+			InitializeComponent();
+            DB.DatabaseLoaded += new DB.DatabaseLoadedEventHandler(DB_DatabaseLoaded);
 			QuestDesignerMain.InitDB();           			
         }
 
@@ -70,6 +70,11 @@ namespace DOL.Tools.QuestDesigner
             : this()
         {
             LoadQuest(loadFile.FullName);
+        }
+
+        void DB_DatabaseLoaded()
+        {
+            RefreshQuestPartCategories();          
         }
 
         public Boolean registerCreateScriptExtension(DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator transformator)
@@ -104,7 +109,6 @@ namespace DOL.Tools.QuestDesigner
                 this.xpTGActions.Controls.Add(exportLinkLabel);                
                 this.xpTGActions.Height = 48 + (this.xpTGActions.Controls.Count * 20);
 
-
                 this.xpTGQuestPart.Location = new Point(this.xpTGQuestPart.Location.X, this.xpTGActions.Location.Y + this.xpTGActions.Height + 20);
             }
             return true;
@@ -113,7 +117,7 @@ namespace DOL.Tools.QuestDesigner
         void exportLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             LinkLabel exportLinkLabel = (LinkLabel)sender;
-            DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator transformator = (DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator)exportLinkLabel.Tag;
+            DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator transformator = (DOL.Tools.QuestDesigner.QuestDesignerConfiguration.Transformator) exportLinkLabel.Tag;
 
             Exporter exporter = (Exporter)Activator.CreateInstance(transformator.ExporterClass, new object[] { transformator });
             exporter.CreateQuest();
@@ -163,14 +167,9 @@ namespace DOL.Tools.QuestDesigner
 				InitEmptyQuest();
 			}
 			this.Text = TITLE + openFilename;
-
-            SetDataSet();									
-
+            
             Log.register();
-
             CheckData();
-
-
 		}
 
         public void ShowTab(int index)
@@ -225,23 +224,6 @@ namespace DOL.Tools.QuestDesigner
         {           
             StatusProgress.Value = e.ProgressPercentage;
         }
-
-		private void SetDataSet()
-		{
-            if (!DB.isInitialized())
-                Log.Error("DB not initialized yet");
-
-			questInfo.setDataSet();
-			npcView.setDataSet();
-			itemView.setDataSet();
-			customCode.setDataSet();
-            areaView.setDataSet();
-            locationView.SetDataSet();
-			questPartItems.SetDataSet();
-
-            RefreshQuestPartCategories();          
-
-		}
 
         public void RefreshQuestPartCategories()
         {
@@ -364,7 +346,8 @@ namespace DOL.Tools.QuestDesigner
         public void SetDatabaseSupport(bool support)
         {
             itemView.SetDatabaseSupport( support);
-			npcView.SetDatabaseSupport( support);            
+			npcView.SetDatabaseSupport( support);
+            DXControl.SetDatabaseSupport(support);
         }        
 
         private void InitEmptyQuest()
@@ -376,8 +359,10 @@ namespace DOL.Tools.QuestDesigner
             dataTableQuestPart.Rows.Add(dataTableQuestPart.NewRow());
             dataSetQuest.AcceptChanges();
             DB.ResumeBindings();
+
             questPartItems.RefreshQuestPartText();
             DB.questPartBinding.ResetCurrentItem();
+            RefreshQuestPartCategories();
             openFilename = null;
         }
 
@@ -463,6 +448,7 @@ namespace DOL.Tools.QuestDesigner
                     DB.ResumeBindings();
                                         
                     questPartItems.RefreshQuestPartText();
+                    RefreshQuestPartCategories();
                     DB.questPartBinding.ResetCurrentItem();
                     this.questInfo.UpdateDataset();
 
@@ -641,6 +627,11 @@ namespace DOL.Tools.QuestDesigner
             else
             {
                 this.xpTGQuestPart.Visible = false;
+            }
+
+            if (tabControlMain.SelectedTab == this.tabPageWeb)
+            {
+                this.webBrowser1.Init();
             }
         }
 

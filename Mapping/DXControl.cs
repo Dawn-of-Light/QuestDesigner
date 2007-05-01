@@ -14,6 +14,8 @@ using DOL.Tools.QuestDesigner;
 using DOL.Tools.Mapping.Modules;
 using DOL.Tools.QuestDesigner.QuestDesigner.Util;
 using DOL.Tools.QuestDesigner.Properties;
+using System.Diagnostics;
+using DOL.Database;
 
 namespace DOL.Tools.Mapping.Forms
 {
@@ -23,11 +25,12 @@ namespace DOL.Tools.Mapping.Forms
     public class DXControl : UserControl
     {
        
-        public TrackBar Zoom;
+        public TrackBar ZoomSlider;
         public HScrollBar hScrollBar;
         public VScrollBar vScrollBar;        
         private bool MapMoving = false;
-        private GeometryObj ObjectMove;
+        private bool ObjectMoving = false;
+        private GeometryObj m_SelectedObject;
         private Point MouseMoveStart = new Point(-1, -1);
         private Vector3 LastMouseVector = new Vector3();
         private int MouseValueH = 0;
@@ -48,6 +51,15 @@ namespace DOL.Tools.Mapping.Forms
         private int cachedRegionID = -1;
         private ToolStripMenuItem filterMenuItem;
         private Vector3 cachedLocation;
+        private ToolStripMenuItem zoomToolStripMenuItem;
+        private ToolStripMenuItem zoomInToolStripMenuItem;
+        private ToolStripMenuItem zoomOutToolStripMenuItem;
+        private ToolStripMenuItem resetZoomToolStripMenuItem;
+        private Panel panel1;
+        private ToolTip objectToolTip;
+        private ToolStripMenuItem mobnameToolStripMenuItem;
+        private ToolStripMenuItem importToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator3;
 
         private static Set<GeometryObj> geoObjects = new Set<GeometryObj>();
 
@@ -55,7 +67,37 @@ namespace DOL.Tools.Mapping.Forms
         {
             get { return geoObjects; }
         }
-	
+
+        protected GeometryObj SelectedObject
+        {
+            get { return m_SelectedObject; }
+            set 
+            { 
+                m_SelectedObject = value;
+                                
+                if (SelectedObject != null)
+                {
+                    mobnameToolStripMenuItem.Text = SelectedObject.Modul.GetInfoText(SelectedObject);
+                    mobnameToolStripMenuItem.Visible = true;
+                    toolStripSeparator3.Visible = true;
+
+                    if (SelectedObject.Modul is DatabaseMobModule)
+                    {
+                        importToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        importToolStripMenuItem.Enabled = false;
+                    }
+                }
+                else
+                {
+                    mobnameToolStripMenuItem.Visible = false;
+                    toolStripSeparator3.Visible = false;
+                    importToolStripMenuItem.Enabled = false;
+                }
+            }
+        }
 
         public DXControl()
         {                       
@@ -65,7 +107,7 @@ namespace DOL.Tools.Mapping.Forms
 
             //Mouse?
             MouseWheel += new MouseEventHandler(DXControl_MouseWheel);
-            Zoom.MouseWheel += new MouseEventHandler(DXControl_MouseWheel);
+            ZoomSlider.MouseWheel += new MouseEventHandler(DXControl_MouseWheel);
             hScrollBar.MouseWheel += new MouseEventHandler(DXControl_MouseWheel);
             vScrollBar.MouseWheel += new MouseEventHandler(DXControl_MouseWheel);
 
@@ -77,34 +119,37 @@ namespace DOL.Tools.Mapping.Forms
             
         }
 
+        public void SetDatabaseSupport(bool support)
+        {
+            foreach (ToolStripItem item in filterMenuItem.DropDownItems) {
+                if (item.Name == DatabaseMobModule.MODULE_NAME || item.Name == DatabaseWorldObjectModule.MODULE_NAME) {
+                    item.Enabled = support;
+                }
+            }                
+        }		
+
         void DB_DatabaseLoaded()
         {
             
             RegionMgr.PreloadRegions();            
-            ModulMgr.PreloadModules();
+            ModulMgr.PreloadModules();            
         }
 
         public void ShowLocation(Vector3 point, int regionID)
         {
             if (Common.DeviceReady)
             {
-
                 RegionMgr.LoadRegion(regionID);
 
                 if (point.X <= hScrollBar.Maximum && point.X >= hScrollBar.Minimum)
                 {
-                    //hScrollBar.Value += diffX;
                     hScrollBar.Value = (int)point.X;
                 }
                 if (point.Y <= vScrollBar.Maximum && point.Y >= vScrollBar.Minimum)
                 {
-                    //vScrollBar.Value += diffY;
                     vScrollBar.Value = (int)point.Y;
                 }
-
-                Zoom.Value = Zoom.Minimum + (Zoom.LargeChange);
-
-                Invalidate();
+                SetZoom(0.25F);
             }
             else
             {
@@ -133,7 +178,8 @@ namespace DOL.Tools.Mapping.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Zoom = new System.Windows.Forms.TrackBar();
+            System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+            this.ZoomSlider = new System.Windows.Forms.TrackBar();
             this.hScrollBar = new System.Windows.Forms.HScrollBar();
             this.vScrollBar = new System.Windows.Forms.VScrollBar();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
@@ -142,31 +188,47 @@ namespace DOL.Tools.Mapping.Forms
             this.labelObject = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelRegion = new System.Windows.Forms.ToolStripLabel();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mobnameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.copyLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.Zoom)).BeginInit();
+            this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetZoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.objectToolTip = new System.Windows.Forms.ToolTip(this.components);
+            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            ((System.ComponentModel.ISupportInitialize)(this.ZoomSlider)).BeginInit();
             this.toolStrip.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Zoom
+            // toolStripSeparator1
             // 
-            this.Zoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Zoom.BackColor = System.Drawing.SystemColors.Desktop;
-            this.Zoom.Enabled = false;
-            this.Zoom.LargeChange = 100;
-            this.Zoom.Location = new System.Drawing.Point(184, 444);
-            this.Zoom.Maximum = 3000;
-            this.Zoom.Minimum = 15;
-            this.Zoom.Name = "Zoom";
-            this.Zoom.Size = new System.Drawing.Size(424, 45);
-            this.Zoom.SmallChange = 100;
-            this.Zoom.TabIndex = 0;
-            this.Zoom.TabStop = false;
-            this.Zoom.TickFrequency = 500;
-            this.Zoom.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.Zoom.Value = 100;
-            this.Zoom.Scroll += new System.EventHandler(this.Zoom_Scroll);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
+            // 
+            // ZoomSlider
+            // 
+            this.ZoomSlider.BackColor = System.Drawing.SystemColors.Control;
+            this.ZoomSlider.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ZoomSlider.Enabled = false;
+            this.ZoomSlider.LargeChange = 250;
+            this.ZoomSlider.Location = new System.Drawing.Point(474, 0);
+            this.ZoomSlider.Maximum = 1000;
+            this.ZoomSlider.Minimum = 50;
+            this.ZoomSlider.Name = "ZoomSlider";
+            this.ZoomSlider.Size = new System.Drawing.Size(150, 25);
+            this.ZoomSlider.SmallChange = 100;
+            this.ZoomSlider.TabIndex = 0;
+            this.ZoomSlider.TabStop = false;
+            this.ZoomSlider.TickFrequency = 250;
+            this.ZoomSlider.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ZoomSlider.Value = 100;
+            this.ZoomSlider.Scroll += new System.EventHandler(this.Zoom_Scroll);
             // 
             // hScrollBar
             // 
@@ -196,6 +258,7 @@ namespace DOL.Tools.Mapping.Forms
             // 
             // toolStrip
             // 
+            this.toolStrip.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.comboBoxMaps,
             this.labelCoords,
@@ -203,7 +266,9 @@ namespace DOL.Tools.Mapping.Forms
             this.toolStripLabelRegion});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 150, 0);
             this.toolStrip.Size = new System.Drawing.Size(624, 25);
+            this.toolStrip.Stretch = true;
             this.toolStrip.TabIndex = 5;
             this.toolStrip.Text = "toolStrip";
             // 
@@ -211,10 +276,11 @@ namespace DOL.Tools.Mapping.Forms
             // 
             this.comboBoxMaps.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.comboBoxMaps.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxMaps.DropDownWidth = 200;
             this.comboBoxMaps.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboBoxMaps.MaxDropDownItems = 30;
             this.comboBoxMaps.Name = "comboBoxMaps";
-            this.comboBoxMaps.Size = new System.Drawing.Size(250, 25);
+            this.comboBoxMaps.Size = new System.Drawing.Size(150, 25);
             this.comboBoxMaps.SelectedIndexChanged += new System.EventHandler(this.comboBoxMaps_SelectionChangeCommitted);
             // 
             // labelCoords
@@ -238,10 +304,34 @@ namespace DOL.Tools.Mapping.Forms
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mobnameToolStripMenuItem,
+            this.toolStripSeparator3,
             this.copyLocationToolStripMenuItem,
-            this.filterMenuItem});
+            this.filterMenuItem,
+            this.zoomToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(154, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(154, 98);
+            // 
+            // mobnameToolStripMenuItem
+            // 
+            this.mobnameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importToolStripMenuItem});
+            this.mobnameToolStripMenuItem.Name = "mobnameToolStripMenuItem";
+            this.mobnameToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.mobnameToolStripMenuItem.Text = "Mobname";
+            // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.add;
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.importToolStripMenuItem.Text = "Import";
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.importObjectToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(150, 6);
             // 
             // copyLocationToolStripMenuItem
             // 
@@ -253,35 +343,80 @@ namespace DOL.Tools.Mapping.Forms
             // 
             // filterMenuItem
             // 
-            this.filterMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.search;
+            this.filterMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.searchNPC;
             this.filterMenuItem.Name = "filterMenuItem";
             this.filterMenuItem.Size = new System.Drawing.Size(153, 22);
             this.filterMenuItem.Text = "Filter";
             // 
+            // zoomToolStripMenuItem
+            // 
+            this.zoomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.zoomInToolStripMenuItem,
+            this.zoomOutToolStripMenuItem,
+            toolStripSeparator1,
+            this.resetZoomToolStripMenuItem});
+            this.zoomToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.search;
+            this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.zoomToolStripMenuItem.Text = "Zoom";
+            // 
+            // zoomInToolStripMenuItem
+            // 
+            this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
+            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.zoomInToolStripMenuItem.Text = "Zoom In";
+            this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.zoomInToolStripMenuItem_Click);
+            // 
+            // zoomOutToolStripMenuItem
+            // 
+            this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
+            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.zoomOutToolStripMenuItem.Text = "Zoom Out";
+            this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.zoomOutToolStripMenuItem_Click);
+            // 
+            // resetZoomToolStripMenuItem
+            // 
+            this.resetZoomToolStripMenuItem.Name = "resetZoomToolStripMenuItem";
+            this.resetZoomToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.resetZoomToolStripMenuItem.Text = "Reset Zoom";
+            this.resetZoomToolStripMenuItem.Click += new System.EventHandler(this.resetZoomToolStripMenuItem_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.ZoomSlider);
+            this.panel1.Controls.Add(this.toolStrip);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(624, 25);
+            this.panel1.TabIndex = 6;
+            // 
             // DXControl
             // 
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.vScrollBar);
             this.Controls.Add(this.hScrollBar);
-            this.Controls.Add(this.Zoom);
-            this.Controls.Add(this.toolStrip);
+            this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.Name = "DXControl";
             this.Size = new System.Drawing.Size(624, 488);
             this.Load += new System.EventHandler(this.DXControl_Load);
-            this.Click += new System.EventHandler(this.DXControl_Click);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DXControl_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DXControl_MouseMove);
-            this.Resize += new System.EventHandler(this.DXControl_Resize);
-            this.MouseEnter += new System.EventHandler(this.DXControl_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.DXControl_MouseLeave);
+            this.Click += new System.EventHandler(this.DXControl_Click);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DXControl_MouseMove);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DXControl_MouseDown);
+            this.Resize += new System.EventHandler(this.DXControl_Resize);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DXControl_MouseUp);
-            ((System.ComponentModel.ISupportInitialize)(this.Zoom)).EndInit();
+            this.MouseEnter += new System.EventHandler(this.DXControl_MouseEnter);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DXControl_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.ZoomSlider)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -309,13 +444,11 @@ namespace DOL.Tools.Mapping.Forms
                                    
             DetailLevel lvl = GetDetailLevel();
             int objs = 0;
-
-            //float zoomval = Zoom.Value / (Zoom.Maximum - Zoom.Minimum) + 1;
-            double ViewFac = Settings.Default.ViewFactor;                                
-            double zoomval = Math.Pow(Zoom.Value, 1.20)/(Zoom.Maximum - Zoom.Minimum)/26*(256*256/16)*ViewFac;
-
-            int x = (int) (ClientRectangle.Width*zoomval);
-            int y = (int) (ClientRectangle.Height*zoomval);
+                                   
+            double zoomValue = Math.Pow(ZoomSlider.Value, 1.20)/(ZoomSlider.Maximum - ZoomSlider.Minimum)/26*(256*256/16);
+            
+            int x = (int) (ClientRectangle.Width*zoomValue);
+            int y = (int) (ClientRectangle.Height*zoomValue);
 
             float cameraX = (float) hScrollBar.Value;
             float cameraY = (float) vScrollBar.Value;
@@ -323,8 +456,8 @@ namespace DOL.Tools.Mapping.Forms
             int plusX = (int) cameraX + x;
             int minusX = (int) cameraX - x;
             int plusY = (int) cameraY + y;
-            int minusY = (int) cameraY - y;
-            
+            int minusY = (int) cameraY - y;            
+
             // use a copy of geoobjects list so that list can be manipulated during lazy loading of mapelements
             GeometryObj[] objects = GeoObjects.ToArray();
             Array.Sort(objects);
@@ -338,32 +471,13 @@ namespace DOL.Tools.Mapping.Forms
                     if (!InDetailLevel(obj.DetailLevel, lvl))
                         continue;
                     
+                    
                     if ((DrawLevel)obj.DrawLevel != DrawLevel.Background)
                     {
                         if (!((obj.X >= minusX && obj.X <= plusX) && (obj.Y >= minusY && obj.Y <= plusY)))
                             continue;
                     }
-                    //World Matrix..
-                    //Common.Device.Transform.World = Matrix.RotationYawPitchRoll(obj.Yaw, obj.Pitch, obj.Roll)*Matrix.Translation(obj.X, -obj.Y, obj.Z);
-                    Common.Device.Transform.World = obj.CreateWorldMatrix();
-
-                    //Texture
-                    Common.Device.SetTexture(0, obj.Model.Texture);
-
-                    //Set Blend Texture
-                    if (obj.Model.BlendTexture != null)
-                    {
-                        Common.Device.SetTexture(1, obj.Model.BlendTexture);
-                        Common.Device.TextureState[1].ColorOperation = TextureOperation.Modulate;
-                        Common.Device.TextureState[1].ColorArgument1 = TextureArgument.TextureColor;
-                        Common.Device.TextureState[1].ColorArgument2 = TextureArgument.Current;
-                        Common.Device.TextureState[2].ColorOperation = TextureOperation.Disable;
-                    }
-                    else
-                        Common.Device.TextureState[1].ColorOperation = TextureOperation.Disable;
-
-                    //Rendern..
-                    obj.Model.Mesh.Render();
+                    obj.Render();
 
                     //Objects increasen..
                     objs++;
@@ -372,11 +486,6 @@ namespace DOL.Tools.Mapping.Forms
                 StatusChangeObjects(objs);
             }
             
-        }
-
-        public void StatusChangeCoords(int x, int y)
-        {
-            //statusBarPanelCoords.Text = string.Format("X: {0} - Y: {1}", x, y);
         }
 
         public void StatusChangeDXCoords(int x, int y)
@@ -390,14 +499,10 @@ namespace DOL.Tools.Mapping.Forms
         }
 
         private void DXSetCamera()
-        {
-            float cameraX = 0.0f;
-            float cameraY = 0.0f;
-            float cameraZ = 0.0f;
-
-            cameraX = (float) hScrollBar.Value;
-            cameraY = -((float) vScrollBar.Value);
-            cameraZ = -((float) (Zoom.Value*Zoom.Value));
+        {            
+            float cameraX = (float) hScrollBar.Value;
+            float cameraY = -((float) vScrollBar.Value);
+            float cameraZ = -((float) (ZoomSlider.Value*ZoomSlider.Value));
 
             //Based on Scrollbares,...
             View = Matrix.LookAtLH(
@@ -405,13 +510,12 @@ namespace DOL.Tools.Mapping.Forms
                 new Vector3(cameraX, cameraY, 0.0f),
                 new Vector3(0.0f, 1.0f, 0.0f));
 
-            //Std
-            //ToDo: Check this! / 500?
+            //Std            
             Proj = Matrix.PerspectiveFovLH(
                 (float) Math.PI/4.0f*(float) ClientRectangle.Height/500.0f,
                 (float) ClientRectangle.Width/(float) ClientRectangle.Height,
                 0.01f,
-                3000000.0f);
+                1000000.0f);
 
             Common.Device.Transform.View = View;
             Common.Device.Transform.Projection = Proj;
@@ -419,7 +523,7 @@ namespace DOL.Tools.Mapping.Forms
 
         private void hScrollBar_Scroll(object sender, ScrollEventArgs e)
         {
-            Invalidate();
+            Invalidate();           
         }
 
         private void vScrollBar_Scroll(object sender, ScrollEventArgs e)
@@ -452,9 +556,7 @@ namespace DOL.Tools.Mapping.Forms
         protected override void OnPaint(PaintEventArgs e)
         {
             DXRender();
-        }
-
-        
+        }        
 
         private void Zoom_Scroll(object sender, EventArgs e)
         {
@@ -463,70 +565,76 @@ namespace DOL.Tools.Mapping.Forms
 
         private void DXControl_MouseDown(object sender, MouseEventArgs e)
         {
+            this.ZoomSlider.Focus();
+            this.ZoomSlider.Select();
+
+            Vector3 v3 = DXClickToVector(new Vector2(e.X, e.Y));
+            SelectedObject = ModulMgr.GetObjectAt((int)v3.X, (int)v3.Y);            
+
             if (e.Button == MouseButtons.Left)
             {
-                                
-                Vector3 v3 = DXClickToVector(new Vector2(e.X, e.Y));
-                GeometryObj mapObject = ModulMgr.GetObjectAt((int) v3.X, (int) v3.Y);
-                if (mapObject != null && mapObject.IsMovable)
+                if (SelectedObject != null && SelectedObject.IsMovable)
                 {
-                    ObjectMove = mapObject;
                     MapMoving = false;
+                    ObjectMoving = true;
                 }
                 else
                 {
-
+                    this.Cursor = Cursors.Hand;
                     MouseMoveStart = new Point(e.X, e.Y);
                     MouseValueH = hScrollBar.Value;
                     MouseValueV = vScrollBar.Value;
                     MapMoving = true;
+                    ObjectMoving = false;
                 }
+            }
+            else
+            {
+                MapMoving = false;
+                ObjectMoving = false;
             }
         }
 
         private void DXControl_MouseMove(object sender, MouseEventArgs e)
         {
+            Vector3 coords = DXClickToVector(new Vector2(e.X, e.Y));
+
             if (MapMoving)
             {
-                float diffX = (MouseMoveStart.X - e.X)*(float) Math.Pow(Zoom.Value, 2)/580;
-                float diffY = (MouseMoveStart.Y - e.Y)*(float) Math.Pow(Zoom.Value, 2)/580;
+                float diffX = (MouseMoveStart.X - e.X)*(float) Math.Pow(ZoomSlider.Value, 2)/580;
+                float diffY = (MouseMoveStart.Y - e.Y)*(float) Math.Pow(ZoomSlider.Value, 2)/580;
 
                 int tX = (MouseValueH + (int) diffX);
                 int tY = (MouseValueV + (int) diffY);
 
                 if (tX <= hScrollBar.Maximum && tX >= hScrollBar.Minimum)
                 {
-                    //hScrollBar.Value += diffX;
                     hScrollBar.Value = tX;
                 }
                 if (tY <= vScrollBar.Maximum && tY >= vScrollBar.Minimum)
                 {
-                    //vScrollBar.Value += diffY;
                     vScrollBar.Value = tY;
                 }
-
                 Invalidate();
             }
-            else if (ObjectMove != null)
-            {
-                
-            
-                Vector3 v3 = DXClickToVector(new Vector2(e.X, e.Y));
-                ObjectMove.X = (int) v3.X;
-                ObjectMove.Y = (int) v3.Y;
-
-                Log.Info("Moving to" + v3.Y+"|"+ObjectMove.Y);
-                ObjectMove.Modul.ObjectMoved(ObjectMove);
-            }
-            StatusChangeCoords(e.X, e.Y);
-            Vector3 coords = DXClickToVector(new Vector2(e.X, e.Y));
+            else if (ObjectMoving && SelectedObject != null && SelectedObject.IsMovable)
+            {                                            
+                SelectedObject.X = (int) coords.X;
+                SelectedObject.Y = (int) coords.Y;                
+                SelectedObject.Modul.ObjectMoved(SelectedObject);
+            }            
             StatusChangeDXCoords((int) coords.X, (int) coords.Y);
         }
 
         private void DXControl_MouseLeave(object sender, EventArgs e)
         {
             if (MapMoving)
+            {
                 MapMoving = false;
+                this.Cursor = Cursors.Default;
+            }
+
+            ObjectMoving = false;
         }
 
         private void DXControl_MouseUp(object sender, MouseEventArgs e)
@@ -539,49 +647,77 @@ namespace DOL.Tools.Mapping.Forms
             LastMouseVector = DXClickToVector(new Vector2(e.X, e.Y));
 
             if (e.Button == MouseButtons.Right)
-            {
-                Vector3 vec = DXClickToVector(new Vector2(e.X, e.Y));
-                //MessageBox.Show("Click at X: " + vec.X + " Y: " + vec.Y + " Z: " + vec.Z);
-                //Just do nothing :P
-                //Point m = System.Windows.Forms.Cursor.Position;                
-                Point m = this.PointToScreen(e.Location);
-                m.Y -= 24;
-                m.X -= 8;
-                contextMenuStrip.Show(this, e.Location );
-            }
-
-            if (e.Button == MouseButtons.Left)
+            {                
+                contextMenuStrip.Show(this, e.Location);                
+            } else if (e.Button == MouseButtons.Left)
             {
                 MapMoving = false;
+                ObjectMoving = false;
                 MouseMoveStart.X = -1;
                 MouseMoveStart.Y = -1;
-                ObjectMove = null;
+                SelectedObject = null;
+                this.Cursor = Cursors.Default;
             }
         }
 
         private void DXControl_MouseWheel(object sender, MouseEventArgs e)
         {
-            if (Zoom.Enabled)
+            Zoom(e.Delta);            
+        }
+
+        /// <summary>
+        /// Set zoomfactor to value between 0.0 and 1.0 
+        /// </summary>
+        /// <param name="percent"></param>
+        public void SetZoom(float percent)
+        {
+            ZoomSlider.Value = (int)((ZoomSlider.Maximum - ZoomSlider.Minimum) * percent) + ZoomSlider.Minimum;
+            Invalidate();          
+        }
+
+        /// <summary>
+        /// Get zoomfactor to value between 0.0 and 1.0 
+        /// </summary>
+        /// <param name="percent"></param>
+        public float GetZoom()
+        {
+            return (float)Math.Round(((float)(ZoomSlider.Value - ZoomSlider.Minimum)) / (ZoomSlider.Maximum - ZoomSlider.Minimum),2);
+            
+        }
+
+        public void CenterView()
+        {
+            vScrollBar.Value = (vScrollBar.Maximum + vScrollBar.Minimum) / 2;
+            hScrollBar.Value = (hScrollBar.Maximum + hScrollBar.Minimum) / 2;
+        }
+
+        private void Zoom(int value)
+        {
+            if (ZoomSlider.Enabled)
             {
                 //int moved = e.Delta; //Add some multiplactors?
-                double zoomPow = DOL.Tools.QuestDesigner.Properties.Settings.Default.ZoomValuePow;
-                double zoomMul = DOL.Tools.QuestDesigner.Properties.Settings.Default.ZoomValueMul;
-                    
-                double factor = Math.Pow(Zoom.Value, zoomPow)/Math.Pow(Zoom.Maximum, zoomPow)*zoomMul;
-                int moved = (int) (factor*-e.Delta);
-                int newvalue = Zoom.Value + moved;
+                double zoomPow = Settings.Default.ZoomValuePow;                
 
-                if (newvalue <= Zoom.Maximum && newvalue >= Zoom.Minimum)
+                double factor = Math.Pow(ZoomSlider.Value, zoomPow) / Math.Pow(ZoomSlider.Maximum, zoomPow) ;
+                int moved = (int)(factor * -value);
+                int newvalue = ZoomSlider.Value + moved;
+
+                if (newvalue > ZoomSlider.Maximum)
+                    newvalue = ZoomSlider.Maximum;
+
+                if (newvalue < ZoomSlider.Minimum)
+                    newvalue = ZoomSlider.Minimum;
+
+                if (ZoomSlider.Value != newvalue)
                 {
-                    Zoom.Value += moved;
+                    ZoomSlider.Value = newvalue;
                     Invalidate();
                 }
             }
         }
 
         private void DXControl_Resize(object sender, EventArgs e)
-        {
-            //LastResize = System.DateTime.Now.Ticks;
+        {            
             //Invalidate();
         }
 
@@ -597,10 +733,10 @@ namespace DOL.Tools.Mapping.Forms
 
             Vector3 rayStart, rayDirection;
 
-            // Convert the mouse point into a 3D point
+            // Convert the mouse point into a 3D point            
             Vector3 v = new Vector3(
-                (((2.0f*click.X)/Common.Device.PresentationParameters.BackBufferWidth) - 1)/Proj.M11,
-                -(((2.0f*click.Y)/Common.Device.PresentationParameters.BackBufferHeight) - 1)/Proj.M22,
+                (((2.0f*click.X)/this.ClientRectangle.Width) - 1)/Proj.M11,
+                -(((2.0f*click.Y)/this.ClientRectangle.Height) - 1)/Proj.M22,
                 1.0f);
 
             // Get the inverse of the composite view and world matrix
@@ -630,12 +766,16 @@ namespace DOL.Tools.Mapping.Forms
 
         public void AddFilter(string name)
         {
-
             ToolStripMenuItem item = new ToolStripMenuItem(name, null, new EventHandler(filterMenuItem_Click));
             item.CheckOnClick = true;
             item.Checked = true;
+
+            if (name == DatabaseMobModule.MODULE_NAME || name == DatabaseWorldObjectModule.MODULE_NAME)
+            {
+                item.Enabled = QuestDesignerMain.DatabaseSupported;
+            }
+
             filterMenuItem.DropDownItems.Add(item);
-            
         }
 
         void filterMenuItem_Click(object sender, EventArgs e)
@@ -653,25 +793,23 @@ namespace DOL.Tools.Mapping.Forms
                 ModulMgr.TriggerModule(mod, ModulEvent.Filter);
                 
         }
-
         
-
         private DetailLevel GetDetailLevel()
         {
-            int zoom = (int) (((float) Zoom.Value/(float) (Zoom.Maximum - Zoom.Minimum))*100.0f);
+            float zoom = GetZoom();
 
-            if (zoom <= 4)
+            if (zoom <= 0.1)
                 return DetailLevel.MostDetailed;
-            if (zoom <= 8)
+            else if (zoom <= 0.2)
                 return DetailLevel.MoreDetailed;
-            if (zoom <= 14)
+            else if (zoom <= 0.3)
                 return DetailLevel.Detailed;
-            if (zoom <= 26)
+            else if (zoom <= 0.5)
                 return DetailLevel.Middle;
-            if (zoom <= 43)
+            else if (zoom <= 0.7)
                 return DetailLevel.Undetailed;
-
-            return DetailLevel.Nondetailed;
+            else
+                return DetailLevel.Nondetailed;
         }
 
         private bool InDetailLevel(DetailLevel level, DetailLevel inlevel)
@@ -691,10 +829,12 @@ namespace DOL.Tools.Mapping.Forms
         }
 
         private void DXControl_Load(object sender, EventArgs e)
-        {
+        {            
             RegionMgr.LoadRegions();
             ModulMgr.LoadModules();
-            
+
+            ZoomSlider.KeyDown+=new KeyEventHandler(DXControl_KeyDown);
+
             if (cachedRegionID >= 0)
             {
                 RegionMgr.LoadRegion(cachedRegionID);
@@ -715,15 +855,60 @@ namespace DOL.Tools.Mapping.Forms
         }
 
         private void copyLocationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Log.Info("Copied " + LastMouseVector.X + ";" + LastMouseVector.Y + " to clipboard");
-
-            IDataObject ido = new DataObject();            
-
+        {            
+            IDataObject ido = new System.Windows.Forms.DataObject();            
             ClipboardLocation loc = new ClipboardLocation(Convert.ToInt32(LastMouseVector.X),Convert.ToInt32(LastMouseVector.Y), RegionMgr.CurrentRegion.ID);
-
             ido.SetData(loc);
             Clipboard.SetDataObject(ido, true);
         }
+
+        private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Zoom(ZoomSlider.SmallChange);
+        }
+
+        private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Zoom(-ZoomSlider.SmallChange);
+        }
+
+        private void resetZoomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetZoom(0.75F);        
+        }               
+
+        private void DXControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Left)
+                hScrollBar.Value -= hScrollBar.LargeChange;
+            else if (e.KeyData == Keys.Right)
+                hScrollBar.Value += hScrollBar.LargeChange;
+            else if (e.KeyData == Keys.Up)
+                vScrollBar.Value -= vScrollBar.LargeChange;
+            else if (e.KeyData == Keys.Down)
+                vScrollBar.Value += vScrollBar.LargeChange;
+            else if (e.KeyData == Keys.Add)
+                Zoom(ZoomSlider.SmallChange);
+            else if (e.KeyData == Keys.Subtract)
+                Zoom(-ZoomSlider.SmallChange);
+            else
+                return;
+
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+            Invalidate();
+        }
+
+        private void importObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (SelectedObject != null)
+            {
+                if (SelectedObject.Modul is DatabaseMobModule) {
+                    Mob mob = ((DatabaseMobModule) SelectedObject.Modul).GetDataObjectForGeometryObject(SelectedObject);
+                    QuestDesignerMain.DesignerForm.npcView.FillDataRowFromObject(mob);
+                }
+            }
+        }
+        
     }
 }

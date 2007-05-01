@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=Quest Designer
-AppVerName=Quest Designer 0.4.8.0
+AppVerName=Quest Designer 0.4.9.0
 AppPublisher=DOL Tools
 DefaultDirName={pf}\Quest Designer
 DefaultGroupName=Quest Designer
@@ -30,6 +30,7 @@ Name: "associatefiletype"; Description: "{cm:AssocFileExtension,Quest Designer, 
 
 [Files]
 Source: "E:\_WORK\DOLTools\QuestDesigner\bin\Release\*"; DestDir: "{app}"; Excludes: "data,*.vshost.*,NETXP*.xml,*.pdb,serverconfig.xml"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\_WORK\DOLTools\QuestDesigner\bin\Release\data\object\*"; DestDir: "{app}\data\object"; Excludes: "Thumbs.db"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

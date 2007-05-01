@@ -307,6 +307,8 @@ namespace DOL.Tools.QuestDesigner
             this.customCode = new DOL.Tools.QuestDesigner.CustomCode();
             this.tabPageMap = new NETXP.Controls.Docking.TabPage();
             this.DXControl = new DOL.Tools.Mapping.Forms.DXControl();
+            this.tabPageWeb = new NETXP.Controls.Docking.TabPage();
+            this.webBrowser1 = new DOL.Tools.QuestDesigner.QuestDesigner.WebBrowser();
             this.xpTaskPane = new NETXP.Controls.TaskPane.XPTaskPane();
             this.xpTGQuestPart = new NETXP.Controls.TaskPane.XPTaskPaneGroup();
             this.xpTGActions = new NETXP.Controls.TaskPane.XPTaskPaneGroup();
@@ -317,8 +319,6 @@ namespace DOL.Tools.QuestDesigner
             this.saveScriptDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.imageListNPC = new System.Windows.Forms.ImageList(this.components);
-            this.tabPageWeb = new NETXP.Controls.Docking.TabPage();
-            this.webBrowser1 = new DOL.Tools.QuestDesigner.QuestDesigner.WebBrowser();
             dataColumnQuestPartIF = new System.Data.DataColumn();
             dataColumnTriggerQuestPart = new System.Data.DataColumn();
             dataColumnTriggerType = new System.Data.DataColumn();
@@ -453,9 +453,9 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageLocation.SuspendLayout();
             this.tabPageCode.SuspendLayout();
             this.tabPageMap.SuspendLayout();
+            this.tabPageWeb.SuspendLayout();
             this.xpTaskPane.SuspendLayout();
             this.xpTGActions.SuspendLayout();
-            this.tabPageWeb.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataColumnQuestPartIF
@@ -596,23 +596,31 @@ namespace DOL.Tools.QuestDesigner
             // 
             // dataColumn18
             // 
+            dataColumn18.AllowDBNull = false;
             dataColumn18.ColumnName = "X";
             dataColumn18.DataType = typeof(int);
+            dataColumn18.DefaultValue = 0;
             // 
             // dataColumn19
             // 
+            dataColumn19.AllowDBNull = false;
             dataColumn19.ColumnName = "Y";
             dataColumn19.DataType = typeof(int);
+            dataColumn19.DefaultValue = 0;
             // 
             // dataColumn20
             // 
+            dataColumn20.AllowDBNull = false;
             dataColumn20.ColumnName = "Z";
             dataColumn20.DataType = typeof(int);
+            dataColumn20.DefaultValue = 0;
             // 
             // dataColumn21
             // 
+            dataColumn21.AllowDBNull = false;
             dataColumn21.ColumnName = "Heading";
             dataColumn21.DataType = typeof(int);
+            dataColumn21.DefaultValue = 0;
             // 
             // dataColumn22
             // 
@@ -2291,7 +2299,6 @@ namespace DOL.Tools.QuestDesigner
             this.questPartItems.Location = new System.Drawing.Point(0, 0);
             this.questPartItems.Name = "questPartItems";
             this.questPartItems.QuestPartRow = null;
-            this.questPartItems.QuestPartRowID = 0;
             this.questPartItems.RequirementColor = System.Drawing.Color.Tan;
             this.questPartItems.RequirementSelectedColor = System.Drawing.Color.Orange;
             this.questPartItems.Size = new System.Drawing.Size(442, 377);
@@ -2365,6 +2372,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             // DXControl
             // 
+            this.DXControl.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.DXControl.Cursor = System.Windows.Forms.Cursors.Default;
             this.DXControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DXControl.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -2372,6 +2380,24 @@ namespace DOL.Tools.QuestDesigner
             this.DXControl.Name = "DXControl";
             this.DXControl.Size = new System.Drawing.Size(442, 377);
             this.DXControl.TabIndex = 0;
+            // 
+            // tabPageWeb
+            // 
+            this.tabPageWeb.Controls.Add(this.webBrowser1);
+            this.tabPageWeb.Location = new System.Drawing.Point(2, 23);
+            this.tabPageWeb.Name = "tabPageWeb";
+            this.tabPageWeb.Size = new System.Drawing.Size(442, 377);
+            this.tabPageWeb.TabIndex = 11;
+            this.tabPageWeb.Title = "Web";
+            this.tabPageWeb.ToolTipText = "Web";
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(442, 377);
+            this.webBrowser1.TabIndex = 0;
             // 
             // xpTaskPane
             // 
@@ -2477,24 +2503,6 @@ namespace DOL.Tools.QuestDesigner
             this.imageListNPC.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListNPC.Images.SetKeyName(0, "user.ico");
             // 
-            // tabPageWeb
-            // 
-            this.tabPageWeb.Controls.Add(this.webBrowser1);
-            this.tabPageWeb.Location = new System.Drawing.Point(2, 23);
-            this.tabPageWeb.Name = "tabPageWeb";
-            this.tabPageWeb.Size = new System.Drawing.Size(442, 377);
-            this.tabPageWeb.TabIndex = 11;
-            this.tabPageWeb.Title = "Web";
-            this.tabPageWeb.ToolTipText = "Web";
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(442, 377);
-            this.webBrowser1.TabIndex = 0;
-            // 
             // QuestDesignerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2507,6 +2515,7 @@ namespace DOL.Tools.QuestDesigner
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = global::DOL.Tools.QuestDesigner.Properties.Settings.Default.MainformLocation;
             this.MainMenuStrip = this.menuStripMain;
+            this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "QuestDesignerForm";
             this.Text = "QuestDesigner";
             this.Load += new System.EventHandler(this.QuestDesignerForm_Load);
@@ -2550,10 +2559,10 @@ namespace DOL.Tools.QuestDesigner
             this.tabPageLocation.ResumeLayout(false);
             this.tabPageCode.ResumeLayout(false);
             this.tabPageMap.ResumeLayout(false);
+            this.tabPageWeb.ResumeLayout(false);
             this.xpTaskPane.ResumeLayout(false);
             this.xpTGActions.ResumeLayout(false);
             this.xpTGActions.PerformLayout();
-            this.tabPageWeb.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2709,8 +2718,7 @@ namespace DOL.Tools.QuestDesigner
 		private NETXP.Controls.Docking.TabPage tabPageArea;
         private NETXP.Controls.Docking.TabPage tabPageCode;
 		private QuestInfo questInfo;
-		private System.Windows.Forms.ImageList imageListNPC;
-		private NPC npcView;
+        private System.Windows.Forms.ImageList imageListNPC;
 		private Item itemView;
 		private CustomCode customCode;
 		private NETXP.Controls.TaskPane.XPTaskPane xpTaskPane;
@@ -2746,7 +2754,8 @@ namespace DOL.Tools.QuestDesigner
         private System.Data.DataColumn dataColumn38;
         private System.Data.DataColumn dataColumn44;
         private NETXP.Controls.Docking.TabPage tabPageWeb;
-        private DOL.Tools.QuestDesigner.QuestDesigner.WebBrowser webBrowser1;		
+        private DOL.Tools.QuestDesigner.QuestDesigner.WebBrowser webBrowser1;
+        public NPC npcView;		
     }
 }
 

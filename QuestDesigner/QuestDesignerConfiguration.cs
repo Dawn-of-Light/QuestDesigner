@@ -15,6 +15,7 @@ namespace DOL.Tools.QuestDesigner
         {
             configDocument.PreserveWhitespace = false;             
             configDocument.Load(path);
+
         }
 
         public List<Transformator> getTransformators() {

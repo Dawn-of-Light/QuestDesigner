@@ -114,12 +114,11 @@ namespace DOL.Tools.QuestDesigner
 
         private PropertyBag questPartBag;
 
-        private int questPartRowId;
-
+        private IList<QuestPartTextInfo> questPartInfos = new List<QuestPartTextInfo>();
+        
         public int QuestPartRowID
         {
-            get { return questPartRowId; }
-            set { questPartRowId = value; }
+            get { return QuestPartRow != null ? Convert.ToInt32(QuestPartRow[DB.COL_QUESTPART_ID]) : -1; }            
         }
 
 		public DataRowView QuestPartRow        
@@ -132,29 +131,26 @@ namespace DOL.Tools.QuestDesigner
                     return null;
 			}
             set {
-                questPartRow = value;
-                QuestPartRowID = QuestPartRow != null ? Convert.ToInt32(QuestPartRow[DB.COL_QUESTPART_ID]) : -1;
+                questPartRow = value;                
             }
 		}
 
 		public QuestPartItems()
 		{
-			InitializeComponent();			
-
+			InitializeComponent();
+            DB.DatabaseLoaded += new DB.DatabaseLoadedEventHandler(DB_DatabaseLoaded);
 			popupHelper = new PopupWindowHelper();
 		}
 
-		private IList<QuestPartTextInfo> questPartInfos = new List<QuestPartTextInfo>();
-		
-		public void SetDataSet() {
-            
+        void DB_DatabaseLoaded()
+        {
             DB.ActionTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
             DB.ActionTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
             DB.TriggerTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
             DB.TriggerTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
             DB.RequirementTable.RowChanged += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
-            DB.RequirementTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);            
-            
+            DB.RequirementTable.RowDeleted += new DataRowChangeEventHandler(questPartItemTable_RowChanged);
+
             triggerTypeList.Items.Clear();
             foreach (DataRow row in DB.TriggerTypeTable.Rows)
             {
@@ -173,15 +169,14 @@ namespace DOL.Tools.QuestDesigner
                 actionTypeList.Items.Add(row[DB.COL_ACTIONTYPE_DESCRIPTION], false);
             }
 
-            this.bindingNavigator.BindingSource = DB.questPartBinding;
-            //this.bindingNavigator.BindingSource.Filter = "Type=0";
+            this.bindingNavigator.BindingSource = DB.questPartBinding;            
 
             DB.questPartBinding.CurrentChanged += new EventHandler(questPartBinding_CurrentChanged);
             DB.questPartBinding.ListChanged += new ListChangedEventHandler(questPartBinding_ListChanged);
 
             // Fill triggertype checklist with triggertypes...            
-            QuestPartRow = (DataRowView) DB.questPartBinding.Current;
-            if (QuestPartRow!= null)
+            QuestPartRow = (DataRowView)DB.questPartBinding.Current;
+            if (QuestPartRow != null)
                 RefreshQuestPart(QuestPartRow.Row);
             RefreshQuestPartText();
 
@@ -193,86 +188,61 @@ namespace DOL.Tools.QuestDesigner
             foreach (DataColumn col in DB.QuestPartTable.Columns)
             {
                 questPartBag.Properties.Add(GetQuestPartProperties(col));
-            }
-            //questPartBag.Properties.Add(new PropertySpec("TextBegin",typeof(int)));
-            //questPartBag.Properties.Add(new PropertySpec("TextEnd", typeof(int)));
+            }            
             propertyGridQuestPartRow.SelectedObject = questPartBag;
-
-		}
+        }		
+				
 
         void questPartBag_SetValue(object sender, PropertySpecEventArgs e)
         {
             if (QuestPartRow!=null)
             {                
                 DataRow row = QuestPartRow.Row;
+                
+                // little hack since the typconverter seems to be skipped if the mousewheel is used to select a value from propertygrid
+                if (!row[e.Property.Name].GetType().IsAssignableFrom(e.Value.GetType()))
+                {
+                    TypeConverter conv = (TypeConverter)Activator.CreateInstance(Assembly.GetCallingAssembly().GetType(e.Property.ConverterTypeName));
 
-                if (e.Property.Name == "TextBegin")
-                {
-                    //e.Value = GetInfoForQuestPartRow(questPartRow).BeginIndex;
+                    Type destinationType = row.Table.Columns[e.Property.Name].DataType;
+
+                    e.Value = conv.ConvertTo(e.Value, destinationType);
                 }
-                else if (e.Property.Name == "TextEnd")
+                // little hackend
+
+
+                if (e.Property.Name == DB.COL_QUESTPART_CATEGORY)
                 {
-                    //e.Value = GetInfoForQuestPartRow(questPartRow).EndIndex;
+                    string categoryString = (string)e.Value;
+
+                    if (!categoryString.EndsWith(";"))
+                        categoryString += ";";
+                    row[e.Property.Name] = categoryString;
+
+                    string[] categories = categoryString.Split(';');
+                    foreach (string category in categories)
+                    {
+                        DB.AddQuestPartCategory(category);
+                    }
                 }
                 else
                 {
-
-                    // little hack since the typconverter seems to be skipped if the mousewheel is used to select a value from propertygrid
-                    if (!row[e.Property.Name].GetType().IsAssignableFrom(e.Value.GetType()))
-                    {
-                        TypeConverter conv = (TypeConverter)Activator.CreateInstance(Assembly.GetCallingAssembly().GetType(e.Property.ConverterTypeName));
-
-                        Type destinationType = row.Table.Columns[e.Property.Name].DataType;
-
-                        e.Value = conv.ConvertTo(e.Value, destinationType);
-                    }
-                    // little hackend
-
-
-
-                    if (e.Property.Name == DB.COL_QUESTPART_CATEGORY)
-                    {
-                        string categoryString = (string)e.Value;
-
-                        if (!categoryString.EndsWith(";"))
-                            categoryString += ";";
-                        row[e.Property.Name] = categoryString;
-
-                        string[] categories = categoryString.Split(';');
-                        foreach (string category in categories)
-                        {
-                            DB.AddQuestPartCategory(category);
-                        }
-                    }
-                    else
-                    {
-                        row[e.Property.Name] = e.Value;
-                    }
-                    // update objectname if name changed
-                    /*if (e.Property.Name == DB.COL_NPC_NAME)
-                    {
-                        row[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName((String)e.Value);
-                    }*/
+                    row[e.Property.Name] = e.Value;
                 }
+                // update objectname if name changed
+                /*if (e.Property.Name == DB.COL_NPC_NAME)
+                {
+                    row[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName((String)e.Value);
+                }*/
+                
             }
         }
 
         void questPartBag_GetValue(object sender, PropertySpecEventArgs e)
         {
             if (QuestPartRow!=null)
-            {
-                if (e.Property.Name == "TextBegin" && GetInfoForQuestPartRow(QuestPartRow.Row)!=null)
-                {
-                    e.Value = GetInfoForQuestPartRow(QuestPartRow.Row).BeginIndex;
-                }
-                else if (e.Property.Name == "TextEnd" && GetInfoForQuestPartRow(QuestPartRow.Row)!=null)
-                {
-                    e.Value = GetInfoForQuestPartRow(QuestPartRow.Row).EndIndex;
-                }
-                else
-                {
-                    e.Value = QuestPartRow.Row[e.Property.Name];
-                }
+            {                               
+                e.Value = QuestPartRow.Row[e.Property.Name];                
             }
         }
 
@@ -1142,37 +1112,37 @@ namespace DOL.Tools.QuestDesigner
 
 		private void interactToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			AddTrigger(eTriggerType.Interact);
+			DB.AddTrigger(eTriggerType.Interact,QuestPartRowID);
 		}
 
 		private void whisperToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			AddTrigger(eTriggerType.Whisper);
+			DB.AddTrigger(eTriggerType.Whisper,QuestPartRowID);
 		}
 
 		private void questGivableToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			AddRequirement(eRequirementType.QuestGivable);
+            DB.AddRequirement(eRequirementType.QuestGivable,QuestPartRowID);
 		}
 
 		private void questPendingToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			AddRequirement(eRequirementType.QuestPending);
+			DB.AddRequirement(eRequirementType.QuestPending,QuestPartRowID);
 		}
 
 		private void queststepToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			AddRequirement(eRequirementType.QuestStep);
+			DB.AddRequirement(eRequirementType.QuestStep,QuestPartRowID);
 		}
 
 		private void giveItemToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			AddAction(eActionType.GiveItem);
+			DB.AddAction(eActionType.GiveItem,QuestPartRowID);
 		}
 
 		private void increaseQueststepToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			AddAction(eActionType.IncQuestStep);
+			DB.AddAction(eActionType.IncQuestStep,QuestPartRowID);
 		}
 
 		private void offerAcceptQuestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1185,9 +1155,10 @@ namespace DOL.Tools.QuestDesigner
 			DB.QuestPartTable.Rows.Add(newRow);
             int questPartID = (int)newRow[DB.COL_QUESTPART_ID];
 
-			AddTrigger(eTriggerType.Interact, questPartID);
-			AddAction(eActionType.OfferQuest, questPartID);
-			AddRequirement(eRequirementType.QuestGivable, questPartID);
+			DB.AddTrigger(eTriggerType.Interact, questPartID);
+			DB.AddAction(eActionType.OfferQuest, questPartID);
+			DB.AddRequirement(eRequirementType.QuestGivable, questPartID);
+            DB.AddRequirement(eRequirementType.QuestPending, questPartID,eComparator.Not);
 
 			// Add Quest Accept Step
 			newRow = DB.QuestPartTable.NewRow();
@@ -1197,10 +1168,11 @@ namespace DOL.Tools.QuestDesigner
 			DB.QuestPartTable.Rows.Add(newRow);
             questPartID = (int)newRow[DB.COL_QUESTPART_ID];
 
-			AddTrigger(eTriggerType.AcceptQuest, questPartID);
-			AddRequirement(eRequirementType.QuestGivable, questPartID);
-			AddAction(eActionType.Talk, questPartID);
-			AddAction(eActionType.GiveQuest, questPartID);
+			DB.AddTrigger(eTriggerType.AcceptQuest, questPartID);
+			DB.AddRequirement(eRequirementType.QuestGivable, questPartID);
+            DB.AddRequirement(eRequirementType.QuestPending, questPartID, eComparator.Not);
+			DB.AddAction(eActionType.Talk, questPartID);
+			DB.AddAction(eActionType.GiveQuest, questPartID);
 
 
 			// Add Quest Decline Step
@@ -1211,61 +1183,11 @@ namespace DOL.Tools.QuestDesigner
 			DB.QuestPartTable.Rows.Add(newRow);
             questPartID = (int)newRow[DB.COL_QUESTPART_ID];            
 
-			AddTrigger(eTriggerType.DeclineQuest, questPartID);
-			AddRequirement(eRequirementType.QuestGivable, questPartID);
-			AddAction(eActionType.Talk, questPartID);
-		}	
-
-		private void AddTrigger(eTriggerType triggerType)
-		{
-			if (QuestPartRow != null)
-			{
-                int questPartID = (int)QuestPartRow[DB.COL_QUESTPART_ID];
-				AddTrigger(triggerType, questPartID);
-			}
-		}
-
-		private void AddTrigger(eTriggerType triggerType, int questPartID)
-		{
-			DataRow row = DB.TriggerTable.NewRow();
-            row[DB.COL_QUESTPARTTRIGGER_QUESTPARTID] = questPartID;
-            row[DB.COL_QUESTPARTTRIGGER_TYPE] = triggerType;
-			DB.TriggerTable.Rows.Add(row);            
-		}
-
-		private void AddRequirement(eRequirementType requirementType)
-		{
-			if (QuestPartRow!=null)
-			{
-                int questPartID = (int)QuestPartRow[DB.COL_QUESTPART_ID];
-				AddRequirement(requirementType, questPartID);
-			}
-		}
-
-		private void AddRequirement(eRequirementType requirementType, int questPartID)
-		{
-			DataRow row = DB.RequirementTable.NewRow();
-            row[DB.COL_QUESTPARTREQUIREMENT_QUESTPARTID] = questPartID;
-            row[DB.COL_QUESTPARTREQUIREMENT_TYPE] = requirementType;
-			DB.RequirementTable.Rows.Add(row);            
-		}
-
-		private void AddAction(eActionType actionType)
-		{
-			if (QuestPartRow !=null)
-			{
-                int questPartID = (int)QuestPartRow[DB.COL_QUESTPART_ID];
-				AddAction(actionType, questPartID);
-			}
-		}
-
-		private void AddAction(eActionType actionType, int questPartID)
-		{
-			DataRow row = DB.ActionTable.NewRow();
-            row[DB.COL_QUESTPARTACTION_QUESTPARTID] = questPartID;
-            row[DB.COL_QUESTPARTACTION_TYPE] = actionType;
-			DB.ActionTable.Rows.Add(row);            
-		}
+			DB.AddTrigger(eTriggerType.DeclineQuest, questPartID);
+			DB.AddRequirement(eRequirementType.QuestGivable, questPartID);
+            DB.AddRequirement(eRequirementType.QuestPending, questPartID, eComparator.Not);
+			DB.AddAction(eActionType.Talk, questPartID);
+		}			
 
 		#endregion
 
@@ -1296,10 +1218,7 @@ namespace DOL.Tools.QuestDesigner
         void addNew_Click(object sender, EventArgs e)
         {
             DataRow row = DB.QuestPartTable.NewRow();
-            
-            //TODO prefill questPartRow to apply to filter
-
-            DB.QuestPartTable.Rows.Add(row);            
+            DB.QuestPartTable.Rows.Add(row);
         }        
 
 		void questPartBinding_CurrentChanged(object sender, EventArgs e)

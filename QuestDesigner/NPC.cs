@@ -47,51 +47,40 @@ namespace DOL.Tools.QuestDesigner
 		public NPC()
 		{
 			InitializeComponent();
-			
+            DB.DatabaseLoaded += new DB.DatabaseLoadedEventHandler(DB_DatabaseLoaded);
 		}
+
+        void DB_DatabaseLoaded()
+        {
+            foreach (DataRow npcRow in DB.NPCTable.Rows)
+            {
+                listViewNPC.Items.Add(generateListItem(npcRow));
+            }
+
+            DB.NPCTable.RowChanged += new DataRowChangeEventHandler(npcTable_RowChanged);
+            DB.NPCTable.RowDeleting += new DataRowChangeEventHandler(npcTable_RowChanged);
+            DB.NPCTable.TableCleared += new DataTableClearEventHandler(npcTable_TableCleared);
+
+            // Configure PropertyBags
+            npcBag = new PropertyBag();
+            npcBag.GetValue += new PropertySpecEventHandler(this.npcBag_GetValue);
+            npcBag.SetValue += new PropertySpecEventHandler(this.npcBag_SetValue);
+            foreach (DataColumn col in DB.NPCTable.Columns)
+            {
+                npcBag.Properties.Add(getNPCProperties(col));
+            }
+            propertyGridNPC.SelectedObject = npcBag;
+        }
 
 		public void SetDatabaseSupport(bool support)
 		{
 			B_SearchNPC.Enabled = support;
 		}
 
-		public void setDataSet()
-		{            
-            foreach (DataRow npcRow in DB.NPCTable.Rows)
-            {
-                listViewNPC.Items.Add(generateListItem(npcRow));				
-            }
-
-            DB.NPCTable.RowChanged += new DataRowChangeEventHandler(npcTable_RowChanged);
-            DB.NPCTable.RowDeleting += new DataRowChangeEventHandler(npcTable_RowDeleting);
-            DB.NPCTable.TableCleared += new DataTableClearEventHandler(npcTable_TableCleared);
-
-			// Configure PropertyBags
-			npcBag = new PropertyBag();
-			npcBag.GetValue += new PropertySpecEventHandler(this.npcBag_GetValue);
-			npcBag.SetValue += new PropertySpecEventHandler(this.npcBag_SetValue);
-            foreach (DataColumn col in DB.NPCTable.Columns)
-			{
-				npcBag.Properties.Add(getNPCProperties(col));
-			}
-			propertyGridNPC.SelectedObject = npcBag;
-		}
-
 		void npcTable_TableCleared(object sender, DataTableClearEventArgs e)
 		{
 			listViewNPC.Items.Clear();
-		}		
-
-		void npcTable_RowDeleting(object sender, DataRowChangeEventArgs e)
-		{
-			foreach (ListViewItem item in listViewNPC.Items)
-			{
-				if (item.Tag == e.Row)
-				{
-					listViewNPC.Items.Remove(item);
-				}
-			}
-		}			
+		}						
 
 		void npcTable_RowChanged(object sender, DataRowChangeEventArgs e)
 		{
@@ -109,7 +98,17 @@ namespace DOL.Tools.QuestDesigner
 						configureListItem(item, e.Row);
 					}
 				}
-			}
+            }
+            else if (e.Action == DataRowAction.Delete)
+            {
+                foreach (ListViewItem item in listViewNPC.Items)
+                {
+                    if (item.Tag == e.Row)
+                    {
+                        listViewNPC.Items.Remove(item);
+                    }
+                }
+            }
 		}
 
 		private ListViewItem generateListItem(DataRow npcRow)
@@ -302,7 +301,7 @@ namespace DOL.Tools.QuestDesigner
 		private void B_Delete_Click(object sender, EventArgs e)
 		{
 			RemoveSelectedNPCs();
-		}
+		}               
 
 		private void listViewNPC_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -361,7 +360,44 @@ namespace DOL.Tools.QuestDesigner
 			}
 			listViewNPC.ListViewItemSorter = comp;
 			listViewNPC.Sort();
-		}		
+		}
+
+        public void FillDataRowFromObject(Object mob)
+        {
+            if (mob != null) {
+                DataRow row = DB.NPCTable.NewRow();
+                foreach (DataColumn column in DB.NPCTable.Columns)
+                {
+                    try
+                    {
+                        String dolColumn = QuestDesignerMain.DatabaseAdapter.ConvertXMLColumnToDOLColumn(column.ColumnName);
+                        PropertyInfo field = mob.GetType().GetProperty(dolColumn);
+                        if (field != null)
+                            row[column.ColumnName] = field.GetValue(mob, null);
+                        else
+                        {
+                            if (dolColumn == DB.COL_NPC_OBJECTNAME || dolColumn == "AddToWorld")
+                            {
+                                //skipping ObjectName since it a QuestDesigner internal value.
+                            }
+                            else
+                            {
+                                throw new DOLConfigurationException("No Property found in DOL Mob object for column: " + column.ColumnName);
+                            }
+                        }
+
+                    }
+                    catch (DOLConfigurationException ex)
+                    {
+                        QuestDesignerMain.HandleException(ex);
+                    }
+
+                    // generate objectname since it doesn't exists in the dol world.
+                    row[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName(Convert.ToString(row[DB.COL_NPC_NAME]));
+                }
+                DB.NPCTable.Rows.Add(row);
+            }
+        }
 
 		private void B_SearchNPC_Click(object sender, EventArgs e)
 		{
@@ -370,40 +406,7 @@ namespace DOL.Tools.QuestDesigner
 			if (result == DialogResult.OK)
 			{				
 				Object mob = QuestDesignerMain.NPCLookupForm.SelectedMob;
-                if (mob != null)
-                {
-                    DataRow row = DB.NPCTable.NewRow();
-                    foreach (DataColumn column in DB.NPCTable.Columns)
-                    {
-                        try
-                        {
-                            String dolColumn = QuestDesignerMain.DatabaseAdapter.ConvertXMLColumnToDOLColumn(column.ColumnName);
-                            PropertyInfo field = mob.GetType().GetProperty(dolColumn);
-                            if (field != null)
-                                row[column.ColumnName] = field.GetValue(mob, null);
-                            else
-                            {
-                                if (dolColumn == DB.COL_NPC_OBJECTNAME || dolColumn == "AddToWorld")
-                                {
-                                    //skipping ObjectName since it a QuestDesigner internal value.
-                                }
-                                else
-                                {
-                                    throw new DOLConfigurationException("No Property found in DOL Mob object for column: " + column.ColumnName);
-                                }
-                            }
-
-                        }
-                        catch (DOLConfigurationException ex)
-                        {
-                            QuestDesignerMain.HandleException(ex);
-                        }
-
-                        // generate objectname since it doesn't exists in the dol world.
-                        row[DB.COL_NPC_OBJECTNAME] = Utils.ConvertToObjectName(Convert.ToString(row[DB.COL_NPC_NAME]));
-                    }
-                    DB.NPCTable.Rows.Add(row);
-                }
+                FillDataRowFromObject(mob);
 			}
 		}
 
@@ -476,12 +479,17 @@ namespace DOL.Tools.QuestDesigner
             Boolean enabled = false;
             if (listViewNPC.SelectedItems != null && listViewNPC.SelectedItems.Count > 0)
             {
+                deleteToolStripMenuItem.Enabled = true;
                 ListViewItem item = listViewNPC.SelectedItems[0];
                 DataRow row = (DataRow)item.Tag;
                 if (row[DB.COL_NPC_X] != DBNull.Value && row[DB.COL_NPC_Y] != DBNull.Value && row[DB.COL_NPC_REGION] != DBNull.Value)
                 {
                     enabled = true;
                 }
+            }
+            else
+            {
+                deleteToolStripMenuItem.Enabled = false;
             }
             copyLocationToolStripMenuItem.Enabled = enabled;
             showOnMapToolStripMenuItem.Enabled = enabled;
@@ -497,7 +505,9 @@ namespace DOL.Tools.QuestDesigner
                 enabled = false;
             }
             pasteLocationToolStripMenuItem.Enabled = enabled;
-        }	
+        }
+
+        
 		
 	}
 }

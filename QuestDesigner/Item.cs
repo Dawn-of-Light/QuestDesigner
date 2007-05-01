@@ -47,24 +47,20 @@ namespace DOL.Tools.QuestDesigner
 		public Item()
 		{
 			InitializeComponent();
+            DB.DatabaseLoaded += new DB.DatabaseLoadedEventHandler(DB_DatabaseLoaded);
 		}
 
-		public void SetDatabaseSupport(bool support)
-		{
-			B_SearchItem.Enabled = support;
-		}
-
-		public void setDataSet()
-		{
-			// setting groups
-			foreach (DataRowView rowView in DB.objectTypeBinding.List)
-			{
-				ListViewGroup group = new ListViewGroup();
+        void DB_DatabaseLoaded()
+        {
+            // setting groups
+            foreach (DataRowView rowView in DB.objectTypeBinding.List)
+            {
+                ListViewGroup group = new ListViewGroup();
                 group.Name = Convert.ToString(rowView[DB.COL_ENUMERATION_VALUE]);
                 group.Header = Convert.ToString(rowView[DB.COL_ENUMERATION_DESCRIPTION]);
-				this.listViewItem.Groups.Add(group);
-			}
-           
+                this.listViewItem.Groups.Add(group);
+            }
+
             // Load initial data from table
             foreach (DataRow itemRow in DB.ItemTemplateTable.Rows)
             {
@@ -72,34 +68,28 @@ namespace DOL.Tools.QuestDesigner
             }
 
             DB.ItemTemplateTable.RowChanged += new DataRowChangeEventHandler(itemTable_RowChanged);
-            DB.ItemTemplateTable.RowDeleting += new DataRowChangeEventHandler(itemTable_RowDeleting);
+            DB.ItemTemplateTable.RowDeleting += new DataRowChangeEventHandler(itemTable_RowChanged);
             DB.ItemTemplateTable.TableCleared += new DataTableClearEventHandler(itemTable_TableCleared);
 
-			// Configure PropertyBags
-			itemBag = new PropertyBag();
-			itemBag.GetValue += new PropertySpecEventHandler(this.itemBag_GetValue);
-			itemBag.SetValue += new PropertySpecEventHandler(this.itemBag_SetValue);
+            // Configure PropertyBags
+            itemBag = new PropertyBag();
+            itemBag.GetValue += new PropertySpecEventHandler(this.itemBag_GetValue);
+            itemBag.SetValue += new PropertySpecEventHandler(this.itemBag_SetValue);
             foreach (DataColumn col in DB.ItemTemplateTable.Columns)
-			{
-				itemBag.Properties.Add(getItemProperties(col));
-			}
-			propertyGridItem.SelectedObject = itemBag;
-		}
+            {
+                itemBag.Properties.Add(getItemProperties(col));
+            }
+            propertyGridItem.SelectedObject = itemBag;
+        }
+
+		public void SetDatabaseSupport(bool support)
+		{
+			B_SearchItem.Enabled = support;
+		}		
 
 		void itemTable_TableCleared(object sender, DataTableClearEventArgs e)
 		{
 			listViewItem.Items.Clear();
-		}
-
-		void itemTable_RowDeleting(object sender, DataRowChangeEventArgs e)
-		{
-			foreach (ListViewItem item in listViewItem.Items)
-			{
-				if (item.Tag == e.Row)
-				{
-					listViewItem.Items.Remove(item);
-				}
-			}
 		}
 
 		void itemTable_RowChanged(object sender, DataRowChangeEventArgs e)
@@ -118,7 +108,17 @@ namespace DOL.Tools.QuestDesigner
 						configureListItem(item, e.Row);
 					}
 				}
-			}
+            }
+            else if (e.Action == DataRowAction.Delete)
+            {
+                foreach (ListViewItem item in listViewItem.Items)
+                {
+                    if (item.Tag == e.Row)
+                    {
+                        listViewItem.Items.Remove(item);
+                    }
+                }
+            }
 		}
 
 		private ListViewItem generateListItem(DataRow itemRow)
@@ -139,7 +139,7 @@ namespace DOL.Tools.QuestDesigner
 			item.ImageIndex = 0;
 
 			subItem.Text = "Generic Item";
-			DataRow[] rows = DB.EnumerationTable.Select(DB.COL_ENUMERATION_TYPE+"='"+typeof(eObjectType).Name+"' AND "+DB.COL_ENUMERATION_VALUE+"="+itemRow[DB.COL_ITEMTEMPLATE_OBJECTTYPE]);			
+			DataRow[] rows = DB.EnumerationTable.Select(DB.COL_ENUMERATION_TYPE+"='"+typeof(eObjectType).Name+"' AND "+DB.COL_ENUMERATION_VALUE+"='"+itemRow[DB.COL_ITEMTEMPLATE_OBJECTTYPE]+"'");			
 			if (rows.Length>0)
 			{
 				//item.ImageIndex = rows[0]["id"];
@@ -192,30 +192,27 @@ namespace DOL.Tools.QuestDesigner
 				case "ExtraBonusType":
 					spec.Category = "Magic";
 					spec.ConverterTypeName = typeof(ItemBonusTypeConverter).FullName;
-					break;
-                case "Effect":
-                    spec.Category = "Magic";
-                    spec.ConverterTypeName = typeof(EffectConverter).FullName;
-                    break;
+					break;                
                 case "SpellID":
 				case "ProcSpellID":
                 case "SpellID1":
-                case "ProcSpellID1":
-				
+                case "ProcSpellID1":				
 				case "Charges":
                 case "Charges1":
 				case "MaxCharges":
-                case "MaxCharges1":
-                    
+                case "MaxCharges1":                    
                 case "PoisonCharges":
                 case "PoisonMaxCharges":
                 case "PoisonSpellID":
 					spec.Category = "Magic";
 					break;
-
                 case "Extension":
                     spec.Category = "Visual";
                     spec.ConverterTypeName = typeof(ExtensionConverter).FullName;
+                    break;
+                case "Effect":
+                    spec.Category = "Visual";
+                    spec.ConverterTypeName = typeof(EffectConverter).FullName;
                     break;
                 case "Model":				
 				case "Emblem":
@@ -225,8 +222,6 @@ namespace DOL.Tools.QuestDesigner
 					spec.ConverterTypeName = typeof(DOL.Tools.QuestDesigner.Converter.ColorConverter).FullName;
 					spec.Category = "Visual";
 					break;
-
-
 				case "Item_Type":
                     spec.ConverterTypeName = typeof(ItemTypeConverter).FullName;
 					spec.Category = "Internal";
@@ -445,6 +440,18 @@ namespace DOL.Tools.QuestDesigner
                 }
 			}
 		}
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            if (listViewItem.SelectedItems != null && listViewItem.SelectedItems.Count > 0)
+            {
+                deleteToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                deleteToolStripMenuItem.Enabled = false;
+            }
+        }
 
         			
 	}

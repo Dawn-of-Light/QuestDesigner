@@ -36,6 +36,8 @@ namespace DOL.Tools.QuestDesigner
             System.Windows.Forms.ColumnHeader columnName;
             System.Windows.Forms.ColumnHeader columnType;
             System.Windows.Forms.ToolStripButton B_ToggleGroups;
+            System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+            System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Monster", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("NPC", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Merchants", System.Windows.Forms.HorizontalAlignment.Left);
@@ -44,25 +46,28 @@ namespace DOL.Tools.QuestDesigner
             this.propertyGridItem = new System.Windows.Forms.PropertyGrid();
             this.headerStrip1 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             this.toolStripLabel = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.B_NewItem = new System.Windows.Forms.ToolStripButton();
             this.B_SearchItem = new System.Windows.Forms.ToolStripButton();
             this.B_Delete = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.B_ListView = new System.Windows.Forms.ToolStripSplitButton();
             this.B_ListViewDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.B_ListViewList = new System.Windows.Forms.ToolStripMenuItem();
             this.B_ListViewSymbols = new System.Windows.Forms.ToolStripMenuItem();
             this.B_ListViewTiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             imageListItem = new System.Windows.Forms.ImageList(this.components);
             imageListItemLarge = new System.Windows.Forms.ImageList(this.components);
             columnName = new System.Windows.Forms.ColumnHeader();
             columnType = new System.Windows.Forms.ColumnHeader();
             B_ToggleGroups = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.headerStrip1.SuspendLayout();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageListItem
@@ -100,6 +105,18 @@ namespace DOL.Tools.QuestDesigner
             B_ToggleGroups.Text = "Toggle Grouping";
             B_ToggleGroups.CheckStateChanged += new System.EventHandler(this.B_ToggleGroups_CheckStateChanged);
             // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Margin = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // splitContainer1
             // 
             this.splitContainer1.DataBindings.Add(new System.Windows.Forms.Binding("SplitterDistance", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "ItemSplitterDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -124,6 +141,7 @@ namespace DOL.Tools.QuestDesigner
             this.listViewItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             columnName,
             columnType});
+            this.listViewItem.ContextMenuStrip = this.contextMenuStrip;
             this.listViewItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewItem.FullRowSelect = true;
             this.listViewItem.GridLines = true;
@@ -148,10 +166,10 @@ namespace DOL.Tools.QuestDesigner
             this.listViewItem.TabIndex = 6;
             this.listViewItem.UseCompatibleStateImageBehavior = false;
             this.listViewItem.View = System.Windows.Forms.View.Details;
-            this.listViewItem.SelectedIndexChanged += new System.EventHandler(this.listViewItem_SelectedIndexChanged);
-            this.listViewItem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewItem_KeyDown);
-            this.listViewItem.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewItem_ColumnClick);
             this.listViewItem.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.listViewItem_AfterLabelEdit);
+            this.listViewItem.SelectedIndexChanged += new System.EventHandler(this.listViewItem_SelectedIndexChanged);
+            this.listViewItem.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewItem_ColumnClick);
+            this.listViewItem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewItem_KeyDown);
             // 
             // propertyGridItem
             // 
@@ -172,11 +190,11 @@ namespace DOL.Tools.QuestDesigner
             this.headerStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.headerStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel,
-            this.toolStripSeparator1,
+            toolStripSeparator1,
             this.B_NewItem,
             this.B_SearchItem,
             this.B_Delete,
-            this.toolStripSeparator2,
+            toolStripSeparator2,
             this.B_ListView,
             B_ToggleGroups});
             this.headerStrip1.Location = new System.Drawing.Point(0, 0);
@@ -191,12 +209,6 @@ namespace DOL.Tools.QuestDesigner
             this.toolStripLabel.Name = "toolStripLabel";
             this.toolStripLabel.Size = new System.Drawing.Size(50, 22);
             this.toolStripLabel.Text = "Items";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // B_NewItem
             // 
@@ -230,12 +242,6 @@ namespace DOL.Tools.QuestDesigner
             this.B_Delete.Size = new System.Drawing.Size(23, 22);
             this.B_Delete.Text = "Delete";
             this.B_Delete.Click += new System.EventHandler(this.B_Delete_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // B_ListView
             // 
@@ -289,6 +295,22 @@ namespace DOL.Tools.QuestDesigner
             this.B_ListViewTiles.Text = "Tiles";
             this.B_ListViewTiles.Click += new System.EventHandler(this.B_ListViewTiles_Click);
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.delete;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.B_Delete_Click);
+            // 
             // Item
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +324,7 @@ namespace DOL.Tools.QuestDesigner
             this.splitContainer1.ResumeLayout(false);
             this.headerStrip1.ResumeLayout(false);
             this.headerStrip1.PerformLayout();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -310,18 +333,18 @@ namespace DOL.Tools.QuestDesigner
 
 		private System.Windows.Forms.PropertyGrid propertyGridItem;
 		private HeaderStrip headerStrip1;
-		private System.Windows.Forms.ToolStripLabel toolStripLabel;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel;
 		private System.Windows.Forms.ToolStripButton B_NewItem;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.ToolStripSplitButton B_ListView;
 		private System.Windows.Forms.ToolStripMenuItem B_ListViewTiles;
 		private System.Windows.Forms.ToolStripMenuItem B_ListViewSymbols;
 		private System.Windows.Forms.ToolStripMenuItem B_ListViewList;
-		private System.Windows.Forms.ToolStripMenuItem B_ListViewDetails;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem B_ListViewDetails;
 		private System.Windows.Forms.ToolStripButton B_Delete;
 		private System.Windows.Forms.ListView listViewItem;
         private System.Windows.Forms.ToolStripButton B_SearchItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 	}
 }

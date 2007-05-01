@@ -39,6 +39,30 @@ namespace DOL.Tools.QuestDesigner
         public Location()
         {
             InitializeComponent();
+            DB.DatabaseLoaded += new DB.DatabaseLoadedEventHandler(DB_DatabaseLoaded);
+        }
+
+        void DB_DatabaseLoaded()
+        {
+            // config Location
+            locationBag = new PropertyBag();
+            locationBag.GetValue += new PropertySpecEventHandler(locationBag_GetValue);
+            locationBag.SetValue += new PropertySpecEventHandler(locationBag_SetValue);
+
+            foreach (DataColumn col in DB.LocationTable.Columns)
+            {
+                locationBag.Properties.Add(getLocationProperties(col));
+            }
+
+            propertyGridLocation.SelectedObject = locationBag;
+
+            dataGridViewLocation.AutoGenerateColumns = false;
+            dataGridViewLocation.DataSource = DB.locationBinding;
+
+            colRegionID.ValueMember = DB.COL_REGION_ID;
+            colRegionID.DisplayMember = DB.COL_REGION_DESCRIPTION;
+            colRegionID.DataPropertyName = DB.COL_LOCATION_REGIONID;
+            colRegionID.DataSource = DB.regionBinding;
         }
 
 
@@ -108,32 +132,6 @@ namespace DOL.Tools.QuestDesigner
                 }
             }
         }
-
-
-        public void SetDataSet()
-        {
-            // config Location
-            locationBag = new PropertyBag();
-            locationBag.GetValue += new PropertySpecEventHandler(locationBag_GetValue);
-            locationBag.SetValue += new PropertySpecEventHandler(locationBag_SetValue);
-
-            foreach (DataColumn col in DB.LocationTable.Columns)
-            {
-                locationBag.Properties.Add(getLocationProperties(col));
-            }            
-
-            propertyGridLocation.SelectedObject = locationBag;
-
-            dataGridViewLocation.AutoGenerateColumns = false;
-            dataGridViewLocation.DataSource = DB.locationBinding;
-            
-            colRegionID.ValueMember = DB.COL_REGION_ID;
-            colRegionID.DisplayMember = DB.COL_REGION_DESCRIPTION;
-            colRegionID.DataPropertyName = DB.COL_LOCATION_REGIONID;
-            colRegionID.DataSource = DB.regionBinding;
-        }
-
-
 
         private void dataGridViewLocation_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {

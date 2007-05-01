@@ -15,28 +15,17 @@ namespace DOL.Tools.Mapping.Modules
     public enum ModulEvent
     {
         Load = 0,
-        Unload = 1,
-        DBConnect = 2,
-        DBDisconnect = 3,
+        Unload = 1,        
         RegionLoad = 4,
         RegionUnload = 5,
         DXClick = 6,        
         Filter = 9,
-        Unfilter = 10,
-        ClearDirty = 11,
+        Unfilter = 10,        
     }
 
     public class ModulMgr
     {
-        private static List<IModul> m_Modules = new List<IModul>();
-        
-        private static bool m_Dirty = false;
-
-        public static bool Dirty
-        {
-            get { return m_Dirty; }
-            set { m_Dirty = value; }
-        }             
+        private static List<IModul> m_Modules = new List<IModul>();                     
 
         public static void LoadModules()
         {
@@ -50,7 +39,6 @@ namespace DOL.Tools.Mapping.Modules
             }
 
             Log.Info("Loading Modules finished.");
-            QuestDesignerMain.DesignerForm.Update();
         }
 
         private static ModulAttribute GetModulAttributeForType(Type type)
@@ -135,10 +123,7 @@ namespace DOL.Tools.Mapping.Modules
                     break;
                 case ModulEvent.Unfilter:
                     mdl.Unfilter();
-                    break;
-                case ModulEvent.ClearDirty:
-                    mdl.ClearDirty();
-                    break;
+                    break;                
             }
         }
 
@@ -156,16 +141,12 @@ namespace DOL.Tools.Mapping.Modules
         {
             GeometryObj obj = null;
 
-            if (RegionMgr.CurrentRegion != null)
-            {
-                foreach (IModul mod in m_Modules)
-                {
-                    obj = mod.GetObjectAt(x, y);
-                    if (obj != null)
-                        break;
+            List<GeometryObj> objects = GetObjectsAt(x, y);
 
-                }
-            }
+            foreach (GeometryObj o in objects) {
+                if (obj == null || o.DrawLevel > obj.DrawLevel)
+                    obj = o;
+            }            
             return obj;
         }
 
@@ -183,16 +164,6 @@ namespace DOL.Tools.Mapping.Modules
 
                 }
             }
-            return items;
-        }
-
-        public static List<GeometryObj> GetDirtyObjects()
-        {
-            List<GeometryObj> items = new List<GeometryObj>();
-
-            foreach (IModul mod in m_Modules)
-                items.AddRange(mod.GetObjects());
-
             return items;
         }
     }

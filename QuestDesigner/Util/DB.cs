@@ -154,6 +154,7 @@ namespace DOL.Tools.QuestDesigner.Util
         public const string COL_LOCATION_X = "X";
         public const string COL_LOCATION_Y = "Y";
         public const string COL_LOCATION_Z = "Z";
+        public const string COL_LOCATION_HEADING = "Heading";
         public const string COL_LOCATION_REGIONID = "RegionID";
 
         public const string COL_REGION_ID = "ID";
@@ -802,7 +803,52 @@ namespace DOL.Tools.QuestDesigner.Util
             }
             return false;
         }
-		
+
+        public static void AddTrigger(eTriggerType triggerType, int questPartID)
+        {
+            if (questPartID < 0)
+                return;
+
+            DataRow row = DB.TriggerTable.NewRow();
+            row[DB.COL_QUESTPARTTRIGGER_QUESTPARTID] = questPartID;
+            row[DB.COL_QUESTPARTTRIGGER_TYPE] = triggerType;
+            DB.TriggerTable.Rows.Add(row);
+        }	
+
+        public static void AddRequirement(eRequirementType requirementType, int questPartID)
+        {
+            if (questPartID < 0)
+                return;
+
+            DataRow row = DB.RequirementTable.NewRow();
+            row[DB.COL_QUESTPARTREQUIREMENT_QUESTPARTID] = questPartID;
+            row[DB.COL_QUESTPARTREQUIREMENT_TYPE] = requirementType;
+            DB.RequirementTable.Rows.Add(row);
+        }
+
+        public static void AddRequirement(eRequirementType requirementType, int questPartID, eComparator comp)
+        {
+            if (questPartID < 0)
+                return;
+
+            DataRow row = DB.RequirementTable.NewRow();
+            row[DB.COL_QUESTPARTREQUIREMENT_QUESTPARTID] = questPartID;
+            row[DB.COL_QUESTPARTREQUIREMENT_TYPE] = requirementType;
+            row[DB.COL_QUESTPARTREQUIREMENT_COMPARATOR] = (int)comp;
+            DB.RequirementTable.Rows.Add(row);
+        }
+
+
+        public static void AddAction(eActionType actionType, int questPartID)
+        {
+            if (questPartID < 0)
+                return;
+
+            DataRow row = DB.ActionTable.NewRow();
+            row[DB.COL_QUESTPARTACTION_QUESTPARTID] = questPartID;
+            row[DB.COL_QUESTPARTACTION_TYPE] = actionType;
+            DB.ActionTable.Rows.Add(row);
+        }
 	}
 
     public class CategoryComparator

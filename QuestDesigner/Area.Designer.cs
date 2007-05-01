@@ -200,8 +200,7 @@ namespace DOL.Tools.QuestDesigner
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(headerStripArea);
             this.Name = "Area";
-            this.Size = new System.Drawing.Size(458, 150);
-            this.Load += new System.EventHandler(this.Area_Load);
+            this.Size = new System.Drawing.Size(458, 150);            
             this.contextMenuStrip.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

@@ -18,26 +18,38 @@ namespace DOL.Tools.Mapping.DX
         //Textures..
         private static Hashtable m_Textures = new Hashtable();
         private static Hashtable m_ColorTextures = new Hashtable();
-
+        
         private static Texture m_Null;
         private static Texture m_Mob;
-        private static Texture m_NPC;
-        private static Texture m_Path;
+        private static Texture m_NPC;        
         private static Texture m_AreaSquare;
         private static Texture m_AreaCircle;
-       
+        private static Texture m_DefaultObject;
+        
         public static Texture Null
         {
             get
             {
                 if (m_Null == null || m_Null.Disposed)
                 {
-                    m_Null = Texture.FromBitmap(Common.Device, DOL.Tools.QuestDesigner.Properties.Resources.empty, Usage.None, Pool.Managed);
-                    //Texture.FromStream(Common.Device, ResourceMgr.GetStream("Resource.null.bmp"), Usage.None, Pool.Managed);
+                    m_Null = Texture.FromBitmap(Common.Device, DOL.Tools.QuestDesigner.Properties.Resources.empty, Usage.None, Pool.Managed);                    
                 }
                 return m_Null;
             }
             set { m_Null = null; }
+        }
+
+        public static Texture DefaultObject
+        {
+            get
+            {
+                if (m_DefaultObject == null || m_DefaultObject.Disposed)
+                {
+                    m_DefaultObject = LoadTexture("data\\object\\Default.png",false);
+                }
+                return m_DefaultObject;
+            }
+            set { m_DefaultObject = null; }
         }
 
         public static Texture AreaSquare
@@ -46,8 +58,7 @@ namespace DOL.Tools.Mapping.DX
             {
                 if (m_AreaSquare == null || m_AreaSquare.Disposed)
                 {
-                    m_AreaSquare = Texture.FromBitmap(Common.Device, DOL.Tools.QuestDesigner.Properties.Resources.areaSquare, Usage.None, Pool.Managed);
-                    //Texture.FromStream(Common.Device, ResourceMgr.GetStream("Resource.null.bmp"), Usage.None, Pool.Managed);
+                    m_AreaSquare = Texture.FromBitmap(Common.Device, DOL.Tools.QuestDesigner.Properties.Resources.areaSquare, Usage.None, Pool.Managed);                    
                 }
                 return m_AreaSquare;
             }
@@ -61,7 +72,6 @@ namespace DOL.Tools.Mapping.DX
                 if (m_AreaCircle == null || m_AreaCircle.Disposed)
                 {
                     m_AreaCircle = Texture.FromBitmap(Common.Device, DOL.Tools.QuestDesigner.Properties.Resources.areaCircle, Usage.None, Pool.Managed);
-                    //Texture.FromStream(Common.Device, ResourceMgr.GetStream("Resource.null.bmp"), Usage.None, Pool.Managed);
                 }
                 return m_AreaCircle;
             }
@@ -74,13 +84,11 @@ namespace DOL.Tools.Mapping.DX
             {
                 if (m_Mob == null || m_Mob.Disposed)
                     m_Mob = Texture.FromBitmap(Common.Device, DOL.Tools.QuestDesigner.Properties.Resources.mob32, Usage.Dynamic, Pool.Default);
-                        //Texture.FromStream(Common.Device, ResourceMgr.GetStream("data.textures.mob.png"), Usage.None, Pool.Managed);
-                        //LoadTexture("data\\textures\\mob.png");
 
                 return m_Mob;
             }
             set { m_Mob = null; }
-        }
+        }        
 
         public static Texture NPC
         {
@@ -88,29 +96,11 @@ namespace DOL.Tools.Mapping.DX
             {
                 if (m_NPC == null || m_NPC.Disposed)
                     m_NPC = Texture.FromBitmap(Common.Device, DOL.Tools.QuestDesigner.Properties.Resources.npc32, Usage.Dynamic, Pool.Default);
-                //Texture.FromStream(Common.Device, ResourceMgr.GetStream("data.textures.mob.png"), Usage.None, Pool.Managed);
-                //LoadTexture("data\\textures\\mob.png");
 
                 return m_NPC;
             }
             set { m_NPC = null; }
-        }
-
-        public static Texture Path
-        {
-            get
-            {
-                if (m_Path == null || m_Path.Disposed)
-                    m_Path = Texture.FromBitmap(Common.Device, DOL.Tools.QuestDesigner.Properties.Resources.path, Usage.Dynamic, Pool.Default);
-                        //Texture.FromStream(Common.Device, ResourceMgr.GetStream("data.textures.path.png"), Usage.None, Pool.Managed);
-                        //LoadTexture("data\\textures\\path.png");
-
-                return m_Path;
-            }
-            set { m_Path = null; }
-        }
-
-        
+        }               
 
         /// <summary>
         /// Deletes all current textures
@@ -153,13 +143,7 @@ namespace DOL.Tools.Mapping.DX
             {
                 Mob.Dispose();
                 Mob = null;
-            }
-
-            if (m_Path != null)
-            {
-                Path.Dispose();
-                Path = null;
-            }
+            }            
 
             if (m_AreaCircle != null)
             {
@@ -171,6 +155,12 @@ namespace DOL.Tools.Mapping.DX
             {
                 AreaSquare.Dispose();
                 AreaSquare = null;
+            }
+
+            if (m_DefaultObject != null)
+            {
+                DefaultObject.Dispose();
+                DefaultObject = null;
             }
 
             m_ColorTextures.Clear();
@@ -195,12 +185,43 @@ namespace DOL.Tools.Mapping.DX
             return (Texture) m_ColorTextures[color];
         }
 
+        public static Texture LoadMapObjectTexture(string className)
+        {
+            Texture tex = LoadTexture("data\\object\\" + className+".png",false);
+            if (tex == Null)
+            {
+                return DefaultObject;
+            }
+            else
+            {
+                return tex;
+            }
+        }
+
+        public static Texture LoadMapObjectTexture(string className,byte realm)
+        {            
+            Texture tex = LoadMapObjectTexture(className +"_"+realm);
+            if (tex == DefaultObject)
+            {
+                return LoadMapObjectTexture(className);
+            }
+            else
+            {
+                return tex;
+            }
+        }
+
+        public static Texture LoadTexture(string file)
+        {
+            return LoadTexture(file, true);
+        }
+
         /// <summary>
         /// Loads an texture from a file
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static Texture LoadTexture(string file)
+        public static Texture LoadTexture(string file,bool cache)
         {
             Texture tex = null;
             string fileName = file;
@@ -213,16 +234,19 @@ namespace DOL.Tools.Mapping.DX
                 return Null;
 
             // search for cached file version in dds format
-            string cacheFilename = fileName.Substring(0,fileName.LastIndexOf('.'))+".dds";
-            FileInfo cacheFile = new FileInfo(QuestDesignerMain.WorkingDirectory + "cache\\" + cacheFilename);
-           
+
+            FileInfo cacheFile = null;
+            if (cache)
+            {
+                string cacheFilename = fileName.Substring(0, fileName.LastIndexOf('.')) + ".dds";
+                cacheFile = new FileInfo(QuestDesignerMain.WorkingDirectory + "cache\\" + cacheFilename);
+            }
             try
             {
-
                 unchecked
                 {
 
-                    if (File.Exists(cacheFile.FullName))
+                    if (cache && File.Exists(cacheFile.FullName))
                     {
                         //tex = TextureLoader.FromFile(Common.Device, file,0,0,1,Usage.None,Format.Unknown,Pool.Managed,Filter.None,Filter.None,System.Drawing.Color.Violet.ToArgb());
                         tex = TextureLoader.FromFile(Common.Device, cacheFile.FullName, 0, 0, 1, Usage.None, Format.Dxt5, Pool.Default, Filter.None, Filter.None, (int)0xFFFFFF00);
@@ -230,8 +254,12 @@ namespace DOL.Tools.Mapping.DX
                     else
                     {
                         tex = TextureLoader.FromFile(Common.Device, file, 0, 0, 1, Usage.None, Format.Dxt5, Pool.Managed, Filter.None, Filter.None, (int)0xFFFFFF00);
-                        Directory.CreateDirectory(cacheFile.DirectoryName);
-                        TextureLoader.Save(cacheFile.FullName, ImageFileFormat.Dds, tex);
+
+                        if (cache)
+                        {
+                            Directory.CreateDirectory(cacheFile.DirectoryName);
+                            TextureLoader.Save(cacheFile.FullName, ImageFileFormat.Dds, tex);
+                        }
                     }
                 }
                 if (!m_Textures.ContainsKey(file))

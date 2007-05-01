@@ -65,6 +65,16 @@ namespace DOL.Tools.QuestDesigner.Util
             return m_database.SelectAllObjects(typeof(Mob));
         }
 
+        public IList GetNPCListForRegion(int regionID)
+        {
+            return m_database.SelectObjects(typeof(Mob), "Region=" + regionID);
+        }
+
+        public IList GetWorldObjectListForRegion(int regionID)
+        {
+            return m_database.SelectObjects(typeof(WorldObject), "Region=" + regionID);
+        }
+
         public IList GetItemList()
         {
             return m_database.SelectAllObjects(typeof(ItemTemplate));

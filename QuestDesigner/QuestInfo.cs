@@ -35,14 +35,16 @@ namespace DOL.Tools.QuestDesigner
 		public QuestInfo()
 		{
 			InitializeComponent();
+
+            DB.DatabaseLoaded += new DB.DatabaseLoadedEventHandler(DB_DatabaseLoaded);
 		}
 
-		public void setDataSet()
-		{
+        void DB_DatabaseLoaded()
+        {
             this.QuestName.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_NAME, true));
-            this.Title.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_TITLE ,true));
+            this.Title.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_TITLE, true));
             this.Author.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_AUTHOR, true));
-            this.scriptDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", DB.QuestTable, DB.COL_QUEST_DATE, true));            
+            this.scriptDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", DB.QuestTable, DB.COL_QUEST_DATE, true));
             this.Version.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_VERSION, true));
             this.MaxQuestCount.DataBindings.Add(new System.Windows.Forms.Binding("Value", DB.QuestTable, DB.COL_QUEST_MAXQUESTCOUNT, true));
             this.Namespace.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_NAMESPACE, true));
@@ -50,18 +52,18 @@ namespace DOL.Tools.QuestDesigner
             this.LevelMax.DataBindings.Add(new System.Windows.Forms.Binding("Value", DB.QuestTable, DB.COL_QUEST_MAXIMUMLEVEL, true));
             this.Notes.DataBindings.Add(new System.Windows.Forms.Binding("Text", DB.QuestTable, DB.COL_QUEST_DESCRIPTION, true));
 
-			this.QuestStep.AutoGenerateColumns = true;
-			this.QuestStep.DataSource = DB.QuestStepTable;
-			
-			this.QuestStep.Columns[0].FillWeight = 10;
-			this.QuestStep.Columns[0].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.QuestStep.Columns[1].FillWeight = 90;
-			this.QuestStep.Columns[1].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-						
-			this.InvitingNPC.DisplayMember = DB.COL_NPC_NAME;
-			this.InvitingNPC.ValueMember = DB.COL_NPC_OBJECTNAME;
+            this.QuestStep.AutoGenerateColumns = true;
+            this.QuestStep.DataSource = DB.QuestStepTable;
+
+            this.QuestStep.Columns[0].FillWeight = 10;
+            this.QuestStep.Columns[0].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.QuestStep.Columns[1].FillWeight = 90;
+            this.QuestStep.Columns[1].AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+
+            this.InvitingNPC.DisplayMember = DB.COL_NPC_NAME;
+            this.InvitingNPC.ValueMember = DB.COL_NPC_OBJECTNAME;
             this.InvitingNPC.DataSource = DB.mobBinding;
-            this.InvitingNPC.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", DB.QuestTable, DB.COL_QUEST_INVITINGNPC, true));            
+            this.InvitingNPC.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", DB.QuestTable, DB.COL_QUEST_INVITINGNPC, true));
 
             this.listBoxAvailable.DisplayMember = DB.COL_ENUMERATION_DESCRIPTION;
             this.listBoxAvailable.ValueMember = DB.COL_ENUMERATION_VALUE;
@@ -70,7 +72,7 @@ namespace DOL.Tools.QuestDesigner
             this.listBoxAllowed.DisplayMember = DB.COL_QUESTCHARACTERCLASS_DESCRIPTION;
             this.listBoxAllowed.ValueMember = DB.COL_QUESTCHARACTERCLASS_VALUE;
             this.listBoxAllowed.DataSource = DB.QuestCharacterClassTable;            
-		}
+        }		
 
         public void UpdateDataset()
         {

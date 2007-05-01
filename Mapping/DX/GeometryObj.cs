@@ -1,6 +1,7 @@
 using Microsoft.DirectX;
 using System;
 using DOL.Tools.Mapping.Modules;
+using Microsoft.DirectX.Direct3D;
 
 namespace DOL.Tools.Mapping.DX
 {
@@ -25,6 +26,15 @@ namespace DOL.Tools.Mapping.DX
         private IModul m_Modul;
 
         private bool m_IsMovable;
+        private bool m_ShowHeading;
+        
+
+        public bool ShowHeading
+        {
+            get { return m_ShowHeading; }
+            set { m_ShowHeading = value; }
+        }
+	
 
         /// <summary>
         /// The Model Object
@@ -128,6 +138,11 @@ namespace DOL.Tools.Mapping.DX
         public Matrix CreateWorldMatrix()
         {            
             return
+                Matrix.Scaling(ScaleVector) * Matrix.Translation(X, -Y, Z);
+        }
+        public Matrix CreateWorldHeadingMatrix()
+        {
+            return
                 Matrix.Scaling(ScaleVector) * Matrix.RotationYawPitchRoll(Yaw, Pitch, Roll) *
                 Matrix.Translation(X, -Y, Z);
         }
@@ -151,7 +166,7 @@ namespace DOL.Tools.Mapping.DX
         /// <param name="pitch">Pitch</param>
         /// <param name="roll">Roll</param>
         public GeometryObj(IModul modul,Model model, DrawLevel drawlevel, DetailLevel lvl, float x, float y, float z, float yaw,
-                           float pitch, float roll, Vector3 scale, bool isMovable)
+                           float pitch, float roll, Vector3 scale, bool isMovable,Boolean showHeading)
         {
             Modul = modul;
             Model = model;
@@ -165,6 +180,39 @@ namespace DOL.Tools.Mapping.DX
             Roll = roll;
             ScaleVector = scale;
             IsMovable = isMovable;
+            ShowHeading = showHeading;
+        }
+
+        public void Render()
+        {       
+            //World Matrix..            
+            Common.Device.Transform.World = this.CreateWorldMatrix();
+
+            //Texture
+            Common.Device.SetTexture(0, this.Model.Texture);
+
+            //Set Blend Texture
+            if (this.Model.BlendTexture != null)
+            {
+                Common.Device.SetTexture(1, this.Model.BlendTexture);
+                Common.Device.TextureState[1].ColorOperation = TextureOperation.Modulate;
+                Common.Device.TextureState[1].ColorArgument1 = TextureArgument.TextureColor;
+                Common.Device.TextureState[1].ColorArgument2 = TextureArgument.Current;
+                Common.Device.TextureState[2].ColorOperation = TextureOperation.Disable;
+            }
+            else
+                Common.Device.TextureState[1].ColorOperation = TextureOperation.Disable;
+
+            //Rendern..
+            this.Model.Mesh.Render();
+
+            if (ShowHeading)
+            {                
+                Common.Device.Transform.World = this.CreateWorldHeadingMatrix();
+                Common.Device.SetTexture(0, Textures.LoadMapObjectTexture("Heading"));
+                this.Model.Mesh.Render();
+            }
+            
         }
     }
 

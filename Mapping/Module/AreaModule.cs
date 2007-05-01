@@ -21,25 +21,52 @@ namespace DOL.Tools.Mapping.Modules
         public const string MODULE_NAME = "Area";
 
         private DataRowChangeEventHandler areaTableEventHandler;
+        private DataTableClearEventHandler areaTableClearEventHandler;        
 
         public AreaModule(): base(MODULE_NAME) {}
+
+        public override string GetInfoText(GeometryObj obj)
+        {
+            DataRow areaRow = GetDataObjectForGeometryObject(obj);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append((string)areaRow[DB.COL_AREA_NAME]);
+
+            return sb.ToString();
+        }
 
         public override void Load()
         {            
             areaTableEventHandler = new DataRowChangeEventHandler(AreaTable_RowChanged);
+            areaTableClearEventHandler = new DataTableClearEventHandler(AreaTable_TableClearing);
             DB.AreaTable.RowChanged += areaTableEventHandler;
+            DB.AreaTable.RowDeleting += areaTableEventHandler;
+            DB.AreaTable.TableClearing += areaTableClearEventHandler;
+        }
+
+        void AreaTable_TableClearing(object sender, DataTableClearEventArgs e)
+        {
+            foreach (GeometryObj obj in GetObjects())
+            {
+                DXControl.GeoObjects.Remove(obj);
+            }
+            ClearObjectRowMapping();
         }
 
         public override void Unload()
         {
             DB.LocationTable.RowChanged -= areaTableEventHandler;
+            DB.LocationTable.RowDeleting-= areaTableEventHandler;
+            DB.AreaTable.TableClearing -= areaTableClearEventHandler;
             areaTableEventHandler = null;
+            areaTableClearEventHandler = null;
         }        
 
         public override void RegionLoad(RegionMgr.Region region)
         {            
             // load locations
-            DataRow[] areas = DB.AreaTable.Select(DB.COL_AREA_REGIONID+"=" + RegionMgr.CurrentRegion.ID);
+            DataRow[] areas = DB.AreaTable.Select(DB.COL_AREA_REGIONID+"=" + region.ID);
             foreach (DataRow area in areas)
             {
                 AddArea(area);
@@ -48,6 +75,10 @@ namespace DOL.Tools.Mapping.Modules
 
         public override void RegionUnload(RegionMgr.Region region)
         {
+            foreach (GeometryObj obj in GetObjects())
+            {
+                DXControl.GeoObjects.Remove(obj);
+            }
             ClearObjectRowMapping();
         }
 
@@ -57,12 +88,13 @@ namespace DOL.Tools.Mapping.Modules
 
         public override void ObjectMoved(GeometryObj obj)
         {
-            DataRow row = GetRowForObject(obj);
+            DataRow row = GetDataObjectForGeometryObject(obj);
 
             if (row != null)
             {
                 row.BeginEdit();
 
+                // since aresquare is not centered in mapviewer mode handle is special here
                 if ((string)row[DB.COL_AREA_AREATYPE] == Const.AREA_SQUARE)
                 {
                     row[DB.COL_AREA_X] = obj.X - Convert.ToInt32(row[DB.COL_AREA_Z]) / 2;
@@ -80,34 +112,19 @@ namespace DOL.Tools.Mapping.Modules
 
         public override GeometryObj GetObjectAt(int x, int y)
         {
+            if (IsFiltered)
+                return null;
+
             DataRow[] objs = DB.AreaTable.Select(DB.COL_AREA_REGIONID + "=" + RegionMgr.CurrentRegion.ID + " AND " + DB.COL_AREA_AREATYPE + "='" + Const.AREA_SQUARE+ "' AND " + x + ">=" + DB.COL_AREA_X + " AND " + x + "<= (" + DB.COL_AREA_X + "+" + DB.COL_AREA_Z + ") AND " + y + ">=" + DB.COL_AREA_Y + " AND " + y + "<= (" + DB.COL_AREA_Y + "+" + DB.COL_AREA_R + ")");            
             if (objs.Length > 0)
-                return GetObjectForRow(objs[0]);
+                return GetGeometryObjectForDataObject(objs[0]);
             
             objs = DB.AreaTable.Select(DB.COL_AREA_REGIONID + "=" + RegionMgr.CurrentRegion.ID + " AND " + DB.COL_AREA_AREATYPE + "='" + Const.AREA_CIRCLE + "' AND " + x + ">= (" + DB.COL_AREA_X + " - "+ DB.COL_AREA_R+ "/2) AND " + x + "<= (" + DB.COL_AREA_X + "+" + DB.COL_AREA_R + "/2) AND " + y + ">= (" + DB.COL_AREA_Y +" - "+DB.COL_AREA_R + "/2) AND " + y + "<= (" + DB.COL_AREA_Y + "+" + DB.COL_AREA_R + "/2)");
             if (objs.Length > 0)
-                return GetObjectForRow(objs[0]);
+                return GetGeometryObjectForDataObject(objs[0]);
             
             return null;
-        }        
-
-        public override void ClearDirty()
-        {
-            
-        }
-
-        public override void Filter()
-        {
-            foreach (GeometryObj obj in GetObjects())
-            {
-                DXControl.GeoObjects.Remove(obj);
-            }
-        }
-
-        public override void Unfilter()
-        {            
-            DXControl.GeoObjects.AddRange(GetObjects());            
-        }           
+        }                        
 
         private GeometryObj AddArea(DataRow areaRow)
         {
@@ -122,17 +139,7 @@ namespace DOL.Tools.Mapping.Modules
 
             GeometryObj obj = null;
             if (x > 0 || y > 0)
-            {
-                /*
-                Vector2 nextpoint = new Vector2(width, height);
-                Color color = Color.FromArgb(100, Color.Orange);
-                DOL.Tools.Mapping.DX.Meshes.Rectangle rect = new DOL.Tools.Mapping.DX.Meshes.Rectangle(Common.Device, nextpoint, color);
-                Model mod = new Model(rect, null);
-                obj = new GeometryObj(this,mod, DrawLevel.Middle, DetailLevel.MoreDetailed, x, y, 0, 0, 0, 0, new Vector3(1, 1, 1),true);
-                
-                DXControl.GeoObjects.Add(obj);
-                SetObjectForRow(areaRow, obj);*/
-
+            {                
                 Model m_PointModel;
                 if ((string)areaRow[DB.COL_AREA_AREATYPE] == Const.AREA_SQUARE)
                 {
@@ -145,9 +152,11 @@ namespace DOL.Tools.Mapping.Modules
                     m_PointModel = new Model(plane, Textures.AreaCircle);
                 }
 
-                obj = new GeometryObj(this, m_PointModel, DrawLevel.Forer, DetailLevel.Nondetailed, x, y, 0, 0, 0, 0,
-                    new Vector3(1, 1, 1), true);
-                DXControl.GeoObjects.Add(obj);
+                obj = new GeometryObj(this, m_PointModel, DrawLevel.Backer, DetailLevel.Nondetailed, x, y, 0, 0, 0, 0,
+                    new Vector3(1, 1, 1), true,false);
+
+                if (!IsFiltered)
+                    DXControl.GeoObjects.Add(obj);
 
                 SetObjectForRow(areaRow, obj);
             }
@@ -166,18 +175,7 @@ namespace DOL.Tools.Mapping.Modules
             float height = areaRow[DB.COL_AREA_R] == DBNull.Value ? 0 : (float)Convert.ToDouble(areaRow[DB.COL_AREA_R]);
             
             if (x > 0 || y > 0)
-            {
-                /*
-                Vector2 nextpoint = new Vector2(width, height);
-
-                Color color = Color.FromArgb(100, Color.Orange);
-                DOL.Tools.Mapping.DX.Meshes.Rectangle rect = new DOL.Tools.Mapping.DX.Meshes.Rectangle(Common.Device, nextpoint, color);
-                Model mod = new Model(rect, null);
-                obj.Model = mod;
-                obj.X = x;
-                obj.Y = y;
-                 * */
-
+            {                
                 Model m_PointModel;
                 if ((string)areaRow[DB.COL_AREA_AREATYPE] == Const.AREA_SQUARE)
                 {
@@ -208,7 +206,7 @@ namespace DOL.Tools.Mapping.Modules
                 }
                 else if (e.Action == DataRowAction.Delete)
                 {
-                    GeometryObj obj = GetObjectForRow(areaRow);
+                    GeometryObj obj = GetGeometryObjectForDataObject(areaRow);
                     if (obj != null)
                         DXControl.GeoObjects.Remove(obj);
 
@@ -216,7 +214,7 @@ namespace DOL.Tools.Mapping.Modules
                 }
                 else if (e.Action == DataRowAction.Change)
                 {                    
-                    GeometryObj obj = GetObjectForRow(areaRow);
+                    GeometryObj obj = GetGeometryObjectForDataObject(areaRow);
                                                            
                     if (obj != null)
                     {

@@ -51,13 +51,13 @@ namespace DOL.Tools.QuestDesigner.Util
             return str1.ToLower().Equals(str2.ToLower());
         }
 
-        public static float HeadingToRadians(float heading)
+        public static float HeadingToRadians(int heading)
         {            
-            heading = heading * 360.0f / 4096.0f;
-            heading += 90; // don't know why probably because directx and daoc client have different angle origin
-            heading = (float) (heading * Math.PI / 180);
+            float radians = (float)heading * 360.0f / 4096.0f;
+            radians += 90; // don't know why probably because directx and daoc client have different angle origin
+            radians = (float) (radians * Math.PI / 180);
 
-            return heading;
+            return radians;
         }
 
 		public static string ConvertToObjectName(string value)

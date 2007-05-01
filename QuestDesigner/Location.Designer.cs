@@ -35,10 +35,10 @@ namespace DOL.Tools.QuestDesigner
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRegionID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showOnMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertyGridLocation = new System.Windows.Forms.PropertyGrid();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headerStrip3 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.splitContainerLocation.Panel1.SuspendLayout();
@@ -120,6 +120,14 @@ namespace DOL.Tools.QuestDesigner
             this.contextMenuStrip.Size = new System.Drawing.Size(156, 92);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.copy;
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.copyToolStripMenuItem.Text = "Copy Location";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
             // pasteLocationToolStripMenuItem
             // 
             this.pasteLocationToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.paste;
@@ -144,14 +152,6 @@ namespace DOL.Tools.QuestDesigner
             this.propertyGridLocation.Name = "propertyGridLocation";
             this.propertyGridLocation.Size = new System.Drawing.Size(147, 298);
             this.propertyGridLocation.TabIndex = 3;
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.copy;
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.copyToolStripMenuItem.Text = "Copy Location";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // headerStrip3
             // 

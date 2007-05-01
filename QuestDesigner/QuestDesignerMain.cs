@@ -161,9 +161,7 @@ namespace DOL.Tools.QuestDesigner
         {
             //RELEASE MODE; ERROR DIALOG
             try
-            {
-                
-
+            {               
                 Form.CheckForIllegalCrossThreadCalls = false;            
 
                 WorkingDirectory = Application.StartupPath+"\\";
@@ -196,12 +194,12 @@ namespace DOL.Tools.QuestDesigner
 
         public static bool DatabaseSupported
         {
-            get { return databaseAdapter.isConnected(); }
+            get { return databaseAdapter!=null && databaseAdapter.isConnected(); }
         }
 
         public static bool DataSupported
         {
-            get { return Directory.Exists(QuestDesignerMain.WorkingDirectory + "data"); }
+            get { return Directory.Exists(QuestDesignerMain.WorkingDirectory + "data\\maps"); }
         }		
 
         static void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)

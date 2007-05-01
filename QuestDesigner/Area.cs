@@ -40,12 +40,12 @@ namespace DOL.Tools.QuestDesigner
         public Area()
         {
             InitializeComponent();
+            DB.DatabaseLoaded += new DB.DatabaseLoadedEventHandler(DB_DatabaseLoaded);
         }
 
-        public void setDataSet()
+        void DB_DatabaseLoaded()
         {
             // config area
-
             areaCircleBag = new PropertyBag();
             areaCircleBag.GetValue += new PropertySpecEventHandler(areaBag_GetValue);
             areaCircleBag.SetValue += new PropertySpecEventHandler(areaBag_SetValue);
@@ -66,12 +66,12 @@ namespace DOL.Tools.QuestDesigner
 
             dataGridArea.AutoGenerateColumns = false;
             dataGridArea.DataSource = DB.areaBinding;
-            
+
             colRegionID.DataPropertyName = DB.COL_AREA_REGIONID;
             colRegionID.ValueMember = DB.COL_REGION_ID;
             colRegionID.DisplayMember = DB.COL_REGION_DESCRIPTION;
             colRegionID.DataSource = DB.RegionTable;
-            
+
             colAreaType.ValueMember = DB.COL_ENUMERATION_VALUE;
             colAreaType.DisplayMember = DB.COL_ENUMERATION_DESCRIPTION;
             colAreaType.DataSource = DB.areaTypeBinding;
@@ -220,12 +220,7 @@ namespace DOL.Tools.QuestDesigner
                     break;
             }
             return spec;
-        }
-
-        private void Area_Load(object sender, EventArgs e)
-        {
-            
-        }
+        }        
 
         private void dataGridArea_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {

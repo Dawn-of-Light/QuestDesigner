@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using DOL.Tools.Mapping.Map;
 using DOL.Tools.Mapping.DX;
 using System.Collections.Generic;
+using System;
 
 namespace DOL.Tools.Mapping.Modules
 {
@@ -29,7 +30,7 @@ namespace DOL.Tools.Mapping.Modules
         /// <param name="region">Region that gets unloaded</param>
         void RegionUnload(RegionMgr.Region region);
         /// <summary>
-        /// Event whenever a click on the mapü occured
+        /// Event whenever a click on the map occured
         /// </summary>
         /// <param name="e"></param>
         void DXClick(MouseEventArgs e);
@@ -46,12 +47,13 @@ namespace DOL.Tools.Mapping.Modules
         /// <returns></returns>
         GeometryObj GetObjectAt(int x, int y);
         void Filter();
-        void Unfilter();
-        void ClearDirty();
+        void Unfilter();        
         /// <summary>
         /// Returns the list of geometry objects that should be displayed on the map
         /// </summary>
         /// <returns>List of Geometry objects to be displayed on the map</returns>
-        ICollection<GeometryObj> GetObjects();        
+        ICollection<GeometryObj> GetObjects();
+
+        String GetInfoText(GeometryObj obj);
     }
 }

@@ -175,7 +175,7 @@ namespace DOL.Tools.Mapping.Map
                     if (region.Zones.Count > 0)
                     {
                         //Add them to our list!
-                        string reg = string.Format("[{0}] {1} ({2})", region.ID, region.Name, region.Zones.Count);
+                        string reg = string.Format("{1} [{0}] ({2})", region.ID, region.Name, region.Zones.Count);
                         QuestDesignerMain.DesignerForm.DXControl.comboBoxMaps.Items.Add(reg);
                     }
                 }
@@ -318,12 +318,10 @@ namespace DOL.Tools.Mapping.Map
             Model mdl = new Model(ms, tx);
             GeometryObj bj =
                 new GeometryObj(null,mdl, DrawLevel.NonRender, DetailLevel.Nondetailed, 256*256*16/2, 256*256*16/2, 0.0f,
-                                0.0f, 0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f),false);
+                                0.0f, 0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f),false,false);
             DXControl.GeoObjects.Add(bj);
             QuestDesignerMain.DesignerForm.DXControl.HBObject = bj;
             
-
-
             try
             {
                 m_OpenedRegion = region;
@@ -340,50 +338,32 @@ namespace DOL.Tools.Mapping.Map
             }
             
             //Scrollbars..
-            /*QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Minimum = region.MinHeight;
-			QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Maximum = region.MaxHeight;
-			QuestDesignerMain.DesignerForm.DXControl.hScrollBar.SmallChange = (region.MaxHeight - region.MinHeight)/10000;
-			QuestDesignerMain.DesignerForm.DXControl.hScrollBar.LargeChange = (region.MaxHeight - region.MinHeight)/1000;
-			QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Value = region.MinHeight;
-
-			QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Minimum = region.MinWidth;
-			QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Maximum = region.MaxWidth;
-			QuestDesignerMain.DesignerForm.DXControl.vScrollBar.SmallChange = (region.MaxWidth - region.MinWidth)/10000;
-			QuestDesignerMain.DesignerForm.DXControl.vScrollBar.LargeChange = (region.MaxWidth - region.MinWidth)/1000;
-			QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Value = region.MinWidth;*/
-
-            //QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Minimum = -(256*256*16);
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Minimum = 0;
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Maximum = 256*256*16;
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.SmallChange = 256;
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.LargeChange = 2560;
-            //QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Value = 256*256*16/2; //0
-
-            //QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Minimum = -(256*256*16);
+                        
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Minimum = 0;
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Maximum = 256*256*16;
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.SmallChange = 256;
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.LargeChange = 2560;
-            //QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Value = 256*256*16/2; //0
 
-            QuestDesignerMain.DesignerForm.DXControl.Zoom.Value = (QuestDesignerMain.DesignerForm.DXControl.Zoom.Maximum -
-                                                         QuestDesignerMain.DesignerForm.DXControl.Zoom.Minimum)/3*2;
-
+            QuestDesignerMain.DesignerForm.DXControl.SetZoom(0.75F); ;
             
-            
-
             int maxSize = Math.Max (region.MaxHeight - region.MinHeight,region.MaxWidth- region.MinWidth);
-            int zoomFactor = (QuestDesignerMain.DesignerForm.DXControl.Zoom.Maximum - QuestDesignerMain.DesignerForm.DXControl.Zoom.Minimum) / 16 * (maxSize / (256 * 256));
+            int zoomFactor = (QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Maximum - QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Minimum) / 16 * (maxSize / (256 * 256));
 
             // restrcit zoomFactor zo Minimum-Maximum
-            QuestDesignerMain.DesignerForm.DXControl.Zoom.Value = Math.Min(QuestDesignerMain.DesignerForm.DXControl.Zoom.Maximum, Math.Max(QuestDesignerMain.DesignerForm.DXControl.Zoom.Minimum, zoomFactor));
+            QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Value = Math.Min(QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Maximum, Math.Max(QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Minimum, zoomFactor));
 
-            QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Value = (region.MaxHeight + region.MinHeight) /2;
-            QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Value = (region.MaxWidth + region.MinHeight) / 2;
-
+//            QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Value =  (region.MaxHeight + region.MinHeight) /2;
+//            QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Value = (region.MaxWidth + region.MinHeight) / 2;
+                       
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Enabled = true;
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Enabled = true;
-            QuestDesignerMain.DesignerForm.DXControl.Zoom.Enabled = true;
+            QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Enabled = true;
+
+            QuestDesignerMain.DesignerForm.DXControl.CenterView();
 
             ModulMgr.TriggerModules(ModulEvent.RegionLoad, region);
 
@@ -426,7 +406,7 @@ namespace DOL.Tools.Mapping.Map
                     Model model = new Model(mesh, tex);
                     GeometryObj obj =
                         new GeometryObj(null,model, DrawLevel.Background, DetailLevel.Nondetailed, zone.X, zone.Y, 0.0f, 0.0f,
-                                        0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f),false);
+                                        0.0f, 0.0f, new Vector3(1.0f, 1.0f, 1.0f),false,false);
                     DXControl.GeoObjects.Add(obj);
 
                     if (QuestDesignerMain.DesignerForm != null && !QuestDesignerMain.DesignerForm.StatusProgress.IsDisposed)
@@ -503,7 +483,7 @@ namespace DOL.Tools.Mapping.Map
 
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Enabled = false;
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Enabled = false;
-            QuestDesignerMain.DesignerForm.DXControl.Zoom.Enabled = false;
+            QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Enabled = false;
 
             Log.Info("Redrawing...");
             QuestDesignerMain.DesignerForm.DXControl.Invalidate();

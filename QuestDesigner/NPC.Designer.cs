@@ -43,9 +43,10 @@ namespace DOL.Tools.QuestDesigner
             this.splitContainerNPC = new System.Windows.Forms.SplitContainer();
             this.listViewNPC = new System.Windows.Forms.ListView();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showOnMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headerStrip1 = new DOL.Tools.QuestDesigner.Controls.HeaderStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -59,6 +60,7 @@ namespace DOL.Tools.QuestDesigner
             this.B_ListViewList = new System.Windows.Forms.ToolStripMenuItem();
             this.B_ListViewSymbols = new System.Windows.Forms.ToolStripMenuItem();
             this.B_ListViewTiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             imageListNPC = new System.Windows.Forms.ImageList(this.components);
             imageListNPCLarge = new System.Windows.Forms.ImageList(this.components);
             columnName = new System.Windows.Forms.ColumnHeader();
@@ -155,20 +157,30 @@ namespace DOL.Tools.QuestDesigner
             this.listViewNPC.TabIndex = 6;
             this.listViewNPC.UseCompatibleStateImageBehavior = false;
             this.listViewNPC.View = System.Windows.Forms.View.Details;
-            this.listViewNPC.SelectedIndexChanged += new System.EventHandler(this.listViewNPC_SelectedIndexChanged);
-            this.listViewNPC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewNPC_KeyDown);
-            this.listViewNPC.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewNPC_ColumnClick);
             this.listViewNPC.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.listViewNPC_AfterLabelEdit);
+            this.listViewNPC.SelectedIndexChanged += new System.EventHandler(this.listViewNPC_SelectedIndexChanged);
+            this.listViewNPC.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewNPC_ColumnClick);
+            this.listViewNPC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewNPC_KeyDown);
             // 
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyLocationToolStripMenuItem,
             this.pasteLocationToolStripMenuItem,
-            this.showOnMapToolStripMenuItem});
+            this.showOnMapToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.deleteToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(156, 92);
+            this.contextMenuStrip.Size = new System.Drawing.Size(156, 98);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            // 
+            // copyLocationToolStripMenuItem
+            // 
+            this.copyLocationToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.copy;
+            this.copyLocationToolStripMenuItem.Name = "copyLocationToolStripMenuItem";
+            this.copyLocationToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.copyLocationToolStripMenuItem.Text = "Copy Location";
+            this.copyLocationToolStripMenuItem.Click += new System.EventHandler(this.copyLocationToolStripMenuItem_Click);
             // 
             // pasteLocationToolStripMenuItem
             // 
@@ -187,13 +199,13 @@ namespace DOL.Tools.QuestDesigner
             this.showOnMapToolStripMenuItem.Text = "Show on Map";
             this.showOnMapToolStripMenuItem.Click += new System.EventHandler(this.showOnMapToolStripMenuItem_Click);
             // 
-            // copyLocationToolStripMenuItem
+            // deleteToolStripMenuItem
             // 
-            this.copyLocationToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.copy;
-            this.copyLocationToolStripMenuItem.Name = "copyLocationToolStripMenuItem";
-            this.copyLocationToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.copyLocationToolStripMenuItem.Text = "Copy Location";
-            this.copyLocationToolStripMenuItem.Click += new System.EventHandler(this.copyLocationToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.delete;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.B_Delete_Click);
             // 
             // headerStrip1
             // 
@@ -345,6 +357,11 @@ namespace DOL.Tools.QuestDesigner
             B_ToggleGroups.Text = "Toggle Grouping";
             B_ToggleGroups.CheckStateChanged += new System.EventHandler(this.B_ToggleGroups_CheckStateChanged);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(152, 6);
+            // 
             // NPC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -385,5 +402,7 @@ namespace DOL.Tools.QuestDesigner
         private System.Windows.Forms.ToolStripMenuItem pasteLocationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showOnMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyLocationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 	}
 }
