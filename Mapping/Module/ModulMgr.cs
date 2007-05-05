@@ -28,17 +28,14 @@ namespace DOL.Tools.Mapping.Modules
         private static List<IModul> m_Modules = new List<IModul>();                     
 
         public static void LoadModules()
-        {
-            Log.Info("Loading Modules...");
+        {            
             foreach (IModul modul in m_Modules)
             {
                 ModulAttribute attrib = GetModulAttributeForType(modul.GetType());
 
                 if (attrib.InFilterList)                
                     QuestDesignerMain.DesignerForm.DXControl.AddFilter(modul.Name);                
-            }
-
-            Log.Info("Loading Modules finished.");
+            }            
         }
 
         private static ModulAttribute GetModulAttributeForType(Type type)
@@ -59,9 +56,7 @@ namespace DOL.Tools.Mapping.Modules
         }
 
         public static void PreloadModules()
-        {
-            Log.Info("Preloading Modules...");            
-
+        {           
             Assembly asmly = Assembly.GetCallingAssembly();
 
             foreach (Type type in asmly.GetTypes())
@@ -74,21 +69,17 @@ namespace DOL.Tools.Mapping.Modules
                 if (attrib == null)
                     continue;                               
 
-                Log.Info("Preloading Module: " + type.Name);
+                
 
                 IModul o = (IModul)Activator.CreateInstance(type);                
                 m_Modules.Add(o);                
             }
-            TriggerModules(ModulEvent.Load);
-
-            Log.Info("Preloading Modules finished.");                        
+            TriggerModules(ModulEvent.Load);            
         }
 
         public static void UnloadModules()
-        {
-            Log.Info("Unloading Modules...");
-            TriggerModules(ModulEvent.Unload);
-            Log.Info("Unloading Modules finished.");
+        {            
+            TriggerModules(ModulEvent.Unload);            
         }
 
         public static void TriggerModules(ModulEvent modulevent, params object[] args)

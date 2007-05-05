@@ -126,7 +126,7 @@ namespace DOL.Tools.QuestDesigner.Util
                 }
                 catch (DatabaseException e)
                 {                                        
-                    QuestDesignerMain.HandleException(e, "Error registering Tables");                    
+                    QuestDesignerMain.HandleException(e);                    
                     return;
                 }
 
@@ -136,7 +136,7 @@ namespace DOL.Tools.QuestDesigner.Util
                 }
                 catch (DatabaseException e)
                 {
-                    QuestDesignerMain.HandleException(e,"Error loading Database");                    
+                    QuestDesignerMain.HandleException(e);                    
                 }
             }
         }

@@ -342,7 +342,7 @@ namespace DOL.Tools.QuestDesigner.Util
         {
 
             if (initialized)
-                throw new Exception("DB already inited");
+                throw new Exception("Database already inited.");
 
             areaBinding = new BindingSource(QuestDataSet, TABLE_AREA);
             

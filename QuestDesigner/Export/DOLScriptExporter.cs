@@ -26,6 +26,7 @@ using System.Xml;
 using System.IO;
 using System.Data;
 using DOL.Tools.QuestDesigner.Util;
+using DOL.Tools.QuestDesigner.Properties;
 
 namespace DOL.Tools.QuestDesigner.Export
 {
@@ -49,7 +50,7 @@ namespace DOL.Tools.QuestDesigner.Export
                 }
                 else
                 {
-                    MessageBox.Show("No InvitingNPC selected.");
+                    MessageBox.Show(Resources.msgNoInvitingNPC);
                     return false;
                 }
             }

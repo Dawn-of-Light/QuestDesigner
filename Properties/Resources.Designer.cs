@@ -88,6 +88,69 @@ namespace DOL.Tools.QuestDesigner.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to exactly.
+        /// </summary>
+        internal static string comparatorEqual {
+            get {
+                return ResourceManager.GetString("comparatorEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to greater than.
+        /// </summary>
+        internal static string comparatorGreater {
+            get {
+                return ResourceManager.GetString("comparatorGreater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to is.
+        /// </summary>
+        internal static string comparatorIs {
+            get {
+                return ResourceManager.GetString("comparatorIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to less than.
+        /// </summary>
+        internal static string comparatorLess {
+            get {
+                return ResourceManager.GetString("comparatorLess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to none.
+        /// </summary>
+        internal static string comparatorNone {
+            get {
+                return ResourceManager.GetString("comparatorNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to is not.
+        /// </summary>
+        internal static string comparatorNot {
+            get {
+                return ResourceManager.GetString("comparatorNot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to not.
+        /// </summary>
+        internal static string comparatorNotEqual {
+            get {
+                return ResourceManager.GetString("comparatorNotEqual", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap copy {
             get {
                 object obj = ResourceManager.GetObject("copy", resourceCulture);
@@ -207,6 +270,195 @@ namespace DOL.Tools.QuestDesigner.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Create new quest.
+        /// </summary>
+        internal static string lblCreateNewQuest {
+            get {
+                return ResourceManager.GetString("lblCreateNewQuest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data download request.
+        /// </summary>
+        internal static string lblDataDownloadRequest {
+            get {
+                return ResourceManager.GetString("lblDataDownloadRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to an area.
+        /// </summary>
+        internal static string lblDefaultArea {
+            get {
+                return ResourceManager.GetString("lblDefaultArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to character class.
+        /// </summary>
+        internal static string lblDefaultCharacterClass {
+            get {
+                return ResourceManager.GetString("lblDefaultCharacterClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to emote.
+        /// </summary>
+        internal static string lblDefaultEmote {
+            get {
+                return ResourceManager.GetString("lblDefaultEmote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nobody.
+        /// </summary>
+        internal static string lblDefaultGameLiving {
+            get {
+                return ResourceManager.GetString("lblDefaultGameLiving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nobody.
+        /// </summary>
+        internal static string lblDefaultGameNPC {
+            get {
+                return ResourceManager.GetString("lblDefaultGameNPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to an item.
+        /// </summary>
+        internal static string lblDefaultItem {
+            get {
+                return ResourceManager.GetString("lblDefaultItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a location.
+        /// </summary>
+        internal static string lblDefaultLocation {
+            get {
+                return ResourceManager.GetString("lblDefaultLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to number.
+        /// </summary>
+        internal static string lblDefaultNumber {
+            get {
+                return ResourceManager.GetString("lblDefaultNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to parameter.
+        /// </summary>
+        internal static string lblDefaultParameter {
+            get {
+                return ResourceManager.GetString("lblDefaultParameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to this quest.
+        /// </summary>
+        internal static string lblDefaultQuest {
+            get {
+                return ResourceManager.GetString("lblDefaultQuest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a region.
+        /// </summary>
+        internal static string lblDefaultRegion {
+            get {
+                return ResourceManager.GetString("lblDefaultRegion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to text.
+        /// </summary>
+        internal static string lblDefaultText {
+            get {
+                return ResourceManager.GetString("lblDefaultText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to texttype.
+        /// </summary>
+        internal static string lblDefaultTexttype {
+            get {
+                return ResourceManager.GetString("lblDefaultTexttype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a word.
+        /// </summary>
+        internal static string lblDefaultWhisper {
+            get {
+                return ResourceManager.GetString("lblDefaultWhisper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a zone.
+        /// </summary>
+        internal static string lblDefaultZone {
+            get {
+                return ResourceManager.GetString("lblDefaultZone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export {0} ....
+        /// </summary>
+        internal static string lblExportTransformator {
+            get {
+                return ResourceManager.GetString("lblExportTransformator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Objects.
+        /// </summary>
+        internal static string lblObjects {
+            get {
+                return ResourceManager.GetString("lblObjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Region.
+        /// </summary>
+        internal static string lblRegion {
+            get {
+                return ResourceManager.GetString("lblRegion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the quest {0}.
+        /// </summary>
+        internal static string lblTheQuest {
+            get {
+                return ResourceManager.GetString("lblTheQuest", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap list {
             get {
                 object obj = ResourceManager.GetObject("list", resourceCulture);
@@ -253,6 +505,177 @@ namespace DOL.Tools.QuestDesigner.Properties {
             get {
                 object obj = ResourceManager.GetObject("moveUp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any changes of the opened quest will be lost. Do you really want to start a new quest?.
+        /// </summary>
+        internal static string msgCreateNewQuest {
+            get {
+                return ResourceManager.GetString("msgCreateNewQuest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database error.
+        /// </summary>
+        internal static string msgDatabaseError {
+            get {
+                return ResourceManager.GetString("msgDatabaseError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database successfully initialized.
+        /// </summary>
+        internal static string msgDatabaseSuccess {
+            get {
+                return ResourceManager.GetString("msgDatabaseSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map Data not found. Do you want to download it from {0}?\n You can always download the needed data later via Tools menu..
+        /// </summary>
+        internal static string msgDataDownload {
+            get {
+                return ResourceManager.GetString("msgDataDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading data files from.
+        /// </summary>
+        internal static string msgDataDownloading {
+            get {
+                return ResourceManager.GetString("msgDataDownloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export error.
+        /// </summary>
+        internal static string msgExportError {
+            get {
+                return ResourceManager.GetString("msgExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporting quest to {0}.
+        /// </summary>
+        internal static string msgExportingQuest {
+            get {
+                return ResourceManager.GetString("msgExportingQuest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t find file {0}.
+        /// </summary>
+        internal static string msgFileNotFound {
+            get {
+                return ResourceManager.GetString("msgFileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initialization\nSelect the root directory of your DOL Server (That&apos;s the directory where DolServer.exe is located).
+        /// </summary>
+        internal static string msgInitDOLConfigFile {
+            get {
+                return ResourceManager.GetString("msgInitDOLConfigFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Template file for DOL Server config found. Should be located in {0}.
+        /// </summary>
+        internal static string msgInitDOLConfigFileNoTemplateFound {
+            get {
+                return ResourceManager.GetString("msgInitDOLConfigFileNoTemplateFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Module with name {0} found.
+        /// </summary>
+        internal static string msgModuleFoundError {
+            get {
+                return ResourceManager.GetString("msgModuleFoundError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Quest created.
+        /// </summary>
+        internal static string msgNewQuestCreated {
+            get {
+                return ResourceManager.GetString("msgNewQuestCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No InvitingNPC selected.
+        /// </summary>
+        internal static string msgNoInvitingNPC {
+            get {
+                return ResourceManager.GetString("msgNoInvitingNPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quest successfully exported to {0}.
+        /// </summary>
+        internal static string msgQuestExported {
+            get {
+                return ResourceManager.GetString("msgQuestExported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quest loaded from {0}.
+        /// </summary>
+        internal static string msgQuestLoaded {
+            get {
+                return ResourceManager.GetString("msgQuestLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quest saved to {0}.
+        /// </summary>
+        internal static string msgQuestSaved {
+            get {
+                return ResourceManager.GetString("msgQuestSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Region {0} already loaded.
+        /// </summary>
+        internal static string msgRegionAlreadyLoaded {
+            get {
+                return ResourceManager.GetString("msgRegionAlreadyLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Region loading error.
+        /// </summary>
+        internal static string msgRegionError {
+            get {
+                return ResourceManager.GetString("msgRegionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Region successfully loaded.
+        /// </summary>
+        internal static string msgRegionSuccess {
+            get {
+                return ResourceManager.GetString("msgRegionSuccess", resourceCulture);
             }
         }
         
@@ -316,6 +739,51 @@ namespace DOL.Tools.QuestDesigner.Properties {
             get {
                 object obj = ResourceManager.GetObject("searchNPC", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to boadcasts.
+        /// </summary>
+        internal static string textTypeBroadcast {
+            get {
+                return ResourceManager.GetString("textTypeBroadcast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a dialog pops up.
+        /// </summary>
+        internal static string textTypeDialog {
+            get {
+                return ResourceManager.GetString("textTypeDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to emotes.
+        /// </summary>
+        internal static string textTypeEmote {
+            get {
+                return ResourceManager.GetString("textTypeEmote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to none.
+        /// </summary>
+        internal static string textTypeNone {
+            get {
+                return ResourceManager.GetString("textTypeNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the player reads.
+        /// </summary>
+        internal static string textTypeRead {
+            get {
+                return ResourceManager.GetString("textTypeRead", resourceCulture);
             }
         }
         

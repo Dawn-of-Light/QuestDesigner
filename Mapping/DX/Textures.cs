@@ -294,11 +294,11 @@ namespace DOL.Tools.Mapping.DX
             int g = 0;
             int b = 0;
 
-            if (first != null && first != "")
+            if (!String.IsNullOrEmpty(first))
                 r = int.Parse(first);
-            if (secnd != null && secnd != "")
+            if (!String.IsNullOrEmpty(secnd))
                 g = int.Parse(secnd);
-            if (third != null && third != "")
+            if (!String.IsNullOrEmpty(third))
                 b = int.Parse(third);
 
             r = Math.Abs(r);

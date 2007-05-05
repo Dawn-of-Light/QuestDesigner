@@ -117,316 +117,688 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="dataColumnQuestPartIF.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnTriggerQuestPart.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnTriggerType.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnTriggerKeyword.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnTriggerObject.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnQuestTriggerID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="datacolumnquestPartID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnRequirmentType.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnRequirmeentN.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnRequirementV.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnRequirementComparator.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnRequirementID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnActionQuestPartID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnActionType.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnActionP.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnActionQ.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnRegionID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnRegionDescription.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnZoneID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnZoneRegionID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnZoneDescription.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnZoneOffsetY.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnZoneOffsetX.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn15.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn16.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn17.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn18.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn19.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn20.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn21.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn22.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnText.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnDefaultNPC.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn28.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn32.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn23.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataTableQuestCharacterClass.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnCharacterClass.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnDescription.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnGold.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnSilver.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnCopper.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnEmblem.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnEffect.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnExtension.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn73.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnPackSize.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnCharges.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnMaxCount.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnSpellID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnProcSpellID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnPoisonCharges.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnPoisonMaxCharges.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnPoisonSpellID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnProcSpellID1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnSpellID1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnMaxCharges1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnCharges1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnIsTradable.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnCanDropAsLoot.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnBonus6Type.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnBonus6.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnBonus7Type.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnBonus7.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnBonus8Type.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnBonus8.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnBonus9Type.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnBonus9.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnBonus10Type.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnBonus10.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn59.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn66.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnPlatinum.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnQuestDate.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn26.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn33.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn34.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn35.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnQuestID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnQuestName.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnQuestAuthor.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnQuestVersion.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnQuestDescription.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn14.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnMinimumLevel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnMaximumLevel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumnInvintingNPC.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn41.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn62.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn63.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn64.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn65.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn36.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn37.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn39.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn40.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn42.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataColumn43.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="dataSetQuest.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="dataSetData.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>137, 17</value>
-  </metadata>
-  <metadata name="saveQuestDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>121, 54</value>
-  </metadata>
-  <metadata name="menuStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>506, 17</value>
-  </metadata>
+  <data name="&gt;&gt;dataColumnActionTypeQ.Name" xml:space="preserve">
+    <value>dataColumnActionTypeQ</value>
+  </data>
+  <data name="&gt;&gt;dataTableMob.Name" xml:space="preserve">
+    <value>dataTableMob</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="StatusIcon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <data name="&gt;&gt;dataTableRegion.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus9.Name" xml:space="preserve">
+    <value>dataColumnBonus9</value>
+  </data>
+  <data name="&gt;&gt;tabPageQuest.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;dataColumn63.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControlMain.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnClassType.Name" xml:space="preserve">
+    <value>dataColumnClassType</value>
+  </data>
+  <data name="&gt;&gt;tabPageWeb.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;dataColumn6.Name" xml:space="preserve">
+    <value>dataColumn6</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCondition.Name" xml:space="preserve">
+    <value>dataColumnCondition</value>
+  </data>
+  <data name="&gt;&gt;dataColumnDescription.Name" xml:space="preserve">
+    <value>dataColumnDescription</value>
+  </data>
+  <data name="&gt;&gt;dataColumn5.Name" xml:space="preserve">
+    <value>dataColumn5</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeP.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="statusStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;linkLabelNewQuest.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeK.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus7Type.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeI.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeP.Name" xml:space="preserve">
+    <value>dataColumnActionTypeP</value>
+  </data>
+  <data name="locationView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="&gt;&gt;dataColumnDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageNPC.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;dataColumn4.Name" xml:space="preserve">
+    <value>dataColumn4</value>
+  </data>
+  <data name="xpTGActions.Text" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEmblem.Name" xml:space="preserve">
+    <value>dataColumnEmblem</value>
+  </data>
+  <data name="creditsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="&gt;&gt;dataSetData.Type" xml:space="preserve">
+    <value>System.Data.DataSet, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn36.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn54.Name" xml:space="preserve">
+    <value>dataColumn54</value>
+  </data>
+  <data name="&gt;&gt;dataColumnLevel.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn43.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveQuestDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="&gt;&gt;dataColumn33.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="statusStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tabPageNPC.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 23</value>
+  </data>
+  <data name="&gt;&gt;dataColumn44.Name" xml:space="preserve">
+    <value>dataColumn44</value>
+  </data>
+  <data name="&gt;&gt;dataColumn3.Name" xml:space="preserve">
+    <value>dataColumn3</value>
+  </data>
+  <data name="&gt;&gt;tabPageMap.Type" xml:space="preserve">
+    <value>NETXP.Controls.Docking.TabPage, NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="openQuestDialog.Title" xml:space="preserve">
+    <value>Load Quest</value>
+  </data>
+  <data name="&gt;&gt;dataColumnExtraBonusType.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ContentPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeValue.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LeftToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeHelp.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemTaskPane.Name" xml:space="preserve">
+    <value>toolStripMenuItemTaskPane</value>
+  </data>
+  <data name="&gt;&gt;TopToolStripPanel.Name" xml:space="preserve">
+    <value>TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;dataColumn2.Name" xml:space="preserve">
+    <value>dataColumn2</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus2Type.Name" xml:space="preserve">
+    <value>dataColumnBonus2Type</value>
+  </data>
+  <data name="&gt;&gt;dataColumn34.Name" xml:space="preserve">
+    <value>dataColumn34</value>
+  </data>
+  <data name="&gt;&gt;dataColumnItemLevel.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageCode.Title" xml:space="preserve">
+    <value>CustomCode</value>
+  </data>
+  <data name="&gt;&gt;dataColumnIdNb.Name" xml:space="preserve">
+    <value>dataColumnIdNb</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRealmValue.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn13.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeN.Name" xml:space="preserve">
+    <value>dataColumnRequirementTypeN</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus7.Name" xml:space="preserve">
+    <value>dataColumnBonus7</value>
+  </data>
+  <data name="&gt;&gt;dataColumnPackSize.Name" xml:space="preserve">
+    <value>dataColumnPackSize</value>
+  </data>
+  <data name="xpTGQuestPart.Text" xml:space="preserve">
+    <value>QuestPart</value>
+  </data>
+  <data name="&gt;&gt;dataColumn24.Name" xml:space="preserve">
+    <value>dataColumn24</value>
+  </data>
+  <data name="&gt;&gt;dataColumn1.Name" xml:space="preserve">
+    <value>dataColumn1</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeV.Name" xml:space="preserve">
+    <value>dataColumnRequirementTypeV</value>
+  </data>
+  <data name="&gt;&gt;dataColumnHeading.Name" xml:space="preserve">
+    <value>dataColumnHeading</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator.Name" xml:space="preserve">
+    <value>toolStripSeparator</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerQuestPart.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableQuestStep.Name" xml:space="preserve">
+    <value>dataTableQuestStep</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZoneRegionID.Name" xml:space="preserve">
+    <value>dataColumnZoneRegionID</value>
+  </data>
+  <data name="tabPageMap.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;dataColumnProcSpellID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeN.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.RightToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageLocation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 23</value>
+  </data>
+  <data name="&gt;&gt;dataColumn14.Name" xml:space="preserve">
+    <value>dataColumn14</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMinimumLevel.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobRespawnInterval.Name" xml:space="preserve">
+    <value>dataColumnMobRespawnInterval</value>
+  </data>
+  <data name="customCode.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="xpTaskPane.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 402</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus6.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkLoadQuest.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMinimumLevel.Name" xml:space="preserve">
+    <value>dataColumnMinimumLevel</value>
+  </data>
+  <data name="&gt;&gt;dataColumnInvintingNPC.Name" xml:space="preserve">
+    <value>dataColumnInvintingNPC</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus2.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;xpTGActions.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;creditsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="linkLabelNewQuest.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>18, 2, 0, 2</value>
+  </data>
+  <data name="&gt;&gt;webBrowser1.Parent" xml:space="preserve">
+    <value>tabPageWeb</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.TopToolStripPanel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;dataColumn57.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableAction.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="npcView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnItemType.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="newToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+N</value>
+  </data>
+  <data name="tabPageCode.ToolTipText" xml:space="preserve">
+    <value>CustomCode of the quest </value>
+  </data>
+  <data name="areaView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRealm.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageArea.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="linkLoadQuest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="&gt;&gt;dataColumnHand.Name" xml:space="preserve">
+    <value>dataColumnHand</value>
+  </data>
+  <data name="&gt;&gt;openToolStripMenuItem.Name" xml:space="preserve">
+    <value>openToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;xpTGActions.Parent" xml:space="preserve">
+    <value>xpTaskPane</value>
+  </data>
+  <data name="tabPageWeb.ToolTipText" xml:space="preserve">
+    <value>Web</value>
+  </data>
+  <data name="&gt;&gt;xpTGQuestPart.Parent" xml:space="preserve">
+    <value>xpTaskPane</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerObject.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="saveScriptDialog.Title" xml:space="preserve">
+    <value>Save Questscript</value>
+  </data>
+  <data name="&gt;&gt;tabPageLocation.Parent" xml:space="preserve">
+    <value>tabControlMain</value>
+  </data>
+  <data name="&gt;&gt;statusStrip.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPageQuest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus10.Name" xml:space="preserve">
+    <value>dataColumnBonus10</value>
+  </data>
+  <data name="&gt;&gt;dataColumn37.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus2Type.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStripContainerForm.Text" xml:space="preserve">
+    <value>toolStripContainer2</value>
+  </data>
+  <data name="&gt;&gt;saveScriptDialog.Name" xml:space="preserve">
+    <value>saveScriptDialog</value>
+  </data>
+  <data name="statusStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnDefaultNPC.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnPoisonMaxCharges.Name" xml:space="preserve">
+    <value>dataColumnPoisonMaxCharges</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestAuthor.Name" xml:space="preserve">
+    <value>dataColumnQuestAuthor</value>
+  </data>
+  <data name="areaView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEnumerationDescription.Name" xml:space="preserve">
+    <value>dataColumnEnumerationDescription</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRealmDescription.Name" xml:space="preserve">
+    <value>dataColumnRealmDescription</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linkSaveQuest.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAixJREFUOE+tk91L
+        k3EUx/cvdN9N0EW3NTWGa7EaPOUcyqphWBG9PZEv5dJlmqhYmUYtXyBb4dJJy+kknFT4BqZIjaFMJUsz
+        V7TEoabYRDD49ju/6Pm1Mi+iH5zLz+c855zvo1L9j/fsaRRUvvZltHmX8Ni9gMaGCO47ZlBb8wn22yHc
+        KJ9CackECgteIy93FBfOB6H0JrC3B6ipXsVGb2V1Dca0XhxOe8JLEXhbF7mgsuLLX3mCIwsr2G1+DrVa
+        huWQRwjcj+a5oLTk87qCn/D78CLiTD4UXJ7GAXOTEDjrZ7ngku3dH4Jf4ZHJCLZJXlhzxpGa4hSCurth
+        LsjOGo0R/A4PBsPYrHdDlgMwmRxCUF31kQvkMwFFsB7c4/+ATYkNOHL0BZKSaoXgZuU0urvATgkcP/kK
+        lmMDfNu0MJqZPps6/4D7cNDSCUmyC8HVskl0+MAyADS5vrG7f0X59Tm+VFoYzZyZEVTg5NR2GAwVQnCl
+        cByeZuChc40FJwpjek5MmU/YkH6uiHdOTmHwfg/0+jIhsOWNMRiouhPlnUnAQoI4rYSht7MYm5qDnHsN
+        e41tHNbucUGnKxICiqXjHpTPJgHBZ/Nv4U1oHqGZJVwstiNe72JwI+J3PYA2MV8IMjOG2dzLfOatBg+2
+        7JDQ0tEPX9cguvv8GHg5hH0mC9S6eiQweLumDhqNVQgo06dP9fN4UsIoJHRnOhVtmxZGM1NXKoJ3JmTH
+        Cv71r/4OTrQ4xWMwWlcAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="&gt;&gt;customCode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus9Type.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataSetData.Name" xml:space="preserve">
+    <value>dataSetData</value>
+  </data>
+  <data name="&gt;&gt;dataColumn27.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linkLabelNewQuest.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;dataColumnObjectType.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSize.Name" xml:space="preserve">
+    <value>dataColumnSize</value>
+  </data>
+  <data name="toolStripContainerForm.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;itemView.Name" xml:space="preserve">
+    <value>itemView</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEnumerationType.Name" xml:space="preserve">
+    <value>dataColumnEnumerationType</value>
+  </data>
+  <data name="&gt;&gt;tabPageItem.Type" xml:space="preserve">
+    <value>NETXP.Controls.Docking.TabPage, NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTypeDamage.Name" xml:space="preserve">
+    <value>dataColumnTypeDamage</value>
+  </data>
+  <data name="&gt;&gt;dataColumnGuildName.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementV.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveAsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageQuestPart.Name" xml:space="preserve">
+    <value>tabPageQuestPart</value>
+  </data>
+  <data name="saveQuestDialog.Filter" xml:space="preserve">
+    <value>Quest Data Files|*.qst</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSpellID.Name" xml:space="preserve">
+    <value>dataColumnSpellID</value>
+  </data>
+  <data name="&gt;&gt;dataColumn59.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRegionID.Name" xml:space="preserve">
+    <value>dataColumnRegionID</value>
+  </data>
+  <data name="&gt;&gt;questPartItems.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus10Type.Name" xml:space="preserve">
+    <value>dataColumnBonus10Type</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestVersion.Name" xml:space="preserve">
+    <value>dataColumnQuestVersion</value>
+  </data>
+  <data name="&gt;&gt;dataColumnName.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus4Type.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCharges1.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuality.Name" xml:space="preserve">
+    <value>dataColumnQuality</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCopper.Name" xml:space="preserve">
+    <value>dataColumnCopper</value>
+  </data>
+  <data name="&gt;&gt;tabControlMain.Name" xml:space="preserve">
+    <value>tabControlMain</value>
+  </data>
+  <data name="&gt;&gt;dataColumnHeading.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabControlMain.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DXControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;dataColumnText.Name" xml:space="preserve">
+    <value>dataColumnText</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeQ.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableZone.Name" xml:space="preserve">
+    <value>dataTableZone</value>
+  </data>
+  <data name="&gt;&gt;dataTableArea.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.BottomToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ContentPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>636, 305</value>
+  </data>
+  <data name="xpTGQuestPart.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumnRequirmentType.Name" xml:space="preserve">
+    <value>dataColumnRequirmentType</value>
+  </data>
+  <data name="linkLabelNewQuest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 17</value>
+  </data>
+  <data name="&gt;&gt;BottomToolStripPanel.Name" xml:space="preserve">
+    <value>BottomToolStripPanel</value>
+  </data>
+  <data name="saveToolStripMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tabPageItem.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="&gt;&gt;linkSaveQuest.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestPartIF.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStripContainerForm.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;toolsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnGold.Name" xml:space="preserve">
+    <value>dataColumnGold</value>
+  </data>
+  <data name="questInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="tabPageLocation.ToolTipText" xml:space="preserve">
+    <value>Define Locations used for QuestParts</value>
+  </data>
+  <data name="&gt;&gt;tabPageNPC.Name" xml:space="preserve">
+    <value>tabPageNPC</value>
+  </data>
+  <data name="&gt;&gt;customCode.Name" xml:space="preserve">
+    <value>customCode</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementID.Name" xml:space="preserve">
+    <value>dataColumnRequirementID</value>
+  </data>
+  <data name="&gt;&gt;tabPageWeb.Parent" xml:space="preserve">
+    <value>tabControlMain</value>
+  </data>
+  <data name="&gt;&gt;dataColumn19.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="createToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Create</value>
+  </data>
+  <data name="&gt;&gt;dataTableQuestCharacterClass.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageNPC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="ContentPanel.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tabPageLocation.Name" xml:space="preserve">
+    <value>tabPageLocation</value>
+  </data>
+  <data name="&gt;&gt;dataTableLocation.Name" xml:space="preserve">
+    <value>dataTableLocation</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTextTypeValue.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEnumerationDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dataDownloadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus8Type.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestVersion.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageWeb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;statusStrip.Name" xml:space="preserve">
+    <value>statusStrip</value>
+  </data>
+  <data name="&gt;&gt;tabPageCode.Name" xml:space="preserve">
+    <value>tabPageCode</value>
+  </data>
+  <data name="&gt;&gt;RightToolStripPanel.Name" xml:space="preserve">
+    <value>RightToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;dataSetQuest.Type" xml:space="preserve">
+    <value>System.Data.DataSet, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageItem.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;dataColumnPoisonCharges.Name" xml:space="preserve">
+    <value>dataColumnPoisonCharges</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRegion.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="customCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="linkLoadQuest.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>18, 2, 0, 2</value>
+  </data>
+  <data name="webBrowser1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolsToolStripMenuItem.Name" xml:space="preserve">
+    <value>toolsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;dataColumn6.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageMap.Name" xml:space="preserve">
+    <value>tabPageMap</value>
+  </data>
+  <data name="linkSaveQuest.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;webBrowser1.Type" xml:space="preserve">
+    <value>DOL.Tools.QuestDesigner.QuestDesigner.WebBrowser, QuestDesigner, Version=0.4.9.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;dataColumn55.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus6Type.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobRealm.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;xpTaskPane.Parent" xml:space="preserve">
+    <value>toolStripContainerForm.ContentPanel</value>
+  </data>
+  <data name="saveAsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 22</value>
+  </data>
+  <data name="&gt;&gt;openToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="newToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -438,22 +810,185 @@
         KFoDjHmzVuYYjRmTDZfyWh9Yd/4B2Mz2w1z7EGUAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="openToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAlpJREFUOE+tk21I
-        k1EYhif0oyA0sqIQCix/+GcQFFH9CCmiUBTLLEjShJofVBgL2fxoU9Pp5ubUlS5rU9f8rCyjsA+pUCRC
-        TR1ppmVFUSlmhq78unrnQF1KGHTg/nEOz30993PO+7qJFrmUeiv2n+Mij+XLRLLYULdF2pxlEVIDcw0p
-        AsyxD5fmI/rQ94pqi26eOlsfuZj+7BgSm01QdA4ih7m73Yx9qGpavwatjPebqCzOprPt8YKQgzFagqL0
-        BEjyEFWVaBkdLHMxT34uYNwWR9nVTEoL0zHlp2DMSeaSRk6eKt4VWm5WM/rVPNN5SjDTLQebZEHNA1wr
-        UvHjk3E6tsNcV62e1r3KLGqtKm6WplNpSsVqVFJsOM8VfSKFWjkGtcyZptSYzvC7XByx3zQoqCnTMvlG
-        CX1prnornPUmQJcUXsbSVhGK5bIOkcmQyveeTHiv4VZ5Nk33Nc6iuSO8CIfmECYa/bE/8ON1iRipJNh5
-        F0V6Bd86lfQ1JlFj1TDVq4COKCegLVIwHmGiKRB7/V6G7+5koHozymgfYRy5E1CgTWKgXcZ1i5qWp0KS
-        rjgBcAJawph6FszYk/2M1O1isGYLX8p9ab6wgqP+3rMvYciS01GfzA1LFvQkQ6sQ9/khxhoCGHnox1Dt
-        NvorxXw0b8Km8UQh2cip6GOzgNyMeKqKM7HdjqFZJ5pRk2YJ9aql3EnxoCJxNaZ4Ly6e3UDY3O6OEXRp
-        59ApTpIhiyDh9GHORAZyPHQPB/ZtZ/cOMVvFPvh6e7F+3SrWrHRnraf7Xz/xf/rJ/kvxb84I3U1y+9/W
-        AAAAAElFTkSuQmCC
-</value>
+  <data name="xpTGQuestPart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 201</value>
+  </data>
+  <data name="questInfo.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="saveToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+S</value>
+  </data>
+  <data name="linkLoadQuest.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linkLoadQuest.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="questPartItems.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;DXControl.Parent" xml:space="preserve">
+    <value>tabPageMap</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestAuthor.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="createToolStripMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="&gt;&gt;StatusLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeDescription.Name" xml:space="preserve">
+    <value>dataColumnRequirementTypeDescription</value>
+  </data>
+  <data name="&gt;&gt;dataColumn5.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataDownloadToolStripMenuItem.Name" xml:space="preserve">
+    <value>dataDownloadToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTypeDamage.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestPartIF.Name" xml:space="preserve">
+    <value>dataColumnQuestPartIF</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeV.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageLocation.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="openQuestDialog.Filter" xml:space="preserve">
+    <value>Quest Data Files|*.qst</value>
+  </data>
+  <data name="&gt;&gt;DXControl.Type" xml:space="preserve">
+    <value>DOL.Tools.Mapping.Forms.DXControl, QuestDesigner, Version=0.4.9.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tabPageItem.Parent" xml:space="preserve">
+    <value>tabControlMain</value>
+  </data>
+  <data name="locationView.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
+    <value>exitToolStripMenuItem</value>
+  </data>
+  <data name="toolStripContainerForm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="itemView.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumnSPD_ABS.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus5.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestID.Name" xml:space="preserve">
+    <value>dataColumnQuestID</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMaximumLevel.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus3Type.Name" xml:space="preserve">
+    <value>dataColumnBonus3Type</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus1.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;itemView.Parent" xml:space="preserve">
+    <value>tabPageItem</value>
+  </data>
+  <data name="&gt;&gt;dataColumn17.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linkLoadQuest.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="tabControlMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;openQuestDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZoneRegionID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableZone.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;openQuestDialog.Name" xml:space="preserve">
+    <value>openQuestDialog</value>
+  </data>
+  <data name="&gt;&gt;itemView.Type" xml:space="preserve">
+    <value>DOL.Tools.QuestDesigner.Item, QuestDesigner, Version=0.4.9.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;statusStrip.Parent" xml:space="preserve">
+    <value>toolStripContainerForm.BottomToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;dataColumnExtraBonusType.Name" xml:space="preserve">
+    <value>dataColumnExtraBonusType</value>
+  </data>
+  <data name="linkLabelNewQuest.Text" xml:space="preserve">
+    <value>New Quest ...</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerObject.Name" xml:space="preserve">
+    <value>dataColumnTriggerObject</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.TopToolStripPanel.Parent" xml:space="preserve">
+    <value>toolStripContainerForm</value>
+  </data>
+  <data name="&gt;&gt;tabPageCode.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="npcView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;dataColumn57.Name" xml:space="preserve">
+    <value>dataColumn57</value>
+  </data>
+  <data name="tabPageCode.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCharges.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="saveQuestDialog.Title" xml:space="preserve">
+    <value>Save Quest</value>
+  </data>
+  <data name="&gt;&gt;tabControlMain.Parent" xml:space="preserve">
+    <value>toolStripContainerForm.ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;BottomToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobFactionID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RightToolStripPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.Name" xml:space="preserve">
+    <value>toolStripContainerForm</value>
+  </data>
+  <data name="xpTaskPane.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>10, 0, 10, 0</value>
   </data>
   <data name="saveToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -471,90 +1006,474 @@
         Cv71r/4OTrQ4xWMwWlcAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 54</value>
-  </metadata>
-  <data name="linkSaveQuest.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAixJREFUOE+tk91L
-        k3EUx/cvdN9N0EW3NTWGa7EaPOUcyqphWBG9PZEv5dJlmqhYmUYtXyBb4dJJy+kknFT4BqZIjaFMJUsz
-        V7TEoabYRDD49ju/6Pm1Mi+iH5zLz+c855zvo1L9j/fsaRRUvvZltHmX8Ni9gMaGCO47ZlBb8wn22yHc
-        KJ9CackECgteIy93FBfOB6H0JrC3B6ipXsVGb2V1Dca0XhxOe8JLEXhbF7mgsuLLX3mCIwsr2G1+DrVa
-        huWQRwjcj+a5oLTk87qCn/D78CLiTD4UXJ7GAXOTEDjrZ7ngku3dH4Jf4ZHJCLZJXlhzxpGa4hSCurth
-        LsjOGo0R/A4PBsPYrHdDlgMwmRxCUF31kQvkMwFFsB7c4/+ATYkNOHL0BZKSaoXgZuU0urvATgkcP/kK
-        lmMDfNu0MJqZPps6/4D7cNDSCUmyC8HVskl0+MAyADS5vrG7f0X59Tm+VFoYzZyZEVTg5NR2GAwVQnCl
-        cByeZuChc40FJwpjek5MmU/YkH6uiHdOTmHwfg/0+jIhsOWNMRiouhPlnUnAQoI4rYSht7MYm5qDnHsN
-        e41tHNbucUGnKxICiqXjHpTPJgHBZ/Nv4U1oHqGZJVwstiNe72JwI+J3PYA2MV8IMjOG2dzLfOatBg+2
-        7JDQ0tEPX9cguvv8GHg5hH0mC9S6eiQweLumDhqNVQgo06dP9fN4UsIoJHRnOhVtmxZGM1NXKoJ3JmTH
-        Cv71r/4OTrQ4xWMwWlcAAAAASUVORK5CYII=
-</value>
+  <data name="linkLabelNewQuest.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="xpTGActions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        AAAAAElFTkSuQmCC
-</value>
+  <data name="tabPageMap.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 23</value>
   </data>
-  <metadata name="openQuestDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>251, 17</value>
-  </metadata>
-  <metadata name="saveScriptDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>255, 54</value>
-  </metadata>
-  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>388, 54</value>
-  </metadata>
-  <metadata name="imageListNPC.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>387, 17</value>
-  </metadata>
+  <data name="&gt;&gt;xpTaskPane.Name" xml:space="preserve">
+    <value>xpTaskPane</value>
+  </data>
+  <data name="&gt;&gt;locationView.Parent" xml:space="preserve">
+    <value>tabPageLocation</value>
+  </data>
+  <data name="xpTGQuestPart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 133</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 6</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="questPartItems.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;dataColumn20.Name" xml:space="preserve">
+    <value>dataColumn20</value>
+  </data>
+  <data name="areaView.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumn38.Name" xml:space="preserve">
+    <value>dataColumn38</value>
+  </data>
+  <data name="&gt;&gt;dataColumn16.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableActionType.Name" xml:space="preserve">
+    <value>dataTableActionType</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus9Type.Name" xml:space="preserve">
+    <value>dataColumnBonus9Type</value>
+  </data>
+  <data name="&gt;&gt;saveScriptDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageItem.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPageArea.ToolTipText" xml:space="preserve">
+    <value>Area's used within a quest</value>
+  </data>
+  <data name="&gt;&gt;dataColumn62.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkLoadQuest.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnIsTradable.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newToolStripMenuItem.Name" xml:space="preserve">
+    <value>newToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;dataColumnProcSpellID.Name" xml:space="preserve">
+    <value>dataColumnProcSpellID</value>
+  </data>
+  <data name="&gt;&gt;dataColumn28.Name" xml:space="preserve">
+    <value>dataColumn28</value>
+  </data>
+  <data name="&gt;&gt;dataColumnDurability.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnProcSpellID1.Name" xml:space="preserve">
+    <value>dataColumnProcSpellID1</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRegionDescription.Name" xml:space="preserve">
+    <value>dataColumnRegionDescription</value>
+  </data>
+  <data name="linkSaveQuest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 17</value>
+  </data>
+  <data name="tabPageQuestPart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 23</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 22</value>
+  </data>
+  <data name="&gt;&gt;questPartItems.Type" xml:space="preserve">
+    <value>DOL.Tools.QuestDesigner.QuestPartItems, QuestDesigner, Version=0.4.9.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.LeftToolStripPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="toolStripContainerForm.LeftToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumn18.Name" xml:space="preserve">
+    <value>dataColumn18</value>
+  </data>
+  <data name="&gt;&gt;dataColumnGuildName.Name" xml:space="preserve">
+    <value>dataColumnGuildName</value>
+  </data>
+  <data name="customCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="xpTaskPane.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="toolStripMenuItemTaskPane.Text" xml:space="preserve">
+    <value>Show TaskPane</value>
+  </data>
+  <data name="&gt;&gt;linkLoadQuest.Parent" xml:space="preserve">
+    <value>xpTGActions</value>
+  </data>
+  <data name="&gt;&gt;StatusProgress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnItemModel.Name" xml:space="preserve">
+    <value>dataColumnItemModel</value>
+  </data>
+  <data name="&gt;&gt;toolTip.Name" xml:space="preserve">
+    <value>toolTip</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCharges1.Name" xml:space="preserve">
+    <value>dataColumnCharges1</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeID.Name" xml:space="preserve">
+    <value>dataColumnTriggerTypeID</value>
+  </data>
+  <data name="&gt;&gt;npcView.Name" xml:space="preserve">
+    <value>npcView</value>
+  </data>
+  <data name="&gt;&gt;dataColumn23.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="webBrowser1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;areaView.Name" xml:space="preserve">
+    <value>areaView</value>
+  </data>
+  <data name="&gt;&gt;dataTableArea.Name" xml:space="preserve">
+    <value>dataTableArea</value>
+  </data>
+  <data name="&gt;&gt;locationView.Name" xml:space="preserve">
+    <value>locationView</value>
+  </data>
+  <data name="&gt;&gt;areaView.Type" xml:space="preserve">
+    <value>DOL.Tools.QuestDesigner.Area, QuestDesigner, Version=0.4.9.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="creditsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="tabPageMap.ToolTipText" xml:space="preserve">
+    <value>Uthgard Map Editor</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEnumerationName.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnObjectName.Name" xml:space="preserve">
+    <value>dataColumnObjectName</value>
+  </data>
+  <data name="&gt;&gt;dataColumnItemType.Name" xml:space="preserve">
+    <value>dataColumnItemType</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCharges.Name" xml:space="preserve">
+    <value>dataColumnCharges</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn62.Name" xml:space="preserve">
+    <value>dataColumn62</value>
+  </data>
+  <data name="&gt;&gt;imageListNPC.Name" xml:space="preserve">
+    <value>imageListNPC</value>
+  </data>
+  <data name="&gt;&gt;dataColumn61.Name" xml:space="preserve">
+    <value>dataColumn61</value>
+  </data>
+  <data name="&gt;&gt;dataColumnItemName.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="openToolStripMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="itemView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="linkSaveQuest.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkSaveQuest.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementComparator.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableQuestStep.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="xpTaskPane.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="tabPageLocation.Title" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.Name" xml:space="preserve">
+    <value>menuStripMain</value>
+  </data>
+  <data name="&gt;&gt;dataColumnY.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;questInfo.Parent" xml:space="preserve">
+    <value>tabPageQuest</value>
+  </data>
+  <data name="&gt;&gt;dataColumnPoisonSpellID.Name" xml:space="preserve">
+    <value>dataColumnPoisonSpellID</value>
+  </data>
+  <data name="DXControl.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="menuStripMain.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="xpTaskPane.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumn42.Name" xml:space="preserve">
+    <value>dataColumn42</value>
+  </data>
+  <data name="&gt;&gt;dataColumnHand.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn41.Name" xml:space="preserve">
+    <value>dataColumn41</value>
+  </data>
+  <data name="&gt;&gt;areaView.Parent" xml:space="preserve">
+    <value>tabPageArea</value>
+  </data>
+  <data name="tabPageQuest.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCharacterClass.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;datacolumnquestPartID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;StatusLabel.Name" xml:space="preserve">
+    <value>StatusLabel</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSpellID1.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSpeed.Name" xml:space="preserve">
+    <value>dataColumnSpeed</value>
+  </data>
+  <data name="&gt;&gt;linkLoadQuest.Name" xml:space="preserve">
+    <value>linkLoadQuest</value>
+  </data>
+  <data name="toolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 6</value>
+  </data>
+  <data name="questInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 6</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus9.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnText.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEnumerationName.Name" xml:space="preserve">
+    <value>dataColumnEnumerationName</value>
+  </data>
+  <data name="&gt;&gt;dataTableRequirementType.Name" xml:space="preserve">
+    <value>dataTableRequirementType</value>
+  </data>
+  <data name="dataDownloadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Data Download</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.LeftToolStripPanel.Name" xml:space="preserve">
+    <value>toolStripContainerForm.LeftToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobRespawnInterval.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn32.Name" xml:space="preserve">
+    <value>dataColumn32</value>
+  </data>
+  <data name="&gt;&gt;dataColumn31.Name" xml:space="preserve">
+    <value>dataColumn31</value>
+  </data>
+  <data name="&gt;&gt;dataColumnObjectType.Name" xml:space="preserve">
+    <value>dataColumnObjectType</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.ContentPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripContentPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn21.Name" xml:space="preserve">
+    <value>dataColumn21</value>
+  </data>
+  <data name="tabPageLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="tabPageArea.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumn11.Name" xml:space="preserve">
+    <value>dataColumn11</value>
+  </data>
+  <data name="&gt;&gt;tabPageArea.Type" xml:space="preserve">
+    <value>NETXP.Controls.Docking.TabPage, NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="linkSaveQuest.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeI.Name" xml:space="preserve">
+    <value>dataColumnTriggerTypeI</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerKeyword.Name" xml:space="preserve">
+    <value>dataColumnTriggerKeyword</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirmeentN.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="newToolStripMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="&gt;&gt;dataColumn22.Name" xml:space="preserve">
+    <value>dataColumn22</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus2.Name" xml:space="preserve">
+    <value>dataColumnBonus2</value>
+  </data>
+  <data name="npcView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;xpTGActions.Name" xml:space="preserve">
+    <value>xpTGActions</value>
+  </data>
+  <data name="&gt;&gt;tabPageNPC.Type" xml:space="preserve">
+    <value>NETXP.Controls.Docking.TabPage, NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="&gt;&gt;dataColumnStep.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DXControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;datacolumnquestPartID.Name" xml:space="preserve">
+    <value>datacolumnquestPartID</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZoneID.Name" xml:space="preserve">
+    <value>dataColumnZoneID</value>
+  </data>
+  <data name="tabPageQuest.Title" xml:space="preserve">
+    <value>QuestInfo</value>
+  </data>
+  <data name="&gt;&gt;ContentPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripContentPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn12.Name" xml:space="preserve">
+    <value>dataColumn12</value>
+  </data>
+  <data name="&gt;&gt;dataColumnAggroRange.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;questInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeHelp.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;newToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnWeight.Name" xml:space="preserve">
+    <value>dataColumnWeight</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEnumerationValue.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRealmDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableQuestPart.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus.Name" xml:space="preserve">
+    <value>dataColumnBonus</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCanDropAsLoot.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTextTypeDescription.Name" xml:space="preserve">
+    <value>dataColumnTextTypeDescription</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus5Type.Name" xml:space="preserve">
+    <value>dataColumnBonus5Type</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestName.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEffect.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMaxCharges1.Name" xml:space="preserve">
+    <value>dataColumnMaxCharges1</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus8.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkSaveQuest.Parent" xml:space="preserve">
+    <value>xpTGActions</value>
+  </data>
+  <data name="&gt;&gt;dataColumnGold.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnExtension.Name" xml:space="preserve">
+    <value>dataColumnExtension</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZoneID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;xpTGQuestPart.Name" xml:space="preserve">
+    <value>xpTGQuestPart</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCharacterClass.Name" xml:space="preserve">
+    <value>dataColumnCharacterClass</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobFactionID.Name" xml:space="preserve">
+    <value>dataColumnMobFactionID</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;StatusProgress.Name" xml:space="preserve">
+    <value>StatusProgress</value>
+  </data>
+  <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnExtension.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="saveScriptDialog.Filter" xml:space="preserve">
+    <value>All files|*.*</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripContainer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMaxDurability.Name" xml:space="preserve">
+    <value>dataColumnMaxDurability</value>
+  </data>
+  <data name="linkLoadQuest.Text" xml:space="preserve">
+    <value>Load Quest ...</value>
+  </data>
+  <data name="&gt;&gt;dataColumnName.Name" xml:space="preserve">
+    <value>dataColumnName</value>
+  </data>
+  <data name="TopToolStripPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
   <data name="imageListNPC.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
@@ -610,9 +1529,399 @@
         Af8MAAH/AfgBAwH/DAAL
 </value>
   </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>88</value>
-  </metadata>
+  <data name="&gt;&gt;dataColumnEnumerationValue.Name" xml:space="preserve">
+    <value>dataColumnEnumerationValue</value>
+  </data>
+  <data name="xpTaskPane.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
+    <value>toolStripSeparator2</value>
+  </data>
+  <data name="tabPageNPC.ToolTipText" xml:space="preserve">
+    <value>NPC's associated with the quest</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTextTypeValue.Name" xml:space="preserve">
+    <value>dataColumnTextTypeValue</value>
+  </data>
+  <data name="questPartItems.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMaxCharges1.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;questPartItems.Name" xml:space="preserve">
+    <value>questPartItems</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementComparator.Name" xml:space="preserve">
+    <value>dataColumnRequirementComparator</value>
+  </data>
+  <data name="&gt;&gt;saveAsToolStripMenuItem.Name" xml:space="preserve">
+    <value>saveAsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;viewToolStripMenuItem.Name" xml:space="preserve">
+    <value>viewToolStripMenuItem</value>
+  </data>
+  <data name="areaView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;TopToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.LeftToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="menuStripMain.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="DXControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tabPageArea.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;dataTableRequirement.Name" xml:space="preserve">
+    <value>dataTableRequirement</value>
+  </data>
+  <data name="&gt;&gt;tabPageQuestPart.Parent" xml:space="preserve">
+    <value>tabControlMain</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEquipmentTemplateID.Name" xml:space="preserve">
+    <value>dataColumnEquipmentTemplateID</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.LeftToolStripPanel.Parent" xml:space="preserve">
+    <value>toolStripContainerForm</value>
+  </data>
+  <data name="&gt;&gt;dataColumnLevel.Name" xml:space="preserve">
+    <value>dataColumnLevel</value>
+  </data>
+  <data name="&gt;&gt;locationView.Type" xml:space="preserve">
+    <value>DOL.Tools.QuestDesigner.Location, QuestDesigner, Version=0.4.9.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobItemsListTemplateID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageQuest.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumnDefaultNPC.Name" xml:space="preserve">
+    <value>dataColumnDefaultNPC</value>
+  </data>
+  <data name="&gt;&gt;npcView.Type" xml:space="preserve">
+    <value>DOL.Tools.QuestDesigner.NPC, QuestDesigner, Version=0.4.9.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestDate.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionQ.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="webBrowser1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeDescription.Name" xml:space="preserve">
+    <value>dataColumnActionTypeDescription</value>
+  </data>
+  <data name="&gt;&gt;tabPageLocation.Type" xml:space="preserve">
+    <value>NETXP.Controls.Docking.TabPage, NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRegionDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSPD_ABS.Name" xml:space="preserve">
+    <value>dataColumnSPD_ABS</value>
+  </data>
+  <data name="&gt;&gt;dataColumn66.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirmentType.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>QuestDesignerForm</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirmeentN.Name" xml:space="preserve">
+    <value>dataColumnRequirmeentN</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.TopToolStripPanel.Name" xml:space="preserve">
+    <value>toolStripContainerForm.TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;webBrowser1.Name" xml:space="preserve">
+    <value>webBrowser1</value>
+  </data>
+  <data name="xpTGActions.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;linkLabelNewQuest.Parent" xml:space="preserve">
+    <value>xpTGActions</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEquipmentTemplateID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerQuestPart.Name" xml:space="preserve">
+    <value>dataColumnTriggerQuestPart</value>
+  </data>
+  <data name="&gt;&gt;dataColumnIdNb.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnPlatinum.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="newToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;New</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerKeyword.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
+    <value>toolStripSeparator1</value>
+  </data>
+  <data name="&gt;&gt;npcView.Parent" xml:space="preserve">
+    <value>tabPageNPC</value>
+  </data>
+  <data name="&gt;&gt;dataColumnClassType.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnModel.Name" xml:space="preserve">
+    <value>dataColumnModel</value>
+  </data>
+  <data name="toolStripContainerForm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>614, 448</value>
+  </data>
+  <data name="&gt;&gt;LeftToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn56.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZ.Name" xml:space="preserve">
+    <value>dataColumnZ</value>
+  </data>
+  <data name="BottomToolStripPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementV.Name" xml:space="preserve">
+    <value>dataColumnRequirementV</value>
+  </data>
+  <data name="tabPageNPC.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestTriggerID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn73.Name" xml:space="preserve">
+    <value>dataColumn73</value>
+  </data>
+  <data name="&gt;&gt;dataDownloadToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnItemLevel.Name" xml:space="preserve">
+    <value>dataColumnItemLevel</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionP.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRealm.Name" xml:space="preserve">
+    <value>dataColumnRealm</value>
+  </data>
+  <data name="&gt;&gt;dataColumnPackSize.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnIsDropable.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="openToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+O</value>
+  </data>
+  <data name="&gt;&gt;dataColumnY.Name" xml:space="preserve">
+    <value>dataColumnY</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSpellID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.ContentPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPageCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 23</value>
+  </data>
+  <data name="&gt;&gt;dataColumn42.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus10Type.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZoneOffsetX.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn63.Name" xml:space="preserve">
+    <value>dataColumn63</value>
+  </data>
+  <data name="&gt;&gt;webBrowser1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;createToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;aboutToolStripMenuItem.Name" xml:space="preserve">
+    <value>aboutToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;dataColumn32.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;createToolStripMenuItem.Name" xml:space="preserve">
+    <value>createToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZoneDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnX.Name" xml:space="preserve">
+    <value>dataColumnX</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.BottomToolStripPanel.Name" xml:space="preserve">
+    <value>toolStripContainerForm.BottomToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;dataColumnPoisonMaxCharges.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnExtraBonus.Name" xml:space="preserve">
+    <value>dataColumnExtraBonus</value>
+  </data>
+  <data name="&gt;&gt;dataColumnFlags.Name" xml:space="preserve">
+    <value>dataColumnFlags</value>
+  </data>
+  <data name="&gt;&gt;dataColumn26.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageWeb.Name" xml:space="preserve">
+    <value>tabPageWeb</value>
+  </data>
+  <data name="&gt;&gt;dataTableeEnumeration.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageQuest.ToolTipText" xml:space="preserve">
+    <value>Detailed Information about Quest</value>
+  </data>
+  <data name="&gt;&gt;dataColumnDurability.Name" xml:space="preserve">
+    <value>dataColumnDurability</value>
+  </data>
+  <data name="&gt;&gt;dataColumn22.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnStepDescription.Name" xml:space="preserve">
+    <value>dataColumnStepDescription</value>
+  </data>
+  <data name="&gt;&gt;tabPageQuest.Type" xml:space="preserve">
+    <value>NETXP.Controls.Docking.TabPage, NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="xpTGQuestPart.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dataColumn43.Name" xml:space="preserve">
+    <value>dataColumn43</value>
+  </data>
+  <data name="linkSaveQuest.Text" xml:space="preserve">
+    <value>Save Quest ...</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTextTypeDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableTriggerType.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageCode.Parent" xml:space="preserve">
+    <value>tabControlMain</value>
+  </data>
+  <data name="linkLabelNewQuest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 48</value>
+  </data>
+  <data name="&gt;&gt;dataColumn12.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStripContainerForm.ContentPanel.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;customCode.Type" xml:space="preserve">
+    <value>DOL.Tools.QuestDesigner.CustomCode, QuestDesigner, Version=0.4.9.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZoneDescription.Name" xml:space="preserve">
+    <value>dataColumnZoneDescription</value>
+  </data>
+  <data name="&gt;&gt;dataTableeEnumeration.Name" xml:space="preserve">
+    <value>dataTableeEnumeration</value>
+  </data>
+  <data name="&gt;&gt;dataColumnAggroRange.Name" xml:space="preserve">
+    <value>dataColumnAggroRange</value>
+  </data>
+  <data name="linkSaveQuest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 88</value>
+  </data>
+  <data name="&gt;&gt;linkLabelNewQuest.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumn33.Name" xml:space="preserve">
+    <value>dataColumn33</value>
+  </data>
+  <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 22</value>
+  </data>
+  <data name="toolStripContainerForm.ContentPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>614, 402</value>
+  </data>
+  <data name="menuStripMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>614, 24</value>
+  </data>
+  <data name="&gt;&gt;dataColumnColor.Name" xml:space="preserve">
+    <value>dataColumnColor</value>
+  </data>
+  <data name="RightToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumnBonus8.Name" xml:space="preserve">
+    <value>dataColumnBonus8</value>
+  </data>
+  <data name="&gt;&gt;questPartItems.Parent" xml:space="preserve">
+    <value>tabPageQuestPart</value>
+  </data>
+  <data name="&gt;&gt;DXControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="menuStripMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;tabPageLocation.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus4Type.Name" xml:space="preserve">
+    <value>dataColumnBonus4Type</value>
+  </data>
+  <data name="&gt;&gt;saveToolStripMenuItem.Name" xml:space="preserve">
+    <value>saveToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;dataColumn23.Name" xml:space="preserve">
+    <value>dataColumn23</value>
+  </data>
+  <data name="tabPageCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="linkLoadQuest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 68</value>
+  </data>
+  <data name="tabPageArea.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="toolStripContainerForm.TopToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAICAAAAEAGACoDAAAJgAAABAQAAABABgAaAMAAM4MAAAoAAAAIAAAAEAAAAABABgAAAAAAAAA
@@ -687,4 +1996,1391 @@
         89rAANfKwADI8Q==
 </value>
   </data>
+  <data name="statusStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>614, 22</value>
+  </data>
+  <data name="&gt;&gt;dataTableQuest.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn13.Name" xml:space="preserve">
+    <value>dataColumn13</value>
+  </data>
+  <data name="linkLabelNewQuest.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeValue.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BottomToolStripPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="npcView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;dataColumn66.Name" xml:space="preserve">
+    <value>dataColumn66</value>
+  </data>
+  <data name="tabPageNPC.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumn65.Name" xml:space="preserve">
+    <value>dataColumn65</value>
+  </data>
+  <data name="DXControl.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Off</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestTriggerID.Name" xml:space="preserve">
+    <value>dataColumnQuestTriggerID</value>
+  </data>
+  <data name="&gt;&gt;tabPageNPC.Parent" xml:space="preserve">
+    <value>tabControlMain</value>
+  </data>
+  <data name="&gt;&gt;dataColumnItemName.Name" xml:space="preserve">
+    <value>dataColumnItemName</value>
+  </data>
+  <data name="&gt;&gt;positionConverterToolStripMenuItem.Name" xml:space="preserve">
+    <value>positionConverterToolStripMenuItem</value>
+  </data>
+  <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 22</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestDescription.Name" xml:space="preserve">
+    <value>dataColumnQuestDescription</value>
+  </data>
+  <data name="&gt;&gt;dataColumn56.Name" xml:space="preserve">
+    <value>dataColumn56</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeHelp.Name" xml:space="preserve">
+    <value>dataColumnRequirementTypeHelp</value>
+  </data>
+  <data name="&gt;&gt;dataColumn55.Name" xml:space="preserve">
+    <value>dataColumn55</value>
+  </data>
+  <data name="&gt;&gt;dataColumnFlags.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>614, 448</value>
+  </data>
+  <data name="&gt;&gt;npcView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.RightToolStripPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;dataColumnAggroLevel.Name" xml:space="preserve">
+    <value>dataColumnAggroLevel</value>
+  </data>
+  <data name="&gt;&gt;saveQuestDialog.Name" xml:space="preserve">
+    <value>saveQuestDialog</value>
+  </data>
+  <data name="&gt;&gt;dataColumnInvintingNPC.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>QuestDesigner</value>
+  </data>
+  <data name="&gt;&gt;xpTaskPane.Type" xml:space="preserve">
+    <value>NETXP.Controls.TaskPane.XPTaskPane, NETXP.Controls.TaskPane, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="&gt;&gt;dataTableQuest.Name" xml:space="preserve">
+    <value>dataTableQuest</value>
+  </data>
+  <data name="xpTGActions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 116</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSilver.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="openToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAlpJREFUOE+tk21I
+        k1EYhif0oyA0sqIQCix/+GcQFFH9CCmiUBTLLEjShJofVBgL2fxoU9Pp5ubUlS5rU9f8rCyjsA+pUCRC
+        TR1ppmVFUSlmhq78unrnQF1KGHTg/nEOz30993PO+7qJFrmUeiv2n+Mij+XLRLLYULdF2pxlEVIDcw0p
+        AsyxD5fmI/rQ94pqi26eOlsfuZj+7BgSm01QdA4ih7m73Yx9qGpavwatjPebqCzOprPt8YKQgzFagqL0
+        BEjyEFWVaBkdLHMxT34uYNwWR9nVTEoL0zHlp2DMSeaSRk6eKt4VWm5WM/rVPNN5SjDTLQebZEHNA1wr
+        UvHjk3E6tsNcV62e1r3KLGqtKm6WplNpSsVqVFJsOM8VfSKFWjkGtcyZptSYzvC7XByx3zQoqCnTMvlG
+        CX1prnornPUmQJcUXsbSVhGK5bIOkcmQyveeTHiv4VZ5Nk33Nc6iuSO8CIfmECYa/bE/8ON1iRipJNh5
+        F0V6Bd86lfQ1JlFj1TDVq4COKCegLVIwHmGiKRB7/V6G7+5koHozymgfYRy5E1CgTWKgXcZ1i5qWp0KS
+        rjgBcAJawph6FszYk/2M1O1isGYLX8p9ab6wgqP+3rMvYciS01GfzA1LFvQkQ6sQ9/khxhoCGHnox1Dt
+        NvorxXw0b8Km8UQh2cip6GOzgNyMeKqKM7HdjqFZJ5pRk2YJ9aql3EnxoCJxNaZ4Ly6e3UDY3O6OEXRp
+        59ApTpIhiyDh9GHORAZyPHQPB/ZtZ/cOMVvFPvh6e7F+3SrWrHRnraf7Xz/xf/rJ/kvxb84I3U1y+9/W
+        AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="&gt;&gt;RightToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="createToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 22</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestName.Name" xml:space="preserve">
+    <value>dataColumnQuestName</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobID.Name" xml:space="preserve">
+    <value>dataColumnMobID</value>
+  </data>
+  <data name="linkSaveQuest.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>18, 2, 0, 2</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Save</value>
+  </data>
+  <data name="tabPageArea.Title" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="&gt;&gt;dataColumnExtraBonus.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;xpTGQuestPart.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabPageItem.Name" xml:space="preserve">
+    <value>tabPageItem</value>
+  </data>
+  <data name="&gt;&gt;dataColumn36.Name" xml:space="preserve">
+    <value>dataColumn36</value>
+  </data>
+  <data name="&gt;&gt;dataColumn35.Name" xml:space="preserve">
+    <value>dataColumn35</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeK.Name" xml:space="preserve">
+    <value>dataColumnTriggerTypeK</value>
+  </data>
+  <data name="linkLoadQuest.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 300</value>
+  </data>
+  <data name="&gt;&gt;dataTableTrigger.Name" xml:space="preserve">
+    <value>dataTableTrigger</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionQ.Name" xml:space="preserve">
+    <value>dataColumnActionQ</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus10.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSpeed.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageArea.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 23</value>
+  </data>
+  <data name="&gt;&gt;toolTip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnPoisonCharges.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="&gt;&gt;dataColumn26.Name" xml:space="preserve">
+    <value>dataColumn26</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus6.Name" xml:space="preserve">
+    <value>dataColumnBonus6</value>
+  </data>
+  <data name="&gt;&gt;dataColumn25.Name" xml:space="preserve">
+    <value>dataColumn25</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus5.Name" xml:space="preserve">
+    <value>dataColumnBonus5</value>
+  </data>
+  <data name="&gt;&gt;StatusIcon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableAction.Name" xml:space="preserve">
+    <value>dataTableAction</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
+  </data>
+  <data name="&gt;&gt;dataColumn65.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="questPartItems.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>497, 17</value>
+  </data>
+  <data name="areaView.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSpellID1.Name" xml:space="preserve">
+    <value>dataColumnSpellID1</value>
+  </data>
+  <data name="&gt;&gt;dataColumn16.Name" xml:space="preserve">
+    <value>dataColumn16</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus4.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn15.Name" xml:space="preserve">
+    <value>dataColumn15</value>
+  </data>
+  <data name="TopToolStripPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="openToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Open</value>
+  </data>
+  <data name="DXControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="LeftToolStripPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionP.Name" xml:space="preserve">
+    <value>dataColumnActionP</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEnumerationType.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStripMenuItemTaskPane.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>TextBeforeImage</value>
+  </data>
+  <data name="tabPageItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSize.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageItem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 23</value>
+  </data>
+  <data name="toolStripContainerForm.RightToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="statusStrip.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumnMaxDurability.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnAddToworld.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnIsDropable.Name" xml:space="preserve">
+    <value>dataColumnIsDropable</value>
+  </data>
+  <data name="customCode.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;xpTGQuestPart.Type" xml:space="preserve">
+    <value>NETXP.Controls.TaskPane.XPTaskPaneGroup, NETXP.Controls.TaskPane, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeValue.Name" xml:space="preserve">
+    <value>dataColumnTriggerTypeValue</value>
+  </data>
+  <data name="&gt;&gt;tabPageCode.Type" xml:space="preserve">
+    <value>NETXP.Controls.Docking.TabPage, NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="tabPageMap.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.TopToolStripPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeDescription.Name" xml:space="preserve">
+    <value>dataColumnTriggerTypeDescription</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZoneOffsetY.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.BottomToolStripPanel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;dataColumnDPS_AF.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageItem.Title" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="&gt;&gt;dataColumnColor.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DXControl.Name" xml:space="preserve">
+    <value>DXControl</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.Parent" xml:space="preserve">
+    <value>toolStripContainerForm.TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;dataColumn60.Name" xml:space="preserve">
+    <value>dataColumn60</value>
+  </data>
+  <data name="&gt;&gt;dataColumnObjectName.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableRequirementType.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableActionType.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn39.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn41.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;questInfo.Type" xml:space="preserve">
+    <value>DOL.Tools.QuestDesigner.QuestInfo, QuestDesigner, Version=0.4.9.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;dataColumn35.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="locationView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZ.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;xpTGActions.Type" xml:space="preserve">
+    <value>NETXP.Controls.TaskPane.XPTaskPaneGroup, NETXP.Controls.TaskPane, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="TopToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumn31.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;imageListNPC.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageQuest.Parent" xml:space="preserve">
+    <value>tabControlMain</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="&gt;&gt;dataColumn29.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuality.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageQuestPart.Type" xml:space="preserve">
+    <value>NETXP.Controls.Docking.TabPage, NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="&gt;&gt;dataTableQuestCharacterClass.Name" xml:space="preserve">
+    <value>dataTableQuestCharacterClass</value>
+  </data>
+  <data name="xpTGQuestPart.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tabControlMain.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;dataTableQuestPart.Name" xml:space="preserve">
+    <value>dataTableQuestPart</value>
+  </data>
+  <data name="&gt;&gt;dataColumnIsTradable.Name" xml:space="preserve">
+    <value>dataColumnIsTradable</value>
+  </data>
+  <data name="&gt;&gt;dataColumn40.Name" xml:space="preserve">
+    <value>dataColumn40</value>
+  </data>
+  <data name="&gt;&gt;dataTableItemTemplate.Name" xml:space="preserve">
+    <value>dataTableItemTemplate</value>
+  </data>
+  <data name="&gt;&gt;dataColumn21.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn25.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
+    <value>fileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionType.Name" xml:space="preserve">
+    <value>dataColumnActionType</value>
+  </data>
+  <data name="&gt;&gt;positionConverterToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn9.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZoneOffsetY.Name" xml:space="preserve">
+    <value>dataColumnZoneOffsetY</value>
+  </data>
+  <data name="&gt;&gt;dataColumn15.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataTableLocation.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 20</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus1.Name" xml:space="preserve">
+    <value>dataColumnBonus1</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnIsPickable.Name" xml:space="preserve">
+    <value>dataColumnIsPickable</value>
+  </data>
+  <data name="&gt;&gt;dataColumnX.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionQuestPartID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn11.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StatusLabel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;dataColumn30.Name" xml:space="preserve">
+    <value>dataColumn30</value>
+  </data>
+  <data name="toolStripContainerForm.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumn37.Name" xml:space="preserve">
+    <value>dataColumn37</value>
+  </data>
+  <data name="statusStrip.Text" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;tabPageMap.Parent" xml:space="preserve">
+    <value>tabControlMain</value>
+  </data>
+  <data name="&gt;&gt;dataColumn8.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus1Type.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn7.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEffect.Name" xml:space="preserve">
+    <value>dataColumnEffect</value>
+  </data>
+  <data name="&gt;&gt;viewToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionQuestPartID.Name" xml:space="preserve">
+    <value>dataColumnActionQuestPartID</value>
+  </data>
+  <data name="xpTGActions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 3</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus3.Name" xml:space="preserve">
+    <value>dataColumnBonus3</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRegionID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageQuestPart.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMaxCount.Name" xml:space="preserve">
+    <value>dataColumnMaxCount</value>
+  </data>
+  <data name="&gt;&gt;dataColumnZoneOffsetX.Name" xml:space="preserve">
+    <value>dataColumnZoneOffsetX</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus3Type.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnStep.Name" xml:space="preserve">
+    <value>dataColumnStep</value>
+  </data>
+  <data name="&gt;&gt;dataColumn27.Name" xml:space="preserve">
+    <value>dataColumn27</value>
+  </data>
+  <data name="tabPageQuestPart.Title" xml:space="preserve">
+    <value>QuestPart</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus5Type.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageNPC.Title" xml:space="preserve">
+    <value>NPC</value>
+  </data>
+  <data name="&gt;&gt;tabPageMap.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeID.Name" xml:space="preserve">
+    <value>dataColumnRequirementTypeID</value>
+  </data>
+  <data name="locationView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="positionConverterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 22</value>
+  </data>
+  <data name="&gt;&gt;questInfo.Name" xml:space="preserve">
+    <value>questInfo</value>
+  </data>
+  <data name="&gt;&gt;dataColumn10.Name" xml:space="preserve">
+    <value>dataColumn10</value>
+  </data>
+  <data name="&gt;&gt;dataColumn17.Name" xml:space="preserve">
+    <value>dataColumn17</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
+    <value>toolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRealmValue.Name" xml:space="preserve">
+    <value>dataColumnRealmValue</value>
+  </data>
+  <data name="LeftToolStripPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tabPageMap.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;dataTableRequirement.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStripMenuItemTaskPane.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="&gt;&gt;ContentPanel.Name" xml:space="preserve">
+    <value>ContentPanel</value>
+  </data>
+  <data name="&gt;&gt;dataColumnStepDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionType.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;StatusIcon.Name" xml:space="preserve">
+    <value>StatusIcon</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCopper.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="questInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnItemModel.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageWeb.Type" xml:space="preserve">
+    <value>NETXP.Controls.Docking.TabPage, NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="itemView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;areaView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnModel.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageQuest.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 23</value>
+  </data>
+  <data name="&gt;&gt;customCode.Parent" xml:space="preserve">
+    <value>tabPageCode</value>
+  </data>
+  <data name="tabPageWeb.Title" xml:space="preserve">
+    <value>Web</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus7Type.Name" xml:space="preserve">
+    <value>dataColumnBonus7Type</value>
+  </data>
+  <data name="&gt;&gt;tabPageArea.Name" xml:space="preserve">
+    <value>tabPageArea</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRegion.Name" xml:space="preserve">
+    <value>dataColumnRegion</value>
+  </data>
+  <data name="&gt;&gt;aboutToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn64.Name" xml:space="preserve">
+    <value>dataColumn64</value>
+  </data>
+  <data name="&gt;&gt;dataColumn4.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageQuestPart.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumn3.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="xpTGActions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="&gt;&gt;dataColumnEmblem.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMaxCount.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageItem.ToolTipText" xml:space="preserve">
+    <value>Item's associated with the quest</value>
+  </data>
+  <data name="&gt;&gt;dataColumnPoisonSpellID.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageWeb.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMaxcondition.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageQuestPart.ToolTipText" xml:space="preserve">
+    <value>QuestPart's making up the whole logic of a quest</value>
+  </data>
+  <data name="tabControlMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 0</value>
+  </data>
+  <data name="&gt;&gt;dataColumn2.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControlMain.Type" xml:space="preserve">
+    <value>NETXP.Controls.Docking.TabControl, NETXP.Controls.Docking, Version=3.0.5600.2205, Culture=neutral, PublicKeyToken=91709f39e8298892</value>
+  </data>
+  <data name="BottomToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="questInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;dataColumn61.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.RightToolStripPanel.Parent" xml:space="preserve">
+    <value>toolStripContainerForm</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus8Type.Name" xml:space="preserve">
+    <value>dataColumnBonus8Type</value>
+  </data>
+  <data name="RightToolStripPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;LeftToolStripPanel.Name" xml:space="preserve">
+    <value>LeftToolStripPanel</value>
+  </data>
+  <data name="tabPageWeb.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumn1.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>E&amp;xit</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeHelp.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeHelp.Name" xml:space="preserve">
+    <value>dataColumnTriggerTypeHelp</value>
+  </data>
+  <data name="menuStripMain.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;saveToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="questPartItems.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="locationView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;linkSaveQuest.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageCode.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerType.Name" xml:space="preserve">
+    <value>dataColumnTriggerType</value>
+  </data>
+  <data name="tabPageLocation.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 22</value>
+  </data>
+  <data name="toolStripContainerForm.ContentPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumn64.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageWeb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 23</value>
+  </data>
+  <data name="xpTaskPane.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.RightToolStripPanel.Name" xml:space="preserve">
+    <value>toolStripContainerForm.RightToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;dataColumn60.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnProcSpellID1.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobMeleeDamageType.Name" xml:space="preserve">
+    <value>dataColumnMobMeleeDamageType</value>
+  </data>
+  <data name="positionConverterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Position Converter...</value>
+  </data>
+  <data name="itemView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus7.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="webBrowser1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;itemView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus3.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus1Type.Name" xml:space="preserve">
+    <value>dataColumnBonus1Type</value>
+  </data>
+  <data name="&gt;&gt;dataTableMob.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn54.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageQuestPart.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;linkLabelNewQuest.Name" xml:space="preserve">
+    <value>linkLabelNewQuest</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.ContentPanel.Name" xml:space="preserve">
+    <value>toolStripContainerForm.ContentPanel</value>
+  </data>
+  <data name="toolStripContainerForm.BottomToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="customCode.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;dataColumnCanDropAsLoot.Name" xml:space="preserve">
+    <value>dataColumnCanDropAsLoot</value>
+  </data>
+  <data name="&gt;&gt;dataColumnQuestDate.Name" xml:space="preserve">
+    <value>dataColumnQuestDate</value>
+  </data>
+  <data name="menuStripMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnAggroLevel.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="xpTaskPane.Text" xml:space="preserve">
+    <value>xpTaskPane1</value>
+  </data>
+  <data name="&gt;&gt;dataColumnCondition.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerType.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;xpTaskPane.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;dataColumn44.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn59.Name" xml:space="preserve">
+    <value>dataColumn59</value>
+  </data>
+  <data name="&gt;&gt;dataSetQuest.Name" xml:space="preserve">
+    <value>dataSetQuest</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.ContentPanel.Parent" xml:space="preserve">
+    <value>toolStripContainerForm</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus4.Name" xml:space="preserve">
+    <value>dataColumnBonus4</value>
+  </data>
+  <data name="&gt;&gt;dataColumn38.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageQuestPart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>442, 377</value>
+  </data>
+  <data name="&gt;&gt;dataColumn40.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="linkLabelNewQuest.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMaximumLevel.Name" xml:space="preserve">
+    <value>dataColumnMaximumLevel</value>
+  </data>
+  <data name="&gt;&gt;dataColumn34.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeID.Name" xml:space="preserve">
+    <value>dataColumnActionTypeID</value>
+  </data>
+  <data name="&gt;&gt;dataColumnDPS_AF.Name" xml:space="preserve">
+    <value>dataColumnDPS_AF</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobRealm.Name" xml:space="preserve">
+    <value>dataColumnMobRealm</value>
+  </data>
+  <data name="&gt;&gt;creditsToolStripMenuItem.Name" xml:space="preserve">
+    <value>creditsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;locationView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobMeleeDamageType.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn30.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeValue.Name" xml:space="preserve">
+    <value>dataColumnActionTypeValue</value>
+  </data>
+  <data name="tabControlMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>446, 402</value>
+  </data>
+  <data name="&gt;&gt;tabPageArea.Parent" xml:space="preserve">
+    <value>tabControlMain</value>
+  </data>
+  <data name="&gt;&gt;dataTableRegion.Name" xml:space="preserve">
+    <value>dataTableRegion</value>
+  </data>
+  <data name="&gt;&gt;dataColumn28.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnIsPickable.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMobItemsListTemplateID.Name" xml:space="preserve">
+    <value>dataColumnMobItemsListTemplateID</value>
+  </data>
+  <data name="&gt;&gt;dataTableTriggerType.Name" xml:space="preserve">
+    <value>dataTableTriggerType</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeDescription.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="saveAsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save &amp;As</value>
+  </data>
+  <data name="&gt;&gt;dataColumn9.Name" xml:space="preserve">
+    <value>dataColumn9</value>
+  </data>
+  <data name="&gt;&gt;dataColumn24.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="itemView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tabPageMap.Title" xml:space="preserve">
+    <value>Map Editor</value>
+  </data>
+  <data name="&gt;&gt;toolStripContainerForm.BottomToolStripPanel.Parent" xml:space="preserve">
+    <value>toolStripContainerForm</value>
+  </data>
+  <data name="&gt;&gt;linkSaveQuest.Name" xml:space="preserve">
+    <value>linkSaveQuest</value>
+  </data>
+  <data name="&gt;&gt;dataColumn20.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="npcView.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StatusProgress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 16</value>
+  </data>
+  <data name="&gt;&gt;dataColumn18.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn39.Name" xml:space="preserve">
+    <value>dataColumn39</value>
+  </data>
+  <data name="&gt;&gt;dataColumnRequirementTypeValue.Name" xml:space="preserve">
+    <value>dataColumnRequirementTypeValue</value>
+  </data>
+  <data name="&gt;&gt;dataColumnWeight.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn14.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn8.Name" xml:space="preserve">
+    <value>dataColumn8</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="&gt;&gt;dataColumnMaxcondition.Name" xml:space="preserve">
+    <value>dataColumnMaxcondition</value>
+  </data>
+  <data name="&gt;&gt;dataColumnTriggerTypeValue.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn10.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="xpTGActions.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dataTableItemTemplate.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn29.Name" xml:space="preserve">
+    <value>dataColumn29</value>
+  </data>
+  <data name="&gt;&gt;dataColumnActionTypeHelp.Name" xml:space="preserve">
+    <value>dataColumnActionTypeHelp</value>
+  </data>
+  <data name="webBrowser1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;dataColumnBonus6Type.Name" xml:space="preserve">
+    <value>dataColumnBonus6Type</value>
+  </data>
+  <data name="&gt;&gt;dataTableTrigger.Type" xml:space="preserve">
+    <value>System.Data.DataTable, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemTaskPane.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumnSilver.Name" xml:space="preserve">
+    <value>dataColumnSilver</value>
+  </data>
+  <data name="&gt;&gt;dataColumn73.Type" xml:space="preserve">
+    <value>System.Data.DataColumn, System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataColumn19.Name" xml:space="preserve">
+    <value>dataColumn19</value>
+  </data>
+  <data name="&gt;&gt;dataColumnPlatinum.Name" xml:space="preserve">
+    <value>dataColumnPlatinum</value>
+  </data>
+  <data name="&gt;&gt;dataColumn7.Name" xml:space="preserve">
+    <value>dataColumn7</value>
+  </data>
+  <data name="&gt;&gt;dataColumnAddToworld.Name" xml:space="preserve">
+    <value>dataColumnAddToworld</value>
+  </data>
+  <data name="&gt;&gt;tabPageQuest.Name" xml:space="preserve">
+    <value>tabPageQuest</value>
+  </data>
+  <metadata name="dataColumnEffect.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnActionType.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnTriggerType.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn20.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnQuestDate.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnBonus10Type.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnQuestDescription.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataSetQuest.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="saveQuestDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>121, 54</value>
+  </metadata>
+  <metadata name="imageListNPC.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>387, 17</value>
+  </metadata>
+  <metadata name="menuStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
+  <metadata name="dataColumn17.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnRegionDescription.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnSilver.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnActionP.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnProcSpellID1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn33.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnBonus7.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnCopper.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnZoneID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn42.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnQuestID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnRequirementID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnPlatinum.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn62.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnTriggerKeyword.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnMaxCount.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn39.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnRequirementComparator.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnBonus10.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn22.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn41.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnDescription.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnMaximumLevel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnQuestTriggerID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnProcSpellID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnTriggerQuestPart.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn18.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnText.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnRequirmentType.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn35.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn21.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnBonus7Type.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnTriggerObject.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn15.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn34.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn19.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dataColumnMinimumLevel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnBonus9.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataTableQuestCharacterClass.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnQuestAuthor.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnPackSize.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnDefaultNPC.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnZoneRegionID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnActionQ.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn43.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="openQuestDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>251, 17</value>
+  </metadata>
+  <metadata name="dataColumn63.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnQuestPartIF.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnRegionID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn66.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnZoneDescription.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnPoisonCharges.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnCharges.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn64.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnSpellID1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnBonus8Type.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="datacolumnquestPartID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnBonus8.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn40.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnEmblem.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnActionQuestPartID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn26.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn28.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn37.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnQuestName.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn16.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnMaxCharges1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="saveScriptDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>255, 54</value>
+  </metadata>
+  <metadata name="dataColumnZoneOffsetY.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnCharacterClass.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataSetData.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>137, 17</value>
+  </metadata>
+  <metadata name="dataColumn59.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnCharges1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn32.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnSpellID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn23.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnZoneOffsetX.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnBonus9Type.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnRequirementV.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>88</value>
+  </metadata>
+  <metadata name="dataColumnInvintingNPC.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnBonus6.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnRequirmeentN.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn73.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnCanDropAsLoot.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnPoisonSpellID.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnBonus6Type.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
+  <metadata name="dataColumnExtension.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn65.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn14.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnIsTradable.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumn36.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>388, 54</value>
+  </metadata>
+  <metadata name="dataColumnQuestVersion.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnGold.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="dataColumnPoisonMaxCharges.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>

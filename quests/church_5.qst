@@ -729,7 +729,7 @@
     <Namespace>DOL.GS.Quests</Namespace>
     <MaxQuestCount>1</MaxQuestCount>
     <InitializationCode />
-    <CheckQuestQualificationCode>check</CheckQuestQualificationCode>
+    <CheckQuestQualificationCode />
   </Quest>
   <Mob>
     <Name>Lady Triss</Name>

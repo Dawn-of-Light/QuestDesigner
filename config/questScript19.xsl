@@ -37,9 +37,11 @@ using DOL.Events;
 using DOL.GS.PacketHandler;
 using log4net;
 using DOL.GS.Quests;
+using DOL.GS.Behaviour;
+using DOL.GS.Behaviour.Attributes;
 using DOL.AI.Brain;
 
-namespace <xsl:value-of select="Namespace"/> {
+	namespace <xsl:value-of select="Namespace"/> {
 	
      /* The first thing we do, is to declare the class we create
 	 * as Quest. To do this, we derive from the abstract class
@@ -342,14 +344,14 @@ namespace <xsl:value-of select="Namespace"/> {
 		#region defineQuestParts
 
 		QuestBuilder builder = QuestMgr.getBuilder(typeof(<xsl:value-of select="Name"/>));
-			BaseQuestPart a;
-			<xsl:for-each select="/Quest/QuestPart"><xsl:sort select="Position" order="ascending" data-type="number"/>a = builder.CreateQuestPart(<xsl:value-of select="defaultNPC"/>,<xsl:value-of select="MaxExecutions"/>);
-				<xsl:for-each select="QuestPartTrigger">a.AddTrigger(<xsl:value-of select="TypeName"/><xsl:if test="K">,<xsl:value-of disable-output-escaping="yes" select="K"/></xsl:if><xsl:if test="I">,<xsl:value-of disable-output-escaping="yes" select="I"/></xsl:if>);
+			QuestBehaviour a;
+			<xsl:for-each select="/Quest/QuestPart"><xsl:sort select="Position" order="ascending" data-type="number"/>a = builder.CreateBehaviour(<xsl:value-of select="defaultNPC"/>,<xsl:value-of select="MaxExecutions"/>);
+				<xsl:for-each select="QuestPartTrigger">a.AddTrigger(<xsl:value-of select="TypeName"/>,<xsl:value-of disable-output-escaping="yes" select="K"/>,<xsl:value-of disable-output-escaping="yes" select="I"/>);
 			</xsl:for-each>
-			<xsl:for-each select="QuestPartRequirement">a.AddRequirement(<xsl:value-of select="TypeName"/><xsl:if test="N">,<xsl:value-of disable-output-escaping="yes" select="N"/></xsl:if><xsl:if test="V">,<xsl:value-of disable-output-escaping="yes" select="V"/></xsl:if><xsl:if test="Comparator">,(eComparator)<xsl:value-of select="Comparator"/></xsl:if>);
+			<xsl:for-each select="QuestPartRequirement">a.AddRequirement(<xsl:value-of select="TypeName"/>,<xsl:value-of disable-output-escaping="yes" select="N"/>,<xsl:value-of disable-output-escaping="yes" select="V"/><xsl:if test="Comparator">,(eComparator)<xsl:value-of select="Comparator"/></xsl:if>);
 			</xsl:for-each>
-			<xsl:for-each select="QuestPartAction">a.AddAction(<xsl:value-of select="TypeName"/><xsl:if test="P">,<xsl:value-of disable-output-escaping="yes" select="P"/></xsl:if><xsl:if test="Q">,<xsl:value-of disable-output-escaping="yes" select="Q"/></xsl:if>);
-			</xsl:for-each>AddQuestPart(a);
+			<xsl:for-each select="QuestPartAction">a.AddAction(<xsl:value-of select="TypeName"/>,<xsl:value-of disable-output-escaping="yes" select="P"/>,<xsl:value-of disable-output-escaping="yes" select="Q"/>);
+			</xsl:for-each>AddBehaviour(a);
 			</xsl:for-each>
 			#endregion
 
@@ -381,7 +383,7 @@ namespace <xsl:value-of select="Namespace"/> {
 			 */
 			if (<xsl:value-of select="InvitingNPC"/> == null)
 				return;
-			/* Now we remove to SirQuait the possibility to give this quest to players */			
+			/* Now we remove the possibility to give this quest to players */			
 			<xsl:value-of select="InvitingNPC"/>.RemoveQuestToGive(typeof (<xsl:value-of select="Name"/>));
 		}
 

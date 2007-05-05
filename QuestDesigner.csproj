@@ -121,6 +121,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapping\DXControl.Designer.cs">
+      <DependentUpon>DXControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mapping\DX\Meshes\Rectangle.cs" />
     <Compile Include="Mapping\Module\AbstractDataRowModule.cs" />
     <Compile Include="Mapping\Module\AreaModule.cs" />
@@ -157,7 +160,7 @@
       <DependentUpon>Area.cs</DependentUpon>
     </Compile>
     <Compile Include="QuestDesigner\Controls\Selectors\BaseSelector.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="QuestDesigner\Controls\Selectors\AreaSelector.cs">
       <SubType>Form</SubType>
@@ -564,9 +567,16 @@
     <None Include="Resources\mob32.png" />
     <None Include="Resources\npc32.png" />
     <None Include="Resources\empty.bmp" />
+    <EmbeddedResource Include="QuestDesigner\QuestDesignerForm.de.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>QuestDesignerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuestDesigner\WebBrowser.resx">
       <SubType>Designer</SubType>
       <DependentUpon>WebBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.de-DE.resx">
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\path.png" />
     <None Include="Resources\watermark.jpg" />

@@ -30,6 +30,7 @@ using DOL.Tools.QuestDesigner.Util;
 using System.ComponentModel;
 using System.Threading;
 using DOL.Tools.QuestDesigner.Properties;
+using DOL.Tools.QuestDesigner.Exceptions;
 
 namespace DOL.Tools.QuestDesigner.Export
 {
@@ -70,7 +71,7 @@ namespace DOL.Tools.QuestDesigner.Export
                 FileInfo fileInfo = new FileInfo(saveDialog.FileName);
                 Settings.Default.LastExportDirectory = fileInfo.DirectoryName;
 
-                Log.Info("Exporting quest to " + saveDialog.FileName + ".");
+                Log.Info(String.Format(Resources.msgExportingQuest, saveDialog.FileName));
                 // make sure last edit is stored in dataset
 
                 try
@@ -84,7 +85,7 @@ namespace DOL.Tools.QuestDesigner.Export
                 }
                 catch (Exception e)
                 {
-                    QuestDesignerMain.HandleException(e, "Export error: " + e.Message);
+                    QuestDesignerMain.HandleException(e, Resources.msgExportError+": " + e.Message);
                     Cursor.Current = Cursors.Default;
                 }
             }
@@ -93,7 +94,7 @@ namespace DOL.Tools.QuestDesigner.Export
 
         private void exportWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Log.Info("Quest successfully exported to "+saveDialog.FileName+".");
+            Log.Info(String.Format(Resources.msgQuestExported, saveDialog.FileName));
 
             QuestDesignerMain.DesignerForm.Cursor = Cursors.Default;            
             QuestDesignerMain.DesignerForm.StatusProgress.Value = QuestDesignerMain.DesignerForm.StatusProgress.Minimum;
@@ -126,6 +127,53 @@ namespace DOL.Tools.QuestDesigner.Export
 
         protected abstract bool ValidateData(DataSet questDataSet);
 
+        protected virtual String PrepareValue(DataSet dataSet, Object value, String valueDescription)
+        {
+            
+            if (valueDescription.Contains(Const.SELECTOR_QUESTTYPE))
+            {
+                if (value is DBNull || String.IsNullOrEmpty(Convert.ToString(value)))
+                {
+                    value = "typeof(" + dataSet.Tables[DB.TABLE_QUEST].Rows[0][DB.COL_QUEST_NAME] + ")";
+                } 
+                else                
+                {
+                    value = "typeof(" + value + ")";
+                }
+            }
+            else if (valueDescription.Contains(Const.TYPE_STRING))
+            {
+                if (value is DBNull || String.IsNullOrEmpty(Convert.ToString(value)))
+                {
+                    value = "null";
+                }
+                else if (!DB.isObjectName(value))
+                {
+                    value = Utils.ToEscapedText(value);
+                }
+            }
+            else if (valueDescription.Contains(Const.SELECTOR_TEXTTYPE))
+            {
+                if (value is DBNull || String.IsNullOrEmpty(Convert.ToString(value)))
+                {
+                    value = typeof(eTextType).Name + "." + eTextType.None;
+                }
+                else
+                {
+                    value = "(" + typeof(eTextType).Name + ")" + value;
+                }
+            }
+            else
+            {
+                if (value is DBNull || String.IsNullOrEmpty(Convert.ToString(value)))
+                {
+                    value = "null";
+                }
+            }
+
+            return Convert.ToString(value);
+        }
+
         protected virtual DataSet PrepareDataSet(DataSet questDataSet, string scriptPath)
         {
             DataSet dataSet = questDataSet.Copy();
@@ -144,8 +192,6 @@ namespace DOL.Tools.QuestDesigner.Export
                 questStep[DB.COL_QUESTSTEP_DESCRIPTION] = Utils.Escape(questStep[DB.COL_QUESTSTEP_DESCRIPTION]);
             }
 
-
-
             String invitingNPC = (string)dataSet.Tables[DB.TABLE_QUEST].Rows[0][DB.COL_QUEST_INVITINGNPC];
 
             // check for string parameter in action, trigger, requirement and add needed ",'
@@ -156,26 +202,13 @@ namespace DOL.Tools.QuestDesigner.Export
                 string triggerType = Convert.ToString(row[DB.COL_QUESTPARTTRIGGER_TYPE]);
                 DataRow[] triggerRows = DB.TriggerTypeTable.Select(DB.COL_TRIGGERTYPE_ID+"=" + triggerType + "");
                 if (triggerRows.Length != 1)
-                    throw new Exception("No or multiple Triggertypes found for " + triggerType);
+                    throw new QuestPartConfigurationException("No or multiple Triggertypes found for " + triggerType);
 
-                //string k = Convert.ToString(triggerRows[0].ItemArray[3]);
-                if (row[DB.COL_QUESTPARTTRIGGER_K] is DBNull)
-                {
-                    row[DB.COL_QUESTPARTTRIGGER_K] = "null";
-                }
-                else
-                {
-                    if (!DB.isObjectName(row[DB.COL_QUESTPARTTRIGGER_K]))
-                        row[DB.COL_QUESTPARTTRIGGER_K] = Utils.ToEscapedText(row[DB.COL_QUESTPARTTRIGGER_K]);
-                }
-
+                string k = Convert.ToString(triggerRows[0][DB.COL_TRIGGERTYPE_K]);
+                row[DB.COL_QUESTPARTTRIGGER_K] = PrepareValue(dataSet, row[DB.COL_QUESTPARTTRIGGER_K], k);
+                
                 string i = Convert.ToString(triggerRows[0][DB.COL_TRIGGERTYPE_I]);
-
-                if (i.Contains(Const.TYPE_STRING) && !(row[DB.COL_QUESTPARTTRIGGER_I] is DBNull))
-                {
-                    if (!DB.isObjectName(row[DB.COL_QUESTPARTTRIGGER_I]))
-                        row[DB.COL_QUESTPARTTRIGGER_I] = Utils.ToEscapedText(row[DB.COL_QUESTPARTTRIGGER_I]);
-                }
+                row[DB.COL_QUESTPARTTRIGGER_I] = PrepareValue(dataSet, row[DB.COL_QUESTPARTTRIGGER_I], i);
             }
 
             foreach (DataRow row in dataSet.Tables[DB.TABLE_QUESTPARTREQUIREMENT].Rows)
@@ -185,26 +218,13 @@ namespace DOL.Tools.QuestDesigner.Export
                 string requType = Convert.ToString(row[DB.COL_QUESTPARTREQUIREMENT_TYPE]);
                 DataRow[] requRows = DB.RequirementTypeTable.Select(DB.COL_REQUIREMENTTYPE_ID+"=" + requType + "");
                 if (requRows.Length != 1)
-                    throw new Exception("No or multiple Requirementtypes found for " + requType);
+                    throw new QuestPartConfigurationException("No or multiple Requirementtypes found for " + requType);
 
                 string n = Convert.ToString(requRows[0][DB.COL_REQUIREMENTTYPE_N]);
+                row[DB.COL_QUESTPARTREQUIREMENT_N] = PrepareValue(dataSet, row[DB.COL_QUESTPARTREQUIREMENT_N], n);
+
                 string v = Convert.ToString(requRows[0][DB.COL_REQUIREMENTTYPE_V]);
-
-                if (n.Contains(Const.TYPE_STRING) && !(row[DB.COL_QUESTPARTREQUIREMENT_N] is DBNull))
-                {
-                    if (!DB.isObjectName(row[DB.COL_QUESTPARTREQUIREMENT_N]))
-                        row[DB.COL_QUESTPARTREQUIREMENT_N] = Utils.ToEscapedText(row[DB.COL_QUESTPARTREQUIREMENT_N]);
-                }
-                else if (row[DB.COL_QUESTPARTREQUIREMENT_N] is DBNull)
-                {
-                    row[DB.COL_QUESTPARTREQUIREMENT_N] = "null";
-                }
-
-                if (v.Contains(Const.TYPE_STRING) && !(row[DB.COL_QUESTPARTREQUIREMENT_V] is DBNull))
-                {
-                    if (!DB.isObjectName(row[DB.COL_QUESTPARTREQUIREMENT_V]))
-                        row[DB.COL_QUESTPARTREQUIREMENT_V] = Utils.ToEscapedText(row[DB.COL_QUESTPARTREQUIREMENT_V]);
-                }
+                row[DB.COL_QUESTPARTREQUIREMENT_V] = PrepareValue(dataSet, row[DB.COL_QUESTPARTREQUIREMENT_V], v);                
             }
 
             foreach (DataRow row in dataSet.Tables[DB.TABLE_QUESTPARTACTION].Rows)
@@ -214,33 +234,16 @@ namespace DOL.Tools.QuestDesigner.Export
                 string actionType = Convert.ToString(row[DB.COL_QUESTPARTACTION_TYPE]);
                 DataRow[] actionRows = DB.ActionTypeTable.Select(DB.COL_ACTIONTYPE_ID+"=" + actionType + "");
                 if (actionRows.Length != 1)
-                    throw new Exception("No or multiple Actiontypes found for " + actionType);
+                    throw new QuestPartConfigurationException("No or multiple Actiontypes found for " + actionType);
 
                 string p = Convert.ToString(actionRows[0][DB.COL_ACTIONTYPE_P]);
+                row[DB.COL_QUESTPARTACTION_P] = PrepareValue(dataSet, row[DB.COL_QUESTPARTACTION_P], p);
+
                 string q = Convert.ToString(actionRows[0][DB.COL_ACTIONTYPE_Q]);
-
-                if (p.Contains(Const.TYPE_STRING) && !(row[DB.COL_QUESTPARTACTION_P] is DBNull))
-                {
-                    if (!DB.isObjectName(row[DB.COL_QUESTPARTACTION_P]))
-                        row[DB.COL_QUESTPARTACTION_P] = Utils.ToEscapedText(row[DB.COL_QUESTPARTACTION_P]);
-                }
-                else if (row[DB.COL_QUESTPARTACTION_P] is DBNull)
-                {
-                    row[DB.COL_QUESTPARTACTION_P] = "null";
-                }
-
-                if (q.Contains(Const.TYPE_STRING) && !(row[DB.COL_QUESTPARTACTION_Q] is DBNull))
-                {
-                    if (!DB.isObjectName(row[DB.COL_QUESTPARTACTION_Q]))
-                        row[DB.COL_QUESTPARTACTION_Q] = Utils.ToEscapedText(row[DB.COL_QUESTPARTACTION_Q]);
-                }
-                else if (q.Contains(Const.SELECTOR_TEXTTYPE) && !(row[DB.COL_QUESTPARTACTION_Q] is DBNull))
-                {
-                    row[DB.COL_QUESTPARTACTION_Q] = "("+typeof(eTextType).Name+")" + row[DB.COL_QUESTPARTACTION_Q];
-                }
+                row[DB.COL_QUESTPARTACTION_Q] = PrepareValue(dataSet, row[DB.COL_QUESTPARTACTION_Q], q);                
             }
 
-
+            // find a candidate for defaultNPC
             foreach (DataRow row in dataSet.Tables[DB.TABLE_QUESTPART].Rows)
             {
                 int questPartID = (int)row[DB.COL_QUESTPART_ID];

@@ -15,6 +15,7 @@ using DOL.Tools.Mapping.Modules;
 using System.Threading;
 using DOL.Tools.Mapping.Forms;
 using System.Collections.Generic;
+using DOL.Tools.QuestDesigner.Properties;
 
 namespace DOL.Tools.Mapping.Map
 {
@@ -192,9 +193,7 @@ namespace DOL.Tools.Mapping.Map
             m_Regions = new ArrayList();
 
             lock (m_Regions.SyncRoot)
-            {
-                Log.Info("Loading Regions..");                
-
+            {                
                 //Look for regions...
                 foreach (DataRow regionRow in DB.RegionTable.Rows)
                 {
@@ -203,9 +202,7 @@ namespace DOL.Tools.Mapping.Map
 
                     Region region = new Region(name, id);
                     m_Regions.Add(region);
-                }
-
-                Log.Info("Loading Zones..");
+                }                
 
                 foreach (DataRow zoneRow in DB.ZoneTable.Rows)
                 {
@@ -264,9 +261,7 @@ namespace DOL.Tools.Mapping.Map
                     region.MaxHeight = maxHeight;
                     
                 }
-            }
-            
-            Log.Info("Ready");
+            }                        
             return true;
         } 
 
@@ -298,7 +293,7 @@ namespace DOL.Tools.Mapping.Map
 
             if (m_OpenedRegion != null && region.ID == m_OpenedRegion.ID)
             {
-                Log.Info("Region "+region.Name+" allready loaded.");
+                Log.Info(String.Format(Resources.msgRegionAlreadyLoaded, region.Name));
                 return true;
             }
 
@@ -307,8 +302,7 @@ namespace DOL.Tools.Mapping.Map
                 backgroundWorker.CancelAsync();
                        
             UnloadRegion();                    
-
-            Log.Info("Loading zones of region "+region.Name);
+            
 
             //Create "hitbox"
             Mesh hb = Mesh.Box(Common.Device, 256*256*16, 256*256*16, 0.0f);
@@ -334,7 +328,7 @@ namespace DOL.Tools.Mapping.Map
             }
             catch (Exception e)
             {
-                QuestDesignerMain.HandleException(e, "Region loading error: " + e.Message, global::DOL.Tools.QuestDesigner.Properties.Resources.databaseError);
+                QuestDesignerMain.HandleException(e, Resources.msgRegionError+": " + e.Message, global::DOL.Tools.QuestDesigner.Properties.Resources.databaseError);
             }
             
             //Scrollbars..
@@ -355,9 +349,6 @@ namespace DOL.Tools.Mapping.Map
 
             // restrcit zoomFactor zo Minimum-Maximum
             QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Value = Math.Min(QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Maximum, Math.Max(QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Minimum, zoomFactor));
-
-//            QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Value =  (region.MaxHeight + region.MinHeight) /2;
-//            QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Value = (region.MaxWidth + region.MinHeight) / 2;
                        
             QuestDesignerMain.DesignerForm.DXControl.hScrollBar.Enabled = true;
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Enabled = true;
@@ -387,8 +378,7 @@ namespace DOL.Tools.Mapping.Map
             {
                 foreach (Zone zone in m_OpenedRegion.Zones)
                 {
-                    //Create it!
-                    Log.Info("Loading Texture for " + zone.Description);
+                    //Create it!                    
                     Plane mesh = new Plane(Common.Device, zone.Width, zone.Height, false);
 
                     Texture tex = Textures.LoadTexture(zone.Texture);
@@ -424,12 +414,12 @@ namespace DOL.Tools.Mapping.Map
         {
             if (e.Error != null)
             {
-                QuestDesignerMain.HandleException(e.Error, "Region loading error: " + e.Error.Message, global::DOL.Tools.QuestDesigner.Properties.Resources.error);
+                QuestDesignerMain.HandleException(e.Error, Resources.msgRegionError+": " + e.Error.Message, global::DOL.Tools.QuestDesigner.Properties.Resources.error);
             }
             else
             {
                 QuestDesignerMain.DesignerForm.DXControl.Invalidate();
-                Log.Info("Region successfully loaded");                
+                Log.Info(Resources.msgRegionSuccess);                
             }
 
             if (QuestDesignerMain.DesignerForm != null && !QuestDesignerMain.DesignerForm.StatusProgress.IsDisposed)
@@ -441,9 +431,7 @@ namespace DOL.Tools.Mapping.Map
         public static bool UnloadRegion()
         {
             if (m_OpenedRegion == null)
-                return false;
-
-            Log.Info("Unloading Region");
+                return false;            
 
             //Delete all objects // SLOW
             lock (DXControl.GeoObjects)
@@ -454,16 +442,12 @@ namespace DOL.Tools.Mapping.Map
                     obj.Model = null;
                 }
                 QuestDesignerMain.DesignerForm.DXControl.HBObject = null;
-
-                Log.Info("Clearing Lists..,");
-
+                
                 DXControl.GeoObjects.Clear();                
             }
             // dont empty textures is caching is enabled
             if (!DOL.Tools.QuestDesigner.Properties.Settings.Default.CacheTextures)                
-                Textures.Reset();
-
-            Log.Info("Resetting Controls");
+                Textures.Reset();            
 
             ModulMgr.TriggerModules(ModulEvent.RegionUnload, m_OpenedRegion);
 
@@ -485,9 +469,8 @@ namespace DOL.Tools.Mapping.Map
             QuestDesignerMain.DesignerForm.DXControl.vScrollBar.Enabled = false;
             QuestDesignerMain.DesignerForm.DXControl.ZoomSlider.Enabled = false;
 
-            Log.Info("Redrawing...");
             QuestDesignerMain.DesignerForm.DXControl.Invalidate();
-            Log.Info("Ready");
+            
             return true;
         }
 

@@ -238,4 +238,160 @@
   <data name="areaSquare" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\areaSquare.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="msgDatabaseError" xml:space="preserve">
+    <value>Database error</value>
+  </data>
+  <data name="msgDatabaseSuccess" xml:space="preserve">
+    <value>Database successfully initialized</value>
+  </data>
+  <data name="msgInitDOLConfigFile" xml:space="preserve">
+    <value>Initialization\nSelect the root directory of your DOL Server (That's the directory where DolServer.exe is located)</value>
+  </data>
+  <data name="msgInitDOLConfigFileNoTemplateFound" xml:space="preserve">
+    <value>No Template file for DOL Server config found. Should be located in {0}</value>
+  </data>
+  <data name="comparatorEqual" xml:space="preserve">
+    <value>exactly</value>
+  </data>
+  <data name="comparatorGreater" xml:space="preserve">
+    <value>greater than</value>
+  </data>
+  <data name="comparatorIs" xml:space="preserve">
+    <value>is</value>
+  </data>
+  <data name="comparatorLess" xml:space="preserve">
+    <value>less than</value>
+  </data>
+  <data name="comparatorNone" xml:space="preserve">
+    <value>none</value>
+  </data>
+  <data name="comparatorNot" xml:space="preserve">
+    <value>is not</value>
+  </data>
+  <data name="comparatorNotEqual" xml:space="preserve">
+    <value>not</value>
+  </data>
+  <data name="lblCreateNewQuest" xml:space="preserve">
+    <value>Create new quest</value>
+  </data>
+  <data name="lblDataDownloadRequest" xml:space="preserve">
+    <value>Data download request</value>
+  </data>
+  <data name="lblDefaultArea" xml:space="preserve">
+    <value>an area</value>
+  </data>
+  <data name="lblDefaultCharacterClass" xml:space="preserve">
+    <value>character class</value>
+  </data>
+  <data name="lblDefaultEmote" xml:space="preserve">
+    <value>emote</value>
+  </data>
+  <data name="lblDefaultGameLiving" xml:space="preserve">
+    <value>nobody</value>
+  </data>
+  <data name="lblDefaultGameNPC" xml:space="preserve">
+    <value>nobody</value>
+  </data>
+  <data name="lblDefaultItem" xml:space="preserve">
+    <value>an item</value>
+  </data>
+  <data name="lblDefaultLocation" xml:space="preserve">
+    <value>a location</value>
+  </data>
+  <data name="lblDefaultNumber" xml:space="preserve">
+    <value>number</value>
+  </data>
+  <data name="lblDefaultParameter" xml:space="preserve">
+    <value>parameter</value>
+  </data>
+  <data name="lblDefaultQuest" xml:space="preserve">
+    <value>this quest</value>
+  </data>
+  <data name="lblDefaultRegion" xml:space="preserve">
+    <value>a region</value>
+  </data>
+  <data name="lblDefaultText" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="lblDefaultTexttype" xml:space="preserve">
+    <value>texttype</value>
+  </data>
+  <data name="lblDefaultWhisper" xml:space="preserve">
+    <value>a word</value>
+  </data>
+  <data name="lblDefaultZone" xml:space="preserve">
+    <value>a zone</value>
+  </data>
+  <data name="lblExportTransformator" xml:space="preserve">
+    <value>Export {0} ...</value>
+  </data>
+  <data name="lblRegion" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="lblTheQuest" xml:space="preserve">
+    <value>the quest {0}</value>
+  </data>
+  <data name="msgCreateNewQuest" xml:space="preserve">
+    <value>Any changes of the opened quest will be lost. Do you really want to start a new quest?</value>
+  </data>
+  <data name="msgDataDownload" xml:space="preserve">
+    <value>Map Data not found. Do you want to download it from {0}?\n You can always download the needed data later via Tools menu.</value>
+  </data>
+  <data name="msgDataDownloading" xml:space="preserve">
+    <value>Downloading data files from</value>
+  </data>
+  <data name="msgExportError" xml:space="preserve">
+    <value>Export error</value>
+  </data>
+  <data name="msgExportingQuest" xml:space="preserve">
+    <value>Exporting quest to {0}</value>
+  </data>
+  <data name="msgFileNotFound" xml:space="preserve">
+    <value>Couldn't find file {0}</value>
+  </data>
+  <data name="msgNewQuestCreated" xml:space="preserve">
+    <value>New Quest created</value>
+  </data>
+  <data name="msgNoInvitingNPC" xml:space="preserve">
+    <value>No InvitingNPC selected</value>
+  </data>
+  <data name="msgQuestExported" xml:space="preserve">
+    <value>Quest successfully exported to {0}</value>
+  </data>
+  <data name="msgQuestLoaded" xml:space="preserve">
+    <value>Quest loaded from {0}</value>
+  </data>
+  <data name="msgQuestSaved" xml:space="preserve">
+    <value>Quest saved to {0}</value>
+  </data>
+  <data name="msgRegionAlreadyLoaded" xml:space="preserve">
+    <value>Region {0} already loaded</value>
+  </data>
+  <data name="msgRegionError" xml:space="preserve">
+    <value>Region loading error</value>
+  </data>
+  <data name="msgRegionSuccess" xml:space="preserve">
+    <value>Region successfully loaded</value>
+  </data>
+  <data name="textTypeBroadcast" xml:space="preserve">
+    <value>boadcasts</value>
+  </data>
+  <data name="textTypeDialog" xml:space="preserve">
+    <value>a dialog pops up</value>
+  </data>
+  <data name="textTypeEmote" xml:space="preserve">
+    <value>emotes</value>
+  </data>
+  <data name="textTypeNone" xml:space="preserve">
+    <value>none</value>
+  </data>
+  <data name="textTypeRead" xml:space="preserve">
+    <value>the player reads</value>
+  </data>
+  <data name="lblObjects" xml:space="preserve">
+    <value>Objects</value>
+  </data>
+  <data name="msgModuleFoundError" xml:space="preserve">
+    <value>No Module with name {0} found</value>
+  </data>
 </root>

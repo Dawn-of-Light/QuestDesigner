@@ -102,7 +102,7 @@ namespace DOL.Tools.QuestDesigner
                 exportLinkLabel.Location = new System.Drawing.Point(5, 48 + (this.xpTGActions.Controls.Count * 20));
                 exportLinkLabel.Name = "linkLabelExport" + transformator.Name;
                 exportLinkLabel.Padding = new System.Windows.Forms.Padding(18, 2, 0, 2);
-                exportLinkLabel.Text = "Export " + transformator.Name + " ...";
+                exportLinkLabel.Text = String.Format(Resources.lblExportTransformator, transformator.Name);
                 exportLinkLabel.Tag = transformator;
                 exportLinkLabel.LinkClicked += new LinkLabelLinkClickedEventHandler(exportLinkLabel_LinkClicked);
 
@@ -146,6 +146,7 @@ namespace DOL.Tools.QuestDesigner
 			customCode.tabControlCodeSection.Renderer = XPRenderers;
 			this.tabControlMain.Renderer = XPRenderers;
 			this.xpTaskPane.ColorTable = NETXP.Library.ColorTables.XPBlue;
+            
             this.xpTGActions.ColorTable = NETXP.Library.ColorTables.XPBlue;
             this.xpTGQuestPart.ColorTable = NETXP.Library.ColorTables.XPBlue;
             this.xpTGQuestPart.PerformAutoScale();
@@ -189,12 +190,12 @@ namespace DOL.Tools.QuestDesigner
                 
                 string url = System.Configuration.ConfigurationManager.AppSettings["DataDownloadUrl"];
 
-                DialogResult result = MessageBox.Show(this, "Map Data not found. Do you want to download it from " + url + "?\n You can always download the needed data later via Tools menu.", "Data download request", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                DialogResult result = MessageBox.Show(this, String.Format(Resources.msgDataDownload, url) , Resources.lblDataDownloadRequest, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
                 if (result == DialogResult.Yes)
                 {
                     Uri uri = new Uri(url);
-                    Log.Info("Downloading data files from: " + url);
+                    Log.Info(Resources.msgDataDownloading+ ": " + url);
 
                     WebClient webClient = new WebClient();
                     webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
@@ -253,6 +254,7 @@ namespace DOL.Tools.QuestDesigner
 			//
 
             string[] xmlFiles = Directory.GetFiles(QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["TypeConfigDirectory"], "*.xml");			
+            
 
 			foreach (string filePath in xmlFiles)
 			{
@@ -355,8 +357,9 @@ namespace DOL.Tools.QuestDesigner
             DB.SuspendBindings();
                                    
             dataSetQuest.Clear();
-			dataTableQuest.Rows.Add(dataTableQuest.NewRow());
-            dataTableQuestPart.Rows.Add(dataTableQuestPart.NewRow());
+			dataTableQuest.Rows.Add(dataTableQuest.NewRow());            
+            dataTableQuestPart.Rows.Add(dataTableQuestPart.NewRow());            
+
             dataSetQuest.AcceptChanges();
             DB.ResumeBindings();
 
@@ -398,7 +401,7 @@ namespace DOL.Tools.QuestDesigner
 
             openFilename = xmlfile;
             this.Text = TITLE + xmlfile;
-            Log.Info("Quest saved to " + xmlfile);
+            Log.Info(String.Format(Resources.msgQuestSaved, xmlfile));
             Settings.Default.XMLFile = xmlfile;
             return true;
         }
@@ -455,7 +458,7 @@ namespace DOL.Tools.QuestDesigner
 					this.openFilename = xmlfile;
 
 					this.Text = TITLE + xmlfile;
-					Log.Info("Quest loaded from " + xmlfile);
+					Log.Info(String.Format(Resources.msgQuestLoaded, xmlfile));
                     Settings.Default.XMLFile = xmlfile;
 					return true;
 				}
@@ -463,13 +466,13 @@ namespace DOL.Tools.QuestDesigner
 				{					
 					MessageBox.Show(e.Message, e.GetType().Name);
 					InitEmptyQuest();
-					Log.Error("Quest load error: " + xmlfile);
+					Log.Error(e.Message);
 					return false;
 				}
             }
             else
             {
-                Log.Warning("File not found " + xmlfile);
+                Log.Warning(String.Format(Resources.msgFileNotFound, xmlfile));
                 return false;
             }
         }
@@ -477,13 +480,13 @@ namespace DOL.Tools.QuestDesigner
 		
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {                        
-            DialogResult result = MessageBox.Show("Any changes of the opened quest will be lost. Do you really want to start a new quest?", "Create new quest", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show(Resources.msgCreateNewQuest, Resources.lblCreateNewQuest, MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 InitEmptyQuest();
 
                 this.Text = TITLE + openFilename;
-                Log.Info("New Quest created");
+                Log.Info(Resources.msgNewQuestCreated);
             }                 
         }
 

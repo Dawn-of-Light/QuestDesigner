@@ -36,6 +36,7 @@ using System.Deployment.Application;
 using System.Net;
 using ICSharpCode.SharpZipLib.Zip;
 using DOL.Tools.QuestDesigner.Properties;
+using System.Globalization;
 
 namespace DOL.Tools.QuestDesigner
 {
@@ -158,7 +159,10 @@ namespace DOL.Tools.QuestDesigner
         /// </summary>
         [STAThread]
         static void Main(string[] args)
-        {
+        {            
+            // Sets the UI culture to German.
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
+
             //RELEASE MODE; ERROR DIALOG
             try
             {               
@@ -206,12 +210,12 @@ namespace DOL.Tools.QuestDesigner
         {
             if (e.Error != null)
             {
-				HandleException(e.Error, "Database error: " + e.Error.Message, global::DOL.Tools.QuestDesigner.Properties.Resources.databaseError);                
+				HandleException(e.Error, Resources.msgDatabaseError+ ": " + e.Error.Message, Resources.databaseError);                
                 DesignerForm.SetDatabaseSupport(false);
             }            
             else
             {
-                Log.ShowMessage("Database successfully initialized", global::DOL.Tools.QuestDesigner.Properties.Resources.databaseOk);
+                Log.ShowMessage(Resources.msgDatabaseSuccess, Resources.databaseOk);
                 DesignerForm.SetDatabaseSupport(true);
             }
             DesignerForm.StatusProgress.Value = DesignerForm.StatusProgress.Minimum;            
@@ -224,7 +228,7 @@ namespace DOL.Tools.QuestDesigner
 
         public static void HandleException(Exception e, string errorMsg)
         {
-            Log.ShowMessage(errorMsg, global::DOL.Tools.QuestDesigner.Properties.Resources.error);
+            Log.ShowMessage(errorMsg, Resources.error);
         }
 
         public static void HandleException(Exception e)
@@ -238,7 +242,7 @@ namespace DOL.Tools.QuestDesigner
             {
                 FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
                 folderBrowserDialog.ShowNewFolderButton = false;
-                folderBrowserDialog.Description = "Initialization\nSelect the root directory of your DOL Server (That's the directory where DolServer.exe is located):";
+                folderBrowserDialog.Description = Resources.msgInitDOLConfigFile+":";
                 DialogResult result = folderBrowserDialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
@@ -256,7 +260,7 @@ namespace DOL.Tools.QuestDesigner
                     }
                     else
                     {
-                        Log.Error("No Template file for DOL Server config found. Should be located in " + SERVER_CONFIG_TEMPLATE_PATH);
+                        Log.Error(String.Format(Resources.msgInitDOLConfigFileNoTemplateFound, SERVER_CONFIG_TEMPLATE_PATH));
                     }
                 }
             }
@@ -272,7 +276,7 @@ namespace DOL.Tools.QuestDesigner
 			}
 			catch (Exception e)
 			{
-				HandleException(e, "Database error: " + e.Message, global::DOL.Tools.QuestDesigner.Properties.Resources.databaseError);
+				HandleException(e, Resources.msgDatabaseError+ ": " + e.Message, global::DOL.Tools.QuestDesigner.Properties.Resources.databaseError);
 			}
         }
 

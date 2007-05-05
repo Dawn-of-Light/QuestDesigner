@@ -22,44 +22,22 @@ namespace DOL.Tools.Mapping.Forms
     /// <summary>
     /// Summary description for DXControl.
     /// </summary>
-    public class DXControl : UserControl
-    {
-       
-        public TrackBar ZoomSlider;
-        public HScrollBar hScrollBar;
-        public VScrollBar vScrollBar;        
-        private bool MapMoving = false;
-        private bool ObjectMoving = false;
+    public partial class DXControl : UserControl
+    {       
+
+        public Matrix ControlMeshMatrix;
+        private Vector3 cachedLocation;
+        private int cachedRegionID = -1;
         private GeometryObj m_SelectedObject;
         private Point MouseMoveStart = new Point(-1, -1);
         private Vector3 LastMouseVector = new Vector3();
+        private bool MapMoving = false;
+        private bool ObjectMoving = false;
         private int MouseValueH = 0;
         private int MouseValueV = 0;
         private Matrix View = Matrix.Zero;
-        private Matrix Proj = Matrix.Zero;        
+        private Matrix Proj = Matrix.Zero;
         public GeometryObj HBObject;
-        public ToolStrip toolStrip;
-        public ToolStripComboBox comboBoxMaps;
-        private ToolStripLabel labelCoords;
-        private ToolStripLabel labelObject;
-        public ContextMenuStrip contextMenuStrip;
-        private IContainer components;
-        private ToolStripMenuItem copyLocationToolStripMenuItem;
-        private ToolStripLabel toolStripLabelRegion;
-        public Matrix ControlMeshMatrix;
-
-        private int cachedRegionID = -1;
-        private ToolStripMenuItem filterMenuItem;
-        private Vector3 cachedLocation;
-        private ToolStripMenuItem zoomToolStripMenuItem;
-        private ToolStripMenuItem zoomInToolStripMenuItem;
-        private ToolStripMenuItem zoomOutToolStripMenuItem;
-        private ToolStripMenuItem resetZoomToolStripMenuItem;
-        private Panel panel1;
-        private ToolTip objectToolTip;
-        private ToolStripMenuItem mobnameToolStripMenuItem;
-        private ToolStripMenuItem importToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator3;
 
         private static Set<GeometryObj> geoObjects = new Set<GeometryObj>();
 
@@ -158,270 +136,8 @@ namespace DOL.Tools.Mapping.Forms
             }
         }
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-            }
-            base.Dispose(disposing);
-        }
-
-        #region Component Designer generated code
-
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-            this.ZoomSlider = new System.Windows.Forms.TrackBar();
-            this.hScrollBar = new System.Windows.Forms.HScrollBar();
-            this.vScrollBar = new System.Windows.Forms.VScrollBar();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.comboBoxMaps = new System.Windows.Forms.ToolStripComboBox();
-            this.labelCoords = new System.Windows.Forms.ToolStripLabel();
-            this.labelObject = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabelRegion = new System.Windows.Forms.ToolStripLabel();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mobnameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.copyLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.filterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetZoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.objectToolTip = new System.Windows.Forms.ToolTip(this.components);
-            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            ((System.ComponentModel.ISupportInitialize)(this.ZoomSlider)).BeginInit();
-            this.toolStrip.SuspendLayout();
-            this.contextMenuStrip.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
-            // 
-            // ZoomSlider
-            // 
-            this.ZoomSlider.BackColor = System.Drawing.SystemColors.Control;
-            this.ZoomSlider.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ZoomSlider.Enabled = false;
-            this.ZoomSlider.LargeChange = 250;
-            this.ZoomSlider.Location = new System.Drawing.Point(474, 0);
-            this.ZoomSlider.Maximum = 1000;
-            this.ZoomSlider.Minimum = 50;
-            this.ZoomSlider.Name = "ZoomSlider";
-            this.ZoomSlider.Size = new System.Drawing.Size(150, 25);
-            this.ZoomSlider.SmallChange = 100;
-            this.ZoomSlider.TabIndex = 0;
-            this.ZoomSlider.TabStop = false;
-            this.ZoomSlider.TickFrequency = 250;
-            this.ZoomSlider.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ZoomSlider.Value = 100;
-            this.ZoomSlider.Scroll += new System.EventHandler(this.Zoom_Scroll);
-            // 
-            // hScrollBar
-            // 
-            this.hScrollBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.hScrollBar.Enabled = false;
-            this.hScrollBar.LargeChange = 0;
-            this.hScrollBar.Location = new System.Drawing.Point(0, 471);
-            this.hScrollBar.Maximum = 0;
-            this.hScrollBar.Name = "hScrollBar";
-            this.hScrollBar.Size = new System.Drawing.Size(624, 17);
-            this.hScrollBar.SmallChange = 0;
-            this.hScrollBar.TabIndex = 0;
-            this.hScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar_Scroll);
-            // 
-            // vScrollBar
-            // 
-            this.vScrollBar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.vScrollBar.Enabled = false;
-            this.vScrollBar.LargeChange = 0;
-            this.vScrollBar.Location = new System.Drawing.Point(607, 25);
-            this.vScrollBar.Maximum = 0;
-            this.vScrollBar.Name = "vScrollBar";
-            this.vScrollBar.Size = new System.Drawing.Size(17, 446);
-            this.vScrollBar.SmallChange = 0;
-            this.vScrollBar.TabIndex = 0;
-            this.vScrollBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar_Scroll);
-            // 
-            // toolStrip
-            // 
-            this.toolStrip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comboBoxMaps,
-            this.labelCoords,
-            this.labelObject,
-            this.toolStripLabelRegion});
-            this.toolStrip.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 150, 0);
-            this.toolStrip.Size = new System.Drawing.Size(624, 25);
-            this.toolStrip.Stretch = true;
-            this.toolStrip.TabIndex = 5;
-            this.toolStrip.Text = "toolStrip";
-            // 
-            // comboBoxMaps
-            // 
-            this.comboBoxMaps.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.comboBoxMaps.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxMaps.DropDownWidth = 200;
-            this.comboBoxMaps.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboBoxMaps.MaxDropDownItems = 30;
-            this.comboBoxMaps.Name = "comboBoxMaps";
-            this.comboBoxMaps.Size = new System.Drawing.Size(150, 25);
-            this.comboBoxMaps.SelectedIndexChanged += new System.EventHandler(this.comboBoxMaps_SelectionChangeCommitted);
-            // 
-            // labelCoords
-            // 
-            this.labelCoords.AutoSize = false;
-            this.labelCoords.Name = "labelCoords";
-            this.labelCoords.Size = new System.Drawing.Size(150, 22);
-            // 
-            // labelObject
-            // 
-            this.labelObject.Name = "labelObject";
-            this.labelObject.Size = new System.Drawing.Size(0, 22);
-            // 
-            // toolStripLabelRegion
-            // 
-            this.toolStripLabelRegion.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripLabelRegion.Name = "toolStripLabelRegion";
-            this.toolStripLabelRegion.Size = new System.Drawing.Size(40, 22);
-            this.toolStripLabelRegion.Text = "Region";
-            // 
-            // contextMenuStrip
-            // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mobnameToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.copyLocationToolStripMenuItem,
-            this.filterMenuItem,
-            this.zoomToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(154, 98);
-            // 
-            // mobnameToolStripMenuItem
-            // 
-            this.mobnameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importToolStripMenuItem});
-            this.mobnameToolStripMenuItem.Name = "mobnameToolStripMenuItem";
-            this.mobnameToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.mobnameToolStripMenuItem.Text = "Mobname";
-            // 
-            // importToolStripMenuItem
-            // 
-            this.importToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.add;
-            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.importToolStripMenuItem.Text = "Import";
-            this.importToolStripMenuItem.Click += new System.EventHandler(this.importObjectToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(150, 6);
-            // 
-            // copyLocationToolStripMenuItem
-            // 
-            this.copyLocationToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.copy;
-            this.copyLocationToolStripMenuItem.Name = "copyLocationToolStripMenuItem";
-            this.copyLocationToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.copyLocationToolStripMenuItem.Text = "Copy Location";
-            this.copyLocationToolStripMenuItem.Click += new System.EventHandler(this.copyLocationToolStripMenuItem_Click);
-            // 
-            // filterMenuItem
-            // 
-            this.filterMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.searchNPC;
-            this.filterMenuItem.Name = "filterMenuItem";
-            this.filterMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.filterMenuItem.Text = "Filter";
-            // 
-            // zoomToolStripMenuItem
-            // 
-            this.zoomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zoomInToolStripMenuItem,
-            this.zoomOutToolStripMenuItem,
-            toolStripSeparator1,
-            this.resetZoomToolStripMenuItem});
-            this.zoomToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.search;
-            this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.zoomToolStripMenuItem.Text = "Zoom";
-            // 
-            // zoomInToolStripMenuItem
-            // 
-            this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
-            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.zoomInToolStripMenuItem.Text = "Zoom In";
-            this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.zoomInToolStripMenuItem_Click);
-            // 
-            // zoomOutToolStripMenuItem
-            // 
-            this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.zoomOutToolStripMenuItem.Text = "Zoom Out";
-            this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.zoomOutToolStripMenuItem_Click);
-            // 
-            // resetZoomToolStripMenuItem
-            // 
-            this.resetZoomToolStripMenuItem.Name = "resetZoomToolStripMenuItem";
-            this.resetZoomToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.resetZoomToolStripMenuItem.Text = "Reset Zoom";
-            this.resetZoomToolStripMenuItem.Click += new System.EventHandler(this.resetZoomToolStripMenuItem_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.ZoomSlider);
-            this.panel1.Controls.Add(this.toolStrip);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(624, 25);
-            this.panel1.TabIndex = 6;
-            // 
-            // DXControl
-            // 
-            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.Controls.Add(this.vScrollBar);
-            this.Controls.Add(this.hScrollBar);
-            this.Controls.Add(this.panel1);
-            this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.Name = "DXControl";
-            this.Size = new System.Drawing.Size(624, 488);
-            this.Load += new System.EventHandler(this.DXControl_Load);
-            this.MouseLeave += new System.EventHandler(this.DXControl_MouseLeave);
-            this.Click += new System.EventHandler(this.DXControl_Click);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DXControl_MouseMove);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DXControl_MouseDown);
-            this.Resize += new System.EventHandler(this.DXControl_Resize);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DXControl_MouseUp);
-            this.MouseEnter += new System.EventHandler(this.DXControl_MouseEnter);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DXControl_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.ZoomSlider)).EndInit();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
-            this.contextMenuStrip.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
-
-        }
-
-        #endregion
         
+
         private void DXRender()
         {
             Common.Device.Clear(ClearFlags.Target, Color.Black, 0.0f, 0);
@@ -495,7 +211,7 @@ namespace DOL.Tools.Mapping.Forms
 
         public void StatusChangeObjects(int objs)
         {
-            labelObject.Text = string.Format("Objects: {0}", objs);
+            labelObject.Text = string.Format(Resources.lblObjects+ ": {0}", objs);
         }
 
         private void DXSetCamera()
@@ -785,7 +501,7 @@ namespace DOL.Tools.Mapping.Forms
             IModul mod = ModulMgr.GetModulByName(item.Text);
 
             if (mod == null)
-                throw new ArgumentException("No Module with name:"+item.Text+" found.");
+                throw new ArgumentException(String.Format(Resources.msgModuleFoundError,item.Text));
 
             if (item.Checked)                
                 ModulMgr.TriggerModule(mod, ModulEvent.Unfilter);

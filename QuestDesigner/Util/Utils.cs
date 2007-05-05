@@ -26,6 +26,7 @@ using DOL.GS;
 using System.Data;
 using System.Reflection;
 using DOL.GS.PacketHandler;
+using DOL.Tools.QuestDesigner.Properties;
 
 namespace DOL.Tools.QuestDesigner.Util
 {
@@ -249,37 +250,44 @@ namespace DOL.Tools.QuestDesigner.Util
 			if (type.StartsWith(Const.SELECTOR_QUESTTYPE))
 			{
                 if (String.IsNullOrEmpty(value))
-                    return defaultValue == null ? "this quest" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultQuest : defaultValue;
                 else if (value == DB.QuestTable.Rows[0][DB.COL_QUEST_NAMESPACE] + "." + DB.QuestTable.Rows[0][DB.COL_QUEST_NAME])
-                    return "this quest";
+                    return Resources.lblDefaultQuest;
                 else
-                    return "the quest " + value;
+                    return String.Format(Resources.lblTheQuest, value);
 			}
-            else if (type.StartsWith(Const.SELECTOR_GAMELIVING) || type.StartsWith(Const.SELECTOR_GAMENPC))
+            else if (type.StartsWith(Const.SELECTOR_GAMELIVING))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "nobody" : defaultValue;
+					return defaultValue == null ? Resources.lblDefaultGameLiving : defaultValue;
 				else
 					return DB.GetNPCNameForID(value);				
 			}
+            else if (type.StartsWith(Const.SELECTOR_GAMENPC))
+            {
+                if (String.IsNullOrEmpty(value))
+                    return defaultValue == null ? Resources.lblDefaultGameNPC : defaultValue;
+                else
+                    return DB.GetNPCNameForID(value);
+            }
 			else if (type.StartsWith(Const.SELECTOR_AREA))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "an area" : defaultValue;
+					return defaultValue == null ? Resources.lblDefaultArea : defaultValue;
 				else
 					return DB.GetAreaNameForID(value);
 			}
 			else if (type.StartsWith(Const.SELECTOR_ITEM))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "an item" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultItem : defaultValue;
 				else
 					return DB.GetItemNameForID(value);				
 			}
             else if (type.StartsWith(Const.SELECTOR_WHIPSER))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "a word" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultWhisper : defaultValue;
 				else
 					return value;
 
@@ -287,63 +295,63 @@ namespace DOL.Tools.QuestDesigner.Util
             else if (type.StartsWith(Const.SELECTOR_ZONE))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "a zone" : defaultValue;
+					return defaultValue == null ? Resources.lblDefaultZone : defaultValue;
 				else
 					return DB.GetZoneNameForID(value);
 			}
             else if (type.StartsWith(Const.SELECTOR_REGION))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "a region" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultRegion : defaultValue;
 				else
 					return DB.GetRegionNameForID(value);
 			}
             else if (type.StartsWith(Const.SELECTOR_TEXTTYPE))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "texttype" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultTexttype : defaultValue;
 				else
 					return TextTypeToText((eTextType)Enum.Parse(typeof(eTextType),value));
 			}
             else if (type.StartsWith(Const.SELECTOR_TEXT))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "text" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultText : defaultValue;
 				else
 					return Utils.EscapeRtf(value);
 			}
 			else if (type.StartsWith(Const.TYPE_INT) || type.StartsWith(Const.TYPE_LONG))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "number" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultNumber : defaultValue;
 				else 
 					return value;
 			}
             else if (type.StartsWith(Const.SELECTOR_LOCATION))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "a location" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultLocation : defaultValue;
 				else
 					return DB.GetLocationForID(value);
 			}
             else if (type.StartsWith(Const.SELECTOR_EMOTE))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "eEmote" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultEmote : defaultValue;
 				else
 					return DB.getEnumerationNameForID(typeof(eEmote).Name, value);
 			}
             else if (type.StartsWith(Const.SELECTOR_CHARACTERCLASS))
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "eCharacterClass" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultCharacterClass : defaultValue;
 				else
 					return DB.getEnumerationNameForID(typeof(eCharacterClass).Name, value);
 			}
 			else
 			{
 				if (String.IsNullOrEmpty(value))
-					return defaultValue == null ? "parameter" : defaultValue;
+                    return defaultValue == null ? Resources.lblDefaultParameter : defaultValue;
 				else
 					return Utils.EscapeRtf(value);
 			}
@@ -387,7 +395,8 @@ namespace DOL.Tools.QuestDesigner.Util
 			}
 			else
 			{
-				return "TRIGGERTYPE UNKNOWN:" + TriggerType;
+                Log.Warning("Triggertype unknown:" + TriggerType);
+				return "Triggertype unknown:" + TriggerType;
 			}
 		}
 
@@ -430,7 +439,8 @@ namespace DOL.Tools.QuestDesigner.Util
 			}
 			else
 			{
-				return "Requirement TYPE UNKNOWN:" + Type;
+                Log.Warning("RequirementType unknown:" + Type);
+				return "RequirementType unknown:" + Type;
 			}			
 		}
 
@@ -469,7 +479,8 @@ namespace DOL.Tools.QuestDesigner.Util
 			}
 			else
 			{
-				return "Actiontype UNKNOWN:" + Type;
+                Log.Warning("Actiontype unknown:" + Type);
+				return "Actiontype unknown:" + Type;
 			}			
 		}
 
@@ -478,15 +489,15 @@ namespace DOL.Tools.QuestDesigner.Util
 			switch (textType)
 			{
 				case eTextType.Broadcast:
-					return "boadcasts";
+					return Resources.textTypeBroadcast;
 				case eTextType.Dialog:
-					return "a dialog pops up";				
+					return Resources.textTypeDialog;				
 				case eTextType.Emote:
-					return "emotes";
+					return Resources.textTypeEmote;
 				case eTextType.Read:
-					return "the player reads";				
+					return Resources.textTypeRead;				
 				default:
-					return "none";
+					return Resources.textTypeNone;
 			}
 		}
 
@@ -497,17 +508,17 @@ namespace DOL.Tools.QuestDesigner.Util
                 switch (comp)
                 {
                     case eComparator.Equal:
-                        return "exactly";
+                        return Resources.comparatorEqual;
                     case eComparator.Greater:
-                        return "greater than";
+                        return Resources.comparatorGreater;
                     case eComparator.Less:
-                        return "less than";
+                        return Resources.comparatorLess;
                     case eComparator.NotEqual:
-                        return "not";
+                        return Resources.comparatorNotEqual;
                     case eComparator.Not:
                         throw new ArgumentException("Comparator cannot be \"Not\" if type is quantity.");
                     default:
-                        return "none";
+                        return Resources.comparatorNone;
                 }
             }
             else if (Const.COMPARATOR_BINARY.Equals(comparatorType))
@@ -523,20 +534,20 @@ namespace DOL.Tools.QuestDesigner.Util
                     case eComparator.NotEqual:
                         throw new ArgumentException("Comparator cannot be \"NotEquals\" if type is quantity.");
                     case eComparator.Not:
-                        return "is not";
+                        return Resources.comparatorNot;
                     default:
-                        return "is";
+                        return Resources.comparatorIs;
                 }
             }
             else
             {
-                throw new ArgumentException("Unknown Comparatortype:\""+comparatorType+"\", check Requirements Config.", "comparatorType");
+                throw new ArgumentException("Unknown Comparatortype:\""+comparatorType+"\", check requirements config.", "comparatorType");
             }
         }
 		
-		public static IList FindAllQuests(Assembly asm)
-		{			
-			IList quests = new ArrayList();
+		public static List<Type> FindAllQuests(Assembly asm)
+		{
+            List<Type> quests = new List<Type>();
 			if (asm != null)
 			{
 				foreach (Type type in asm.GetTypes())
