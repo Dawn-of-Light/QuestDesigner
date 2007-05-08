@@ -2,6 +2,9 @@
   <QuestPart>
     <ID>53</ID>
     <Position>53</Position>
+    <Category>Storyline;</Category>
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>53</QuestPartID>
       <Type>8</Type>
@@ -24,6 +27,9 @@
   <QuestPart>
     <ID>54</ID>
     <Position>47</Position>
+    <Category />
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>54</QuestPartID>
       <Type>8</Type>
@@ -47,6 +53,9 @@
   <QuestPart>
     <ID>55</ID>
     <Position>48</Position>
+    <Category />
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>55</QuestPartID>
       <Type>12</Type>
@@ -71,6 +80,9 @@
   <QuestPart>
     <ID>56</ID>
     <Position>50</Position>
+    <Category />
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>56</QuestPartID>
       <Type>12</Type>
@@ -95,6 +107,9 @@
   <QuestPart>
     <ID>57</ID>
     <Position>51</Position>
+    <Category>Invitation;</Category>
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>57</QuestPartID>
       <Type>12</Type>
@@ -124,6 +139,9 @@
   <QuestPart>
     <ID>58</ID>
     <Position>49</Position>
+    <Category>Storyline;</Category>
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>58</QuestPartID>
       <Type>12</Type>
@@ -147,6 +165,9 @@
   <QuestPart>
     <ID>59</ID>
     <Position>52</Position>
+    <Category>Storyline;</Category>
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>59</QuestPartID>
       <Type>12</Type>
@@ -170,6 +191,9 @@
   <QuestPart>
     <ID>60</ID>
     <Position>54</Position>
+    <Category>Invitation;</Category>
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>60</QuestPartID>
       <Type>3</Type>
@@ -192,6 +216,9 @@
   <QuestPart>
     <ID>61</ID>
     <Position>55</Position>
+    <Category>Invitation;</Category>
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>61</QuestPartID>
       <Type>1</Type>
@@ -220,6 +247,9 @@
   <QuestPart>
     <ID>62</ID>
     <Position>56</Position>
+    <Category>Storyline;</Category>
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>62</QuestPartID>
       <Type>10</Type>
@@ -250,6 +280,9 @@
   <QuestPart>
     <ID>63</ID>
     <Position>57</Position>
+    <Category>Storyline;Finalization;</Category>
+    <CategoryAutoGenerate>true</CategoryAutoGenerate>
+    <MaxExecutions>-1</MaxExecutions>
     <QuestPartTrigger>
       <QuestPartID>63</QuestPartID>
       <Type>11</Type>

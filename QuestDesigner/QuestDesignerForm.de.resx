@@ -117,7 +117,100 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="statusStrip.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolStripContainerForm.BottomToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="questInfo.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPageQuest.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="npcView.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPageNPC.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="itemView.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPageItem.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="questPartItems.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPageQuestPart.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="areaView.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPageArea.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="locationView.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPageLocation.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="customCode.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPageCode.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DXControl.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPageMap.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="webBrowser1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPageWeb.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabControlMain.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="xpTGQuestPart.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="linkLabelNewQuest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 17</value>
+  </data>
+  <data name="linkLabelNewQuest.Text" xml:space="preserve">
+    <value>Neuer Quest ...</value>
+  </data>
+  <data name="linkLabelNewQuest.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkSaveQuest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 17</value>
+  </data>
+  <data name="linkSaveQuest.Text" xml:space="preserve">
+    <value>Quest speichern...</value>
+  </data>
+  <data name="linkSaveQuest.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLoadQuest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 17</value>
+  </data>
+  <data name="linkLoadQuest.Text" xml:space="preserve">
+    <value>Quest laden...</value>
+  </data>
+  <data name="linkLoadQuest.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="xpTGActions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAmCAYAAAClI5npAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -171,61 +264,32 @@
         AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="linkSaveQuest.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAixJREFUOE+tk91L
-        k3EUx/cvdN9N0EW3NTWGa7EaPOUcyqphWBG9PZEv5dJlmqhYmUYtXyBb4dJJy+kknFT4BqZIjaFMJUsz
-        V7TEoabYRDD49ju/6Pm1Mi+iH5zLz+c855zvo1L9j/fsaRRUvvZltHmX8Ni9gMaGCO47ZlBb8wn22yHc
-        KJ9CackECgteIy93FBfOB6H0JrC3B6ipXsVGb2V1Dca0XhxOe8JLEXhbF7mgsuLLX3mCIwsr2G1+DrVa
-        huWQRwjcj+a5oLTk87qCn/D78CLiTD4UXJ7GAXOTEDjrZ7ngku3dH4Jf4ZHJCLZJXlhzxpGa4hSCurth
-        LsjOGo0R/A4PBsPYrHdDlgMwmRxCUF31kQvkMwFFsB7c4/+ATYkNOHL0BZKSaoXgZuU0urvATgkcP/kK
-        lmMDfNu0MJqZPps6/4D7cNDSCUmyC8HVskl0+MAyADS5vrG7f0X59Tm+VFoYzZyZEVTg5NR2GAwVQnCl
-        cByeZuChc40FJwpjek5MmU/YkH6uiHdOTmHwfg/0+jIhsOWNMRiouhPlnUnAQoI4rYSht7MYm5qDnHsN
-        e41tHNbucUGnKxICiqXjHpTPJgHBZ/Nv4U1oHqGZJVwstiNe72JwI+J3PYA2MV8IMjOG2dzLfOatBg+2
-        7JDQ0tEPX9cguvv8GHg5hH0mC9S6eiQweLumDhqNVQgo06dP9fN4UsIoJHRnOhVtmxZGM1NXKoJ3JmTH
-        Cv71r/4OTrQ4xWMwWlcAAAAASUVORK5CYII=
-</value>
+  <data name="xpTGActions.Text" xml:space="preserve">
+    <value>Aktionen</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
+  <data name="xpTGActions.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Datei</value>
+  <data name="xpTaskPane.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="newToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAQ9JREFUOE+t09lq
-        wkAUBmBfyr5DfY32jaReSOmFCyKCgkKLFrVUBZeKiEbshqRuaNw1xiXmLxMJBJ0Zc+GBw9zMfDPnHMZm
-        u1ZE35s4zXCqjmC8Al+sgHLjD9y7yGFWPIbecOO45yORtMAEHnxxJHL1IyKI9JeEXqtMwOl50Q8bSS0l
-        8PzBBPbqAQQxICrgjeapgKZpkJUdBmNZB+y3d/QSnsIZKrDdqZjMFYj9OR9wB1NngHrQsJC36EkrfIkT
-        PuDyJ84AZbOHNF2j1Z2h9i3xAVKfOUjjZssN2oMFmq0xSkLfOmBu3E97iurnENlKxzpgbpzwO0Kh1kOy
-        KFoDjHmzVuYYjRmTDZfyWh9Yd/4B2Mz2w1z7EGUAAAAASUVORK5CYII=
-</value>
+  <data name="toolStripContainerForm.ContentPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolStripContainerForm.LeftToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolStripContainerForm.RightToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolStripContainerForm.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="newToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
   </data>
   <data name="newToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Neu</value>
-  </data>
-  <data name="openToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAlpJREFUOE+tk21I
-        k1EYhif0oyA0sqIQCix/+GcQFFH9CCmiUBTLLEjShJofVBgL2fxoU9Pp5ubUlS5rU9f8rCyjsA+pUCRC
-        TR1ppmVFUSlmhq78unrnQF1KGHTg/nEOz30993PO+7qJFrmUeiv2n+Mij+XLRLLYULdF2pxlEVIDcw0p
-        AsyxD5fmI/rQ94pqi26eOlsfuZj+7BgSm01QdA4ih7m73Yx9qGpavwatjPebqCzOprPt8YKQgzFagqL0
-        BEjyEFWVaBkdLHMxT34uYNwWR9nVTEoL0zHlp2DMSeaSRk6eKt4VWm5WM/rVPNN5SjDTLQebZEHNA1wr
-        UvHjk3E6tsNcV62e1r3KLGqtKm6WplNpSsVqVFJsOM8VfSKFWjkGtcyZptSYzvC7XByx3zQoqCnTMvlG
-        CX1prnornPUmQJcUXsbSVhGK5bIOkcmQyveeTHiv4VZ5Nk33Nc6iuSO8CIfmECYa/bE/8ON1iRipJNh5
-        F0V6Bd86lfQ1JlFj1TDVq4COKCegLVIwHmGiKRB7/V6G7+5koHozymgfYRy5E1CgTWKgXcZ1i5qWp0KS
-        rjgBcAJawph6FszYk/2M1O1isGYLX8p9ab6wgqP+3rMvYciS01GfzA1LFvQkQ6sQ9/khxhoCGHnox1Dt
-        NvorxXw0b8Km8UQh2cip6GOzgNyMeKqKM7HdjqFZJ5pRk2YJ9aql3EnxoCJxNaZ4Ly6e3UDY3O6OEXRp
-        59ApTpIhiyDh9GHORAZyPHQPB/ZtZ/cOMVvFPvh6e7F+3SrWrHRnraf7Xz/xf/rJ/kvxb84I3U1y+9/W
-        AAAAAElFTkSuQmCC
-</value>
   </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
@@ -235,22 +299,6 @@
   </data>
   <data name="toolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 6</value>
-  </data>
-  <data name="saveToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAixJREFUOE+tk91L
-        k3EUx/cvdN9N0EW3NTWGa7EaPOUcyqphWBG9PZEv5dJlmqhYmUYtXyBb4dJJy+kknFT4BqZIjaFMJUsz
-        V7TEoabYRDD49ju/6Pm1Mi+iH5zLz+c855zvo1L9j/fsaRRUvvZltHmX8Ni9gMaGCO47ZlBb8wn22yHc
-        KJ9CackECgteIy93FBfOB6H0JrC3B6ipXsVGb2V1Dca0XhxOe8JLEXhbF7mgsuLLX3mCIwsr2G1+DrVa
-        huWQRwjcj+a5oLTk87qCn/D78CLiTD4UXJ7GAXOTEDjrZ7ngku3dH4Jf4ZHJCLZJXlhzxpGa4hSCurth
-        LsjOGo0R/A4PBsPYrHdDlgMwmRxCUF31kQvkMwFFsB7c4/+ATYkNOHL0BZKSaoXgZuU0urvATgkcP/kK
-        lmMDfNu0MJqZPps6/4D7cNDSCUmyC8HVskl0+MAyADS5vrG7f0X59Tm+VFoYzZyZEVTg5NR2GAwVQnCl
-        cByeZuChc40FJwpjek5MmU/YkH6uiHdOTmHwfg/0+jIhsOWNMRiouhPlnUnAQoI4rYSht7MYm5qDnHsN
-        e41tHNbucUGnKxICiqXjHpTPJgHBZ/Nv4U1oHqGZJVwstiNe72JwI+J3PYA2MV8IMjOG2dzLfOatBg+2
-        7JDQ0tEPX9cguvv8GHg5hH0mC9S6eiQweLumDhqNVQgo06dP9fN4UsIoJHRnOhVtmxZGM1NXKoJ3JmTH
-        Cv71r/4OTrQ4xWMwWlcAAAAASUVORK5CYII=
-</value>
   </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 22</value>
@@ -282,60 +330,53 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Schließen</value>
   </data>
-  <data name="imageListNPC.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAO
-        CwAAAk1TRnQBSQFMAwEBAAEEAQABBAEAASABAAEgAQAE/wERAQAI/wFCAU0BNgcAATYDAAEoAwABgAMA
-        ASADAAEBAQABEAYAASAoAAEaAQABGQEAARgBAAEYAQABFwEAARcBAAEWAQABFgEAARYBAAEWAQABFwEA
-        ARcBAAEYAQABGAEAARkBAAEa2QABGgEAARkBAAEXAQABFgEAARUBAAETAQABEgEAAREBAAEQAQABDwEA
-        AQ4BAAEOAQABDgEAAQ4BAAEOAQABDwEAARABAAESAQABFQEAARgBAAEa0wABGgEAARkBAAEWAQABEwEA
-        ARABAAENAQABaAEAAYcBAAHEAQABxAEAAQMBAQEiAQEBIgEBASIBAQEiAQEBIgEBAeMBAAHEAQABhgEA
-        AQkBAAEMAQABEgEAARjRAAEaAQABGAEAARMBAAFLAQAB5AEAAUEBAQHhAQUBIwEOASMBDgHBAQUBpwEe
-        AcgBIgHoASIB6AEiAecBHgHHAR4BxgEaAWMBDgFjAQ4BAQEGAaABAQGEAQABDQEAARbRAAEZAQABUAEA
-        AUIBAQECAQoBZQEWAegBIgEJAScBCgErAUUBFgEGARYBZQEWAQoBKwEKASsBCgErAQkBJwHoASIB5wEe
-        AccBHgGlARYBpAESAYIBCgFhAQEBCwEAARXRAAFTAQABwQEFAaYBGgHnAR4B6QEmAQoBKwEKASsBCwEv
-        AeMBDQHdAWcBwgEJAQwBMwEsATMBCwEvAQoBKwEKASsB6QEmAecBHgHHAR4BpQEWAaQBEgHAAQEBDAEA
-        ARXRAAHqAQABhQEWAecBHgEJAScBCgErAQsBLwEsATMB6gEqAWwBKgH/AXMBNQFPAQQBEgFNATcBLAEz
-        ASwBMwELAS8BCgErAekBJgHnAR4BxgEaAaUBFgHBAQUBDgEAARbRAAElAQEBxwEeAekBJgEKASsBCwEv
-        ASwBMwFOATsBZwEeATUBUwH/AXcB/wF3AUoBJgHKASoBTwE/AU0BNwEsATMBKwEvAQoBKwHoASIB5wEe
-        AaUBFgEiAQEBEQEAARjRAAEHAQEBpgEaAQoBKwEKASsBLAEzAU4BOwFPAT8BAwEOAd0BcwH/AXsB/wF7
-        Ad0BcwHDAQkBLQE3AU8BPwFNATcBLAEzAQsBLwEKASsB5wEeASMBDgGIAQABFQEAARrRAAHMAQABhgEa
-        AQoBKwEsATMBTQE3AU8BPwFwAUMBBgEaAf8BfwH/AX8B/wF/Af8BfwF3AV8B4wENAXABQwFPAT8BLQE3
-        ASwBMwEKASsByAEiAWIBAQESAQABGNMAAVUBAAEDAQ4BCwEvASwBMwFPAT8BTwE/AU8BPwEoAR4B/wF/
-        Af8BfwH/AXsB/wF7Af8BewGwAToBZwEeAU8BPwFOATsBLAEzAQoBKwHBAQUBbQEAARcBAAEa1QABCAEB
-        AYcBHgEtATcBTwE/AXABQwENATcBsAE2Ab8BbwG/AW8BvwFrAb8BawG/AWsBnwFrASoBHgGqASoBTwE/
-        AQwBMwHiAQkBiwEAARcBAAEa1wABGAEAASYBAQElARYBLQE3AXEBRwENATcBkAEyATsBXwFuAVYB5gFR
-        AaABUQHCAVEBKgFSAdUBTgHmAQ0BRgEaAYEBBQGNAQABGAEAARrdAAGQAQABRAEBAQQBEgFHAR4B5gEt
-        AcIBUQHCAV0BAwFmAQMBZgEDAWYB4gFhAaEBVQGAATUBAgEFAQsBAAEUAQABGeMAATYBAAEHARkBoAFR
-        AQMBagEkAW4BJAFuASQBbgEkAW4BJAFuAQQBbgHiAV0BQQE9AQgBBAEPAQABFgEAARrhAAEWAQQBgQFJ
-        AUUBdgFGAX4BRgF+AWYBfgFmAX4BZgF+AUYBfgFFAXoBRQF2AeMBZQECATUBCgEAARIBAAEY3wABGgEA
-        AekBKAEEAW4BZgF+AWYBfgFmAX4BZwF+AWcBfgFmAX4BZgF+AWYBfgFmAX4BZgF+AcIBXQGFARgBDQEA
-        ARUBAAEa3QABGQEAAYEBSQFnAX4BhwF+AYcBfgGHAX4BhwF+AYcBfgGHAX4BhwF+AYcBfgGHAX4BZgF+
-        AUUBegFgAUEBCgEAARIBAAEY3QABcgEQAeIBXQGHAX4BhwF+AYcBfgGIAX4BiAF+AagBfgGIAX4BiAF+
-        AYcBfgGHAX4BhwF+AYcBfgHiAV0BhQEYAQ8BAAEX3QABywEkASUBbgGoAX4BqAF+AagBfgGoAX4BqAF+
-        AagBfgGoAX4BqAF+AagBfgGoAX4BiAF+AYcBfgFGAXYB4gEwAQ0BAAEW3QABywEkAWYBcgGoAX4BqAF+
-        AckBfgHJAX4ByQF+AckBfgHJAX4ByQF+AakBfgGoAX4BqAF+AagBfgGHAX4BYQFFAQsBAAEVAQABGtsA
-        AQcBNQGHAXoByQF+AckBfgHJAX4ByQF+AckBfgHJAX4ByQF+AckBfgHJAX4ByQF+AakBfgGoAX4BqAF+
-        AcIBWQEKAQABEwEAARnbAAHpATABhwF2AckBfgHqAX4B6gF+AeoBfgHqAX4B6gF+AeoBfgHqAX4B6gF+
-        AckBfgHJAX4ByQF+AagBfgEDAWIBZwEQARMBAAEZ2wABzAEkAYcBcgHqAX4B6gF+AeoBfgELAX8BCwF/
-        AQsBfwELAX8B6wF+AeoBfgHqAX4BygF+AckBfgHJAX4B4gFZAWgBEAETAQABGdsAAa4BIAFGAWoB6gF+
-        AckBegFGAWoBRQFmAUUBZgGoAXoByQF+AcoBfgHqAX4BygF+AcoBfgHJAX4BZgFuAaEBTQFoARABFQEA
-        ARrbAAFVAQwB4gFZASQBXgHBAVEBBAFaAUcBYgFGAWIB4wFVAeIBXQEDAWYBRQFyAUUBcgEkAW4BwgFZ
-        AcMBUQGAAU0BDQEAARbfAAFjAUEBoQFRAQQBWgFHAWIBaAFqAaoBbgHOAW4BzgFuAawBZgFIAV4BJgFa
-        ASYBWgEmAVoBwQFRAUEBPQERAQABGN8AAZABHAHCAVEBaAFmAYkBagGrAW4BzAFuAe8BcgEyAXcBdgF3
-        AVUBdwHwAmoBYgEFAVoBwQFRAacBIAEVAQABGeEAAUQBPQEmAV4BqwFuAc4BbgHwAXIBEAFzARIBcwEz
-        AXcB8AFuAasBagFoAWYBBAFaAWIBRQESAQQBGAEAARrhAAFVAQwBgQFFAUcBYgHwAXIBMgF3ATQBdwEz
-        AXcBEAFzAc4BcgGrAW4BRgFiAYEBSQFQAQwBGAEAARrlAAE3AQgBJgE5AeQBVQGtAWoCdwFUAXcB8AFy
-        AYoBZgHjAVUBJQE5ATMBCAEZAQABGusAAXMBEAHrASgBJgE5ASUBOQElATkBywEkAVMBDAEZAQABGtUA
-        AUIBTQE+BwABPgMAASgDAAGAAwABIAMAAQEBAAEBBgABAhYAA/8BAAH/AeABAAEfDAAB/gIAAQ8MAAH4
-        AgABDwwAAfACAAEPDAAB8AIAAQ8MAAHwAgABDwwAAfACAAEPDAAB8AIAAQ8MAAHwAgABDwwAAfACAAEf
-        DAAB8AIAAR8MAAH4AgABPwwAAfgCAAF/DAAB/gIAAf8MAAH/AYABAAF/DAAB/wGAAQABfwwAAf8CAAE/
-        DAAB/wIAAT8MAAH/AgABPwwAAf8CAAE/DAAB/wIAAR8MAAH/AgABHwwAAf8CAAEfDAAB/wIAAR8MAAH/
-        AgABHwwAAf8CAAE/DAAB/wGAAQABPwwAAf8BgAEAAT8MAAH/AcABAAE/DAAB/wHAAQABfwwAAf8B4AEA
-        Af8MAAH/AfgBAwH/DAAL
-</value>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Datei</value>
+  </data>
+  <data name="toolStripMenuItemTaskPane.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="toolStripMenuItemTaskPane.Text" xml:space="preserve">
+    <value>TaskPane anzeigen</value>
+  </data>
+  <data name="positionConverterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Positionskonverter...</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Über...</value>
+  </data>
+  <data name="creditsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="creditsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Credits...</value>
+  </data>
+  <data name="menuStripMain.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="toolStripContainerForm.TopToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BottomToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TopToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RightToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LeftToolStripPanel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ContentPanel.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -410,5 +451,8 @@
         y2YAy2YA//+jhsA/gt/AP7yzAADz/AAA2GoAAGEsAAAnoQAAkUYAAEEgAAAg9gAA78oAAH5uwADT9cAA
         89rAANfKwADI8Q==
 </value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

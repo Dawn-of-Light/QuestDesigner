@@ -129,7 +129,8 @@ namespace DOL.Tools.QuestDesigner
             System.Data.DataColumn dataColumn42;
             System.Data.DataColumn dataColumn43;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestDesignerForm));
-            NETXP.Controls.Docking.Renderers.Office2003 office20032 = new NETXP.Controls.Docking.Renderers.Office2003();
+            NETXP.Controls.Docking.Renderers.Office2003 office20031 = new NETXP.Controls.Docking.Renderers.Office2003();
+            NETXP.Library.DynamicColorTable dynamicColorTable1 = new NETXP.Library.DynamicColorTable();
             NETXP.Library.DynamicColorTable dynamicColorTable2 = new NETXP.Library.DynamicColorTable();
             this.toolStripContainerForm = new System.Windows.Forms.ToolStripContainer();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -318,7 +319,6 @@ namespace DOL.Tools.QuestDesigner
             this.openQuestDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveScriptDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.imageListNPC = new System.Windows.Forms.ImageList(this.components);
             dataColumnQuestPartIF = new System.Data.DataColumn();
             dataColumnTriggerQuestPart = new System.Data.DataColumn();
             dataColumnTriggerType = new System.Data.DataColumn();
@@ -1126,8 +1126,8 @@ namespace DOL.Tools.QuestDesigner
             this.tabControlMain.PixelArea = true;
             this.tabControlMain.PixelBorder = true;
             this.tabControlMain.PositionTop = true;
-            office20032.ColorTable = dynamicColorTable2;
-            this.tabControlMain.Renderer = office20032;
+            office20031.ColorTable = dynamicColorTable1;
+            this.tabControlMain.Renderer = office20031;
             this.tabControlMain.ShowArrows = true;
             this.tabControlMain.ShowClose = false;
             this.tabControlMain.ShrinkPagesToFit = false;
@@ -1349,7 +1349,8 @@ namespace DOL.Tools.QuestDesigner
             this.xpTaskPane.AccessibleDescription = null;
             this.xpTaskPane.AccessibleName = null;
             resources.ApplyResources(this.xpTaskPane, "xpTaskPane");
-            this.xpTaskPane.BackgroundImage = null;            
+            this.xpTaskPane.BackgroundImage = null;
+            this.xpTaskPane.ColorTable = dynamicColorTable2;
             this.xpTaskPane.Controls.Add(this.xpTGQuestPart);
             this.xpTaskPane.Controls.Add(this.xpTGActions);
             this.xpTaskPane.DataBindings.Add(new System.Windows.Forms.Binding("Visible", global::DOL.Tools.QuestDesigner.Properties.Settings.Default, "ShowTaskPane", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -1363,7 +1364,8 @@ namespace DOL.Tools.QuestDesigner
             this.xpTGQuestPart.AccessibleDescription = null;
             this.xpTGQuestPart.AccessibleName = null;
             resources.ApplyResources(this.xpTGQuestPart, "xpTGQuestPart");
-            this.xpTGQuestPart.BackgroundImage = null;            
+            this.xpTGQuestPart.BackgroundImage = null;
+            this.xpTGQuestPart.ColorTable = dynamicColorTable2;
             this.xpTGQuestPart.Font = null;
             this.xpTGQuestPart.Image = null;
             this.xpTGQuestPart.Name = "xpTGQuestPart";
@@ -1374,7 +1376,8 @@ namespace DOL.Tools.QuestDesigner
             this.xpTGActions.AccessibleDescription = null;
             this.xpTGActions.AccessibleName = null;
             resources.ApplyResources(this.xpTGActions, "xpTGActions");
-            this.xpTGActions.BackgroundImage = null;            
+            this.xpTGActions.BackgroundImage = null;
+            this.xpTGActions.ColorTable = dynamicColorTable2;
             this.xpTGActions.Controls.Add(this.linkLabelNewQuest);
             this.xpTGActions.Controls.Add(this.linkSaveQuest);
             this.xpTGActions.Controls.Add(this.linkLoadQuest);
@@ -1402,6 +1405,7 @@ namespace DOL.Tools.QuestDesigner
             this.linkSaveQuest.AccessibleName = null;
             resources.ApplyResources(this.linkSaveQuest, "linkSaveQuest");
             this.linkSaveQuest.Font = null;
+            this.linkSaveQuest.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.save;
             this.linkSaveQuest.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkSaveQuest.Name = "linkSaveQuest";
             this.linkSaveQuest.TabStop = true;
@@ -1461,6 +1465,7 @@ namespace DOL.Tools.QuestDesigner
             this.newToolStripMenuItem.AccessibleName = null;
             resources.ApplyResources(this.newToolStripMenuItem, "newToolStripMenuItem");
             this.newToolStripMenuItem.BackgroundImage = null;
+            this.newToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.newDocument;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeyDisplayString = null;
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
@@ -1471,6 +1476,7 @@ namespace DOL.Tools.QuestDesigner
             this.openToolStripMenuItem.AccessibleName = null;
             resources.ApplyResources(this.openToolStripMenuItem, "openToolStripMenuItem");
             this.openToolStripMenuItem.BackgroundImage = null;
+            this.openToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.open;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeyDisplayString = null;
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
@@ -1488,6 +1494,7 @@ namespace DOL.Tools.QuestDesigner
             this.saveToolStripMenuItem.AccessibleName = null;
             resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
             this.saveToolStripMenuItem.BackgroundImage = null;
+            this.saveToolStripMenuItem.Image = global::DOL.Tools.QuestDesigner.Properties.Resources.save;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeyDisplayString = null;
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
@@ -2616,12 +2623,6 @@ namespace DOL.Tools.QuestDesigner
             resources.ApplyResources(this.saveScriptDialog, "saveScriptDialog");
             this.saveScriptDialog.RestoreDirectory = true;
             // 
-            // imageListNPC
-            // 
-            this.imageListNPC.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListNPC.ImageStream")));
-            this.imageListNPC.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListNPC.Images.SetKeyName(0, "user.ico");
-            // 
             // QuestDesignerForm
             // 
             this.AccessibleDescription = null;
@@ -2837,8 +2838,7 @@ namespace DOL.Tools.QuestDesigner
 		private NETXP.Controls.Docking.TabPage tabPageQuestPart;
 		private NETXP.Controls.Docking.TabPage tabPageArea;
         private NETXP.Controls.Docking.TabPage tabPageCode;
-		private QuestInfo questInfo;
-        private System.Windows.Forms.ImageList imageListNPC;
+        private QuestInfo questInfo;
 		private Item itemView;
 		private CustomCode customCode;
 		private NETXP.Controls.TaskPane.XPTaskPane xpTaskPane;

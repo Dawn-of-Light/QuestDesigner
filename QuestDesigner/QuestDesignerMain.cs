@@ -161,7 +161,7 @@ namespace DOL.Tools.QuestDesigner
         static void Main(string[] args)
         {            
             // Sets the UI culture to German.
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 
             //RELEASE MODE; ERROR DIALOG
             try

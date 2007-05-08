@@ -329,17 +329,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\databaseError.ico" />
-    <None Include="Resources\databaseOk.ico" />
-    <None Include="Resources\delete.ico" />
     <None Include="Resources\designer.ico" />
-    <None Include="Resources\document.ico" />
-    <None Include="Resources\error.ico" />
-    <None Include="Resources\globe.ico" />
-    <None Include="Resources\INFO.ICO" />
-    <None Include="Resources\npc.ico" />
-    <None Include="Resources\search.ico" />
-    <None Include="Resources\searchNPC.ico" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -553,9 +543,9 @@
     <Content Include="lib\log4net.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\heading.png" />
-    <None Include="Resources\mob32g.png" />
-    <None Include="Resources\npc32g.png" />
+    <None Include="Resources\open.png" />
+    <None Include="Resources\new.png" />
+    <None Include="Resources\save.png" />
     <None Include="Resources\areaCircle.png" />
     <None Include="Resources\areaSquare.png" />
     <None Include="Resources\create.png" />
@@ -606,9 +596,6 @@
     <None Include="Resources\databaseError.png" />
     <None Include="Resources\area.png" />
     <None Include="Resources\warning.png" />
-    <None Include="Resources\item.ico" />
-    <None Include="Resources\questpart.ico" />
-    <None Include="Resources\mob.ico" />
     <EmbeddedResource Include="QuestDesigner\PositionConverterPopup.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PositionConverterPopup.cs</DependentUpon>

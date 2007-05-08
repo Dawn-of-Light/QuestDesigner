@@ -679,6 +679,13 @@ namespace DOL.Tools.QuestDesigner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap newDocument {
+            get {
+                object obj = ResourceManager.GetObject("newDocument", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap npc {
             get {
                 object obj = ResourceManager.GetObject("npc", resourceCulture);
@@ -689,6 +696,13 @@ namespace DOL.Tools.QuestDesigner.Properties {
         internal static System.Drawing.Bitmap npc32 {
             get {
                 object obj = ResourceManager.GetObject("npc32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap open {
+            get {
+                object obj = ResourceManager.GetObject("open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -724,6 +738,13 @@ namespace DOL.Tools.QuestDesigner.Properties {
         internal static System.Drawing.Bitmap questpart {
             get {
                 object obj = ResourceManager.GetObject("questpart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap save {
+            get {
+                object obj = ResourceManager.GetObject("save", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
