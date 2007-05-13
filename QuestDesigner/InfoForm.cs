@@ -41,6 +41,8 @@ namespace DOL.Tools.Mapping.Forms
         private Label label8;
         private Label label10;
         private Label label11;
+        private Label label9;
+        private Label label12;
 
         /// <summary>
         /// Required designer variable.
@@ -93,6 +95,8 @@ namespace DOL.Tools.Mapping.Forms
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,7 +112,7 @@ namespace DOL.Tools.Mapping.Forms
             // 
             // buttonClose
             // 
-            this.buttonClose.Location = new System.Drawing.Point(232, 345);
+            this.buttonClose.Location = new System.Drawing.Point(232, 414);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(104, 23);
             this.buttonClose.TabIndex = 1;
@@ -212,11 +216,31 @@ namespace DOL.Tools.Mapping.Forms
             this.label11.TabIndex = 13;
             this.label11.Text = "Item/Mob/Model Preview";
             // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(5, 384);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(215, 16);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Apo";
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(4, 352);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(256, 32);
+            this.label12.TabIndex = 15;
+            this.label12.Text = "German localization";
+            // 
             // InfoForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(348, 380);
+            this.ClientSize = new System.Drawing.Size(348, 449);
             this.ControlBox = false;
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label3);

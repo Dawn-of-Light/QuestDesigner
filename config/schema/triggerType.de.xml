@@ -1,0 +1,153 @@
+<!--
+Parameter description:
+
+value				... qualified name of enumeration
+description ... short humanreadable formfor value (used for comboboxes etc...)
+help				... Help text displayed in popup, short description of parameters etc...
+i,k,n,v,p,q ... Parameter description: <selector>:<type>(<default>)
+text				... text for intellisense textbox $<parameter>{0}$ defines placeholder for parameter <parameter> 
+
+Possible selectors:
+- QuestType
+- GameLiving
+- Area
+- Item
+- Whisper
+- Region
+- Zone
+- Text
+- Location
+- TextType
+- Emote
+- CharacterClass
+
+Possible types:
+- string
+- int
+- long
+- var
+	
+Possible parameters:
+- P	... first action parameter
+- Q ...	second action parameter
+- N ... first requirement parameter
+- V ... second requirement parameter
+- C ... comparator requirmeent parameter
+- K ... first trigger parameter
+- I ... second trigger parameter
+
+-->
+<QuestData>
+	<TriggerType>
+		<value>eTriggerType.None</value>
+		<description>Nichts</description>
+		<help>Leerer Trigger ohne höheren Nutzen.</help>
+		<text>der Spieler nichts macht</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.AcceptQuest</value>
+		<description>Quest akzeptiert</description>
+		<category>Invitation</category>
+		<help>Der Spieler akzeptiert Quest I. Wenn I leer ist, wird diese Quest verwendet.</help>
+		<i>QuestType:string</i>
+		<text>der Spieler $I{0}$ akzeptiert</text>
+	</TriggerType>	
+	<TriggerType>
+		<value>eTriggerType.DeclineQuest</value>
+		<description>Quest abgelehnt</description>
+		<category>Invitation</category>
+		<help>Der Spieler lehnt Quest I ab. Wenn I leer ist, wird diese Quest verwendet.</help>
+		<i>QuestType:string</i>
+		<text>der Spieler $I{0}$ ablehnt</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.ContinueQuest</value>
+		<description>Quest erneut starten</description>
+		<category>Invitation</category>
+		<help>Quest I wird nach Abbruch erneut aufgenommen bzw. fortgesetzt. Wenn I leer ist, wird diese Quest verwendet.</help>
+		<i>QuestType:string</i>
+		<text>der Spieler $I{0}$ erneut startet</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.AbortQuest</value>
+		<description>Quest abgebrochen</description>
+		<category>Invitation</category>
+		<help>Quest I wird, nachdem sie angenommen wurde, abgebrochen. Wenn I leer ist, wird diese Quest verwendet.</help>
+		<i>QuestType:string</i>
+		<text>der Spieler $I{0}$ abbricht</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.EnterArea</value>
+		<description>Bereich betreten</description>
+		<help>Der Spieler betrit den Bereich I (Area)</help>
+		<i>Area</i>
+		<text>der Spieler $I{0}$ betrit</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.LeaveArea</value>
+		<description>Bereich verlassen</description>
+		<help>Der Spieler verlässt den Bereich I (Area)</help>
+		<i>Area</i>
+		<text>der Spieler $I{0}$ verlässt</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.Interact</value>
+		<description>Interagieren</description>
+		<help>Der Spieler interagiert mit dem NPC I</help>
+		<i>GameLiving:string</i>
+		<text>der Spieler mit $I{0}$ interagiert</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.EnemyDying</value>
+		<description>Gegner stirbt</description>
+		<help>Der Gegner I stirbt ohne zu wissen, wer oder was ihn getötet hat</help>
+  	    <k>string</k>
+		<i>GameLiving:string</i>
+		<text>$K{0}$ / $I{1}$ stirbt</text>
+	</TriggerType>	
+	<TriggerType>
+		<value>eTriggerType.PlayerKilled</value>
+		<description>Spieler getötet</description>
+		<help>Ein Monster tötet den Spieler mit der Quest</help>
+		<i>GameLiving:string</i>
+		<text>der Spieler von $I{0}$ getötet wird</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.EnemyKilled</value>
+		<description>Gegner getötet</description>
+		<help>Ein Spieler (und nur ein Spieler) tötet irgendein Monster mit dem Namen K, oder ein spezifisches Monster I</help>
+		<k>string</k>
+		<i>GameLiving:string</i>
+		<text>der Spieler $K{0}$ / $I{1}$ tötet</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.GiveItem</value>
+		<description>Gegenstand geben</description>
+		<help>Der Spieler gibt den Gegenstand I zum NPC K</help>
+		<i>Item:string</i>
+		<k>GameLiving:string</k>
+		<text>der Spieler $I{0}$ zu $K{1}$ gibt</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.Whisper</value>
+		<description>Flüstern</description>
+		<help>Der Spieler flüstert das Wort K zum NPC I</help>
+		<k>Whisper:string</k>
+		<i>GameLiving:string</i>
+		<text>der Spieler $K{0}$ zu $I{1}$ flüstert</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.Timer</value>
+		<description>Timer</description>
+		<help>Der Timer mit der ID K löst aus</help>
+		<k>string</k>
+		<text>der Timer $K{0}$ auslöst</text>
+	</TriggerType>
+	<TriggerType>
+		<value>eTriggerType.ItemUsed</value>
+		<description>Gegenstand benutzen</description>
+		<help>Gegenstand I wird vom Spieler benutzt</help>
+		<i>Item:string</i>
+		<text>der Spieler $I{0}$ benutzt</text>
+	</TriggerType>
+</QuestData>

@@ -721,6 +721,60 @@ namespace DOL.Tools.QuestDesigner.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to and.
+        /// </summary>
+        internal static string qstAnd {
+            get {
+                return ResourceManager.GetString("qstAnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If.
+        /// </summary>
+        internal static string qstIf {
+            get {
+                return ResourceManager.GetString("qstIf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to never.
+        /// </summary>
+        internal static string qstNever {
+            get {
+                return ResourceManager.GetString("qstNever", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nothing happens.
+        /// </summary>
+        internal static string qstNothingHappens {
+            get {
+                return ResourceManager.GetString("qstNothingHappens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to or.
+        /// </summary>
+        internal static string qstOr {
+            get {
+                return ResourceManager.GetString("qstOr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to then.
+        /// </summary>
+        internal static string qstThen {
+            get {
+                return ResourceManager.GetString("qstThen", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap quest {
             get {
                 object obj = ResourceManager.GetObject("quest", resourceCulture);

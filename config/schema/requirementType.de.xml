@@ -1,0 +1,279 @@
+<!--
+Parameter description:
+
+value				... qualified name of enumeration
+description ... short humanreadable formfor value (used for comboboxes etc...)
+help				... Help text displayed in popup, short description of parameters etc...
+i,k,n,v,p,q ... Parameter description: <selector>:<type>(<default>)
+text				... text for intellisense textbox $<parameter>{0}$ defines placeholder for parameter <parameter> 
+
+Possible selectors:
+- QuestType
+- GameLiving
+- Area
+- Item
+- Whisper
+- Region
+- Zone
+- Text
+- Location
+- TextType
+- Emote
+- CharacterClass
+
+Possible types:
+- string
+- int
+- long
+- var
+
+Possible comparators:
+- binary	// either true or false => is / is not
+- quantity	// {equals, greater, less not equals}
+
+Possible parameters:
+- P	... first action parameter
+- Q ...	second action parameter
+- N ... first requirement parameter
+- V ... second requirement parameter
+- C ... comparator requirmeent parameter
+- K ... first trigger parameter
+- I ... second trigger parameter
+
+-->
+<QuestData>
+	<RequirementType>
+		<value>eRequirementType.None</value>
+		<description>Nichts wird benötigt</description>
+		<text>nichts wird benötigt</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.InventoryItem</value>
+		<description>Inventar-Gegenstand</description>
+		<help>Überprüft ob der Spieler V Mal Gegenstand N im Inventar hat - Comparator wird benutzt.</help>
+		<v>int(1)</v>
+		<n>Item:string</n>
+    	<comparator>quantity</comparator>
+		<text>der Spieler hat $C{0}$ $V{1}$ Mal $N{2}$ im Inventar</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Class</value>
+		<description>Klasse</description>
+		<help>Überprüft die Klasse N des Spielers.</help>
+		<n>CharacterClass:int(class)</n>
+		<text>die Klasse des Spielers ist $N{0}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Quest</value>
+		<description>Quest</description>
+		<help>ÜberprÜft wie oft V der Spieler, Quest N abgeschlossen hat - Comparator wird benutzt. Wenn N leer ist, wird diese Quest benutzt.</help>
+		<v>int</v>
+		<n>QuestType:string</n>
+		<comparator>quantity</comparator>
+		<text>der Spieler hat $N{0}$ $C{1}$ $V{2}$ Mal abgeschlossen</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Encumbrance</value>
+		<description>Belastung</description>
+		<help>Überprüft die Belastung des Spielers mit dem definierten Wert N - Comparator wird benutzt</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>die Belastung des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.EncumbranceMax</value>
+		<description>Maximale Belastung</description>
+		<help>Überprüft die maximale Belastung des Spielers mit dem definierten Wert N - Comparator wird benutzt</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>die maximale Belastung des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Endurance</value>
+		<description>Ausdauer</description>
+		<help>Überprüft in Prozent, die Ausdauer des Spielers mit dem definierten Wert N - Comparator wird benutzt</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>die Ausdauer des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.EnduranceMax</value>
+		<description>Maximale Ausdauer</description>
+		<help>Überprüft in Prozent, die maximale Ausdauer des Spielers mit dem definierten Wert N - Comparator wird benutzt</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>die maximale Ausdauer des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Gender</value>
+		<description>Geschlecht</description>
+		<help>Überprüft das Geschlecht des Spielers mit dem definierten Wert N (0:männlich, 1:weiblich)</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>das Geschlecht des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.GroupNumber</value>
+		<description>Gruppennummer</description>
+		<help>Überprüft ob der Spieler in einer Gruppe ist. N ist die Nummer des Spielers innerhalb der Gruppe.</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>die Nummer des Spielers innerhalb der Gruppe ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.GroupLevel</value>
+		<description>Gruppenlevel</description>
+		<help>Überprüft ob der Spieler in einer Gruppe ist. N ist der Levelbereich der Gruppe.</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>der Gruppenlevel des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Guild</value>
+		<description>Gilde</description>
+		<help>Überprüft ob der Spieler N in der Gilde V ist.</help>
+		<n>GameLiving:string</n>
+		<v>string</v>
+		<text>$N{0}$ ist in der Gilde $V{1}$</text>
+	</RequirementType>
+		<RequirementType>
+		<value>eRequirementType.Gold</value>
+		<description>Gold</description>
+		<help>Überprüft das Gold N des Spielers - eComparator wird benutzt.</help>
+		<n>long</n>
+		<comparator>quantity</comparator>
+		<text>der Spieler hat $C{0}$ $N{1}$ Gold</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Health</value>
+		<description>Trefferpunkte</description>
+		<help>Überprüft die Trefferpunkte des Spielers mit dem definierten Wert N - Comparator wird benutzt</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>die Trefferpunkte des Spielers sind $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.HealthMax</value>
+		<description>Maximale Trefferpunkte</description>
+		<help>Überprüft die maximalen Trefferpunkte des Spielers mit dem definierten Wert N - Comparator wird benutzt</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>die maximalen Trefferpunkte des Spielers sind $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Level</value>
+		<description>Level</description>
+		<help>Überprüft den Level N des Spielers - eComparator wird benutzt</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>der Level des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Mana</value>
+		<description>Magiekraft</description>
+		<help>Überprüft die Magiekraft (Mana) des Spielers mit dem definierten Wert N - Comparator wird benutzt</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>die Magiekraft des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.ManaMax</value>
+		<description>Maximale Magiekraft</description>
+		<help>Überprüft die maximale Magiekraft (Mana) des Spielers mit dem definierten Wert N - Comparator wird benutzt</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>die maximale Magiekraft des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+		<RequirementType>
+		<value>eRequirementType.QuestPending</value>
+		<description>Quest bereits gestartet</description>
+		<category>Storyline(comparator=None)</category>
+		<help>Überprüft ob der Spieler bereits Quest N gestartet hat. Wenn N leer ist, wird diese Quest benutzt.</help>
+		<n>QuestType:string</n>
+		<comparator>binary</comparator>
+		<text>der Spieler $C{0}$ $N{1}$ gestartet</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Race</value>
+		<description>Rasse</description>
+		<help>Überprüft die Rasse N des Spielers</help>
+		<n>int</n>
+  	        <comparator>binary</comparator>
+		<text>die Rasse des Spielers $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Random</value>
+		<description>Random</description>
+		<help>Random Prozent Chance N. 50 = 50%:50%</help>
+		<n>int</n>
+		<text>eine random Chance von $N{0}$ Prozent</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Realm</value>
+		<description>Reich</description>
+		<help>Überprüft das Reich N des Spielers.</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>das Reich des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.RealmLevel</value>
+		<description>Reichsrang</description>
+		<help>Überprüft den Reichsrang N des Spielers - eComparator wird benutzt</help>
+		<n>int</n>
+		<comparator>quantity</comparator>
+		<text>der Reichsrang des Spielers ist $C{0}$ $N{1}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.RealmPoints</value>
+		<description>Reichspunkte</description>
+		<help>Überprüft die Reichspunkte N des Spielers - eComparator wird benutzt</help>
+		<n>long</n>
+		<comparator>quantity</comparator>
+		<text>die Reichspunkte des Spielers sind $C{0}$ $N{1}$</text>
+	</RequirementType>
+		<RequirementType>
+		<value>eRequirementType.Region</value>
+		<description>Region</description>
+		<help>Überprüft ob sich der Spieler in Zone N von Region V befindet</help>
+		<n>Zone:int</n>
+		<v>Region:int</v>
+		<text>sich der Spieler in Zone $N{0}$ von Region $V{1}$ befindet</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.EquippedItem</value>
+		<description>Angelegter Gegenstand</description>
+		<help>Überprüft einzelne Rüstungsteile des Spielers um zu schauen, ob der Spieler Gegenstand N trägt</help>
+		<n>Item:string</n>
+		<text>der Spieler hat $N{0}$ angelegt</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.QuestStep</value>
+		<description>Questschritt</description>
+		<category>Storyline</category>
+		<help>Überprüft ob der Spieler bei Quest N, auf Schritt V ist - eComparator wird benutzt. Wenn N leer ist, wird diese Quest verwendet.</help>
+		<v>int</v>
+		<n>QuestType:string</n>
+		<comparator>quantity</comparator>
+		<text>der Questschritt für $N{0}$ ist $C{1}$ $V{2}$</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.QuestGivable</value>
+		<description>Quest annehmbar</description>
+		<category>Invitation(comparator=None)</category>
+		<help>Überprüft ob Quest N vom NPC, vom Spieler angenommen werden kann. Wenn N leer ist, wird diese quest verwendet.</help>
+		<n>QuestType:string</n>
+		<v>GameNPC:string</v>
+		<comparator>binary</comparator>
+		<text>dem Spieler $C{0}$ erlaubt $N{1}$ von $V{2}$ anzunehmen</text>
+	</RequirementType>
+	<RequirementType>
+		<value>eRequirementType.Distance</value>
+		<description>Distanz</description>
+		<help>Überprüft die Distanz V zwischen dem Spieler und NPC N - Comparator wird benutzt</help>
+		<v>int</v>
+		<n>GameLiving:string</n>
+		<comparator>quantity</comparator>
+		<text>die Distanz des Spielers zu $N{0}$ ist $C{1}$ $V{2}$</text>
+	</RequirementType>
+</QuestData>

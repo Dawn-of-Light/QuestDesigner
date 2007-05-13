@@ -117,10 +117,178 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="comparatorEqual" xml:space="preserve">
+    <value>gleich</value>
+  </data>
+  <data name="comparatorGreater" xml:space="preserve">
+    <value>größer</value>
+  </data>
+  <data name="comparatorIs" xml:space="preserve">
+    <value>ist</value>
+  </data>
+  <data name="comparatorLess" xml:space="preserve">
+    <value>weniger</value>
+  </data>
+  <data name="comparatorNone" xml:space="preserve">
+    <value>kein</value>
+  </data>
+  <data name="comparatorNot" xml:space="preserve">
+    <value>nicht</value>
+  </data>
+  <data name="comparatorNotEqual" xml:space="preserve">
+    <value>ungleich</value>
+  </data>
+  <data name="lblCreateNewQuest" xml:space="preserve">
+    <value>Neue Quest erstellen</value>
+  </data>
+  <data name="lblDataDownloadRequest" xml:space="preserve">
+    <value>Benötigte Daten herunterladen</value>
+  </data>
+  <data name="lblDefaultArea" xml:space="preserve">
+    <value>ein Gebiet</value>
+  </data>
+  <data name="lblDefaultCharacterClass" xml:space="preserve">
+    <value>Charakterklasse</value>
+  </data>
+  <data name="lblDefaultEmote" xml:space="preserve">
+    <value>Emote</value>
+  </data>
+  <data name="lblDefaultGameLiving" xml:space="preserve">
+    <value>niemand</value>
+  </data>
+  <data name="lblDefaultGameNPC" xml:space="preserve">
+    <value>niemand</value>
+  </data>
+  <data name="lblDefaultItem" xml:space="preserve">
+    <value>einen Gegenstand</value>
+  </data>
+  <data name="lblDefaultLocation" xml:space="preserve">
+    <value>ein Punkt</value>
+  </data>
+  <data name="lblDefaultNumber" xml:space="preserve">
+    <value>Zahl</value>
+  </data>
+  <data name="lblDefaultParameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="lblDefaultQuest" xml:space="preserve">
+    <value>diese Quest</value>
+  </data>
+  <data name="lblDefaultRegion" xml:space="preserve">
+    <value>eine Region</value>
+  </data>
+  <data name="lblDefaultText" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="lblDefaultTexttype" xml:space="preserve">
+    <value>Texttyp</value>
+  </data>
+  <data name="lblDefaultWhisper" xml:space="preserve">
+    <value>ein Word</value>
+  </data>
+  <data name="lblDefaultZone" xml:space="preserve">
+    <value>eine Zone</value>
+  </data>
   <data name="lblExportTransformator" xml:space="preserve">
     <value>{0} exportieren...</value>
   </data>
+  <data name="lblObjects" xml:space="preserve">
+    <value>Objeke</value>
+  </data>
+  <data name="lblRegion" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="lblTheQuest" xml:space="preserve">
+    <value>die Queste {0}</value>
+  </data>
+  <data name="msgCreateNewQuest" xml:space="preserve">
+    <value>Alle nicht gespeicherten Änderungen gehen verlohren, willst du wirklich eine neune Queste erstellen?</value>
+  </data>
   <data name="msgDatabaseError" xml:space="preserve">
     <value>Datenbank Fehler</value>
+  </data>
+  <data name="msgDatabaseSuccess" xml:space="preserve">
+    <value>Datenbank erfolgreich initialisiert</value>
+  </data>
+  <data name="msgDataDownload" xml:space="preserve">
+    <value>Kartenmaterial nicht gefunden. Willst du es dir von {0} herunterladen? Du kannst dies auch später über den Menüpunkt "Tools" machen.</value>
+  </data>
+  <data name="msgDataDownloading" xml:space="preserve">
+    <value>Kartenmaterial wird heruntergeladen</value>
+  </data>
+  <data name="msgExportError" xml:space="preserve">
+    <value>Exportierungsfehler</value>
+  </data>
+  <data name="msgExportingQuest" xml:space="preserve">
+    <value>Die Quest wird exportiert</value>
+  </data>
+  <data name="msgFileNotFound" xml:space="preserve">
+    <value>Datei {0} nicht gefunden</value>
+  </data>
+  <data name="msgInitDOLConfigFile" xml:space="preserve">
+    <value>Initialisierung. Wähle das Heimverzeichnis des DOL Servers aus. (Das is das Verzeichnis wo die Datei DolServer.exe liegt.)</value>
+  </data>
+  <data name="msgInitDOLConfigFileNoTemplateFound" xml:space="preserve">
+    <value>Vorlag für die Konfigurationsdatei {0} konnte nicht gefunden werden.</value>
+  </data>
+  <data name="msgModuleFoundError" xml:space="preserve">
+    <value>Konnte Modul {0} nicht finden</value>
+  </data>
+  <data name="msgNewQuestCreated" xml:space="preserve">
+    <value>Neue Quest erstellt</value>
+  </data>
+  <data name="msgNoInvitingNPC" xml:space="preserve">
+    <value>Kein NPC definiert, der die Quest vergibt</value>
+  </data>
+  <data name="msgQuestExported" xml:space="preserve">
+    <value>Quest erfolgreich nach {0} exportiert</value>
+  </data>
+  <data name="msgQuestLoaded" xml:space="preserve">
+    <value>Quest erfolgreich von {0} geladen</value>
+  </data>
+  <data name="msgQuestSaved" xml:space="preserve">
+    <value>Quest erfolgreich nach {0} gespeichert</value>
+  </data>
+  <data name="msgRegionAlreadyLoaded" xml:space="preserve">
+    <value>Region {0} wurde bereits geladen</value>
+  </data>
+  <data name="msgRegionError" xml:space="preserve">
+    <value>Region konnte nicht geladen werden</value>
+  </data>
+  <data name="msgRegionSuccess" xml:space="preserve">
+    <value>Region wurde erfolgreich geladen</value>
+  </data>
+  <data name="qstAnd" xml:space="preserve">
+    <value>und</value>
+  </data>
+  <data name="qstIf" xml:space="preserve">
+    <value>Wenn</value>
+  </data>
+  <data name="qstNever" xml:space="preserve">
+    <value>niemals</value>
+  </data>
+  <data name="qstNothingHappens" xml:space="preserve">
+    <value>passiert nichts</value>
+  </data>
+  <data name="qstOr" xml:space="preserve">
+    <value>oder</value>
+  </data>
+  <data name="qstThen" xml:space="preserve">
+    <value>dann</value>
+  </data>
+  <data name="textTypeBroadcast" xml:space="preserve">
+    <value>broadcastet</value>
+  </data>
+  <data name="textTypeDialog" xml:space="preserve">
+    <value>erscheint ein Dialog</value>
+  </data>
+  <data name="textTypeEmote" xml:space="preserve">
+    <value>emotes</value>
+  </data>
+  <data name="textTypeNone" xml:space="preserve">
+    <value>nichts</value>
+  </data>
+  <data name="textTypeRead" xml:space="preserve">
+    <value>liest</value>
   </data>
 </root>

@@ -33,6 +33,7 @@ using System.Collections;
 using Flobbster.Windows.Forms;
 using System.Reflection;
 using DOL.Tools.QuestDesigner.Converter;
+using DOL.Tools.QuestDesigner.Properties;
 
 namespace DOL.Tools.QuestDesigner
 {
@@ -518,7 +519,7 @@ namespace DOL.Tools.QuestDesigner
                 // Trigger
                 #region Trigger
                 DataRow[] triggerRows = DB.TriggerTable.Select(DB.COL_QUESTPARTTRIGGER_QUESTPARTID+"=" + questPartRow[DB.COL_QUESTPART_ID]);                
-				questPartTextbox.InsertText(questPartRow[DB.COL_QUESTPART_POSITION]+": If ");				
+				questPartTextbox.InsertText(questPartRow[DB.COL_QUESTPART_POSITION]+": "+Resources.qstIf+" ");				
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ForeColorSelected : ForeColor);
 				colorBegin = questPartTextbox.SelectionEnd;
                 if (triggerRows!=null && triggerRows.Length > 0)
@@ -534,7 +535,7 @@ namespace DOL.Tools.QuestDesigner
 						i = string.IsNullOrEmpty(i) ? null : i;
 
 						if (!first)
-							questPartTextbox.InsertText(" or ");
+							questPartTextbox.InsertText(" "+Resources.qstOr+" ");
 						first = false;
 
 						string triggerText = Utils.TriggerText((eTriggerType)triggerType, k, i);
@@ -557,7 +558,7 @@ namespace DOL.Tools.QuestDesigner
 				}
 				else
 				{
-					questPartTextbox.InsertText("never");
+					questPartTextbox.InsertText(Resources.qstNever);
 				}
 
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd,selected ? TriggerSelectedColor : TriggerColor);				
@@ -571,7 +572,7 @@ namespace DOL.Tools.QuestDesigner
 
 				if (requirementRows.Length > 0)
 				{
-					questPartTextbox.InsertText(" and ");
+					questPartTextbox.InsertText(" "+Resources.qstAnd+" ");
 
 					questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ForeColorSelected : ForeColor);					
 					colorBegin = questPartTextbox.SelectionEnd;					
@@ -588,7 +589,7 @@ namespace DOL.Tools.QuestDesigner
 						v = string.IsNullOrEmpty(v) ? null : v;
 						
 						if (!first)
-							questPartTextbox.InsertText(" and ");
+                            questPartTextbox.InsertText(" " + Resources.qstAnd + " ");
 						first = false;
 
 						string requirementText = Utils.RequirementText((eRequirementType)type, n, v, comp );
@@ -617,8 +618,8 @@ namespace DOL.Tools.QuestDesigner
 
                 // Actions
                 #region Actions
-                
-                questPartTextbox.InsertText(" then ");
+
+                questPartTextbox.InsertText(" " + Resources.qstThen + " ");
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd,selected ? ForeColorSelected : ForeColor );				
 				colorBegin = questPartTextbox.SelectionEnd;
 
@@ -637,7 +638,7 @@ namespace DOL.Tools.QuestDesigner
 						q = string.IsNullOrEmpty(q) ? null : q;
 
 						if (!first)
-							questPartTextbox.InsertText(" and ");
+                            questPartTextbox.InsertText(" " + Resources.qstAnd + " ");
 						first = false;
 
 						string actionText = Utils.ActionText((eActionType)type, p, q);
@@ -660,7 +661,7 @@ namespace DOL.Tools.QuestDesigner
 				}
 				else 
 				{
-					questPartTextbox.InsertText("nothing happens");
+					questPartTextbox.InsertText(Resources.qstNothingHappens);
                 }                
 				questPartTextbox.Color(colorBegin, questPartTextbox.SelectionEnd, selected ? ActionSelectedColor : ActionColor);
 

@@ -47,6 +47,8 @@ using DOL.Tools.Mapping.Forms;
 using System.Net;
 using DOL.Tools.Mapping.Map;
 using DOL.Tools.QuestDesigner.Export;
+using System.Globalization;
+using System.Threading;
 
 namespace DOL.Tools.QuestDesigner
 {
@@ -253,12 +255,38 @@ namespace DOL.Tools.QuestDesigner
 			FillTypeValues(new Type[] { typeof(eTextType), typeof(eDamageType), typeof(eComparator), typeof(eObjectType), typeof(eInventorySlot), typeof(eColor), typeof(eRealm), typeof(eProperty), typeof(eEmote), typeof(eCharacterClass) });
 			//
 
-            string[] xmlFiles = Directory.GetFiles(QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["TypeConfigDirectory"], "*.xml");			
-            
+            string[] xmlFileNames = { "actionType", "eEnumeration", "requirementType", "triggerType" };
 
-			foreach (string filePath in xmlFiles)
+            //string[] xmlFiles = Directory.GetFiles(QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["TypeConfigDirectory"], "*.xml");
+
+            CultureInfo culture = Thread.CurrentThread.CurrentUICulture;
+            string languageCode = culture.TwoLetterISOLanguageName;
+            string languageCountryCode = culture.Name;
+            
+			foreach (string xmlFileName in xmlFileNames)
 			{
-				dataSetData.ReadXml(filePath);
+                FileInfo xmlFileinfo = new FileInfo(QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["TypeConfigDirectory"] + xmlFileName +"." +languageCountryCode+".xml");
+                if (xmlFileinfo.Exists)
+                {
+                    dataSetData.ReadXml(xmlFileinfo.FullName);
+                    continue;
+                }
+                
+                
+                xmlFileinfo = new FileInfo(QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["TypeConfigDirectory"] + xmlFileName +"."+languageCode +".xml");
+                if (xmlFileinfo.Exists)
+                {
+                    dataSetData.ReadXml(xmlFileinfo.FullName);
+                    continue;
+                }
+
+                xmlFileinfo = new FileInfo(QuestDesignerMain.WorkingDirectory + System.Configuration.ConfigurationManager.AppSettings["TypeConfigDirectory"] + xmlFileName + ".xml");
+                if (xmlFileinfo.Exists)
+                {
+                    dataSetData.ReadXml(xmlFileinfo.FullName);
+                    continue;
+                }
+                				
 			}
             // read regions and zones from config/dol directory
 

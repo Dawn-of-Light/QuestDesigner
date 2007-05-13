@@ -403,4 +403,22 @@
   <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="qstAnd" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="qstIf" xml:space="preserve">
+    <value>If</value>
+  </data>
+  <data name="qstNever" xml:space="preserve">
+    <value>never</value>
+  </data>
+  <data name="qstNothingHappens" xml:space="preserve">
+    <value>nothing happens</value>
+  </data>
+  <data name="qstOr" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="qstThen" xml:space="preserve">
+    <value>then</value>
+  </data>
 </root>
