@@ -119,7 +119,9 @@ using DOL.AI.Brain;
 	<xsl:for-each select="/Quest/Mob">
 			npcs = WorldMgr.GetNPCsByName("<xsl:value-of select="Name"/>",(eRealm) <xsl:value-of select="Realm"/>);
 			if (npcs.Length == 0)
-			{			
+			{
+				if (!WorldMgr.GetRegion(<xsl:value-of select="Region"/>).IsDisabled)
+				{
 				<xsl:choose>
 					<xsl:when test="NPCTemplateID!='-1'">
 						<xsl:value-of select="ObjectName"/> = new <xsl:value-of select="ClassType"/>(NPCTemplateMgr.GetTemplate(<xsl:value-of select="NPCTemplateID"/>));
@@ -166,6 +168,7 @@ using DOL.AI.Brain;
 				<xsl:if test="AddToWorld='true'">	
 				<xsl:value-of select="ObjectName"/>.AddToWorld();
 				</xsl:if>
+				}
 			}
 			else 
 			{
@@ -305,7 +308,9 @@ using DOL.AI.Brain;
 
 			#region defineAreas
 			<xsl:for-each select="/Quest/Area">
-				<xsl:choose>
+				if (!WorldMgr.GetRegion(<xsl:value-of select="RegionID"/>).IsDisabled)
+				{
+					<xsl:choose>
 					<xsl:when test="AreaType='BindArea'">
 						BindPoint <xsl:value-of select="ObjectName"/>BindPoint = new BindPoint();
 						<xsl:value-of select="ObjectName"/>BindPoint.Radius = (ushort)<xsl:value-of select="R"/>;
@@ -337,7 +342,7 @@ using DOL.AI.Brain;
 				Region <xsl:value-of select="ObjectName"/>Region = WorldMgr.GetRegion(<xsl:value-of select="RegionID"/>);
 				if (<xsl:value-of select="ObjectName"/>Region != null)
 					<xsl:value-of select="ObjectName"/>Region.AddArea(<xsl:value-of select="ObjectName"/>);
-			
+				}
 		</xsl:for-each>
 		#endregion
 		
@@ -358,8 +363,9 @@ using DOL.AI.Brain;
 			// Custom Scriptloaded Code Begin
 			<xsl:value-of select="ScriptLoadedCode"/>
 			// Custom Scriptloaded Code End
-
-			<xsl:value-of select="InvitingNPC"/>.AddQuestToGive(typeof (<xsl:value-of select="Name"/>));
+			if (<xsl:value-of select="InvitingNPC"/>!=null) {
+				<xsl:value-of select="InvitingNPC"/>.AddQuestToGive(typeof (<xsl:value-of select="Name"/>));
+			}
 			if (log.IsInfoEnabled)
 				log.Info("Quest \"" + questTitle + "\" initialized");
 		}
@@ -373,9 +379,11 @@ using DOL.AI.Brain;
 			// Custom Scriptunloaded Code End
 
 			<xsl:for-each select="/Quest/Area">				
-				Region <xsl:value-of select="ObjectName"/>Region = WorldMgr.GetRegion(<xsl:value-of select="RegionID"/>);
-				if (<xsl:value-of select="ObjectName"/>Region != null)
+				if (<xsl:value-of select="ObjectName"/>!=null) {
+					Region <xsl:value-of select="ObjectName"/>Region = WorldMgr.GetRegion(<xsl:value-of select="RegionID"/>);
+					if (<xsl:value-of select="ObjectName"/>Region != null)
 						<xsl:value-of select="ObjectName"/>Region.RemoveArea(<xsl:value-of select="ObjectName"/>);
+				}
 			</xsl:for-each>
 
 			/* If <xsl:value-of select="InvitingNPC"/> has not been initialized, then we don't have to remove any
