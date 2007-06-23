@@ -160,7 +160,7 @@
       <DependentUpon>Area.cs</DependentUpon>
     </Compile>
     <Compile Include="QuestDesigner\Controls\Selectors\BaseSelector.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="QuestDesigner\Controls\Selectors\AreaSelector.cs">
       <SubType>Form</SubType>
@@ -222,20 +222,14 @@
       <DependentUpon>PositionConverterPopup.cs</DependentUpon>
     </Compile>
     <Compile Include="QuestDesigner\QuestDesignerConfiguration.cs" />
-    <Compile Include="QuestDesigner\Export\Util\ClipboardLocation.cs" />
-    <Compile Include="QuestDesigner\Export\Util\Const.cs" />
     <Compile Include="Mapping\DAoCMapping.cs" />
-    <Compile Include="QuestDesigner\Export\Util\DOLDatabaseAdapter.cs" />
     <Compile Include="QuestDesigner\Export\Exporter.cs" />
-    <Compile Include="QuestDesigner\Export\Util\MapCleaner.cs" />
-    <Compile Include="QuestDesigner\Export\Util\PopupWindowHelper.cs" />
     <Compile Include="QuestDesigner\Controls\Selectors\WhisperSelector.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="QuestDesigner\Controls\Selectors\ItemSelector.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QuestDesigner\Export\Util\ListViewItemComparer.cs" />
     <Compile Include="QuestDesigner\Controls\HeaderStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -264,8 +258,6 @@
     <Compile Include="QuestDesigner\QuestPartItems.Designer.cs">
       <DependentUpon>QuestPartItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="QuestDesigner\Export\Util\DB.cs" />
-    <Compile Include="QuestDesigner\Export\Util\Log.cs" />
     <Compile Include="QuestDesigner\Converter\ColorConverter.cs" />
     <Compile Include="QuestDesigner\Converter\ItemBonusTypeConverter.cs" />
     <Compile Include="QuestDesigner\Converter\DamageTypeConverter.cs" />
@@ -297,7 +289,6 @@
     <Compile Include="QuestDesigner\PositionConverter.Designer.cs">
       <DependentUpon>PositionConverter.cs</DependentUpon>
     </Compile>
-    <Compile Include="QuestDesigner\Export\Util\PropertyBag.cs" />
     <Compile Include="QuestDesigner\QuestDesignerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -335,8 +326,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="QuestDesigner\Export\Util\Set.cs" />
-    <Compile Include="QuestDesigner\Export\Util\Settings.cs" />
     <Compile Include="QuestDesigner\Converter\DataTableConverter.cs" />
     <Compile Include="QuestDesigner\Converter\RegionConverter.cs" />
     <Compile Include="QuestDesigner\QuestInfo.cs">
@@ -345,8 +334,19 @@
     <Compile Include="QuestDesigner\QuestInfo.Designer.cs">
       <DependentUpon>QuestInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="QuestDesigner\Export\Util\Utils.cs" />
-    <Compile Include="QuestDesigner\Export\Util\Zip.cs" />
+    <Compile Include="QuestDesigner\Util\ClipboardLocation.cs" />
+    <Compile Include="QuestDesigner\Util\Const.cs" />
+    <Compile Include="QuestDesigner\Util\DB.cs" />
+    <Compile Include="QuestDesigner\Util\DOLDatabaseAdapter.cs" />
+    <Compile Include="QuestDesigner\Util\ListViewItemComparer.cs" />
+    <Compile Include="QuestDesigner\Util\Log.cs" />
+    <Compile Include="QuestDesigner\Util\MapCleaner.cs" />
+    <Compile Include="QuestDesigner\Util\PopupWindowHelper.cs" />
+    <Compile Include="QuestDesigner\Util\PropertyBag.cs" />
+    <Compile Include="QuestDesigner\Util\Set.cs" />
+    <Compile Include="QuestDesigner\Util\Settings.cs" />
+    <Compile Include="QuestDesigner\Util\Utils.cs" />
+    <Compile Include="QuestDesigner\Util\Zip.cs" />
     <Compile Include="QuestDesigner\WebBrowser.cs">
       <SubType>UserControl</SubType>
     </Compile>
