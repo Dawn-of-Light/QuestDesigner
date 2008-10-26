@@ -7,7 +7,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Tutorial Zone</description>
+    <description>All - Classic - Tutorial Zone</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -16,7 +16,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nisse's Lair KT1</description>
+    <description>ZZ - Damp Cavern</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -25,7 +25,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Hibernia Terrain</description>
+    <description>Hib - Classic - Mainland</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -34,10 +34,10 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Tir Na Nog</description>
+    <description>Hib - Classic - Tir Na Nog</description>
   </Region>
   <Region>
-    <description>Hibernia Housing</description>
+    <description>Hib - Classic - Housing</description>
     <isDivingEnabled>False</isDivingEnabled>
     <waterLevel>0</waterLevel>
     <port>10400</port>
@@ -53,7 +53,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Volurgon</description>
+    <description>ZZ - Volcanus Instance 4</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -62,7 +62,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Deliah's Sanctuary</description>
+    <description>Alb - CatID - Deliah's Sanctuary</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -71,7 +71,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Stonehenge AW3</description>
+    <description>ZZ - The Cursed Barrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -80,7 +80,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Forgotten Vein</description>
+    <description>Hib - CatID - The Forgotten Vein</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -89,7 +89,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Pit of Despair</description>
+    <description>Hib - CatID - The Pit of Despair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -98,7 +98,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Koalinth AW2</description>
+    <description>Hib - CatID - Felina's Sorrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -107,7 +107,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Koalinth AW1</description>
+    <description>Hib - CatID - The Brawler's Den</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -116,7 +116,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Treibh AW2</description>
+    <description>Hib - CatID - The Shaman's Inner Sanctum</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -125,7 +125,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Alb Launch</description>
+    <description>ZZ - Hib Launch</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -134,7 +134,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Stonehenge Barrows Dungeon</description>
+    <description>Alb - Classic - Stonehenge Barrows</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -143,7 +143,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Tomb of Mithra</description>
+    <description>Alb - Classic - Tomb of Mithra</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -152,7 +152,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Stygia Necropolis</description>
+    <description>Alb - TOA - Halls of Ma'ati</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -161,7 +161,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Catacombs of Carvoda</description>
+    <description>Alb - Classic - Catacombs of Carvoda</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -170,7 +170,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Tepok's Mine</description>
+    <description>Alb - Classic - Tepok's Mine</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -179,7 +179,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Bog Men</description>
+    <description>ZZ - Bog Men</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -188,7 +188,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Shafts of the Tenebrae</description>
+    <description>ZZ - Shafts of the Tenebrae</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -197,7 +197,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Alb AbMines AW1</description>
+    <description>ZZ - The Sundered Tombs</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -206,7 +206,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Forge AW 1 - Alb</description>
+    <description>Alb - CatID - The Smelting Pot</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -215,7 +215,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Muire KT2</description>
+    <description>ZZ - The Cursed Barrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -224,7 +224,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Muire  KT1</description>
+    <description>ZZ - The Cursed Barrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -233,7 +233,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spraggon KT1</description>
+    <description>Hib - CatTD - Dismal Grotto 11-20</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -242,7 +242,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spraggon KT5</description>
+    <description>Hib - CatTD - Dismal Grotto 11-20</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -251,7 +251,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spraggon KT4</description>
+    <description>Hib - CatTD - Dismal Grotto 11-20</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -260,7 +260,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Steward's Crypt</description>
+    <description>Hib - CatID - The Steward's Crypt</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -269,7 +269,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Serf's Folly</description>
+    <description>Hib - CatID - Serf's Folly</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -278,7 +278,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Spraggon Den</description>
+    <description>Hib - Classic - Spraggon Den</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -287,7 +287,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Koalinth Lair</description>
+    <description>Hib - Classic - Koalinth Tribal Caverns</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -296,7 +296,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Coruscating Mine</description>
+    <description>Hib - Classic - Coruscating Mines</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -305,7 +305,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Undead</description>
+    <description>Hib - Classic - Muire Tomb</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -314,7 +314,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Abandoned Mines</description>
+    <description>Mid - Cat - Abandoned Mines</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -323,7 +323,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Abandoned Mines</description>
+    <description>Alb - Cat - Abandoned Mines</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -332,7 +332,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Ursine Caves</description>
+    <description>Hib - Classic - Treibh Caillte</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -341,7 +341,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Alb Launch</description>
+    <description>ZZ - Alb Launch</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -350,7 +350,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Abandoned Mines</description>
+    <description>Hib - Cat - Abandoned Mines</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -359,7 +359,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Burial Grounds</description>
+    <description>Mid - Cat - Burial Grounds</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -368,7 +368,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nisse's KT4</description>
+    <description>ZZ - Damp Cavern</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -377,7 +377,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nisse's KT3</description>
+    <description>ZZ - Damp Cavern</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -386,7 +386,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cursed Tomb KT1</description>
+    <description>Mid - CatTD - Forgotten Sepulchre 11-20</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -395,7 +395,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nisse's KT5</description>
+    <description>ZZ - Damp Cavern</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -404,7 +404,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cursed Tomb KT3</description>
+    <description>Mid - CatTD - Forgotten Sepulchre 11-20</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -413,7 +413,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cursed Tomb KT2</description>
+    <description>Mid - CatTD - Forgotten Sepulchre 11-20</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -422,7 +422,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cursed Tomb KT5</description>
+    <description>Mid - CatTD - Forgotten Sepulchre 11-20</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -431,7 +431,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cursed Tomb KT4</description>
+    <description>Mid - CatTD - Forgotten Sepulchre 11-20</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -440,7 +440,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Mithra KT2</description>
+    <description>ZZ - Burial Tomb</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -449,7 +449,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Treibh KT2</description>
+    <description>Hib - CatTD - The Accursed Caves 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -458,7 +458,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Treibh KT3</description>
+    <description>Hib - CatTD - The Accursed Caves 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -467,7 +467,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Treibh KT4</description>
+    <description>Hib - CatTD - The Accursed Caves 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -476,7 +476,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Lost Passages</description>
+    <description>Mid - CatID - Lost Passages</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -485,7 +485,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Koalinth KT1</description>
+    <description>Hib - CatTD - The Dark Caverns 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -494,7 +494,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Koalinth KT2</description>
+    <description>Hib - CatTD - The Dark Caverns 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -503,10 +503,10 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Keltoi KT4</description>
+    <description>ZZ - Desecrated Grounds</description>
   </Region>
   <Region>
-    <description>Albion Housing</description>
+    <description>Alb - Classic - Housing</description>
     <isDivingEnabled>False</isDivingEnabled>
     <waterLevel>0</waterLevel>
     <port>10400</port>
@@ -522,7 +522,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Koalinth KT5</description>
+    <description>Hib - CatTD - The Dark Caverns 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -531,7 +531,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Rugnog's Haven</description>
+    <description>Hib - CatID - Rugnog's Haven</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -540,7 +540,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Albion Terrain</description>
+    <description>Alb - Classic - Mainland</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -549,7 +549,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Coruscating KT4</description>
+    <description>Hib - CatTD - The Unused Mine 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -558,7 +558,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Aphophian</description>
+    <description>ZZ - Volcanus Instance 1</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -567,7 +567,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Vendo KT1</description>
+    <description>Mid - CatTD - The Concealed Guardhouse 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -576,7 +576,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Vendo KT2</description>
+    <description>Mid - CatTD - The Concealed Guardhouse 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -585,7 +585,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Vendo KT3</description>
+    <description>Mid - CatTD - The Concealed Guardhouse 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -594,7 +594,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Vendo KT4</description>
+    <description>Mid - CatTD - The Concealed Guardhouse 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -603,7 +603,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Vendo KT5</description>
+    <description>Mid - CatTD - The Concealed Guardhouse 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -612,7 +612,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Varulvhamn KT1</description>
+    <description>Mid - CatTD - The Gossamer Grotto 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -621,7 +621,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Varulvhamn KT2</description>
+    <description>Mid - CatTD - The Gossamer Grotto 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -630,7 +630,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Varulvhamn KT3</description>
+    <description>Mid - CatTD - The Gossamer Grotto 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -639,7 +639,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Varulvhamn KT4</description>
+    <description>Mid - CatTD - The Gossamer Grotto 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -648,7 +648,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Varulvhamn KT5</description>
+    <description>Mid - CatTD - The Gossamer Grotto 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -657,7 +657,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nyttheim Hib AW1</description>
+    <description>Hib - CatID - The Deep</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -666,7 +666,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Abandoned Mines</description>
+    <description>Hib - Cat - Abandoned Mines</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -675,7 +675,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>the Wolves Den</description>
+    <description>ZZ - The Gnolls Den</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -684,7 +684,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Shar Labyrinth</description>
+    <description>ZZ - Shar Labyrinth</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -693,7 +693,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Queen's Labyrinth</description>
+    <description>Hib - CatID - Shattered Lands</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -702,7 +702,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Queen's Labyrinth</description>
+    <description>Hib - CatID - Maze of Madness</description>
   </Region>
   <Region>
     <waterLevel>7970</waterLevel>
@@ -711,7 +711,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Trials of Atlantis Terrain</description>
+    <description>Mid - TOA - Trials of Atlantis</description>
   </Region>
   <Region>
     <waterLevel>18960</waterLevel>
@@ -720,7 +720,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Cetus' Pit</description>
+    <description>Mid - TOA - Cetus' Pit</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -729,7 +729,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Hall of the Corrupt</description>
+    <description>RVR - Labyrinth</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -738,7 +738,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Medusa's Lair</description>
+    <description>Mid - TOA - Temple of Twilight</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -747,7 +747,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Sobekite Eternal</description>
+    <description>Mid - TOA - Sobekite Eternal</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -756,7 +756,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Deadlands of Annwn</description>
+    <description>Hib - Cat - Deadlands of Annwn</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -765,7 +765,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Underground Forest</description>
+    <description>Hib - Cat - Underground Forest</description>
   </Region>
   <Region>
     <waterLevel>7970</waterLevel>
@@ -774,7 +774,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Trials of Atlantis Terrain</description>
+    <description>Hib - TOA - Trials of Atlantis</description>
   </Region>
   <Region>
     <waterLevel>19856</waterLevel>
@@ -783,7 +783,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Kobold Undercity</description>
+    <description>Mid - Cat - Kobold Undercity</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -792,7 +792,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spindelhalla KT4</description>
+    <description>Mid - CatTD - Underground Tunnel 41-50</description>
   </Region>
   <Region>
     <waterLevel>18960</waterLevel>
@@ -801,7 +801,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Cetus' Pit</description>
+    <description>Hib - TOA - Cetus' Pit</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -810,7 +810,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spindelhalla KT2</description>
+    <description>Mid - CatTD - Underground Tunnel 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -819,7 +819,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spindelhalla KT1</description>
+    <description>Mid - CatTD - Underground Tunnel 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -828,7 +828,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Caverns of Madness</description>
+    <description>Mid - CatID - Caverns of Madness</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -837,7 +837,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Kobold City AW1</description>
+    <description>ZZ - The Hidden Lair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -846,7 +846,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Kobold City AW1</description>
+    <description>ZZ - The Forgotten Tunnels</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -855,7 +855,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spindelhalla KT5</description>
+    <description>Mid - CatTD - Underground Tunnel 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -864,7 +864,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Burial AW2</description>
+    <description>Mid - CatID - Jarlsberg's Hideout</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -873,7 +873,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Burial AW1</description>
+    <description>ZZ - The Hidden Lair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -882,7 +882,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Forge AW 2 - Mid</description>
+    <description>Mid - CatID - Marik's Workroom</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -891,7 +891,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Veil Rift</description>
+    <description>Hib - CatID - Blathnait's Refuge</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -900,7 +900,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Veil Rift</description>
+    <description>Hib - CatID - Broken Mirrors</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -909,7 +909,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Muire AW</description>
+    <description>ZZ - Dismal Grotto</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -918,7 +918,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Muire AW4</description>
+    <description>ZZ - The Dark Caverns</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -927,7 +927,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Inconnu Crypt</description>
+    <description>Alb - Cat - Inconnu Crypt</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -936,7 +936,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Underground Forest</description>
+    <description>Alb - Cat - Underground Forest</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -945,7 +945,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Deadlands of Annwn</description>
+    <description>Alb - Cat - Deadlands of Annwn</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -954,7 +954,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Caer Sidi</description>
+    <description>Alb - SI - Caer Sidi</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -963,7 +963,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Krondon</description>
+    <description>Alb - SI - Krondon</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -972,7 +972,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Crystal Cave</description>
+    <description>ZZ - Crystal Cave</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -981,7 +981,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Roman Aqueducts</description>
+    <description>Alb - Cat - Roman Aqueducts</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -990,7 +990,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>15to19BG</description>
+    <description>RVR - BG 15-19 Killaloe</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -999,7 +999,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>10to14BG</description>
+    <description>RVR - BG 10-14 The Hills of Claret</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1008,10 +1008,10 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>5to9BG</description>
+    <description>RVR - BG 05-09 The Lion's Den</description>
   </Region>
   <Region>
-    <description>Midgard Housing</description>
+    <description>Mid - Classic - Housing</description>
     <isDivingEnabled>False</isDivingEnabled>
     <waterLevel>0</waterLevel>
     <port>10400</port>
@@ -1027,7 +1027,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Jordheim</description>
+    <description>Mid - Classic - Jordheim</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1036,7 +1036,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Midgard Terrain</description>
+    <description>Mid - Classic - Mainland</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1045,7 +1045,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Rebel Half Orc Lair</description>
+    <description>Mid - CatID - Rebel Half Orc Lair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1054,7 +1054,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Haunted Halls</description>
+    <description>Mid - CatID - The Haunted Halls</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1063,7 +1063,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Burial AW3</description>
+    <description>Alb - DR - The Foothills of Albion</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1072,7 +1072,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Thieves Den</description>
+    <description>Mid - CatID - Thieves Den</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1081,7 +1081,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Frontlines</description>
+    <description>Alb - Cat - The Frontlines</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1090,7 +1090,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>A Mine Mid AW4</description>
+    <description>Hib - DR - The Foothills of Hibernia</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1099,7 +1099,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cordova KT1</description>
+    <description>Alb - CatTD - The Funerary Hall 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1108,7 +1108,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Tepok KT5</description>
+    <description>Alb - CatTD - Forgotten Mines 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1117,7 +1117,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Tepok KT4</description>
+    <description>Alb - CatTD - Forgotten Mines 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1126,7 +1126,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Tepok KT3</description>
+    <description>Alb - CatTD - Forgotten Mines 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1135,7 +1135,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Tepok KT2</description>
+    <description>Alb - CatTD - Forgotten Mines 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1144,7 +1144,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Coruscating KT3</description>
+    <description>Hib - CatTD - The Unused Mine 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1153,7 +1153,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spraggon AW1</description>
+    <description>Hib - CatID - Rise of the Spraggons</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1162,7 +1162,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Coruscating KT5</description>
+    <description>Hib - CatTD - The Unused Mine - 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1171,7 +1171,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spraggon AW2</description>
+    <description>Hib - CatID - The Warrens</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1180,7 +1180,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Treibh AW1</description>
+    <description>Hib - CatID - The Ancient's Retreat</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1189,7 +1189,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>City of Camelot</description>
+    <description>Alb - Classic - City of Camelot</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1198,7 +1198,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Merlin's Cave</description>
+    <description>Mid - Cat - Darkspire</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1207,7 +1207,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Treibh KT5</description>
+    <description>Hib - CatTD - The Accursed Caves 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1216,7 +1216,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Tomte Prison</description>
+    <description>Mid - CatID - Tomte Prison</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1225,7 +1225,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nisse's AW3</description>
+    <description>All - DR - Lair of the Demon Lord</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1234,7 +1234,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nisse's Retreat</description>
+    <description>Mid - CatID - Nisse's Retreat</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1243,7 +1243,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Stonehenge KT5</description>
+    <description>Alb - CatTD - The Sundered Tombs 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1252,7 +1252,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Lost Wing</description>
+    <description>Alb - CatID - The Lost Wing</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1261,7 +1261,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Lios's Eternal Rest</description>
+    <description>Mid - CatID - Lios's Eternal Rest</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1270,7 +1270,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nisse's AW4</description>
+    <description>Alb - DR - The Baron's Gaol</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1279,7 +1279,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Stonehenge KT1</description>
+    <description>Alb - CatTD - The Sundered Tombs 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1288,7 +1288,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Stonehenge KT2</description>
+    <description>Alb - CatTD - The Sundered Tombs 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1297,7 +1297,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Stonehenge KT3</description>
+    <description>Alb - CatTD - The Sundered Tombs 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1306,7 +1306,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Stonehenge KT4</description>
+    <description>Alb - CatTD - The Sundered Tombs 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1315,7 +1315,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Volcanus Dungeon</description>
+    <description>Mid - TOA - Deep Volcanus</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1324,7 +1324,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Aerus Sky City</description>
+    <description>Mid - TOA - Aerus City</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1333,7 +1333,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Stygia Terrain Boss</description>
+    <description>Mid - TOA - The Great Pyramid</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1342,7 +1342,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Stonehenge AW4</description>
+    <description>ZZ - The Cursed Barrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1351,7 +1351,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Snyblem's Lair</description>
+    <description>Alb - CatID - Snyblem's Lair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1360,7 +1360,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Stygia Necropolis</description>
+    <description>Mid - TOA - Halls of Ma'ati</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1369,7 +1369,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Murdaigean</description>
+    <description>ZZ - Murdaigean</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1378,7 +1378,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Caledon</description>
+    <description>ZZ - Caledon</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1387,7 +1387,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Abermenai</description>
+    <description>ZZ - Abermenai</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1396,7 +1396,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Thidranki</description>
+    <description>ZZ - Thidranki</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1405,7 +1405,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Test Zone</description>
+    <description>ZZ - The Unused Mine</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1414,7 +1414,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Tuscaran Glacier</description>
+    <description>Mid - SI - Tuscaran Glacier</description>
   </Region>
   <Region>
     <waterLevel>7879</waterLevel>
@@ -1423,7 +1423,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>New Frontiers</description>
+    <description>RVR - New Frontiers</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1432,7 +1432,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Deadlands of Annwn</description>
+    <description>Mid - Cat - Deadlands of Annwn</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1441,7 +1441,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Liche's Unrest</description>
+    <description>Mid - CatID - Liche's Unrest</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1450,7 +1450,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cursed Tomb AW3</description>
+    <description>Mid - DR - Nephraal's Gaol</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1459,7 +1459,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cursed Tomb AW4</description>
+    <description>Hib - DR - Morfesa's Gaol</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1468,7 +1468,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Den of Bones</description>
+    <description>Mid - CatID - Den of Bones</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1477,7 +1477,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Muire KT4</description>
+    <description>ZZ - The Cursed Barrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1486,7 +1486,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Muire KT3</description>
+    <description>ZZ - The Cursed Barrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1495,7 +1495,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Burrow</description>
+    <description>Mid - CatID - The Burrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1504,7 +1504,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Varulvhamn AW3</description>
+    <description>ZZ - Red Dagger Hideout</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1513,7 +1513,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spraggon KT3</description>
+    <description>Hib - CatTD - Dismal Grotto 11-20</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1522,7 +1522,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spraggon KT2</description>
+    <description>Hib - CatTD - Dismal Grotto 11-20</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1531,7 +1531,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Frontiers RvR dungeon</description>
+    <description>RVR - Passage of Conflict</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1540,7 +1540,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Muire KT5</description>
+    <description>ZZ - The Cursed Barrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1549,7 +1549,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Dodens Gruva</description>
+    <description>ZZ - Doden's Gruva</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1558,7 +1558,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Catacomb Figure Demo</description>
+    <description>ZZ - Catacomb Figure Demo</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1567,7 +1567,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>30to34BG</description>
+    <description>RVR - BG 30-34 Wilton</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1576,7 +1576,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>35to39BG</description>
+    <description>RVR - BG 35-39 Molvik</description>
   </Region>
   <Region>
     <waterLevel>5804</waterLevel>
@@ -1585,7 +1585,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Midgard Atlantis Remnant</description>
+    <description>Mid - TOA - Ruinrar Atlantis</description>
   </Region>
   <Region>
     <waterLevel>5804</waterLevel>
@@ -1594,7 +1594,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Albion Atlantis Remnant</description>
+    <description>Alb - TOA - Ruins of Atlantis</description>
   </Region>
   <Region>
     <waterLevel>7970</waterLevel>
@@ -1603,7 +1603,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Trials of Atlantis Terrain</description>
+    <description>Alb - TOA - Trials of Atlantis</description>
   </Region>
   <Region>
     <waterLevel>5804</waterLevel>
@@ -1612,7 +1612,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Hibernia Atlantis Remnant</description>
+    <description>Hib - TOA - Scrios de Atlantis</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1621,7 +1621,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Summoner's Hall</description>
+    <description>ZZ - Summoner's Hall</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1630,7 +1630,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Darkness Falls</description>
+    <description>RVR - Darkness Falls</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1639,7 +1639,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Sobekite Eternal</description>
+    <description>Alb - TOA - Sobekite Eternal</description>
   </Region>
   <Region>
     <waterLevel>18960</waterLevel>
@@ -1648,7 +1648,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Cetus' Pit</description>
+    <description>Alb - TOA - Cetus' Pit</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1657,7 +1657,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Vandr's Bane </description>
+    <description>ZZ - Vandr's Bane</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1666,7 +1666,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Gnoll Lair</description>
+    <description>ZZ - Gnoll Lair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1675,7 +1675,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Bandit Lair</description>
+    <description>ZZ - Bandit Lair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1684,7 +1684,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spindelhalla AW4</description>
+    <description>Mid - DR - Keeper Iraeda's Sanctuary</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1693,7 +1693,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spindelhalla AW3</description>
+    <description>Alb - DR - Anataeus' Sanctuary</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1702,7 +1702,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Master's Lair</description>
+    <description>Mid - CatID - The Master's Lair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1711,7 +1711,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Arachnid's Labyrinth</description>
+    <description>Mid - CatID - Arachnid's Labyrinth</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1720,7 +1720,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Varulvhamn AW4</description>
+    <description>Mid - DR - King's Throne Room</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1729,7 +1729,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Keltoi KT2</description>
+    <description>ZZ - Desecrated Grounds</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1738,7 +1738,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Keltoi KT3</description>
+    <description>ZZ - Desecrated Grounds</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1747,7 +1747,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Mithra KT5</description>
+    <description>ZZ - Burial Tomb</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1756,7 +1756,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Keltoi KT1</description>
+    <description>ZZ - Desecrated Grounds</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1765,7 +1765,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Half-Orc Camp</description>
+    <description>ZZ - Half-Orc Camp</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1774,7 +1774,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Past and Present</description>
+    <description>ZZ - Past and Present</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1783,7 +1783,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Mithra  KT1</description>
+    <description>ZZ - Burial Tomb</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1792,7 +1792,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Summoner's Hall</description>
+    <description>ZZ - Summoner's Hall</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1801,7 +1801,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Art Test Dungeon</description>
+    <description>ZZ - Art Test Dungeon</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1810,7 +1810,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Art Test Dungeon</description>
+    <description>ZZ - Art Test Zone</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1819,7 +1819,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Catacomb Dungeon</description>
+    <description>ZZ - Catacomb Dungeon</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1828,7 +1828,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Ianvidiur's Lair</description>
+    <description>Mid - SI - Ianvidiur's Lair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1837,7 +1837,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>1to4BG</description>
+    <description>RVR - BG 01-04 The Proving Grounds</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1846,7 +1846,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Keltoi KT5</description>
+    <description>ZZ - Desecrated Grounds</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1855,7 +1855,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nisse's KT2</description>
+    <description>ZZ - Damp Cavern</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1864,7 +1864,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>25to29BG</description>
+    <description>RVR - BG 25-29 Braemar</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1873,7 +1873,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Aerus Sky City</description>
+    <description>Hib - TOA - Aerus City</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1882,7 +1882,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Volcanus Dungeon</description>
+    <description>Hib - TOA - Deep Volcanus</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1891,7 +1891,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Stygia Terrain Boss</description>
+    <description>Hib - TOA - The Great Pyramid</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1900,7 +1900,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Goblin's Cookery</description>
+    <description>Alb - CatID - Goblin's Cookery</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1909,7 +1909,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Beastmaster's Den</description>
+    <description>Alb - CatID - The Beastmaster's Den</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1918,7 +1918,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Unrestful Tomb</description>
+    <description>Mid - CatID - Unrestful Tomb</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1927,7 +1927,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Stygia Necropolis</description>
+    <description>Hib - TOA - Halls of Ma'ati</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1936,7 +1936,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Hounds of Arwan</description>
+    <description>ZZ - Hounds of Arawn</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1945,7 +1945,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Passage of Echoes</description>
+    <description>Mid - CatID - Passage of Echoes</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1954,7 +1954,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Brutal Realization</description>
+    <description>ZZ - Brutal Realization</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1963,7 +1963,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>History Repeats Itself</description>
+    <description>ZZ - History Repeats Itself</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1972,7 +1972,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nyttheim</description>
+    <description>Mid - Cat - Nyttheim</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1981,7 +1981,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Frontlines</description>
+    <description>Mid - Cat - The Frontlines</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1990,7 +1990,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Forge AW 1 - Hib</description>
+    <description>Hib - CatID - Hugak's Smithy</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -1999,7 +1999,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Forge AW 2 - Alb</description>
+    <description>Alb - CatID - Forges of Flame</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2008,7 +2008,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Tepok_AW3</description>
+    <description>Hib - DR - Keeper Garran's Sanctuary</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2017,7 +2017,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Tepok_AW4</description>
+    <description>ZZ - The Funerary Hall</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2026,7 +2026,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Nyttheim Alb AW1</description>
+    <description>Alb - CatID - Snarg's Grotto</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2035,7 +2035,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Aqueduct AW4</description>
+    <description>ZZ - Dismal Grotto</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2044,7 +2044,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Forge AW 1 - Mib</description>
+    <description>Mid - CatID - Wolak's Crucible</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2053,7 +2053,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Forge AW 2 - Hib</description>
+    <description>Hib - CatID - The Goblin Workshop</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2062,7 +2062,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Albion Expansion</description>
+    <description>Alb - SI - Shrouded Isles</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2071,7 +2071,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Avalon City</description>
+    <description>Alb - SI - Avalon City</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2080,7 +2080,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Glashtin Forges</description>
+    <description>Alb - Cat - Glashtin Forge</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2089,7 +2089,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Underground Forest</description>
+    <description>Mid - Cat - Underground Forest</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2098,7 +2098,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Trollheim</description>
+    <description>Mid - SI - Trollheim</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2107,7 +2107,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Midgard Expansion</description>
+    <description>Mid - SI - Shrouded Isles</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2116,7 +2116,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Arena</description>
+    <description>Alb - CatID - The Arena</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2125,7 +2125,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Lair of Doom</description>
+    <description>Alb - CatID - Lair of Doom</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2134,7 +2134,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Catacombs_AW4</description>
+    <description>ZZ - The Funerary Hall</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2143,7 +2143,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Catacombs_AW3</description>
+    <description>ZZ - The Funerary Hall</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2152,7 +2152,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Betrayer's Den</description>
+    <description>Alb - CatID - The Betrayer's Den</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2161,7 +2161,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Ritual Hall</description>
+    <description>Alb - CatID - The Ritual Hall</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2170,7 +2170,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Keltoi_AW4</description>
+    <description>ZZ - The Sundered Tombs</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2179,7 +2179,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Keltoi_AW3</description>
+    <description>ZZ - The Sundered Tombs</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2188,7 +2188,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Stygia Terrain Boss</description>
+    <description>Alb - TOA - The Great Pyramid</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2197,7 +2197,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Volcanus Dungeon</description>
+    <description>Alb - TOA - Deep Volcanus</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2206,7 +2206,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Lower Crypt</description>
+    <description>Alb - Cat - Lower Crypt</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2215,7 +2215,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Merlin's Cave</description>
+    <description>Alb - Cat - Darkspire</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2224,7 +2224,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Medusa's Lair</description>
+    <description>Alb - TOA - Temple of Twilight</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2233,7 +2233,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Spindelhalla KT3</description>
+    <description>Mid - CatTD - Underground Tunnel 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2242,7 +2242,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Lower Crypt AW</description>
+    <description>ZZ - Lower Crypt AW</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2251,7 +2251,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Lower Crypt AW</description>
+    <description>ZZ - Lower Crypt AW</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2260,7 +2260,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Lair of the Exiled</description>
+    <description>Alb - CatID - Lair of the Exiled</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2269,7 +2269,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Alb AbMines AW4</description>
+    <description>ZZ - Alb AbMines AW4</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2278,7 +2278,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Hall of Reawakening</description>
+    <description>Alb - CatID - The Hall of Reawakening</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2287,7 +2287,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Hidden Crypt</description>
+    <description>Alb - CatID - The Hidden Crypt</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2296,7 +2296,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Mithra_AW3</description>
+    <description>Alb - DR - King's Throne Room</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2305,7 +2305,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Mithra_AW4</description>
+    <description>Hib - DR - King's Throne Room</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2314,7 +2314,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Depths of Despair</description>
+    <description>Alb - CatID - Depths of Despair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2323,7 +2323,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Lower Crypt AW</description>
+    <description>Alb - CatID - Realm of the Damned</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2332,7 +2332,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>40to44BG</description>
+    <description>RVR - BG 40-44 Leirvik</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2341,7 +2341,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Tepok KT1</description>
+    <description>Alb - CatTD - Forgotten Mines 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2350,7 +2350,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Vendo AW3</description>
+    <description>ZZ - Tethra's Stronghold</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2359,7 +2359,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Vendo AW4</description>
+    <description>ZZ - Barrow of Restless Dead</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2368,7 +2368,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cordova KT5</description>
+    <description>Alb - CatTD - The Funerary Hall 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2377,7 +2377,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cordova KT4</description>
+    <description>Alb - CatTD - The Funerary Hall 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2386,7 +2386,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Spindelhalla</description>
+    <description>Mid - Classic - Spindelhalla</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2395,7 +2395,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Hephaestian</description>
+    <description>zz - Hephaestian</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2404,7 +2404,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Werewolf Lair</description>
+    <description>Mid - Classic - Varulvhamn</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2413,7 +2413,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Vendo Caves</description>
+    <description>Mid - Classic - Vendo Caverns</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2422,7 +2422,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Nisee's Lair</description>
+    <description>Mid - Classic - Nisse's Lair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2431,7 +2431,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Cursed Tomb</description>
+    <description>Mid - Classic - Cursed Tomb</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2440,7 +2440,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>A Mine Mid AW3</description>
+    <description>Mid - DR - The Foothills of Midgard</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2449,7 +2449,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>Keltoi Fogou</description>
+    <description>Alb - Classic - Keltoi Fogou</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2458,7 +2458,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Treibh KT1</description>
+    <description>Hib - CatTD - The Accursed Caves 21-30</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2467,7 +2467,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Mithra KT3</description>
+    <description>ZZ - Burial Tomb</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2476,7 +2476,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Mithra KT4</description>
+    <description>ZZ - Burial Tomb</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2485,7 +2485,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Koalinth KT3</description>
+    <description>Hib - CatTD - The Dark Caverns 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2494,7 +2494,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Koalinth KT4</description>
+    <description>Hib - CatTD - The Dark Caverns 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2503,7 +2503,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>0</expansion>
-    <description>20to24BG</description>
+    <description>RVR - BG 20-24 Thidranki</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2512,7 +2512,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Glashtin Forge</description>
+    <description>Mid - Cat - Glashtin Forge</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2521,7 +2521,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Sobekite Eternal</description>
+    <description>Hib - TOA - Sobekite Eternal</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2530,7 +2530,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Medusa's Lair</description>
+    <description>Hib - TOA - Temple of Twilight</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2539,7 +2539,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Hibernia Expansion</description>
+    <description>Hib - SI - Shrouded Isles</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2548,7 +2548,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Fomor</description>
+    <description>Hib - SI - Fomor City</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2557,7 +2557,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Queen's Lab Alb AW1</description>
+    <description>Alb - CatID - Maze of Tribulation</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2566,7 +2566,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Aqueduct AW3</description>
+    <description>ZZ - The Cursed Barrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2575,7 +2575,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>the Plutonian Shore</description>
+    <description>Alb - CatID - The Plutonian Shore</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2584,7 +2584,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Glashtin Forge</description>
+    <description>Hib - Cat - Glashtin Forge</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2593,7 +2593,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Merlin's Cave</description>
+    <description>Hib - Cat - Darkspire</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2602,7 +2602,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Mid Launch</description>
+    <description>ZZ - Mid Launch</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2611,7 +2611,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Shar Labyrinth</description>
+    <description>Hib - Cat - Shar Labyrinth</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2620,7 +2620,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Veil Rift</description>
+    <description>Hib - Cat - Veil Rift</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2629,7 +2629,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Celestius</description>
+    <description>All - TOA - Celestius</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2638,7 +2638,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Aerus Sky City</description>
+    <description>Alb - TOA - Aerus City</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2647,7 +2647,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>2</expansion>
-    <description>Shaitan</description>
+    <description>ZZ - Shaitan</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2656,7 +2656,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Ritual Chamber</description>
+    <description>Mid - CatID - The Lost Burrow</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2665,7 +2665,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Frontlines</description>
+    <description>Hib - Cat - The Frontlines</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2674,7 +2674,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Queen's Labyrinth</description>
+    <description>Hib - Cat - The Queen's Labyrinth</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2683,7 +2683,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Cursed Lair</description>
+    <description>Mid - CatID - The Cursed Lair</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2692,7 +2692,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Tur Suil &amp; Galladoria</description>
+    <description>Hib - SI - Tur Suil</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2701,7 +2701,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>1</expansion>
-    <description>Galladoria</description>
+    <description>Hib - SI - Galladoria</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2710,7 +2710,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Otherworld</description>
+    <description>Alb - Cat - The Otherworld</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2719,7 +2719,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Otherworld</description>
+    <description>Hib - Cat - The Otherworld</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2728,7 +2728,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>The Otherworld</description>
+    <description>Mid - Cat - The Otherworld</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2737,7 +2737,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Veil Rift AW3</description>
+    <description>ZZ - The Dark Caverns</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2746,7 +2746,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Veil Rift AW4</description>
+    <description>ZZ - The Dark Caverns</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2755,7 +2755,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Coruscating KT2</description>
+    <description>Hib - CatTD - The Unused Mine 41-50</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2764,7 +2764,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Half Orc Command Post</description>
+    <description>ZZ - Half Orc Command Post</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2773,7 +2773,7 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cordova KT3</description>
+    <description>Alb - CatTD - The Funerary Hall 31-40</description>
   </Region>
   <Region>
     <waterLevel>0</waterLevel>
@@ -2782,6 +2782,69 @@
     <ip>127.0.0.1</ip>
     <port>10400</port>
     <expansion>3</expansion>
-    <description>Cordova KT2</description>
+    <description>Alb - CatTD - The Funerary Hall 31-40</description>
+  </Region>
+  <Region>
+    <waterLevel>0</waterLevel>
+    <isDivingEnabled>False</isDivingEnabled>
+    <id>336</id>
+    <ip>127.0.0.1</ip>
+    <port>10400</port>
+    <expansion>3</expansion>
+    <description>Alb - DR - Demonic Prison</description>
+  </Region>
+  <Region>
+    <waterLevel>0</waterLevel>
+    <isDivingEnabled>False</isDivingEnabled>
+    <id>337</id>
+    <ip>127.0.0.1</ip>
+    <port>10400</port>
+    <expansion>3</expansion>
+    <description>Mid - DR - Demonic Prison</description>
+  </Region>
+  <Region>
+    <waterLevel>0</waterLevel>
+    <isDivingEnabled>False</isDivingEnabled>
+    <id>338</id>
+    <ip>127.0.0.1</ip>
+    <port>10400</port>
+    <expansion>3</expansion>
+    <description>Hib - DR - Demonic Prison</description>
+  </Region>
+  <Region>
+    <waterLevel>0</waterLevel>
+    <isDivingEnabled>False</isDivingEnabled>
+    <id>165</id>
+    <ip>127.0.0.1</ip>
+    <port>10400</port>
+    <expansion>3</expansion>
+    <description>RVR - BG 45-49 Cathal Valley</description>
+  </Region>
+  <Region>
+    <waterLevel>0</waterLevel>
+    <isDivingEnabled>False</isDivingEnabled>
+    <id>339</id>
+    <ip>127.0.0.1</ip>
+    <port>10400</port>
+    <expansion>3</expansion>
+    <description>Alb - DR - Brimstone Caverns</description>
+  </Region>
+  <Region>
+    <waterLevel>0</waterLevel>
+    <isDivingEnabled>False</isDivingEnabled>
+    <id>340</id>
+    <ip>127.0.0.1</ip>
+    <port>10400</port>
+    <expansion>3</expansion>
+    <description>Mid - DR - Halls of Helgardh</description>
+  </Region>
+  <Region>
+    <waterLevel>0</waterLevel>
+    <isDivingEnabled>False</isDivingEnabled>
+    <id>341</id>
+    <ip>127.0.0.1</ip>
+    <port>10400</port>
+    <expansion>3</expansion>
+    <description>Hib - DR - Cave of Cruachan</description>
   </Region>
 </QuestData>

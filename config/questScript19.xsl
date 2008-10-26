@@ -134,8 +134,7 @@ using DOL.AI.Brain;
 				<xsl:value-of select="ObjectName"/>.Name = "<xsl:value-of select="Name"/>";
 				if (log.IsWarnEnabled)
 					log.Warn("Could not find " + <xsl:value-of select="ObjectName"/>.Name + ", creating ...");
-				<xsl:value-of select="ObjectName"/>.GuildName = "Part of " + questTitle + " Quest";
-				<xsl:value-of select="ObjectName"/>.Realm = (byte) <xsl:value-of select="Realm"/>;
+				<xsl:value-of select="ObjectName"/>.Realm = (eRealm) <xsl:value-of select="Realm"/>;
 				<xsl:value-of select="ObjectName"/>.CurrentRegionID = <xsl:value-of select="Region"/>;
 				<xsl:value-of select="ObjectName"/>.Size = <xsl:value-of select="Size"/>;
 				<xsl:value-of select="ObjectName"/>.Level = <xsl:value-of select="Level"/>;
