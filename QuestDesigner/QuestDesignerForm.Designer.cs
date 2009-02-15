@@ -1900,7 +1900,7 @@ namespace DOL.Tools.QuestDesigner
             // 
             this.dataColumnMobRespawnInterval.ColumnName = "RespawnInterval";
             this.dataColumnMobRespawnInterval.DataType = typeof(int);
-            this.dataColumnMobRespawnInterval.DefaultValue = -1;
+            this.dataColumnMobRespawnInterval.DefaultValue = 0;
             this.dataColumnMobRespawnInterval.Namespace = "";
             // 
             // dataColumnMobFactionID
