@@ -418,7 +418,7 @@ using DOL.AI.Brain;
 			{
 				<xsl:for-each select="/Quest/QuestStep">
 					case <xsl:value-of select="Step"/>:
-						return "[Step #<xsl:value-of select="Step"/>] <xsl:value-of select="Description"/>";
+						return "<xsl:value-of select="Description"/>";
 				</xsl:for-each>
 					default:
 						return " No Queststep Description available.";
