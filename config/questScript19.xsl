@@ -69,7 +69,12 @@ using DOL.AI.Brain;
 
 		protected const int minimumLevel = <xsl:value-of select="MinimumLevel"/>;
 		protected const int maximumLevel = <xsl:value-of select="MaximumLevel"/>;
-	
+	 
+            public override int Level
+		    {
+	                get { return <xsl:value-of select="MinimumLevel"/>; }
+		    }
+
 	<xsl:for-each select="/Quest/Mob">
 		private static GameNPC <xsl:value-of select="ObjectName"/> = null;
 		</xsl:for-each>
