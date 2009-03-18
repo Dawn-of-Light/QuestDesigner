@@ -153,6 +153,11 @@ using DOL.AI.Brain;
 				<xsl:value-of select="ObjectName"/>.Z = <xsl:value-of select="Z"/>;
 				<xsl:value-of select="ObjectName"/>.Heading = <xsl:value-of select="Heading"/>;
 				<xsl:value-of select="ObjectName"/>.RespawnInterval = <xsl:value-of select="RespawnInterval"/>;
+				<xsl:value-of select="ObjectName"/>.Flags = <xsl:value-of select="Flags"/>;
+/*				ToDo:
+*				export EquipmentTemplate
+*/				
+				
 				<xsl:if test="MeleeDamageType"><xsl:value-of select="ObjectName"/>.EquipmentTemplateID = "<xsl:value-of select="EquipmentTemplateID"/>";
 				</xsl:if>
 				<xsl:if test="BodyType"><xsl:value-of select="ObjectName"/>.BodyType = <xsl:value-of select="BodyType"/>;
