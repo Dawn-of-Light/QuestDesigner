@@ -27,6 +27,7 @@ using System.Data;
 using System.Reflection;
 using DOL.GS.PacketHandler;
 using DOL.Tools.QuestDesigner.Properties;
+using DOL.GS.Behaviour;
 
 namespace DOL.Tools.QuestDesigner.Util
 {

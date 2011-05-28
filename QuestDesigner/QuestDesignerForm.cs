@@ -49,6 +49,7 @@ using DOL.Tools.Mapping.Map;
 using DOL.Tools.QuestDesigner.Export;
 using System.Globalization;
 using System.Threading;
+using DOL.GS.Behaviour;
 
 namespace DOL.Tools.QuestDesigner
 {

@@ -34,6 +34,7 @@ using Flobbster.Windows.Forms;
 using System.Reflection;
 using DOL.Tools.QuestDesigner.Converter;
 using DOL.Tools.QuestDesigner.Properties;
+using DOL.GS.Behaviour;
 
 namespace DOL.Tools.QuestDesigner
 {

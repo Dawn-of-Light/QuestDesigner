@@ -27,6 +27,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Collections;
 using DOL.Tools.QuestDesigner.Util;
+using DOL.Database;
 
 
 namespace DOL.Tools.QuestDesigner
@@ -41,7 +42,7 @@ namespace DOL.Tools.QuestDesigner
             if (QuestDesignerMain.DatabaseSupported)
             {
 
-                IList items = QuestDesignerMain.DatabaseAdapter.GetItemList();
+                IList<ItemTemplate> items = QuestDesignerMain.DatabaseAdapter.GetItemList();
                 if (items.Count > 0)
                 {
                     

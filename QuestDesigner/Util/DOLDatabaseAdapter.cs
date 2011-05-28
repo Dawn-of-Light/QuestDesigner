@@ -32,7 +32,7 @@ namespace DOL.Tools.QuestDesigner.Util
 {
     public class DOLDatabaseAdapter
     {
-        ObjectDatabase m_database;
+        IObjectDatabase m_database;
 
         public const String ITEM_ID = "Id_nb";
         public const String ITEM_NAME = "Name";
@@ -60,24 +60,24 @@ namespace DOL.Tools.QuestDesigner.Util
             }
         }
 
-        public IList GetNPCList()
+        public IList<Mob> GetNPCList()
         {
-            return m_database.SelectAllObjects(typeof(Mob));
+			return m_database.SelectAllObjects<Mob>();
         }
 
-        public IList GetNPCListForRegion(int regionID)
+        public IList<Mob> GetNPCListForRegion(int regionID)
         {
-            return m_database.SelectObjects(typeof(Mob), "Region=" + regionID);
+            return m_database.SelectObjects<Mob>("Region=" + regionID);
         }
 
-        public IList GetWorldObjectListForRegion(int regionID)
+        public IList<WorldObject> GetWorldObjectListForRegion(int regionID)
         {
-            return m_database.SelectObjects(typeof(WorldObject), "Region=" + regionID);
+            return m_database.SelectObjects<WorldObject>("Region=" + regionID);
         }
 
-        public IList GetItemList()
+        public IList<ItemTemplate> GetItemList()
         {
-            return m_database.SelectAllObjects(typeof(ItemTemplate));
+            return m_database.SelectAllObjects<ItemTemplate>();
         }
 
         public String ConvertDOLColumnToXMLColumn(String dolColumnName)
@@ -100,8 +100,7 @@ namespace DOL.Tools.QuestDesigner.Util
         {
             if (m_database == null)
             {
-                DataConnection con = new DataConnection(dolConfig.DBType, dolConfig.DBConnectionString);
-                m_database = new ObjectDatabase(con);
+				m_database = ObjectDatabase.GetObjectDatabase(dolConfig.DBType, dolConfig.DBConnectionString);
                 try
                 {
                     //We will search our assemblies for DataTables by reflection so 
@@ -128,15 +127,6 @@ namespace DOL.Tools.QuestDesigner.Util
                 {                                        
                     QuestDesignerMain.HandleException(e);                    
                     return;
-                }
-
-                try
-                {
-                    m_database.LoadDatabaseTables();
-                }
-                catch (DatabaseException e)
-                {
-                    QuestDesignerMain.HandleException(e);                    
                 }
             }
         }

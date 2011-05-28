@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Globalization;
 using DOL.GS.PacketHandler;
 using DOL.Database;
+using DOL.GS;
 
 namespace DOL.Tools.QuestDesigner.Converter
 {

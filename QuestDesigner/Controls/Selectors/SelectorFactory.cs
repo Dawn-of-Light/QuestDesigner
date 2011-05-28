@@ -23,6 +23,8 @@ using System.Text;
 using System.Reflection;
 using System.Windows.Forms;
 using DOL.Tools.QuestDesigner.Util;
+using DOL.GS.Behaviour;
+using DOL.GS.PacketHandler;
 
 namespace DOL.Tools.QuestDesigner.Controls
 {
@@ -54,7 +56,7 @@ namespace DOL.Tools.QuestDesigner.Controls
             else if (description.StartsWith(Const.SELECTOR_ZONE))
 				selector = new ZoneSelector(id, param);
             else if (description.StartsWith(Const.SELECTOR_TEXTTYPE))
-				selector = new EnumerationSelector(id, param, typeof(DOL.GS.Quests.eTextType).Name);
+				selector = new EnumerationSelector(id, param, typeof(eTextType).Name);
             else if (description.StartsWith(Const.SELECTOR_TEXT))
 				selector = new TextSelector(id, param);
             else if (description.StartsWith(Const.SELECTOR_LOCATION))
@@ -62,7 +64,7 @@ namespace DOL.Tools.QuestDesigner.Controls
             else if (description.StartsWith(Const.SELECTOR_COMPARATOR))
 				selector = new ComparatorSelector(id, param,comparatorType);
             else if (description.StartsWith(Const.SELECTOR_EMOTE))
-				selector = new EnumerationSelector(id, param, typeof(DOL.GS.PacketHandler.eEmote).Name);
+				selector = new EnumerationSelector(id, param, typeof(eEmote).Name);
             else if (description.StartsWith(Const.SELECTOR_CHARACTERCLASS))
 				selector = new EnumerationSelector(id, param, typeof(DOL.GS.eCharacterClass).Name);
 			else

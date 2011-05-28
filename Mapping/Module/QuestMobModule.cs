@@ -12,6 +12,7 @@ using DOL.Tools.Mapping.DX.Meshes;
 using Microsoft.DirectX;
 using DOL.Tools.QuestDesigner;
 using DOL.Tools.Mapping.Forms;
+using DOL.GS;
 
 namespace DOL.Tools.Mapping.Modules
 {
@@ -145,7 +146,7 @@ namespace DOL.Tools.Mapping.Modules
             {
                 
                 Model m_PointModel;
-                if ((byte)mobRow[DB.COL_NPC_REALM] == (byte)DOL.GS.PacketHandler.eRealm.None)
+                if ((byte)mobRow[DB.COL_NPC_REALM] == (byte)eRealm.None)
                 {
                     m_PointModel = new Model(Plane, Textures.Mob);
                 }

@@ -31,6 +31,7 @@ using System.ComponentModel;
 using System.Threading;
 using DOL.Tools.QuestDesigner.Properties;
 using DOL.Tools.QuestDesigner.Exceptions;
+using DOL.GS.Behaviour;
 
 namespace DOL.Tools.QuestDesigner.Export
 {

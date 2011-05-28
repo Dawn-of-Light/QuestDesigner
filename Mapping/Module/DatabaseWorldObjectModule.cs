@@ -42,7 +42,7 @@ namespace DOL.Tools.Mapping.Modules
             // load mobs
             if (QuestDesignerMain.WaitForDatabase() && QuestDesignerMain.DatabaseSupported)
             {
-                IList objs = QuestDesignerMain.DatabaseAdapter.GetWorldObjectListForRegion(region.ID);
+                IList<WorldObject> objs = QuestDesignerMain.DatabaseAdapter.GetWorldObjectListForRegion(region.ID);
                 foreach (WorldObject obj in objs)
                 {
                     AddWorldObject(obj);

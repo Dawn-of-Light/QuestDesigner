@@ -28,6 +28,7 @@ using System.Configuration;
 using System.Collections;
 using DOL.GS;
 using DOL.Tools.QuestDesigner.Util;
+using DOL.Database;
 
 namespace DOL.Tools.QuestDesigner
 {
@@ -48,7 +49,7 @@ namespace DOL.Tools.QuestDesigner
 			InitializeComponent();
             if (QuestDesignerMain.DatabaseSupported)
             {                
-                IList mobs = QuestDesignerMain.DatabaseAdapter.GetNPCList();
+                IList<Mob> mobs = QuestDesignerMain.DatabaseAdapter.GetNPCList();
                 if (mobs.Count > 0)
                 {                    
                     comboBoxNPC.DisplayMember = DOLDatabaseAdapter.MOB_NAME;

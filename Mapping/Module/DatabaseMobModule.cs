@@ -42,7 +42,7 @@ namespace DOL.Tools.Mapping.Modules
             // load mobs
             if (QuestDesignerMain.WaitForDatabase() && QuestDesignerMain.DatabaseSupported)
             {
-                IList mobs = QuestDesignerMain.DatabaseAdapter.GetNPCListForRegion(region.ID);
+                IList<Mob> mobs = QuestDesignerMain.DatabaseAdapter.GetNPCListForRegion(region.ID);
                 foreach (Mob mob in mobs)
                 {
                     AddMob(mob);

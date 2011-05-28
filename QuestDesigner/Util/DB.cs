@@ -28,6 +28,7 @@ using DOL.GS.PacketHandler;
 using DOL.Tools.QuestDesigner.QuestDesigner.Util;
 using System.Collections;
 using System.Text.RegularExpressions;
+using DOL.GS.Behaviour;
 
 namespace DOL.Tools.QuestDesigner.Util
 {
